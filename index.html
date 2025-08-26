@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balatro Hand Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Balatro Hand Calculator</h1>
+            <p>Select up to 5 cards to calculate hand score</p>
+        </header>
+
+        <main>
+            <section class="card-selector">
+                <h2>Select Cards</h2>
+                <div class="deck" id="deck">
+                    <!-- 52张牌将通过JavaScript动态生成 -->
+                </div>
+            </section>
+
+            <section class="selected-cards">
+                <h2>Selected Cards (<span id="selected-count">0</span>/5)</h2>
+                <div class="selected-hand" id="selected-hand">
+                    <!-- Selected cards will be displayed here -->
+                </div>
+            </section>
+
+            <section class="result">
+                <h2>Result</h2>
+                <div class="result-display" id="result-display">
+                    <div class="hand-type">
+                        <label>Hand Type:</label>
+                        <span id="hand-type">Select cards</span>
+                    </div>
+                    <div class="base-chips">
+                        <label>Base Chips:</label>
+                        <span id="base-chips">-</span>
+                    </div>
+                    <div class="multiplier">
+                        <label>Multiplier:</label>
+                        <span id="multiplier">-</span>
+                    </div>
+                    <div class="final-score">
+                        <label>Final Score:</label>
+                        <span id="final-score">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="controls">
+                <button id="clear-btn" class="clear-button">Clear Selection</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
