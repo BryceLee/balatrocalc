@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/lizhongxin/SoloProduct/EFHIII-balatro-calculator/**)",
+      "Bash(python3:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "/Users/lizhongxin/SoloProduct/EFHIII-balatro-calculator/assets",
+      "/Users/lizhongxin/SoloProduct/EFHIII-balatro-calculator"
+    ]
+  }
+}
