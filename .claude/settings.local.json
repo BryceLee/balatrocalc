@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Read(//Users/lizhongxin/SoloProduct/EFHIII-balatro-calculator/**)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/**)",
+      "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/functions/**)",
+      "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/engine/**)",
+      "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/functions/**)",
+      "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/functions/**)",
+      "Bash(grep:*)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": [],
