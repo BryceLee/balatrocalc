@@ -122,8 +122,7 @@ a:hover {
   position: relative;
   width: 100%;
   text-align: center;
-  background-color: rgba(58, 80, 85, 0.1);
-  backdrop-filter: blur(2px);
+  background-color: transparent;
   min-height: 400px;
   padding-top: 80px;
 }
@@ -131,8 +130,7 @@ a:hover {
 #containerRight {
   position: static;
   width: 100%;
-  background-color: rgba(58, 80, 85, 0.1);
-  backdrop-filter: blur(2px);
+  background-color: transparent;
 }
 
 #footer {
@@ -215,6 +213,7 @@ html {
     #mainContainer {
       display: flex;
       min-height: 100vh;
+      background-color: transparent;
     }
 
     #footer {
