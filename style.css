@@ -1,3 +1,13 @@
+/* Reset some basic styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 /*
 MULT = HEX('FE5F55'),
 CHIPS = HEX("009dff"),
@@ -36,7 +46,13 @@ DYN_UI = {
 
 @font-face {
   font-family: 'm6x11Plus';
-  src: url('assets/m6x11plus.ttf') format('truetype');
+  src: url('./assets/m6x11plus.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* 字体加载失败时的后备样式 */
+body.font-loading {
+  font-family: monospace, 'Courier New', Courier;
 }
 
 body {
@@ -61,10 +77,11 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
-  z-index: 100;
+  z-index: 1000;
   color: #fff;
-  font-family: 'm6x11Plus';
+  font-family: 'm6x11Plus', monospace, 'Courier New', Courier;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
 }
 
 #titleBar h1 {
@@ -100,12 +117,13 @@ a:hover {
 }
 
 #containerLeft {
-  position: static;
+  position: relative;
   width: 100%;
   text-align: center;
   background-color: rgba(58, 80, 85, 0.1);
   backdrop-filter: blur(2px);
   margin-top: 80px;
+  min-height: 400px;
 }
 
 #containerRight {

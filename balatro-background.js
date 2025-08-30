@@ -5,7 +5,8 @@ class BalatroBG {
         this.gl = this.canvas.getContext('webgl') || this.canvas.getContext('experimental-webgl');
         
         if (!this.gl) {
-            console.error('WebGL not supported');
+            console.error('WebGL not supported, using fallback background');
+            this.useFallback();
             return;
         }
         
@@ -159,6 +160,12 @@ class BalatroBG {
             requestAnimationFrame(renderLoop);
         };
         requestAnimationFrame(renderLoop);
+    }
+    
+    useFallback() {
+        // 如果WebGL不支持，使用CSS背景
+        document.body.style.background = 'linear-gradient(135deg, #1a2b28 0%, #2a4b38 50%, #1a3b28 100%)';
+        this.canvas.style.display = 'none';
     }
 }
 
