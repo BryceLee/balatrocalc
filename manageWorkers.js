@@ -20,6 +20,7 @@ let optimizeCards = true;
 const toggleJokerDiv = document.getElementById('toggleJokerBtn');
 const toggleCardDiv = document.getElementById('toggleCardBtn');
 const minimizeDiv = document.getElementById('toggleMinimizeBtn');
+console.log('minimizeDiv loaded:', minimizeDiv);
 const toggleTheFlintDiv = document.getElementById('toggleTheFintBtn');
 const toggleTheEyeDiv = document.getElementById('toggleTheEyeBtn');
 const togglePlasmaDiv = document.getElementById('togglePlasmaBtn');
@@ -34,14 +35,19 @@ let minimize = false;
 let optimizeMode = 0;
 
 function toggleMinimize() {
+  console.log('toggleMinimize called, minimize:', !minimize, 'minimizeDiv:', minimizeDiv);
   minimize = !minimize;
   redrawPlayfield();
 
-  if(minimize) {
-    minimizeDiv.innerText = 'X';
-  }
-  else {
-    minimizeDiv.innerHTML = '&nbsp;';
+  if(minimizeDiv) {
+    if(minimize) {
+      minimizeDiv.innerText = 'X';
+    }
+    else {
+      minimizeDiv.innerHTML = '&nbsp;';
+    }
+  } else {
+    console.error('minimizeDiv is null');
   }
 }
 
