@@ -631,7 +631,7 @@ html {
 }
 
 #cardsInHand .tooltip:last-child, #bestPlay .tooltip:last-child, #jokerArea .tooltip:last-child {
-  width: 100000%;
+  width: 100%;
 }
 
 .positionButtons {
