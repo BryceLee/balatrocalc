@@ -66,7 +66,7 @@
         <span class='limitText'><span id='handLimit'>0</span>/8</span><br>
         <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleMinimize" class="handLevel">
-          <span id="toggleMinimizeBtn" class="lvlBtn" onclick="console.log('Button clicked!'); console.log('toggleMinimize function exists:', typeof toggleMinimize); if(typeof toggleMinimize === 'function') { toggleMinimize(); } else { console.error('toggleMinimize function not defined'); }">&nbsp;</span>
+          <span id="toggleMinimizeBtn" class="lvlBtn" onclick="console.log('Button clicked!'); try { toggleMinimize(); console.log('toggleMinimize executed successfully'); } catch(e) { console.error('Error calling toggleMinimize:', e); }">&nbsp;</span>
           <span class="handName">Minimize Score</span>
         </div>
         <div id="toggleTheFlint" class="handLevel">
