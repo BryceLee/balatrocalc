@@ -9,7 +9,11 @@
       "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/functions/**)",
       "Read(/Users/lizhongxin/生意/生财有术/忠鑫同学/游戏/Balatro_source/functions/**)",
       "Bash(grep:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "WebFetch(domain:love2d.org)",
+      "Bash(npx:*)",
+      "Bash(magick:*)",
+      "Bash(convert:*)"
     ],
     "deny": [],
     "ask": [],
