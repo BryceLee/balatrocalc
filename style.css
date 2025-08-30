@@ -435,7 +435,12 @@ html {
   z-index: 2;
 }
 
-.jokerCard:after, .playingCard:after, .jmodifierCard:after, .modifierCard:after, .playfieldCard:after {
+#jokerArea .jokerCard:after, 
+#cards .playingCard:after, 
+#jokers .jmodifierCard:after, 
+#handModifiers .modifierCard:after, 
+#bestPlay .playfieldCard:after,
+#cardsInHand .playfieldCard:after {
   content: '';
   width: 71px;
   height: 100%;
@@ -443,13 +448,23 @@ html {
   top: 0;
   background: inherit;
   position: absolute;
-
+  
+  -webkit-mask-image: url(assets/Jokers.png);
   mask-image: url(assets/Jokers.png);
+  -webkit-mask-position: inherit;
   mask-position: inherit;
+  -webkit-mask-mode: alpha;
   mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
-.jokerCard:hover:after, .playingCard:hover:after, .jmodifierCard:hover:after, .modifierCard:hover:after, .playfieldCard:hover:after {
+#jokerArea .jokerCard:hover:after, 
+#cards .playingCard:hover:after, 
+#jokers .jmodifierCard:hover:after, 
+#handModifiers .modifierCard:hover:after, 
+#bestPlay .playfieldCard:hover:after,
+#cardsInHand .playfieldCard:hover:after {
   box-shadow: 0px 10px 1px -3px #0005;
 }
 
