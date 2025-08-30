@@ -40,11 +40,49 @@ DYN_UI = {
 }
 
 body {
-  background-color: #3a5055;
+  background-color: transparent;
   color: #fff;
   font-family: 'm6x11Plus';
   margin: 0;
   overflow-x: hidden;
+}
+
+#backgroundCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#titleBar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  color: #fff;
+  font-family: 'm6x11Plus';
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#titleBar h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: normal;
+  color: #ffd700;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+}
+
+#titleBar .subtitle {
+  display: block;
+  font-size: 14px;
+  color: #bfc7d5;
+  margin-top: -5px;
+  text-transform: lowercase;
+  letter-spacing: 1px;
 }
 
 div {
@@ -65,17 +103,34 @@ a:hover {
   position: static;
   width: 100%;
   text-align: center;
+  background-color: rgba(58, 80, 85, 0.1);
+  backdrop-filter: blur(2px);
+  margin-top: 80px;
 }
 
 #containerRight {
   position: static;
   width: 100%;
+  background-color: rgba(58, 80, 85, 0.1);
+  backdrop-filter: blur(2px);
 }
 
 #footer {
   width: 100%;
   text-align: center;
   margin: 0.5em;
+}
+
+#credits {
+  margin-top: 1em;
+  padding: 0.5em;
+  font-size: 14px;
+  color: #bfc7d5;
+  font-family: 'm6x11Plus';
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+  backdrop-filter: blur(2px);
 }
 
 #jokers, #cards, #modifyJoker {
@@ -130,6 +185,7 @@ html {
     #containerLeft {
       width: 50%;
       text-align: center;
+      margin-top: 0;
     }
 
     #containerRight {
@@ -138,7 +194,8 @@ html {
 
     #mainContainer {
       display: flex;
-      min-height: 100%;
+      min-height: calc(100% - 80px);
+      margin-top: 80px;
     }
 
     #footer {
