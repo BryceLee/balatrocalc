@@ -820,17 +820,53 @@ input {
 }
 
 .resetBtn {
-  background-color: #ff4d40;
   color: white;
   font-family: inherit;
-  font-size: 32px;
-  padding: 0.2em;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
   cursor: pointer;
-  border-radius: 8px;
-  margin-bottom: 1em;
+  border: none;
+  border-radius: 12px;
+  margin: 6px;
   vertical-align: middle;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .resetBtn:hover {
-  background-color: #df2d20;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.resetBtn:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 不同按钮的颜色 */
+.resetBtn[onclick*="playHand"] {
+  background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%);
+}
+
+.resetBtn[onclick*="playHand"]:hover {
+  background: linear-gradient(135deg, #5294f5 0%, #2086e2 100%);
+}
+
+.resetBtn[onclick*="clearHand"] {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+.resetBtn[onclick*="clearHand"]:hover {
+  background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+}
+
+.resetBtn[onclick*="resetHand"] {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.resetBtn[onclick*="resetHand"]:hover {
+  background: linear-gradient(135deg, #f66159 0%, #e53935 100%);
 }
