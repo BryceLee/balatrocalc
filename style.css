@@ -430,6 +430,7 @@ html {
   cursor: pointer;
   z-index: 1;
   mask-image: url(assets/Jokers.png);
+  -webkit-mask-image: url(assets/Jokers.png);
 }
 
 .modifierCard:hover, .jmodifierCard:hover, .jokerCard:hover, .playingCard:hover, .playfieldCard:hover {
