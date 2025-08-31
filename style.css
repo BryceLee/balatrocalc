@@ -421,7 +421,7 @@ html {
   position: absolute;
   left: 0;
   display: inline-block;
-  width: 71px;
+  width: 0;
   height: 100%;
   padding: 0;
   image-rendering: pixelated;
@@ -444,14 +444,9 @@ html {
   background: inherit;
   position: absolute;
 
-  -webkit-mask-image: url(assets/Jokers.png);
   mask-image: url(assets/Jokers.png);
-  -webkit-mask-position: inherit;
   mask-position: inherit;
-  -webkit-mask-mode: alpha;
   mask-mode: alpha;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
 }
 
 #jokerArea .jokerCard:hover:after, 
