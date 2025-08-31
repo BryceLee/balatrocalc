@@ -717,7 +717,8 @@ input {
 .breakdownLine > div:first-child {
   display: inline-block;
   float: left;
-  min-width: 78px;
+  min-width: 90px;
+  overflow: visible;
 }
 
 .breakdownLine > div:first-child > .tooltip .playfieldCard {
@@ -739,7 +740,8 @@ input {
   height: 47px;
   position: relative;
   bottom: 0.5em;
-  width: 36px;
+  min-width: 50px;
+  overflow: visible;
 }
 
 .breakdownLine > span {
