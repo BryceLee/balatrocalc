@@ -435,12 +435,7 @@ html {
   z-index: 2;
 }
 
-#jokerArea .jokerCard:after, 
-#cards .playingCard:after, 
-#jokers .jmodifierCard:after, 
-#handModifiers .modifierCard:after, 
-#bestPlay .playfieldCard:after,
-#cardsInHand .playfieldCard:after {
+.jokerCard:after, .playingCard:after, .jmodifierCard:after, .modifierCard:after, .playfieldCard:after {
   content: '';
   width: 71px;
   height: 100%;
@@ -448,15 +443,10 @@ html {
   top: 0;
   background: inherit;
   position: absolute;
-  
-  -webkit-mask-image: url(assets/Jokers.png);
+
   mask-image: url(assets/Jokers.png);
-  -webkit-mask-position: inherit;
   mask-position: inherit;
-  -webkit-mask-mode: alpha;
   mask-mode: alpha;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
 }
 
 #jokerArea .jokerCard:hover:after, 
