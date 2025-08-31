@@ -423,12 +423,13 @@ html {
   position: absolute;
   left: 0;
   display: inline-block;
-  width: 0;
-  height: 100%;
+  width: 71px;
+  height: 95px;
   padding: 0;
   image-rendering: pixelated;
   cursor: pointer;
   z-index: 1;
+  mask-image: url(assets/Jokers.png);
 }
 
 .modifierCard:hover, .jmodifierCard:hover, .jokerCard:hover, .playingCard:hover, .playfieldCard:hover {

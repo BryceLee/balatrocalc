@@ -25,7 +25,8 @@
       "Read(/Users/lizhongxin/SoloProduct/game/Balatro_source/resources/shaders/**)",
       "Read(/Users/lizhongxin/SoloProduct/game/Balatro_source/resources/shaders/**)",
       "Read(/Users/lizhongxin/SoloProduct/game/Balatro_source/resources/shaders/**)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "WebFetch(domain:balatrocalc.com)"
     ],
     "deny": [],
     "ask": [],
