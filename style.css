@@ -938,6 +938,7 @@ input {
   transition: all 0.2s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .resetBtn:hover {
@@ -950,27 +951,33 @@ input {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 不同按钮的颜色 */
-.resetBtn[onclick*="playHand"] {
-  background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%);
+/* 不同按钮的颜色 - 使用更具体的选择器 */
+button.resetBtn[onclick*="playHand"], 
+button.resetBtn[onClick*="playHand"] {
+  background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%) !important;
 }
 
-.resetBtn[onclick*="playHand"]:hover {
-  background: linear-gradient(135deg, #5294f5 0%, #2086e2 100%);
+button.resetBtn[onclick*="playHand"]:hover, 
+button.resetBtn[onClick*="playHand"]:hover {
+  background: linear-gradient(135deg, #5294f5 0%, #2086e2 100%) !important;
 }
 
-.resetBtn[onclick*="clearHand"] {
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+button.resetBtn[onclick*="clearHand"], 
+button.resetBtn[onClick*="clearHand"] {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%) !important;
 }
 
-.resetBtn[onclick*="clearHand"]:hover {
-  background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+button.resetBtn[onclick*="clearHand"]:hover, 
+button.resetBtn[onClick*="clearHand"]:hover {
+  background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%) !important;
 }
 
-.resetBtn[onclick*="resetHand"] {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+button.resetBtn[onclick*="resetHand"], 
+button.resetBtn[onClick*="resetHand"] {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
 }
 
-.resetBtn[onclick*="resetHand"]:hover {
-  background: linear-gradient(135deg, #f66159 0%, #e53935 100%);
+button.resetBtn[onclick*="resetHand"]:hover, 
+button.resetBtn[onClick*="resetHand"]:hover {
+  background: linear-gradient(135deg, #f66159 0%, #e53935 100%) !important;
 }
