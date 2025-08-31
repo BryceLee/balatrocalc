@@ -623,7 +623,7 @@ function jokerString(i, j, modifiers) {
     case '8,7': jmodifierString = `url(assets/Jokers.png) -${71*7}px -${95*9}px, `; break;
     case '12,4': jmodifierString = `url(assets/Jokers.png) -${71*2}px -${95*9}px, `; break;
   }
-  return `${jmodifierClass}" style="mask-position:  -${71*j}px -${95*i}px; background: ${jmodifierPostString}${jmodifierString}url(assets/Jokers.png) -${71*j}px -${95*i}px"`;
+  return `${jmodifierClass}" style="mask-image: url(assets/Jokers.png); mask-position:  -${71*j}px -${95*i}px; background: ${jmodifierPostString}${jmodifierString}url(assets/Jokers.png) -${71*j}px -${95*i}px"`;
 }
 
 function jredrawCards() {
