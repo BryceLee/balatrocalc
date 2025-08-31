@@ -411,12 +411,7 @@ html {
   mask-mode: alpha;
 }
 
-#jokerArea .jokerCard:hover:after, 
-#cards .playingCard:hover:after, 
-#jokers .jmodifierCard:hover:after, 
-#handModifiers .modifierCard:hover:after, 
-#bestPlay .playfieldCard:hover:after,
-#cardsInHand .playfieldCard:hover:after {
+.jokerCard:hover:after, .playingCard:hover:after, .jmodifierCard:hover:after, .modifierCard:hover:after, .playfieldCard:hover:after {
   box-shadow: 0px 10px 1px -3px #0005;
 }
 
