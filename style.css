@@ -421,7 +421,7 @@ html {
   position: absolute;
   left: 0;
   display: inline-block;
-  width: 0;
+  width: 71px;
   height: 100%;
   padding: 0;
   image-rendering: pixelated;
