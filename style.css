@@ -104,6 +104,80 @@ body {
   letter-spacing: 1px;
 }
 
+#topNav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 15px;
+  pointer-events: auto;
+}
+
+.nav-link {
+  color: #ffd700;
+  font-family: 'm6x11Plus', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.8);
+  transform: translateY(-1px);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.nav-link:active {
+  transform: translateY(0px);
+}
+
+/* 移动端导航响应式 */
+@media (max-width: 600px) {
+  #topNav {
+    top: 10px;
+    right: 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-link {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  
+  #titleBar {
+    top: 10px;
+    left: 10px;
+  }
+  
+  #titleBar h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  #topNav {
+    gap: 4px;
+  }
+  
+  .nav-link {
+    font-size: 10px;
+    padding: 3px 5px;
+  }
+}
+
 div {
   -webkit-tap-highlight-color: transparent !important;
 }

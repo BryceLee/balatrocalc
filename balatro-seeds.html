@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Balatro Seeds - balatrocalc</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Balatro seeds collection and generator">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+  </head>
+  <body>
+    <canvas id="backgroundCanvas"></canvas>
+    <div id="titleBar">
+      <h1>balatro seeds</h1>
+      <span class="subtitle">seed collection</span>
+    </div>
+    <nav id="topNav">
+      <a href="/" class="nav-link">calculator</a>
+      <a href="balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
+      <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+    </nav>
+    
+    <div id="mainContainer">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
+        <div class="handLevel" style="margin-bottom: 2em;">
+          <span class="handName">Coming Soon - Balatro Seeds Database</span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          
+          <div class="seed-card">
+            <h3>Seed Generator</h3>
+            <p>Generate random seeds for Balatro runs</p>
+            <div class="seed-display">
+              <code id="generated-seed">ABCD1234</code>
+              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+            </div>
+          </div>
+          
+          <div class="seed-card">
+            <h3>Popular Seeds</h3>
+            <p>Community favorite seeds</p>
+            <div class="seed-list">
+              <div class="seed-item">
+                <code>JOKER123</code>
+                <span class="seed-desc">Great joker start</span>
+              </div>
+              <div class="seed-item">
+                <code>MULT999</code>
+                <span class="seed-desc">High mult potential</span>
+              </div>
+              <div class="seed-item">
+                <code>LUCKY777</code>
+                <span class="seed-desc">Lucky draws</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="seed-card">
+            <h3>Challenge Seeds</h3>
+            <p>Seeds for specific challenges</p>
+            <div class="seed-list">
+              <div class="seed-item">
+                <code>HARD001</code>
+                <span class="seed-desc">No jokers challenge</span>
+              </div>
+              <div class="seed-item">
+                <code>SPEED42</code>
+                <span class="seed-desc">Speed run seed</span>
+              </div>
+              <div class="seed-item">
+                <code>ANTE999</code>
+                <span class="seed-desc">High ante push</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="handLevel" style="margin-top: 3em;">
+          <span class="handName">Submit Your Seeds</span>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2em;">
+          <p style="color: #bfc7d5; font-size: 18px;">This feature is under development. Check back soon!</p>
+        </div>
+        
+      </div>
+    </div>
+
+   
+
+    <script>
+      function generateSeed() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let seed = '';
+        for (let i = 0; i < 8; i++) {
+          seed += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('generated-seed').textContent = seed;
+      }
+    </script>
+    
+    <script type="text/javascript" src="balatro-background.js"></script>
+    
+    <style>
+      .seed-card {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      
+      .seed-card h3 {
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 20px;
+        margin-bottom: 12px;
+        text-transform: lowercase;
+      }
+      
+      .seed-card p {
+        color: #bfc7d5;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+      
+      .seed-display {
+        text-align: center;
+      }
+      
+      .seed-display code {
+        display: block;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+      }
+      
+      .seed-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .seed-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      
+      .seed-item code {
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      
+      .seed-desc {
+        color: #bfc7d5;
+        font-size: 14px;
+        font-style: italic;
+      }
+    </style>
+  </body>
+</html>
