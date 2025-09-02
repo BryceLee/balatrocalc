@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr">
+<html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro 计分器</title>
+    <title>Balatro Rechner</title>
     <link rel="stylesheet" href="../style.css">
-    <meta name="description" content="计算任意 Balatro 手牌的得分">
+    <meta name="description" content="Berechnen Sie die Punkte jeder Balatro Hand">
     <meta name="keywords" content="Balatro calculator,joker,wiki, chips, score, seeds, tool, card, mods, balatulator, balatrolator,balatro 攻略">
     <meta name="author" content="@EFHIII">
-    <meta property="og:title" content="Balatro 计分器">
-    <meta property="og:description" content="计算任意 Balatro 手牌的得分">
+    <meta property="og:title" content="Balatro Rechner">
+    <meta property="og:description" content="Berechnen Sie die Punkte jeder Balatro Hand">
     <meta property="og:url" content="https://efhiii.github.io/balatro-calculator">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -37,21 +37,20 @@
     <canvas id="backgroundCanvas"></canvas>
     <div id="titleBar">
       <h1>balatrocalc 0.2</h1>
-      <span class="subtitle">balatro 计分器</span>
+      <span class="subtitle">balatro rechner</span>
     </div>
     <nav id="topNav">
-      <a href="../" class="nav-link">计分器</a>
-      <a href="balatro-seeds.html" class="nav-link">种子</a>
+      <a href="../" class="nav-link">rechner</a>
+      <a href="balatro-seeds.html" class="nav-link">samen</a>
       <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
       <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
           <option value="en">EN</option>
-          <option value="cn" selected>中文</option>
-          <option value="ja">日本語</option>
+          <option value="cn">中文</option>
           <option value="ko">한국어</option>
           <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
+          <option value="de" selected>Deutsch</option>
           <option value="es">Español</option>
           <option value="ru">Русский</option>
         </select>
@@ -62,13 +61,13 @@
         <div class="toggleArea" style="margin-bottom: 1em">
           <div id="toggleJoker" class="handLevel">
             <span id="toggleJokerBtn" class="lvlBtn" onclick="toggleJoker()">X</span>
-            <span class="handName">优化小丑牌 (较慢)</span>
+            <span class="handName">Joker optimieren (langsam)</span>
           </div>
         </div>
         <div class="toggleArea" style="margin-bottom: 1em">
           <div id="toggleCard" class="handLevel">
             <span id="toggleCardBtn" class="lvlBtn" onclick="toggleCard()">X</span>
-            <span class="handName">优化手牌 (较慢)</span>
+            <span class="handName">Hand optimieren (langsam)</span>
           </div>
         </div>
         <div id="jokerArea"></div>
@@ -86,7 +85,7 @@
         <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleMinimize" class="handLevel">
           <span id="toggleMinimizeBtn" class="lvlBtn" onclick="toggleMinimize();">&nbsp;</span>
-          <span class="handName">最小化得分</span>
+          <span class="handName">Minimize Score</span>
         </div>
         <div id="toggleTheFlint" class="handLevel">
           <span id="toggleTheFintBtn" class="lvlBtn" onclick="toggleTheFlint()">&nbsp;</span>
@@ -107,12 +106,12 @@
         <div id="consumables" style="display: none"></div>
       </div>
       <!-- <a href="https://discord.gg/ARHq4BbyjY"><img src="../assets/Discord-Logo-Color.svg" style="height: 48px; position: relative"></a> -->
-      <button type="button" class="resetBtn" onClick="playHand()">出牌</button>
-      <button type="button" class="resetBtn" onClick="clearHand()">清空手牌</button>
-      <button type="button" class="resetBtn" onClick="resetHand()" style="display: none;">重置</button>
+      <button type="button" class="resetBtn" onClick="playHand()">Hand spielen</button>
+      <button type="button" class="resetBtn" onClick="clearHand()">Hand löschen</button>
+      <button type="button" class="resetBtn" onClick="resetHand()" style="display: none;">Reset</button>
       </div><div id="containerRight">
         <div class="menuBtns">
-          <span class="menuBtn" id="JokersBtn">小丑牌</span><span class="menuBtn" id="CardsBtn">卡牌</span><span class="menuBtn" id="HandsBtn">手牌</span><span class="menuBtn" id="BreakdownBtn">详情</span><span class="menuBtn" id="ModifyJokerBtn" style="display: none;">编辑</span>
+          <span class="menuBtn" id="JokersBtn">Joker</span><span class="menuBtn" id="CardsBtn">Karten</span><span class="menuBtn" id="HandsBtn">Hände</span><span class="menuBtn" id="BreakdownBtn">Aufschlüsselung</span><span class="menuBtn" id="ModifyJokerBtn" style="display: none;">Bearbeiten</span>
         </div>
         <div id="Jokers">
           <div style="text-align: center;">
@@ -136,7 +135,7 @@
           <div style="text-align: center;">
             <div id="jokerSearch" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
               <span style="display: block; float: left; margin-left: 0.7em; margin-right:0.5em;margin-top: 0.125em;">Search</span>
-              <input id="SearchVal" class="handLvl" type="text" oninput="searchJoker()" placeholder="小丑牌名称" style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;">
+              <input id="SearchVal" class="handLvl" type="text" oninput="searchJoker()" placeholder="Joker Name" style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;">
             </div>
           </div>
           <div id="jokerModifiers" style="text-align: center;">
@@ -151,7 +150,7 @@
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X1.5</span> Mult</span></span><span class="modifierName"><span class="descContent">Polychrome</span></span></span>
             </div><div class="tooltip">
               <div class="jmodifierCard" style="background: url(../assets/Editions.png) 71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
-              <span class="tooltiptext"><span class="desc"><span class="descContent">未触发</span></span><span class="modifierName"><span class="descContent">已禁用</span></span></span>
+              <span class="tooltiptext"><span class="desc"><span class="descContent">Does not trigger</span></span><span class="modifierName"><span class="descContent">Disabled</span></span></span>
             </div>
           </div>
           <div id="jokers" style="text-align: center"></div>
@@ -205,7 +204,7 @@
               <span class="tooltiptext"><span class="desc"><span class="descContent">Retrigger this<br>card <span style="color: #ff8f00">1</span> time</span></span><span class="modifierName"><span class="descContent">Red Seal</span></span></span>
             </div><div class="tooltip">
               <div class="modifierCard" style="background: url(../assets/Editions.png) 71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
-              <span class="tooltiptext"><span class="desc"><span class="descContent">未触发</span></span><span class="modifierName"><span class="descContent">已禁用</span></span></span>
+              <span class="tooltiptext"><span class="desc"><span class="descContent">Does not trigger</span></span><span class="modifierName"><span class="descContent">Disabled</span></span></span>
             </div>
           </div>
           <div id="cards" style="text-align: center"></div>
@@ -213,7 +212,7 @@
         </div>
         <div id="Hands">
           <div id="hands" style="text-align: center"></div>
-          <button type="button" class="resetBtn" onclick="invertPlayedHands()" style="margin-top:0.5em">反选已出手牌</button>
+          <button type="button" class="resetBtn" onclick="invertPlayedHands()" style="margin-top:0.5em">Invert played hands</button>
         </div>
         <div id="Breakdown"></div>
         <div id="ModifyJoker">
@@ -247,7 +246,7 @@
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X1.5</span> Mult</span></span><span class="modifierName"><span class="descContent">Polychrome</span></span></span>
             </div><div class="tooltip">
               <div class="jmodifierCard" style="background: url(../assets/Editions.png) 71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
-              <span class="tooltiptext"><span class="desc"><span class="descContent">未触发</span></span><span class="modifierName"><span class="descContent">已禁用</span></span></span>
+              <span class="tooltiptext"><span class="desc"><span class="descContent">Does not trigger</span></span><span class="modifierName"><span class="descContent">Disabled</span></span></span>
             </div>
           </div>
           <div id="modifyJoker" style="text-align: center"></div>
@@ -275,7 +274,6 @@
     <script type="text/javascript" src="manageWorkers.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="../hand-url.js"></script>
-    <script type="text/javascript" src="../balatro-background.js"></script>
     
     <!-- Balatro Background Shader -->
     <script id="vertex-shader" type="x-shader/x-vertex">

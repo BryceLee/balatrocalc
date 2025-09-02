@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr">
+<html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro 种子 - balatrocalc</title>
+    <title>Balatro Samen - balatrocalc</title>
     <link rel="stylesheet" href="../style.css">
-    <meta name="description" content="Balatro 种子收集和生成器">
+    <meta name="description" content="Balatro Samen Sammlung und Generator">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" href="../assets/favicon.png">
@@ -12,22 +12,21 @@
   <body>
     <canvas id="backgroundCanvas"></canvas>
     <div id="titleBar">
-      <h1>balatro 种子</h1>
-      <span class="subtitle">种子收集</span>
+      <h1>balatro samen</h1>
+      <span class="subtitle">samen sammlung</span>
     </div>
     <nav id="topNav">
-      <a href="../" class="nav-link">计分器</a>
-      <a href="balatro-seeds.html" class="nav-link">种子</a>
+      <a href="../" class="nav-link">rechner</a>
+      <a href="balatro-seeds.html" class="nav-link">samen</a>
       <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
       <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
           <option value="en">EN</option>
-          <option value="cn" selected>中文</option>
-          <option value="ja">日本語</option>
+          <option value="cn">中文</option>
           <option value="ko">한국어</option>
           <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
+          <option value="de" selected>Deutsch</option>
           <option value="es">Español</option>
           <option value="ru">Русский</option>
         </select>
@@ -37,54 +36,54 @@
     <div id="mainContainer">
       <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
         <div class="handLevel" style="margin-bottom: 2em;">
-          <span class="handName">即将推出 - Balatro 种子数据库</span>
+          <span class="handName">Bald verfügbar - Balatro Samen Datenbank</span>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
           
           <div class="seed-card">
-            <h3>种子生成器</h3>
-            <p>为 Balatro 游戏生成随机种子</p>
+            <h3>Samen Generator</h3>
+            <p>Zufällige Samen für Balatro Durchgänge generieren</p>
             <div class="seed-display">
               <code id="generated-seed">ABCD1234</code>
-              <button class="resetBtn" onclick="generateSeed()">生成新种子</button>
+              <button class="resetBtn" onclick="generateSeed()">Neuen generieren</button>
             </div>
           </div>
           
           <div class="seed-card">
-            <h3>热门种子</h3>
-            <p>社区喜爱的种子</p>
+            <h3>Beliebte Samen</h3>
+            <p>Community Lieblings-Samen</p>
             <div class="seed-list">
               <div class="seed-item">
                 <code>JOKER123</code>
-                <span class="seed-desc">优秀小丑牌开局</span>
+                <span class="seed-desc">Großartiger Joker Start</span>
               </div>
               <div class="seed-item">
                 <code>MULT999</code>
-                <span class="seed-desc">高倍数潜力</span>
+                <span class="seed-desc">Hohes Multiplikator Potenzial</span>
               </div>
               <div class="seed-item">
                 <code>LUCKY777</code>
-                <span class="seed-desc">Lucky 抽卡</span>
+                <span class="seed-desc">Glückliche Züge</span>
               </div>
             </div>
           </div>
           
           <div class="seed-card">
-            <h3>挑战种子</h3>
-            <p>特定挑战的种子</p>
+            <h3>Challenge Samen</h3>
+            <p>Samen für spezifische Herausforderungen</p>
             <div class="seed-list">
               <div class="seed-item">
                 <code>HARD001</code>
-                <span class="seed-desc">无小丑牌挑战</span>
+                <span class="seed-desc">Keine Joker Herausforderung</span>
               </div>
               <div class="seed-item">
                 <code>SPEED42</code>
-                <span class="seed-desc">速通种子</span>
+                <span class="seed-desc">Speedrun Samen</span>
               </div>
               <div class="seed-item">
                 <code>ANTE999</code>
-                <span class="seed-desc">高底注推进</span>
+                <span class="seed-desc">Hoher Ante Vostoß</span>
               </div>
             </div>
           </div>
@@ -92,11 +91,11 @@
         </div>
         
         <div class="handLevel" style="margin-top: 3em;">
-          <span class="handName">提交你的种子</span>
+          <span class="handName">Ihre Samen einreichen</span>
         </div>
         
         <div style="text-align: center; margin-top: 2em;">
-          <p style="color: #bfc7d5; font-size: 18px;">此功能正在开发中。请稍后再来查看！</p>
+          <p style="color: #bfc7d5; font-size: 18px;">Diese Funktion ist in Entwicklung. Schauen Sie bald wieder vorbei!</p>
         </div>
         
       </div>
