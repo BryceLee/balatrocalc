@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Helper</title>
+    <style>
+        button { margin: 10px; padding: 10px; font-size: 16px; }
+        pre { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h2>Debug Commands for Chinese Version</h2>
+    <p>Open this page in a separate tab, then copy these commands one by one to the console of the Chinese version:</p>
+    
+    <div>
+        <button onclick="copyToClipboard('console.log(\'addJoker function:\', typeof addJoker)')">Copy Command 1</button>
+        <pre id="cmd1">console.log('addJoker function:', typeof addJoker)</pre>
+    </div>
+    
+    <div>
+        <button onclick="copyToClipboard('console.log(\'addCard function:\', typeof addCard)')">Copy Command 2</button>
+        <pre id="cmd2">console.log('addCard function:', typeof addCard)</pre>
+    </div>
+    
+    <div>
+        <button onclick="copyToClipboard('console.log(\'jokerCount:\', jokerCount)')">Copy Command 3</button>
+        <pre id="cmd3">console.log('jokerCount:', jokerCount)</pre>
+    </div>
+    
+    <div>
+        <button onclick="copyToClipboard('console.log(\'cardCount:\', cardCount)')">Copy Command 4</button>
+        <pre id="cmd4">console.log('cardCount:', cardCount)</pre>
+    </div>
+    
+    <div>
+        <button onclick="copyToClipboard('addJoker(0, 0)')">Copy Test Add Joker</button>
+        <pre id="cmd5">addJoker(0, 0)</pre>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -17,9 +17,7 @@ const tabs = [
 let searchVal = '';
 
 for(let i = 0; i < menuBtns.length; i++) {
-  menuBtns[i].addEventListener('click', (function(tabIndex) {
-    return function() { changeTab(tabIndex)(); };
-  })(i));
+  menuBtns[i].addEventListener('click', changeTab(i));
   tabs[i].style.display = "none";
 }
 

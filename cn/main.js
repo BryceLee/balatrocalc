@@ -444,7 +444,7 @@ const modifiers = {
   disabled: false
 };
 
-let modifierString = ', url(assets/Enhancers.png) -71px 0px';
+let modifierString = ', url(../assets/Enhancers.png) -71px 0px';
 let modifierPostString = '';
 
 let modifierClass = '';
@@ -472,52 +472,52 @@ function setModifierString() {
   modifierClass = '';
 
   if(modifiers.stone) {
-    modifierString = ', url(assets/Enhancers.png) 142px 0';
+    modifierString = ', url(../assets/Enhancers.png) 142px 0';
   }
   else if(modifiers.increment) {
-    modifierString = ', url(assets/Enhancers.png) -71px -95px';
+    modifierString = ', url(../assets/Enhancers.png) -71px -95px';
   }
   else if(modifiers.mult) {
-    modifierString = ', url(assets/Enhancers.png) -142px -95px';
+    modifierString = ', url(../assets/Enhancers.png) -142px -95px';
   }
   else if(modifiers.wild) {
-    modifierString = ', url(assets/Enhancers.png) -213px -95px';
+    modifierString = ', url(../assets/Enhancers.png) -213px -95px';
   }
   else if(modifiers.chance) {
-    modifierString = ', url(assets/Enhancers.png) -284px -95px';
+    modifierString = ', url(../assets/Enhancers.png) -284px -95px';
   }
   else if(modifiers.glass) {
-    modifierString = ', url(assets/Enhancers.png) -355px -95px';
+    modifierString = ', url(../assets/Enhancers.png) -355px -95px';
   }
   else if(modifiers.steel) {
-    modifierString = ', url(assets/Enhancers.png) -426px -95px';
+    modifierString = ', url(../assets/Enhancers.png) -426px -95px';
   }
   else if(modifiers.gold) {
-    modifierString = ', url(assets/Enhancers.png) 71px 0px';
+    modifierString = ', url(../assets/Enhancers.png) 71px 0px';
   }
   else {
-    modifierString = ', url(assets/Enhancers.png) -71px 0px';
+    modifierString = ', url(../assets/Enhancers.png) -71px 0px';
   }
 
   if(modifiers.double) {
-    modifierPostString = 'url(assets/Enhancers.png) 142px 95px, ';
+    modifierPostString = 'url(../assets/Enhancers.png) 142px 95px, ';
   }
   else {
-    modifierPostString = 'url(assets/Jokers.png) 0px -855px, ';
+    modifierPostString = 'url(../assets/Jokers.png) 0px -855px, ';
   }
 
   if(modifiers.foil) {
-    modifierPostString += 'url(assets/Editions.png) -71px 0, ';
+    modifierPostString += 'url(../assets/Editions.png) -71px 0, ';
   }
   else if(modifiers.holographic) {
-    modifierPostString += 'url(assets/Editions.png) -142px 0, ';
+    modifierPostString += 'url(../assets/Editions.png) -142px 0, ';
   }
   else if(modifiers.polychrome) {
     modifierClass = ' polychrome';
-    modifierPostString += 'url(assets/Editions.png) -213px 0, ';
+    modifierPostString += 'url(../assets/Editions.png) -213px 0, ';
   }
   else if(modifiers.disabled) {
-    modifierPostString += 'url(assets/Editions.png) 71px 0, ';
+    modifierPostString += 'url(../assets/Editions.png) 71px 0, ';
   }
 }
 
@@ -561,7 +561,7 @@ function cardString(i, j, hc = 0) {
   }
   else {
     return `${modifierClass}" style="background: ` +
-    `${modifierPostString}url(assets/8BitDeck${(hc === 2 || (hc === 0 && highContrast))?'_opt2':''}.png) ` +
+    `${modifierPostString}url(../assets/8BitDeck${(hc === 2 || (hc === 0 && highContrast))?'_opt2':''}.png) ` +
     `-${71*j}px -${95*i}px${modifierString}"`;
   }
 }
@@ -597,35 +597,35 @@ document.getElementById('highContrastBtn').addEventListener('click', toggleContr
 function jokerString(i, j, modifiers) {
   let jmodifierClass = '';
 
-  let jmodifierString = 'url(assets/Jokers.png) 0px -855px, ';
+  let jmodifierString = 'url(../assets/Jokers.png) 0px -855px, ';
   let jmodifierPostString = '';
 
   if(modifiers.foil) {
-    jmodifierPostString = 'url(assets/Editions.png) -71px 0, ';
+    jmodifierPostString = 'url(../assets/Editions.png) -71px 0, ';
   }
   else if(modifiers.holographic) {
-    jmodifierPostString = 'url(assets/Editions.png) -142px 0, ';
+    jmodifierPostString = 'url(../assets/Editions.png) -142px 0, ';
   }
   else if(modifiers.polychrome) {
     jmodifierClass = ' polychrome';
-    jmodifierPostString = 'url(assets/Editions.png) -213px 0, ';
+    jmodifierPostString = 'url(../assets/Editions.png) -213px 0, ';
   }
   else if(modifiers.disabled) {
-    jmodifierPostString = 'url(assets/Editions.png) 71px 0, ';
+    jmodifierPostString = 'url(../assets/Editions.png) 71px 0, ';
   }
   else {
     jmodifierPostString = '';
   }
 
   switch(`${i},${j}`) {
-    case '8,3': jmodifierString = `url(assets/Jokers.png) -${71*3}px -${95*9}px, `; break;
-    case '8,4': jmodifierString = `url(assets/Jokers.png) -${71*4}px -${95*9}px, `; break;
-    case '8,5': jmodifierString = `url(assets/Jokers.png) -${71*5}px -${95*9}px, `; break;
-    case '8,6': jmodifierString = `url(assets/Jokers.png) -${71*6}px -${95*9}px, `; break;
-    case '8,7': jmodifierString = `url(assets/Jokers.png) -${71*7}px -${95*9}px, `; break;
-    case '12,4': jmodifierString = `url(assets/Jokers.png) -${71*2}px -${95*9}px, `; break;
+    case '8,3': jmodifierString = `url(../assets/Jokers.png) -${71*3}px -${95*9}px, `; break;
+    case '8,4': jmodifierString = `url(../assets/Jokers.png) -${71*4}px -${95*9}px, `; break;
+    case '8,5': jmodifierString = `url(../assets/Jokers.png) -${71*5}px -${95*9}px, `; break;
+    case '8,6': jmodifierString = `url(../assets/Jokers.png) -${71*6}px -${95*9}px, `; break;
+    case '8,7': jmodifierString = `url(../assets/Jokers.png) -${71*7}px -${95*9}px, `; break;
+    case '12,4': jmodifierString = `url(../assets/Jokers.png) -${71*2}px -${95*9}px, `; break;
   }
-  return `${jmodifierClass}" style="mask-position:  -${71*j}px -${95*i}px; background: ${jmodifierPostString}${jmodifierString}url(assets/Jokers.png) -${71*j}px -${95*i}px"`;
+  return `${jmodifierClass}" style="mask-position:  -${71*j}px -${95*i}px; background: ${jmodifierPostString}${jmodifierString}url(../assets/Jokers.png) -${71*j}px -${95*i}px"`;
 }
 
 function jredrawCards() {

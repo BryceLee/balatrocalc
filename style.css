@@ -111,7 +111,33 @@ body {
   z-index: 1000;
   display: flex;
   gap: 15px;
+  align-items: center;
   pointer-events: auto;
+}
+
+.language-switcher select {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  color: #ffd700;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'm6x11Plus', monospace;
+  font-size: 12px;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.language-switcher select:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.language-switcher select option {
+  background: #374244;
+  color: #ffd700;
 }
 
 .nav-link {
@@ -607,8 +633,8 @@ html {
   image-rendering: pixelated;
   cursor: pointer;
   z-index: 1;
-  mask-image: url(assets/Jokers.png);
-  -webkit-mask-image: url(assets/Jokers.png);
+  mask-image: url(./assets/Jokers.png);
+  -webkit-mask-image: url(./assets/Jokers.png);
 }
 
 .modifierCard:hover, .jmodifierCard:hover, .jokerCard:hover, .playingCard:hover, .playfieldCard:hover {
@@ -626,7 +652,7 @@ html {
   background: inherit;
   position: absolute;
 
-  mask-image: url(assets/Jokers.png);
+  mask-image: url(./assets/Jokers.png);
   mask-position: inherit;
   mask-mode: alpha;
 }
@@ -684,7 +710,7 @@ html {
   display: inline-block;
   width: 30px;
   height: 30px;
-  background: url(assets/chips.png) 0 0;
+  background: url(./assets/chips.png) 0 0;
   image-rendering: pixelated;
 }
 

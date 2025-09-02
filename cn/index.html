@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-CN" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro Calculator</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Calculate the score of any Balatro hand">
+    <title>Balatro 计分器</title>
+    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="计算任意 Balatro 手牌的得分">
     <meta name="keywords" content="Balatro calculator,joker,wiki, chips, score, seeds, tool, card, mods, balatulator, balatrolator,balatro 攻略">
     <meta name="author" content="@EFHIII">
-    <meta property="og:title" content="Balatro Calculator">
-    <meta property="og:description" content="Calculate the score of any Balatro hand">
+    <meta property="og:title" content="Balatro 计分器">
+    <meta property="og:description" content="计算任意 Balatro 手牌的得分">
     <meta property="og:url" content="https://efhiii.github.io/balatro-calculator">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <script type="application/ld+json" src="path/to/structured-data.jsonld"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6PE7WDDFCZ"></script>
@@ -37,17 +37,17 @@
     <canvas id="backgroundCanvas"></canvas>
     <div id="titleBar">
       <h1>balatrocalc 0.2</h1>
-      <span class="subtitle">balatro calculator</span>
+      <span class="subtitle">balatro 计分器</span>
     </div>
     <nav id="topNav">
-      <a href="/" class="nav-link">calculator</a>
-      <a href="balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="../" class="nav-link">计分器</a>
+      <a href="balatro-seeds.html" class="nav-link">种子</a>
       <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
       <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
           <option value="en">EN</option>
-          <option value="cn">中文</option>
+          <option value="cn" selected>中文</option>
         </select>
       </div>
     </nav>
@@ -56,13 +56,13 @@
         <div class="toggleArea" style="margin-bottom: 1em">
           <div id="toggleJoker" class="handLevel">
             <span id="toggleJokerBtn" class="lvlBtn" onclick="toggleJoker()">X</span>
-            <span class="handName">Optimize Jokers (slow)</span>
+            <span class="handName">优化小丑牌 (较慢)</span>
           </div>
         </div>
         <div class="toggleArea" style="margin-bottom: 1em">
           <div id="toggleCard" class="handLevel">
             <span id="toggleCardBtn" class="lvlBtn" onclick="toggleCard()">X</span>
-            <span class="handName">Optimize Hand (slow)</span>
+            <span class="handName">优化手牌 (较慢)</span>
           </div>
         </div>
         <div id="jokerArea"></div>
@@ -80,7 +80,7 @@
         <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleMinimize" class="handLevel">
           <span id="toggleMinimizeBtn" class="lvlBtn" onclick="toggleMinimize();">&nbsp;</span>
-          <span class="handName">Minimize Score</span>
+          <span class="handName">最小化得分</span>
         </div>
         <div id="toggleTheFlint" class="handLevel">
           <span id="toggleTheFintBtn" class="lvlBtn" onclick="toggleTheFlint()">&nbsp;</span>
@@ -100,13 +100,13 @@
         </div>
         <div id="consumables" style="display: none"></div>
       </div>
-      <!-- <a href="https://discord.gg/ARHq4BbyjY"><img src="assets/Discord-Logo-Color.svg" style="height: 48px; position: relative"></a> -->
-      <button type="button" class="resetBtn" onClick="playHand()">Play hand</button>
-      <button type="button" class="resetBtn" onClick="clearHand()">Clear hand</button>
-      <button type="button" class="resetBtn" onClick="resetHand()" style="display: none;">Reset</button>
+      <!-- <a href="https://discord.gg/ARHq4BbyjY"><img src="../assets/Discord-Logo-Color.svg" style="height: 48px; position: relative"></a> -->
+      <button type="button" class="resetBtn" onClick="playHand()">出牌</button>
+      <button type="button" class="resetBtn" onClick="clearHand()">清空手牌</button>
+      <button type="button" class="resetBtn" onClick="resetHand()" style="display: none;">重置</button>
       </div><div id="containerRight">
         <div class="menuBtns">
-          <span class="menuBtn" id="JokersBtn">Jokers</span><span class="menuBtn" id="CardsBtn">Cards</span><span class="menuBtn" id="HandsBtn">Hands</span><span class="menuBtn" id="BreakdownBtn">Breakdown</span><span class="menuBtn" id="ModifyJokerBtn" style="display: none;">Edit</span>
+          <span class="menuBtn" id="JokersBtn">小丑牌</span><span class="menuBtn" id="CardsBtn">卡牌</span><span class="menuBtn" id="HandsBtn">手牌</span><span class="menuBtn" id="BreakdownBtn">详情</span><span class="menuBtn" id="ModifyJokerBtn" style="display: none;">编辑</span>
         </div>
         <div id="Jokers">
           <div style="text-align: center;">
@@ -130,22 +130,22 @@
           <div style="text-align: center;">
             <div id="jokerSearch" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
               <span style="display: block; float: left; margin-left: 0.7em; margin-right:0.5em;margin-top: 0.125em;">Search</span>
-              <input id="SearchVal" class="handLvl" type="text" oninput="searchJoker()" placeholder="Joker Name" style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;">
+              <input id="SearchVal" class="handLvl" type="text" oninput="searchJoker()" placeholder="小丑牌名称" style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;">
             </div>
           </div>
           <div id="jokerModifiers" style="text-align: center;">
             <div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) -71px 0, url(assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('foil')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) -71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('foil')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #009dff">+50</span> Chips</span></span><span class="modifierName"><span class="descContent">Foil</span></span></span>
             </div><div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) -142px 0, url(assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('holographic')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) -142px 0, url(../assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('holographic')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #ff4d40">+10</span> Mult</span></span><span class="modifierName"><span class="descContent">Holographic</span></span></span>
             </div><div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) -213px 0, url(assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('polychrome')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) -213px 0, url(../assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('polychrome')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X1.5</span> Mult</span></span><span class="modifierName"><span class="descContent">Polychrome</span></span></span>
             </div><div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) 71px 0, url(assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
-              <span class="tooltiptext"><span class="desc"><span class="descContent">Does not trigger</span></span><span class="modifierName"><span class="descContent">Disabled</span></span></span>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) 71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="jtoggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <span class="tooltiptext"><span class="desc"><span class="descContent">未触发</span></span><span class="modifierName"><span class="descContent">已禁用</span></span></span>
             </div>
           </div>
           <div id="jokers" style="text-align: center"></div>
@@ -162,44 +162,44 @@
           </div>
           <div id="handModifiers" style="text-align: center;width:100%;">
             <div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Editions.png) -71px 0, url(assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('foil')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Editions.png) -71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('foil')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #009dff">+50</span> Chips</span></span><span class="modifierName"><span class="descContent">Foil</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Editions.png) -142px 0, url(assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('holographic')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Editions.png) -142px 0, url(../assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('holographic')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #ff4d40">+10</span> Mult</span></span><span class="modifierName"><span class="descContent">Holographic</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Editions.png) -213px 0, url(assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('polychrome')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Editions.png) -213px 0, url(../assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('polychrome')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X1.5</span> Mult</span></span><span class="modifierName"><span class="descContent">Polychrome</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) -71px -95px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('increment')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) -71px -95px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('increment')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #009dff">+30</span> Chips</span></span><span class="modifierName"><span class="descContent">Bonus Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) -142px -95px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('mult')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) -142px -95px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('mult')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #ff4d40">+4</span> Mult</span></span><span class="modifierName"><span class="descContent">Mult Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) -213px -95px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('wild')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) -213px -95px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('wild')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent">Can be used<br>as any suit</span></span><span class="modifierName"><span class="descContent">Wild Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) -355px -95px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('glass')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) -355px -95px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('glass')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X2</span> Mult<br><span style = "color: #35bd87">1 in 4</span> chance to<br>destroy card</span></span><span class="modifierName"><span class="descContent">Glass Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) -426px -95px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('steel')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) -426px -95px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('steel')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X1.5</span> Mult<br>while this card<br>stays in hand</span></span><span class="modifierName"><span class="descContent">Steel Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) 142px 0, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('stone')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) 142px 0, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('stone')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #009dff">+50</span> Chips</span></span><span class="modifierName"><span class="descContent">Stone Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) 71px 0px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('gold')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) 71px 0px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('gold')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #f5b143">$3</span> if this card<br>is in hand<br>at end of round</span></span><span class="modifierName"><span class="descContent">Gold Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) -284px -95px, url(assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('chance')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) -284px -95px, url(../assets/Jokers.png) 0px -855px" onclick="toggleCardModifier('chance')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style = "color: #35bd87">1 in 5</span> chance<br>for <span style="color: #ff4d40">+20</span> Mult<br><span style="color: #35bd87">1 in 15</span> chance<br>to win <span style="color: #f5b143">$20</span></span></span><span class="modifierName"><span class="descContent">Lucky Card</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Enhancers.png) 142px 95px, url(assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('double')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="modifierCard" style="background: url(../assets/Enhancers.png) 142px 95px, url(../assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('double')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent">Retrigger this<br>card <span style="color: #ff8f00">1</span> time</span></span><span class="modifierName"><span class="descContent">Red Seal</span></span></span>
             </div><div class="tooltip">
-              <div class="modifierCard" style="background: url(assets/Editions.png) 71px 0, url(assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
-              <span class="tooltiptext"><span class="desc"><span class="descContent">Does not trigger</span></span><span class="modifierName"><span class="descContent">Disabled</span></span></span>
+              <div class="modifierCard" style="background: url(../assets/Editions.png) 71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="toggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <span class="tooltiptext"><span class="desc"><span class="descContent">未触发</span></span><span class="modifierName"><span class="descContent">已禁用</span></span></span>
             </div>
           </div>
           <div id="cards" style="text-align: center"></div>
@@ -207,7 +207,7 @@
         </div>
         <div id="Hands">
           <div id="hands" style="text-align: center"></div>
-          <button type="button" class="resetBtn" onclick="invertPlayedHands()" style="margin-top:0.5em">Invert played hands</button>
+          <button type="button" class="resetBtn" onclick="invertPlayedHands()" style="margin-top:0.5em">反选已出手牌</button>
         </div>
         <div id="Breakdown"></div>
         <div id="ModifyJoker">
@@ -231,24 +231,24 @@
           </div>
           <div id="modifyJokerModifiers" style="text-align: center;">
             <div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) -71px 0, url(assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('foil')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) -71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('foil')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #009dff">+50</span> Chips</span></span><span class="modifierName"><span class="descContent">Foil</span></span></span>
             </div><div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) -142px 0, url(assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('holographic')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) -142px 0, url(../assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('holographic')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #ff4d40">+10</span> Mult</span></span><span class="modifierName"><span class="descContent">Holographic</span></span></span>
             </div><div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) -213px 0, url(assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('polychrome')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) -213px 0, url(../assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('polychrome')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
               <span class="tooltiptext"><span class="desc"><span class="descContent"><span style="color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;">X1.5</span> Mult</span></span><span class="modifierName"><span class="descContent">Polychrome</span></span></span>
             </div><div class="tooltip">
-              <div class="jmodifierCard" style="background: url(assets/Editions.png) 71px 0, url(assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
-              <span class="tooltiptext"><span class="desc"><span class="descContent">Does not trigger</span></span><span class="modifierName"><span class="descContent">Disabled</span></span></span>
+              <div class="jmodifierCard" style="background: url(../assets/Editions.png) 71px 0, url(../assets/Enhancers.png) -71px 0px" onclick="mjtoggleCardModifier('disabled')" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div>
+              <span class="tooltiptext"><span class="desc"><span class="descContent">未触发</span></span><span class="modifierName"><span class="descContent">已禁用</span></span></span>
             </div>
           </div>
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
     </div><div id="footer">
-        <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='assets/Balatro logo-new.png' style='height: 3em;'></a><br>
+        <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
         <div id="credits">
           Thanks to @EFHIII for technical support
@@ -263,12 +263,13 @@
         'floating-chat.donateButton.text-color': '#fff'
       });
     </script>
-    <script type="text/javascript" src="hoverCard.js"></script>
-    <script type="text/javascript" src="cards.js"></script>
-    <script type="text/javascript" src="breakdown.js"></script>
+    <script type="text/javascript" src="../hoverCard.js"></script>
+    <script type="text/javascript" src="../cards.js"></script>
+    <script type="text/javascript" src="../breakdown.js"></script>
     <script type="text/javascript" src="manageWorkers.js"></script>
     <script type="text/javascript" src="main.js"></script>
-    <script type="text/javascript" src="hand-url.js"></script>
+    <script type="text/javascript" src="../hand-url.js"></script>
+    
     
     <!-- Balatro Background Shader -->
     <script id="vertex-shader" type="x-shader/x-vertex">
@@ -338,7 +339,7 @@
       }
     </script>
     
-    <script type="text/javascript" src="balatro-background.js"></script>
+    <script type="text/javascript" src="../balatro-background.js"></script>
     
     <script>
       function switchLanguage() {
@@ -346,16 +347,13 @@
         const currentPage = window.location.pathname;
         
         if (lang === 'cn') {
-          if (currentPage.includes('/balatro-seeds.html')) {
-            window.location.href = '/cn/balatro-seeds.html';
-          } else {
-            window.location.href = '/cn/index.html';
-          }
+          // Already in Chinese, do nothing
+          return;
         } else {
           if (currentPage.includes('/cn/balatro-seeds.html')) {
-            window.location.href = '/balatro-seeds.html';
+            window.location.href = '../balatro-seeds.html';
           } else {
-            window.location.href = '/index.html';
+            window.location.href = '../index.html';
           }
         }
       }
