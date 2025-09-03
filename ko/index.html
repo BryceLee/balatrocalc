@@ -2,7 +2,7 @@
 <html lang="ko" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro 계산기</title>
+    <title>Balatro 계산기 - 핸드 스코어 계산 및 조커 최적화</title>
     <link rel="stylesheet" href="../style.css">
     <meta name="description" content="Balatro 핸드의 점수를 계산하세요">
     <meta name="keywords" content="Balatro calculator,joker,wiki, chips, score, seeds, tool, card, mods, balatulator, balatrolator,balatro 攻略">
@@ -10,6 +10,7 @@
     <meta property="og:title" content="Balatro 계산기">
     <meta property="og:description" content="Balatro 핸드의 점수를 계산하세요">
     <meta property="og:url" content="https://efhiii.github.io/balatro-calculator">
+    <link rel="canonical" href="https://balatrocalc.com/ko/">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" href="../assets/favicon.png">
@@ -115,6 +116,7 @@
           <span class="menuBtn" id="JokersBtn">조커</span><span class="menuBtn" id="CardsBtn">카드</span><span class="menuBtn" id="HandsBtn">핸드</span><span class="menuBtn" id="BreakdownBtn">분석</span><span class="menuBtn" id="ModifyJokerBtn" style="display: none;">편집</span>
         </div>
         <div id="Jokers">
+          <h2 style="display: none;">조커 설정</h2>
           <div style="text-align: center;">
             <div id="jokerCount" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
               <span class="lvlBtn" onclick="incrementJokerCount(-1)">-</span>
@@ -157,6 +159,7 @@
           <div id="jokers" style="text-align: center"></div>
         </div>
         <div id="Cards">
+          <h2 style="display: none;">카드 선택</h2>
           <div style="text-align: center;">
             <div id="cardCount" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
               <span class="lvlBtn" onclick="incrementCardCount(-1)">-</span>
@@ -212,10 +215,12 @@
           <div style="text-align: center;"><div class="handLevel"><span id="highContrastBtn" class="lvlBtn">&nbsp;</span><span class="handName">High Contrast</span></div></div>
         </div>
         <div id="Hands">
+          <h2 style="display: none;">핸드 타입</h2>
           <div id="hands" style="text-align: center"></div>
           <button type="button" class="resetBtn" onclick="invertPlayedHands()" style="margin-top:0.5em">Invert played hands</button>
         </div>
-        <div id="Breakdown"></div>
+        <div id="Breakdown">
+          <h2 style="display: none;">점수 분해</h2></div>
         <div id="ModifyJoker">
           <div style="text-align: center;">
             <div id="modifyJokerValue" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
@@ -254,7 +259,7 @@
         </div>
       </div>
     </div><div id="footer">
-        <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' style='height: 3em;'></a><br>
+        <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
         <div id="credits">
           Thanks to @EFHIII for technical support

@@ -2,7 +2,7 @@
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro Rechner</title>
+    <title>Balatro Rechner - Handwerte Berechnen und Joker Optimieren</title>
     <link rel="stylesheet" href="../style.css">
     <meta name="description" content="Berechnen Sie die Punkte jeder Balatro Hand">
     <meta name="keywords" content="Balatro calculator,joker,wiki, chips, score, seeds, tool, card, mods, balatulator, balatrolator,balatro 攻略">
@@ -10,6 +10,7 @@
     <meta property="og:title" content="Balatro Rechner">
     <meta property="og:description" content="Berechnen Sie die Punkte jeder Balatro Hand">
     <meta property="og:url" content="https://efhiii.github.io/balatro-calculator">
+    <link rel="canonical" href="https://balatrocalc.com/de/">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="icon" type="image/png" href="../assets/favicon.png">
@@ -115,6 +116,7 @@
           <span class="menuBtn" id="JokersBtn">Joker</span><span class="menuBtn" id="CardsBtn">Karten</span><span class="menuBtn" id="HandsBtn">Hände</span><span class="menuBtn" id="BreakdownBtn">Aufschlüsselung</span><span class="menuBtn" id="ModifyJokerBtn" style="display: none;">Bearbeiten</span>
         </div>
         <div id="Jokers">
+          <h2 style="display: none;">Joker-Konfiguration</h2>
           <div style="text-align: center;">
             <div id="jokerCount" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
               <span class="lvlBtn" onclick="incrementJokerCount(-1)">-</span>
@@ -157,6 +159,7 @@
           <div id="jokers" style="text-align: center"></div>
         </div>
         <div id="Cards">
+          <h2 style="display: none;">Kartenauswahl</h2>
           <div style="text-align: center;">
             <div id="cardCount" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
               <span class="lvlBtn" onclick="incrementCardCount(-1)">-</span>
@@ -212,10 +215,12 @@
           <div style="text-align: center;"><div class="handLevel"><span id="highContrastBtn" class="lvlBtn">&nbsp;</span><span class="handName">High Contrast</span></div></div>
         </div>
         <div id="Hands">
+          <h2 style="display: none;">Handarten</h2>
           <div id="hands" style="text-align: center"></div>
           <button type="button" class="resetBtn" onclick="invertPlayedHands()" style="margin-top:0.5em">Invert played hands</button>
         </div>
-        <div id="Breakdown"></div>
+        <div id="Breakdown">
+          <h2 style="display: none;">Punkteaufschlüsselung</h2></div>
         <div id="ModifyJoker">
           <div style="text-align: center;">
             <div id="modifyJokerValue" class="handLevel" style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
@@ -254,7 +259,7 @@
         </div>
       </div>
     </div><div id="footer">
-        <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' style='height: 3em;'></a><br>
+        <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
         <div id="credits">
           Thanks to @EFHIII for technical support
