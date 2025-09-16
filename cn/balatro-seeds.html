@@ -107,26 +107,28 @@
 
     <script>
       function generateSeed() {
-        // Based on Balatro's actual seed generation algorithm
-        // Uses weighted character selection: 30% digits, 55% letters A-N, 15% letters P-Z
+        // Balatro 的种子权重：数字 30%（1-9）、字母 A-N 55%、字母 P-Z 15%（排除 O）
         let seed = '';
         for (let i = 0; i < 8; i++) {
           const rand = Math.random();
           let char;
-          if (rand > 0.7) {
-            // 30% chance for digits 1-9
-            char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1' to '9'
-          } else if (rand > 0.45) {
-            // 25% chance for letters A-N
-            char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A' to 'N'
+          if (rand > 0.70) {
+            // 30%：数字 1-9
+            char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1'..'9'
+          } else if (rand > 0.15) {
+            // 55%：字母 A-N
+            char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A'..'N'
           } else {
-            // 45% chance for letters P-Z (excludes O to avoid confusion)
-            char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P' to 'Z'
+            // 15%：字母 P-Z（从 'P' 开始以排除 'O'）
+            char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P'..'Z'
           }
           seed += char;
         }
         document.getElementById('generated-seed').textContent = seed;
       }
+
+      // 页面加载时自动生成一个种子
+      window.addEventListener('DOMContentLoaded', generateSeed);
     </script>
     
     <!-- Balatro Background Shader -->
