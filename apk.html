@@ -28,16 +28,55 @@
         </div>
         <p style="color:#bfc7d5; font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
           This feature is not developed yet. If you are willing to pay for it,
-          please email <a href="mailto:support@balatrocalc.com" style="color:#ffd700;">support@balatrocalc.com</a> so we can prioritize and
-          accelerate development. Thank you!
+          please email
+          <a id="emailLink" href="#" style="color:#ffd700;" aria-label="Copy support email">support@balatrocalc.com</a>
+          <span id="copyHint" style="color:#ffd700; cursor:pointer; margin-left:6px; text-decoration: underline;" aria-label="Copy email">
+            (click to copy)
+          </span>
+          so we can prioritize and accelerate development. Thank you!
         </p>
+        <div id="copiedMsg" style="display:none; color:#35bd87; font-size:16px;">Email copied to clipboard</div>
         <div style="margin-top: 24px;">
           <a class="resetBtn" href="/">Back to Calculator</a>
         </div>
       </div>
     </div>
-
     <script type="text/javascript" src="balatro-background.js"></script>
+    <script>
+      (function(){
+        const EMAIL = 'support@balatrocalc.com';
+        const emailLink = document.getElementById('emailLink');
+        const copyHint = document.getElementById('copyHint');
+        const copiedMsg = document.getElementById('copiedMsg');
+
+        async function copyEmail(e) {
+          if (e) e.preventDefault();
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(EMAIL);
+            } else {
+              // Fallback for older browsers
+              const ta = document.createElement('textarea');
+              ta.value = EMAIL;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+            }
+            copiedMsg.style.display = 'block';
+            setTimeout(() => { copiedMsg.style.display = 'none'; }, 1800);
+          } catch (err) {
+            // If copying fails, at least navigate to mailto as a fallback
+            window.location.href = 'mailto:' + EMAIL;
+          }
+        }
+
+        emailLink.addEventListener('click', copyEmail);
+        copyHint.addEventListener('click', copyEmail);
+      })();
+    </script>
   </body>
   </html>
-
