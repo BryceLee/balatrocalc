@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Support — Balatro Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+  </head>
+  <body>
+    <canvas id="backgroundCanvas"></canvas>
+    <div id="titleBar">
+      <h1>balatrocalc 0.2</h1>
+      <span class="subtitle">support</span>
+    </div>
+    <nav id="topNav">
+      <a href="/" class="nav-link">calculator</a>
+      <a href="balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="apk.html" class="nav-link">apk</a>
+      <a href="support.html" class="nav-link active">support</a>
+      <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+      <div class="language-switcher">
+        <select id="langSelect" onchange="switchLanguage()">
+          <option value="en" selected>EN</option>
+          <option value="cn">中文</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+    </nav>
+
+    <div id="mainContainer">
+      <div style="max-width: 880px; margin: 0 auto; padding: 120px 20px 40px; text-align: center;">
+        <div class="handLevel" style="margin-bottom: 1.5em;">
+          <span class="handName">Get Support</span>
+        </div>
+        <p style="color:#bfc7d5; font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+          Need help with the Balatro Calculator? Have a bug report or feature request?
+        </p>
+        <p style="color:#bfc7d5; font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+          Contact us at:
+        </p>
+        <div style="margin: 30px 0;">
+          <a id="emailLink" href="#" style="color:#ffd700; font-size: 24px; font-weight: bold;" aria-label="Copy support email">support@balatrocalc.com</a>
+          <div style="margin-top: 10px;">
+            <span id="copyHint" style="color:#ffd700; cursor:pointer; text-decoration: underline; font-size: 16px;" aria-label="Copy email">
+              Click to copy email address
+            </span>
+          </div>
+        </div>
+        <div id="copiedMsg" style="display:none; color:#35bd87; font-size:18px; margin: 20px 0;">✓ Email copied to clipboard!</div>
+        <p style="color:#bfc7d5; font-size: 16px; line-height: 1.6; margin-top: 30px;">
+          We typically respond within 24-48 hours. Please include as much detail as possible about your issue.
+        </p>
+        <div style="margin-top: 40px;">
+          <a class="resetBtn" href="/">Back to Calculator</a>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="balatro-background.js"></script>
+    <script type="text/javascript" src="languageHandler.js"></script>
+    <script>
+      (function(){
+        const EMAIL = 'support@balatrocalc.com';
+        const emailLink = document.getElementById('emailLink');
+        const copyHint = document.getElementById('copyHint');
+        const copiedMsg = document.getElementById('copiedMsg');
+
+        async function copyEmail(e) {
+          if (e) e.preventDefault();
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(EMAIL);
+            } else {
+              // Fallback for older browsers
+              const ta = document.createElement('textarea');
+              ta.value = EMAIL;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+            }
+            copiedMsg.style.display = 'block';
+            setTimeout(() => { copiedMsg.style.display = 'none'; }, 2500);
+          } catch (err) {
+            // If copying fails, at least navigate to mailto as a fallback
+            window.location.href = 'mailto:' + EMAIL;
+          }
+        }
+
+        emailLink.addEventListener('click', copyEmail);
+        copyHint.addEventListener('click', copyEmail);
+      })();
+    </script>
+  </body>
+</html>
