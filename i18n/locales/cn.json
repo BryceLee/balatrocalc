@@ -1,0 +1,11 @@
+{
+  "index": {
+    "title": "Balatro 计分器 - 计算手牌得分与优化小丑牌",
+    "description": "计算任意 Balatro 手牌的得分，并理解 Chips / Mult / Joker 触发顺序"
+  },
+  "seeds": {
+    "title": "Balatro Seeds - balatrocalc",
+    "description": "Balatro seeds collection and generator"
+  }
+}
+

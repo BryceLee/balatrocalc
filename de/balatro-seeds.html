@@ -2,35 +2,62 @@
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro Samen - balatrocalc</title>
-    <link rel="stylesheet" href="../style.css">
-    <meta name="description" content="Balatro Samen Sammlung und Generator">
+    <title>Balatro Seeds - balatrocalc</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Balatro seeds collection and generator">
     <link rel="canonical" href="https://balatrocalc.com/de/balatro-seeds.html">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
   </head>
   <body>
     <canvas id="backgroundCanvas"></canvas>
     <div id="titleBar">
-      <h1>balatro samen</h1>
-      <span class="subtitle">samen sammlung</span>
+      <h1>balatro seeds</h1>
+      <span class="subtitle">seed collection</span>
     </div>
     <nav id="topNav">
-      <a href="../" class="nav-link">rechner</a>
-      <a href="balatro-seeds.html" class="nav-link">samen</a>
+      <a href="/de/" class="nav-link">calculator</a>
+      <a href="/de/balatro-seeds.html" class="nav-link">seeds</a>
       <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
       <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
+          <!-- I18N_LANG_OPTIONS_START -->
           <option value="en">EN</option>
-          <option value="cn">中文</option>
+          <option value="cn">中文(简体)</option>
+          <option value="tw">中文(繁體)</option>
           <option value="ja">日本語</option>
           <option value="ko">한국어</option>
           <option value="fr">Français</option>
           <option value="de" selected>Deutsch</option>
           <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt-br">Português (BR)</option>
+          <option value="pt-pt">Português (PT)</option>
           <option value="ru">Русский</option>
+          <option value="uk">Українська</option>
+          <option value="pl">Polski</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="tr">Türkçe</option>
+          <option value="ar">العربية</option>
+          <option value="he">עברית</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="th">ไทย</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+          <option value="ro">Română</option>
+          <option value="hu">Magyar</option>
+          <option value="cs">Čeština</option>
+          <option value="el">Ελληνικά</option>
+<!-- I18N_LANG_OPTIONS_END -->
         </select>
       </div>
     </nav>
@@ -38,54 +65,54 @@
     <div id="mainContainer">
       <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
         <div class="handLevel" style="margin-bottom: 2em;">
-          <span class="handName">Bald verfügbar - Balatro Samen Datenbank</span>
+          <span class="handName">Coming Soon - Balatro Seeds Database</span>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
           
           <div class="seed-card">
-            <h3>Samen Generator</h3>
-            <p>Zufällige Samen für Balatro Durchgänge generieren</p>
+            <h3>Seed Generator</h3>
+            <p>Generate random seeds for Balatro runs</p>
             <div class="seed-display">
               <code id="generated-seed">ABCD1234</code>
-              <button class="resetBtn" onclick="generateSeed()">Neuen generieren</button>
+              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
             </div>
           </div>
           
           <div class="seed-card">
-            <h3>Beliebte Samen</h3>
-            <p>Community Lieblings-Samen</p>
+            <h3>Popular Seeds</h3>
+            <p>Community favorite seeds</p>
             <div class="seed-list">
               <div class="seed-item">
                 <code>JOKER123</code>
-                <span class="seed-desc">Großartiger Joker Start</span>
+                <span class="seed-desc">Great joker start</span>
               </div>
               <div class="seed-item">
                 <code>MULT999</code>
-                <span class="seed-desc">Hohes Multiplikator Potenzial</span>
+                <span class="seed-desc">High mult potential</span>
               </div>
               <div class="seed-item">
                 <code>LUCKY777</code>
-                <span class="seed-desc">Glückliche Züge</span>
+                <span class="seed-desc">Lucky draws</span>
               </div>
             </div>
           </div>
           
           <div class="seed-card">
-            <h3>Challenge Samen</h3>
-            <p>Samen für spezifische Herausforderungen</p>
+            <h3>Challenge Seeds</h3>
+            <p>Seeds for specific challenges</p>
             <div class="seed-list">
               <div class="seed-item">
                 <code>HARD001</code>
-                <span class="seed-desc">Keine Joker Herausforderung</span>
+                <span class="seed-desc">No jokers challenge</span>
               </div>
               <div class="seed-item">
                 <code>SPEED42</code>
-                <span class="seed-desc">Speedrun Samen</span>
+                <span class="seed-desc">Speed run seed</span>
               </div>
               <div class="seed-item">
                 <code>ANTE999</code>
-                <span class="seed-desc">Hoher Ante Vostoß</span>
+                <span class="seed-desc">High ante push</span>
               </div>
             </div>
           </div>
@@ -93,11 +120,11 @@
         </div>
         
         <div class="handLevel" style="margin-top: 3em;">
-          <span class="handName">Ihre Samen einreichen</span>
+          <span class="handName">Submit Your Seeds</span>
         </div>
         
         <div style="text-align: center; margin-top: 2em;">
-          <p style="color: #bfc7d5; font-size: 18px;">Diese Funktion ist in Entwicklung. Schauen Sie bald wieder vorbei!</p>
+          <p style="color: #bfc7d5; font-size: 18px;">This feature is under development. Check back soon!</p>
         </div>
         
       </div>
@@ -107,26 +134,29 @@
 
     <script>
       function generateSeed() {
-        // Based on Balatro's actual seed generation algorithm
-        // Uses weighted character selection: 30% digits, 55% letters A-N, 15% letters P-Z
+        // Based on Balatro's seed generation weighting:
+        // 30% digits (1-9), 55% letters A-N, 15% letters P-Z (exclude 'O')
         let seed = '';
         for (let i = 0; i < 8; i++) {
           const rand = Math.random();
           let char;
-          if (rand > 0.7) {
-            // 30% chance for digits 1-9
-            char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1' to '9'
-          } else if (rand > 0.45) {
-            // 25% chance for letters A-N
-            char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A' to 'N'
+          if (rand > 0.70) {
+            // 30% digits 1-9
+            char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1'..'9'
+          } else if (rand > 0.15) {
+            // 55% letters A-N
+            char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A'..'N'
           } else {
-            // 45% chance for letters P-Z (excludes O to avoid confusion)
-            char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P' to 'Z'
+            // 15% letters P-Z (exclude 'O' by starting at 'P')
+            char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P'..'Z'
           }
           seed += char;
         }
         document.getElementById('generated-seed').textContent = seed;
       }
+
+      // Auto-generate a seed on page load
+      window.addEventListener('DOMContentLoaded', generateSeed);
     </script>
     
     <!-- Balatro Background Shader -->
@@ -197,29 +227,8 @@
       }
     </script>
     
-    <script type="text/javascript" src="../balatro-background.js"></script>
-    
-    <script>
-      function switchLanguage() {
-        const lang = document.getElementById('langSelect').value;
-        const currentPage = window.location.pathname;
-        const isSeedPage = currentPage.includes('balatro-seeds.html');
-        
-        if (lang === 'en') {
-          if (isSeedPage) {
-            window.location.href = '/balatro-seeds.html';
-          } else {
-            window.location.href = '/index.html';
-          }
-        } else {
-          if (isSeedPage) {
-            window.location.href = `/${lang}/balatro-seeds.html`;
-          } else {
-            window.location.href = `/${lang}/index.html`;
-          }
-        }
-      }
-    </script>
+    <script type="text/javascript" src="balatro-background.js"></script>
+    <script type="text/javascript" src="languageHandler.js"></script>
     
     <style>
       .seed-card {

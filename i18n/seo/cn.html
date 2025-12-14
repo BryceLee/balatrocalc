@@ -1,0 +1,61 @@
+<div id="seoContent" class="contentPageWrapBelow">
+  <div class="seoTabs">
+    <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+    <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+  </div>
+
+  <div id="how-it-works" class="contentCard">
+    <h2 class="contentTitle">Balatro 计分原理：Chips / Mult / Joker 顺序</h2>
+    <p class="contentLead">Balatro 最终得分可以写成：<code>Score = Chips × Mult</code>。难点在于：很多效果会在不同阶段按顺序修改“当前的 Chips / 当前的 Mult”，尤其是 Joker（小丑牌）。因此 Joker 的摆放顺序改变，结果可能完全不同。</p>
+
+    <h2>三个核心概念</h2>
+    <ul>
+      <li><strong>Chips（筹码）</strong>：更像“底分”，通常是加法叠加（+Chips）。</li>
+      <li><strong>Mult（倍率）</strong>：更像“加法倍率”，经常是 +Mult。</li>
+      <li><strong>XMult</strong>：对 Mult 的乘法修正（×Mult），常常决定上限。</li>
+    </ul>
+
+    <h2>一次出牌通常怎么结算（心智模型）</h2>
+    <ol>
+      <li>确定手牌类型（Pair/Flush/Straight…）与等级 → 给出基础 Chips 与基础 Mult。</li>
+      <li>逐张结算计分牌（增强/版本可能加 Chips 或加 Mult / XMult）。</li>
+      <li>结算 Joker（通常从左到右），每张 Joker 读取并修改“当前数值”。</li>
+      <li>最终计算 <code>Chips × Mult</code>。</li>
+    </ol>
+
+    <h2>为什么 Joker 顺序会改变分数？</h2>
+    <p>只要同时存在 “+Mult” 与 “XMult”，把 XMult 放在后面通常更赚，因为它会乘到更大的 Mult（但也要看某些 Joker 是否依赖阈值/触发条件）。</p>
+
+    <p><strong>例子：</strong>进入 Joker 阶段时 <code>Chips=100</code>，<code>Mult=10</code>。Joker A：<code>+10 Mult</code>；Joker B：<code>X2 Mult</code>。</p>
+    <ul>
+      <li>A → B：Mult 10 → 20 → 40 ⇒ Score = 100 × 40 = 4000</li>
+      <li>B → A：Mult 10 → 20 → 30 ⇒ Score = 100 × 30 = 3000</li>
+    </ul>
+
+    <div class="contentNote">
+      <strong>建议：</strong>打开计算器里的 <strong>详情（Breakdown）</strong>，观察每一步如何改变 Chips/Mult；然后调整 Joker 顺序对比结果，学习最快。
+    </div>
+  </div>
+
+  <div id="guide" class="contentCard" style="display:none;">
+    <h2 class="contentTitle">Balatro 玩法指南：Joker / Chips / 手牌（术语）</h2>
+    <p class="contentLead">想稳定提升，可以把构筑拆成四件事：(1) 主打手牌类型，(2) 稳定 Chips 来源，(3) 稳定 Mult/XMult 来源，(4) 稳定性（经济、牌库改造、弃牌/抓牌等）。</p>
+
+    <h2>Joker 类别（快速做决策）</h2>
+    <ul>
+      <li><strong>得分型（Chips/Mult/XMult）</strong>：直接提升输出。</li>
+      <li><strong>成长型</strong>：会随着回合/触发次数越来越强，越早拿越赚。</li>
+      <li><strong>触发/复制型</strong>：让某张 Joker 重复触发或复制效果，强度取决于你的“目标件”。</li>
+      <li><strong>经济型</strong>：更多钱/折扣，更快凑齐关键组件。</li>
+      <li><strong>工具型</strong>：提升稳定性（更好成牌、更少翻车）。</li>
+    </ul>
+
+    <h2>新手三条最实用</h2>
+    <ol>
+      <li>尽早确定“主打手”（Flush / Straight / High Card 成长…）。</li>
+      <li>Chips 与 Mult 要平衡，只堆一种容易到上限。</li>
+      <li>出现 XMult/复制类 Joker 时，优先考虑从左到右的顺序。</li>
+    </ol>
+  </div>
+</div>
+

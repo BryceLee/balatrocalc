@@ -2,16 +2,17 @@
 <html lang="zh-CN" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>隐私政策 — balatrocalc</title>
-    <link rel="stylesheet" href="../../style.css">
-    <meta name="description" content="balatrocalc 隐私政策：我们收集哪些数据、如何使用、第三方服务（如统计），以及你有哪些选择。">
-    <meta property="og:title" content="隐私政策 — balatrocalc">
-    <meta property="og:description" content="隐私政策与数据使用说明。">
-    <meta property="og:url" content="https://balatrocalc.com/cn/privacy-policy/">
+    <title>Privacy Policy — balatrocalc</title>
+    <base href="/">
+    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="balatrocalc Privacy Policy: what data we collect, how we use it, third-party services (e.g. analytics), and your choices.">
+    <meta property="og:title" content="Privacy Policy — balatrocalc">
+    <meta property="og:description" content="Privacy policy and data usage summary.">
+    <meta property="og:url" content="https://balatrocalc.com/privacy-policy/">
     <link rel="canonical" href="https://balatrocalc.com/cn/privacy-policy/">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
   </head>
   <body>
     <canvas id="backgroundCanvas"></canvas>
@@ -20,21 +21,47 @@
       <span class="subtitle">privacy</span>
     </div>
     <nav id="topNav">
-      <a href="/cn/" class="nav-link">计分器</a>
-      <a href="/cn/balatro-seeds.html" class="nav-link">种子</a>
-      <a href="/cn/about/" class="nav-link">关于</a>
-      <a href="/cn/privacy-policy/" class="nav-link active">隐私</a>
-      <a href="/cn/terms/" class="nav-link">条款</a>
+      <a href="/cn/" class="nav-link">calculator</a>
+      <a href="/cn/balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="/cn/about/" class="nav-link">about</a>
+      <a href="/cn/privacy-policy/" class="nav-link active">privacy</a>
+      <a href="/cn/terms/" class="nav-link">terms</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
+          <!-- I18N_LANG_OPTIONS_START -->
           <option value="en">EN</option>
-          <option value="cn" selected>中文</option>
+          <option value="cn" selected>中文(简体)</option>
+          <option value="tw">中文(繁體)</option>
           <option value="ja">日本語</option>
           <option value="ko">한국어</option>
           <option value="fr">Français</option>
           <option value="de">Deutsch</option>
           <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt-br">Português (BR)</option>
+          <option value="pt-pt">Português (PT)</option>
           <option value="ru">Русский</option>
+          <option value="uk">Українська</option>
+          <option value="pl">Polski</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="tr">Türkçe</option>
+          <option value="ar">العربية</option>
+          <option value="he">עברית</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="th">ไทย</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+          <option value="ro">Română</option>
+          <option value="hu">Magyar</option>
+          <option value="cs">Čeština</option>
+          <option value="el">Ελληνικά</option>
+<!-- I18N_LANG_OPTIONS_END -->
         </select>
       </div>
     </nav>
@@ -42,58 +69,71 @@
     <div id="mainContainer">
       <div class="contentPageWrap">
         <div class="handLevel" style="min-width: auto;">
-          <span class="handName">隐私政策</span>
+          <span class="handName">Privacy Policy</span>
         </div>
 
         <div class="contentCard">
-          <h1 class="contentTitle">隐私政策</h1>
+          <h1 class="contentTitle">Privacy Policy</h1>
           <p class="contentLead">
-            本隐私政策说明 balatrocalc（“我们”）在你访问 <code>balatrocalc.com</code> 时如何收集、使用与保护信息。我们不提供账号体系，也不要求你提供姓名、手机号等身份信息。
+            This policy explains how balatrocalc (“we”) collects, uses, and protects information when you visit <code>balatrocalc.com</code>. We do not provide an account system and we do not ask for personal identity data like your name or phone number.
           </p>
 
-          <h2>我们收集的信息</h2>
+          <h2>Information we collect</h2>
           <ul>
-            <li><strong>使用数据（统计）</strong>：我们可能使用第三方统计服务收集访问与交互的聚合信息（如页面浏览、停留时长、设备/浏览器信息、粗略地理位置等），用于改进网站体验。</li>
-            <li><strong>日志信息</strong>：托管平台可能记录 IP、访问时间、请求页面、错误信息等，用于安全与故障排查。</li>
-            <li><strong>你主动提供的信息</strong>：当你通过 <a href="/support.html">Support</a> 联系我们时，你的邮件内容与地址会被用于回复与处理问题。</li>
+            <li><strong>Usage data (analytics)</strong>: we may use third-party analytics (e.g. Google Analytics) to collect aggregated statistics like page views, session duration, device/browser info, and approximate location. This helps improve the site.</li>
+            <li><strong>Log data</strong>: hosting providers may log IP address, timestamps, requested pages, and error details for security and debugging.</li>
+            <li><strong>Information you provide</strong>: if you contact us via <a href="/support.html">Support</a>, we use your email content/address to respond and handle the request.</li>
           </ul>
 
-          <h2>Cookies 与类似技术</h2>
+          <h2>Cookies and similar technologies</h2>
           <p>
-            第三方服务可能使用 Cookie 或类似技术。你可以在浏览器设置中清除或禁用 Cookie；这可能影响统计与部分体验，但通常不影响核心计算功能。
+            Third-party analytics may use cookies or similar technologies. You can block or clear cookies in your browser; this may affect analytics and some experience, but usually won’t affect the core calculator.
           </p>
 
-          <h2>我们如何使用信息</h2>
+          <h2>How we use information</h2>
           <ul>
-            <li>分析使用情况，优化页面与内容。</li>
-            <li>排查错误，提升性能与安全性。</li>
-            <li>回复你发来的支持邮件与反馈。</li>
+            <li>Analyze usage and improve pages/content.</li>
+            <li>Debug issues and improve performance/security.</li>
+            <li>Respond to support requests.</li>
           </ul>
 
-          <h2>第三方服务</h2>
+          <h2>Third-party services</h2>
           <p>
-            本站可能加载第三方脚本/服务（如统计、赞助组件等）。第三方会按照其各自的隐私政策处理数据。我们会尽量减少不必要的数据收集。
+            The site may load third-party scripts/services (analytics, donation widgets, etc.). Those parties process data under their own privacy policies. We do not control their collection behavior, but we aim to minimize unnecessary collection.
           </p>
 
-          <h2>联系我们</h2>
-          <p>如对本隐私政策有疑问：support@balatrocalc.com</p>
+          <h2>Data retention</h2>
+          <p>
+            We keep data only as long as needed for the purposes above; exact retention may depend on hosting/third-party default settings.
+          </p>
+
+          <h2>Your choices</h2>
+          <ul>
+            <li>Limit cookies, block third-party scripts, or use privacy extensions.</li>
+            <li>If you want deletion of information you provided via email, contact support@balatrocalc.com (we’ll handle within reasonable scope).</li>
+          </ul>
+
+          <h2>Contact</h2>
+          <p>If you have questions: support@balatrocalc.com</p>
+
+          <h2>Updates</h2>
+          <p>We may update this policy from time to time. Updates are posted on this page and take effect immediately.</p>
         </div>
 
         <div id="footer">
           <div id="footerLinks">
-            <a href="/cn/#how-it-works">计分原理</a>
-            <a href="/cn/#guide">玩法指南</a>
-            <a href="/cn/about/">关于</a>
-            <a href="/cn/privacy-policy/">隐私</a>
-            <a href="/cn/terms/">条款</a>
+            <a href="/cn/#how-it-works">how it works</a>
+            <a href="/cn/#guide">guide</a>
+            <a href="/cn/about/">about</a>
+            <a href="/cn/privacy-policy/">privacy</a>
+            <a href="/cn/terms/">terms</a>
           </div>
           <div id="credits">Not affiliated with LocalThunk or Playstack. Balatro is a trademark of its respective owners.</div>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../balatro-background.js"></script>
-    <script type="text/javascript" src="../../languageHandler.js"></script>
+    <script type="text/javascript" src="../balatro-background.js"></script>
+    <script type="text/javascript" src="../languageHandler.js"></script>
   </body>
 </html>
-

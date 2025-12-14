@@ -2,16 +2,17 @@
 <html lang="zh-CN" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>关于 — balatrocalc</title>
-    <link rel="stylesheet" href="../../style.css">
-    <meta name="description" content="balatrocalc 是一个 Balatro 手牌得分计算与构筑辅助工具。本页介绍网站是什么、为什么做、以及如何联系。">
-    <meta property="og:title" content="关于 — balatrocalc">
-    <meta property="og:description" content="网站是什么 & 为什么做。">
-    <meta property="og:url" content="https://balatrocalc.com/cn/about/">
+    <title>About — balatrocalc</title>
+    <base href="/">
+    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="balatrocalc is a Balatro scoring calculator and build helper. Learn what the site does, why it exists, and how to contact us.">
+    <meta property="og:title" content="About — balatrocalc">
+    <meta property="og:description" content="What this site is and why it exists.">
+    <meta property="og:url" content="https://balatrocalc.com/about/">
     <link rel="canonical" href="https://balatrocalc.com/cn/about/">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
   </head>
   <body>
     <canvas id="backgroundCanvas"></canvas>
@@ -20,21 +21,47 @@
       <span class="subtitle">about</span>
     </div>
     <nav id="topNav">
-      <a href="/cn/" class="nav-link">计分器</a>
-      <a href="/cn/balatro-seeds.html" class="nav-link">种子</a>
-      <a href="/cn/#how-it-works" class="nav-link">计分原理</a>
-      <a href="/cn/#guide" class="nav-link">玩法指南</a>
-      <a href="/cn/about/" class="nav-link active">关于</a>
+      <a href="/cn/" class="nav-link">calculator</a>
+      <a href="/cn/balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="/cn/#how-it-works" class="nav-link">how it works</a>
+      <a href="/cn/#guide" class="nav-link">guide</a>
+      <a href="/cn/about/" class="nav-link active">about</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
+          <!-- I18N_LANG_OPTIONS_START -->
           <option value="en">EN</option>
-          <option value="cn" selected>中文</option>
+          <option value="cn" selected>中文(简体)</option>
+          <option value="tw">中文(繁體)</option>
           <option value="ja">日本語</option>
           <option value="ko">한국어</option>
           <option value="fr">Français</option>
           <option value="de">Deutsch</option>
           <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt-br">Português (BR)</option>
+          <option value="pt-pt">Português (PT)</option>
           <option value="ru">Русский</option>
+          <option value="uk">Українська</option>
+          <option value="pl">Polski</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="tr">Türkçe</option>
+          <option value="ar">العربية</option>
+          <option value="he">עברית</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="th">ไทย</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+          <option value="ro">Română</option>
+          <option value="hu">Magyar</option>
+          <option value="cs">Čeština</option>
+          <option value="el">Ελληνικά</option>
+<!-- I18N_LANG_OPTIONS_END -->
         </select>
       </div>
     </nav>
@@ -42,48 +69,47 @@
     <div id="mainContainer">
       <div class="contentPageWrap">
         <div class="handLevel" style="min-width: auto;">
-          <span class="handName">关于 balatrocalc</span>
+          <span class="handName">About balatrocalc</span>
         </div>
 
         <div class="contentCard">
-          <h1 class="contentTitle">网站是什么？为什么做？</h1>
+          <h1 class="contentTitle">What is this site? Why build it?</h1>
           <p class="contentLead">
-            <a href="/cn/">balatrocalc</a> 是一个 Balatro 手牌得分计算器与构筑辅助工具：你可以配置手牌、强化、Joker、升级等，快速看到最终得分，并通过 Breakdown 理解每一步加成来源。
+            <a href="/cn/">balatrocalc</a> is a Balatro hand score calculator and build helper. Configure your hand, enhancements, Jokers, upgrades, and modifiers to estimate the final score and understand where it comes from (via Breakdown).
           </p>
 
-          <h2>为什么做</h2>
+          <h2>Why it exists</h2>
           <ul>
-            <li>计分看似简单，但触发顺序会让直觉失效。</li>
-            <li>把计算交给工具，把精力放在构筑决策：买什么、换什么、怎么摆放顺序。</li>
-            <li>给新手一套可验证的学习路径：靠复现，不靠玄学。</li>
+            <li>Balatro scoring looks simple, but trigger order makes intuition unreliable.</li>
+            <li>Let the tool do the math so you can focus on decisions: what to buy, what to sell, and Joker order.</li>
+            <li>Make learning reproducible: verify ideas with clear breakdowns.</li>
           </ul>
 
-          <h2>免责声明</h2>
+          <h2>Disclaimer</h2>
           <p>
-            本站为非官方第三方工具，与 LocalThunk / Playstack 无关联。Balatro 相关商标与版权归其各自所有者。本站内容与计算结果按“现状”提供，不作任何保证。
+            This is an unofficial third-party tool and is not affiliated with LocalThunk or Playstack. Balatro trademarks and rights belong to their respective owners. We try to keep calculations accurate, but results are provided “as is”.
           </p>
 
-          <h2>联系</h2>
+          <h2>Contact</h2>
           <p>
-            问题反馈或建议：<a href="/support.html">Support</a>（support@balatrocalc.com）。
+            Bug reports / feature requests: <a href="/support.html">Support</a> (email: support@balatrocalc.com).
           </p>
         </div>
 
         <div id="footer">
           <div id="footerLinks">
-            <a href="/cn/#how-it-works">计分原理</a>
-            <a href="/cn/#guide">玩法指南</a>
-            <a href="/cn/about/">关于</a>
-            <a href="/cn/privacy-policy/">隐私</a>
-            <a href="/cn/terms/">条款</a>
+            <a href="/cn/#how-it-works">how it works</a>
+            <a href="/cn/#guide">guide</a>
+            <a href="/cn/about/">about</a>
+            <a href="/cn/privacy-policy/">privacy</a>
+            <a href="/cn/terms/">terms</a>
           </div>
           <div id="credits">Not affiliated with LocalThunk or Playstack. Balatro is a trademark of its respective owners.</div>
         </div>
       </div>
     </div>
 
-    <script type="text/javascript" src="../../balatro-background.js"></script>
-    <script type="text/javascript" src="../../languageHandler.js"></script>
+    <script type="text/javascript" src="../balatro-background.js"></script>
+    <script type="text/javascript" src="../languageHandler.js"></script>
   </body>
 </html>
-

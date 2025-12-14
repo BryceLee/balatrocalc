@@ -1,5 +1,37 @@
 (() => {
-  const SUPPORTED = new Set(['cn', 'ja', 'ko', 'fr', 'de', 'es', 'ru']);
+  const SUPPORTED = new Set([
+    'cn', // zh-Hans
+    'tw', // zh-Hant
+    'ja',
+    'ko',
+    'fr',
+    'de',
+    'es',
+    'it',
+    'pt-br',
+    'pt-pt',
+    'ru',
+    'uk',
+    'pl',
+    'nl',
+    'sv',
+    'no',
+    'da',
+    'fi',
+    'tr',
+    'ar',
+    'he',
+    'hi',
+    'id',
+    'vi',
+    'th',
+    'ms',
+    'tl',
+    'ro',
+    'hu',
+    'cs',
+    'el',
+  ]);
 
   function getCurrentPath() {
     return window.location.pathname || '/';

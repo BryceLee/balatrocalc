@@ -2,35 +2,62 @@
 <html lang="zh-CN" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Balatro 种子 - balatrocalc</title>
-    <link rel="stylesheet" href="../style.css">
-    <meta name="description" content="Balatro 种子收集和生成器">
+    <title>Balatro Seeds - balatrocalc</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Balatro seeds collection and generator">
     <link rel="canonical" href="https://balatrocalc.com/cn/balatro-seeds.html">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
   </head>
   <body>
     <canvas id="backgroundCanvas"></canvas>
     <div id="titleBar">
-      <h1>balatro 种子</h1>
-      <span class="subtitle">种子收集</span>
+      <h1>balatro seeds</h1>
+      <span class="subtitle">seed collection</span>
     </div>
     <nav id="topNav">
-      <a href="../" class="nav-link">计分器</a>
-      <a href="balatro-seeds.html" class="nav-link">种子</a>
+      <a href="/cn/" class="nav-link">calculator</a>
+      <a href="/cn/balatro-seeds.html" class="nav-link">seeds</a>
       <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
       <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
       <div class="language-switcher">
         <select id="langSelect" onchange="switchLanguage()">
+          <!-- I18N_LANG_OPTIONS_START -->
           <option value="en">EN</option>
-          <option value="cn" selected>中文</option>
+          <option value="cn" selected>中文(简体)</option>
+          <option value="tw">中文(繁體)</option>
           <option value="ja">日本語</option>
           <option value="ko">한국어</option>
           <option value="fr">Français</option>
           <option value="de">Deutsch</option>
           <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt-br">Português (BR)</option>
+          <option value="pt-pt">Português (PT)</option>
           <option value="ru">Русский</option>
+          <option value="uk">Українська</option>
+          <option value="pl">Polski</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="tr">Türkçe</option>
+          <option value="ar">العربية</option>
+          <option value="he">עברית</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="th">ไทย</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+          <option value="ro">Română</option>
+          <option value="hu">Magyar</option>
+          <option value="cs">Čeština</option>
+          <option value="el">Ελληνικά</option>
+<!-- I18N_LANG_OPTIONS_END -->
         </select>
       </div>
     </nav>
@@ -38,54 +65,54 @@
     <div id="mainContainer">
       <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
         <div class="handLevel" style="margin-bottom: 2em;">
-          <span class="handName">即将推出 - Balatro 种子数据库</span>
+          <span class="handName">Coming Soon - Balatro Seeds Database</span>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
           
           <div class="seed-card">
-            <h3>种子生成器</h3>
-            <p>为 Balatro 游戏生成随机种子</p>
+            <h3>Seed Generator</h3>
+            <p>Generate random seeds for Balatro runs</p>
             <div class="seed-display">
               <code id="generated-seed">ABCD1234</code>
-              <button class="resetBtn" onclick="generateSeed()">生成新种子</button>
+              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
             </div>
           </div>
           
           <div class="seed-card">
-            <h3>热门种子</h3>
-            <p>社区喜爱的种子</p>
+            <h3>Popular Seeds</h3>
+            <p>Community favorite seeds</p>
             <div class="seed-list">
               <div class="seed-item">
                 <code>JOKER123</code>
-                <span class="seed-desc">优秀小丑牌开局</span>
+                <span class="seed-desc">Great joker start</span>
               </div>
               <div class="seed-item">
                 <code>MULT999</code>
-                <span class="seed-desc">高倍数潜力</span>
+                <span class="seed-desc">High mult potential</span>
               </div>
               <div class="seed-item">
                 <code>LUCKY777</code>
-                <span class="seed-desc">Lucky 抽卡</span>
+                <span class="seed-desc">Lucky draws</span>
               </div>
             </div>
           </div>
           
           <div class="seed-card">
-            <h3>挑战种子</h3>
-            <p>特定挑战的种子</p>
+            <h3>Challenge Seeds</h3>
+            <p>Seeds for specific challenges</p>
             <div class="seed-list">
               <div class="seed-item">
                 <code>HARD001</code>
-                <span class="seed-desc">无小丑牌挑战</span>
+                <span class="seed-desc">No jokers challenge</span>
               </div>
               <div class="seed-item">
                 <code>SPEED42</code>
-                <span class="seed-desc">速通种子</span>
+                <span class="seed-desc">Speed run seed</span>
               </div>
               <div class="seed-item">
                 <code>ANTE999</code>
-                <span class="seed-desc">高底注推进</span>
+                <span class="seed-desc">High ante push</span>
               </div>
             </div>
           </div>
@@ -93,11 +120,11 @@
         </div>
         
         <div class="handLevel" style="margin-top: 3em;">
-          <span class="handName">提交你的种子</span>
+          <span class="handName">Submit Your Seeds</span>
         </div>
         
         <div style="text-align: center; margin-top: 2em;">
-          <p style="color: #bfc7d5; font-size: 18px;">此功能正在开发中。请稍后再来查看！</p>
+          <p style="color: #bfc7d5; font-size: 18px;">This feature is under development. Check back soon!</p>
         </div>
         
       </div>
@@ -107,19 +134,20 @@
 
     <script>
       function generateSeed() {
-        // Balatro 的种子权重：数字 30%（1-9）、字母 A-N 55%、字母 P-Z 15%（排除 O）
+        // Based on Balatro's seed generation weighting:
+        // 30% digits (1-9), 55% letters A-N, 15% letters P-Z (exclude 'O')
         let seed = '';
         for (let i = 0; i < 8; i++) {
           const rand = Math.random();
           let char;
           if (rand > 0.70) {
-            // 30%：数字 1-9
+            // 30% digits 1-9
             char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1'..'9'
           } else if (rand > 0.15) {
-            // 55%：字母 A-N
+            // 55% letters A-N
             char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A'..'N'
           } else {
-            // 15%：字母 P-Z（从 'P' 开始以排除 'O'）
+            // 15% letters P-Z (exclude 'O' by starting at 'P')
             char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P'..'Z'
           }
           seed += char;
@@ -127,7 +155,7 @@
         document.getElementById('generated-seed').textContent = seed;
       }
 
-      // 页面加载时自动生成一个种子
+      // Auto-generate a seed on page load
       window.addEventListener('DOMContentLoaded', generateSeed);
     </script>
     
@@ -199,29 +227,8 @@
       }
     </script>
     
-    <script type="text/javascript" src="../balatro-background.js"></script>
-    
-    <script>
-      function switchLanguage() {
-        const lang = document.getElementById('langSelect').value;
-        const currentPage = window.location.pathname;
-        const isSeedPage = currentPage.includes('balatro-seeds.html');
-        
-        if (lang === 'en') {
-          if (isSeedPage) {
-            window.location.href = '/balatro-seeds.html';
-          } else {
-            window.location.href = '/index.html';
-          }
-        } else {
-          if (isSeedPage) {
-            window.location.href = `/${lang}/balatro-seeds.html`;
-          } else {
-            window.location.href = `/${lang}/index.html`;
-          }
-        }
-      }
-    </script>
+    <script type="text/javascript" src="balatro-background.js"></script>
+    <script type="text/javascript" src="languageHandler.js"></script>
     
     <style>
       .seed-card {

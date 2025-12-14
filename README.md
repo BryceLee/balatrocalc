@@ -9,3 +9,17 @@ You can also use this tool to try and conceive of your "perfect hand" to see wha
 Currently, a couple of the jokers may not work correctly, but most of them do.
 
 font used: https://managore.itch.io/m6x11
+
+## i18n (32 languages)
+
+This repo serves static HTML per language under `/<lang>/...` (SEO-friendly, easy static hosting).
+
+- Language list: `i18n/languages.json`
+- Embedded SEO content (below calculator): `i18n/seo/*.html`
+- Generator: `tools/build-i18n.mjs`
+
+Regenerate localized pages + `sitemap.xml`:
+
+```bash
+node tools/build-i18n.mjs --write
+```

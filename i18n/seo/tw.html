@@ -1,0 +1,38 @@
+<div id="seoContent" class="contentPageWrapBelow">
+  <div class="seoTabs">
+    <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+    <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+  </div>
+
+  <div id="how-it-works" class="contentCard">
+    <h2 class="contentTitle">Balatro 計分原理：Chips / Mult / Joker 順序</h2>
+    <p class="contentLead">Balatro 最終得分可寫成：<code>Score = Chips × Mult</code>。真正容易踩坑的是：很多效果會在不同階段依序改變「目前的 Chips / 目前的 Mult」，尤其是 Joker，因此 Joker 的擺放順序改變，分數可能差很多。</p>
+
+    <h2>三個核心概念</h2>
+    <ul>
+      <li><strong>Chips（籌碼）</strong>：類似底分，通常是加法疊加（+Chips）。</li>
+      <li><strong>Mult（倍率）</strong>：常見為 +Mult 的加法倍率。</li>
+      <li><strong>XMult</strong>：對 Mult 的乘法修正（×Mult），常常決定上限。</li>
+    </ul>
+
+    <h2>常見結算順序（心智模型）</h2>
+    <ol>
+      <li>確定牌型與等級 → 取得基礎 Chips 與基礎 Mult。</li>
+      <li>逐張結算計分牌（強化/版本可能加 Chips 或加 Mult / XMult）。</li>
+      <li>結算 Joker（通常由左到右）。</li>
+      <li>計算 <code>Chips × Mult</code>。</li>
+    </ol>
+  </div>
+
+  <div id="guide" class="contentCard" style="display:none;">
+    <h2 class="contentTitle">Balatro 玩法指南：Joker / Chips / 牌型（術語）</h2>
+    <p class="contentLead">入門建議：先選主打牌型，再補 Chips 與 Mult/XMult 來源，最後用經濟與工具提升穩定度。</p>
+    <h2>新手三條建議</h2>
+    <ol>
+      <li>越早確定主打牌型越好。</li>
+      <li>Chips 與 Mult 要平衡。</li>
+      <li>遇到 XMult/複製類 Joker，注意順序（左→右）。</li>
+    </ol>
+  </div>
+</div>
+

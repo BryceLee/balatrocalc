@@ -1,0 +1,7 @@
+{
+  "index": {
+    "title": "Balatro 計分器 - 手牌得分計算與 Joker 最佳化",
+    "description": "計算任意 Balatro 手牌得分，並理解 Chips / Mult / Joker 觸發順序"
+  }
+}
+

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="da" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Balatro Seeds - balatrocalc</title>
+    <base href="/">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Balatro seeds collection and generator">
+    <link rel="canonical" href="https://balatrocalc.com/da/balatro-seeds.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+  </head>
+  <body>
+    <canvas id="backgroundCanvas"></canvas>
+    <div id="titleBar">
+      <h1>balatro seeds</h1>
+      <span class="subtitle">seed collection</span>
+    </div>
+    <nav id="topNav">
+      <a href="/da/" class="nav-link">calculator</a>
+      <a href="/da/balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
+      <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+      <div class="language-switcher">
+        <select id="langSelect" onchange="switchLanguage()">
+          <!-- I18N_LANG_OPTIONS_START -->
+          <option value="en">EN</option>
+          <option value="cn">中文(简体)</option>
+          <option value="tw">中文(繁體)</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt-br">Português (BR)</option>
+          <option value="pt-pt">Português (PT)</option>
+          <option value="ru">Русский</option>
+          <option value="uk">Українська</option>
+          <option value="pl">Polski</option>
+          <option value="nl">Nederlands</option>
+          <option value="sv">Svenska</option>
+          <option value="no">Norsk</option>
+          <option value="da" selected>Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="tr">Türkçe</option>
+          <option value="ar">العربية</option>
+          <option value="he">עברית</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="th">ไทย</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="tl">Filipino</option>
+          <option value="ro">Română</option>
+          <option value="hu">Magyar</option>
+          <option value="cs">Čeština</option>
+          <option value="el">Ελληνικά</option>
+<!-- I18N_LANG_OPTIONS_END -->
+        </select>
+      </div>
+    </nav>
+    
+    <div id="mainContainer">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
+        <div class="handLevel" style="margin-bottom: 2em;">
+          <span class="handName">Coming Soon - Balatro Seeds Database</span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          
+          <div class="seed-card">
+            <h3>Seed Generator</h3>
+            <p>Generate random seeds for Balatro runs</p>
+            <div class="seed-display">
+              <code id="generated-seed">ABCD1234</code>
+              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+            </div>
+          </div>
+          
+          <div class="seed-card">
+            <h3>Popular Seeds</h3>
+            <p>Community favorite seeds</p>
+            <div class="seed-list">
+              <div class="seed-item">
+                <code>JOKER123</code>
+                <span class="seed-desc">Great joker start</span>
+              </div>
+              <div class="seed-item">
+                <code>MULT999</code>
+                <span class="seed-desc">High mult potential</span>
+              </div>
+              <div class="seed-item">
+                <code>LUCKY777</code>
+                <span class="seed-desc">Lucky draws</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="seed-card">
+            <h3>Challenge Seeds</h3>
+            <p>Seeds for specific challenges</p>
+            <div class="seed-list">
+              <div class="seed-item">
+                <code>HARD001</code>
+                <span class="seed-desc">No jokers challenge</span>
+              </div>
+              <div class="seed-item">
+                <code>SPEED42</code>
+                <span class="seed-desc">Speed run seed</span>
+              </div>
+              <div class="seed-item">
+                <code>ANTE999</code>
+                <span class="seed-desc">High ante push</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="handLevel" style="margin-top: 3em;">
+          <span class="handName">Submit Your Seeds</span>
+        </div>
+        
+        <div style="text-align: center; margin-top: 2em;">
+          <p style="color: #bfc7d5; font-size: 18px;">This feature is under development. Check back soon!</p>
+        </div>
+        
+      </div>
+    </div>
+
+   
+
+    <script>
+      function generateSeed() {
+        // Based on Balatro's seed generation weighting:
+        // 30% digits (1-9), 55% letters A-N, 15% letters P-Z (exclude 'O')
+        let seed = '';
+        for (let i = 0; i < 8; i++) {
+          const rand = Math.random();
+          let char;
+          if (rand > 0.70) {
+            // 30% digits 1-9
+            char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1'..'9'
+          } else if (rand > 0.15) {
+            // 55% letters A-N
+            char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A'..'N'
+          } else {
+            // 15% letters P-Z (exclude 'O' by starting at 'P')
+            char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P'..'Z'
+          }
+          seed += char;
+        }
+        document.getElementById('generated-seed').textContent = seed;
+      }
+
+      // Auto-generate a seed on page load
+      window.addEventListener('DOMContentLoaded', generateSeed);
+    </script>
+    
+    <!-- Balatro Background Shader -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec2 a_position;
+      attribute vec2 a_texCoord;
+      varying vec2 v_texCoord;
+      varying vec2 v_screenCoord;
+      
+      void main() {
+        gl_Position = vec4(a_position, 0.0, 1.0);
+        v_texCoord = a_texCoord;
+        v_screenCoord = (a_position + 1.0) * 0.5;
+      }
+    </script>
+    
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      
+      uniform float u_time;
+      uniform float u_spin_time;
+      uniform vec4 u_colour_1;
+      uniform vec4 u_colour_2;
+      uniform vec4 u_colour_3;
+      uniform float u_contrast;
+      uniform float u_spin_amount;
+      uniform vec2 u_resolution;
+      
+      varying vec2 v_texCoord;
+      varying vec2 v_screenCoord;
+      
+      #define PIXEL_SIZE_FAC 700.0
+      #define SPIN_EASE 0.5
+      
+      void main() {
+        // Convert to UV coords (0-1) and floor for pixel effect
+        float pixel_size = length(u_resolution) / PIXEL_SIZE_FAC;
+        vec2 uv = (floor(v_screenCoord * u_resolution / pixel_size) * pixel_size - 0.5 * u_resolution) / length(u_resolution) - vec2(0.12, 0.0);
+        float uv_len = length(uv);
+
+        // Adding in a center swirl, changes with time
+        float speed = (u_spin_time * SPIN_EASE * 0.2) + 302.2;
+        float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE * 20.0 * (1.0 * u_spin_amount * uv_len + (1.0 - 1.0 * u_spin_amount));
+        vec2 mid = (u_resolution / length(u_resolution)) / 2.0;
+        uv = vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid;
+
+        // Now add the paint effect to the swirled UV
+        uv *= 30.0;
+        speed = u_time * 2.0;
+        vec2 uv2 = vec2(uv.x + uv.y);
+
+        for(int i = 0; i < 5; i++) {
+            uv2 += sin(max(uv.x, uv.y)) + uv;
+            uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121), sin(uv2.x - 0.113 * speed));
+            uv -= 1.0 * cos(uv.x + uv.y) - 1.0 * sin(uv.x * 0.711 - uv.y);
+        }
+
+        // Make the paint amount range from 0 - 2
+        float contrast_mod = (0.25 * u_contrast + 0.5 * u_spin_amount + 1.2);
+        float paint_res = min(2.0, max(0.0, length(uv) * 0.035 * contrast_mod));
+        float c1p = max(0.0, 1.0 - contrast_mod * abs(1.0 - paint_res));
+        float c2p = max(0.0, 1.0 - contrast_mod * abs(paint_res));
+        float c3p = 1.0 - min(1.0, c1p + c2p);
+
+        vec4 ret_col = (0.3 / u_contrast) * u_colour_1 + (1.0 - 0.3 / u_contrast) * (u_colour_1 * c1p + u_colour_2 * c2p + vec4(c3p * u_colour_3.rgb, c3p * u_colour_1.a));
+
+        gl_FragColor = ret_col;
+      }
+    </script>
+    
+    <script type="text/javascript" src="balatro-background.js"></script>
+    <script type="text/javascript" src="languageHandler.js"></script>
+    
+    <style>
+      .seed-card {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+        padding: 24px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      
+      .seed-card h3 {
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 20px;
+        margin-bottom: 12px;
+        text-transform: lowercase;
+      }
+      
+      .seed-card p {
+        color: #bfc7d5;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+      
+      .seed-display {
+        text-align: center;
+      }
+      
+      .seed-display code {
+        display: block;
+        background: rgba(255, 215, 0, 0.1);
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border: 2px solid rgba(255, 215, 0, 0.3);
+      }
+      
+      .seed-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .seed-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+      
+      .seed-item code {
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      
+      .seed-desc {
+        color: #bfc7d5;
+        font-size: 14px;
+        font-style: italic;
+      }
+    </style>
+  </body>
+</html>
