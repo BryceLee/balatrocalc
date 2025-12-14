@@ -259,9 +259,59 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Wie das Scoring funktioniert (Chips × Mult)</h2>
+        <p class="contentLead">Der Endscore ist immer <code>Score = Chips × Mult</code>. Entscheidend ist die Reihenfolge: Viele Effekte verändern die <em>aktuellen</em> Werte, und Jokers triggern meist von links nach rechts. Daher kann eine andere Joker-Reihenfolge den Score stark ändern.</p>
+
+        <h2>Begriffe</h2>
+        <ul>
+          <li><strong>Chips</strong>: Basis-Punkte (oft +Chips).</li>
+          <li><strong>Mult</strong>: Multiplikator (oft +Mult).</li>
+          <li><strong>XMult</strong>: Multiplikator auf Mult (×Mult) → Reihenfolge wichtig.</li>
+        </ul>
+
+        <h2>Typische Reihenfolge</h2>
+        <ol>
+          <li>Hand-Typ und Level bestimmen → Basis-Chips &amp; Basis-Mult.</li>
+          <li>Gespielte/gewertete Karten berechnen (Enhancements/Editions).</li>
+          <li>Jokers auslösen (links → rechts).</li>
+          <li><code>Chips × Mult</code> berechnen.</li>
+        </ol>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Guide: Jokers, Chips, Hands (Begriffe)</h2>
+        <p class="contentLead">Für konstante Runs: Wähle früh eine Main-Hand, sichere Chips-Quellen, dann Mult/XMult-Quellen, und investiere in Stabilität (Economy, Deck-Shaping, Utility).</p>
+
+        <h2>Joker-Kategorien</h2>
+        <ul>
+          <li><strong>Direktes Scoring</strong>: Chips/Mult/XMult.</li>
+          <li><strong>Scaling</strong>: wächst über Zeit/Triggers.</li>
+          <li><strong>Trigger/Kopie</strong>: wiederholt oder kopiert andere Jokers.</li>
+          <li><strong>Economy</strong>: Geld/Rabatte.</li>
+          <li><strong>Utility</strong>: Konsistenz und Kontrolle.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
+        <div id="footerLinks">
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
+          <a href="/de/about/">about</a>
+          <a href="/de/privacy-policy/">privacy</a>
+          <a href="/de/terms/">terms</a>
+        </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
         </div>
@@ -372,6 +422,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

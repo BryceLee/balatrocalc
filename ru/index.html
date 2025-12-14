@@ -259,9 +259,59 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Как считается счёт (Chips × Mult)</h2>
+        <p class="contentLead">Итог всегда считается как <code>Score = Chips × Mult</code>. Важен порядок: многие эффекты меняют <em>текущие</em> значения, а джокеры обычно срабатывают слева направо — поэтому перестановка джокеров может заметно изменить результат.</p>
+
+        <h2>Термины</h2>
+        <ul>
+          <li><strong>Chips</strong>: базовые очки (часто +Chips).</li>
+          <li><strong>Mult</strong>: множитель (часто +Mult).</li>
+          <li><strong>XMult</strong>: множитель для Mult (×Mult) — из-за этого порядок важен.</li>
+        </ul>
+
+        <h2>Типичный порядок</h2>
+        <ol>
+          <li>Определить комбинацию и уровень → базовые Chips/Mult.</li>
+          <li>Посчитать очки карт (улучшения/издания).</li>
+          <li>Сработать джокерам (слева → направо).</li>
+          <li>Посчитать <code>Chips × Mult</code>.</li>
+        </ol>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Гайд: джокеры, Chips, руки (термины)</h2>
+        <p class="contentLead">Упрощай билд: выбери основную руку, найди источники Chips, затем Mult/XMult, и добавь стабильность (экономика, контроль колоды, утилити).</p>
+
+        <h2>Категории джокеров</h2>
+        <ul>
+          <li><strong>Прямой урон</strong>: Chips/Mult/XMult.</li>
+          <li><strong>Скейл</strong>: растёт со временем.</li>
+          <li><strong>Триггер/копия</strong>: повторяет/копирует другого джокера.</li>
+          <li><strong>Экономика</strong>: деньги/скидки.</li>
+          <li><strong>Утилити</strong>: стабильность и контроль.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
+        <div id="footerLinks">
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
+          <a href="/ru/about/">about</a>
+          <a href="/ru/privacy-policy/">privacy</a>
+          <a href="/ru/terms/">terms</a>
+        </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
         </div>
@@ -372,6 +422,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

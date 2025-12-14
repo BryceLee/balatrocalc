@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Terms of Service — balatrocalc</title>
     <link rel="stylesheet" href="../style.css">
-    <meta name="description" content="balatrocalc 服务条款：使用规则、免责声明、知识产权说明、责任限制与联系我们。">
+    <meta name="description" content="balatrocalc Terms of Service: usage rules, disclaimers, intellectual property, limitation of liability, and contact.">
     <meta property="og:title" content="Terms of Service — balatrocalc">
-    <meta property="og:description" content="服务条款与免责声明。">
+    <meta property="og:description" content="Terms of service and disclaimer summary.">
     <meta property="og:url" content="https://balatrocalc.com/terms/">
     <link rel="canonical" href="https://balatrocalc.com/terms/">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
@@ -25,6 +25,18 @@
       <a href="/about/" class="nav-link">about</a>
       <a href="/privacy-policy/" class="nav-link">privacy</a>
       <a href="/terms/" class="nav-link active">terms</a>
+      <div class="language-switcher">
+        <select id="langSelect" onchange="switchLanguage()">
+          <option value="en" selected>EN</option>
+          <option value="cn">中文</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
     </nav>
 
     <div id="mainContainer">
@@ -34,52 +46,52 @@
         </div>
 
         <div class="contentCard">
-          <h1 class="contentTitle">服务条款</h1>
+          <h1 class="contentTitle">Terms of Service</h1>
           <p class="contentLead">
-            访问或使用 balatrocalc（“本站”）即表示你同意本条款。如你不同意，请停止使用。
+            By accessing or using balatrocalc (the “Site”), you agree to these terms. If you do not agree, do not use the Site.
           </p>
 
-          <h2>1. 服务说明</h2>
+          <h2>1. Service</h2>
           <p>
-            本站提供 Balatro 手牌得分计算与信息内容（包括攻略/术语解释）。本站可能随时更新、修改或中止部分功能，恕不另行通知。
+            The Site provides a Balatro hand score calculator and informational content. We may update, modify, or discontinue parts of the Site at any time without notice.
           </p>
 
-          <h2>2. 非官方与免责声明</h2>
+          <h2>2. Unofficial &amp; disclaimer</h2>
           <ul>
-            <li>本站为非官方第三方工具，与 LocalThunk、Playstack 及 Balatro 官方无任何关联。</li>
-            <li>我们会尽力保证计算与内容准确，但不保证无误、无中断或完全符合你的用途。</li>
-            <li>你基于本站结果作出的任何决策与后果由你自行承担。</li>
+            <li>This is an unofficial third-party tool and is not affiliated with LocalThunk, Playstack, or the Balatro team.</li>
+            <li>The Site is provided “as is” without warranties of accuracy, uptime, or fitness for a particular purpose.</li>
+            <li>You are responsible for any decisions or outcomes based on the Site.</li>
           </ul>
 
-          <h2>3. 允许的使用</h2>
+          <h2>3. Acceptable use</h2>
           <ul>
-            <li>你可以将本站用于个人学习、构筑研究与娱乐用途。</li>
-            <li>你不得以任何方式对本站进行破坏性测试、恶意爬取、干扰服务、或尝试绕过安全限制。</li>
+            <li>You may use the Site for personal learning and entertainment.</li>
+            <li>You may not abuse, scrape aggressively, interfere with service, or attempt to bypass security.</li>
           </ul>
 
-          <h2>4. 知识产权</h2>
+          <h2>4. Intellectual property</h2>
           <p>
-            本站自身的页面结构与自有内容（不含第三方商标/素材）受适用法律保护。Balatro 相关商标、游戏素材与名称归其各自权利人所有。
+            The Site’s original content and structure are protected by applicable laws. Balatro trademarks and game assets/names belong to their respective owners.
           </p>
 
-          <h2>5. 责任限制</h2>
+          <h2>5. Limitation of liability</h2>
           <p>
-            在法律允许的最大范围内，我们不对因使用或无法使用本站而产生的任何间接、附带、特殊或后果性损失承担责任。
+            To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, or consequential damages arising from use of (or inability to use) the Site.
           </p>
 
-          <h2>6. 条款变更</h2>
+          <h2>6. Changes</h2>
           <p>
-            我们可能更新本条款。更新后将发布在本页面并立即生效。你继续使用即视为接受更新后的条款。
+            We may update these terms. Updates are posted on this page and take effect immediately. Continued use means you accept the updated terms.
           </p>
 
-          <h2>7. 联系我们</h2>
-          <p>问题反馈：support@balatrocalc.com（或访问 <a href="/support.html">Support</a>）。</p>
+          <h2>7. Contact</h2>
+          <p>Questions: support@balatrocalc.com (or <a href="/support.html">Support</a>).</p>
         </div>
 
         <div id="footer">
           <div id="footerLinks">
-            <a href="/how-it-works/">how it works</a>
-            <a href="/guide/">guide</a>
+            <a href="/#how-it-works">how it works</a>
+            <a href="/#guide">guide</a>
             <a href="/about/">about</a>
             <a href="/privacy-policy/">privacy</a>
             <a href="/terms/">terms</a>
@@ -90,6 +102,6 @@
     </div>
 
     <script type="text/javascript" src="../balatro-background.js"></script>
+    <script type="text/javascript" src="../languageHandler.js"></script>
   </body>
 </html>
-

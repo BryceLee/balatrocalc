@@ -259,9 +259,59 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Cómo funciona la puntuación (Chips × Mult)</h2>
+        <p class="contentLead">La puntuación final siempre es <code>Score = Chips × Mult</code>. Lo importante es el orden: muchos efectos modifican los valores <em>actuales</em> y los Jokers suelen activarse de izquierda a derecha, así que cambiar el orden puede cambiar el resultado.</p>
+
+        <h2>Términos clave</h2>
+        <ul>
+          <li><strong>Chips</strong>: puntos base (normalmente +Chips).</li>
+          <li><strong>Mult</strong>: multiplicador (a menudo +Mult).</li>
+          <li><strong>XMult</strong>: multiplicador aplicado a Mult (×Mult) → el orden importa.</li>
+        </ul>
+
+        <h2>Orden típico</h2>
+        <ol>
+          <li>Determinar la mano y el nivel → Chips/Mult base.</li>
+          <li>Contar cartas puntuadas (mejoras/ediciones).</li>
+          <li>Activar Jokers (izquierda → derecha).</li>
+          <li>Calcular <code>Chips × Mult</code>.</li>
+        </ol>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Guía: Jokers, Chips, Manos (términos)</h2>
+        <p class="contentLead">Para mejorar: elige una mano principal, asegura fuentes de Chips, luego fuentes de Mult/XMult, y añade estabilidad (economía, control del mazo, utilidades).</p>
+
+        <h2>Categorías de Joker</h2>
+        <ul>
+          <li><strong>Poder directo</strong>: Chips/Mult/XMult.</li>
+          <li><strong>Escalado</strong>: crece con el tiempo.</li>
+          <li><strong>Disparo/Copia</strong>: repite o copia otro Joker.</li>
+          <li><strong>Economía</strong>: dinero/descuentos.</li>
+          <li><strong>Utilidad</strong>: consistencia y control.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
+        <div id="footerLinks">
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
+          <a href="/es/about/">about</a>
+          <a href="/es/privacy-policy/">privacy</a>
+          <a href="/es/terms/">terms</a>
+        </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
         </div>
@@ -372,6 +422,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

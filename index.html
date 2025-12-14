@@ -259,12 +259,84 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">How Balatro scoring works (Chips × Mult)</h2>
+        <p class="contentLead">Balatro’s final score for a hand is always <code>Score = Chips × Mult</code>. The tricky part is that lots of effects modify <em>current</em> Chips/Mult in a specific order—especially Jokers—so swapping Joker order can change your result.</p>
+
+        <h2>Core terms</h2>
+        <ul>
+          <li><strong>Chips</strong>: your “base points”. Usually added up (+Chips).</li>
+          <li><strong>Mult</strong>: your “multiplier”. Often added up (+Mult).</li>
+          <li><strong>XMult</strong>: a multiplier applied to Mult (×Mult). This is why order matters.</li>
+        </ul>
+
+        <h2>Typical scoring order (mental model)</h2>
+        <ol>
+          <li>Pick the hand type (Pair / Flush / Straight…) and its level → gives base Chips &amp; base Mult.</li>
+          <li>Score the played cards (enhancements/editions can add Chips or Mult/XMult).</li>
+          <li>Trigger Jokers (usually left → right), each reading/modifying the current values.</li>
+          <li>Compute final <code>Chips × Mult</code>.</li>
+        </ol>
+
+        <h2>Why Joker order changes your score</h2>
+        <p>If you have both “+Mult” and “XMult” effects, putting XMult later often yields a higher Mult.</p>
+        <p><strong>Example:</strong> start at <code>Chips=100</code>, <code>Mult=10</code>. Joker A gives <code>+10 Mult</code>, Joker B gives <code>X2 Mult</code>.</p>
+        <ul>
+          <li>A → B: Mult 10 → 20 → 40 ⇒ Score = 100 × 40 = 4000</li>
+          <li>B → A: Mult 10 → 20 → 30 ⇒ Score = 100 × 30 = 3000</li>
+        </ul>
+
+        <div class="contentNote">
+          <strong>Tip:</strong> Use the in-app <strong>Breakdown</strong> view to see the exact step-by-step changes to Chips and Mult, then swap Joker order and compare.
+        </div>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Balatro guide: Jokers, Chips, Hands (terms)</h2>
+        <p class="contentLead">A practical way to improve is to separate your build into: (1) a main hand type, (2) reliable Chips sources, (3) reliable Mult/XMult sources, and (4) a plan for consistency (deck shaping / economy / utility).</p>
+
+        <h2>Joker categories (quick build thinking)</h2>
+        <ul>
+          <li><strong>Chips / Mult / XMult payoffs</strong>: direct scoring power.</li>
+          <li><strong>Scaling</strong>: grows over time; earlier is better.</li>
+          <li><strong>Trigger / Copy</strong>: repeats or copies another Joker; depends on your best target.</li>
+          <li><strong>Economy</strong>: money/discounts to reach key pieces faster.</li>
+          <li><strong>Utility</strong>: consistency tools (draw, discards, deck shaping).</li>
+        </ul>
+
+        <h2>Chip sources (common)</h2>
+        <ul>
+          <li>Base hand values (and planet upgrades)</li>
+          <li>Scored cards (ranks/suits) + enhancements/editions</li>
+          <li>Jokers that add Chips or convert conditions into Chips</li>
+        </ul>
+
+        <h2>Hand types (common)</h2>
+        <p>High Card, Pair, Two Pair, Three of a Kind, Straight, Flush, Full House, Four of a Kind, Straight Flush… (late-game builds can reach Five of a Kind / Flush Five / etc.)</p>
+
+        <h2>Beginner checklist</h2>
+        <ol>
+          <li>Pick one “main hand” direction early (Flush / Straight / High Card scaling…).</li>
+          <li>Balance Chips and Mult: stacking only one often caps your score.</li>
+          <li>When you get XMult/copy Jokers, think about order (left → right).</li>
+        </ol>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
         <div id="footerLinks">
-          <a href="/how-it-works/">how it works</a>
-          <a href="/guide/">guide</a>
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
           <a href="/about/">about</a>
           <a href="/privacy-policy/">privacy</a>
           <a href="/terms/">terms</a>
@@ -379,6 +451,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

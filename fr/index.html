@@ -259,9 +259,66 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Comment fonctionne le score (Chips × Mult)</h2>
+        <p class="contentLead">Le score final est toujours <code>Score = Chips × Mult</code>. La difficulté vient de l’ordre : beaucoup d’effets modifient les valeurs <em>actuelles</em> de Chips/Mult, et les Jokers se déclenchent généralement de gauche à droite.</p>
+
+        <h2>Notions clés</h2>
+        <ul>
+          <li><strong>Chips</strong> : points de base (souvent +Chips).</li>
+          <li><strong>Mult</strong> : multiplicateur (souvent +Mult).</li>
+          <li><strong>XMult</strong> : multiplicateur appliqué à Mult (×Mult) → l’ordre compte.</li>
+        </ul>
+
+        <h2>Ordre typique</h2>
+        <ol>
+          <li>Déterminer la main (Pair / Flush / Straight…) et son niveau → Chips/Mult de base.</li>
+          <li>Compter les cartes scorées (améliorations/éditions).</li>
+          <li>Déclencher les Jokers (souvent gauche → droite).</li>
+          <li>Calculer <code>Chips × Mult</code>.</li>
+        </ol>
+
+        <h2>Exemple rapide</h2>
+        <p>Départ <code>Chips=100</code>, <code>Mult=10</code>. Joker A : <code>+10 Mult</code>, Joker B : <code>X2 Mult</code>.</p>
+        <ul>
+          <li>A → B : 10 → 20 → 40 ⇒ 100 × 40 = 4000</li>
+          <li>B → A : 10 → 20 → 30 ⇒ 100 × 30 = 3000</li>
+        </ul>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Guide : Jokers, Chips, Mains (termes)</h2>
+        <p class="contentLead">Pour progresser : choisis une main principale, sécurise des sources de Chips, puis des sources de Mult/XMult, et enfin de la stabilité (économie, shaping, utilitaires).</p>
+
+        <h2>Catégories de Jokers</h2>
+        <ul>
+          <li><strong>Score direct</strong> : Chips/Mult/XMult.</li>
+          <li><strong>Scaling</strong> : devient plus fort avec le temps.</li>
+          <li><strong>Trigger / Copie</strong> : répète ou copie un autre Joker.</li>
+          <li><strong>Économie</strong> : argent/réductions.</li>
+          <li><strong>Utilitaire</strong> : stabilité et consistance.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
+        <div id="footerLinks">
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
+          <a href="/fr/about/">about</a>
+          <a href="/fr/privacy-policy/">privacy</a>
+          <a href="/fr/terms/">terms</a>
+        </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
         </div>
@@ -372,6 +429,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

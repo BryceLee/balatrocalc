@@ -259,9 +259,80 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Balatro のスコア計算（Chips × Mult）</h2>
+        <p class="contentLead">最終スコアは常に <code>Score = Chips × Mult</code> です。難しいのは、多くの効果が「現在の Chips / 現在の Mult」を順番に書き換えること（特に Joker）。そのため Joker の並び順を変えるだけで結果が変わります。</p>
+
+        <h2>基本用語</h2>
+        <ul>
+          <li><strong>Chips</strong>：基礎点（多くは +Chips で加算）。</li>
+          <li><strong>Mult</strong>：倍率（+Mult で加算されることが多い）。</li>
+          <li><strong>XMult</strong>：Mult に掛け算（×Mult）。順番が重要になる最大の理由。</li>
+        </ul>
+
+        <h2>よくある計算順（イメージ）</h2>
+        <ol>
+          <li>役（Pair / Flush / Straight…）とレベルを確定 → 基礎 Chips と基礎 Mult。</li>
+          <li>得点対象カードを計算（強化/エディションで Chips や Mult/XMult が変化）。</li>
+          <li>Joker を左→右に発動（現在値を参照して更新）。</li>
+          <li>最後に <code>Chips × Mult</code>。</li>
+        </ol>
+
+        <h2>なぜ並び順でスコアが変わる？</h2>
+        <p><strong>例：</strong> Joker A が <code>+10 Mult</code>、Joker B が <code>X2 Mult</code>。開始時 <code>Chips=100</code>、<code>Mult=10</code>。</p>
+        <ul>
+          <li>A → B：Mult 10 → 20 → 40 ⇒ 100 × 40 = 4000</li>
+          <li>B → A：Mult 10 → 20 → 30 ⇒ 100 × 30 = 3000</li>
+        </ul>
+
+        <div class="contentNote">
+          <strong>Tip:</strong> アプリ内の <strong>Breakdown</strong> で Chips/Mult がどの順で変わるか確認し、Joker の順番を入れ替えて比較すると理解が早いです。
+        </div>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Balatro ガイド：Joker / Chips / ハンド（用語）</h2>
+        <p class="contentLead">安定して伸ばすコツは、(1) 主力の役を決める、(2) Chips の供給源を確保、(3) Mult/XMult の供給源を確保、(4) 安定性（デッキ調整/経済/ユーティリティ）を用意する、の4点です。</p>
+
+        <h2>Joker のタイプ（ざっくり）</h2>
+        <ul>
+          <li><strong>得点系（Chips/Mult/XMult）</strong>：直接火力を上げる。</li>
+          <li><strong>成長系</strong>：時間/行動で強くなる。早いほど得。</li>
+          <li><strong>トリガー/コピー系</strong>：他の Joker を繰り返す/コピーする。対象次第。</li>
+          <li><strong>経済系</strong>：お金や割引で必要パーツに早く到達。</li>
+          <li><strong>ユーティリティ</strong>：安定性（ドロー、捨て札、デッキ調整）。</li>
+        </ul>
+
+        <h2>Chips の主な出所</h2>
+        <ul>
+          <li>役の基礎値（＋惑星アップグレード）</li>
+          <li>得点カードと強化/エディション</li>
+          <li>条件を Chips に変換する Joker</li>
+        </ul>
+
+        <h2>役（Hand）の例</h2>
+        <p>High Card, Pair, Two Pair, Three of a Kind, Straight, Flush, Full House, Four of a Kind, Straight Flush…</p>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
+        <div id="footerLinks">
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
+          <a href="/ja/about/">about</a>
+          <a href="/ja/privacy-policy/">privacy</a>
+          <a href="/ja/terms/">terms</a>
+        </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
         </div>
@@ -372,6 +443,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

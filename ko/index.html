@@ -259,9 +259,77 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Balatro 점수 계산 원리 (Chips × Mult)</h2>
+        <p class="contentLead">최종 점수는 항상 <code>Score = Chips × Mult</code> 입니다. 헷갈리는 부분은 많은 효과가 “현재 Chips/현재 Mult”를 <strong>순서대로</strong> 바꾼다는 점(특히 Joker)이라서, Joker 배치 순서만 바꿔도 결과가 달라질 수 있습니다.</p>
+
+        <h2>핵심 용어</h2>
+        <ul>
+          <li><strong>Chips</strong>: 기본 점수(대부분 +Chips로 누적).</li>
+          <li><strong>Mult</strong>: 배수(대부분 +Mult로 누적).</li>
+          <li><strong>XMult</strong>: Mult에 곱해지는 배수(×Mult). 순서가 중요한 이유.</li>
+        </ul>
+
+        <h2>자주 쓰는 결산 순서(모델)</h2>
+        <ol>
+          <li>핸드 타입과 레벨 확정 → 기본 Chips/기본 Mult.</li>
+          <li>점수에 들어가는 카드 계산(강화/에디션이 Chips 또는 Mult/XMult를 수정).</li>
+          <li>Joker 발동(보통 왼쪽→오른쪽)으로 현재 값을 갱신.</li>
+          <li>마지막에 <code>Chips × Mult</code>.</li>
+        </ol>
+
+        <h2>왜 Joker 순서가 점수에 영향을 주나?</h2>
+        <p><strong>예시:</strong> 시작이 <code>Chips=100</code>, <code>Mult=10</code>. Joker A: <code>+10 Mult</code>, Joker B: <code>X2 Mult</code>.</p>
+        <ul>
+          <li>A → B: Mult 10 → 20 → 40 ⇒ 100 × 40 = 4000</li>
+          <li>B → A: Mult 10 → 20 → 30 ⇒ 100 × 30 = 3000</li>
+        </ul>
+
+        <div class="contentNote">
+          <strong>Tip:</strong> 앱의 <strong>Breakdown</strong>에서 Chips/Mult 변화 과정을 확인하고 Joker 순서를 바꿔 비교해보세요.
+        </div>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Balatro 가이드: Joker / Chips / 핸드(용어)</h2>
+        <p class="contentLead">빌드를 단순화하면 (1) 주력 핸드, (2) 안정적인 Chips, (3) 안정적인 Mult/XMult, (4) 안정성(경제/덱 조정/유틸) 네 가지로 나눌 수 있습니다.</p>
+
+        <h2>Joker 분류(빠른 판단)</h2>
+        <ul>
+          <li><strong>득점형(Chips/Mult/XMult)</strong>: 직접 화력을 올림.</li>
+          <li><strong>성장형</strong>: 시간이 지날수록 강해짐(빨리 얻을수록 유리).</li>
+          <li><strong>트리거/복사형</strong>: 다른 Joker를 반복/복사(대상 의존).</li>
+          <li><strong>경제형</strong>: 돈/할인으로 핵심 조합을 더 빨리 맞춤.</li>
+          <li><strong>유틸형</strong>: 안정성(드로우/버리기/덱 조정).</li>
+        </ul>
+
+        <h2>Chips 주요 출처</h2>
+        <ul>
+          <li>핸드 기본값(행성 업그레이드 포함)</li>
+          <li>점수 카드 + 강화/에디션</li>
+          <li>조건을 Chips로 바꾸는 Joker</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
+        <div id="footerLinks">
+          <a href="#how-it-works">how it works</a>
+          <a href="#guide">guide</a>
+          <a href="/ko/about/">about</a>
+          <a href="/ko/privacy-policy/">privacy</a>
+          <a href="/ko/terms/">terms</a>
+        </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
         </div>
@@ -372,6 +440,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

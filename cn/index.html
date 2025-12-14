@@ -259,15 +259,87 @@
           <div id="modifyJoker" style="text-align: center"></div>
         </div>
       </div>
-    </div><div id="footer">
+    </div>
+
+    <div id="seoContent" class="contentPageWrapBelow">
+      <div class="seoTabs">
+        <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
+        <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
+      </div>
+
+      <div id="how-it-works" class="contentCard">
+        <h2 class="contentTitle">Balatro 计分原理（Chips × Mult）</h2>
+        <p class="contentLead">Balatro 的最终得分永远可以写成：<code>Score = Chips × Mult</code>。真正让人困惑的是：很多效果会在不同阶段按顺序修改“当前的 Chips / 当前的 Mult”，尤其是 Joker（小丑牌）。因此 Joker 的摆放顺序改变，分数可能完全不同。</p>
+
+        <h2>三个核心概念</h2>
+        <ul>
+          <li><strong>Chips（筹码）</strong>：更像“底分”，通常是加法叠加（+Chips）。</li>
+          <li><strong>Mult（倍率）</strong>：更像“加法倍率”，经常是 +Mult。</li>
+          <li><strong>XMult</strong>：对 Mult 的乘法修正（×Mult）。这也是“顺序”最关键的原因。</li>
+        </ul>
+
+        <h2>一次出牌通常怎么结算（心智模型）</h2>
+        <ol>
+          <li>确定手牌类型（Pair/Flush/Straight…）与等级 → 给出基础 Chips 与基础 Mult。</li>
+          <li>逐张结算计分牌（增强/版本可能加 Chips 或加 Mult / XMult）。</li>
+          <li>结算 Joker（通常从左到右），每张 Joker 读取并修改“当前数值”。</li>
+          <li>最终计算 <code>Chips × Mult</code>。</li>
+        </ol>
+
+        <h2>为什么 Joker 顺序会改变分数？</h2>
+        <p>只要同时存在 “+Mult” 与 “XMult”，把 XMult 放在后面通常更赚，因为它会乘到更大的 Mult。</p>
+        <p><strong>例子：</strong>进入 Joker 阶段时 <code>Chips=100</code>，<code>Mult=10</code>。Joker A：<code>+10 Mult</code>；Joker B：<code>X2 Mult</code>。</p>
+        <ul>
+          <li>A → B：Mult 10 → 20 → 40 ⇒ Score = 100 × 40 = 4000</li>
+          <li>B → A：Mult 10 → 20 → 30 ⇒ Score = 100 × 30 = 3000</li>
+        </ul>
+
+        <div class="contentNote">
+          <strong>建议：</strong>在计算器里打开 <strong>详情（Breakdown）</strong> 看每一步如何改变 Chips/Mult；然后调整 Joker 顺序对比结果，学习最快。
+        </div>
+      </div>
+
+      <div id="guide" class="contentCard" style="display:none;">
+        <h2 class="contentTitle">Balatro 玩法指南：Joker / Chips / 手牌（术语）</h2>
+        <p class="contentLead">更稳定的提升思路：把构筑拆成四件事——(1) 主打手牌类型，(2) 稳定 Chips 来源，(3) 稳定 Mult/XMult 来源，(4) 提高稳定性的工具（经济、牌库改造、弃牌/抓牌等）。</p>
+
+        <h2>Joker 类别（快速做决策）</h2>
+        <ul>
+          <li><strong>得分型（Chips/Mult/XMult）</strong>：直接提升输出。</li>
+          <li><strong>成长型</strong>：会随着回合或触发次数越来越强，越早拿越赚。</li>
+          <li><strong>触发/复制型</strong>：让某张 Joker 重复触发或复制效果，强度取决于你的“目标件”。</li>
+          <li><strong>经济型</strong>：更多钱/折扣，让你更快凑齐关键组件。</li>
+          <li><strong>工具型</strong>：提升稳定性（更好成牌、更少翻车）。</li>
+        </ul>
+
+        <h2>Chip 类型（常见来源）</h2>
+        <ul>
+          <li>手牌基础值（以及行星牌升级）</li>
+          <li>计分牌本身 + 增强/版本（Foil/Holographic/Polychrome…）</li>
+          <li>把条件转化为 Chips 的 Joker</li>
+        </ul>
+
+        <h2>Hand 类型（常见牌型）</h2>
+        <p>High Card, Pair, Two Pair, Three of a Kind, Straight, Flush, Full House, Four of a Kind, Straight Flush…（后期还能做 Five of a Kind / Flush Five 等）</p>
+
+        <h2>新手三条最实用</h2>
+        <ol>
+          <li>尽早确定“主打手”（Flush/ Straight / High Card 成长…）。</li>
+          <li>Chips 与 Mult 要平衡，只堆一种容易到上限。</li>
+          <li>出现 XMult/复制类 Joker 时，优先考虑从左到右的顺序。</li>
+        </ol>
+      </div>
+    </div>
+
+    <div id="footer">
         <a href='https://www.playbalatro.com/' alt='Balatro Website'><img src='../assets/Balatro logo-new.png' alt='Balatro Game Logo' style='height: 3em;'></a><br>
         <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
         <div id="footerLinks">
-          <a href="/how-it-works/">计分原理</a>
-          <a href="/guide/">玩法指南</a>
-          <a href="/about/">关于</a>
-          <a href="/privacy-policy/">隐私</a>
-          <a href="/terms/">条款</a>
+          <a href="#how-it-works">计分原理</a>
+          <a href="#guide">玩法指南</a>
+          <a href="/cn/about/">关于</a>
+          <a href="/cn/privacy-policy/">隐私</a>
+          <a href="/cn/terms/">条款</a>
         </div>
         <div id="credits">
           Thanks to @EFHIII for technical support
@@ -380,6 +452,36 @@
           }
         }
       }
+    </script>
+    <script>
+      (function () {
+        const howBtn = document.getElementById('seoTabHow');
+        const guideBtn = document.getElementById('seoTabGuide');
+        const howSection = document.getElementById('how-it-works');
+        const guideSection = document.getElementById('guide');
+
+        if (!howBtn || !guideBtn || !howSection || !guideSection) return;
+
+        function render() {
+          const hash = (window.location.hash || '').replace('#', '');
+          const showGuide = hash === 'guide';
+          howSection.style.display = showGuide ? 'none' : 'block';
+          guideSection.style.display = showGuide ? 'block' : 'none';
+          howBtn.classList.toggle('active', !showGuide);
+          guideBtn.classList.toggle('active', showGuide);
+        }
+
+        howBtn.addEventListener('click', () => {
+          window.location.hash = 'how-it-works';
+          render();
+        });
+        guideBtn.addEventListener('click', () => {
+          window.location.hash = 'guide';
+          render();
+        });
+        window.addEventListener('hashchange', render);
+        render();
+      })();
     </script>
   </body>
 </html>

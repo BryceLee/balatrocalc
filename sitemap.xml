@@ -25,36 +25,22 @@
   </url>
 
   <url>
-    <loc>https://balatrocalc.com/how-it-works/</loc>
-    <lastmod>2025-12-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://balatrocalc.com/guide/</loc>
-    <lastmod>2025-12-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://balatrocalc.com/about/</loc>
-    <lastmod>2025-12-13</lastmod>
+    <lastmod>2025-12-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
     <loc>https://balatrocalc.com/privacy-policy/</loc>
-    <lastmod>2025-12-13</lastmod>
+    <lastmod>2025-12-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://balatrocalc.com/terms/</loc>
-    <lastmod>2025-12-13</lastmod>
+    <lastmod>2025-12-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -73,6 +59,27 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://balatrocalc.com/cn/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/cn/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/cn/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   
   <!-- Japanese -->
   <url>
@@ -87,6 +94,27 @@
     <lastmod>2025-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ja/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ja/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ja/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   
   <!-- Korean -->
@@ -103,6 +131,27 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ko/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ko/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ko/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   
   <!-- French -->
   <url>
@@ -117,6 +166,27 @@
     <lastmod>2025-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/fr/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/fr/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/fr/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   
   <!-- German -->
@@ -133,6 +203,27 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://balatrocalc.com/de/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/de/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/de/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   
   <!-- Spanish -->
   <url>
@@ -148,6 +239,27 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://balatrocalc.com/es/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/es/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/es/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   
   <!-- Russian -->
   <url>
@@ -162,6 +274,27 @@
     <lastmod>2025-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ru/about/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ru/privacy-policy/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://balatrocalc.com/ru/terms/</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   
 </urlset>
