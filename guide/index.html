@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Balatro 详细玩法 + 术语解释（Joker / Chips / Hand）— balatrocalc</title>
+    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="Balatro 新手到进阶的玩法指南：Joker 类别、Chips/Mult/XMult 的理解、常见 Hand 类型与升级方式，以及常见术语解释。">
+    <meta name="keywords" content="Balatro 攻略,Balatro 玩法,Joker 类别,Chips,Mult,手牌类型,术语解释,balatrocalc">
+    <meta property="og:title" content="Balatro 详细玩法 + 术语解释（Joker / Chips / Hand）">
+    <meta property="og:description" content="介绍 Joker 类别、Chip 类型、Hand 类型与核心术语，适合新手快速入门。">
+    <meta property="og:url" content="https://balatrocalc.com/guide/">
+    <link rel="canonical" href="https://balatrocalc.com/guide/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+  </head>
+  <body>
+    <canvas id="backgroundCanvas"></canvas>
+    <div id="titleBar">
+      <h1>balatrocalc</h1>
+      <span class="subtitle">guide</span>
+    </div>
+    <nav id="topNav">
+      <a href="/" class="nav-link">calculator</a>
+      <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="/how-it-works/" class="nav-link">how it works</a>
+      <a href="/guide/" class="nav-link active">guide</a>
+      <a href="/about/" class="nav-link">about</a>
+    </nav>
+
+    <div id="mainContainer">
+      <div class="contentPageWrap">
+        <div class="handLevel" style="min-width: auto; white-space: normal;">
+          <span class="handName">Balatro 玩法指南（术语/机制）</span>
+        </div>
+
+        <div class="contentCard">
+          <h1 class="contentTitle">Balatro 详细玩法 + 术语解释：Joker / Chips / Hand 一次看懂</h1>
+          <p class="contentLead">
+            Balatro 的核心循环很简单：<strong>用最少的出牌次数打出足够高的分，过关并滚雪球</strong>。难点在于你要理解：什么是“得分来源”，什么是“倍率来源”，以及 Joker 该如何围绕某个手牌方向构筑。
+          </p>
+
+          <h2>常用术语速查</h2>
+          <ul>
+            <li><strong>Ante</strong>：关卡层级，越高要求越苛刻。</li>
+            <li><strong>Blind / Boss Blind</strong>：每轮的得分目标与限制条件；Boss 会加额外规则。</li>
+            <li><strong>Hand / Discard</strong>：每回合可出牌次数与可弃牌次数。</li>
+            <li><strong>Shop</strong>：买 Joker、行星牌、塔罗牌、强化包、券（Vouchers）的地方。</li>
+            <li><strong>Scaling（成长）</strong>：能随时间/局内行为变强的 Joker（越早拿越赚）。</li>
+          </ul>
+
+          <h2>Chips / Mult / XMult：三种“得分语言”</h2>
+          <ul>
+            <li><strong>Chips</strong>：像“底分”。常见来自：手牌基础值、计分牌本身、增强/版本、部分 Joker。</li>
+            <li><strong>Mult</strong>：像“加法倍率”。常见来自：手牌基础值、加 Mult 的 Joker、部分增强/版本。</li>
+            <li><strong>XMult</strong>：像“乘法倍率”。它不是 +Mult，而是把当前 Mult 乘一下，通常决定上限。</li>
+          </ul>
+          <p class="contentLead" style="margin-top: 10px;">
+            想看更细的“结算顺序”，去读：<a href="/how-it-works/">Balatro 计分原理（Chips / Mult / Joker 顺序）</a>。
+          </p>
+
+          <h2>Joker 类别（构筑思路）</h2>
+          <p>你可以把 Joker 粗略分成几类，方便你在商店里快速做决策：</p>
+          <ul>
+            <li><strong>得分型</strong>：直接给 Chips / Mult / XMult。适合补短板或当核心。</li>
+            <li><strong>成长型</strong>：会随着出牌、弃牌、回合、触发次数累积变强。越早拿越好，但也更吃路线规划。</li>
+            <li><strong>触发/复制型</strong>：让某些效果重复触发、复制其他 Joker、改变触发条件。强度与“目标 Joker”绑定。</li>
+            <li><strong>经济型</strong>：给钱、给折扣、给更多商店资源，间接提升强度（让你更快找到关键件）。</li>
+            <li><strong>工具型</strong>：改变牌库、改变牌型、提供容错（更多弃牌/出牌等），提升稳定性。</li>
+          </ul>
+
+          <h2>Hand 类型（常见牌型）</h2>
+          <p>Balatro 的基础牌型来自扑克，并在后期扩展出更强的组合。常见的有：</p>
+          <ul>
+            <li>High Card / Pair / Two Pair / Three of a Kind</li>
+            <li>Straight / Flush / Full House / Four of a Kind</li>
+            <li>Straight Flush</li>
+            <li>Five of a Kind / Flush House / Flush Five（更偏后期构筑）</li>
+          </ul>
+          <p>
+            每种 Hand 都有自己的“基础 Chips 与基础 Mult”，并且可以通过行星牌提升等级，让它变成你构筑的“主输出手”。
+          </p>
+
+          <h2>Chip 类型（得分来源）</h2>
+          <p>除了 Hand 基础值之外，Chips 还经常来自：</p>
+          <ul>
+            <li><strong>计分牌本身</strong>：被计分的牌会贡献 Chips。</li>
+            <li><strong>增强与版本</strong>：例如 Foil（+Chips）、Holographic（+Mult）、Polychrome（XMult）等。</li>
+            <li><strong>消耗牌与券</strong>：部分塔罗/行星、Vouchers 会改变牌库或提供额外加成。</li>
+          </ul>
+
+          <h2>新手最实用的三条建议</h2>
+          <ol>
+            <li><strong>先把“主打手牌”定下来</strong>：你是走 Flush、Straight，还是 High Card 成长？越早确定越容易选到匹配的 Joker/强化。</li>
+            <li><strong>优先补短板</strong>：Chips 不够就补 Chips，Mult 不够就补 Mult/XMult；别只堆一种。</li>
+            <li><strong>注意顺序</strong>：尤其是有 XMult、复制、或依赖当前数值的 Joker，位置经常决定上限。</li>
+          </ol>
+
+          <p class="contentLead" style="margin-top: 18px;">
+            需要一句话概览本站是什么？看 <a href="/about/">About</a>；需要合规信息看 <a href="/privacy-policy/">Privacy Policy</a> 与 <a href="/terms/">Terms</a>。
+          </p>
+        </div>
+
+        <div id="footer">
+          <div id="footerLinks">
+            <a href="/how-it-works/">how it works</a>
+            <a href="/guide/">guide</a>
+            <a href="/about/">about</a>
+            <a href="/privacy-policy/">privacy</a>
+            <a href="/terms/">terms</a>
+          </div>
+          <div id="credits">Not affiliated with LocalThunk or Playstack. Balatro is a trademark of its respective owners.</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="../balatro-background.js"></script>
+  </body>
+</html>
+
