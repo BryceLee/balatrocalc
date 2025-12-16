@@ -111,6 +111,9 @@ body {
   z-index: 1000;
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: calc(100vw - 40px);
   align-items: center;
   pointer-events: auto;
 }
@@ -127,6 +130,11 @@ body {
   text-transform: lowercase;
   cursor: pointer;
   transition: all 0.2s ease;
+  width: 120px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .language-switcher select:hover {

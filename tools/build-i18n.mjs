@@ -35,6 +35,17 @@ function replaceBetween(html, startMarker, endMarker, replacementInner) {
   return `${before}\n${replacementInner}\n${after}`;
 }
 
+function ensureBase(html, baseHref) {
+  const baseTagRegex = /<base href="[^"]*"\s*>/i;
+  if (baseTagRegex.test(html)) {
+    return html.replace(baseTagRegex, `<base href="${baseHref}">`);
+  }
+  // Insert base right after <title>…</title> to keep it early in <head>.
+  const titleCloseRegex = /<\/title>/i;
+  if (!titleCloseRegex.test(html)) throw new Error('No </title> found to insert <base>');
+  return html.replace(titleCloseRegex, `</title>\n    <base href="${baseHref}">`);
+}
+
 function renderLangOptions(languages, selectedCode) {
   return languages
     .map((lang) => {
@@ -66,9 +77,6 @@ function setOgUrl(html, url) {
 
 function prefixLanguageLinks(html, code) {
   if (code === 'en') return html;
-  // Don't rewrite document base; keep asset paths rooted.
-  const BASE_TOKEN = '__I18N_BASE_HREF_TOKEN__';
-  html = html.replace(/<base href="\/"\s*>/i, `<base href="${BASE_TOKEN}">`);
   const prefix = `/${code}`;
   // Keep root-only pages (support/apk/debug) at root
   html = html
@@ -78,7 +86,6 @@ function prefixLanguageLinks(html, code) {
     .replaceAll('href="/privacy-policy/"', `href="${prefix}/privacy-policy/"`)
     .replaceAll('href="/terms/"', `href="${prefix}/terms/"`)
     .replaceAll('href="/"', `href="${prefix}/"`);
-  html = html.replace(new RegExp(`<base href="${BASE_TOKEN}">`, 'i'), '<base href="/">');
   return html;
 }
 
@@ -130,6 +137,8 @@ async function localizeIndex({ baseHtml, languages, lang }) {
   html = setCanonical(html, canonical);
   html = setOgUrl(html, canonical);
 
+  // Make root assets work from /<lang>/... both on HTTP and file://
+  html = ensureBase(html, '../');
   html = prefixLanguageLinks(html, lang.code);
   return html;
 }
@@ -149,6 +158,7 @@ async function localizeSeeds({ baseHtml, languages, lang }) {
 
   const canonical = languageUrl(lang.code, '/balatro-seeds.html');
   html = setCanonical(html, canonical);
+  html = ensureBase(html, '../');
   html = prefixLanguageLinks(html, lang.code);
   return html;
 }
@@ -163,6 +173,7 @@ async function localizeLegal({ baseHtml, languages, lang, pagePath }) {
 
   html = setHtmlLang(html, lang.htmlLang, lang.dir);
   html = setCanonical(html, languageUrl(lang.code, pagePath));
+  html = ensureBase(html, '../../');
   html = prefixLanguageLinks(html, lang.code);
   return html;
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Balatro Seeds - balatrocalc</title>
-    <base href="/">
+    <base href="../">
     <link rel="stylesheet" href="style.css">
     <meta name="description" content="Balatro seeds collection and generator">
     <link rel="canonical" href="https://balatrocalc.com/ms/balatro-seeds.html">
@@ -126,6 +126,71 @@
         <div style="text-align: center; margin-top: 2em;">
           <p style="color: #bfc7d5; font-size: 18px;">This feature is under development. Check back soon!</p>
         </div>
+
+        <section class="seed-explainer">
+          <h2>What is a Seed in Balatro?</h2>
+          <p>
+            In Balatro, a <strong>seed</strong> is a short code (letters and/or numbers) that controls all of the
+            random events in a single run. If two players use the same seed and the same starting deck, the
+            <em>order</em> of shops, Jokers, Blinds, Boosters, and many other random elements will follow the
+            same pattern.
+          </p>
+          <p>
+            You can think of a seed as the <strong>"DNA of a run"</strong>: it does not change the rules of the game,
+            but it decides how the random pieces are arranged.
+          </p>
+
+          <h3>What a Seed <em>can</em> do</h3>
+          <ul>
+            <li>Control the order of shops and which Jokers are <em>eligible</em> to appear.</li>
+            <li>Control the order of Blinds and Boss Blinds.</li>
+            <li>Control which Boosters and Planet cards show up and when.</li>
+            <li>Allow different players to replay or share the same style of run.</li>
+          </ul>
+
+          <h3>What a Seed <em>cannot</em> do</h3>
+          <ul>
+            <li>It <strong>cannot unlock</strong> Jokers, Planet cards, Vouchers, or Blinds for you.</li>
+            <li>It <strong>cannot force</strong> the game to use cards that you have not unlocked yet.</li>
+            <li>It <strong>does not change</strong> the basic rules, scoring, or difficulty settings.</li>
+          </ul>
+
+          <div class="seed-warning">
+            <strong>Important:</strong> Balatro seeds only arrange the random events. If your save file does not
+            have certain Jokers or cards unlocked, those items will <strong>not</strong> appear even if they are
+            part of a popular seed. They will be replaced by other available options from your current unlock pool.
+            For the most accurate reproduction of a seed, use a <strong>fully unlocked save file</strong>.
+          </div>
+
+          <h3>Seed & Unlocks – Quick FAQ</h3>
+
+          <h4>Why do I see different Jokers than someone else using the same seed?</h4>
+          <p>
+            Because seeds only control the <strong>order</strong> of random events. The actual pool of Jokers and
+            cards you can see is limited by your <strong>unlock progress</strong>. If you have not unlocked a Joker,
+            it cannot appear for you, even if the seed would normally use it.
+          </p>
+
+          <h4>Does a seed automatically unlock cards for me?</h4>
+          <p>
+            No. Seeds do <strong>not</strong> unlock anything. They only define how the game uses the content you have
+            already unlocked in your save file.
+          </p>
+
+          <h4>How do I get a “perfect” reproduction of a seed?</h4>
+          <p>
+            To match another player’s run as closely as possible, you should use:
+          </p>
+          <ul>
+            <li>The same Balatro version (e.g. 1.0 / 1.1).</li>
+            <li>The same starting deck.</li>
+            <li>A save file with <strong>all Jokers, Planets, Boosters, and Blinds unlocked</strong>.</li>
+          </ul>
+          <p>
+            Without a full-unlock save, the seed will still work, but some Jokers or rewards may be different
+            or replaced.
+          </p>
+        </section>
         
       </div>
     </div>
@@ -297,6 +362,80 @@
         color: #bfc7d5;
         font-size: 14px;
         font-style: italic;
+      }
+
+      .seed-explainer {
+        max-width: 980px;
+        margin: 56px auto 18px;
+        padding: 24px;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+      }
+
+      .seed-explainer h2 {
+        margin: 0 0 12px;
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 24px;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+      }
+
+      .seed-explainer h3 {
+        margin: 18px 0 10px;
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-transform: lowercase;
+      }
+
+      .seed-explainer h4 {
+        margin: 16px 0 8px;
+        color: #ffd700;
+        font-family: 'm6x11Plus', monospace;
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
+
+      .seed-explainer p,
+      .seed-explainer li {
+        color: #bfc7d5;
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      .seed-explainer ul {
+        margin: 10px 0 14px 20px;
+      }
+
+      .seed-explainer strong {
+        color: #ffffff;
+        font-weight: normal;
+      }
+
+      .seed-warning {
+        border: 1px solid rgba(243, 156, 18, 0.65);
+        border-radius: 10px;
+        padding: 12px 16px;
+        background: rgba(43, 33, 16, 0.85);
+        margin: 16px 0;
+        color: #bfc7d5;
+      }
+
+      .seed-warning strong {
+        color: #ffd700;
+      }
+
+      @media (max-width: 600px) {
+        .seed-explainer {
+          padding: 16px 14px 12px;
+        }
+        .seed-explainer h2 {
+          font-size: 20px;
+        }
       }
     </style>
   </body>
