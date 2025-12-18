@@ -69,7 +69,7 @@
         <span class="handName">Coming Soon - Balatro Seeds Database</span>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <div class="seed-grid">
 
         <div class="seed-card">
           <h3>Seed Generator</h3>
@@ -473,7 +473,49 @@
       color: #ffd700;
     }
 
+    .seed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
     @media (max-width: 600px) {
+      .seed-grid {
+        grid-template-columns: 1fr;
+        /* Stack single column on mobile */
+        gap: 16px;
+      }
+
+      .seed-card {
+        padding: 16px;
+        /* Reduce padding */
+      }
+
+      .seed-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        text-align: left;
+      }
+
+      .seed-item code {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .copyBtn {
+        margin-left: auto;
+        /* Push to right in flex container if needed */
+        padding: 6px 12px;
+        /* Larger touch target */
+      }
+
+      .seed-desc {
+        font-size: 13px;
+      }
+
       .seed-explainer {
         padding: 16px 14px 12px;
       }
