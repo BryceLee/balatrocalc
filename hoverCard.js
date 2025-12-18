@@ -1,5 +1,6 @@
 let constrain = 5;
 let mouseOverContainer = document.getElementById("ex1-layer");
+let rafId = null;
 
 function transforms(x, y, el) {
   el.style.transform = '';
@@ -8,27 +9,40 @@ function transforms(x, y, el) {
   let calcX = -(y - box.y - (box.height / 2)) / (el.dataset.scale == 2 ? constrain * 2 : constrain);
   let calcY = (x - box.x - ((box.width ? box.width : 71) / 2)) / (el.dataset.scale == 2 ? constrain * 2 : constrain);
 
-  if(box.width === 0) {
+  if (box.width === 0) {
     return `translate(35.5px) perspective(${94}px) ` +
-    `rotateX(${calcX}deg) ` +
-    `rotateY(${calcY}deg) translate(-35.5px)`;
+      `rotateX(${calcX}deg) ` +
+      `rotateY(${calcY}deg) translate(-35.5px)`;
   }
 
   return `perspective(${94}px) ` +
-  `rotateX(${calcX}deg) ` +
-  `rotateY(${calcY}deg)`;
+    `rotateX(${calcX}deg) ` +
+    `rotateY(${calcY}deg)`;
 };
 
 //mousemove
 function hoverCard(e) {
-  let target = e.target;
-  let position = [e.clientX, e.clientY, e.target];
+  if (rafId) return;
+  // Disable on touch devices to improve performance and prevent ghost events
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
-  target.style.transform = transforms.apply(null, position);
+  let target = e.target;
+  let clientX = e.clientX;
+  let clientY = e.clientY;
+
+  rafId = requestAnimationFrame(() => {
+    let position = [clientX, clientY, target];
+    target.style.transform = transforms.apply(null, position);
+    rafId = null;
+  });
 }
 
 // mouseout
 function noHoverCard(e) {
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
   e.target.style.transform = '';
 }
 
