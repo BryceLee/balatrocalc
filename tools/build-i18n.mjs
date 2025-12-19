@@ -2,6 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const SITE_ORIGIN = 'https://balatrocalc.com';
+const IGNORE_HTML_PATHS = ['i18n/seo/'];
+const IGNORE_DIRS = new Set(['.git', 'node_modules']);
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -95,6 +97,47 @@ function languageUrl(code, pathname) {
   return `${SITE_ORIGIN}/${code}${pathname}`;
 }
 
+function toPosixPath(filePath) {
+  return filePath.split(path.sep).join('/');
+}
+
+function shouldIgnoreHtmlPath(relPath) {
+  return IGNORE_HTML_PATHS.some((prefix) => relPath.startsWith(prefix));
+}
+
+async function collectHtmlFiles(dir, relDir = '') {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const entryPath = path.join(dir, entry.name);
+    const entryRel = relDir ? path.join(relDir, entry.name) : entry.name;
+
+    if (entry.isDirectory()) {
+      if (IGNORE_DIRS.has(entry.name)) continue;
+      if (shouldIgnoreHtmlPath(`${toPosixPath(entryRel)}/`)) continue;
+      files.push(...(await collectHtmlFiles(entryPath, entryRel)));
+      continue;
+    }
+
+    if (!entry.isFile()) continue;
+    if (!entry.name.endsWith('.html')) continue;
+    const relPosix = toPosixPath(entryRel);
+    if (shouldIgnoreHtmlPath(relPosix)) continue;
+    files.push(relPosix);
+  }
+
+  return files;
+}
+
+function htmlPathToUrlPath(relPath) {
+  if (relPath === 'index.html') return '/';
+  if (relPath.endsWith('/index.html')) {
+    return `/${relPath.slice(0, -'index.html'.length)}`;
+  }
+  return `/${relPath}`;
+}
+
 async function loadLocale(code) {
   const localePath = path.join('i18n', 'locales', `${code}.json`);
   if (!(await fileExists(localePath))) return {};
@@ -178,62 +221,21 @@ async function localizeLegal({ baseHtml, languages, lang, pagePath }) {
   return html;
 }
 
-function buildSitemapXml(languages) {
+async function buildSitemapXmlFromFiles() {
   const lastmod = todayISO();
-
-  const homeAlternates = languages
-    .map((lang) => {
-      const href = lang.code === 'en' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}/${lang.code}/`;
-      return `    <xhtml:link rel="alternate" hreflang="${lang.htmlLang}" href="${href}"/>`;
-    })
-    .join('\n');
-
-  const urls = [];
-
-  urls.push(`
-  <url>
-    <loc>${SITE_ORIGIN}/</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-${homeAlternates}
-  </url>`.trim());
-
-  const rootPages = ['/balatro-seeds.html', '/about/', '/privacy-policy/', '/terms/'];
-  for (const pathname of rootPages) {
-    urls.push(`
+  const htmlFiles = await collectHtmlFiles('.');
+  const urlPaths = htmlFiles.map(htmlPathToUrlPath);
+  const uniquePaths = Array.from(new Set(urlPaths)).sort();
+  const urls = uniquePaths.map((pathname) => {
+    return `
   <url>
     <loc>${SITE_ORIGIN}${pathname}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${pathname === '/balatro-seeds.html' ? 'weekly' : 'yearly'}</changefreq>
-    <priority>${pathname === '/balatro-seeds.html' ? '0.8' : '0.3'}</priority>
-  </url>`.trim());
-  }
-
-  for (const lang of languages) {
-    if (lang.code === 'en') continue;
-    const langHome = `${SITE_ORIGIN}/${lang.code}/`;
-    urls.push(`
-  <url>
-    <loc>${langHome}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>`.trim());
-    for (const pathname of rootPages) {
-      const loc = pathname === '/' ? langHome : `${SITE_ORIGIN}/${lang.code}${pathname}`;
-      urls.push(`
-  <url>
-    <loc>${loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>${pathname === '/balatro-seeds.html' ? 'weekly' : 'yearly'}</changefreq>
-    <priority>${pathname === '/balatro-seeds.html' ? '0.7' : '0.3'}</priority>
-  </url>`.trim());
-    }
-  }
+  </url>`.trim();
+  });
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join('\n')}
 </urlset>
 `;
@@ -266,7 +268,7 @@ async function main() {
     outputs.push([path.join(lang.code, 'terms', 'index.html'), localizedTerms]);
   }
 
-  const sitemap = buildSitemapXml(languages);
+  const sitemap = await buildSitemapXmlFromFiles();
   outputs.push(['sitemap.xml', sitemap]);
 
   if (!write) {
