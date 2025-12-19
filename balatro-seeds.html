@@ -87,6 +87,24 @@
             <span class="seed-desc">Blueprint in first round</span>
           </div>
         </div>
+
+        <div class="featured-joker-card">
+          <div class="joker-img-container">
+            <div class="joker-sprite blueprint-joker"></div>
+          </div>
+          <div class="joker-img-container">
+            <div class="joker-sprite dna-joker"></div>
+          </div>
+          <div class="joker-info">
+            <h4>Blueprint + DNA</h4>
+            <p class="joker-ability">Powerful combo for card duplication</p>
+            <div class="joker-seed-row">
+              <code>2k9h9hn</code>
+              <button class="copyBtn" onclick="copySeed('2k9h9hn', this)">Copy</button>
+            </div>
+            <span class="seed-desc">Blueprint and DNA in first round</span>
+          </div>
+        </div>
         <!-- More featured jokers can be added here -->
       </div>
 
@@ -605,6 +623,12 @@
     .blueprint-joker {
       background-position: 0px -285px;
       /* x=0, y=3*95=285 */
+    }
+
+    /* DNA Joker: pos = {x=5, y=10} */
+    .dna-joker {
+      background-position: -355px -950px;
+      /* x=5*71=355, y=10*95=950 */
     }
 
     .joker-info {
