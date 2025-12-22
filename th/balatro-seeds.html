@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="th" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Balatro Seeds - balatrocalc</title>
+
+<head>
+  <meta charset="utf-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
+    crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <title>Balatro Seeds - balatrocalc</title>
     <base href="../">
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Balatro seeds collection and generator">
-    <link rel="canonical" href="https://balatrocalc.com/th/balatro-seeds.html">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-  </head>
-  <body>
-    <canvas id="backgroundCanvas"></canvas>
-    <div id="titleBar">
-      <h1>balatro seeds</h1>
-      <span class="subtitle">seed collection</span>
-    </div>
-    <nav id="topNav">
-      <a href="/th/" class="nav-link">calculator</a>
-      <a href="/th/balatro-seeds.html" class="nav-link">seeds</a>
-      <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
-      <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
-      <div class="language-switcher">
-        <select id="langSelect" onchange="switchLanguage()">
-          <!-- I18N_LANG_OPTIONS_START -->
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Free Balatro seed generator with random seed creation and curated collection of popular Balatro seeds. Find seeds for specific jokers like Blueprint and DNA.">
+  <link rel="canonical" href="https://balatrocalc.com/th/balatro-seeds.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Balatro Seed Generator",
+    "description": "Random Balatro seed generator and seeds database",
+    "url": "https://balatrocalc.com/balatro-seeds.html",
+    "applicationCategory": "GameApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+  <div id="titleBar">
+    <h1>Balatro Seed Generator</h1>
+    <span class="subtitle">Random Seeds & Database</span>
+  </div>
+  <nav id="topNav">
+    <a href="/th/" class="nav-link">calculator</a>
+    <a href="/th/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
+    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()">
+        <!-- I18N_LANG_OPTIONS_START -->
           <option value="en">EN</option>
           <option value="cn">中文(简体)</option>
           <option value="tw">中文(繁體)</option>
@@ -58,174 +79,270 @@
           <option value="cs">Čeština</option>
           <option value="el">Ελληνικά</option>
 <!-- I18N_LANG_OPTIONS_END -->
-        </select>
-      </div>
-    </nav>
-    
-    <div id="mainContainer">
-      <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
-        <div class="handLevel" style="margin-bottom: 2em;">
-          <span class="handName">Coming Soon - Balatro Seeds Database</span>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-          
-          <div class="seed-card">
-            <h3>Seed Generator</h3>
-            <p>Generate random seeds for Balatro runs</p>
-            <div class="seed-display">
-              <code id="generated-seed">ABCD1234</code>
-              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
-            </div>
-          </div>
-          
-          <div class="seed-card">
-            <h3>Popular Seeds</h3>
-            <p>Community favorite seeds</p>
-            <div class="seed-list">
-              <div class="seed-item">
-                <code>JOKER123</code>
-                <span class="seed-desc">Great joker start</span>
-              </div>
-              <div class="seed-item">
-                <code>MULT999</code>
-                <span class="seed-desc">High mult potential</span>
-              </div>
-              <div class="seed-item">
-                <code>LUCKY777</code>
-                <span class="seed-desc">Lucky draws</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="seed-card">
-            <h3>Challenge Seeds</h3>
-            <p>Seeds for specific challenges</p>
-            <div class="seed-list">
-              <div class="seed-item">
-                <code>HARD001</code>
-                <span class="seed-desc">No jokers challenge</span>
-              </div>
-              <div class="seed-item">
-                <code>SPEED42</code>
-                <span class="seed-desc">Speed run seed</span>
-              </div>
-              <div class="seed-item">
-                <code>ANTE999</code>
-                <span class="seed-desc">High ante push</span>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        
-        <div class="handLevel" style="margin-top: 3em;">
-          <span class="handName">Submit Your Seeds</span>
-        </div>
-        
-        <div style="text-align: center; margin-top: 2em;">
-          <p style="color: #bfc7d5; font-size: 18px;">This feature is under development. Check back soon!</p>
-        </div>
-
-        <section class="seed-explainer">
-          <h2>What is a Seed in Balatro?</h2>
-          <p>
-            In Balatro, a <strong>seed</strong> is a short code (letters and/or numbers) that controls all of the
-            random events in a single run. If two players use the same seed and the same starting deck, the
-            <em>order</em> of shops, Jokers, Blinds, Boosters, and many other random elements will follow the
-            same pattern.
-          </p>
-          <p>
-            You can think of a seed as the <strong>"DNA of a run"</strong>: it does not change the rules of the game,
-            but it decides how the random pieces are arranged.
-          </p>
-
-          <h3>What a Seed <em>can</em> do</h3>
-          <ul>
-            <li>Control the order of shops and which Jokers are <em>eligible</em> to appear.</li>
-            <li>Control the order of Blinds and Boss Blinds.</li>
-            <li>Control which Boosters and Planet cards show up and when.</li>
-            <li>Allow different players to replay or share the same style of run.</li>
-          </ul>
-
-          <h3>What a Seed <em>cannot</em> do</h3>
-          <ul>
-            <li>It <strong>cannot unlock</strong> Jokers, Planet cards, Vouchers, or Blinds for you.</li>
-            <li>It <strong>cannot force</strong> the game to use cards that you have not unlocked yet.</li>
-            <li>It <strong>does not change</strong> the basic rules, scoring, or difficulty settings.</li>
-          </ul>
-
-          <div class="seed-warning">
-            <strong>Important:</strong> Balatro seeds only arrange the random events. If your save file does not
-            have certain Jokers or cards unlocked, those items will <strong>not</strong> appear even if they are
-            part of a popular seed. They will be replaced by other available options from your current unlock pool.
-            For the most accurate reproduction of a seed, use a <strong>fully unlocked save file</strong>.
-          </div>
-
-          <h3>Seed & Unlocks – Quick FAQ</h3>
-
-          <h4>Why do I see different Jokers than someone else using the same seed?</h4>
-          <p>
-            Because seeds only control the <strong>order</strong> of random events. The actual pool of Jokers and
-            cards you can see is limited by your <strong>unlock progress</strong>. If you have not unlocked a Joker,
-            it cannot appear for you, even if the seed would normally use it.
-          </p>
-
-          <h4>Does a seed automatically unlock cards for me?</h4>
-          <p>
-            No. Seeds do <strong>not</strong> unlock anything. They only define how the game uses the content you have
-            already unlocked in your save file.
-          </p>
-
-          <h4>How do I get a “perfect” reproduction of a seed?</h4>
-          <p>
-            To match another player’s run as closely as possible, you should use:
-          </p>
-          <ul>
-            <li>The same Balatro version (e.g. 1.0 / 1.1).</li>
-            <li>The same starting deck.</li>
-            <li>A save file with <strong>all Jokers, Planets, Boosters, and Blinds unlocked</strong>.</li>
-          </ul>
-          <p>
-            Without a full-unlock save, the seed will still work, but some Jokers or rewards may be different
-            or replaced.
-          </p>
-        </section>
-        
-      </div>
+      </select>
     </div>
+  </nav>
 
-   
+  <div id="mainContainer">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
+      <!-- Featured Joker Seeds Section -->
+      <div class="handLevel" style="margin-bottom: 1.5em;">
+        <span class="handName">Featured Joker Seeds</span>
+      </div>
+      <p class="featured-joker-intro">Looking for a seed with a specific Joker? Here are some popular seeds featuring
+        powerful Jokers from the first round!</p>
 
-    <script>
-      function generateSeed() {
-        // Based on Balatro's seed generation weighting:
-        // 30% digits (1-9), 55% letters A-N, 15% letters P-Z (exclude 'O')
-        let seed = '';
-        for (let i = 0; i < 8; i++) {
-          const rand = Math.random();
-          let char;
-          if (rand > 0.70) {
-            // 30% digits 1-9
-            char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1'..'9'
-          } else if (rand > 0.15) {
-            // 55% letters A-N
-            char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A'..'N'
-          } else {
-            // 15% letters P-Z (exclude 'O' by starting at 'P')
-            char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P'..'Z'
-          }
-          seed += char;
+      <div class="featured-joker-grid">
+        <div class="featured-joker-card">
+          <div class="joker-img-container">
+            <div class="joker-sprite blueprint-joker"></div>
+          </div>
+          <div class="joker-info">
+            <h4>Blueprint</h4>
+            <p class="joker-ability">Copies ability of Joker to the right</p>
+            <div class="joker-seed-row">
+              <code>33cyvh75</code>
+              <button class="copyBtn" onclick="copySeed('33cyvh75', this)">Copy</button>
+            </div>
+            <span class="seed-desc">Blueprint in first round</span>
+          </div>
+        </div>
+
+        <div class="featured-joker-card">
+          <div class="joker-img-container">
+            <div class="joker-sprite blueprint-joker"></div>
+          </div>
+          <div class="joker-img-container">
+            <div class="joker-sprite dna-joker"></div>
+          </div>
+          <div class="joker-info">
+            <h4>Blueprint + DNA</h4>
+            <p class="joker-ability">Powerful combo for card duplication</p>
+            <div class="joker-seed-row">
+              <code>2k9h9hn</code>
+              <button class="copyBtn" onclick="copySeed('2k9h9hn', this)">Copy</button>
+            </div>
+            <span class="seed-desc">Blueprint and DNA in first round</span>
+          </div>
+        </div>
+        <!-- More featured jokers can be added here -->
+      </div>
+
+      <div class="seed-grid">
+
+        <div class="seed-card">
+          <h3>Seed Generator</h3>
+          <p>Generate random seeds for Balatro runs</p>
+          <div class="seed-display">
+            <code id="generated-seed">ABCD1234</code>
+            <button class="copyBtn"
+              onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
+            <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+          </div>
+        </div>
+
+        <div class="seed-card">
+          <h3>Popular Seeds</h3>
+          <p>Community favorite seeds</p>
+          <div class="seed-list">
+            <div class="seed-item">
+              <code>JOKER123</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">Great joker start</span>
+            </div>
+            <div class="seed-item">
+              <code>MULT999</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">High mult potential</span>
+            </div>
+            <div class="seed-item">
+              <code>LUCKY777</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">Lucky draws</span>
+            </div>
+            <div class="seed-item">
+              <code>33cyvh75</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">balatro seed with blueprint first round</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="seed-card">
+          <h3>Challenge Seeds</h3>
+          <p>Seeds for specific challenges</p>
+          <div class="seed-list">
+            <div class="seed-item">
+              <code>HARD001</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">No jokers challenge</span>
+            </div>
+            <div class="seed-item">
+              <code>SPEED42</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">Speed run seed</span>
+            </div>
+            <div class="seed-item">
+              <code>ANTE999</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">High ante push</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Seed Generator Features Section -->
+      <div class="seed-card" style="margin-top: 2em; grid-column: 1 / -1;">
+        <h2 style="color: #ffd700; font-size: 24px; margin-bottom: 16px;">Balatro Seed Generator Features</h2>
+        <p style="color: #bfc7d5; font-size: 16px; margin-bottom: 20px;">
+          Discover and generate Balatro seeds for your perfect run. Find seeds with specific jokers, test different
+          strategies, and share your best discoveries.
+        </p>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px;">
+
+          <div
+            style="padding: 14px; background: rgba(0,0,0,0.25); border-radius: 8px; border: 1px solid rgba(255,215,0,0.15);">
+            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Random Balatro Seed Generator</h3>
+            <p style="color: #bfc7d5; font-size: 14px; margin: 0; line-height: 1.5;">Generate unlimited random seeds
+              instantly. Each seed creates a unique Balatro run with different joker shops and card distributions.</p>
+          </div>
+
+          <div
+            style="padding: 14px; background: rgba(0,0,0,0.25); border-radius: 8px; border: 1px solid rgba(255,215,0,0.15);">
+            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Balatro Seeds Database</h3>
+            <p style="color: #bfc7d5; font-size: 14px; margin: 0; line-height: 1.5;">Curated collection of tested and
+              verified Balatro seeds. Browse popular seeds, challenge seeds, and community favorites.</p>
+          </div>
+
+          <div
+            style="padding: 14px; background: rgba(0,0,0,0.25); border-radius: 8px; border: 1px solid rgba(255,215,0,0.15);">
+            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Joker-Specific Seeds</h3>
+            <p style="color: #bfc7d5; font-size: 14px; margin: 0; line-height: 1.5;">Find seeds featuring powerful
+              jokers like Blueprint, DNA, and more. Perfect for testing specific joker combinations and strategies.</p>
+          </div>
+
+        </div>
+
+        <p style="margin-top: 20px; text-align: center; color: #bfc7d5; font-size: 15px;">
+          Want to test your seeds? Use our <a href="/th/" style="color: #ffd700; text-decoration: underline;">Balatro
+            calculator</a> to calculate exact scores and optimize your joker order.
+        </p>
+      </div>
+
+      <section class="seed-explainer">
+        <h2>What is a Seed in Balatro?</h2>
+        <p>
+          In Balatro, a <strong>seed</strong> is a short code (letters and/or numbers) that controls all of the
+          random events in a single run. If two players use the same seed and the same starting deck, the
+          <em>order</em> of shops, Jokers, Blinds, Boosters, and many other random elements will follow the
+          same pattern.
+        </p>
+        <p>
+          You can think of a seed as the <strong>"DNA of a run"</strong>: it does not change the rules of the game,
+          but it decides how the random pieces are arranged.
+        </p>
+
+        <h3>What a Seed <em>can</em> do</h3>
+        <ul>
+          <li>Control the order of shops and which Jokers are <em>eligible</em> to appear.</li>
+          <li>Control the order of Blinds and Boss Blinds.</li>
+          <li>Control which Boosters and Planet cards show up and when.</li>
+          <li>Allow different players to replay or share the same style of run.</li>
+        </ul>
+
+        <h3>What a Seed <em>cannot</em> do</h3>
+        <ul>
+          <li>It <strong>cannot unlock</strong> Jokers, Planet cards, Vouchers, or Blinds for you.</li>
+          <li>It <strong>cannot force</strong> the game to use cards that you have not unlocked yet.</li>
+          <li>It <strong>does not change</strong> the basic rules, scoring, or difficulty settings.</li>
+        </ul>
+
+        <div class="seed-warning">
+          <strong>Important:</strong> Balatro seeds only arrange the random events. If your save file does not
+          have certain Jokers or cards unlocked, those items will <strong>not</strong> appear even if they are
+          part of a popular seed. They will be replaced by other available options from your current unlock pool.
+          For the most accurate reproduction of a seed, use a <strong>fully unlocked save file</strong>.
+        </div>
+
+        <h3>Seed & Unlocks – Quick FAQ</h3>
+
+        <h4>Why do I see different Jokers than someone else using the same seed?</h4>
+        <p>
+          Because seeds only control the <strong>order</strong> of random events. The actual pool of Jokers and
+          cards you can see is limited by your <strong>unlock progress</strong>. If you have not unlocked a Joker,
+          it cannot appear for you, even if the seed would normally use it.
+        </p>
+
+        <h4>Does a seed automatically unlock cards for me?</h4>
+        <p>
+          No. Seeds do <strong>not</strong> unlock anything. They only define how the game uses the content you have
+          already unlocked in your save file.
+        </p>
+
+        <h4>How do I get a “perfect” reproduction of a seed?</h4>
+        <p>
+          To match another player’s run as closely as possible, you should use:
+        </p>
+        <ul>
+          <li>The same Balatro version (e.g. 1.0 / 1.1).</li>
+          <li>The same starting deck.</li>
+          <li>A save file with <strong>all Jokers, Planets, Boosters, and Blinds unlocked</strong>.</li>
+        </ul>
+        <p>
+          Without a full-unlock save, the seed will still work, but some Jokers or rewards may be different
+          or replaced.
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+
+
+  <script>
+    function generateSeed() {
+      // Based on Balatro's seed generation weighting:
+      // 30% digits (1-9), 55% letters A-N, 15% letters P-Z (exclude 'O')
+      let seed = '';
+      for (let i = 0; i < 8; i++) {
+        const rand = Math.random();
+        let char;
+        if (rand > 0.70) {
+          // 30% digits 1-9
+          char = String.fromCharCode(Math.floor(Math.random() * 9) + 49); // '1'..'9'
+        } else if (rand > 0.15) {
+          // 55% letters A-N
+          char = String.fromCharCode(Math.floor(Math.random() * 14) + 65); // 'A'..'N'
+        } else {
+          // 15% letters P-Z (exclude 'O' by starting at 'P')
+          char = String.fromCharCode(Math.floor(Math.random() * 11) + 80); // 'P'..'Z'
         }
-        document.getElementById('generated-seed').textContent = seed;
+        seed += char;
       }
+      document.getElementById('generated-seed').textContent = seed;
+    }
 
-      // Auto-generate a seed on page load
-      window.addEventListener('DOMContentLoaded', generateSeed);
-    </script>
-    
-    <!-- Balatro Background Shader -->
-    <script id="vertex-shader" type="x-shader/x-vertex">
+    // Auto-generate a seed on page load
+    window.addEventListener('DOMContentLoaded', generateSeed);
+
+    function copySeed(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(() => {
+          btn.innerText = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  </script>
+
+  <!-- Balatro Background Shader -->
+  <script id="vertex-shader" type="x-shader/x-vertex">
       attribute vec2 a_position;
       attribute vec2 a_texCoord;
       varying vec2 v_texCoord;
@@ -237,8 +354,8 @@
         v_screenCoord = (a_position + 1.0) * 0.5;
       }
     </script>
-    
-    <script id="fragment-shader" type="x-shader/x-fragment">
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
       precision mediump float;
       
       uniform float u_time;
@@ -291,152 +408,326 @@
         gl_FragColor = ret_col;
       }
     </script>
-    
-    <script type="text/javascript" src="balatro-background.js"></script>
-    <script type="text/javascript" src="languageHandler.js"></script>
-    
-    <style>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+
+  <style>
+    .seed-card {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .seed-card h3 {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 20px;
+      margin-bottom: 12px;
+      text-transform: lowercase;
+    }
+
+    .seed-card p {
+      color: #bfc7d5;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .seed-display {
+      text-align: center;
+    }
+
+    .seed-display code {
+      display: block;
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .seed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .seed-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .seed-item code {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .seed-desc {
+      color: #bfc7d5;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .copyBtn {
+      background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      padding: 4px 10px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-left: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .copyBtn:hover {
+      background: linear-gradient(135deg, #5294f5 0%, #2086e2 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .copyBtn:active {
+      transform: translateY(0);
+    }
+
+    .seed-explainer {
+      max-width: 980px;
+      margin: 56px auto 18px;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .seed-explainer h2 {
+      margin: 0 0 12px;
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 24px;
+      letter-spacing: 1px;
+      text-transform: lowercase;
+    }
+
+    .seed-explainer h3 {
+      margin: 18px 0 10px;
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: lowercase;
+    }
+
+    .seed-explainer h4 {
+      margin: 16px 0 8px;
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    .seed-explainer p,
+    .seed-explainer li {
+      color: #bfc7d5;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .seed-explainer ul {
+      margin: 10px 0 14px 20px;
+    }
+
+    .seed-explainer strong {
+      color: #ffffff;
+      font-weight: normal;
+    }
+
+    .seed-warning {
+      border: 1px solid rgba(243, 156, 18, 0.65);
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: rgba(43, 33, 16, 0.85);
+      margin: 16px 0;
+      color: #bfc7d5;
+    }
+
+    .seed-warning strong {
+      color: #ffd700;
+    }
+
+    .seed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .seed-grid {
+        grid-template-columns: 1fr;
+        /* Stack single column on mobile */
+        gap: 16px;
+      }
+
       .seed-card {
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(4px);
-        border-radius: 12px;
-        padding: 24px;
-        border: 1px solid rgba(255, 215, 0, 0.2);
+        padding: 16px;
+        /* Reduce padding */
       }
-      
-      .seed-card h3 {
-        color: #ffd700;
-        font-family: 'm6x11Plus', monospace;
-        font-size: 20px;
-        margin-bottom: 12px;
-        text-transform: lowercase;
-      }
-      
-      .seed-card p {
-        color: #bfc7d5;
-        margin-bottom: 20px;
-        font-size: 16px;
-      }
-      
-      .seed-display {
-        text-align: center;
-      }
-      
-      .seed-display code {
-        display: block;
-        background: rgba(255, 215, 0, 0.1);
-        color: #ffd700;
-        font-family: 'm6x11Plus', monospace;
-        font-size: 24px;
-        font-weight: bold;
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 16px;
-        border: 2px solid rgba(255, 215, 0, 0.3);
-      }
-      
-      .seed-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-      
+
       .seed-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        text-align: left;
+      }
+
+      .seed-item code {
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px;
-        background: rgba(255, 215, 0, 0.1);
-        border-radius: 8px;
-        border: 1px solid rgba(255, 215, 0, 0.2);
       }
-      
-      .seed-item code {
-        color: #ffd700;
-        font-family: 'm6x11Plus', monospace;
-        font-weight: bold;
-        font-size: 16px;
+
+      .copyBtn {
+        margin-left: auto;
+        /* Push to right in flex container if needed */
+        padding: 6px 12px;
+        /* Larger touch target */
       }
-      
+
       .seed-desc {
-        color: #bfc7d5;
-        font-size: 14px;
-        font-style: italic;
+        font-size: 13px;
       }
 
       .seed-explainer {
-        max-width: 980px;
-        margin: 56px auto 18px;
-        padding: 24px;
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(4px);
-        border-radius: 12px;
-        border: 1px solid rgba(255, 215, 0, 0.2);
+        padding: 16px 14px 12px;
       }
 
       .seed-explainer h2 {
-        margin: 0 0 12px;
-        color: #ffd700;
-        font-family: 'm6x11Plus', monospace;
-        font-size: 24px;
-        letter-spacing: 1px;
-        text-transform: lowercase;
+        font-size: 20px;
       }
 
-      .seed-explainer h3 {
-        margin: 18px 0 10px;
-        color: #ffd700;
-        font-family: 'm6x11Plus', monospace;
-        font-size: 18px;
-        letter-spacing: 1px;
-        text-transform: lowercase;
+      .featured-joker-grid {
+        grid-template-columns: 1fr;
       }
 
-      .seed-explainer h4 {
-        margin: 16px 0 8px;
-        color: #ffd700;
-        font-family: 'm6x11Plus', monospace;
-        font-size: 16px;
-        letter-spacing: 1px;
+      .featured-joker-card {
+        flex-direction: column;
+        text-align: center;
       }
 
-      .seed-explainer p,
-      .seed-explainer li {
-        color: #bfc7d5;
-        font-size: 16px;
-        line-height: 1.7;
+      .joker-img-container {
+        margin: 0 auto 12px;
       }
+    }
 
-      .seed-explainer ul {
-        margin: 10px 0 14px 20px;
-      }
+    /* Featured Joker Seeds Styles */
+    .featured-joker-intro {
+      color: #bfc7d5;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
 
-      .seed-explainer strong {
-        color: #ffffff;
-        font-weight: normal;
-      }
+    .featured-joker-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 2em;
+    }
 
-      .seed-warning {
-        border: 1px solid rgba(243, 156, 18, 0.65);
-        border-radius: 10px;
-        padding: 12px 16px;
-        background: rgba(43, 33, 16, 0.85);
-        margin: 16px 0;
-        color: #bfc7d5;
-      }
+    .featured-joker-card {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-      .seed-warning strong {
-        color: #ffd700;
-      }
+    .joker-img-container {
+      flex-shrink: 0;
+      width: 71px;
+      height: 95px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
 
-      @media (max-width: 600px) {
-        .seed-explainer {
-          padding: 16px 14px 12px;
-        }
-        .seed-explainer h2 {
-          font-size: 20px;
-        }
-      }
-    </style>
-  </body>
+    .joker-sprite {
+      width: 71px;
+      height: 95px;
+      background: url('assets/Jokers.png');
+      image-rendering: pixelated;
+      background-size: 710px 1520px;
+      /* 10 cols x 16 rows */
+    }
+
+    /* Blueprint Joker: pos = {x=0, y=3} */
+    .blueprint-joker {
+      background-position: 0px -285px;
+      /* x=0, y=3*95=285 */
+    }
+
+    /* DNA Joker: pos = {x=5, y=10} */
+    .dna-joker {
+      background-position: -355px -950px;
+      /* x=5*71=355, y=10*95=950 */
+    }
+
+    .joker-info {
+      flex: 1;
+    }
+
+    .joker-info h4 {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      margin: 0 0 6px;
+      text-transform: lowercase;
+    }
+
+    .joker-ability {
+      color: #bfc7d5;
+      font-size: 14px;
+      margin: 0 0 10px;
+      font-style: italic;
+    }
+
+    .joker-seed-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .joker-seed-row code {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-weight: bold;
+      font-size: 16px;
+      background: rgba(255, 215, 0, 0.1);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+  </style>
+</body>
+
 </html>
