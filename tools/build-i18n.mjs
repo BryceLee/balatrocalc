@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const SITE_ORIGIN = 'https://balatrocalc.com';
 const IGNORE_HTML_PATHS = ['i18n/seo/'];
+const SITEMAP_EXCLUDE_PATHS = new Set(['debug.html', 'apk.html']);
 const IGNORE_DIRS = new Set(['.git', 'node_modules']);
 
 function todayISO() {
@@ -224,7 +225,9 @@ async function localizeLegal({ baseHtml, languages, lang, pagePath }) {
 async function buildSitemapXmlFromFiles() {
   const lastmod = todayISO();
   const htmlFiles = await collectHtmlFiles('.');
-  const urlPaths = htmlFiles.map(htmlPathToUrlPath);
+  const urlPaths = htmlFiles
+    .filter((relPath) => !SITEMAP_EXCLUDE_PATHS.has(relPath))
+    .map(htmlPathToUrlPath);
   const uniquePaths = Array.from(new Set(urlPaths)).sort();
   const urls = uniquePaths.map((pathname) => {
     return `
