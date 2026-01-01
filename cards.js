@@ -440,3 +440,92 @@ const jokerTexts = [
     ['Castle', 'This Joker gains ${chipc}+3${endc} Chips<br>per discarded ${[heartc, clubc, diamondc, spadec][Math.abs(jokerValue) % 4]} card,<br>suit changes every round<br>${shadowc}(Currently ${chipc}+${jokerValue * 3}${endc} Chips)${endc}', 'Matching Discarded Cards']
   ]
 ];
+
+const jokerLocaleFiles = {
+  'zh-cn': 'zh_CN',
+  'cn': 'zh_CN',
+  'zh-tw': 'zh_TW',
+  'tw': 'zh_TW',
+  'ja': 'ja',
+  'ko': 'ko',
+  'fr': 'fr',
+  'de': 'de',
+  'es': 'es_ES',
+  'it': 'it',
+  'pt-br': 'pt_BR',
+  'ru': 'ru',
+  'pl': 'pl',
+  'nl': 'nl',
+  'id': 'id',
+};
+
+function getJokerLocalizationFile() {
+  const htmlLang = ((document.documentElement && document.documentElement.lang) || '').toLowerCase();
+  if (jokerLocaleFiles[htmlLang]) return jokerLocaleFiles[htmlLang];
+  const pathLang = (window.location.pathname || '').split('/').filter(Boolean)[0];
+  if (pathLang && jokerLocaleFiles[pathLang.toLowerCase()]) return jokerLocaleFiles[pathLang.toLowerCase()];
+  return null;
+}
+
+function parseJokerNamesFromLocalization(luaText) {
+  const jokerNames = new Map();
+  const jokerRegex = /(j_[a-z0-9_]+)\s*=\s*{[\s\S]*?name\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
+  let match = null;
+  while ((match = jokerRegex.exec(luaText)) !== null) {
+    const name = match[2] || match[3];
+    if (name) jokerNames.set(match[1], name);
+  }
+  return jokerNames;
+}
+
+let jokerLocalizationPromise = null;
+
+function applyJokerLocalization() {
+  if (jokerLocalizationPromise) return jokerLocalizationPromise;
+  jokerLocalizationPromise = (async () => {
+    if (typeof fetch !== 'function' || typeof document === 'undefined') return false;
+    const localeFile = getJokerLocalizationFile();
+    if (!localeFile) return false;
+    try {
+      const [enResponse, localizedResponse] = await Promise.all([
+        fetch('localization/en-us.lua'),
+        fetch(`localization/${localeFile}.lua`),
+      ]);
+      if (!enResponse.ok || !localizedResponse.ok) return false;
+      const [enText, localizedText] = await Promise.all([enResponse.text(), localizedResponse.text()]);
+      const enNames = parseJokerNamesFromLocalization(enText);
+      const localizedNames = parseJokerNamesFromLocalization(localizedText);
+      if (!enNames.size || !localizedNames.size) return false;
+
+      const nameLookup = new Map();
+      for (const [key, enName] of enNames.entries()) {
+        const localizedName = localizedNames.get(key);
+        if (localizedName) nameLookup.set(enName, localizedName);
+      }
+      if (!nameLookup.size) return false;
+
+      let changed = false;
+      for (let i = 0; i < jokerTexts.length; i++) {
+        const row = jokerTexts[i];
+        if (!row) continue;
+        for (let j = 0; j < row.length; j++) {
+          const entry = row[j];
+          if (!entry || !entry[0]) continue;
+          const localizedName = nameLookup.get(entry[0]);
+          if (localizedName && localizedName !== entry[0]) {
+            entry[0] = localizedName;
+            changed = true;
+          }
+        }
+      }
+      return changed;
+    } catch (error) {
+      return false;
+    }
+  })();
+  return jokerLocalizationPromise;
+}
+
+if (typeof window !== 'undefined') {
+  window.applyJokerLocalization = applyJokerLocalization;
+}

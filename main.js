@@ -655,6 +655,15 @@ function jredrawCards() {
 
 redrawCards();
 jredrawCards();
+if (window.applyJokerLocalization) {
+  window.applyJokerLocalization().then((changed) => {
+    if (!changed) return;
+    jredrawCards();
+    updateTooltips();
+    redrawPlayfield();
+    if (modifyingJoker) updateModifyingJoker();
+  });
+}
 
 const jokerAreaDiv = document.getElementById('jokerArea');
 const bestPlayDiv = document.getElementById('bestPlay');
