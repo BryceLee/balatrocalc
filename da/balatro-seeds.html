@@ -133,6 +133,113 @@
         </div>
       </div>
 
+      <section class="seed-spotlight">
+        <div class="seed-spotlight-head">
+          <h2>Seed Spotlight: 2F4TYFD8</h2>
+          <p>Exceptionally smooth endless seed. Click for the full route and strategy notes.</p>
+        </div>
+        <div class="seed-spotlight-card">
+          <div class="seed-spotlight-meta">
+            <div class="seed-code-row">
+              <code>2F4TYFD8</code>
+              <button class="copyBtn" onclick="copySeed('2F4TYFD8', this)">Copy</button>
+              <a class="detailsBtn" href="/da/seed-2F4TYFD8.html" target="_blank" rel="noopener">Detail Guide</a>
+            </div>
+            <div class="seed-spotlight-tags">
+              <span class="seed-tag">Endless</span>
+              <span class="seed-tag">Strong early</span>
+              <span class="seed-tag">Antimatter early</span>
+            </div>
+            <p class="seed-spotlight-desc">
+              Round 1 Yorick anchors early power. Antimatter arrives early and triple-copy setup stabilizes midgame.
+            </p>
+            <div class="seed-spotlight-notes">
+              <div>
+                <strong>Pros:</strong> Low pressure in the first 10 antes, key vouchers arrive early.
+              </div>
+              <div>
+                <strong>Cons:</strong> Spectral hunting can be rough; Negative tag timing is RNG-heavy.
+              </div>
+            </div>
+            <div class="seed-spotlight-badges">
+              <span class="seed-badge">Voucher: Antimatter</span>
+              <span class="seed-badge">Voucher: Director's Cut</span>
+              <span class="seed-badge">Tag: Garbage</span>
+              <span class="seed-badge">Tag: Negative</span>
+              <span class="seed-badge">Stamp: Wild Negative</span>
+            </div>
+          </div>
+          <div class="seed-spotlight-cards">
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite yorick-joker"></div>
+              </div>
+              <span>Yorick</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite brainstorm-joker"></div>
+              </div>
+              <span>Brainstorm</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite mime-joker"></div>
+              </div>
+              <span>Mime</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite baron-joker"></div>
+              </div>
+              <span>Baron</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite seance-joker"></div>
+              </div>
+              <span>Seance</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite sixth-sense-joker"></div>
+              </div>
+              <span>Sixth Sense</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite showman-joker"></div>
+              </div>
+              <span>Showman</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite blueprint-joker"></div>
+              </div>
+              <span>Blueprint</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite dna-joker"></div>
+              </div>
+              <span>DNA</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite troubadour-joker"></div>
+              </div>
+              <span>Troubadour</span>
+            </div>
+            <div class="seed-card-tile">
+              <div class="joker-img-container">
+                <div class="joker-sprite turtle-bean-joker"></div>
+              </div>
+              <span>Turtle Bean</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
 <div class="seed-grid">
 
         <div class="seed-card">
@@ -169,6 +276,11 @@
               <code>33cyvh75</code><button class="copyBtn"
                 onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
               <span class="seed-desc">balatro seed with blueprint first round</span>
+            </div>
+            <div class="seed-item">
+              <code>2F4TYFD8</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">endless-friendly seed with Yorick start</span>
             </div>
           </div>
         </div>
@@ -638,6 +750,19 @@
       .joker-img-container {
         margin: 0 auto 12px;
       }
+
+      .seed-spotlight-card {
+        grid-template-columns: 1fr;
+      }
+
+      .seed-card-tile {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .seed-card-tile .joker-img-container {
+        margin: 0;
+      }
     }
 
             /* Featured Joker Seeds Styles */
@@ -731,6 +856,184 @@
       padding: 4px 8px;
       border-radius: 4px;
       border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .seed-spotlight {
+      margin: 0 0 2.5em;
+      padding: 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(15, 15, 20, 0.35), rgba(20, 40, 30, 0.35));
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    .seed-spotlight-head h2 {
+      margin: 0 0 6px;
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .seed-spotlight-head p {
+      margin: 0 0 16px;
+      color: #bfc7d5;
+      font-size: 15px;
+    }
+
+    .seed-spotlight-card {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .seed-code-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .seed-code-row code {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-weight: bold;
+      font-size: 18px;
+      background: rgba(255, 215, 0, 0.1);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .detailsBtn {
+      background: linear-gradient(135deg, #ffb347 0%, #ff7a00 100%);
+      border: none;
+      border-radius: 6px;
+      color: #1f1f1f;
+      padding: 6px 12px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .detailsBtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .seed-spotlight-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .seed-tag {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: #0f0f0f;
+      background: rgba(255, 215, 0, 0.85);
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .seed-spotlight-desc {
+      margin: 0 0 12px;
+      color: #bfc7d5;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .seed-spotlight-notes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: #bfc7d5;
+      font-size: 14px;
+    }
+
+    .seed-spotlight-notes strong {
+      color: #ffffff;
+      font-weight: normal;
+    }
+
+    .seed-spotlight-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .seed-badge {
+      color: #ffd700;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .seed-spotlight-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .seed-card-tile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .seed-card-tile span {
+      color: #bfc7d5;
+      font-size: 12px;
+    }
+
+    .yorick-joker {
+      background-position: -355px -760px;
+    }
+
+    .brainstorm-joker {
+      background-position: -497px -665px;
+    }
+
+    .mime-joker {
+      background-position: -284px -95px;
+    }
+
+    .baron-joker {
+      background-position: -426px -1140px;
+    }
+
+    .seance-joker {
+      background-position: 0px -1140px;
+    }
+
+    .sixth-sense-joker {
+      background-position: -568px -950px;
+    }
+
+    .showman-joker {
+      background-position: -426px -475px;
+    }
+
+    .troubadour-joker {
+      background-position: 0px -190px;
+    }
+
+    .turtle-bean-joker {
+      background-position: -284px -1235px;
     }
 
 </style>
