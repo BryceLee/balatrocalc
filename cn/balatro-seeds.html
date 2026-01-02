@@ -92,10 +92,7 @@
 
   <div id="mainContainer">
     <div style="max-width: 1200px; margin: 0 auto; padding: 100px 20px 20px;">
-      <!-- Featured Joker Seeds Section -->
-      <div class="handLevel" style="margin-bottom: 1.5em;">
-        <span class="handName">Featured Joker Seeds</span>
-      </div>
+            <!-- Featured Joker Seeds Section -->
       <p class="featured-joker-intro">Looking for a seed with a specific Joker? Here are some popular seeds featuring
         powerful Jokers from the first round!</p>
 
@@ -132,10 +129,9 @@
             <span class="seed-desc">Blueprint and DNA in first round</span>
           </div>
         </div>
-        <!-- More featured jokers can be added here -->
       </div>
 
-      <div class="seed-grid">
+<div class="seed-grid">
 
         <div class="seed-card">
           <h3>Seed Generator</h3>
@@ -172,6 +168,11 @@
                 onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
               <span class="seed-desc">balatro seed with blueprint first round</span>
             </div>
+            <div class="seed-item">
+              <code>2F4TYFD8</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">无尽种子，首回合约里克，反物质来得早</span>
+            </div>
           </div>
         </div>
 
@@ -197,6 +198,80 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="seed-card seed-spotlight" style="margin-top: 2em; grid-column: 1 / -1;">
+        <div class="seed-spotlight-header">
+          <div>
+            <h2>种子推荐：2F4TYFD8</h2>
+            <p>非常优秀的无尽种子，非常丝滑。首回合约里克，早期强度拉满，反物质也来得很早。</p>
+          </div>
+          <div class="seed-spotlight-actions">
+            <code class="seed-spotlight-code">2F4TYFD8</code>
+            <button class="copyBtn" onclick="copySeed('2F4TYFD8', this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="seed-spotlight-grid">
+          <div class="seed-spotlight-block">
+            <h3>涉及卡牌</h3>
+            <div class="seed-pill-group">
+              <span class="seed-pill">约里克</span>
+              <span class="seed-pill">头脑风暴</span>
+              <span class="seed-pill">哑剧演员</span>
+              <span class="seed-pill">男爵</span>
+              <span class="seed-pill">通灵</span>
+              <span class="seed-pill">第六感</span>
+              <span class="seed-pill">马戏团长</span>
+              <span class="seed-pill">蓝图</span>
+              <span class="seed-pill">游吟诗人</span>
+              <span class="seed-pill">豆子</span>
+              <span class="seed-pill">车位</span>
+              <span class="seed-pill">DNA</span>
+            </div>
+          </div>
+
+          <div class="seed-spotlight-block">
+            <h3>关键优惠券 / 标签</h3>
+            <div class="seed-pill-group">
+              <span class="seed-pill">反物质</span>
+              <span class="seed-pill">导演剪辑版</span>
+              <span class="seed-pill">负片标签</span>
+              <span class="seed-pill">优惠券标签</span>
+            </div>
+          </div>
+
+          <div class="seed-spotlight-block">
+            <h3>优点</h3>
+            <ul class="seed-spotlight-list">
+              <li>第一回合就有约里克，前 10 注几乎不缺强度。</li>
+              <li>反物质来得早，关键优惠券整体靠前。</li>
+              <li>中期可凑出 3 复制体系，16 注后稳定。</li>
+            </ul>
+          </div>
+
+          <div class="seed-spotlight-block">
+            <h3>缺点</h3>
+            <ul class="seed-spotlight-list">
+              <li>找灵质过程折磨，前期负片也不顺。</li>
+              <li>20 注大盲注幻灵包较差，6 标签无负片。</li>
+              <li>负片标签要求强度门槛高。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="seed-spotlight-guide">
+          <h3>流程简述</h3>
+          <ol>
+            <li>第 1 回合拿下秘术包里的约里克，之后疯狂弃牌稳过前 10 注。</li>
+            <li>前 8 注陆续拿头脑风暴、哑剧演员、男爵、通灵；看到优惠券标签就跳。</li>
+            <li>反物质偏早，换马戏团长还能再出一张蓝图，3 复制可过 16 注。</li>
+            <li>16 注可卡游吟诗人（见 SL 攻略），24 注还能卡到豆子。</li>
+            <li>25 注出现野生负片邮票，但此时经济主力已是车位。</li>
+            <li>30 注小盲注负片标签，刷到 DNA 可 SL 拿负片 DNA（强度要求高）。</li>
+            <li>吃到 2 张灵质后，32 注可无伤通过。</li>
+          </ol>
+        </div>
       </div>
 
       <!-- Seed Generator Features Section -->
@@ -512,6 +587,109 @@
       transform: translateY(0);
     }
 
+    .seed-spotlight h2 {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 26px;
+      margin: 0 0 8px;
+      text-transform: none;
+    }
+
+    .seed-spotlight-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .seed-spotlight-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seed-spotlight-code {
+      background: rgba(255, 215, 0, 0.12);
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .seed-spotlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .seed-spotlight-block {
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .seed-spotlight-block h3 {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      margin: 0 0 10px;
+      text-transform: none;
+    }
+
+    .seed-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .seed-pill {
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      color: #ffd700;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'm6x11Plus', monospace;
+    }
+
+    .seed-spotlight-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #bfc7d5;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .seed-spotlight-guide {
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .seed-spotlight-guide h3 {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      margin: 0 0 10px;
+      text-transform: none;
+    }
+
+    .seed-spotlight-guide ol {
+      margin: 0;
+      padding-left: 20px;
+      color: #bfc7d5;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
     .seed-explainer {
       max-width: 980px;
       margin: 56px auto 18px;
@@ -642,7 +820,7 @@
       }
     }
 
-    /* Featured Joker Seeds Styles */
+            /* Featured Joker Seeds Styles */
     .featured-joker-intro {
       color: #bfc7d5;
       font-size: 16px;
@@ -734,7 +912,8 @@
       border-radius: 4px;
       border: 1px solid rgba(255, 215, 0, 0.2);
     }
-  </style>
+
+</style>
 </body>
 
 </html>
