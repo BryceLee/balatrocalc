@@ -1,0 +1,2355 @@
+{
+  "descriptions": {
+    "Joker": {
+      "j_8_ball": {
+        "name": "Bola 8",
+        "text": [
+          "{C:green}#1# en #2#{} probabilidades por cada",
+          "{C:attention}8{} jugado de crear una carta de",
+          "{C:tarot}tarot{} cuando anota",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_abstract": {
+        "name": "Comodín abstracto",
+        "text": [
+          "{C:mult}+#1#{} multi por cada",
+          "carta de {C:attention}comodín{}",
+          "{C:inactive}(Actual: multi {C:red}+#2#{C:inactive})"
+        ]
+      },
+      "j_acrobat": {
+        "name": "Acróbata",
+        "text": [
+          "{X:red,C:white} X#1# {} multi en la {C:attention}última",
+          "{C:attention}mano{} de la ronda"
+        ]
+      },
+      "j_ancient": {
+        "name": "Comodín antiguo",
+        "text": [
+          "Cada carta jugada con el palo",
+          "{V:1}#2#{} otorga",
+          "multi {X:mult,C:white} X#1# {} cuando anota,",
+          "{s:0.8}el palo cambia al final de la ronda"
+        ]
+      },
+      "j_arrowhead": {
+        "name": "Punta de flecha",
+        "text": [
+          "Las cartas jugadas",
+          "de {C:spades}espadas{} otorgan",
+          "{C:chips}+#1#{} fichas cuando anotan"
+        ]
+      },
+      "j_astronomer": {
+        "name": "Astrónomo",
+        "text": [
+          "Todas las cartas de{C:planet}planeta{}",
+          "y los {C:planet}paquetes celestiales{} en",
+          "la tienda son {C:attention}gratis"
+        ]
+      },
+      "j_banner": {
+        "name": "Estandarte",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "por cada",
+          "{C:attention}descarte restante"
+        ]
+      },
+      "j_baron": {
+        "name": "Barón",
+        "text": [
+          "Cada {C:attention}rey{}",
+          "en tu mano",
+          "otorga multi {X:mult,C:white} X#1# {}"
+        ]
+      },
+      "j_baseball": {
+        "name": "Carta de béisbol",
+        "text": [
+          "Cada comodín {C:green}inusual{}",
+          "otorga multi {X:mult,C:white} X#1# {}"
+        ]
+      },
+      "j_blackboard": {
+        "name": "Pizarrón",
+        "text": [
+          "{X:red,C:white} X#1# {} multi si todas",
+          "las cartas que tienes en la mano",
+          "son {C:spades}#2#{} o {C:clubs}#3#{}"
+        ]
+      },
+      "j_bloodstone": {
+        "name": "Heliotropo",
+        "text": [
+          "{C:green}#1# in #2#{} probabilidades",
+          "de que las cartas jugadas",
+          "de {C:hearts}corazones{} otorguen",
+          "multi {X:mult,C:white} X#3# {} cuando anotan,"
+        ]
+      },
+      "j_blue_joker": {
+        "name": "Comodín azul",
+        "text": [
+          "{C:chips}+#1#{} fichas por cada",
+          "carta restante en la {C:attention}baraja",
+          "{C:inactive}(Actual {C:chips}+#2#{C:inactive} fichas)"
+        ]
+      },
+      "j_blueprint": {
+        "name": "Plano",
+        "text": [
+          "Copia la habilidad del",
+          "{C:attention}comodín{} de la derecha"
+        ]
+      },
+      "j_bootstraps": {
+        "name": "Botas",
+        "text": [
+          "{C:mult}+#1#{} multi por cada",
+          "{C:money}$#2#{} que tienes",
+          "{C:inactive}(Actual {C:mult}+#3#{C:inactive} multi)"
+        ]
+      },
+      "j_brainstorm": {
+        "name": "Lluvia de ideas",
+        "text": [
+          "Copia la habilidad del",
+          "{C:attention}comodín del extremo izquierdo"
+        ]
+      },
+      "j_bull": {
+        "name": "Toro",
+        "text": [
+          "{C:chips}+#1#{} fichas por",
+          "cada {C:money}$1{} que tengas",
+          "{C:inactive}(Actual {C:chips}+#2#{C:inactive} fichas)"
+        ]
+      },
+      "j_burglar": {
+        "name": "Ladrón",
+        "text": [
+          "Cuando se selecciona la {C:attention}ciega{},",
+          "gana {C:blue}+#1#{} manos y",
+          "{C:attention}pierde todos los descartes"
+        ]
+      },
+      "j_burnt": {
+        "name": "Comodín quemado",
+        "text": [
+          "Mejora el nivel",
+          "de la primera mano de póker",
+          "{C:attention}descartada en cada ronda"
+        ]
+      },
+      "j_business": {
+        "name": "Tarjeta de presentación",
+        "text": [
+          "Las cartas de {C:attention}figuras{} tienen",
+          "{C:green}#1# en #2#{} probabilidades",
+          "de otorgar {C:money}2 ${} cuando anotan"
+        ]
+      },
+      "j_caino": {
+        "name": "Canio",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "cuando se destruye",
+          "una carta de {C:attention}figura{}",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_campfire": {
+        "name": "Fogata",
+        "text": [
+          "Este comodín gana multi {X:mult,C:white}X#1#{}",
+          "por cada carta {C:attention}vendida{}, se restablece",
+          "cuando se derrota a la {C:attention}ciega jefe{}",
+          "{C:inactive}(Actual multi {X:mult,C:white} X#2# {C:inactive})"
+        ]
+      },
+      "j_card_sharp": {
+        "name": "Carta filosa",
+        "text": [
+          "{X:mult,C:white} X#1#{} multi si",
+          "se jugó la {C:attention}mano de póker{}",
+          "en esta ronda"
+        ]
+      },
+      "j_cartomancer": {
+        "name": "Cartomante",
+        "text": [
+          "Genera una carta de {C:tarot}tarot{}",
+          "cuando se selecciona la {C:attention}ciega{},",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_castle": {
+        "name": "Castillo",
+        "text": [
+          "Este comodín gana {C:chips}+#1#{} fichas",
+          "por carta {V:1}#2#{} descartada,",
+          "el palo cambia en cada ronda",
+          "{C:inactive}(Actual {C:chips}+#3#{C:inactive} fichas)"
+        ]
+      },
+      "j_cavendish": {
+        "name": "Cavendish",
+        "text": [
+          "{X:mult,C:white} X#1# {} multi",
+          "{C:green}#2# en #3#{} probabilidades",
+          "de que la carta se destruya",
+          "al final de la ronda"
+        ]
+      },
+      "j_ceremonial": {
+        "name": "Daga ceremonial",
+        "text": [
+          "Cuando se selecciona la {C:attention}ciega{},",
+          "destruye al comodín de la derecha",
+          "y agrega para siempre el {C:attention}doble",
+          "del valor de venta a este {C:red}multi",
+          "{C:inactive}(Actual {C:mult}+#1#{C:inactive} multi)"
+        ]
+      },
+      "j_certificate": {
+        "name": "Certificado",
+        "text": [
+          "Cuando comienza la ronda,",
+          "agrega una {C:attention}carta{} de {C:attention}juego",
+          "aleatoria con 1 al azar",
+          "{C:attention}sello{} a tu mano"
+        ]
+      },
+      "j_chaos": {
+        "name": "Caos el payaso",
+        "text": [
+          "{C:attention}#1#{} {C:green}cambio gratuito",
+          "por tienda"
+        ]
+      },
+      "j_chicot": {
+        "name": "Chicot",
+        "text": [
+          "Inhabilita el efecto de",
+          "cada {C:attention}ciega jefe"
+        ]
+      },
+      "j_clever": {
+        "name": "Comodín astuto",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "si la mano jugada contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_cloud_9": {
+        "name": "La 9º puerta",
+        "text": [
+          "Gana {C:money}#1# ${} por cada",
+          "{C:attention}9{} en tu {C:attention}baraja completa",
+          "al final de la ronda",
+          "{C:inactive}(Actual {C:money}#2# ${}{C:inactive})"
+        ]
+      },
+      "j_constellation": {
+        "name": "Constelación",
+        "text": [
+          "Este comodín obtiene",
+          "{X:mult,C:white} X#1# {} multi cada vez",
+          "que se usa una carta de {C:planet}planeta{}",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_crafty": {
+        "name": "Comodín mañoso",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "si la mano jugada contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_crazy": {
+        "name": "Comodín loco",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_credit_card": {
+        "name": "Tarjeta de crédito",
+        "text": [
+          "Adquiere hasta",
+          "{C:red}-#1# ${} de deuda"
+        ]
+      },
+      "j_delayed_grat": {
+        "name": "Satisfacción demorada",
+        "text": [
+          "Gana {C:money}#1# ${} por {C:attention}descarte{}",
+          "si no se usó ninguno",
+          "al final de la ronda"
+        ]
+      },
+      "j_devious": {
+        "name": "Comodín ladino",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "si la mano jugada contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_diet_cola": {
+        "name": "Refresco dietético",
+        "text": [
+          "Vende esta carta",
+          "para crear 1 {C:attention}#1#",
+          "gratis"
+        ]
+      },
+      "j_dna": {
+        "name": "ADN",
+        "text": [
+          "Si la {C:attention}primera mano{} de la ronda",
+          "tiene solo {C:attention}1{} carta, se agrega",
+          "una copia permanente a la baraja",
+          "y se saca a la {C:attention}mano"
+        ]
+      },
+      "j_drivers_license": {
+        "name": "Licencia de conducir",
+        "text": [
+          "Multi {X:mult,C:white} X#1# {} si la baraja",
+          "tiene al menos {C:attention}16",
+          "cartas mejoradas",
+          "{C:inactive}(Actual {C:attention}#2#{C:inactive})"
+        ]
+      },
+      "j_droll": {
+        "name": "Comodín gracioso",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_drunkard": {
+        "name": "Borracho",
+        "text": [
+          "{C:red}+#1#{} descarte",
+          "cada ronda"
+        ]
+      },
+      "j_duo": {
+        "name": "El dúo",
+        "text": [
+          "{X:mult,C:white} X#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_dusk": {
+        "name": "Atardecer",
+        "text": [
+          "Reactiva las",
+          "cartas de puntos en la {C:attention}última",
+          "{C:attention}mano{} de la ronda"
+        ]
+      },
+      "j_egg": {
+        "name": "Huevo",
+        "text": [
+          "Gana {C:money}#1# ${}",
+          "del {C:attention}valor de venta{}",
+          "al final de la ronda"
+        ]
+      },
+      "j_erosion": {
+        "name": "Erosión",
+        "text": [
+          "Multi {C:red}+#1#{} por cada",
+          "carta debajo de {C:attention}#3#{}",
+          "en la baraja completa",
+          "{C:inactive}(Actual: multi {C:red}+#2#{C:inactive})"
+        ]
+      },
+      "j_even_steven": {
+        "name": "El par",
+        "text": [
+          "Las cartas jugadas",
+          "de categoría {C:attention}par{} otorgan",
+          "multi {C:mult}+#1#{} cuando anotan",
+          "{C:inactive}(10, 8, 6, 4, 2)"
+        ]
+      },
+      "j_faceless": {
+        "name": "Comodín sin cara",
+        "text": [
+          "Gana {C:money}#1# ${} si {C:attention}#2#{}",
+          "o más {C:attention}cartas de figuras{}",
+          "se descartan",
+          "al mismo tiempo"
+        ]
+      },
+      "j_family": {
+        "name": "La familia",
+        "text": [
+          "{X:mult,C:white} X#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_fibonacci": {
+        "name": "Fibonacci",
+        "text": [
+          "Cada {C:attention}as{},",
+          "{C:attention}2{}, {C:attention}3{}, {C:attention}5{} u {C:attention}8{} jugado",
+          "otorga multi {C:mult}+#1#{} cuando anota"
+        ]
+      },
+      "j_flash": {
+        "name": "Carta sorpresa",
+        "text": [
+          "Este comodín obtiene {C:mult}+#1#{} multi",
+          "por {C:attention}renovar{} en la tienda",
+          "{C:inactive}(Actual {C:mult}+#2#{C:inactive} multi)"
+        ]
+      },
+      "j_flower_pot": {
+        "name": "Florero",
+        "text": [
+          "{X:mult,C:white} X#1# {} multi si la mano",
+          "de póker contiene una",
+          "carta de {C:diamonds}diamante{}, una carta de {C:clubs}trébol{},",
+          "una carta de {C:hearts}corazón{} y una carta de {C:spades}picas{}"
+        ]
+      },
+      "j_fortune_teller": {
+        "name": "Adivino",
+        "text": [
+          "{C:red}+#1#{} multi por cada",
+          "carta de {C:purple}tarot{} usada",
+          "{C:inactive}(Actual {C:red}+#2#{C:inactive})"
+        ]
+      },
+      "j_four_fingers": {
+        "name": "Cuatro dedos",
+        "text": [
+          "Los {C:attention}colores{}",
+          "y las {C:attention}escaleras{} pueden",
+          "hacerse con {C:attention}4{} cartas"
+        ]
+      },
+      "j_gift": {
+        "name": "Carta de regalo",
+        "text": [
+          "Agrega {C:money}#1# ${} del {C:attention}valor de venta",
+          "a cada {C:attention}comodín{}",
+          "y cada carta {C:attention}consumible{} en",
+          "al final de la ronda"
+        ]
+      },
+      "j_glass": {
+        "name": "Comodín de vidrio",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "por cada {C:attention}carta de vidrio",
+          "que se destruya",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_gluttenous_joker": {
+        "name": "Comodín glotón",
+        "text": [
+          "Las cartas jugadas",
+          "del palo {C:clubs}#2#{} otorgan",
+          "multi {C:mult}+#1#{} cuando anotan"
+        ]
+      },
+      "j_golden": {
+        "name": "Comodín dorado",
+        "text": [
+          "Gana {C:money}#1# ${}",
+          "al final de la ronda"
+        ]
+      },
+      "j_greedy_joker": {
+        "name": "Comodín codicioso",
+        "text": [
+          "Las cartas jugadas",
+          "del palo {C:diamonds}#2#{} otorgan",
+          "multi {C:mult}+#1#{} cuando anotan"
+        ]
+      },
+      "j_green_joker": {
+        "name": "Comodín verde",
+        "text": [
+          "{C:mult}+#1#{} multi por mano jugada",
+          "{C:mult}-#2#{} multi por descarte",
+          "{C:inactive}(Actual {C:mult}+#3#{C:inactive} multi)"
+        ]
+      },
+      "j_gros_michel": {
+        "name": "Gros Michel",
+        "text": [
+          "{C:mult}+#1#{} multi",
+          "{C:green}#2# en #3#{} probabilidades",
+          "de que la carta se destruya",
+          "al final de la ronda"
+        ]
+      },
+      "j_hack": {
+        "name": "Comediante",
+        "text": [
+          "Reactiva",
+          "cada {C:attention}2{}, {C:attention}3{},",
+          "{C:attention}4{} o {C:attention}5{} jugado"
+        ]
+      },
+      "j_half": {
+        "name": "Medio comodín",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi",
+          "si la mano contiene",
+          "{C:attention}#2#{} o menos cartas"
+        ]
+      },
+      "j_hallucination": {
+        "name": "Alucinación",
+        "text": [
+          "{C:green}#1# en #2#{} probabilidades de crear",
+          "una carta de {C:tarot}tarot{} cuando se abre",
+          "cualquier {C:attention}paquete potenciador{}",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_hanging_chad": {
+        "name": "Papel perforado",
+        "text": [
+          "Reactiva la {C:attention}primera{} carta",
+          "jugada al anotar",
+          "{C:attention}#1#{} veces adicionales"
+        ]
+      },
+      "j_hiker": {
+        "name": "Excursionista",
+        "text": [
+          "Todas las {C:attention}cartas{} jugadas",
+          "ganan para siempre",
+          "{C:chips}+#1#{} fichas cuando anotan"
+        ]
+      },
+      "j_hit_the_road": {
+        "name": "Al camino",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "por cada {C:attention}jota{}",
+          "descartada esta ronda",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_hologram": {
+        "name": "Holograma",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "cada vez que agregas una {C:attention}carta de juego{}",
+          "a tu baraja",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_ice_cream": {
+        "name": "Helado",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "{C:chips}-#2#{} fichas por",
+          "cada mano jugada"
+        ]
+      },
+      "j_idol": {
+        "name": "El ídolo",
+        "text": [
+          "Cada {C:attention}#2# jugado",
+          "de {V:1}#3#{} otorga",
+          "multi {X:mult,C:white} X#1# {} cuando anota",
+          "{s:0.8}La carta cambia en cada ronda"
+        ]
+      },
+      "j_invisible": {
+        "name": "Comodín invisible",
+        "text": [
+          "Después de {C:attention}#1#{} rondas,",
+          "vende esta carta para",
+          "{C:attention}duplicar{} un comodín aleatorio",
+          "{C:inactive}(actual {C:attention}#2#{C:inactive}/#1#)"
+        ]
+      },
+      "j_joker": {
+        "name": "Comodín",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi"
+        ]
+      },
+      "j_jolly": {
+        "name": "Comodín alegre",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_juggler": {
+        "name": "Malabarista",
+        "text": [
+          "{C:attention}+#1#{} tamaño de mano"
+        ]
+      },
+      "j_loyalty_card": {
+        "name": "Tarjeta de lealtad",
+        "text": [
+          "{X:red,C:white} X#1# {} multi cada",
+          "{C:attention}#2#{} manos jugadas",
+          "{C:inactive}#3#"
+        ]
+      },
+      "j_luchador": {
+        "name": "Luchador",
+        "text": [
+          "Vende esta carta",
+          "para desactivar",
+          "la {C:attention}ciega jefe{} actual"
+        ]
+      },
+      "j_lucky_cat": {
+        "name": "Gato de la suerte",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "cada vez que una carta de la {C:attention}suerte{}",
+          "se activa {C:green}con éxito{}",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_lusty_joker": {
+        "name": "Comodín lujurioso",
+        "text": [
+          "Las cartas jugadas",
+          "del palo {C:hearts}#2#{} otorgan",
+          "multi {C:mult}+#1#{} cuando anotan"
+        ]
+      },
+      "j_mad": {
+        "name": "Comodín demente",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_madness": {
+        "name": "Locura",
+        "text": [
+          "Cuando se selecciona la {C:attention}ciega pequeña{} o",
+          "la {C:attention}ciega grande{}, obtiene {X:mult,C:white} X#1# {} multi",
+          "y {C:attention}destruye{} un comodín al azar",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_mail": {
+        "name": "Reembolso por correo",
+        "text": [
+          "Gana {C:money}#1# ${} por cada",
+          "{C:attention}#2#{} que descartes, la categoría",
+          "cambia en cada ronda"
+        ]
+      },
+      "j_marble": {
+        "name": "Comodín de mármol",
+        "text": [
+          "Agrega una carta de {C:attention}piedra{}",
+          "a tu baraja cuando",
+          "se selecciona la {C:attention}ciega{}"
+        ]
+      },
+      "j_matador": {
+        "name": "Matador",
+        "text": [
+          "Gana {C:money}#1# ${} si la mano",
+          "jugada activa la",
+          "habilidad de {C:attention}ciega jefe{}"
+        ]
+      },
+      "j_merry_andy": {
+        "name": "Andy el alegre",
+        "text": [
+          "{C:red}+#1#{} descarte",
+          "cada ronda,",
+          "{C:red}#2#{} tamaño de la mano"
+        ]
+      },
+      "j_midas_mask": {
+        "name": "Máscara de Midas",
+        "text": [
+          "Todas las cartas de {C:attention}figura{} jugadas",
+          "se vuelven cartas {C:attention}de oro{}",
+          "cuando anotan"
+        ]
+      },
+      "j_mime": {
+        "name": "Mimo",
+        "text": [
+          "Reactiva todas",
+          "las habilidades de las cartas",
+          "{C:attention}en {C:attention}la mano{}"
+        ]
+      },
+      "j_misprint": {
+        "name": "Mala impresión",
+        "text": [
+          ""
+        ]
+      },
+      "j_mr_bones": {
+        "name": "Sr. Huesos",
+        "text": [
+          "Evita la muerte",
+          "si las fichas obtenidas son",
+          "al menos un {C:attention}25 %",
+          "de lo requerido,",
+          "se {S:1.1,C:red,E:2}autodestruye{}"
+        ]
+      },
+      "j_mystic_summit": {
+        "name": "Cumbre mística",
+        "text": [
+          "{C:mult}+#1#{} multi cuando hay",
+          "{C:attention}+#2#{} descartes",
+          "restantes"
+        ]
+      },
+      "j_obelisk": {
+        "name": "Obelisco",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "por {C:attention}mano{} consecutiva jugada",
+          "sin jugar",
+          "tu {C:attention}mano de póker{C:inactive} más jugada",
+          "(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_odd_todd": {
+        "name": "El impar",
+        "text": [
+          "Las cartas jugadas",
+          "de categoría {C:attention}impar{} otorgan",
+          "{C:chips}+#1#{} fichas cuando anotan",
+          "{C:inactive}(A, 9, 7, 5, 3)"
+        ]
+      },
+      "j_onyx_agate": {
+        "name": "Ágata ónix",
+        "text": [
+          "Las cartas jugadas",
+          "de {C:clubs}tréboles{} otorgan",
+          "multi {C:mult}+#1#{} cuando anotan"
+        ]
+      },
+      "j_oops": {
+        "name": "Solo seises",
+        "text": [
+          "Duplica {C:attention}todas las",
+          "las {C:green,E:1,S:1.1}probabilidades",
+          "{C:inactive}(ejemplo: {C:green}1 de 3{C:inactive} -> {C:green}2 de 3{C:inactive})"
+        ]
+      },
+      "j_order": {
+        "name": "La orden",
+        "text": [
+          "{X:mult,C:white} X#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_pareidolia": {
+        "name": "Pareidolia",
+        "text": [
+          "Todas las cartas",
+          "se consideran",
+          "de {C:attention}figuras{}"
+        ]
+      },
+      "j_perkeo": {
+        "name": "Perkeo",
+        "text": [
+          "Genera una copia {C:dark_edition}negativa{}",
+          "de {C:attention}1{} carta {C:attention}consumible{}",
+          "aleatoria que tengas",
+          "al final de la {C:attention}tienda"
+        ]
+      },
+      "j_photograph": {
+        "name": "Fotografía",
+        "text": [
+          "La primera carta de {C:attention}figura",
+          "jugada otorga multi {X:mult,C:white} X#1# {}",
+          "cuando anota"
+        ]
+      },
+      "j_popcorn": {
+        "name": "Palomitas de maíz",
+        "text": [
+          "Multi {C:mult}+#1#{}",
+          "Multi {C:mult}-#2#{} por cada",
+          "ronda jugada"
+        ]
+      },
+      "j_raised_fist": {
+        "name": "Puño elevado",
+        "text": [
+          "Agrega {C:attention}el doble{} de la categoría",
+          "de la carta más {C:attention}baja{}",
+          "que tienes en la mano a multi"
+        ]
+      },
+      "j_ramen": {
+        "name": "Ramen",
+        "text": [
+          "Multi {X:mult,C:white} X#1# {},",
+          "pierde multi {X:mult,C:white} X#2# {}",
+          "por cada {C:attention}carta{} descartada"
+        ]
+      },
+      "j_red_card": {
+        "name": "Carta roja",
+        "text": [
+          "Este comodín obtiene",
+          "{C:red}+#1#{} multi cuando se omite",
+          "cualquier{C:attention}paquete potenciador{}",
+          "{C:inactive}(Actual {C:red}+#2#{C:inactive} multi)"
+        ]
+      },
+      "j_reserved_parking": {
+        "name": "Estacionamiento reservado",
+        "text": [
+          "Cada carta de {C:attention}figura{}",
+          "en tu mano tiene",
+          "{C:green}#2# en #3#{} probabilidades",
+          "que otorgue {C:money}#1# ${}"
+        ]
+      },
+      "j_ride_the_bus": {
+        "name": "Al autobús",
+        "text": [
+          "Este comodín obtiene {C:mult}+#1#{} multi",
+          "por mano {C:attention}consecutiva{}",
+          "jugada sin",
+          "una carta de {C:attention}figura{} con puntuación",
+          "{C:inactive}(Actual {C:mult}+#2#{C:inactive} multi)"
+        ]
+      },
+      "j_riff_raff": {
+        "name": "La chusma",
+        "text": [
+          "Cuando se selecciona la {C:attention}ciega{},",
+          "crea {C:attention}#1# {C:attention} comodines {C:blue}comunes",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_ring_master": {
+        "name": "Director de circo",
+        "text": [
+          "Las cartas de {C:attention}comodines{}, {C:tarot}tarot{} y",
+          "{C:spectral}espectrales{} pueden",
+          "aparecer varias veces"
+        ]
+      },
+      "j_rocket": {
+        "name": "Cohete",
+        "text": [
+          "Gana {C:money}$#1#{} al final de la ronda",
+          "El pago aumenta en {C:money}$#2#{}",
+          "cuando derrotas a la {C:attention}ciega jefe{}"
+        ]
+      },
+      "j_rough_gem": {
+        "name": "Gema en bruto",
+        "text": [
+          "Las cartas jugadas",
+          "de {C:diamonds}diamantes{}",
+          "ganan {C:money}#1# ${} cuando anotan"
+        ]
+      },
+      "j_runner": {
+        "name": "Corredor",
+        "text": [
+          "Gana {C:chips}+#2#{} fichas",
+          "si la mano jugada",
+          "contiene una {C:attention}escalera{}",
+          "{C:inactive}(Actual {C:chips}+#1#{C:inactive} fichas)"
+        ]
+      },
+      "j_satellite": {
+        "name": "Satélite",
+        "text": [
+          "Gana {C:money}#1# ${} al final de la ronda",
+          "por cada carta de {C:planet}planeta",
+          "única usada en esta partida",
+          "{C:inactive}(Actual {C:money}#2# ${C:inactive})"
+        ]
+      },
+      "j_scary_face": {
+        "name": "Cara aterradora",
+        "text": [
+          "Las cartas de {C:attention}figuras{} jugadas",
+          "otorgan {C:chips}+#1#{} fichas",
+          "cuando anotan"
+        ]
+      },
+      "j_scholar": {
+        "name": "Erudito",
+        "text": [
+          "Los {C:attention}ases{} jugados",
+          "otorgan {C:chips}+#2#{} fichas",
+          "y multi {C:mult}+#1#{}",
+          "cuando anotan"
+        ]
+      },
+      "j_seance": {
+        "name": "Espiritismo",
+        "text": [
+          "Si {C:attention}la mano de póker{} es una",
+          "{C:attention}#1#{}, genera una",
+          "carta {C:spectral}espectral{} al azar",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_seeing_double": {
+        "name": "Visión doble",
+        "text": [
+          "Multi {X:mult,C:white} X#1# {} si la mano",
+          "jugada anota",
+          "una carta de {C:clubs}tréboles{} y una carta",
+          "de cualquier otro {C:attention}palo que anota"
+        ]
+      },
+      "j_selzer": {
+        "name": "Refresco",
+        "text": [
+          "Reactiva todas",
+          "las cartas jugadas",
+          "por las próximas {C:attention}#1#{} manos"
+        ]
+      },
+      "j_shoot_the_moon": {
+        "name": "Disparo a la luna",
+        "text": [
+          "Cada {C:attention}reina{}",
+          "que tienes en la mano",
+          "otorga {C:mult}+#1#{} multi"
+        ]
+      },
+      "j_shortcut": {
+        "name": "Atajo",
+        "text": [
+          "Permite hacer {C:attention}escaleras{} con",
+          "espacios de {C:attention}1 categoría",
+          "{C:inactive}(ej.: {C:attention}10 8 6 5 3{C:inactive})"
+        ]
+      },
+      "j_sixth_sense": {
+        "name": "Sexto sentido",
+        "text": [
+          "Si la {C:attention}primera mano{} de la ronda es",
+          "un solo {C:attention}6{}, lo destruye",
+          "y genera una carta {C:spectral}espectral{}",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_sly": {
+        "name": "Comodín artero",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "si la mano jugada contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_smeared": {
+        "name": "Comodín borroso",
+        "text": [
+          "{C:hearts}Corazones{} y {C:diamonds}diamantes",
+          "cuentan como un mismo palo,",
+          "{C:spades}espadas{} y {C:clubs}tréboles",
+          "cuentan como un mismo palo,"
+        ]
+      },
+      "j_smiley": {
+        "name": "Cara sonriente",
+        "text": [
+          "Las cartas de {C:attention}figuras{} jugadas",
+          "otorgan multi {C:mult}+#1#{}",
+          "cuando anotan"
+        ]
+      },
+      "j_sock_and_buskin": {
+        "name": "Tragedia y comedia",
+        "text": [
+          "Reactiva todas las cartas",
+          "de {C:attention}figuras{} jugadas"
+        ]
+      },
+      "j_space": {
+        "name": "Comodín espacial",
+        "text": [
+          "{C:green}#1# en #2#{} probabilidades de",
+          "mejorar el nivel",
+          "de la {C:attention}mano de póker{} jugada"
+        ]
+      },
+      "j_splash": {
+        "name": "Salpicadura",
+        "text": [
+          "Cada {C:attention}carta jugada",
+          "cuenta para la puntuación"
+        ]
+      },
+      "j_square": {
+        "name": "Comodín cuadrado",
+        "text": [
+          "Este comodín obtiene {C:chips}+#2#{} fichas",
+          "si la mano jugada tiene",
+          "exactamente {C:attention}4{} cartas",
+          "{C:inactive}(Actual {C:chips}#1#{C:inactive} fichas)"
+        ]
+      },
+      "j_steel_joker": {
+        "name": "Comodín de acero",
+        "text": [
+          "Otorga {X:mult,C:white} X#1# {} multi",
+          "por cada {C:attention}carta de acero",
+          "en tu {C:attention}bajara completa",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_stencil": {
+        "name": "Plantilla de comodín",
+        "text": [
+          "Multi {X:red,C:white} X#1# {} por cada",
+          "ranura de {C:attention}comodín{} vacía",
+          "Se incluye {s:0.8}plantilla de comodín",
+          "{C:inactive}(Actual {X:red,C:white} X#1# {C:inactive})"
+        ]
+      },
+      "j_stone": {
+        "name": "Comodín de piedra",
+        "text": [
+          "Otorga {C:chips}+#1#{} fichas por",
+          "cada {C:attention}carta de piedra",
+          "en tu {C:attention}baraja completa",
+          "{C:inactive}(Actual {C:chips}+#2#{C:inactive} fichas)"
+        ]
+      },
+      "j_stuntman": {
+        "name": "Doble de riesgo",
+        "text": [
+          "{C:chips}+#1#{} fichas,",
+          "{C:attention}-#2#{} tamaño de mano"
+        ]
+      },
+      "j_supernova": {
+        "name": "Supernova",
+        "text": [
+          "Agrega el número de veces que la",
+          "{C:attention}mano de póker{} se",
+          "jugó en esta partida a multi"
+        ]
+      },
+      "j_superposition": {
+        "name": "Superposición",
+        "text": [
+          "Genera una carta de {C:tarot}tarot{}",
+          "si la mano de póker contiene",
+          "un {C:attention}as{} y una {C:attention}escalera{}",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "j_swashbuckler": {
+        "name": "Aventurero",
+        "text": [
+          "Agrega el valor de venta",
+          "de todos los demás",
+          "{C:attention}comodines{} que posees a multi",
+          "{C:inactive}(Actual {C:mult}+#1#{C:inactive} multi)"
+        ]
+      },
+      "j_throwback": {
+        "name": "Retro",
+        "text": [
+          "Multi {X:mult,C:white}X#1#{} por cada",
+          "{C:attention}ciega{} omitida en esta partida",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_ticket": {
+        "name": "Boleto dorado",
+        "text": [
+          "Las cartas de {C:attention}oro{} jugadas",
+          "ganan {C:money}#1#${} cuando anotan"
+        ]
+      },
+      "j_to_the_moon": {
+        "name": "A la luna",
+        "text": [
+          "Gana {C:money}#1# ${} extra",
+          "de {C:attention}interés{} por cada {C:money}5 ${}",
+          "que tengas al final de la ronda"
+        ]
+      },
+      "j_todo_list": {
+        "name": "Lista de pendientes",
+        "text": [
+          "Gana {C:money}$#1#{} si la {C:attention}mano de póker{}",
+          "es una {C:attention}#2#{},",
+          "la mano de póker cambia",
+          "al final de la ronda"
+        ]
+      },
+      "j_trading": {
+        "name": "Carta de colección",
+        "text": [
+          "Si el {C:attention}primer descarte{} de la ronda",
+          "tiene solo {C:attention}1{} carta, destrúyela",
+          "y gana {C:money}#1# $"
+        ]
+      },
+      "j_tribe": {
+        "name": "La tribu",
+        "text": [
+          "{X:mult,C:white} X#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_triboulet": {
+        "name": "Triboulet",
+        "text": [
+          "Los {C:attention}reyes{} y las",
+          "{C:attention}reinas{} jugados otorgan",
+          "multi {X:mult,C:white} X#1# {} cuando anotan,"
+        ]
+      },
+      "j_trio": {
+        "name": "El trío",
+        "text": [
+          "{X:mult,C:white} X#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_troubadour": {
+        "name": "Trovador",
+        "text": [
+          "{C:attention}+#1#{} tamaño de la mano,",
+          "{C:blue}-#2#{} mano en cada ronda"
+        ]
+      },
+      "j_trousers": {
+        "name": "Pantalones de repuesto",
+        "text": [
+          "Este comodín obtiene {C:mult}+#1#{} multi",
+          "si la mano jugada tiene",
+          "un {C:attention}#2#",
+          "{C:inactive}(Actual {C:red}+#3#{C:inactive} multi)"
+        ]
+      },
+      "j_turtle_bean": {
+        "name": "Frijol negro",
+        "text": [
+          "{C:attention}+#1#{} tamaño de mano,",
+          "se reduce",
+          "en {C:red}#2#{} en cada ronda"
+        ]
+      },
+      "j_vagabond": {
+        "name": "Vagabundo",
+        "text": [
+          "Crea una carta de {C:purple}tarot{}",
+          "si se juega una mano",
+          "con {C:money}#1# ${} o menos"
+        ]
+      },
+      "j_vampire": {
+        "name": "Vampiro",
+        "text": [
+          "Este comodín obtiene {X:mult,C:white} X#1# {} multi",
+          "por cada {C:attention}carta mejorada{} jugada con puntuación,",
+          "elimina la carta {C:attention}mejorada",
+          "{C:inactive}(Actual {X:mult,C:white} X#2# {C:inactive} multi)"
+        ]
+      },
+      "j_walkie_talkie": {
+        "name": "Walkie-talkie",
+        "text": [
+          "Cada {C:attention}10{} o {C:attention}4{}",
+          "jugado otorga {C:chips}+#1#{} fichas",
+          "y multi {C:mult}+#2#{} cuando anota"
+        ]
+      },
+      "j_wee": {
+        "name": "Comodín pequeño",
+        "text": [
+          "Este comodín gana",
+          "{C:chips}+#2#{} fichas cuando cada",
+          "{C:attention}2{} jugado anota",
+          "{C:inactive}(Actual {C:chips}+#1#{C:inactive} fichas)"
+        ]
+      },
+      "j_wily": {
+        "name": "Comodín taimado",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "si la mano jugada contiene",
+          "1 {C:attention}#2#"
+        ]
+      },
+      "j_wrathful_joker": {
+        "name": "Comodín irascible",
+        "text": [
+          "Las cartas jugadas",
+          "del palo {C:spades}#2#{} otorgan",
+          "multi {C:mult}+#1#{} cuando anotan"
+        ]
+      },
+      "j_yorick": {
+        "name": "Yorick",
+        "text": [
+          "Este comodín obtiene",
+          "{X:mult,C:white} X#1# {} multi cada {C:attention}#2#{C:inactive} [#3#]{}",
+          "cartas descartadas",
+          "{C:inactive}(Actual {X:mult,C:white} X#4# {C:inactive} multi)"
+        ]
+      },
+      "j_zany": {
+        "name": "Comodín chiflado",
+        "text": [
+          "{C:red,s:1.1}+#1#{} multi",
+          "si la mano contiene",
+          "1 {C:attention}#2#"
+        ]
+      }
+    },
+    "Blind": {
+      "bl_arm": {
+        "name": "El brazo",
+        "text": [
+          "Disminuye el nivel",
+          "de la mano de póker jugada"
+        ]
+      },
+      "bl_big": {
+        "name": "Ciega grande",
+        "text": []
+      },
+      "bl_club": {
+        "name": "El garrote",
+        "text": [
+          "Todos los tréboles",
+          "se debilitan"
+        ]
+      },
+      "bl_eye": {
+        "name": "El ojo",
+        "text": [
+          "Los tipos de manos",
+          "no se repiten en esta ronda"
+        ]
+      },
+      "bl_final_acorn": {
+        "name": "Bellota ambarina",
+        "text": [
+          "Voltea y mezcla",
+          "todos los comodines"
+        ]
+      },
+      "bl_final_bell": {
+        "name": "Campana cerúlea",
+        "text": [
+          "Fuerza 1 carta",
+          "a que se seleccione siempre"
+        ]
+      },
+      "bl_final_heart": {
+        "name": "Corazón carmesí",
+        "text": [
+          "Se inhabilita un comodín",
+          "al azar en cada mano"
+        ]
+      },
+      "bl_final_leaf": {
+        "name": "Hoja verde",
+        "text": [
+          "Todas las cartas se debilitan",
+          "hasta que se venda 1 comodín"
+        ]
+      },
+      "bl_final_vessel": {
+        "name": "Contenedor violeta",
+        "text": [
+          "Ciega muy grande"
+        ]
+      },
+      "bl_fish": {
+        "name": "El pez",
+        "text": [
+          "Las cartas se sacan boca abajo",
+          "tras cada mano jugada"
+        ]
+      },
+      "bl_flint": {
+        "name": "El pedernal",
+        "text": [
+          "Las fichas base y el multi",
+          "se dividen a la mitad"
+        ]
+      },
+      "bl_goad": {
+        "name": "La provocación",
+        "text": [
+          "Todas las espadas",
+          "se debilitan"
+        ]
+      },
+      "bl_head": {
+        "name": "La cabeza",
+        "text": [
+          "Todos los corazones",
+          "se debilitan"
+        ]
+      },
+      "bl_hook": {
+        "name": "El garfio",
+        "text": [
+          "Descarta 2 cartas al azar",
+          "por cada mano jugada"
+        ]
+      },
+      "bl_house": {
+        "name": "La casa",
+        "text": [
+          "La primera mano",
+          "se saca boca abajo"
+        ]
+      },
+      "bl_manacle": {
+        "name": "El grillete",
+        "text": [
+          "-1 de tamaño de mano"
+        ]
+      },
+      "bl_mark": {
+        "name": "La marca",
+        "text": [
+          "Todas las cartas de figuras",
+          "boca abajo"
+        ]
+      },
+      "bl_mouth": {
+        "name": "La boca",
+        "text": [
+          "Juega 1 solo tipo",
+          "de mano en esta ronda"
+        ]
+      },
+      "bl_needle": {
+        "name": "La aguja",
+        "text": [
+          "Juega una sola mano"
+        ]
+      },
+      "bl_ox": {
+        "name": "El buey",
+        "text": [
+          "Si se juega 1 #1#,",
+          "deja el dinero en 0 $"
+        ]
+      },
+      "bl_pillar": {
+        "name": "El pilar",
+        "text": [
+          "Las cartas que se jugaron antes",
+          "en esta apuesta inicial se debilitan"
+        ]
+      },
+      "bl_plant": {
+        "name": "La planta",
+        "text": [
+          "Todas las cartas de figuras",
+          "se debilitan"
+        ]
+      },
+      "bl_psychic": {
+        "name": "El psíquico",
+        "text": [
+          "Debes jugar 5 cartas"
+        ]
+      },
+      "bl_serpent": {
+        "name": "La serpiente",
+        "text": [
+          "Después de jugar o descartar,",
+          "siempre saca 3 cartas"
+        ]
+      },
+      "bl_small": {
+        "name": "Ciega pequeña",
+        "text": []
+      },
+      "bl_tooth": {
+        "name": "El diente",
+        "text": [
+          "Pierde 1 $",
+          "por carta jugada"
+        ]
+      },
+      "bl_wall": {
+        "name": "El muro",
+        "text": [
+          "Ciega extra grande"
+        ]
+      },
+      "bl_water": {
+        "name": "El agua",
+        "text": [
+          "Comienza con",
+          "0 descartes"
+        ]
+      },
+      "bl_wheel": {
+        "name": "La rueda",
+        "text": [
+          " en 7 cartas se saca",
+          "boca abajo"
+        ]
+      },
+      "bl_window": {
+        "name": "La ventana",
+        "text": [
+          "Todos los diamantes",
+          "se debilitan"
+        ]
+      }
+    },
+    "Back": {
+      "b_abandoned": {
+        "name": "Baraja abandonada",
+        "text": [
+          "Comienza la partida sin",
+          "ninguna carta de {C:attention}figura",
+          "en tu baraja"
+        ]
+      },
+      "b_anaglyph": {
+        "name": "Baraja anaglifo",
+        "text": [
+          "Después de derrotar a cada",
+          "{C:attention}ciega jefe{}, gana 1",
+          "{C:attention,T:tag_double}#1#"
+        ]
+      },
+      "b_black": {
+        "name": "Baraja negra",
+        "text": [
+          "{C:attention}+#1#{} ranura(s) de comodín",
+          "",
+          "{C:blue}-#2#{} mano",
+          "en cada ronda"
+        ]
+      },
+      "b_blue": {
+        "name": "Baraja azul",
+        "text": [
+          "{C:blue}+#1#{} mano",
+          "en cada ronda"
+        ]
+      },
+      "b_challenge": {
+        "name": "Baraja desafío",
+        "text": [
+          ""
+        ]
+      },
+      "b_checkered": {
+        "name": "Baraja a cuadros",
+        "text": [
+          "Comienza la partida con",
+          "{C:attention}26{C:spades} espadas{} y",
+          "{C:attention}26{C:hearts} corazones{} en la baraja"
+        ]
+      },
+      "b_erratic": {
+        "name": "Baraja errática",
+        "text": [
+          "Todas las {C:attention}categorías{} y",
+          "los {C:attention}palos{} en la baraja",
+          "se aleatorizan"
+        ]
+      },
+      "b_ghost": {
+        "name": "Baraja fantasma",
+        "text": [
+          "Las cartas {C:spectral}espectrales{} pueden",
+          "aparecer en la tienda,",
+          "comienza con una carta de {C:spectral,T:c_hex}maleficio{}"
+        ]
+      },
+      "b_green": {
+        "name": "Baraja verde",
+        "text": [
+          "Al final de cada ronda:",
+          "{C:money}#1# ${s:0.85} por {C:blue}mano restante",
+          "{C:money}#2# ${s:0.85} por {C:red}descarte restante",
+          "No ganas {C:attention}interés"
+        ]
+      },
+      "b_magic": {
+        "name": "Baraja mágica",
+        "text": [
+          "Comienza la partida",
+          "con el vale {C:tarot,T:v_crystal_ball}#1#{}",
+          "y {C:attention}2{} copias",
+          "de {C:tarot,T:c_fool}#2#"
+        ]
+      },
+      "b_nebula": {
+        "name": "Baraja nébula",
+        "text": [
+          "Comienza la partida",
+          "con el vale {C:planet,T:v_telescope}#1#{}",
+          "",
+          "{C:red}#2#{} ranura de consumible"
+        ]
+      },
+      "b_painted": {
+        "name": "Baraja pintada",
+        "text": [
+          "{C:attention}+#1#{} tamaño de mano",
+          "{C:red}#2#{} ranuras de comodín"
+        ]
+      },
+      "b_plasma": {
+        "name": "Baraja plasmática",
+        "text": [
+          "Equilibra las {C:blue}fichas{} y",
+          "el {C:red}multi{} cuando calcula",
+          "los puntos de cada mano jugada",
+          "{C:red}X#1#{} tamaño base de la ciega"
+        ]
+      },
+      "b_red": {
+        "name": "Baraja roja",
+        "text": [
+          "{C:red}+#1#{} descarte",
+          "en cada ronda"
+        ]
+      },
+      "b_yellow": {
+        "name": "Baraja amarilla",
+        "text": [
+          "Comienza con",
+          "{C:money}#1# $ extra"
+        ]
+      },
+      "b_zodiac": {
+        "name": "Baraja zodiacal",
+        "text": [
+          "Comienza la partida con",
+          "{C:tarot,T:v_tarot_merchant}#1#{},",
+          "{C:planet,T:v_planet_merchant}#2#{},",
+          "y {C:attention,T:v_overstock_norm}#3#"
+        ]
+      }
+    },
+    "Edition": {
+      "e_base": {
+        "name": "Base",
+        "text": [
+          "Sin efectos adicionales"
+        ]
+      },
+      "e_foil": {
+        "name": "Laminada",
+        "text": [
+          "{C:chips}+#1#{} fichas"
+        ]
+      },
+      "e_holo": {
+        "name": "Holográfica",
+        "text": [
+          "Multi {C:mult}+#1#{}"
+        ]
+      },
+      "e_negative": {
+        "name": "Negativa",
+        "text": [
+          "{C:dark_edition}+#1#{} ranura de comodín"
+        ]
+      },
+      "e_negative_consumable": {
+        "name": "Negativa",
+        "text": [
+          "{C:dark_edition}+#1#{} ranura de consumible"
+        ]
+      },
+      "e_polychrome": {
+        "name": "Polícroma",
+        "text": [
+          "Multi {X:mult,C:white} X#1#{}"
+        ]
+      }
+    },
+    "Enhanced": {
+      "m_bonus": {
+        "name": "Carta adicional",
+        "text": []
+      },
+      "m_glass": {
+        "name": "Carta de vidrio",
+        "text": [
+          "{X:mult,C:white} X#1# {} multi",
+          "{C:green}#2# en #3#{} probabilidades",
+          "de destruir la carta"
+        ]
+      },
+      "m_gold": {
+        "name": "Carta de oro",
+        "text": [
+          "{C:money}#1# ${} si esta",
+          "carta está en tu mano",
+          "al final de la ronda"
+        ]
+      },
+      "m_lucky": {
+        "name": "Carta de la suerte",
+        "text": [
+          "{C:green}#1# en #3#{} probabilidades",
+          "de {C:mult}+#2#{} multi",
+          "{C:green}#1# en #5#{} probabilidades",
+          "de ganar {C:money}#4# $"
+        ]
+      },
+      "m_mult": {
+        "name": "Carta multi",
+        "text": [
+          "{C:mult}+#1#{} multi"
+        ]
+      },
+      "m_steel": {
+        "name": "Carta de acero",
+        "text": [
+          "Multi {X:mult,C:white}X#1#{}",
+          "mientras esta carta",
+          "esté en tu mano"
+        ]
+      },
+      "m_stone": {
+        "name": "Carta de piedra",
+        "text": [
+          "{C:chips}+#1#{} fichas",
+          "sin categoría ni palo"
+        ]
+      },
+      "m_wild": {
+        "name": "Carta versátil",
+        "text": [
+          "Puede usarse",
+          "como cualquier palo"
+        ]
+      }
+    },
+    "Tarot": {
+      "c_chariot": {
+        "name": "El carro",
+        "text": [
+          "Mejora {C:attention}#1#{} carta",
+          "seleccionada a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_death": {
+        "name": "La muerte",
+        "text": [
+          "Selecciona {C:attention}#1#{} cartas,",
+          "convierte la carta {C:attention}izquierda{}",
+          "en la carta {C:attention}derecha{}",
+          "{C:inactive}(Arrastra para acomodar)"
+        ]
+      },
+      "c_devil": {
+        "name": "El diablo",
+        "text": [
+          "Mejora {C:attention}#1#{} carta",
+          "seleccionada a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_emperor": {
+        "name": "El emperador",
+        "text": [
+          "Genera hasta {C:attention}#1#",
+          "cartas de {C:tarot}tarot{} al azar",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "c_empress": {
+        "name": "La emperatriz",
+        "text": [
+          "Mejora {C:attention}#1# cartas",
+          "seleccionadas a",
+          "{C:attention}#2#s"
+        ]
+      },
+      "c_fool": {
+        "name": "El loco",
+        "text": [
+          "Genera la última",
+          "carta de {C:tarot}tarot{} o de {C:planet}planeta{}",
+          "usada en esta partida",
+          "a excepción de {s:0.8,C:tarot}El loco{s:0.8}"
+        ]
+      },
+      "c_hanged_man": {
+        "name": "El colgado",
+        "text": [
+          "Destruye hasta",
+          "{C:attention}#1#{} cartas seleccionadas"
+        ]
+      },
+      "c_heirophant": {
+        "name": "El hierofante",
+        "text": [
+          "Mejora {C:attention}#1# cartas",
+          "seleccionadas a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_hermit": {
+        "name": "El ermitaño",
+        "text": [
+          "Duplica el dinero",
+          "{C:inactive}(Máx. de {C:money}#1# ${C:inactive})"
+        ]
+      },
+      "c_high_priestess": {
+        "name": "La sacerdotisa",
+        "text": [
+          "Genera hasta {C:attention}#1#",
+          "cartas de {C:planet}planeta{} al azar",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "c_judgement": {
+        "name": "El juicio",
+        "text": [
+          "Genera una carta",
+          "de {C:attention}comodín{} al azar",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "c_justice": {
+        "name": "La justicia",
+        "text": [
+          "Mejora {C:attention}#1#{} carta",
+          "seleccionada a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_lovers": {
+        "name": "Los enamorados",
+        "text": [
+          "Mejora {C:attention}#1#{} carta",
+          "seleccionada a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_magician": {
+        "name": "El mago",
+        "text": [
+          "Mejora {C:attention}#1#{}",
+          "carta(s) seleccionada(s) a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_moon": {
+        "name": "La luna",
+        "text": [
+          "Convierte hasta",
+          "{C:attention}#1#{} cartas seleccionadas",
+          "en {V:1}#2#{}"
+        ]
+      },
+      "c_star": {
+        "name": "La estrella",
+        "text": [
+          "Convierte hasta",
+          "{C:attention}#1#{} cartas seleccionadas",
+          "en {V:1}#2#{}"
+        ]
+      },
+      "c_strength": {
+        "name": "La fuerza",
+        "text": [
+          "Aumenta la categoría de",
+          "hasta {C:attention}#1#{} cartas",
+          "elegidas en {C:attention}1"
+        ]
+      },
+      "c_sun": {
+        "name": "El sol",
+        "text": [
+          "Convierte hasta",
+          "{C:attention}#1#{} cartas seleccionadas",
+          "en {V:1}#2#{}"
+        ]
+      },
+      "c_temperance": {
+        "name": "La templanza",
+        "text": [
+          "Otorga el valor total de venta",
+          "de todos los comodines",
+          "actuales {C:inactive}(Máx. de {C:money}#1# ${C:inactive})",
+          "{C:inactive}(Actual {C:money}#2# ${C:inactive})"
+        ]
+      },
+      "c_tower": {
+        "name": "La torre",
+        "text": [
+          "Mejora {C:attention}#1#{} carta",
+          "seleccionada a",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_wheel_of_fortune": {
+        "name": "La rueda de la fortuna",
+        "text": [
+          "{C:green}#1# en #2#{} probabilidades de agregar",
+          "que sean {C:dark_edition}laminadas{}, {C:dark_edition}holográficas{} o",
+          "{C:dark_edition}polícromas{}",
+          "a un {C:attention}comodín al azar"
+        ]
+      },
+      "c_world": {
+        "name": "El mundo",
+        "text": [
+          "Convierte hasta",
+          "{C:attention}#1#{} cartas seleccionadas",
+          "en {V:1}#2#{}"
+        ]
+      }
+    },
+    "Planet": {
+      "c_ceres": {
+        "name": "Ceres",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_earth": {
+        "name": "Tierra",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_eris": {
+        "name": "Eris",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_jupiter": {
+        "name": "Júpiter",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_mars": {
+        "name": "Marte",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_mercury": {
+        "name": "Mercurio",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_neptune": {
+        "name": "Neptuno",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_planet_x": {
+        "name": "Planeta X",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_pluto": {
+        "name": "Plutón",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_saturn": {
+        "name": "Saturno",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_uranus": {
+        "name": "Urano",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      },
+      "c_venus": {
+        "name": "Venus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}nvl. #1#{S:0.8}){} Aumento de nivel",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} multi y",
+          "{C:chips}+#4#{} fichas"
+        ]
+      }
+    },
+    "Spectral": {
+      "c_ankh": {
+        "name": "Anj",
+        "text": [
+          "Crea una copia de un",
+          "{C:attention}comodín{} aleatorio,",
+          "destruye los demás"
+        ]
+      },
+      "c_aura": {
+        "name": "Aura",
+        "text": [
+          "Agrega efectos de {C:dark_edition}laminado{}, {C:dark_edition}holográfico{}",
+          "o {C:dark_edition}polícromo{} a",
+          "{C:attention}1{} carta seleccionada de tu mano"
+        ]
+      },
+      "c_black_hole": {
+        "name": "Agujero negro",
+        "text": [
+          "Aumenta todas",
+          "las {C:legendary,E:1}manos de póker",
+          "{C:attention}1{} nivel"
+        ]
+      },
+      "c_cryptid": {
+        "name": "Críptido",
+        "text": [
+          "Crea {C:attention}#1#{} copias de",
+          "{C:attention}1{} carta seleccionada",
+          "en tu mano"
+        ]
+      },
+      "c_deja_vu": {
+        "name": "Déjà vu",
+        "text": [
+          "Agrega un {C:red}sello rojo{}",
+          "a {C:attention}1{} carta seleccionada",
+          "de tu mano al azar"
+        ]
+      },
+      "c_ectoplasm": {
+        "name": "Ectoplasma",
+        "text": [
+          "Agrega {C:dark_edition}negativo{}",
+          "a un {C:attention}comodín al azar",
+          "{C:red}-1{} de tamaño de mano"
+        ]
+      },
+      "c_familiar": {
+        "name": "Familiar",
+        "text": [
+          "Destruye {C:attention}1{} carta",
+          "de tu mano al azar,",
+          "agrega {C:attention}#1#{} {C:attention}cartas {C:attention}de figura{} mejoradas",
+          "al azar a tu mano"
+        ]
+      },
+      "c_grim": {
+        "name": "Lúgubre",
+        "text": [
+          "Destruye {C:attention}1{} carta",
+          "de tu mano al azar,",
+          "agrega {C:attention}#1#{} {C:attention}ases{} {C:attention}mejorados{}",
+          "a tu mano al azar"
+        ]
+      },
+      "c_hex": {
+        "name": "Maleficio",
+        "text": [
+          "Agrega {C:dark_edition}policromía{} a un",
+          "{C:attention}comodín{} aleatorio,",
+          "destruye los demás"
+        ]
+      },
+      "c_immolate": {
+        "name": "Inmolación",
+        "text": [
+          "Destruye {C:attention}#1#{} cartas",
+          "de tu mano al azar,",
+          "gana {C:money}#2# $"
+        ]
+      },
+      "c_incantation": {
+        "name": "Encantamiento",
+        "text": [
+          "Destruye {C:attention}1{} carta",
+          "de tu mano al azar, agrega {C:attention}#1#",
+          "carta {C:attention}mejorada numerada",
+          "a tu mano al azar"
+        ]
+      },
+      "c_medium": {
+        "name": "Médium",
+        "text": [
+          "Agrega un {C:purple}sello morado{}",
+          "a {C:attention}1{} carta seleccionada",
+          "de tu mano al azar"
+        ]
+      },
+      "c_ouija": {
+        "name": "Ouija",
+        "text": [
+          "Convierte todas las cartas",
+          "de tu mano en una sola",
+          "{C:attention}categoría al azar",
+          "{C:red}-1{} de tamaño de mano"
+        ]
+      },
+      "c_sigil": {
+        "name": "Sigilo",
+        "text": [
+          "Convierte todas las cartas",
+          "de tu mano en un solo",
+          "{C:attention}palo al azar"
+        ]
+      },
+      "c_soul": {
+        "name": "El alma",
+        "text": [
+          "Crea un",
+          "comodín {C:legendary,E:1}legendario{}",
+          "{C:inactive}(Debe haber espacio)"
+        ]
+      },
+      "c_talisman": {
+        "name": "Talismán",
+        "text": [
+          "Agrega un {C:attention}sello de oro{}",
+          "a {C:attention}1{} carta seleccionada",
+          "de tu mano al azar"
+        ]
+      },
+      "c_trance": {
+        "name": "Trance",
+        "text": [
+          "Agrega un {C:blue}sello azul{}",
+          "a {C:attention}1{} carta seleccionada",
+          "de tu mano al azar"
+        ]
+      },
+      "c_wraith": {
+        "name": "Espectro",
+        "text": [
+          "Genera una carta",
+          "de {C:attention}comodín{} {C:red}rara{} al azar,",
+          "deja el dinero en {C:money}0 $"
+        ]
+      }
+    },
+    "Voucher": {
+      "v_antimatter": {
+        "name": "Antimateria",
+        "text": [
+          "{C:dark_edition}+1{} ranura de comodín"
+        ]
+      },
+      "v_blank": {
+        "name": "En blanco",
+        "text": [
+          "{C:inactive}¿No hace nada?"
+        ]
+      },
+      "v_clearance_sale": {
+        "name": "Venta de saldos",
+        "text": [
+          "Todas las cartas y paquetes",
+          "en la tienda a {C:attention}#1# %{} menos"
+        ]
+      },
+      "v_crystal_ball": {
+        "name": "Bola de cristal",
+        "text": [
+          "{C:attention}+1{} ranura de consumible"
+        ]
+      },
+      "v_directors_cut": {
+        "name": "Versión del director",
+        "text": [
+          "Renueva la ciega jefe",
+          "{C:attention}1{} vez por apuesta inicial,",
+          "{C:money}#1# ${} por cambio"
+        ]
+      },
+      "v_glow_up": {
+        "name": "Brillo",
+        "text": [
+          "Las cartas {C:dark_edition}laminadas{}, {C:dark_edition}holográficas{} y",
+          "{C:dark_edition}polícromas{}",
+          "aparecen {C:attention}#1#X{} más veces"
+        ]
+      },
+      "v_grabber": {
+        "name": "Agarrador",
+        "text": [
+          "Gana para siempre",
+          "{C:blue}+#1#{} mano(s)",
+          "por ronda"
+        ]
+      },
+      "v_hieroglyph": {
+        "name": "Jeroglífico",
+        "text": [
+          "{C:attention}-#1#{} apuesta inicial,",
+          "{C:blue}-#1#{} mano",
+          "cada ronda"
+        ]
+      },
+      "v_hone": {
+        "name": "Perfección",
+        "text": [
+          "Las cartas {C:dark_edition}laminadas{}, {C:dark_edition}holográficas{} y",
+          "{C:dark_edition}polícromas{}",
+          "aparecen {C:attention}#1#X{} más veces"
+        ]
+      },
+      "v_illusion": {
+        "name": "Ilusión",
+        "text": [
+          "Las {C:attention}cartas de juego{} en la tienda",
+          "pueden tener una {C:enhanced}mejora{},",
+          "{C:dark_edition}edición{} y/o un {C:attention}sello{}"
+        ]
+      },
+      "v_liquidation": {
+        "name": "Liquidación",
+        "text": [
+          "Todas las cartas y paquetes",
+          "en la tienda a {C:attention}#1# %{} menos"
+        ]
+      },
+      "v_magic_trick": {
+        "name": "Truco de magia",
+        "text": [
+          "Las {C:attention}cartas de juego{} pueden",
+          "comprarse",
+          "en la {C:attention}tienda"
+        ]
+      },
+      "v_money_tree": {
+        "name": "Árbol de dinero",
+        "text": [
+          "Aumenta el tope de",
+          "interés ganado en",
+          "cada ronda a {C:money}$#1#{}"
+        ]
+      },
+      "v_nacho_tong": {
+        "name": "Pinza para nachos",
+        "text": [
+          "Gana para siempre",
+          "{C:blue}+#1#{} mano(s)",
+          "por ronda"
+        ]
+      },
+      "v_observatory": {
+        "name": "Observatorio",
+        "text": [
+          "Las cartas de {C:planet}planeta{} en",
+          "el área de {C:attention}consumibles{} otorgan",
+          "{X:red,C:white} X#1# {} multi para su",
+          "{C:attention}mano de póker específica"
+        ]
+      },
+      "v_omen_globe": {
+        "name": "Orbe profético",
+        "text": [
+          "Las cartas {C:spectral}espectrales{} pueden",
+          "aparecer en cualquier",
+          "{C:attention}paquete arcano"
+        ]
+      },
+      "v_overstock_norm": {
+        "name": "Excedente",
+        "text": [
+          "{C:attention}+1{} ranura de carta",
+          "disponible en la tienda"
+        ]
+      },
+      "v_overstock_plus": {
+        "name": "Excedente plus",
+        "text": [
+          "{C:attention}+1{} ranura de carta",
+          "disponible en la tienda"
+        ]
+      },
+      "v_paint_brush": {
+        "name": "Brocha",
+        "text": [
+          "{C:attention}+#1#{} tamaño de mano"
+        ]
+      },
+      "v_palette": {
+        "name": "Paleta",
+        "text": [
+          "{C:attention}+#1#{} tamaño de mano"
+        ]
+      },
+      "v_petroglyph": {
+        "name": "Petroglifo",
+        "text": [
+          "{C:attention}-#1#{} apuesta inicial,",
+          "{C:red}-#1#{} descarte",
+          "cada ronda"
+        ]
+      },
+      "v_planet_merchant": {
+        "name": "Mercader de planetas",
+        "text": [
+          "Las cartas de {C:planet}planeta{} aparecen",
+          "{C:attention}#1# X{} veces más seguido",
+          "en la tienda"
+        ]
+      },
+      "v_planet_tycoon": {
+        "name": "Magnate de planetas",
+        "text": [
+          "Las cartas de {C:planet}planeta{} aparecen",
+          "{C:attention}#1# X{} veces más seguido",
+          "en la tienda"
+        ]
+      },
+      "v_recyclomancy": {
+        "name": "Reciclomancia",
+        "text": [
+          "Gana",
+          "para siempre {C:red}+#1#{} descarte",
+          "cada ronda"
+        ]
+      },
+      "v_reroll_glut": {
+        "name": "Gula de renovaciones",
+        "text": [
+          "Las renovaciones cuestan",
+          "{C:money}#1# ${} menos"
+        ]
+      },
+      "v_reroll_surplus": {
+        "name": "Excedente de renovaciones",
+        "text": [
+          "Las renovaciones cuestan",
+          "{C:money}#1# ${} menos"
+        ]
+      },
+      "v_retcon": {
+        "name": "Retrocontinuidad",
+        "text": [
+          "Renueva la ciega jefe",
+          "{C:attention}ilimitadas{} veces,",
+          "{C:money}#1# ${} por cambio"
+        ]
+      },
+      "v_seed_money": {
+        "name": "Siembra dinero",
+        "text": [
+          "Aumenta el tope de",
+          "interés ganado en",
+          "cada ronda a {C:money}$#1#{}"
+        ]
+      },
+      "v_tarot_merchant": {
+        "name": "Mercader de tarot",
+        "text": [
+          "Las cartas de {C:tarot}tarot{} aparecen",
+          "{C:attention}#1# X{} veces más seguido",
+          "en la tienda"
+        ]
+      },
+      "v_tarot_tycoon": {
+        "name": "Magnate del tarot",
+        "text": [
+          "Las cartas de {C:tarot}tarot{} aparecen",
+          "{C:attention}#1# X{} veces más seguido",
+          "en la tienda"
+        ]
+      },
+      "v_telescope": {
+        "name": "Telescopio",
+        "text": [
+          "Los {C:attention}paquetes celestiales{} siempre",
+          "contienen la carta de {C:planet}planeta{}",
+          "para tu {C:attention}mano de póker",
+          "más jugada"
+        ]
+      },
+      "v_wasteful": {
+        "name": "Desperdiciador",
+        "text": [
+          "Gana",
+          "para siempre {C:red}+#1#{} descarte",
+          "cada ronda"
+        ]
+      }
+    }
+  },
+  "ui": {}
+}

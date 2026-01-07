@@ -166,12 +166,24 @@ j_perkeo=           {order = 150,  unlocked = false, discovered = false, bluepri
 const endc = `</span>`;
 const multc = `<span style='color: #ff4d40'>`;
 const prodc = `<span style='color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;'>X`;
+const xmultc = `<span style='color: #fff; background-color: #ff4d40; border-left: solid; border: solid; border-color: #ff4d40; border-width: 0px 2px 1px 2px; padding-left: 1px; border-radius: 3px;'>`;
 const chipc = `<span style='color: #009dff'>`;
 const numc = `<span style='color: #ff8f00'>`;
 const moneyc = `<span style='color: #f5b143'>`;
 const probc = `<span style='color: #35bd87'>`;
+const defaultc = `<span>`;
 
 const shadowc = `<span style='color: #ababab'>`;
+
+const diamondcOpen = `<span style='color: #f15a27'>`;
+const heartcOpen = `<span style='color: #f11b51'>`;
+const spadecOpen = `<span style='color: #242c56'>`;
+const clubcOpen = `<span style='color: #074540'>`;
+
+const spectralcOpen = `<span style='color: #2e76fd'>`;
+const planetcOpen = `<span style='color: #00a7ca'>`;
+const tarotcOpen = `<span style='color: #9e74ce'>`;
+const purplecOpen = `<span style='color: #9e74ce'>`;
 
 const diamondc = `<span style='color: #f15a27'>Diamond</span>`;
 const heartc = `<span style='color: #f11b51'>Heart</span>`;
@@ -217,22 +229,22 @@ const rarityNames = [
 
 
 const jokerPrice = [
-  [ 2, 4, 3, 4, 4, 4, 4, 5, 7, 6],
-  [ 4, 4, 6, 6, 5, 1, 5, 5, 5, 5],
-  [ 6, 5, 5, 6, 5, 6, 4, 7, 5, 6],
+  [2, 4, 3, 4, 4, 4, 4, 5, 7, 6],
+  [4, 4, 6, 6, 5, 1, 5, 5, 5, 5],
+  [6, 5, 5, 6, 5, 6, 4, 7, 5, 6],
   [10, 6, 4, 4, 4, 5, 5, 6, 4, 4],
-  [ 8, 4, 5, 5, 6, 8, 8, 8, 8, 8],
-  [ 5, 8, 8, 5, 7, 6, 5, 6, 8, 4],
-  [ 6, 6, 5, 4, 7, 4, 7, 5, 7, 4],
-  [ 7, 8, 8, 6, 5, 6, 6,10, 6, 7],
-  [ 7, 7, 7,20,20,20,20,20, 6, 7],
+  [8, 4, 5, 5, 6, 8, 8, 8, 8, 8],
+  [5, 8, 8, 5, 7, 6, 5, 6, 8, 4],
+  [6, 6, 5, 4, 7, 4, 7, 5, 7, 4],
+  [7, 8, 8, 6, 5, 6, 6, 10, 6, 7],
+  [7, 7, 7, 20, 20, 20, 20, 20, 6, 7],
   [],
-  [ 4, 6, 6, 5, 5, 8, 3, 5, 6, 6],
-  [ 5, 4, 4, 4, 4, 4, 6, 5, 7, 4],
-  [ 6, 6, 7, 7, 7, 8, 8, 7, 6, 8],
-  [ 7, 5, 5, 6, 6, 6, 6, 4, 5, 4],
-  [ 3, 4, 4, 4, 4, 6, 8, 6, 6, 6],
-  [ 5, 5, 6, 6, 6, 9, 4, 8, 4, 6]
+  [4, 6, 6, 5, 5, 8, 3, 5, 6, 6],
+  [5, 4, 4, 4, 4, 4, 6, 5, 7, 4],
+  [6, 6, 7, 7, 7, 8, 8, 7, 6, 8],
+  [7, 5, 5, 6, 6, 6, 6, 4, 5, 4],
+  [3, 4, 4, 4, 4, 6, 8, 6, 6, 6],
+  [5, 5, 6, 6, 6, 9, 4, 8, 4, 6]
 ];
 
 const jokerRarity = [
@@ -416,11 +428,11 @@ const jokerTexts = [
     ['Hallucination', '${probc}1 in 2${endc} chance to create<br>a ${tarotc} card when any<br>${numc}Booster Pack${endc} is opened${roomc}']
   ],
   [
-    ['Sly Joker',  '${chipc}+50${endc} Chips if played<br>hand contains<br>a ${numc}Pair${endc}'],
-    ['Wily Joker',  '${chipc}+100${endc} Chips if played<br>hand contains<br>a ${numc}Three of a Kind${endc}'],
-    ['Clever Joker',  '${chipc}+80${endc} Chips if played<br>hand contains<br>a ${numc}Two Pair${endc}'],
-    ['Devious Joker',  '${chipc}+100${endc} Chips if played<br>hand contains<br>a ${numc}Straight${endc}'],
-    ['Crafty Joker',  '${chipc}+80${endc} Chips if played<br>hand contains<br>a ${numc}Flush${endc}'],
+    ['Sly Joker', '${chipc}+50${endc} Chips if played<br>hand contains<br>a ${numc}Pair${endc}'],
+    ['Wily Joker', '${chipc}+100${endc} Chips if played<br>hand contains<br>a ${numc}Three of a Kind${endc}'],
+    ['Clever Joker', '${chipc}+80${endc} Chips if played<br>hand contains<br>a ${numc}Two Pair${endc}'],
+    ['Devious Joker', '${chipc}+100${endc} Chips if played<br>hand contains<br>a ${numc}Straight${endc}'],
+    ['Crafty Joker', '${chipc}+80${endc} Chips if played<br>hand contains<br>a ${numc}Flush${endc}'],
     ['Lucky Cat', 'This Joker gains ${prodc}0.25${endc} Mult every<br>time a ${numc}Lucky${endc} card<br>${probc}successfully${endc} triggers<br>${shadowc}(Currently ${prodc}${(10 + jokerValue * 2.5) / 10}${endc} Mult)${endc}', 'Lucky Triggers'],
     ['Baseball Card', '${probc}Uncommon${endc} Jokers<br>each give ${prodc}1.5${endc} Mult'],
     ['Bull', '${chipc}+2${endc} Chips for each<br>${moneyc}dollar${endc} you have<br>${shadowc}(Currently ${chipc}+${jokerValue * 2}${endc} Chips)${endc}', 'Money'],
@@ -468,14 +480,8 @@ function getJokerLocalizationFile() {
 }
 
 function parseJokerNamesFromLocalization(luaText) {
-  const jokerNames = new Map();
-  const jokerRegex = /(j_[a-z0-9_]+)\s*=\s*{[\s\S]*?name\s*=\s*(?:"([^"]+)"|'([^']+)')/gi;
-  let match = null;
-  while ((match = jokerRegex.exec(luaText)) !== null) {
-    const name = match[2] || match[3];
-    if (name) jokerNames.set(match[1], name);
-  }
-  return jokerNames;
+  // Deprecated: using JSON
+  return new Map();
 }
 
 let jokerLocalizationPromise = null;
@@ -485,41 +491,168 @@ function applyJokerLocalization() {
   jokerLocalizationPromise = (async () => {
     if (typeof fetch !== 'function' || typeof document === 'undefined') return false;
     const localeFile = getJokerLocalizationFile();
-    if (!localeFile) return false;
-    try {
-      const [enResponse, localizedResponse] = await Promise.all([
-        fetch('localization/en-us.lua'),
-        fetch(`localization/${localeFile}.lua`),
-      ]);
-      if (!enResponse.ok || !localizedResponse.ok) return false;
-      const [enText, localizedText] = await Promise.all([enResponse.text(), localizedResponse.text()]);
-      const enNames = parseJokerNamesFromLocalization(enText);
-      const localizedNames = parseJokerNamesFromLocalization(localizedText);
-      if (!enNames.size || !localizedNames.size) return false;
+    if (!localeFile || localeFile === 'en-us') return false;
+    const preferEnglishDescriptions = true;
 
-      const nameLookup = new Map();
-      for (const [key, enName] of enNames.entries()) {
-        const localizedName = localizedNames.get(key);
-        if (localizedName) nameLookup.set(enName, localizedName);
-      }
-      if (!nameLookup.size) return false;
+    try {
+      const response = await fetch(`/assets/i18n/${localeFile}.json`);
+      if (!response.ok) return false;
+      const data = await response.json();
 
       let changed = false;
-      for (let i = 0; i < jokerTexts.length; i++) {
-        const row = jokerTexts[i];
-        if (!row) continue;
-        for (let j = 0; j < row.length; j++) {
-          const entry = row[j];
-          if (!entry || !entry[0]) continue;
-          const localizedName = nameLookup.get(entry[0]);
-          if (localizedName && localizedName !== entry[0]) {
-            entry[0] = localizedName;
-            changed = true;
+
+      // 1. Apply UI Translations
+      if (data.ui) {
+        const uiMap = {
+          'optimize_jokers': 'ui_optimize_jokers',
+          'optimize_hand': 'ui_optimize_hand',
+          'minimize_score': 'ui_minimize_score',
+          'play_hand': 'ui_play_hand',
+          'clear_hand': 'ui_clear_hand',
+          'count': ['lbl_joker_count', 'lbl_cards_count'],
+          'value': 'lbl_joker_value',
+          'search': 'lbl_joker_search'
+        };
+
+        for (const [key, val] of Object.entries(data.ui)) {
+          const targetId = uiMap[key];
+          if (targetId) {
+            if (Array.isArray(targetId)) {
+              targetId.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = val;
+              });
+            } else {
+              const el = document.getElementById(targetId);
+              if (el) el.innerText = val;
+            }
+          }
+        }
+      }
+
+      // 2. Apply Joker Name & Description Translations
+      if (data.descriptions && data.descriptions.Joker) {
+        const nameLookup = new Map();
+        const textLookup = new Map();
+        const englishNameByKey = new Map();
+
+        // Prefer in-memory joker definitions when available.
+        for (const [key] of Object.entries(data.descriptions.Joker)) {
+          if (window[key] && window[key].name) {
+            englishNameByKey.set(key, window[key].name);
+          }
+        }
+
+        // Fallback to en-us localization names to map keys to English.
+        if (englishNameByKey.size === 0) {
+          try {
+            const enResponse = await fetch('/assets/i18n/en-us.json');
+            if (enResponse.ok) {
+              const enData = await enResponse.json();
+              if (enData.descriptions && enData.descriptions.Joker) {
+                for (const [key, info] of Object.entries(enData.descriptions.Joker)) {
+                  if (info && info.name) {
+                    englishNameByKey.set(key, info.name);
+                  }
+                }
+              }
+            }
+          } catch (error) {
+            console.warn('Failed to load en-us joker names for localization.', error);
+          }
+        }
+
+        // Iterate keys in JSON (j_joker, j_greedy_joker)
+        for (const [key, info] of Object.entries(data.descriptions.Joker)) {
+          const englishName = englishNameByKey.get(key);
+          if (!englishName) continue;
+
+          const localizedName = info.name;
+          if (localizedName) {
+            nameLookup.set(englishName, localizedName);
+          }
+          if (!preferEnglishDescriptions && info.text && info.text.length > 0) {
+            textLookup.set(englishName, info.text);
+          }
+        }
+
+        if (nameLookup.size > 0 || textLookup.size > 0) {
+          for (let i = 0; i < jokerTexts.length; i++) {
+            const row = jokerTexts[i];
+            if (!row) continue;
+            for (let j = 0; j < row.length; j++) {
+              const entry = row[j];
+              if (!entry || !entry[0]) continue;
+
+              const originalName = entry[0];
+              const localizedName = nameLookup.get(originalName);
+
+              if (localizedName && localizedName !== originalName) {
+                entry[0] = localizedName;
+                changed = true;
+              }
+
+              // Description Replacement
+              const locText = textLookup.get(originalName); // Look up by original English name
+              if (locText) {
+                let textStr = locText.join('<br>');
+
+                const colorMap = {
+                  attention: '${numc}',
+                  chips: '${chipc}',
+                  blue: '${chipc}',
+                  mult: '${multc}',
+                  red: '${multc}',
+                  money: '${moneyc}',
+                  green: '${probc}',
+                  inactive: '${shadowc}',
+                  white: '${defaultc}',
+                  hearts: '${heartcOpen}',
+                  clubs: '${clubcOpen}',
+                  diamonds: '${diamondcOpen}',
+                  spades: '${spadecOpen}',
+                  tarot: '${tarotcOpen}',
+                  planet: '${planetcOpen}',
+                  spectral: '${spectralcOpen}',
+                  purple: '${purplecOpen}',
+                  legendary: '${moneyc}',
+                  enhanced: '${chipc}',
+                  dark_edition: '${shadowc}',
+                };
+
+                // Markup Mapping
+                textStr = textStr.replace(/\{X:[^}]+\}/g, '${xmultc}');
+                textStr = textStr.replace(/\{[sS]:[^}]*C:([^,}]+)[^}]*\}/g, (match, color) => {
+                  const key = color.toLowerCase();
+                  return colorMap[key] || '${defaultc}';
+                });
+                textStr = textStr.replace(/\{[Cc]:([^,}]+)[^}]*\}/g, (match, color) => {
+                  const key = color.toLowerCase();
+                  return colorMap[key] || '${defaultc}';
+                });
+                textStr = textStr.replace(/\{[sS]:[^}]+\}/g, '');
+                textStr = textStr.replace(/\{[Vv]:[^}]+\}/g, '');
+                textStr = textStr.replace(/\{\}/g, '${endc}');
+
+                // Variables
+                textStr = textStr.replace(/#1#/g, '${jokerValue}');
+                textStr = textStr.replace(/#2#/g, '${typeof jokerValue2 !== "undefined" ? jokerValue2 : 0}');
+                textStr = textStr.replace(/#3#/g, '${typeof jokerValue3 !== "undefined" ? jokerValue3 : 0}');
+                textStr = textStr.replace(/#4#/g, '${typeof jokerValue4 !== "undefined" ? jokerValue4 : 0}');
+                textStr = textStr.replace(/#5#/g, '${typeof jokerValue5 !== "undefined" ? jokerValue5 : 0}');
+
+                if (entry[1] !== textStr) {
+                  entry[1] = textStr;
+                  changed = true;
+                }
+              }
+            }
           }
         }
       }
       return changed;
     } catch (error) {
+      console.error("Localization failed", error);
       return false;
     }
   })();

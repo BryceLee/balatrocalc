@@ -1,0 +1,2355 @@
+{
+  "descriptions": {
+    "Joker": {
+      "j_8_ball": {
+        "name": "8 Ball",
+        "text": [
+          "{C:green}#1# di #2#{} peluang untuk setiap",
+          "8 {C:attention}yang dimainkan{} untuk membuat kartu",
+          "{C:tarot}Tarot{} saat menang",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_abstract": {
+        "name": "Abstract Joker",
+        "text": [
+          "{C:mult}+#1#{} Mult untuk",
+          "setiap kartu {C:attention}Joker{}",
+          "{C:inactive}(Saat ini {C:red}+#2#{C:inactive} Mult)"
+        ]
+      },
+      "j_acrobat": {
+        "name": "Acrobat",
+        "text": [
+          "{X:red,C:white} X#1# {} Mult di {C:attention}final",
+          "{C:attention}hand{} dari babak"
+        ]
+      },
+      "j_ancient": {
+        "name": "Ancient Joker",
+        "text": [
+          "Setiap kartu yang dimainkan dengan",
+          "{V:1}#2#{} rupa memberikan",
+          "{X:mult,C:white} X#1# {} Mult saat menang,",
+          "{s:0.8}rupa berubah di akhir babak"
+        ]
+      },
+      "j_arrowhead": {
+        "name": "Arrowhead",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "rupa {C:spades}Sekop{} memberikan",
+          "{C:chips}+#1#{} Chip saat menang"
+        ]
+      },
+      "j_astronomer": {
+        "name": "Astronomer",
+        "text": [
+          "Semua kartu {C:planet}Planet{} dan",
+          "{C:planet}Celestial Packs{} dalam",
+          "toko itu {C:attention}gratis"
+        ]
+      },
+      "j_banner": {
+        "name": "Banner",
+        "text": [
+          "{C:chips}+#1#{} Chip untuk",
+          "setiap sisa",
+          "{C:attention}discard"
+        ]
+      },
+      "j_baron": {
+        "name": "Baron",
+        "text": [
+          "Setiap {C:attention}King{}",
+          "yang ada di hand",
+          "memberi {X:mult,C:white} X#1# {} Mult"
+        ]
+      },
+      "j_baseball": {
+        "name": "Baseball Card",
+        "text": [
+          "Setiap {C:green}Uncommon{} Joker",
+          "memberikan {X:mult,C:white} X#1# {} Mult"
+        ]
+      },
+      "j_blackboard": {
+        "name": "Blackboard",
+        "text": [
+          "{X:red,C:white} X#1# {} Mult jika semua",
+          "kartu yang ada di hand",
+          "adalah {C:spades}#2#{} atau {C:clubs}#3#{}"
+        ]
+      },
+      "j_bloodstone": {
+        "name": "Bloodstone",
+        "text": [
+          "{C:mult}+#1# dalam #2#{} peluang untuk",
+          "kartu yang dimainkan dengan",
+          "rupa {C:hearts}Hati{} memberikan",
+          "{X:mult,C:white} X#3# {} Mult saat menang,"
+        ]
+      },
+      "j_blue_joker": {
+        "name": "Blue Joker",
+        "text": [
+          "{C:chips}+#1#{} Chip untuk setiap",
+          "kartu yang tersisa di {C:attention}deck",
+          "{C:inactive}(Saat ini {C:chips}+#2#{C:inactive} Chip)"
+        ]
+      },
+      "j_blueprint": {
+        "name": "Blueprint",
+        "text": [
+          "Salin kemampuan dari",
+          "{C:attention}Joker{} ke sebelah kanan"
+        ]
+      },
+      "j_bootstraps": {
+        "name": "Bootstraps",
+        "text": [
+          "{C:mult}+#1#{} Mult untuk setiap",
+          "{C:money}$#2#{} yang kamu miliki",
+          "{C:inactive}(Saat ini {C:mult}+#3#{C:inactive} Mult)"
+        ]
+      },
+      "j_brainstorm": {
+        "name": "Brainstorm",
+        "text": [
+          "Menyalin kemampuan",
+          "dari {C:attention}Joker paling kiri"
+        ]
+      },
+      "j_bull": {
+        "name": "Bull",
+        "text": [
+          "{C:chips}+#1#{} Chip untuk",
+          "setiap {C:money}$1{} yang dimiliki",
+          "{C:inactive}(Saat ini {C:chips}+#2#{C:inactive} Chip)"
+        ]
+      },
+      "j_burglar": {
+        "name": "Burglar",
+        "text": [
+          "Ketika {C:attention}Blind{} dipilih,",
+          "memperoleh {C:blue}+#1#{} Hand dan",
+          "{C:attention}kehilangan semua discard"
+        ]
+      },
+      "j_burnt": {
+        "name": "Burnt Joker",
+        "text": [
+          "Upgrade level dari",
+          "poker hand pertama {C:attention}yang dibuang",
+          "setiap babak"
+        ]
+      },
+      "j_business": {
+        "name": "Business Card",
+        "text": [
+          "Face {C:attention}card{} yang dimainkan memiliki",
+          "sebuah {C:green}#1# dalam #2#{} peluang untuk",
+          "memberikan {C:money}$2{} saat menang"
+        ]
+      },
+      "j_caino": {
+        "name": "Canio",
+        "text": [
+          "Joker ini mendapatkan {X:mult,C:white} X#1# {} Mult",
+          "jika {C:attention}face{} card",
+          "dihancurkan",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_campfire": {
+        "name": "Campfire",
+        "text": [
+          "Joker ini memperoleh {X:mult,C:white}X#1#{} Mult",
+          "untuk setiap kartu {C:attention}yang dijual{}, mengatur ulang",
+          "ketika {C:attention}Boss Blind{} dikalahkan",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_card_sharp": {
+        "name": "Card Sharp",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika",
+          "{C:attention}poker hand{} yang telah",
+          "dimainkan pada babak ini"
+        ]
+      },
+      "j_cartomancer": {
+        "name": "Cartomancer",
+        "text": [
+          "Memunculkan sebuah kartu {C:tarot}Tarot{}",
+          "ketika {C:attention}Blind{} dipilih",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_castle": {
+        "name": "Castle",
+        "text": [
+          "Joker ini memperoleh {C:chips}+#1#{} Chip",
+          "setiap kartu {V:1}#2#{} yang dibuang,",
+          "rupa berubah setiap babak",
+          "{C:inactive}(Saat ini {C:chips}+#3#{C:inactive} Chip)"
+        ]
+      },
+      "j_cavendish": {
+        "name": "Cavendish",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult",
+          "{C:green}#2# dalam #3#{} peluang kartu",
+          "ini dihancurkan",
+          "di akhir babak"
+        ]
+      },
+      "j_ceremonial": {
+        "name": "Ceremonial Dagger",
+        "text": [
+          "Ketika {C:attention}Blind{} dipilih,",
+          "menghancurkan Joker ke sebelah kanan",
+          "dan secara permanen {C:attention}menggandakan",
+          "nilai jualnya ke Mult {C:red}ini",
+          "{C:inactive}(Saat ini {C:mult}+#1#{C:inactive} Mult)"
+        ]
+      },
+      "j_certificate": {
+        "name": "Certificate",
+        "text": [
+          "Saat babak dimulai,",
+          "tambahkan sebuah {C:attention}acak memainkan",
+          "{C:attention}kartu{} dengan acak",
+          "{C:attention}seal{} ke hand Anda"
+        ]
+      },
+      "j_chaos": {
+        "name": "Chaos the Clown",
+        "text": [
+          "{C:attention}#1#{} Reroll {C:green}gratis",
+          "per toko"
+        ]
+      },
+      "j_chicot": {
+        "name": "Chicot",
+        "text": [
+          "Nonaktifkan efek dari",
+          "setiap {C:attention}Boss Blind"
+        ]
+      },
+      "j_clever": {
+        "name": "Clever Joker",
+        "text": [
+          "{C:chips}+#1#{} Chip jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_cloud_9": {
+        "name": "Cloud 9",
+        "text": [
+          "Dapatkan {C:money}$#1#{} untuk setiap",
+          "{C:attention}9{} di deck {C:attention}lengkap Anda",
+          "di akhir babak",
+          "{C:inactive}(Saat ini {C:money}$#2#{}{C:inactive})"
+        ]
+      },
+      "j_constellation": {
+        "name": "Constellation",
+        "text": [
+          "Joker ini mendapatkan",
+          "{X:mult,C:white} X#1# {} Mult setiap kali",
+          "kartu {C:planet}Planet{} digunakan",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_crafty": {
+        "name": "Crafty Joker",
+        "text": [
+          "{C:chips}+#1#{} Chip jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_crazy": {
+        "name": "Crazy Joker",
+        "text": [
+          "{C:red}+#1#{} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_credit_card": {
+        "name": "Credit Card",
+        "text": [
+          "Tingkatkan ke",
+          "{C:red}-$#1#{} berutang"
+        ]
+      },
+      "j_delayed_grat": {
+        "name": "Delayed Gratification",
+        "text": [
+          "Dapatkan {C:money}$#1#{} per {C:attention}discard{} jika",
+          "tidak ada discard yang dipakai",
+          "pada akhir babak"
+        ]
+      },
+      "j_devious": {
+        "name": "Devious Joker",
+        "text": [
+          "{C:chips}+#1#{} Chip jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_diet_cola": {
+        "name": "Diet Cola",
+        "text": [
+          "Jual kartu ini untuk",
+          "membuat sebuah",
+          "{C:attention}#1# gratis"
+        ]
+      },
+      "j_dna": {
+        "name": "DNA",
+        "text": [
+          "Jika {C:attention}hand pertama{} dari babak",
+          "hanya memiliki {C:attention}1{} kartu, tambahkan",
+          "salinan permanen ke deck",
+          "dan ambil ke {C:attention}hand"
+        ]
+      },
+      "j_drivers_license": {
+        "name": "Driver",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika Anda",
+          "memiliki setidaknya {C:attention}16",
+          "kartu enhanced",
+          "{C:inactive}(Saat ini {C:attention}#2#{C:inactive})"
+        ]
+      },
+      "j_droll": {
+        "name": "Droll Joker",
+        "text": [
+          "{C:red}+#1#{} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_drunkard": {
+        "name": "Drunkard",
+        "text": [
+          "{C:red}+#1#{} discard",
+          "tiap babak"
+        ]
+      },
+      "j_duo": {
+        "name": "The Idol",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_dusk": {
+        "name": "Dusk",
+        "text": [
+          "Picu lagi semua kartu",
+          "kartu di {C:attention}final",
+          "{C:attention}hand{} dari babak"
+        ]
+      },
+      "j_egg": {
+        "name": "Egg",
+        "text": [
+          "Memperoleh {C:money}$#1#{} dari",
+          "{C:attention}nilai jual{} di",
+          "akhir babak"
+        ]
+      },
+      "j_erosion": {
+        "name": "Erosion",
+        "text": [
+          "{C:red}+#1#{} Mult untuk setiap",
+          "kartu di bawah {C:attention}#3#{}",
+          "di deck lengkap Anda",
+          "{C:inactive}(Saat ini {C:red}+#2#{C:inactive} Mult)"
+        ]
+      },
+      "j_even_steven": {
+        "name": "Even Steven",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "peringkat {C:attention}genap{} memberikan",
+          "{C:mult}+#1#{} Mult saat menang",
+          "{C:inactive}(10, 8, 6, 4, 2)"
+        ]
+      },
+      "j_faceless": {
+        "name": "Faceless Joker",
+        "text": [
+          "Dapatkan {C:money}$#1#{} jika {C:attention}#2#{} atau",
+          "lebih banyak {C:attention}kartu wajah{}",
+          "yang dibuang",
+          "pada saat bersamaan"
+        ]
+      },
+      "j_family": {
+        "name": "The Family",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_fibonacci": {
+        "name": "Fibonacci",
+        "text": [
+          "Setiap {C:attention}As{} yang dimainkan,",
+          "{C:attention}2{}, {C:attention}3{}, {C:attention}5{}, atau {C:attention}8{} memberikan",
+          "{C:mult}+#1#{} Mult saat menang"
+        ]
+      },
+      "j_flash": {
+        "name": "Flash Card",
+        "text": [
+          "Joker ini mendapatkan {C:mult}+#1#{} Mult",
+          "tiap {C:attention}reroll{} di toko ",
+          "{C:inactive}(Saat ini {C:mult}+#2#{C:inactive} Mult)"
+        ]
+      },
+      "j_flower_pot": {
+        "name": "Flower Pot",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika poker",
+          "hand berisi",
+          "{C:diamonds}Diamond{} card, {C:clubs}Club{} card,",
+          "{C:hearts}Heart{} card, dan {C:spades}Spade{} card"
+        ]
+      },
+      "j_fortune_teller": {
+        "name": "Fortune Teller",
+        "text": [
+          "{C:red}+#1#{} Mult per",
+          "kartu {C:purple}Tarot{} dipakai",
+          "{C:inactive}(Saat ini {C:red}+#2#{C:inactive})"
+        ]
+      },
+      "j_four_fingers": {
+        "name": "Four Fingers",
+        "text": [
+          "Semua {C:attention}Flush{} dan",
+          "{C:attention}Straight{} bisa",
+          "dilakukan dengan {C:attention}4{} kartu"
+        ]
+      },
+      "j_gift": {
+        "name": "Gift Card",
+        "text": [
+          "Menambah {C:money}$#1#{} dari {C:attention}nilai jual",
+          "ke setiap kartu {C:attention}Joker{} dan",
+          "{C:attention}Habis Pakai{} di",
+          "akhir babak"
+        ]
+      },
+      "j_glass": {
+        "name": "Glass Joker",
+        "text": [
+          "Joker ini mendapatkan {X:mult,C:white} X#1# {} Mult",
+          "untuk setiap {C:attention}Glass Card",
+          "yang dihancurkan",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_gluttenous_joker": {
+        "name": "Gluttonous Joker",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "{C:clubs}#2#{} rupa memberikan",
+          "{C:mult}+#1#{} Mult saat menang"
+        ]
+      },
+      "j_golden": {
+        "name": "Golden Joker",
+        "text": [
+          "Dapatkan {C:money}$#1#{} di",
+          "akhir babak"
+        ]
+      },
+      "j_greedy_joker": {
+        "name": "Greedy Joker",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "{C:diamonds}#2#{} rupa memberikan",
+          "{C:mult}+#1#{} Mult saat menang"
+        ]
+      },
+      "j_green_joker": {
+        "name": "Green Joker",
+        "text": [
+          "{C:mult}+#1#{} Mult per hand yang dimainkan",
+          "{C:mult}-#2#{} Mult per discard",
+          "{C:inactive}(Saat ini {C:mult}+#3#{C:inactive} Mult)"
+        ]
+      },
+      "j_gros_michel": {
+        "name": "Gros Michel",
+        "text": [
+          "{C:mult}+#1#{} Mult",
+          "{C:green}#2# dalam #3#{} peluang kartu",
+          "ini dihancurkan",
+          "di akhir babak"
+        ]
+      },
+      "j_hack": {
+        "name": "Impostor",
+        "text": [
+          "Picu lagi",
+          "setiap dimainkan",
+          "{C:attention}2{}, {C:attention}3{}, {C:attention}4{}, atau {C:attention}5{}"
+        ]
+      },
+      "j_half": {
+        "name": "Half Joker",
+        "text": [
+          "{C:red}+#1#{} Mult jika hand",
+          "yang dimainkan berisi",
+          "{C:attention}#2#{} atau kartu lebih sedikit"
+        ]
+      },
+      "j_hallucination": {
+        "name": "Hallucination",
+        "text": [
+          "{C:green}#1# dalam #2#{} peluang untuk membuat",
+          "sebuah kartu {C:tarot}Tarot{} ketika",
+          "{C:attention}Booster Pack{} dibuka",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_hanging_chad": {
+        "name": "Hanging Chad",
+        "text": [
+          "Picu lagi {C:attention}kartu pertama{} yang dimainkan",
+          "yang digunakan dalam memenangkan",
+          "{C:attention}#1#{} kali tambahan"
+        ]
+      },
+      "j_hiker": {
+        "name": "Hiker",
+        "text": [
+          "Setiap {C:attention}card{} yang dimainkan",
+          "secara permanen memperoleh",
+          "{C:chips}+#1#{} Chip saat menang"
+        ]
+      },
+      "j_hit_the_road": {
+        "name": "Hit the Road",
+        "text": [
+          "Joker ini mendapatkan {X:mult,C:white} X#1# {} Mult",
+          "untuk setiap {C:attention}Jack{}",
+          "yang dibuang di babak ini",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_hologram": {
+        "name": "Hologram",
+        "text": [
+          "Joker ini mendapatkan {X:mult,C:white} X#1# {} Mult",
+          "setiap kali {C:attention}kartu yang dimainkan{}",
+          "ditambahkan ke deck kamu",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_ice_cream": {
+        "name": "Ice Cream",
+        "text": [
+          "{C:chips}+#1#{} Chip",
+          "{C:chips}-#2#{} Chip untuk",
+          "setiap hand yang dimainkan"
+        ]
+      },
+      "j_idol": {
+        "name": "The Idol",
+        "text": [
+          "Setiap {C:attention}#2# yang dimainkan",
+          "dari {V:1}#3#{} memberikan",
+          "{X:mult,C:white} X#1# {} Mult saat menang",
+          "{s:0.8}Kartu berubah setiap babak"
+        ]
+      },
+      "j_invisible": {
+        "name": "Invisible Joker",
+        "text": [
+          "Setelah {C:attention}#1#{} babak,",
+          "jual kartu ini untuk",
+          "{C:attention}Duplicate{} Joker secara acak",
+          "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)"
+        ]
+      },
+      "j_joker": {
+        "name": "Joker",
+        "text": [
+          "{C:red,s:1.1}+#1#{} Mult"
+        ]
+      },
+      "j_jolly": {
+        "name": "Jolly Joker",
+        "text": [
+          "{C:red}+#1#{} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_juggler": {
+        "name": "Juggler",
+        "text": [
+          "{C:attention}+#1#{} ukuran hand"
+        ]
+      },
+      "j_loyalty_card": {
+        "name": "Loyalty Card",
+        "text": [
+          "{X:red,C:white} X#1# {} Mult setiap",
+          "{C:attention}#2#{} hand yang dimainkan",
+          "{C:inactive}#3#"
+        ]
+      },
+      "j_luchador": {
+        "name": "Luchador",
+        "text": [
+          "Jual kartu ini untuk",
+          "menonaktifkan",
+          "{C:attention}Boss Blind{} saat ini"
+        ]
+      },
+      "j_lucky_cat": {
+        "name": "Lucky Card",
+        "text": [
+          "Joker ini mendapatkan {X:mult,C:white} X#1# {} Mult",
+          "setiap kali {C:attention}Lucky{} card",
+          "{C:green}sukses{} terpicu",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_lusty_joker": {
+        "name": "Lusty Joker",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "{C:hearts}#2#{} rupa memberikan",
+          "{C:mult}+#1#{} Mult saat menang"
+        ]
+      },
+      "j_mad": {
+        "name": "Mad Joker",
+        "text": [
+          "{C:red}+#1#{} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_madness": {
+        "name": "Madness",
+        "text": [
+          "Jika {C:attention}Small Blind{} atau {C:attention}Big Blind{}",
+          "dipilih, akan didapat {X:mult,C:white} X#1# {} Mult",
+          "dan {C:attention}menghancurkan{} Joker acak",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_mail": {
+        "name": "Mail-In Rebate",
+        "text": [
+          "Dapatkan {C:money}$#1#{} untuk setiap",
+          "{C:attention}#2#{} yang dibuang, peringkat",
+          "berubah setiap babak"
+        ]
+      },
+      "j_marble": {
+        "name": "Marble Joker",
+        "text": [
+          "Menambah satu kartu {C:attention}Stone{}",
+          "ke deck saat",
+          "{C:attention}Blind{} dipilih"
+        ]
+      },
+      "j_matador": {
+        "name": "Matador",
+        "text": [
+          "Dapatkan {C:money}$#1#{} jika memainkan",
+          "hand memicu",
+          "kemampuan {C:attention}Boss Blind{}"
+        ]
+      },
+      "j_merry_andy": {
+        "name": "Merry Andy",
+        "text": [
+          "{C:red}+#1#{} membuang",
+          "setiap babak,",
+          "{C:red}#2#{} ukuran hand"
+        ]
+      },
+      "j_midas_mask": {
+        "name": "Midas Mask",
+        "text": [
+          "Semua kartu {C:attention}wajah{} yang dimainkan",
+          "menjadi {C:attention}kartu{} Gold",
+          "jika mendapatkan skor"
+        ]
+      },
+      "j_mime": {
+        "name": "Mime",
+        "text": [
+          "Picu lagi semua",
+          "kartu yang {C:attention}disimpan dalam",
+          "kemampuan {C:attention}hand{}"
+        ]
+      },
+      "j_misprint": {
+        "name": "Misprint",
+        "text": [
+          ""
+        ]
+      },
+      "j_mr_bones": {
+        "name": "Mr. Bones",
+        "text": [
+          "Prevents Death",
+          "jika chip yang didapat",
+          "paling sedikit {C:attention}25%",
+          "dari chip yang diperlukan",
+          "{S:1.1,C:red,E:2}penghancuran diri{}"
+        ]
+      },
+      "j_mystic_summit": {
+        "name": "Mystic Summit",
+        "text": [
+          "{C:mult}+#1#{} Mult ketika",
+          "{C:attention}#2#{} discard",
+          "sisa"
+        ]
+      },
+      "j_obelisk": {
+        "name": "Obelisk",
+        "text": [
+          "Joker ini memperoleh {X:mult,C:white} X#1# {} Mult",
+          "per hand yang {C:attention}berturut-turut{} dimainkan",
+          "tanpa memainkan",
+          "{C:attention}poker hand",
+          "{C:inactive}yang paling sering dimainkan (Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_odd_todd": {
+        "name": "Odd Todd",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "peringkat {C:attention}ganjil{} memberikan",
+          "{C:chips}+#1#{} Chip saat menang",
+          "{C:inactive}(A, 9, 7, 5, 3)"
+        ]
+      },
+      "j_onyx_agate": {
+        "name": "Onyx Agate",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "rupa {C:clubs}Club{} memberikan",
+          "{C:mult}+#1#{} Mult saat menang"
+        ]
+      },
+      "j_oops": {
+        "name": "Oops! All 6s",
+        "text": [
+          "Menggandakan semua {C:attention}yang terdaftar",
+          "{C:green,E:1,S:1.1}probabilitas",
+          "{C:inactive}(mis.: {C:green}1 in 3{C:inactive} -> {C:green}2 in 3{C:inactive})"
+        ]
+      },
+      "j_order": {
+        "name": "The Order",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_pareidolia": {
+        "name": "Pareidolia",
+        "text": [
+          "Semua kartu",
+          "dianggap",
+          "{C:attention}Kartu{} Wajah"
+        ]
+      },
+      "j_perkeo": {
+        "name": "Perkeo",
+        "text": [
+          "Memunculkan sebuah salinan {C:dark_edition}Negatif{} dari",
+          "{C:attention}1{} kartu {C:attention}habis pakai{} secara acak",
+          "yang Anda miliki",
+          "di akhir dari {C:attention}toko"
+        ]
+      },
+      "j_photograph": {
+        "name": "Photograph",
+        "text": [
+          "Face card {C:attention}pertama",
+          "yang dimainkan memberi {X:mult,C:white} X#1# {} Mult",
+          "saat menang"
+        ]
+      },
+      "j_popcorn": {
+        "name": "Popcorn",
+        "text": [
+          "{C:mult}+#1#{} Mult",
+          "{C:mult}-#2#{} Mult setiap",
+          "babak yang dimainkan"
+        ]
+      },
+      "j_raised_fist": {
+        "name": "Raised Fist",
+        "text": [
+          "Menambahkan {C:attention}dua kali{} peringkat",
+          "dari {C:attention}kartu{} dengan peringkat terendah",
+          "yang ada di hand untuk Mult"
+        ]
+      },
+      "j_ramen": {
+        "name": "Ramen",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult,",
+          "kehilangan {X:mult,C:white} X#2# {} Mult",
+          "setiap {C:attention}kartu{} yang dibuang"
+        ]
+      },
+      "j_red_card": {
+        "name": "Red Card",
+        "text": [
+          "Joker ini mendapatkan",
+          "{C:red}+#1#{} Mult jika ada",
+          "{C:attention}Booster Pack{} yang dilewati",
+          "{C:inactive}(Saat ini {C:red}+#2#{C:inactive} Mult)"
+        ]
+      },
+      "j_reserved_parking": {
+        "name": "Reserved Parking",
+        "text": [
+          "Setiap {C:attention}kartu{} wajah",
+          "yang ada di hand memiliki",
+          "sebuah peluang {C:green}#2# dalam #3#{}",
+          "memberi {C:money}$#1#{}"
+        ]
+      },
+      "j_ride_the_bus": {
+        "name": "Ride the Bus",
+        "text": [
+          "Joker ini memperoleh {C:mult}+#1#{} Mult",
+          "per {C:attention}hand{} yang dimainkan",
+          "berturut-turut tanpa",
+          "mencetak skor {C:attention}face{} card",
+          "{C:inactive}(Saat ini {C:mult}+#2#{C:inactive} Mult)"
+        ]
+      },
+      "j_riff_raff": {
+        "name": "Riff-raff",
+        "text": [
+          "Ketika {C:attention}Blind{} dipilih,",
+          "memunculkan {C:attention}#1# {C:blue}Common{C:attention} Joker",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_ring_master": {
+        "name": "Ring Master",
+        "text": [
+          "kartu {C:attention}Joker{}, {C:tarot}Tarot{}, {C:planet}Planet{}",
+          "dan {C:spectral}Spectral{} dapat",
+          "muncul berkali-kali"
+        ]
+      },
+      "j_rocket": {
+        "name": "Rocket",
+        "text": [
+          "Perolehan {C:money}$#1#{} di akhir babak",
+          "Payout meningkat sebesar {C:money}$#2#{}",
+          "jika {C:attention}Boss Blind{} dikalahkan"
+        ]
+      },
+      "j_rough_gem": {
+        "name": "Rough Gem",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "rupa {C:diamonds}Wajik{} mendapatkan",
+          "{C:money}$#1#{} saat menang"
+        ]
+      },
+      "j_runner": {
+        "name": "Runner",
+        "text": [
+          "Memperoleh {C:chips}+#2#{} Chip",
+          "jika hand yang dimainkan",
+          "berisi sebuah {C:attention}Straight{}",
+          "{C:inactive}(Saat ini {C:chips}+#1#{C:inactive} Chip)"
+        ]
+      },
+      "j_satellite": {
+        "name": "Satellite",
+        "text": [
+          "Dapatkan {C:money}$#1#{} di akhir",
+          "babak per {C:planet}Planet unik",
+          "kartu yang dipakai pada giliran ini",
+          "{C:inactive}(Saat ini {C:money}$#2#{C:inactive})"
+        ]
+      },
+      "j_scary_face": {
+        "name": "Scary Face",
+        "text": [
+          "Face {C:attention}card{} yang dimainkan",
+          "memberikan {C:chips}+#1#{} Chip",
+          "saat menang"
+        ]
+      },
+      "j_scholar": {
+        "name": "Scholar",
+        "text": [
+          "Setiap {C:attention}As{} yang dimainkan",
+          "memberi {C:chips}+#2#{} Chip",
+          "and {C:mult}+#1#{} Mult",
+          "saat menang"
+        ]
+      },
+      "j_seance": {
+        "name": "Séance",
+        "text": [
+          "Jika {C:attention}poker hand{} adalah sebuah",
+          "{C:attention}#1#{}, memunculkan sebuah",
+          "kartu {C:spectral}Spectral{} secara acak",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_seeing_double": {
+        "name": "Seeing Double",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika hand",
+          "yang dimainkan memiliki sebuah kemenangan",
+          "kartu{C:clubs}Keriting{} dan kartu",
+          "yang menang dari rupa {C:attention}lainnya"
+        ]
+      },
+      "j_selzer": {
+        "name": "Seltzer",
+        "text": [
+          "Memicu lagi semua",
+          "kartu yang dimainkan untuk",
+          "hand {C:attention}#1#{} berikutnya"
+        ]
+      },
+      "j_shoot_the_moon": {
+        "name": "Shoot the Moon",
+        "text": [
+          "Setiap {C:attention}Queen{}",
+          "yang ada di hand",
+          "memberikan {C:mult}+#1#{} Mult"
+        ]
+      },
+      "j_shortcut": {
+        "name": "Shortcut",
+        "text": [
+          "Memungkinkan {C:attention}Straight{} agar",
+          "dibuat dengan selisih {C:attention}1 peringkat",
+          "{C:inactive}(misalnya: {C:attention}10 8 6 5 3{C:inactive})"
+        ]
+      },
+      "j_sixth_sense": {
+        "name": "Sixth Sense",
+        "text": [
+          "Jika {C:attention}hand pertama{} dari babak ini adalah",
+          "sebuah {C:attention}6{}, menghancurkannya dan",
+          "memunculkan sebuah kartu {C:spectral}Spectral{}",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_sly": {
+        "name": "Sly Joker",
+        "text": [
+          "{C:chips}+#1#{} Chip jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_smeared": {
+        "name": "Smeared Joker",
+        "text": [
+          "{C:hearts}Hati{} dan {C:diamonds}Wajik",
+          "dianggap sebagai rupa yang sama,",
+          "{C:spades}Sekop{} dan {C:clubs}Keriting",
+          "dianggap sebagai rupa yang sama"
+        ]
+      },
+      "j_smiley": {
+        "name": "Smiley Face",
+        "text": [
+          "Kartu {C:attention}wajah{} yang dimainkan",
+          "memberi {C:mult}+#1#{} Mult",
+          "saat menang"
+        ]
+      },
+      "j_sock_and_buskin": {
+        "name": "Sock and Buskin",
+        "text": [
+          "Picu lagi semua",
+          "face {C:attention}card{} yang dimainkan"
+        ]
+      },
+      "j_space": {
+        "name": "Space Joker",
+        "text": [
+          "{C:green}#1# dalam #2#{} peluang untuk",
+          "upgrade level dari",
+          "{C:attention}poker hand{} yang dimainkan"
+        ]
+      },
+      "j_splash": {
+        "name": "Splash",
+        "text": [
+          "Setiap {C:attention}kartu yang dimainkan",
+          "dihitung dalam kemenangan"
+        ]
+      },
+      "j_square": {
+        "name": "Square Joker",
+        "text": [
+          "Joker ini mendapatkan {C:chips}+#2#{} Chip",
+          "jika hand yang dimainkan memiliki",
+          "tepat {C:attention}4{} kartu",
+          "{C:inactive}(Saat ini {C:chips}#1#{C:inactive} Chip)"
+        ]
+      },
+      "j_steel_joker": {
+        "name": "Steel Joker",
+        "text": [
+          "Memberikan {X:mult,C:white} X#1# {} Mult",
+          "untuk setiap {C:attention}Steel Card",
+          "di {C:attention}deck lengkap kamu",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_stencil": {
+        "name": "Joker Stencil",
+        "text": [
+          "{X:red,C:white} X1 {} Mult untuk setiap",
+          "slot {C:attention}Joker{} yang kosong",
+          "{s:0.8}termasuk Joker Stencil",
+          "{C:inactive}(Saat ini {X:red,C:white} X#1# {C:inactive})"
+        ]
+      },
+      "j_stone": {
+        "name": "Stone Joker",
+        "text": [
+          "Memberikan {C:chips}+#1#{} Chip untuk",
+          "setiap {C:attention}Stone Card",
+          "di {C:attention}deck lengkap kamu",
+          "{C:inactive}(Saat ini {C:chips}+#2#{C:inactive} Chip)"
+        ]
+      },
+      "j_stuntman": {
+        "name": "Stuntman",
+        "text": [
+          "{C:chips}+#1#{} Chip,",
+          "{C:attention}-#2#{} ukuran hand"
+        ]
+      },
+      "j_supernova": {
+        "name": "Supernova",
+        "text": [
+          "Menambahkan berapa kali",
+          "{C:attention}poker hand{} telah",
+          "memainkan giliran ini ke Mult"
+        ]
+      },
+      "j_superposition": {
+        "name": "Superposition",
+        "text": [
+          "Memunculkan sebuah kartu {C:tarot}Tarot{} jika",
+          "poker hand berisi sebuah",
+          "{C:attention}As{} dan sebuah {C:attention}Straight{}",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "j_swashbuckler": {
+        "name": "Swashbuckler",
+        "text": [
+          "Menambah nilai jual",
+          "semua",
+          "{C:attention}Joker{} lain yang dimiliki ke Mult",
+          "{C:inactive}(Saat ini {C:mult}+#1#{C:inactive} Mult)"
+        ]
+      },
+      "j_throwback": {
+        "name": "Throwback",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult untuk setiap",
+          "{C:attention}Blind{} yang dilewati pada giliran ini",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_ticket": {
+        "name": "Golden Ticket",
+        "text": [
+          "Kartu {C:attention}Gold{} yang dimainkan",
+          "mendapatkan {C:money}$#1#{} saat menang"
+        ]
+      },
+      "j_to_the_moon": {
+        "name": "To the Moon",
+        "text": [
+          "Dapatkan ekstra {C:money}$#1#{} dari",
+          "{C:attention}keuntungan{} untuk setiap {C:money}$5{} yang Anda",
+          "miliki di akhir babak"
+        ]
+      },
+      "j_todo_list": {
+        "name": "To Do List",
+        "text": [
+          "Dapatkan {C:money}$#1#{} jika {C:attention}poker hand{}",
+          "merupakan {C:attention}#2#{},",
+          "poker hand berubah",
+          "di akhir babak"
+        ]
+      },
+      "j_trading": {
+        "name": "Trading Card",
+        "text": [
+          "Jika {C:attention}discard pertama{} dari babak",
+          "hanya memiliki {C:attention}1{} kartu, hancurkanlah",
+          "dan dapatkan {C:money}$#1#"
+        ]
+      },
+      "j_tribe": {
+        "name": "The Tribe",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_triboulet": {
+        "name": "Triboulet",
+        "text": [
+          "{C:attention}King{} dan",
+          "{C:attention}Queen{} yang dimainkan memberi",
+          "{X:mult,C:white} X#1# {} Mult saat menang,"
+        ]
+      },
+      "j_trio": {
+        "name": "The Trio",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_troubadour": {
+        "name": "Troubadour",
+        "text": [
+          "{C:attention}+#1#{} ukuran hand,",
+          "{C:blue}-#2#{} hand setiap babak"
+        ]
+      },
+      "j_trousers": {
+        "name": "Spare Trousers",
+        "text": [
+          "Joker ini mendapatkan {C:mult}+#1#{} Mult",
+          "jika hand yang dimainkan berisi",
+          "satu {C:attention}#2#",
+          "{C:inactive}(Saat ini {C:red}+#3#{C:inactive} Mult)"
+        ]
+      },
+      "j_turtle_bean": {
+        "name": "Turtle Bean",
+        "text": [
+          "{C:attention}+#1#{} ukuran hand,",
+          "berkurang sebanyak",
+          "{C:red}#2#{} setiap babak"
+        ]
+      },
+      "j_vagabond": {
+        "name": "Vagabond",
+        "text": [
+          "Buat sebuah kartu {C:purple}Tarot{}",
+          "jika hand dimainkan",
+          "dengan {C:money}$#1#{} atau kurang"
+        ]
+      },
+      "j_vampire": {
+        "name": "Vampire",
+        "text": [
+          "Joker ini mendapatkan {X:mult,C:white} X#1# {} Mult",
+          "tiap mencetak skor {C:attention}Peningkatan kartu{} yang dimainkan,",
+          "membuang {C:attention}Enhancement",
+          "{C:inactive}kartu (Saat ini {X:mult,C:white} X#2# {C:inactive} Mult)"
+        ]
+      },
+      "j_walkie_talkie": {
+        "name": "Walkie Talkie",
+        "text": [
+          "Setiap {C:attention}10{} atau {C:attention}4 yang dimainkan",
+          "memberi {C:chips}+#1#{} Chip dan",
+          "{C:mult}+#2#{} Mult saat menang"
+        ]
+      },
+      "j_wee": {
+        "name": "Wee Joker",
+        "text": [
+          "Joker ini memperoleh",
+          "{C:chips}+#2#{} Chip ketika setiap",
+          "{C:attention}2{} yang dimainkan menang",
+          "{C:inactive}(Saat ini {C:chips}+#1#{C:inactive} Chip)"
+        ]
+      },
+      "j_wily": {
+        "name": "Wily Joker",
+        "text": [
+          "{C:chips}+#1#{} Chip jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      },
+      "j_wrathful_joker": {
+        "name": "Wrathful Joker",
+        "text": [
+          "Kartu yang dimainkan dengan",
+          "{C:spades}#2#{} rupa memberikan",
+          "{C:mult}+#1#{} Mult saat menang"
+        ]
+      },
+      "j_yorick": {
+        "name": "Yorick",
+        "text": [
+          "Joker ini mendapatkan",
+          "{X:mult,C:white} X#1# {} Mult setiap {C:attention}#2#{C:inactive} [#3#]{}",
+          "kartu dibuang",
+          "{C:inactive}(Saat ini {X:mult,C:white} X#4# {C:inactive} Mult)"
+        ]
+      },
+      "j_zany": {
+        "name": "Zany Joker",
+        "text": [
+          "{C:red}+#1#{} Mult jika hand",
+          "yang dimainkan berisi",
+          "sebuah {C:attention}#2#"
+        ]
+      }
+    },
+    "Blind": {
+      "bl_arm": {
+        "name": "The Arm",
+        "text": [
+          "Turunkan level",
+          "poker hand yang dimainkan"
+        ]
+      },
+      "bl_big": {
+        "name": "Big Blind",
+        "text": []
+      },
+      "bl_club": {
+        "name": "The Club",
+        "text": [
+          "Semua kartu Keriting",
+          "di-debuff"
+        ]
+      },
+      "bl_eye": {
+        "name": "The Eye",
+        "text": [
+          "Tidak ada jenis",
+          "repeat hand pada babak ini"
+        ]
+      },
+      "bl_final_acorn": {
+        "name": "Amber Acorn",
+        "text": [
+          "Balik dan kocok",
+          "semua kartu Joker"
+        ]
+      },
+      "bl_final_bell": {
+        "name": "Cerulean Bell",
+        "text": [
+          "Memaksakan 1 kartu pada",
+          "kartu yang selalu dipilih"
+        ]
+      },
+      "bl_final_heart": {
+        "name": "Crimson Heart",
+        "text": [
+          "Sebuah Joker secara acak",
+          "dinonaktifkan setiap hand"
+        ]
+      },
+      "bl_final_leaf": {
+        "name": "Verdant Leaf",
+        "text": [
+          "Semua kartu di-debuff",
+          "hingga 1 Joker dijual"
+        ]
+      },
+      "bl_final_vessel": {
+        "name": "Violet Vessel",
+        "text": [
+          "Blind sangat besar"
+        ]
+      },
+      "bl_fish": {
+        "name": "The Fish",
+        "text": [
+          "Kartu yang ditarik menghadap ke bawah",
+          "setelah setiap hand dimainkan"
+        ]
+      },
+      "bl_flint": {
+        "name": "The Flint",
+        "text": [
+          "Base Chip dan",
+          "Mult dibagi dua"
+        ]
+      },
+      "bl_goad": {
+        "name": "The Goad",
+        "text": [
+          "Semua kartu Sekop",
+          "di-debuff"
+        ]
+      },
+      "bl_head": {
+        "name": "The Head",
+        "text": [
+          "Semua kartu Hati",
+          "di-debuff"
+        ]
+      },
+      "bl_hook": {
+        "name": "The Hook",
+        "text": [
+          "Membuang 2 kartu secara",
+          "acak per hand yang dimainkan"
+        ]
+      },
+      "bl_house": {
+        "name": "The House",
+        "text": [
+          "Hand pertama adalah",
+          "ditarik menghadap ke bawah"
+        ]
+      },
+      "bl_manacle": {
+        "name": "The Manacle",
+        "text": [
+          "-1 Ukuran Hand"
+        ]
+      },
+      "bl_mark": {
+        "name": "The Mark",
+        "text": [
+          "Semua kartu wajah",
+          "ditarik menghadap ke bawah"
+        ]
+      },
+      "bl_mouth": {
+        "name": "The Mouth",
+        "text": [
+          "Mainkan 1 jenis hand",
+          "saja pada babak ini"
+        ]
+      },
+      "bl_needle": {
+        "name": "The Needle",
+        "text": [
+          "Mainkan 1 hand saja"
+        ]
+      },
+      "bl_ox": {
+        "name": "The Ox",
+        "text": [
+          "Memainkan sebuah #1#",
+          "membuat uang hingga $0"
+        ]
+      },
+      "bl_pillar": {
+        "name": "The Pillar",
+        "text": [
+          "Kartu yang dimainkan sebelumnya",
+          "sebelum Ante ini di-debuff"
+        ]
+      },
+      "bl_plant": {
+        "name": "The Plant",
+        "text": [
+          "Semua kartu wajah",
+          "di-debuff"
+        ]
+      },
+      "bl_psychic": {
+        "name": "The Psychic",
+        "text": [
+          "Harus memainkan 5 kartu"
+        ]
+      },
+      "bl_serpent": {
+        "name": "The Serpent",
+        "text": [
+          "Setelah Bermain atau Membuang,",
+          "harus menarik 3 kartu"
+        ]
+      },
+      "bl_small": {
+        "name": "Small Blind",
+        "text": []
+      },
+      "bl_tooth": {
+        "name": "The Tooth",
+        "text": [
+          "Kehilangan $1 per",
+          "kartu yang dimainkan"
+        ]
+      },
+      "bl_wall": {
+        "name": "The Wall",
+        "text": [
+          "Blind ekstra besar"
+        ]
+      },
+      "bl_water": {
+        "name": "The Water",
+        "text": [
+          "Mulai dengan",
+          "0 discard"
+        ]
+      },
+      "bl_wheel": {
+        "name": "The Wheel",
+        "text": [
+          " dalam 7 kartu menarik",
+          "ditarik menghadap ke bawah"
+        ]
+      },
+      "bl_window": {
+        "name": "The Window",
+        "text": [
+          "Semua kartu Hati",
+          "di-debuff"
+        ]
+      }
+    },
+    "Back": {
+      "b_abandoned": {
+        "name": "Abandoned Deck",
+        "text": [
+          "Mulai giliran dengan",
+          "tidak ada {C:attention}Kartu Wajah",
+          "di deck Anda"
+        ]
+      },
+      "b_anaglyph": {
+        "name": "Anaglyph Deck",
+        "text": [
+          "Setelah mengalahkan setiap",
+          "{C:attention}Boss Blind{}, memperoleh sebuah",
+          "{C:attention,T:tag_double}#1#"
+        ]
+      },
+      "b_black": {
+        "name": "Black Deck",
+        "text": [
+          "{C:attention}+#1#{} slot Joker",
+          "",
+          "{C:blue}-#2#{} hand",
+          "setiap babak"
+        ]
+      },
+      "b_blue": {
+        "name": "Blue Deck",
+        "text": [
+          "{C:blue}+#1#{} hand",
+          "setiap babak"
+        ]
+      },
+      "b_challenge": {
+        "name": "Challenge Deck",
+        "text": [
+          ""
+        ]
+      },
+      "b_checkered": {
+        "name": "Checkered Deck",
+        "text": [
+          "Mulai giliran dengan",
+          "{C:attention}26{C:spades} Sekop{} dan",
+          "{C:attention}26{C:hearts} Hati{} di deck"
+        ]
+      },
+      "b_erratic": {
+        "name": "Erratic Deck",
+        "text": [
+          "Semua {C:attention}Peringkat{} dan",
+          "{C:attention}Rupa{} di deck",
+          "diacak"
+        ]
+      },
+      "b_ghost": {
+        "name": "Ghost Deck",
+        "text": [
+          "Kartu {C:spectral}Spectral{} bisa juga",
+          "muncul di toko,",
+          "mulai dengan kartu {C:spectral,T:c_hex}Hex{}"
+        ]
+      },
+      "b_green": {
+        "name": "Green Deck",
+        "text": [
+          "Di akhir setiap Babak:",
+          "{C:money}$#1#{s:0.85} per sisa {C:blue}Hand",
+          "{C:money}$#2#{s:0.85} per sisa {C:red}Discard",
+          "Tidak mendapat {C:attention}Keuntungan"
+        ]
+      },
+      "b_magic": {
+        "name": "Magic Deck",
+        "text": [
+          "Mulai giliran dengan",
+          "{C:tarot,T:v_crystal_ball}#1#{} voucher",
+          "dan {C:attention}2{} salinan",
+          "dari {C:tarot,T:c_fool}#2#"
+        ]
+      },
+      "b_nebula": {
+        "name": "Nebula Deck",
+        "text": [
+          "Mulai giliran dengan",
+          "{C:planet,T:v_telescope}#1#{} voucher",
+          "",
+          "{C:red}#2#{} slot habis pakai"
+        ]
+      },
+      "b_painted": {
+        "name": "Painted Deck",
+        "text": [
+          "{C:attention}+#1#{} ukuran hand",
+          "{C:red}#2#{} slot Joker"
+        ]
+      },
+      "b_plasma": {
+        "name": "Plasma Deck",
+        "text": [
+          "Saldo {C:blue}Chip{} dan",
+          "{C:red}Mult{} saat menghitung",
+          "skor untuk hand yang dimainkan",
+          "{C:red}X#1#{} ukuran Blind base"
+        ]
+      },
+      "b_red": {
+        "name": "Red Deck",
+        "text": [
+          "{C:red}+#1#{} discard",
+          "setiap babak"
+        ]
+      },
+      "b_yellow": {
+        "name": "Yellow Deck",
+        "text": [
+          "Mulai dengan",
+          "ekstra {C:money}$#1#"
+        ]
+      },
+      "b_zodiac": {
+        "name": "Zodiac Deck",
+        "text": [
+          "Mulai giliran dengan",
+          "{C:tarot,T:v_tarot_merchant}#1#{},",
+          "{C:planet,T:v_planet_merchant}#2#{},",
+          "dan {C:attention,T:v_overstock_norm}#3#"
+        ]
+      }
+    },
+    "Edition": {
+      "e_base": {
+        "name": "Base",
+        "text": [
+          "Tanpa efek tambahan"
+        ]
+      },
+      "e_foil": {
+        "name": "Foil",
+        "text": [
+          "{C:chips}+#1#{} chip"
+        ]
+      },
+      "e_holo": {
+        "name": "Holographic",
+        "text": [
+          "{C:mult}+#1#{} Mult"
+        ]
+      },
+      "e_negative": {
+        "name": "Negatif",
+        "text": [
+          "{C:dark_edition}+#1#{} slot Joker"
+        ]
+      },
+      "e_negative_consumable": {
+        "name": "Negatif",
+        "text": [
+          "{C:dark_edition}+#1#{} slot habis pakai"
+        ]
+      },
+      "e_polychrome": {
+        "name": "Polychrome",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult"
+        ]
+      }
+    },
+    "Enhanced": {
+      "m_bonus": {
+        "name": "Bonus Card",
+        "text": []
+      },
+      "m_glass": {
+        "name": "Glass Card",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult",
+          "{C:green}#2# dalam #3#{} peluang untuk",
+          "menghancurkan kartu"
+        ]
+      },
+      "m_gold": {
+        "name": "Gold Card",
+        "text": [
+          "{C:money}$#1#{} jika ini",
+          "ini ada di hand",
+          "di akhir babak"
+        ]
+      },
+      "m_lucky": {
+        "name": "Lucky Card",
+        "text": [
+          "{C:green}#1# dalam #3#{} peluang",
+          "untuk {C:mult}+#2#{} Mult",
+          "{C:green}#1# dalam #5#{} peluang",
+          "untuk memenangi {C:money}$#4#"
+        ]
+      },
+      "m_mult": {
+        "name": "Mult Card",
+        "text": [
+          "{C:mult}+#1#{} Mult"
+        ]
+      },
+      "m_steel": {
+        "name": "Steel Card",
+        "text": [
+          "{X:mult,C:white} X#1# {} Mult",
+          "sedangkan kartu ini",
+          "tetap di hand"
+        ]
+      },
+      "m_stone": {
+        "name": "Stone Card",
+        "text": [
+          "{C:chips}+#1#{} Chip",
+          "tanpa peringkat atau rupa"
+        ]
+      },
+      "m_wild": {
+        "name": "Wild Card",
+        "text": [
+          "Bisa dipakai",
+          "sebagai rupa apa pun"
+        ]
+      }
+    },
+    "Tarot": {
+      "c_chariot": {
+        "name": "The Chariot",
+        "text": [
+          "Meningkatkan {C:attention}#1#{} kartu",
+          "pilihan ke dalam",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_death": {
+        "name": "Death",
+        "text": [
+          "Pilih {C:attention}#1#{} kartu,",
+          "mengubah kartu {C:attention}kiri{}",
+          "menjadi kartu {C:attention}kanan{}",
+          "{C:inactive}(Seret untuk mengatur kembali)"
+        ]
+      },
+      "c_devil": {
+        "name": "The Devil",
+        "text": [
+          "Meningkatkan {C:attention}#1#{} kartu",
+          "pilihan ke dalam",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_emperor": {
+        "name": "The Emperor",
+        "text": [
+          "Memunculkan hingga {C:attention}#1#",
+          "kartu {C:tarot}Tarot{} secara acak",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "c_empress": {
+        "name": "The Empress",
+        "text": [
+          "Meningkatkan {C:attention}#1#",
+          "kartu pilihan hingga",
+          "{C:attention}#2#s"
+        ]
+      },
+      "c_fool": {
+        "name": "The Fool",
+        "text": [
+          "Memunculkan",
+          "kartu {C:tarot}Tarot{} atau {C:planet} Planet{}",
+          "dipakai pada giliran ini",
+          "{s:0.8,C:tarot}The Fool{s:0.8} tidak termasuk"
+        ]
+      },
+      "c_hanged_man": {
+        "name": "The Hanged Man",
+        "text": [
+          "Menghancurkan hingga",
+          "{C:attention}#1#{} kartu pilihan"
+        ]
+      },
+      "c_heirophant": {
+        "name": "The Hierophant",
+        "text": [
+          "Meningkatkan {C:attention}#1#",
+          "kartu pilihan hingga",
+          "{C:attention}#2#s"
+        ]
+      },
+      "c_hermit": {
+        "name": "The Hermit",
+        "text": [
+          "Menggandakan uang",
+          "{C:inactive}(Maks {C:money}$#1#{C:inactive})"
+        ]
+      },
+      "c_high_priestess": {
+        "name": "The High Priestess",
+        "text": [
+          "Memunculkan hingga {C:attention}#1#",
+          "kartu {C:planet}Planet{} secara acak",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "c_judgement": {
+        "name": "Judgement",
+        "text": [
+          "Memunculkan secara acak",
+          "kartu {C:attention}Joker{}",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "c_justice": {
+        "name": "Justice",
+        "text": [
+          "Meningkatkan {C:attention}#1#{} kartu",
+          "pilihan ke dalam",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_lovers": {
+        "name": "The Lovers",
+        "text": [
+          "Meningkatkan {C:attention}#1#{} kartu",
+          "pilihan ke dalam",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_magician": {
+        "name": "The Magician",
+        "text": [
+          "Meningkatkan {C:attention}#1#{}",
+          "kartu pilihan hingga",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_moon": {
+        "name": "The Moon",
+        "text": [
+          "Mengubah hingga",
+          "{C:attention}#1#{} kartu pilihan",
+          "menjadi {V:1}#2#{}"
+        ]
+      },
+      "c_star": {
+        "name": "The Star",
+        "text": [
+          "Mengubah hingga",
+          "{C:attention}#1#{} kartu pilihan",
+          "menjadi {V:1}#2#{}"
+        ]
+      },
+      "c_strength": {
+        "name": "Strength",
+        "text": [
+          "Menaikkan peringkat",
+          "hingga {C:attention}#1#{} kartu",
+          "pilihan sebanyak {C:attention}1"
+        ]
+      },
+      "c_sun": {
+        "name": "The Sun",
+        "text": [
+          "Mengubah hingga",
+          "{C:attention}#1#{} kartu pilihan",
+          "menjadi {V:1}#2#{}"
+        ]
+      },
+      "c_temperance": {
+        "name": "Temperance",
+        "text": [
+          "Memberikan total nilai",
+          "jual semua",
+          "Joker saat ini {C:inactive}(Maks {C:money}$#1#{C:inactive})",
+          "{C:inactive}(Saat ini {C:money}$#2#{C:inactive})"
+        ]
+      },
+      "c_tower": {
+        "name": "The Tower",
+        "text": [
+          "Meningkatkan {C:attention}#1#{} kartu",
+          "pilihan ke dalam",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_wheel_of_fortune": {
+        "name": "The Wheel of Fortune",
+        "text": [
+          "{C:green}#1# dalam #2#{} peluang untuk menambah",
+          "edisi {C:dark_edition}Foil{}, {C:dark_edition}Holographic{}, dan",
+          "{C:dark_edition}Polychrome{}",
+          "menghancurkan sebuah {C:attention}Joker secara acak"
+        ]
+      },
+      "c_world": {
+        "name": "The World",
+        "text": [
+          "Mengubah hingga",
+          "{C:attention}#1#{} kartu pilihan",
+          "menjadi {V:1}#2#{}"
+        ]
+      }
+    },
+    "Planet": {
+      "c_ceres": {
+        "name": "Ceres",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_earth": {
+        "name": "Earth",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_eris": {
+        "name": "Eris",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_jupiter": {
+        "name": "Jupiter",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_mars": {
+        "name": "Mars",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_mercury": {
+        "name": "Mercury",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_neptune": {
+        "name": "Neptune",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_planet_x": {
+        "name": "Planet X",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_pluto": {
+        "name": "Pluto",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_saturn": {
+        "name": "Saturn",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_uranus": {
+        "name": "Uranus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      },
+      "c_venus": {
+        "name": "Venus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}lvl.#1#{S:0.8}){} Menaikkan level",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Mult dan",
+          "{C:chips}+#4#{} chip"
+        ]
+      }
+    },
+    "Spectral": {
+      "c_ankh": {
+        "name": "Ankh",
+        "text": [
+          "Buat sebuah salinan",
+          "acak {C:attention}Joker{}, hancurkan",
+          "seluruh Joker lainnya"
+        ]
+      },
+      "c_aura": {
+        "name": "Aura",
+        "text": [
+          "Tambahkan efek {C:dark_edition}Foil{}, {C:dark_edition}Holographic{},",
+          "atau {C:dark_edition}Polychrome{} ke",
+          "{C:attention}1{} kartu pilihan di hand"
+        ]
+      },
+      "c_black_hole": {
+        "name": "Black Hole",
+        "text": [
+          "Upgrade setiap",
+          "{C:legendary,E:1}poker hand",
+          "sebanyak {C:attention}1{} level"
+        ]
+      },
+      "c_cryptid": {
+        "name": "Cryptid",
+        "text": [
+          "Buat {C:attention}#1#{} salinan",
+          "{C:attention}1{} kartu pilihan",
+          "di hand Anda"
+        ]
+      },
+      "c_deja_vu": {
+        "name": "Deja Vu",
+        "text": [
+          "Tambahkan sebuah {C:red}Red Seal{}",
+          "hingga {C:attention}1{} kartu",
+          "kartu di hand Anda"
+        ]
+      },
+      "c_ectoplasm": {
+        "name": "Ectoplasm",
+        "text": [
+          "Menambah {C:dark_edition}Negatif{} ke",
+          "{C:attention}Joker secara acak,",
+          "{C:red}-1{} ukuran hand"
+        ]
+      },
+      "c_familiar": {
+        "name": "Familiar",
+        "text": [
+          "Hancurkan {C:attention}1{} kartu",
+          "kartu di hand Anda, menambah",
+          "{C:attention}#1#{} secara acak {C:attention}Enhanced face",
+          "{C:attention}kartu{} ke hand Anda"
+        ]
+      },
+      "c_grim": {
+        "name": "Grim",
+        "text": [
+          "Hancurkan {C:attention}1{} kartu",
+          "kartu di hand Anda,",
+          "menambah {C:attention}#1#{} secara acak {C:attention}As",
+          "{C:attention}As{} ke hand Anda"
+        ]
+      },
+      "c_hex": {
+        "name": "Hex",
+        "text": [
+          "Tambahkan {C:dark_edition}Polychrome{} ke sebuah",
+          "acak {C:attention}Joker{}, hancurkan",
+          "seluruh Joker lainnya"
+        ]
+      },
+      "c_immolate": {
+        "name": "Immolate",
+        "text": [
+          "Menghancurkan {C:attention}#1#{} kartu",
+          "kartu di hand,",
+          "dapatkan {C:money}$#2#"
+        ]
+      },
+      "c_incantation": {
+        "name": "Incantation",
+        "text": [
+          "Hancurkan {C:attention}1{} kartu",
+          "kartu di hand Anda, menambah {C:attention}#1#",
+          "secara acak {C:attention}kartu bernomor",
+          "{C:attention}bernomor{} ke hand Anda"
+        ]
+      },
+      "c_medium": {
+        "name": "Medium",
+        "text": [
+          "Tambahkan sebuah {C:purple}Purple Seal{}",
+          "ke {C:attention}1{} kartu",
+          "kartu di hand Anda"
+        ]
+      },
+      "c_ouija": {
+        "name": "Ouija",
+        "text": [
+          "Mengubah semua kartu",
+          "di hand menjadi sebuah",
+          "peringkat {C:attention}secara acak",
+          "{C:red}-1{} ukuran hand"
+        ]
+      },
+      "c_sigil": {
+        "name": "Sigil",
+        "text": [
+          "Mengubah semua kartu",
+          "di hand menjadi sebuah",
+          "rupa {C:attention}secara acak"
+        ]
+      },
+      "c_soul": {
+        "name": "The Soul",
+        "text": [
+          "Membuat sebuah",
+          "{C:legendary,E:1}Legendary{} Joker",
+          "{C:inactive}(Harus memiliki tempat)"
+        ]
+      },
+      "c_talisman": {
+        "name": "Talisman",
+        "text": [
+          "Tambahkan sebuah {C:attention}Gold Seal{}",
+          "ke {C:attention}1{} kartu",
+          "kartu di hand Anda"
+        ]
+      },
+      "c_trance": {
+        "name": "Trance",
+        "text": [
+          "Tambahkan sebuah {C:blue}Blue Seal{}",
+          "ke {C:attention}1{} kartu",
+          "kartu di hand Anda"
+        ]
+      },
+      "c_wraith": {
+        "name": "Wraith",
+        "text": [
+          "Memunculkan secara acak",
+          "{C:red}Rare{C:attention} Joker{},",
+          "membuat uang hingga {C:money}$0"
+        ]
+      }
+    },
+    "Voucher": {
+      "v_antimatter": {
+        "name": "Antimatter",
+        "text": [
+          "{C:dark_edition}+1{} Joker Slot"
+        ]
+      },
+      "v_blank": {
+        "name": "Blank",
+        "text": [
+          "{C:inactive}Tidak apa-apa?"
+        ]
+      },
+      "v_clearance_sale": {
+        "name": "Clearance Sale",
+        "text": [
+          "Semua kartu dan paket di",
+          "toko itu diskon {C:attention}#1#%{}"
+        ]
+      },
+      "v_crystal_ball": {
+        "name": "Crystal Ball",
+        "text": [
+          "{C:attention}+1{} slot habis pakai"
+        ]
+      },
+      "v_directors_cut": {
+        "name": "Director",
+        "text": [
+          "Reroll Boss Blind",
+          "{C:attention}1{} kali per Ante,",
+          "{C:money}$#1#{} per roll"
+        ]
+      },
+      "v_glow_up": {
+        "name": "Glow Up",
+        "text": [
+          "Kartu {C:dark_edition}Foil{}, {C:dark_edition}Holographic{}, dan",
+          "{C:dark_edition}Polychrome{}",
+          "muncul {C:attention}#1#X{} lebih sering"
+        ]
+      },
+      "v_grabber": {
+        "name": "Grabber",
+        "text": [
+          "Secara permanen",
+          "memperoleh {C:blue}+#1#{} hand",
+          "per babak"
+        ]
+      },
+      "v_hieroglyph": {
+        "name": "Hieroglyph",
+        "text": [
+          "{C:attention}-#1#{} Ante,",
+          "{C:blue}-#1#{} hand",
+          "setiap babak"
+        ]
+      },
+      "v_hone": {
+        "name": "Hone",
+        "text": [
+          "Kartu {C:dark_edition}Foil{}, {C:dark_edition}Holographic{}, dan",
+          "{C:dark_edition}Polychrome{}",
+          "muncul {C:attention}#1#X{} lebih sering"
+        ]
+      },
+      "v_illusion": {
+        "name": "Illusion",
+        "text": [
+          "{C:attention}Kartu permainan{} di toko",
+          "mungkin memiliki sebuah {C:enhanced}Enhancement{},",
+          "{C:dark_edition}Edition{}, dan/atau sebuah {C:attention}Seal{}"
+        ]
+      },
+      "v_liquidation": {
+        "name": "Liquidation",
+        "text": [
+          "Semua kartu dan paket di",
+          "toko itu diskon {C:attention}#1#%{}"
+        ]
+      },
+      "v_magic_trick": {
+        "name": "Magic Trick",
+        "text": [
+          "{C:attention}Kartu permainan{} bisa",
+          "dibeli",
+          "dari {C:attention}toko"
+        ]
+      },
+      "v_money_tree": {
+        "name": "Money Tree",
+        "text": [
+          "Naikkan batas",
+          "bunga yang diperoleh di",
+          "setiap babak menjadi {C:money}$#1#{}"
+        ]
+      },
+      "v_nacho_tong": {
+        "name": "Nacho Tong",
+        "text": [
+          "Secara permanen",
+          "memperoleh {C:blue}+#1#{} hand",
+          "per babak"
+        ]
+      },
+      "v_observatory": {
+        "name": "Observatory",
+        "text": [
+          "kartu {C:planet}Planet{} di",
+          "area{C:attention}habis pakai{} Anda memberikan",
+          "{X:red,C:white} X#1# {} Mult untuk",
+          "{C:attention}poker hand tertentu"
+        ]
+      },
+      "v_omen_globe": {
+        "name": "Omen Globe",
+        "text": [
+          "Kartu {C:spectral}Spectral{} bisa juga",
+          "muncul dalam",
+          "{C:attention}Arcana Pack apa pun"
+        ]
+      },
+      "v_overstock_norm": {
+        "name": "Overstock",
+        "text": [
+          "{C:attention}+1{} slot kartu",
+          "tersedia di toko"
+        ]
+      },
+      "v_overstock_plus": {
+        "name": "Overstock Plus",
+        "text": [
+          "{C:attention}+1{} slot kartu",
+          "tersedia di toko"
+        ]
+      },
+      "v_paint_brush": {
+        "name": "Paint Brush",
+        "text": [
+          "{C:attention}+#1#{} ukuran hand"
+        ]
+      },
+      "v_palette": {
+        "name": "Palette",
+        "text": [
+          "{C:attention}+#1#{} ukuran hand"
+        ]
+      },
+      "v_petroglyph": {
+        "name": "Petroglyph",
+        "text": [
+          "{C:attention}-#1#{} Ante,",
+          "{C:red}-#1#{} discard",
+          "setiap babak"
+        ]
+      },
+      "v_planet_merchant": {
+        "name": "Planet Merchant",
+        "text": [
+          "Kartu {C:planet}Planet{} muncul",
+          "{C:attention}#1#X{} lebih sering",
+          "di toko"
+        ]
+      },
+      "v_planet_tycoon": {
+        "name": "Planet Tycoon",
+        "text": [
+          "Kartu {C:planet}Planet{} muncul",
+          "{C:attention}#1#X{} lebih sering",
+          "di toko"
+        ]
+      },
+      "v_recyclomancy": {
+        "name": "Recyclomancy",
+        "text": [
+          "Secara permanen",
+          "mendapatkan {C:red}+#1#{} discard",
+          "setiap babak"
+        ]
+      },
+      "v_reroll_glut": {
+        "name": "Reroll Glut",
+        "text": [
+          "Biaya reroll",
+          "kurang dari {C:money}$#1#{}"
+        ]
+      },
+      "v_reroll_surplus": {
+        "name": "Reroll Surplus",
+        "text": [
+          "Biaya reroll",
+          "kurang dari {C:money}$#1#{}"
+        ]
+      },
+      "v_retcon": {
+        "name": "Retcon",
+        "text": [
+          "Reroll Boss Blind",
+          "{C:attention}tanpa batas{} waktu,",
+          "{C:money}$#1#{} per roll"
+        ]
+      },
+      "v_seed_money": {
+        "name": "Seed Money",
+        "text": [
+          "Naikkan batas",
+          "bunga yang diperoleh di",
+          "setiap babak menjadi {C:money}$#1#{}"
+        ]
+      },
+      "v_tarot_merchant": {
+        "name": "Tarot Merchant",
+        "text": [
+          "Kartu {C:tarot}Tarot{} muncul",
+          "{C:attention}#1#X{} lebih sering",
+          "di toko"
+        ]
+      },
+      "v_tarot_tycoon": {
+        "name": "Tarot Tycoon",
+        "text": [
+          "Kartu {C:tarot}Tarot{} muncul",
+          "{C:attention}#1#X{} lebih sering",
+          "di toko"
+        ]
+      },
+      "v_telescope": {
+        "name": "Telescope",
+        "text": [
+          "{C:attention}Celestial Pack{} selalu",
+          "berisi kartu {C:planet}Planet{}",
+          "untuk",
+          "poker hand {C:attention}yang paling banyak dimainkan"
+        ]
+      },
+      "v_wasteful": {
+        "name": "Wasteful",
+        "text": [
+          "Secara permanen",
+          "mendapatkan {C:red}+#1#{} discard",
+          "setiap babak"
+        ]
+      }
+    }
+  },
+  "ui": {}
+}

@@ -1,0 +1,2356 @@
+{
+  "descriptions": {
+    "Joker": {
+      "j_8_ball": {
+        "name": "8볼",
+        "text": [
+          "득점 시{C:green}#1#/#2#{}의 확률로",
+          "{C:attention}8{}마다",
+          "{C:tarot}타로{} 카드를 생성",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_abstract": {
+        "name": "추상화 조커",
+        "text": [
+          "{C:attention}조커{} 카드마다",
+          "{C:mult}+#1#{} 배수",
+          "{C:inactive}(현재 {C:red}+#2#{C:inactive} 배수)"
+        ]
+      },
+      "j_acrobat": {
+        "name": "곡예사",
+        "text": [
+          "라운드의 {C:attention}최종 핸드{} 에서",
+          "{X:red,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_ancient": {
+        "name": "고대 조커",
+        "text": [
+          "{V:1}#2#{} 수트의 카드를",
+          "플레이할 때마다 득점 시",
+          "{X:mult,C:white} X#1# {} 배수를 제공하며,",
+          "{s:0.8}라운드 종료 시 수트가 변경됩니다"
+        ]
+      },
+      "j_arrowhead": {
+        "name": "화살촉",
+        "text": [
+          "{C:spades}스페이드{} 수트의",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:chips}+#1#{} 개의 칩"
+        ]
+      },
+      "j_astronomer": {
+        "name": "천문학자",
+        "text": [
+          "모든 {C:planet}행성{} 카드와",
+          "{C:planet}천체 팩{}",
+          "{C:attention}무료{} 입니다"
+        ]
+      },
+      "j_banner": {
+        "name": "현수막",
+        "text": [
+          "남은",
+          "{C:attention}버리기{} 마다",
+          "{C:chips}+#1#{} 개의 칩"
+        ]
+      },
+      "j_baron": {
+        "name": "남작",
+        "text": [
+          "핸드에 있는",
+          "{C:attention}킹{}마다",
+          "{X:mult,C:white} X#1# {} 배수를 제공합니다"
+        ]
+      },
+      "j_baseball": {
+        "name": "야구 카드",
+        "text": [
+          "{C:green}희귀{} 조커마다",
+          "{X:mult,C:white} X#1# {} 배수를 제공합니다"
+        ]
+      },
+      "j_blackboard": {
+        "name": "칠판",
+        "text": [
+          "핸드에 있는 모든 카드가",
+          "{C:spades}#2#{} 또는 {C:clubs}#3#{} 인 경우",
+          "{X:red,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_bloodstone": {
+        "name": "혈석",
+        "text": [
+          "{C:hearts}하트{} 수트의",
+          "카드를 플레이할 때마다",
+          "{C:green}#1#/#2#{} 확률",
+          "{X:mult,C:white} X#3# {} 배수를 제공하며,"
+        ]
+      },
+      "j_blue_joker": {
+        "name": "블루 조커",
+        "text": [
+          "{C:attention}덱{} 에 남은 각 카드마다",
+          "{C:chips}+#1#{} 개의 칩",
+          "{C:inactive}(현재 {C:chips}+#2#{C:inactive} 개의 칩)"
+        ]
+      },
+      "j_blueprint": {
+        "name": "청사진",
+        "text": [
+          "오른쪽 {C:attention}조커{} 의",
+          "능력을 복사합니다"
+        ]
+      },
+      "j_bootstraps": {
+        "name": "자력",
+        "text": [
+          "가지고 있는 {C:money}$#2#{}당",
+          "{C:mult}+#1#{} 배수",
+          "{C:inactive}(현재 {C:mult}+#3#{C:inactive} 배수)"
+        ]
+      },
+      "j_brainstorm": {
+        "name": "브레인스토밍",
+        "text": [
+          "가장 왼쪽 {C:attention}조커{}의 능력을",
+          "복사합니다"
+        ]
+      },
+      "j_bull": {
+        "name": "황소",
+        "text": [
+          "가지고 있는 {C:money}$1{}당",
+          "{C:chips}+#1#{}개의 칩",
+          "{C:inactive}(현재 {C:chips}+#2#{C:inactive}개의 칩)"
+        ]
+      },
+      "j_burglar": {
+        "name": "절도범",
+        "text": [
+          "{C:attention}블라인드{} 를 선택하면,",
+          "{C:blue}+#1#{} 핸드를 얻고",
+          "{C:attention}버리기를 모두 잃습니다"
+        ]
+      },
+      "j_burnt": {
+        "name": "타버린 조커",
+        "text": [
+          "라운드마다 첫 번째",
+          "{C:attention}버린{} 포커 핸드의",
+          "레벨을 업그레이드합니다"
+        ]
+      },
+      "j_business": {
+        "name": "명함",
+        "text": [
+          "플레이할 때",
+          "{C:attention}그림{} 카드가",
+          "득점 시 1/2 확률로 {C:money}$2{}를 제공합니다"
+        ]
+      },
+      "j_caino": {
+        "name": "카니오",
+        "text": [
+          "이 조커는 {C:attention}그림{} 카드가",
+          "파괴될 때",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_campfire": {
+        "name": "캠프파이어",
+        "text": [
+          "이 조커는 카드가 {C:attention}팔릴{} 때마다",
+          "{X:mult,C:white}X#1#{} 배수를 획득하며,",
+          "{C:attention}보스 블라인드{}가 패배하면 초기화됩니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_card_sharp": {
+        "name": "야바위꾼",
+        "text": [
+          "이 라운드에서 이미 플레이된",
+          "{C:attention}포커 핸드{} 를 플레이할 시",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_cartomancer": {
+        "name": "카토맨서",
+        "text": [
+          "{C:attention}블라인드{} 를 선택할 때",
+          "{C:tarot}타로{} 카드를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_castle": {
+        "name": "성",
+        "text": [
+          "이 조커는 {V:1}#2#{} 카드를 버릴 때마다",
+          "{C:chips}+#1#{}개의 칩을 획득하며,",
+          "수트가 매 라운드 변경됩니다",
+          "{C:inactive}(현재 {C:chips}+#3#{C:inactive}개의 칩)"
+        ]
+      },
+      "j_cavendish": {
+        "name": "캐번디시",
+        "text": [
+          "{X:mult,C:white} X#1# {} 배수",
+          "라운드가 끝날 때",
+          "{C:green}#2# / #3#{} 의 확률로",
+          "이 카드가 파괴됩니다"
+        ]
+      },
+      "j_ceremonial": {
+        "name": "의식용 단검",
+        "text": [
+          "{C:attention}블라인드{}가 선택되면,",
+          "오른쪽의 조커를 파괴하고",
+          "이 {C:red} 배수{}에 그 판매 가치를",
+          " {C:attention}두 배{}로 영구적으로 추가합니다",
+          "{C:inactive}(현재 {C:mult}+#1#{C:inactive} 배수)"
+        ]
+      },
+      "j_certificate": {
+        "name": "증명서",
+        "text": [
+          "라운드가 시작할 때,",
+          "무작위로 무작위의 {C:attention}플레잉",
+          "{C:attention}카드{}를 추가합니다",
+          "{C:attention}봉인{}을 추가합니다"
+        ]
+      },
+      "j_chaos": {
+        "name": "혼돈의 광대",
+        "text": [
+          "상점당",
+          "{C:green}#1#{} 무료 {C:green}리롤"
+        ]
+      },
+      "j_chicot": {
+        "name": "치코",
+        "text": [
+          "모든 {C:attention}보스 블라인드{} 의",
+          "효과를 비활성화합니다"
+        ]
+      },
+      "j_clever": {
+        "name": "영리한 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "칩 {C:chips}+#1#{}개"
+        ]
+      },
+      "j_cloud_9": {
+        "name": "클라우드 9",
+        "text": [
+          "라운드가 끝날 때 {C:attention}풀 덱{}의",
+          "{C:attention}9{}마다",
+          "{C:money}$#1#{}를 획득합니다",
+          "{C:inactive}(현재 {C:money}$#2#{}{C:inactive})"
+        ]
+      },
+      "j_constellation": {
+        "name": "별자리",
+        "text": [
+          "이 조커는",
+          "{C:planet}행성{} 카드가 사용될 때마다",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_crafty": {
+        "name": "간교한 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "칩 {C:chips}+#1#{}개"
+        ]
+      },
+      "j_crazy": {
+        "name": "정신 나간 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "{C:red}+#1#{} 배수"
+        ]
+      },
+      "j_credit_card": {
+        "name": "신용 카드",
+        "text": [
+          "부채를",
+          "최대 {C:red}-$#1#{} 합니다"
+        ]
+      },
+      "j_delayed_grat": {
+        "name": "늦춰진 희열",
+        "text": [
+          "라운드가 끝날 때까지",
+          "버리기를 사용하지 않으면",
+          "{C:attention}버리기{}당 {C:money}$#1#{}를 획득합니다"
+        ]
+      },
+      "j_devious": {
+        "name": "기만적인 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "칩 {C:chips}+#1#{}개"
+        ]
+      },
+      "j_diet_cola": {
+        "name": "다이어트 콜라",
+        "text": [
+          "이 카드를 팔아서",
+          "무료 {C:attention}#1#",
+          "생성"
+        ]
+      },
+      "j_dna": {
+        "name": "DNA",
+        "text": [
+          "라운드의 {C:attention}첫 핸드{} 에",
+          "{C:attention}1{} 장의 카드만 있으면,",
+          "덱에 복사 카드를 영구적으로 추가하고",
+          "{C:attention}핸드{}로 뽑습니다"
+        ]
+      },
+      "j_drivers_license": {
+        "name": "운전면허증",
+        "text": [
+          "덱에 최소 강화된 카드가 {C:attention}16",
+          "장 이상이면",
+          "{X:mult,C:white} X#1# {} 배수",
+          "{C:inactive}(현재 {C:attention}#2#{C:inactive})"
+        ]
+      },
+      "j_droll": {
+        "name": "괴짜 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "{C:red}+#1#{} 배수"
+        ]
+      },
+      "j_drunkard": {
+        "name": "술고래",
+        "text": [
+          "라운드마다",
+          "{C:red}+#1#{} 버리기"
+        ]
+      },
+      "j_duo": {
+        "name": "듀오",
+        "text": [
+          "플레이한 핸드가",
+          "{C:attention}#2#{} 을(를) 포함 시",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_dusk": {
+        "name": "땅거미",
+        "text": [
+          "라운드의 {C:attention}최종 핸드{} 에서",
+          "플레이한 모든 카드를",
+          "다시 트리거합니다"
+        ]
+      },
+      "j_egg": {
+        "name": "알",
+        "text": [
+          "라운드 종료 시",
+          "{C:money}$#1#{} 의",
+          "{C:attention}판매 가치{} 를 획득합니다"
+        ]
+      },
+      "j_erosion": {
+        "name": "침식",
+        "text": [
+          "풀 덱에서 {C:attention}#3#{} 보다 적은 ",
+          "카드 매수만큼",
+          "{C:red}+#1#{} 배수",
+          "{C:inactive}(현재 {C:red}+#2#{C:inactive} 배수)"
+        ]
+      },
+      "j_even_steven": {
+        "name": "이븐 스티븐",
+        "text": [
+          "{C:attention}짝수{} 랭크로",
+          "플레이한 카드는",
+          "득점 시 {C:mult}+#1#{} 배수를 제공합니다",
+          "{C:inactive}(10, 8, 6, 4, 2)"
+        ]
+      },
+      "j_faceless": {
+        "name": "얼굴 없는 조커",
+        "text": [
+          "{C:attention}#2#{} 장 이상의",
+          "{C:attention}그림 카드{} 를 동시에",
+          "버리면",
+          "{C:money}$#1#{} 를 획득합니다"
+        ]
+      },
+      "j_family": {
+        "name": "가족",
+        "text": [
+          "플레이한 핸드가",
+          "{C:attention}#2#{} 을(를) 포함 시",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_fibonacci": {
+        "name": "피보나치",
+        "text": [
+          "득점할 때",
+          "{C:attention}에이스{}, {C:attention}2{}, {C:attention}3{}, {C:attention}5{} 또는 {C:attention}8{} 마다",
+          "{C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_flash": {
+        "name": "플래시 카드",
+        "text": [
+          "이 조커는 상점 {C:attention}리롤{}당",
+          "{C:mult}+#1#{} 배수를 획득합니다",
+          "{C:inactive}(현재 {C:mult}+#2#{C:inactive} 배수)"
+        ]
+      },
+      "j_flower_pot": {
+        "name": "화분",
+        "text": [
+          "포커",
+          "핸드에",
+          "{C:diamonds}다이아몬드{} 카드, {C:clubs}클럽{} 카드,",
+          "{C:hearts}하트{} 카드, {C:spades}스페이드{} 카드가 있을 경우 {X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_fortune_teller": {
+        "name": "점쟁이",
+        "text": [
+          "사용한 {C:purple}타로{} 카드당",
+          "{C:red}+#1#{} 배수",
+          "{C:inactive}(현재 {C:red}+#2#{C:inactive})"
+        ]
+      },
+      "j_four_fingers": {
+        "name": "네 개의 손가락",
+        "text": [
+          "모든 {C:attention}플러시{} 와",
+          "{C:attention}스트레이트{} 를",
+          "{C:attention}4{} 장의 카드로 만듭니다"
+        ]
+      },
+      "j_gift": {
+        "name": "기프트 카드",
+        "text": [
+          "매 라운드가 종료될떄 마다 모든 {C:attention}조커{} 및",
+          "{C:attention}소모품{} 카드에",
+          "{C:money}$#1#{}의 {C:attention}판매 가치{}를 추가합니다",
+          " "
+        ]
+      },
+      "j_glass": {
+        "name": "글래스 조커",
+        "text": [
+          "이 조커는 {C:attention}글래스 카드가",
+          "파괴될 때마다",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_gluttenous_joker": {
+        "name": "게걸스러운 조커",
+        "text": [
+          "{C:clubs}#2#{} 수트와 함께",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_golden": {
+        "name": "골든 조커",
+        "text": [
+          "라운드 종료 시",
+          "{C:money}$#1#{} 를 획득합니다"
+        ]
+      },
+      "j_greedy_joker": {
+        "name": "탐욕스러운 조커",
+        "text": [
+          "{C:diamonds}#2#{} 문양과 함께",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_green_joker": {
+        "name": "그린 조커",
+        "text": [
+          "플레이한 핸드당 {C:mult}+#1#{} 배수",
+          "버리기당 {C:mult}-#2#{} 배수",
+          "{C:inactive}(현재 {C:mult}+#3#{C:inactive} 배수)"
+        ]
+      },
+      "j_gros_michel": {
+        "name": "그로 미셸",
+        "text": [
+          "{C:mult}+#1#{} 배수",
+          "라운드가 끝날 때",
+          "{C:green}#2# / #3#{} 의 확률로",
+          "이 카드가 파괴됩니다"
+        ]
+      },
+      "j_hack": {
+        "name": "사기꾼",
+        "text": [
+          "플레이할 때마다",
+          "{C:attention}2{}, {C:attention}3{},",
+          "{C:attention}4{} 또는 {C:attention}5{} 카드를 다시 트리거합니다"
+        ]
+      },
+      "j_half": {
+        "name": "반쪽 조커",
+        "text": [
+          "플레이한 핸드에",
+          "카드가 {C:attention}#2#{} 장 이하면",
+          "{C:red}+#1#{} 배수"
+        ]
+      },
+      "j_hallucination": {
+        "name": "환각",
+        "text": [
+          "{C:attention}부스터 팩{}을 열 때마다",
+          "{C:green}#1#/#2#{}의 확률로",
+          "{C:tarot}타로{} 카드를 생성",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_hanging_chad": {
+        "name": "종이 구멍",
+        "text": [
+          "득점에 사용된 {C:attention}첫{} 플레이한",
+          "카드를",
+          "추가 {C:attention}#1#{}회 리트리거합니다"
+        ]
+      },
+      "j_hiker": {
+        "name": "도보 여행자",
+        "text": [
+          "{C:attention}득점시 플레이된 카드{}는 ",
+          "영구적으로",
+          "{C:chips}+#1#{} 개의 칩을 추가로 얻습니다"
+        ]
+      },
+      "j_hit_the_road": {
+        "name": "여행 출발",
+        "text": [
+          "이 조커는 이번 라운드에서",
+          "{C:attention}잭{}을 버릴 때마다",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_hologram": {
+        "name": "홀로그램",
+        "text": [
+          "이 조커는 {C:attention}플레이한 카드{}가",
+          "덱에 추가될 때마다",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_ice_cream": {
+        "name": "아이스크림",
+        "text": [
+          "{C:chips}+#1#{} 개의 칩",
+          "핸드를 플레이할 때마다",
+          "{C:chips}-#2#{} 개의 칩"
+        ]
+      },
+      "j_idol": {
+        "name": "우상",
+        "text": [
+          "{V:1}#3#{}의 {C:attention}#2#{} 카드를 플레이할 때마다",
+          "득점시",
+          "{X:mult,C:white} X#1# {} 배수를 제공합니다",
+          "카드가 매 라운드 변경됩니다"
+        ]
+      },
+      "j_invisible": {
+        "name": "투명 조커",
+        "text": [
+          "{C:attention}#1#{}번의 라운드 후,",
+          "이 카드를 팔아서",
+          "무작위 조커를 {C:attention}중복합니다{}",
+          "{C:inactive}(현재 {C:attention}#2#{C:inactive}/#1#)"
+        ]
+      },
+      "j_joker": {
+        "name": "조커",
+        "text": [
+          "{C:red,s:1.1}+#1#{} 배수"
+        ]
+      },
+      "j_jolly": {
+        "name": "쾌활한 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "{C:red}+#1#{} 배수"
+        ]
+      },
+      "j_juggler": {
+        "name": "저글러",
+        "text": [
+          "{C:attention}+#1#{} 핸드 크기"
+        ]
+      },
+      "j_loyalty_card": {
+        "name": "로열티 카드",
+        "text": [
+          "{C:attention}#2#{} 번의 핸드를 플레이할 때마다",
+          "{X:red,C:white} X#1# {} 배수",
+          "{C:inactive}#3#"
+        ]
+      },
+      "j_luchador": {
+        "name": "루차도르",
+        "text": [
+          "이 카드를 팔아서",
+          "현재 {C:attention}보스 블라인드{}를",
+          "비활성화합니다"
+        ]
+      },
+      "j_lucky_cat": {
+        "name": "행운의 고양이",
+        "text": [
+          "이 조커는 {C:attention}럭키{} 카드가",
+          "{C:green}성공적으로{} 트리거될 때마다",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_lusty_joker": {
+        "name": "건장한 조커",
+        "text": [
+          "{C:hearts}#2#{} 수트와 함께",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_mad": {
+        "name": "미친 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "{C:red}+#1#{} 배수"
+        ]
+      },
+      "j_madness": {
+        "name": "광기",
+        "text": [
+          "{C:attention}스몰 블라인드{} 또는 {C:attention}빅 블라인드{}",
+          "를 선택한 경우, {X:mult,C:white} X#1# {} 배수를 획득하고",
+          "무작위 조커를{C:attention}파괴{}합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_mail": {
+        "name": "편지",
+        "text": [
+          "{C:attention}#2#{}을(를) 버릴 때마다",
+          "{C:money}$#1#{}를 획득하며,",
+          "랭크가 매 라운드 변경됩니다"
+        ]
+      },
+      "j_marble": {
+        "name": "마블 조커",
+        "text": [
+          "{C:attention}블라인드{}가 선택되면",
+          "덱에",
+          "{C:attention}스톤{} 카드를 1장 추가합니다"
+        ]
+      },
+      "j_matador": {
+        "name": "투우사",
+        "text": [
+          "플레이한 핸드가",
+          "{C:attention}보스 블라인드{} 능력을 트리거하면 ",
+          "{C:money}$#1#{} 를 획득합니다"
+        ]
+      },
+      "j_merry_andy": {
+        "name": "즐거운 앤디",
+        "text": [
+          "라운드마다",
+          "{C:red}+#1#{} 버리기,",
+          "{C:red}#2#{} 핸드 크기"
+        ]
+      },
+      "j_midas_mask": {
+        "name": "미다스 가면",
+        "text": [
+          "득점 시",
+          "플레이한 모든 {C:attention}그림{} 카드",
+          "가 {C:attention}골드{} 카드가 됩니다"
+        ]
+      },
+      "j_mime": {
+        "name": "마임",
+        "text": [
+          "{C:attention}핸드에",
+          "{C:attention}있는{} 모든 카드 능력을",
+          "다시 트리거합니다"
+        ]
+      },
+      "j_misprint": {
+        "name": "오탈자",
+        "text": [
+          ""
+        ]
+      },
+      "j_mr_bones": {
+        "name": "미스터 본즈",
+        "text": [
+          "획득한 칩이",
+          "블라인드를 클리어 하기에",
+          "필요한 칩의 {C:attention}25%{} 이상인 경우",
+          "죽음을 막고 ",
+          "{S:1.1,C:red,E:2}자멸합니다{}"
+        ]
+      },
+      "j_mystic_summit": {
+        "name": "신비의 정점",
+        "text": [
+          "남은 버리기가",
+          "{C:attention}#2#{} 번일 때",
+          "{C:mult}+#1#{} 배수"
+        ]
+      },
+      "j_obelisk": {
+        "name": "오벨리스크",
+        "text": [
+          "이 조커는 {C:attention}연속{} 핸드 플레이마다",
+          "가장 많이 플레이한",
+          "{C:attention}포커 핸드 플레이 없이",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_odd_todd": {
+        "name": "오드 토드",
+        "text": [
+          "{C:attention}홀수{} 랭크로",
+          "플레이한 카드는",
+          "득점 시 {C:chips}+#1#{} 개의 칩을 제공합니다",
+          "{C:inactive}(A, 9, 7, 5, 3)"
+        ]
+      },
+      "j_onyx_agate": {
+        "name": "오닉스 아게이트",
+        "text": [
+          "{C:clubs}클럽{} 수트의",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_oops": {
+        "name": "이런, 모두 6이야!",
+        "text": [
+          "모든  {C:attention}나열된",
+          "{C:green,E:1,S:1.1}가능성{} 을 두배로 늘립니다",
+          "{C:inactive}(예: {C:green}1/3{C:inactive} -> {C:green}2/3{C:inactive})"
+        ]
+      },
+      "j_order": {
+        "name": "지시",
+        "text": [
+          "플레이한 핸드가",
+          "{C:attention}#2#{} 을(를) 포함 시",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_pareidolia": {
+        "name": "변상증",
+        "text": [
+          "모든 카드가",
+          "{C:attention}그림{} 카드로",
+          "취급됩니다"
+        ]
+      },
+      "j_perkeo": {
+        "name": "페르케오",
+        "text": [
+          "{C:attention}상점{}에서 끝날 때",
+          "소유한",
+          "{C:attention}1{}장의 무작위 {C:attentin}소모품{} 카드의",
+          "{C:dark_edition}네거티브{}를 생성합니다"
+        ]
+      },
+      "j_photograph": {
+        "name": "사진",
+        "text": [
+          "득점에 사용된",
+          "첫 번째 플레이한 {C:attention}페이스{} 카드에",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_popcorn": {
+        "name": "팝콘",
+        "text": [
+          "{C:mult}+#1#{} 배수",
+          "라운드를 플레이할 때마다",
+          "{C:mult}-#2#{} 배수"
+        ]
+      },
+      "j_raised_fist": {
+        "name": "들어 올린 주먹",
+        "text": [
+          "핸드에 있는 {C:attention}최하{} 랭크 카드의",
+          "랭크의 {C:attention}두 배{}를",
+          "배수에 추가"
+        ]
+      },
+      "j_ramen": {
+        "name": "라면",
+        "text": [
+          "{X:mult,C:white} X#1# {} 배수,",
+          "{C:attention}카드{}를 버릴 때마다",
+          "{X:mult,C:white} X#2# {} 배수를 잃습니다"
+        ]
+      },
+      "j_red_card": {
+        "name": "레드카드",
+        "text": [
+          "이 조커는",
+          "{C:attention}부스터 팩{}을 건너뛸 때",
+          "{C:red}+#1#{} 배수를 획득합니다",
+          "{C:inactive}(현재 {C:red}+#2#{C:inactive} 배수)"
+        ]
+      },
+      "j_reserved_parking": {
+        "name": "지정 주차 공간",
+        "text": [
+          "핸드에 보유한",
+          "{C:attention}그림{} 카드마다",
+          "{C:green}#2#/#3#{} 확률을 보유합니다",
+          "{C:money}$#1#{}을(를) 제공합니다"
+        ]
+      },
+      "j_ride_the_bus": {
+        "name": "버스 탑승",
+        "text": [
+          "이 조커는 {C:attention}연속{} 핸드 플레이마다",
+          "{C:attention}그림{} 카드",
+          " 득점 없이",
+          "{C:mult}+#1#{} 배수를 획득합니다",
+          "{C:inactive}(현재 {C:mult}+#2#{C:inactive} 배수)"
+        ]
+      },
+      "j_riff_raff": {
+        "name": "쓰레기",
+        "text": [
+          "{C:attention}블라인드{}가 선택될 때,",
+          "{C:attention}#1#장의 {C:blue}일반{} 조커를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_ring_master": {
+        "name": "링 마스터",
+        "text": [
+          "{C:attention}조커{}, {C:tarot}타로{}, {C:planet}행성{}",
+          "그리고 {C:spectral}유령{} 카드가",
+          "여러 번 나타납니다"
+        ]
+      },
+      "j_rocket": {
+        "name": "로켓",
+        "text": [
+          "라운드 종료 시 {C:money}$#1#{}를 획득합니다",
+          "{C:attention}보스 블라인드{} 처치 시",
+          "지불이 {C:money}$#2#{}인상됩니다"
+        ]
+      },
+      "j_rough_gem": {
+        "name": "원석",
+        "text": [
+          "{C:diamonds}다이아몬드{} 수트의",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:money}$#1#{}를 획득합니다"
+        ]
+      },
+      "j_runner": {
+        "name": "주자",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}스트레이트{}가 있으면",
+          "{C:chips}+#2#{}개의 칩을 획득합니다",
+          "{C:inactive}(현재 {C:chips}+#1#{C:inactive}개의 칩)"
+        ]
+      },
+      "j_satellite": {
+        "name": "인공위성",
+        "text": [
+          "이번 런에서 사용된",
+          "모든 고유 {C:planet}행성{} 카드에 대해",
+          "라운드가 끝나면 {C:money}$#1#{} 를 획득합니다",
+          "{C:inactive}(현재 {C:money}$#2#{C:inactive})"
+        ]
+      },
+      "j_scary_face": {
+        "name": "무서운 얼굴",
+        "text": [
+          "득점할 때",
+          "{C:attention}그림{} 카드가",
+          "{C:chips}+#1#{} 개의 칩을 제공합니다"
+        ]
+      },
+      "j_scholar": {
+        "name": "학자",
+        "text": [
+          "플레이할 때",
+          "각 에이스가",
+          "득점 시 추가 {C:mult}+#1#{} 배수 및",
+          "{C:chips}+#2#{}개의 칩을 제공합니다"
+        ]
+      },
+      "j_seance": {
+        "name": "교령회",
+        "text": [
+          "{C:attention}포커 핸드{} 가",
+          "{C:attention}#1#{} 인 경우,",
+          "무작위 {C:spectral}유령{} 카드를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_seeing_double": {
+        "name": "둘로 보기",
+        "text": [
+          "플레이한 핸드가 득점하면",
+          "{X:mult,C:white} X#1# {} 배수",
+          "{C:clubs}클럽{} 카드 및",
+          "기타{C:attention} 수트의 득점 카드"
+        ]
+      },
+      "j_selzer": {
+        "name": "탄산수",
+        "text": [
+          "다음 {C:attention}#1#{}번의 핸드에서",
+          "플레이한 모든 카드를",
+          "다시 트리거합니다"
+        ]
+      },
+      "j_shoot_the_moon": {
+        "name": "야반도주",
+        "text": [
+          "핸드에 있는",
+          "{C:attention}퀸{}마다",
+          "{C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_shortcut": {
+        "name": "지름길",
+        "text": [
+          "{C:attention}1 랭크 간격을 두고",
+          "{C:attention}스트레이트{}를 만들 수 있음",
+          "{C:inactive}(예: {C:attention}10 8 6 5 3{C:inactive})"
+        ]
+      },
+      "j_sixth_sense": {
+        "name": "육감",
+        "text": [
+          "라운드의 {C:attention}첫 번째{} 카드가",
+          "싱글 {C:attention}6{}이면, 그걸 파괴하고",
+          "{C:spectral}유령{} 카드를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_sly": {
+        "name": "교활한 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "칩 {C:chips}+#1#{}개"
+        ]
+      },
+      "j_smeared": {
+        "name": "얼룩진 조커",
+        "text": [
+          "{C:diamonds}하트{} 와 {C:diamonds}다이아몬드{} 가",
+          "같은 수트로 취급되며,",
+          "{C:spades}스페이드{} 와 {C:spades}클럽{} 이",
+          "같은 수트로 취급됩니다"
+        ]
+      },
+      "j_smiley": {
+        "name": "웃는 얼굴",
+        "text": [
+          "득점하면",
+          "플레이한 {C:attention}페이스{} 카드가",
+          "{C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_sock_and_buskin": {
+        "name": "희극과 비극",
+        "text": [
+          "플레이한 모든 {C:attention}그림",
+          "카드를 다시 트리거합니다"
+        ]
+      },
+      "j_space": {
+        "name": "스페이스 조커",
+        "text": [
+          "{C:green}#1# / #2#{} 의 확률로",
+          "플레이한 {C:attention}포커 핸드{} 레벨을",
+          "업그레이드합니다"
+        ]
+      },
+      "j_splash": {
+        "name": "첨벙",
+        "text": [
+          "{C:attention}플레이한 카드{} 가 모두",
+          "득점에 계산됩니다"
+        ]
+      },
+      "j_square": {
+        "name": "정사각형 조커",
+        "text": [
+          "이 조커는 플레이한 핸드에",
+          "정확히 {C:attention}4{}장의 카드가 있을 때",
+          "{C:chips}+#2#{}개의 칩을 획득합니다",
+          "{C:inactive}(현재 {C:chips}#1#{C:inactive}개의 칩)"
+        ]
+      },
+      "j_steel_joker": {
+        "name": "스틸 조커",
+        "text": [
+          "{C:attention}내 풀 덱에 있는",
+          "각 {C:attention}스틸 카드마다",
+          "{X:mult,C:white} X#1# {} 배수 제공",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_stencil": {
+        "name": "조커 스텐실",
+        "text": [
+          "{s:0.8}조커 스텐실이 포함된",
+          "빈 {C:attention}조커{} 슬롯마다",
+          "{X:red,C:white} X1 {} 배수",
+          "{C:inactive}(현재 {X:red,C:white} X#1# {C:inactive})"
+        ]
+      },
+      "j_stone": {
+        "name": "스톤 조커",
+        "text": [
+          "내 {C:attention}풀 덱에 있는",
+          "각 {C:attention}스톤 카드마다",
+          "{C:chips}+#1#{}개의 칩을 제공합니다",
+          "{C:inactive}(현재 {C:chips}+#2#{C:inactive}개의 칩)"
+        ]
+      },
+      "j_stuntman": {
+        "name": "스턴트맨",
+        "text": [
+          "{C:chips}+#1#{}개의 칩,",
+          "{C:attention}-#2#{} 핸드 크기"
+        ]
+      },
+      "j_supernova": {
+        "name": "초신성",
+        "text": [
+          "이번 런에서",
+          "{C:attention}포커 핸드{}가 플레이된",
+          "횟수를 배수에 추가"
+        ]
+      },
+      "j_superposition": {
+        "name": "중첩",
+        "text": [
+          "핸드가 플레이 시",
+          "{C:attention}에이스{} 가 포함된 {C:attention}스트레이트{}라면,",
+          "{C:tarot}타로{} 카드를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "j_swashbuckler": {
+        "name": "깡패",
+        "text": [
+          "다른 모든 소유한",
+          "{C:attention}조커{}의 판매 가치를",
+          "배수에 추가합니다",
+          "{C:inactive}(현재 {C:mult}+#1#{C:inactive} 배수)"
+        ]
+      },
+      "j_throwback": {
+        "name": "회귀",
+        "text": [
+          "이 런을 건너뛴 {C:planet}블라인드{} 당",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다",
+          "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_ticket": {
+        "name": "골든 티켓",
+        "text": [
+          "{C:attention}골드{} 카드를 플레이할 때마다",
+          "득점 시 {C:money}$#1#{} 를 획득합니다"
+        ]
+      },
+      "j_to_the_moon": {
+        "name": "달을 향해",
+        "text": [
+          "라운드가 끝날 때",
+          "보유한 {C:money}$5{}마다 추가 {C:money}$#1#{}의",
+          "{C:attention}이자{}를 획득합니다"
+        ]
+      },
+      "j_todo_list": {
+        "name": "할 일 목록",
+        "text": [
+          "{C:attention}포커 핸드{}",
+          "가 {C:attention}#2#{}인 경우 {C:money}$#1#{}를 획득합니다",
+          "라운드 종료 시",
+          "포커 핸드를 바꿉니다"
+        ]
+      },
+      "j_trading": {
+        "name": "트레이딩 카드",
+        "text": [
+          "라운드의 {C:attention}첫 번째 버리기{}에",
+          "{C:attention}1{} 카드만 있으면, 그건 파괴하고",
+          "{C:money}$#1#{}를 획득합니다"
+        ]
+      },
+      "j_tribe": {
+        "name": "패거리",
+        "text": [
+          "플레이한 핸드가",
+          "{C:attention}#2#{} 을(를) 포함 시",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_triboulet": {
+        "name": "트리불레",
+        "text": [
+          "플레이한 {C:attention}킹{}과",
+          "{C:attention}퀸{}이 각각 x2 배수를",
+          "제공합니다",
+          "{X:mult,C:white} X#1# {} 배수를 제공하며,"
+        ]
+      },
+      "j_trio": {
+        "name": "트리오",
+        "text": [
+          "플레이한 핸드가",
+          "{C:attention}#2#{} 을(를) 포함 시",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "j_troubadour": {
+        "name": "음유시인",
+        "text": [
+          "{C:attention}+#1#{} 핸드 크기,",
+          "라운드마다 {C:blue}-#2#{} 핸드"
+        ]
+      },
+      "j_trousers": {
+        "name": "여벌 바지",
+        "text": [
+          "이 조커는 플레이한 핸드에",
+          "{C:attention}#2# 포함 시",
+          "{C:mult}+#1#{} 배수를 획득합니다",
+          "{C:inactive}(현재 {C:red}+#3#{C:inactive} 배수)"
+        ]
+      },
+      "j_turtle_bean": {
+        "name": "거북 콩",
+        "text": [
+          "{C:attention}+#1#{} 핸드 크기,",
+          "{C:red}#2#{} 라운드마다",
+          "감소합니다"
+        ]
+      },
+      "j_vagabond": {
+        "name": "방랑자",
+        "text": [
+          "핸드가 {C:money}$#1#{} 이하로",
+          "플레이되면",
+          "{C:purple}타로{} 카드를 생성합니다"
+        ]
+      },
+      "j_vampire": {
+        "name": "뱀파이어",
+        "text": [
+          "이 조커는 매 {C:attention}강화 카드{} 득점 시",
+          "{X:mult,C:white} X#1# {} 배수를 획득하고",
+          "카드 {C:attention}강화",
+          "를 제거합니다{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
+        ]
+      },
+      "j_walkie_talkie": {
+        "name": "워키토키",
+        "text": [
+          "{C:attention}10{} 또는 {C:attention}4{}를 플레이할 때마다",
+          "득점 시 {C:chips}+#1#{}개의 칩과",
+          "{C:mult}+#2#{} 배수를 제공합니다"
+        ]
+      },
+      "j_wee": {
+        "name": "아주 작은 조커",
+        "text": [
+          "플레이할 때마다 {C:attention}2{}를 득점하면",
+          "조커는",
+          "{C:chips}+#2#{}개의 칩을 획득합니다",
+          "{C:inactive}(현재 {C:chips}+#1#{C:inactive}개의 칩)"
+        ]
+      },
+      "j_wily": {
+        "name": "악랄한 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "칩 {C:chips}+#1#{}개"
+        ]
+      },
+      "j_wrathful_joker": {
+        "name": "격노한 조커",
+        "text": [
+          "{C:spades}#2#{} 문양과 함께",
+          "카드를 플레이할 때마다",
+          "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
+        ]
+      },
+      "j_yorick": {
+        "name": "요릭",
+        "text": [
+          "이 조커는",
+          "{C:attention}#2#{C:inactive} [#3#]{}개의",
+          "카드가 버려질 때마다",
+          "{X:mult,C:white} X#1# {} 배수를 획득합니다{C:inactive}(현재 {X:mult,C:white} X#4# {C:inactive} 배수)"
+        ]
+      },
+      "j_zany": {
+        "name": "엉뚱한 조커",
+        "text": [
+          "플레이한 핸드에",
+          "{C:attention}#2#{} 포함 시",
+          "{C:red}+#1#{} 배수"
+        ]
+      }
+    },
+    "Blind": {
+      "bl_arm": {
+        "name": "팔",
+        "text": [
+          "플레이한 포커 핸드의",
+          "레벨이 낮아집니다"
+        ]
+      },
+      "bl_big": {
+        "name": "빅 블라인드",
+        "text": []
+      },
+      "bl_club": {
+        "name": "클럽",
+        "text": [
+          "모든 클럽 카드가",
+          "디버프됩니다"
+        ]
+      },
+      "bl_eye": {
+        "name": "눈",
+        "text": [
+          "이 라운드에서는",
+          "핸드 유형의 반복이 불가능합니다"
+        ]
+      },
+      "bl_final_acorn": {
+        "name": "호박색 도토리",
+        "text": [
+          "모든 조커 카드를",
+          "플립 및 셔플합니다"
+        ]
+      },
+      "bl_final_bell": {
+        "name": "하늘색 종",
+        "text": [
+          "항상 카드 1장이",
+          "강제 선택됩니다"
+        ]
+      },
+      "bl_final_heart": {
+        "name": "진홍색 술잔",
+        "text": [
+          "라운드마다 무작위로",
+          "조커 한장이 비활성화됩니다"
+        ]
+      },
+      "bl_final_leaf": {
+        "name": "심록색 잎사귀",
+        "text": [
+          "1장의 조커가 팔릴 때까지",
+          "모든 카드가 디버프됩니다"
+        ]
+      },
+      "bl_final_vessel": {
+        "name": "보라색 술잔",
+        "text": [
+          "대형 블라인드"
+        ]
+      },
+      "bl_fish": {
+        "name": "물고기",
+        "text": [
+          "각 핸드의 플레이 후",
+          "카드가 뒤집혀서 뽑힙니다"
+        ]
+      },
+      "bl_flint": {
+        "name": "부싯돌",
+        "text": [
+          "기본 칩과 배수가",
+          "절반이 됩니다"
+        ]
+      },
+      "bl_goad": {
+        "name": "자극",
+        "text": [
+          "모든 스페이드 카드가",
+          "디버프됩니다"
+        ]
+      },
+      "bl_head": {
+        "name": "머리",
+        "text": [
+          "모든 하트 카드가",
+          "디버프됩니다"
+        ]
+      },
+      "bl_hook": {
+        "name": "훅",
+        "text": [
+          "핸드를 플레이할 때마다",
+          "2장의 무작위 카드를 버립니다"
+        ]
+      },
+      "bl_house": {
+        "name": "집",
+        "text": [
+          "첫 핸드가",
+          "뒤집혀서 나옵니다"
+        ]
+      },
+      "bl_manacle": {
+        "name": "수갑",
+        "text": [
+          "-1 핸드 크기"
+        ]
+      },
+      "bl_mark": {
+        "name": "가면",
+        "text": [
+          "모든 그림 카드가",
+          "뒤집혀서 나옵니다"
+        ]
+      },
+      "bl_mouth": {
+        "name": "입",
+        "text": [
+          "이 라운드에서는 오직",
+          "1개 유형의 핸드로 플레이합니다"
+        ]
+      },
+      "bl_needle": {
+        "name": "바늘",
+        "text": [
+          "오직 한 번의 핸드로 플레이합니다"
+        ]
+      },
+      "bl_ox": {
+        "name": "황소",
+        "text": [
+          "#1# 을(를) 플레이하면",
+          "돈이 $0가 됩니다"
+        ]
+      },
+      "bl_pillar": {
+        "name": "기둥",
+        "text": [
+          "이전에 이 앤티를 플레이한",
+          "카드가 디버프됩니다"
+        ]
+      },
+      "bl_plant": {
+        "name": "행성",
+        "text": [
+          "모든 그림 카드가",
+          "디버프됩니다"
+        ]
+      },
+      "bl_psychic": {
+        "name": "심령술사",
+        "text": [
+          "반드시 카드 5장을 플레이해야 합니다"
+        ]
+      },
+      "bl_serpent": {
+        "name": "뱀",
+        "text": [
+          "플레이 또는 버리기 후,",
+          "뽑는 카드가 3장으로 고정됩니다"
+        ]
+      },
+      "bl_small": {
+        "name": "스몰 블라인드",
+        "text": []
+      },
+      "bl_tooth": {
+        "name": "이빨",
+        "text": [
+          "플레이한 카드당",
+          "$1를 잃습니다"
+        ]
+      },
+      "bl_wall": {
+        "name": "벽",
+        "text": [
+          "특대형 블라인드"
+        ]
+      },
+      "bl_water": {
+        "name": "물",
+        "text": [
+          "0번의 버리기로",
+          "시작합니다"
+        ]
+      },
+      "bl_wheel": {
+        "name": "바퀴",
+        "text": [
+          " / 7 의 확률로 카드가",
+          "뒤집혀서 나옵니다"
+        ]
+      },
+      "bl_window": {
+        "name": "창문",
+        "text": [
+          "모든 다이아몬드 카드가",
+          "디버프됩니다"
+        ]
+      }
+    },
+    "Back": {
+      "b_abandoned": {
+        "name": "버려진 덱",
+        "text": [
+          "덱에",
+          "{C:attention}그림 카드{} 없이",
+          "런을 시작합니다"
+        ]
+      },
+      "b_anaglyph": {
+        "name": "입체 사진 덱",
+        "text": [
+          "각 {C:attention}보스 블라인드{} 를",
+          "물리친 후,",
+          "{C:attention,T:tag_double}#1#{}을(를) 획득합니다"
+        ]
+      },
+      "b_black": {
+        "name": "블랙 덱",
+        "text": [
+          "매 라운드",
+          "",
+          "{C:attention}+#1#{} 개의 조커 슬롯",
+          "{C:blue}-#2#{} 핸드"
+        ]
+      },
+      "b_blue": {
+        "name": "블루 덱",
+        "text": [
+          "라운드마다",
+          "{C:red}+#1#{} 핸드"
+        ]
+      },
+      "b_challenge": {
+        "name": "챌린지 덱",
+        "text": [
+          ""
+        ]
+      },
+      "b_checkered": {
+        "name": "체크무늬 덱",
+        "text": [
+          "덱에 {C:attention}26{} 장의 {C:spades} 스페이드{} 및",
+          "{C:attention}26{} 장의 {C:hearts} 하트{} 를 갖고",
+          "런을 시작합니다"
+        ]
+      },
+      "b_erratic": {
+        "name": "불규칙한 덱",
+        "text": [
+          "덱의 모든 {C:attention}랭크{} 및",
+          "{C:attention}수트{} 가",
+          "무작위로 지정됩니다"
+        ]
+      },
+      "b_ghost": {
+        "name": "고스트 덱",
+        "text": [
+          "{C:spectral}유령{} 카드가",
+          "상점에서 나타납니다",
+          "{C:spectral,T:c_hex}헥스{} 카드로 시작합니다"
+        ]
+      },
+      "b_green": {
+        "name": "그린 덱",
+        "text": [
+          "각 라운드 종료 시:",
+          "{s:0.85}남은 {C:blue}핸드{} 당 {C:money}$#1#",
+          "{s:0.85}남은 {C:red}버리기{} 당 {C:money}$#2#",
+          "{C:attention}이자{} 가 없습니다"
+        ]
+      },
+      "b_magic": {
+        "name": "매직 덱",
+        "text": [
+          "{C:tarot,T:v_crystal_ball}#1#{} 바우처",
+          "및 {C:tarot,T:c_fool}#2#",
+          "복사본 {C:attention}2{} 장으로",
+          "런을 시작합니다"
+        ]
+      },
+      "b_nebula": {
+        "name": "네뷸라 덱",
+        "text": [
+          "{C:planet,T:v_telescope}#1#{} 바우처 및",
+          "{C:red}#2#{} 개의 소모품 슬롯으로",
+          "",
+          "런을 시작합니다"
+        ]
+      },
+      "b_painted": {
+        "name": "칠한 덱",
+        "text": [
+          "{C:attention}+#1#{} 핸드 크기",
+          "{C:red}#2#{} 조커 슬롯"
+        ]
+      },
+      "b_plasma": {
+        "name": "플라스마 덱",
+        "text": [
+          "플레이한 핸드의",
+          "점수를 계산할 때 {C:blue}칩{} 과 {C:red}배수{} 의",
+          "균형을 맞춥니다",
+          "{C:red}X#1#{} 기본 블라인드 크기"
+        ]
+      },
+      "b_red": {
+        "name": "레드 덱",
+        "text": [
+          "라운드마다",
+          "{C:red}+#1#{} 버리기"
+        ]
+      },
+      "b_yellow": {
+        "name": "옐로우 덱",
+        "text": [
+          "추가 {C:money}$#1#{} 로",
+          "시작합니다"
+        ]
+      },
+      "b_zodiac": {
+        "name": "황도대 덱",
+        "text": [
+          "덱에 {C:attention}26{} 장의 {C:spades} 스페이드{} 및",
+          "{C:tarot,T:v_tarot_merchant}#1#{},",
+          "{C:planet,T:v_planet_merchant}#2#{},",
+          "및 {C:attention,T:v_overstock_norm}#3#"
+        ]
+      }
+    },
+    "Edition": {
+      "e_base": {
+        "name": "기본",
+        "text": [
+          "추가 효과 없음"
+        ]
+      },
+      "e_foil": {
+        "name": "포일",
+        "text": [
+          "{C:chips}+#1#{} 개의 칩"
+        ]
+      },
+      "e_holo": {
+        "name": "홀로그래픽",
+        "text": [
+          "{C:mult}+#1#{} 배수"
+        ]
+      },
+      "e_negative": {
+        "name": "네거티브",
+        "text": [
+          "{C:dark_edition}+#1#{}개의 조커 슬롯"
+        ]
+      },
+      "e_negative_consumable": {
+        "name": "네거티브",
+        "text": [
+          "{C:dark_edition}+#1#{}개의 소모품 슬롯"
+        ]
+      },
+      "e_polychrome": {
+        "name": "폴리크롬",
+        "text": [
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      }
+    },
+    "Enhanced": {
+      "m_bonus": {
+        "name": "보너스 카드",
+        "text": []
+      },
+      "m_glass": {
+        "name": "글래스 카드",
+        "text": [
+          "{X:mult,C:white} X#1# {} 배수",
+          "{C:green}#2# / #3#{} 의 확률로",
+          "카드를 파괴합니다"
+        ]
+      },
+      "m_gold": {
+        "name": "골드 카드",
+        "text": [
+          "라운드가 끝날 때",
+          "핸드에 이 카드가 있으면",
+          "{C:money}$#1#{}"
+        ]
+      },
+      "m_lucky": {
+        "name": "럭키 카드",
+        "text": [
+          "{C:green}#1# / #3#{} 의 확률로",
+          "{C:mult}+#2#{} 배수",
+          "{C:green}#1# / #3#{} 의 확률로",
+          "{C:money}$#4# 획득"
+        ]
+      },
+      "m_mult": {
+        "name": "배수 카드",
+        "text": [
+          "{C:mult}+#1#{} 배수"
+        ]
+      },
+      "m_steel": {
+        "name": "스틸 카드",
+        "text": [
+          "핸드에",
+          "이 카드가 있는 동안",
+          "{X:mult,C:white} X#1# {} 배수"
+        ]
+      },
+      "m_stone": {
+        "name": "스톤 카드",
+        "text": [
+          "{C:chips}+#1#{} 개의 칩",
+          "랭크 또는 수트 없음"
+        ]
+      },
+      "m_wild": {
+        "name": "와일드 카드",
+        "text": [
+          "아무 수트에",
+          "사용할 수 있습니다"
+        ]
+      }
+    },
+    "Tarot": {
+      "c_chariot": {
+        "name": "전차",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_death": {
+        "name": "죽음",
+        "text": [
+          "{C:attention}#1#{} 장의 카드를 선택하여,",
+          "{C:attention}왼쪽{} 카드를",
+          "{C:attention}오른쪽{} 카드로 전환합니다",
+          "{C:inactive}(드래그하여 재배열)"
+        ]
+      },
+      "c_devil": {
+        "name": "악마",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_emperor": {
+        "name": "황제",
+        "text": [
+          "최대 {C:attention}#1#{}장의",
+          "무작위 {C:tarot}타로{} 카드를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "c_empress": {
+        "name": "여제",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_fool": {
+        "name": "바보",
+        "text": [
+          "이번 런 동안 사용한",
+          "마지막 {C:tarot}타로{} 또는",
+          "{C:planet}행성{} 카드를 생성합니다",
+          "{s:0.8,C:tarot}바보{s:0.8} 제외"
+        ]
+      },
+      "c_hanged_man": {
+        "name": "매달린 남자",
+        "text": [
+          "최대 {C:attention}#1#{} 장의",
+          "선택한 카드를 파괴합니다"
+        ]
+      },
+      "c_heirophant": {
+        "name": "교황",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_hermit": {
+        "name": "은둔자",
+        "text": [
+          "돈을 두 배로 만듭니다",
+          "{C:inactive}(최대 {C:money}$#1#{C:inactive})"
+        ]
+      },
+      "c_high_priestess": {
+        "name": "고위 여사제",
+        "text": [
+          "최대 {C:attention}#1#{}장의",
+          "무작위 {C:planet}행성{} 카드를 생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "c_judgement": {
+        "name": "심판",
+        "text": [
+          "무작위 {C:attention}조커{} 카드를",
+          "생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "c_justice": {
+        "name": "정의",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_lovers": {
+        "name": "연인",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_magician": {
+        "name": "마법사",
+        "text": [
+          "{C:attention}#1#{}장의 선택한 카드를",
+          "{C:attention}#2#(으)로",
+          "강화합니다"
+        ]
+      },
+      "c_moon": {
+        "name": "달",
+        "text": [
+          "최대 {C:attention}#1#{} 장의 선택한 카드를",
+          "{V:1}#2#{} (으)로",
+          "전환합니다"
+        ]
+      },
+      "c_star": {
+        "name": "별",
+        "text": [
+          "최대 {C:attention}#1#{} 장의 선택한 카드를",
+          "{V:1}#2#{} (으)로",
+          "전환합니다"
+        ]
+      },
+      "c_strength": {
+        "name": "힘",
+        "text": [
+          "선택한 {C:attention}#1#{} 장의",
+          "카드 랭크가 {C:attention}1{} 만큼",
+          "상승합니다"
+        ]
+      },
+      "c_sun": {
+        "name": "태양",
+        "text": [
+          "최대 {C:attention}#1#{} 장의 선택한 카드를",
+          "{V:1}#2#{} (으)로",
+          "전환합니다"
+        ]
+      },
+      "c_temperance": {
+        "name": "절제",
+        "text": [
+          "현재 모든 조커의",
+          "총 판매 가치를 제공합니다",
+          "{C:inactive}(최대 {C:money}$#1#{C:inactive})",
+          "{C:inactive}(현재 {C:money}$#2#{C:inactive})"
+        ]
+      },
+      "c_tower": {
+        "name": "탑",
+        "text": [
+          "{C:attention}#1#{} 장의 선택한 카드를",
+          "{C:attention}#2#{} (으)로",
+          "강화합니다"
+        ]
+      },
+      "c_wheel_of_fortune": {
+        "name": "운명의 수레바퀴",
+        "text": [
+          "{C:green}#1# / #2#{} 의 확률로",
+          "{C:dark_edition}포일{}, {C:dark_edition}홀로그래픽{}, 또는",
+          "{C:dark_edition}폴리크롬{} 에디션을",
+          "무작위 {C:attention}조커{} 에 추가합니다"
+        ]
+      },
+      "c_world": {
+        "name": "세계",
+        "text": [
+          "최대 {C:attention}#1#{} 장의 선택한 카드를",
+          "{V:1}#2#{} (으)로",
+          "전환합니다"
+        ]
+      }
+    },
+    "Planet": {
+      "c_ceres": {
+        "name": "세레스",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_earth": {
+        "name": "지구",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_eris": {
+        "name": "에리스",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} 플러시 파이브를 레벨업 합니다",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_jupiter": {
+        "name": "목성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_mars": {
+        "name": "화성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_mercury": {
+        "name": "수성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_neptune": {
+        "name": "해왕성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_planet_x": {
+        "name": "플래닛 X",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_pluto": {
+        "name": "명왕성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_saturn": {
+        "name": "토성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_uranus": {
+        "name": "천왕성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      },
+      "c_venus": {
+        "name": "금성",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}Lv.#1#{S:0.8}){} {C:attention}#2#{} 을(를)",
+          "레벨업합니다",
+          "{C:mult}+#3#{} 배수 및",
+          "{C:chips}+#4#{} 개의 칩"
+        ]
+      }
+    },
+    "Spectral": {
+      "c_ankh": {
+        "name": "앵크",
+        "text": [
+          "무작위 {C:attention}조커{}의 복사본을",
+          "생성하고, 다른 모든 조커를",
+          "파괴합니다"
+        ]
+      },
+      "c_aura": {
+        "name": "아우라",
+        "text": [
+          "{C:dark_edition}포일{}, {C:dark_edition}홀로그래픽{},",
+          "또는 {C:dark_edition}폴리크롬{} 효과를",
+          "핸드에 있는 {C:attention}1{} 장의 선택된 카드에 추가합니다"
+        ]
+      },
+      "c_black_hole": {
+        "name": "블랙홀",
+        "text": [
+          "모든 {C:legendary,E:1}포커 핸드{} 를",
+          "{C:attention}1{} 레벨만큼",
+          "업그레이드합니다"
+        ]
+      },
+      "c_cryptid": {
+        "name": "크립티드",
+        "text": [
+          "핸드에서 선택한 {C:attention}1{}장의",
+          "카드를 {C:attention}#1#{}장 복사해",
+          "얻습니다"
+        ]
+      },
+      "c_deja_vu": {
+        "name": "데자뷔",
+        "text": [
+          "{C:red}레드 봉인{}을",
+          "핸드에서 선택한 {C:attention}1{}장의",
+          "카드에 추가합니다"
+        ]
+      },
+      "c_ectoplasm": {
+        "name": "심령체",
+        "text": [
+          "무작위 {C:attention}조커{} 에",
+          "{C:dark_edition}네거티브{} 를 추가합니다",
+          "{C:red}-1{} 핸드 크기"
+        ]
+      },
+      "c_familiar": {
+        "name": "익숙함",
+        "text": [
+          "핸드에 있는 {C:attention}1{} 장의",
+          "무작위 카드를 파괴하고,",
+          "핸드에 {C:attention}#1#{} 장의 무작위 {C:attention}강화 그림",
+          "{C:attention}카드{} 를 추가합니다"
+        ]
+      },
+      "c_grim": {
+        "name": "암울함",
+        "text": [
+          "핸드에 있는 {C:attention}1{} 장의",
+          "무작위 카드를 파괴하고,",
+          "핸드에 {C:attention}#1#{} 장의 무작위 {C:attention}강화",
+          "{C:attention}에이스{} 를 추가합니다"
+        ]
+      },
+      "c_hex": {
+        "name": "헥스",
+        "text": [
+          "무작위 {C:attention}조커{}에 {C:dark_edition}폴리크롬{}을",
+          "생성하고, 다른 모든 조커를",
+          "파괴합니다"
+        ]
+      },
+      "c_immolate": {
+        "name": "불멸",
+        "text": [
+          "핸드에 있는 {C:attention}#1#{} 장의",
+          "무작위 카드를 파괴하고,",
+          "{C:money}$#2#{} 를 획득합니다"
+        ]
+      },
+      "c_incantation": {
+        "name": "주문",
+        "text": [
+          "핸드에 있는 {C:attention}1{} 장의",
+          "무작위 카드를 파괴하고,",
+          "핸드에 {C:attention}#1#{} 장의 무작위 {C:attention}강화 숫자",
+          "{C:attention}카드{} 를 추가합니다"
+        ]
+      },
+      "c_medium": {
+        "name": "미디엄",
+        "text": [
+          "{C:purple}퍼플 봉인{}을",
+          "핸드에서 선택한 {C:attention}1{}장의",
+          "카드에 추가합니다"
+        ]
+      },
+      "c_ouija": {
+        "name": "점판",
+        "text": [
+          "핸드에 있는 모든 카드를",
+          "단일의 무작위",
+          "{C:attention}랭크{} 로 전환합니다",
+          "{C:red}-1{} 핸드 크기"
+        ]
+      },
+      "c_sigil": {
+        "name": "인장",
+        "text": [
+          "핸드에 있는 모든 카드를",
+          "단일의 무작위",
+          "{C:attention}수트{} 로 전환합니다"
+        ]
+      },
+      "c_soul": {
+        "name": "영혼",
+        "text": [
+          "{C:legendary,E:1}전설{} 조커를",
+          "생성합니다",
+          "{C:inactive}(공간이 있어야 합니다)"
+        ]
+      },
+      "c_talisman": {
+        "name": "부적",
+        "text": [
+          "핸드에 있는",
+          "{C:attention}1{} 장의 선택된 카드에",
+          "{C:attention}금 봉인{} 을 추가합니다"
+        ]
+      },
+      "c_trance": {
+        "name": "트랜스",
+        "text": [
+          "{C:blue}블루 봉인{}을",
+          "핸드에서 선택한 {C:attention}1{}장의",
+          "카드에 추가합니다"
+        ]
+      },
+      "c_wraith": {
+        "name": "망령",
+        "text": [
+          "무작위 {C:red}레어{C:attention} 조커{} 를",
+          "생성하고,",
+          "돈이 {C:money}$0{} 가 됩니다"
+        ]
+      }
+    },
+    "Voucher": {
+      "v_antimatter": {
+        "name": "반물질",
+        "text": [
+          "{C:dark_edition}+1{} 개의 조커 슬롯"
+        ]
+      },
+      "v_blank": {
+        "name": "빈 바우처",
+        "text": [
+          "{C:inactive}아무 효과 없음?"
+        ]
+      },
+      "v_clearance_sale": {
+        "name": "대방출 세일",
+        "text": [
+          "상점의 모든 카드와 팩이",
+          "{C:attention}#1#%{} 할인됩니다"
+        ]
+      },
+      "v_crystal_ball": {
+        "name": "수정 구슬",
+        "text": [
+          "{C:attention}+1{} 소모품 슬롯"
+        ]
+      },
+      "v_directors_cut": {
+        "name": "디렉터스 컷",
+        "text": [
+          "앤티당 보스 블라인드를",
+          "{C:attention}1{} 회 리롤합니다",
+          "롤당 {C:money}$#1#{}"
+        ]
+      },
+      "v_glow_up": {
+        "name": "글로우업",
+        "text": [
+          "{C:dark_edition}포일{}, {C:dark_edition}홀로그래픽{}, 그리고",
+          "{C:dark_edition}폴리크롬{} 카드가",
+          "{C:attention}#1#X{} 만큼 더 자주 나타납니다"
+        ]
+      },
+      "v_grabber": {
+        "name": "강탈자",
+        "text": [
+          "라운드당",
+          "{C:blue}+#1#{} 핸드를",
+          "영구적으로 획득합니다"
+        ]
+      },
+      "v_hieroglyph": {
+        "name": "상형문자",
+        "text": [
+          "라운드마다",
+          "{C:attention}-#1#{} 앤티,",
+          "{C:blue}-#1#{} 핸드"
+        ]
+      },
+      "v_hone": {
+        "name": "연마",
+        "text": [
+          "{C:dark_edition}포일{}, {C:dark_edition}홀로그래픽{}, 그리고",
+          "{C:dark_edition}폴리크롬{} 카드가",
+          "{C:attention}#1#X{} 만큼 더 자주 나타납니다"
+        ]
+      },
+      "v_illusion": {
+        "name": "환상",
+        "text": [
+          "상점 내 {C:attention}플레잉 카드{}에",
+          "{C:enhanced}강화{}, {C:dark_edition}에디션{},",
+          "및/또는 {C:attention}봉인{}이 있을 수 있습니다"
+        ]
+      },
+      "v_liquidation": {
+        "name": "청산",
+        "text": [
+          "상점의 모든 카드와 팩이",
+          "{C:attention}#1#%{} 할인됩니다"
+        ]
+      },
+      "v_magic_trick": {
+        "name": "마법 속임수",
+        "text": [
+          "{C:attention}상점{} 에서",
+          "{C:attention}플레잉 카드{} 를",
+          "구매할 수 있습니다"
+        ]
+      },
+      "v_money_tree": {
+        "name": "돈나무",
+        "text": [
+          "라운드마다 획득하는",
+          "이자 한도를",
+          "{C:money}$#1#{}로 상향"
+        ]
+      },
+      "v_nacho_tong": {
+        "name": "나초 통",
+        "text": [
+          "라운드당",
+          "{C:blue}+#1#{} 핸드를",
+          "영구적으로 획득합니다"
+        ]
+      },
+      "v_observatory": {
+        "name": "관측소",
+        "text": [
+          "{C:attention}소모품{} 지역의",
+          "{C:planet}행성{} 카드가",
+          "지정된 {C:attention}포커 핸드{} 에",
+          "{X:red,C:white} X#1# {} 배수를 제공합니다"
+        ]
+      },
+      "v_omen_globe": {
+        "name": "징조의 구",
+        "text": [
+          "{C:spectral}유령{} 카드가",
+          "{C:attention}아르카나 팩{} 에서",
+          "나타날 수 있습니다"
+        ]
+      },
+      "v_overstock_norm": {
+        "name": "과잉",
+        "text": [
+          "상점에서 {C:attention}+1{} 개의 카드 슬롯이",
+          "가능합니다"
+        ]
+      },
+      "v_overstock_plus": {
+        "name": "과잉 재고",
+        "text": [
+          "상점에서 {C:attention}+1{} 개의 카드 슬롯이",
+          "가능합니다"
+        ]
+      },
+      "v_paint_brush": {
+        "name": "페인트 붓",
+        "text": [
+          "{C:attention}+#1#{} 핸드 크기"
+        ]
+      },
+      "v_palette": {
+        "name": "팔레트",
+        "text": [
+          "{C:attention}+#1#{} 핸드 크기"
+        ]
+      },
+      "v_petroglyph": {
+        "name": "암각화",
+        "text": [
+          "라운드마다",
+          "{C:attention}-#1#{} 앤티,",
+          "{C:red}-#1#{} 버리기"
+        ]
+      },
+      "v_planet_merchant": {
+        "name": "행성 상인",
+        "text": [
+          "{C:planet}행성{} 카드가",
+          "상점에서 {C:attention}#1#X{} 만큼",
+          "더 자주 나타납니다"
+        ]
+      },
+      "v_planet_tycoon": {
+        "name": "행성 거물",
+        "text": [
+          "{C:planet}행성{} 카드가",
+          "상점에서 {C:attention}#1#X{} 만큼",
+          "더 자주 나타납니다"
+        ]
+      },
+      "v_recyclomancy": {
+        "name": "리사이클로맨시",
+        "text": [
+          "라운드마다",
+          "{C:red}+#1#{} 버리기",
+          "영구적으로 획득"
+        ]
+      },
+      "v_reroll_glut": {
+        "name": "리롤 과잉",
+        "text": [
+          "리롤 비용이",
+          "{C:money}$#1#{} 감소합니다"
+        ]
+      },
+      "v_reroll_surplus": {
+        "name": "잉여 리롤",
+        "text": [
+          "리롤 비용이",
+          "{C:money}$#1#{} 감소합니다"
+        ]
+      },
+      "v_retcon": {
+        "name": "레트콘",
+        "text": [
+          "앤티당 보스 블라인드를",
+          "{C:attention}무제한{},",
+          "리롤당 {C:money}$#1#{}"
+        ]
+      },
+      "v_seed_money": {
+        "name": "시드 머니",
+        "text": [
+          "라운드마다 획득하는",
+          "이자 한도를",
+          "{C:money}$#1#{}로 상향"
+        ]
+      },
+      "v_tarot_merchant": {
+        "name": "타로 상인",
+        "text": [
+          "{C:tarot}타로{} 카드가",
+          "상점에서 {C:attention}#1#X{} 만큼",
+          "더 자주 나타납니다"
+        ]
+      },
+      "v_tarot_tycoon": {
+        "name": "타로 거물",
+        "text": [
+          "{C:tarot}행성{} 카드가",
+          "상점에서 {C:attention}#1#X{} 만큼",
+          "더 자주 나타납니다"
+        ]
+      },
+      "v_telescope": {
+        "name": "망원경",
+        "text": [
+          "{C:attention}천체 팩{} 이",
+          "가장 많이 플레이한",
+          "{C:attention}포커 핸드{} 의",
+          "{C:planet}행성{} 카드를 항상 보유합니다"
+        ]
+      },
+      "v_wasteful": {
+        "name": "낭비",
+        "text": [
+          "라운드마다",
+          "{C:red}+#1#{} 버리기",
+          "영구적으로 획득"
+        ]
+      }
+    }
+  },
+  "ui": {}
+}

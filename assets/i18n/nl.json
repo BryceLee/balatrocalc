@@ -1,0 +1,2355 @@
+{
+  "descriptions": {
+    "Joker": {
+      "j_8_ball": {
+        "name": "8-bal",
+        "text": [
+          "Kans van {C:green}#1# op #2#{} voor elke",
+          "gespeelde {C:attention}8{} om een",
+          "{C:tarot}tarot{}-kaart te creëren bij scoren",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_abstract": {
+        "name": "Abstracte Joker",
+        "text": [
+          "{C:mult}+#1#{} Multi voor",
+          "elke {C:attention}Joker{}-kaart",
+          "{C:inactive}(Nu {C:red}+#2#{C:inactive} Multi)"
+        ]
+      },
+      "j_acrobat": {
+        "name": "Acrobaat",
+        "text": [
+          "{X:red,C:white} X#1# {} Multi bij {C:attention}laatste",
+          "{C:attention}hand{} van de ronde"
+        ]
+      },
+      "j_ancient": {
+        "name": "Oeroude Joker",
+        "text": [
+          "Elke gespeelde kaart met",
+          "de kleur {V:1}#2#{} geeft",
+          "{X:mult,C:white} X#1# {} Multi bij scoren,",
+          "{s:0.8}kleur verandert aan einde van ronde"
+        ]
+      },
+      "j_arrowhead": {
+        "name": "Pijlpunt",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:spades}schoppen{} geven",
+          "{C:chips}+#1#{} fiches bij scoren"
+        ]
+      },
+      "j_astronomer": {
+        "name": "Astronoom",
+        "text": [
+          "Alle {C:planet}planeet{}-kaarten en",
+          "{C:planet}Hemelse pakketten{} in",
+          "de winkel zijn {C:attention}gratis"
+        ]
+      },
+      "j_banner": {
+        "name": "Banner",
+        "text": [
+          "{C:chips}+#1#{} fiches voor",
+          "elke overgebleven",
+          "{C:attention}weggooimogelijkheid"
+        ]
+      },
+      "j_baron": {
+        "name": "Baron",
+        "text": [
+          "Elke {C:attention}heer{}",
+          "die je in je hand hebt",
+          "levert {X:mult,C:white} X#1# {} Multi op"
+        ]
+      },
+      "j_baseball": {
+        "name": "Honkbalkaart",
+        "text": [
+          "{C:green}Ongewone{} Jokers",
+          "geven elk {X:mult,C:white} X#1# {} Multi"
+        ]
+      },
+      "j_blackboard": {
+        "name": "Krijtbord",
+        "text": [
+          "{X:red,C:white} X#1# {} Multi als alle",
+          "niet-gespeelde kaarten in de hand",
+          "{C:spades}#2#{} of {C:clubs}#3#{} zijn"
+        ]
+      },
+      "j_bloodstone": {
+        "name": "Bloedsteen",
+        "text": [
+          "Kans van {C:mult}#1# op #2#{} voor",
+          "gespeelde kaarten met",
+          "de kleur {C:hearts}harten{} geven",
+          "{X:mult,C:white} X#3# {} Multi bij scoren,"
+        ]
+      },
+      "j_blue_joker": {
+        "name": "Blauwe Joker",
+        "text": [
+          "{C:chips}+#1#{} fiches voor elke",
+          "overgebleven kaart in het {C:attention}kaartspel",
+          "{C:inactive}(Nu {C:chips}+#2#{C:inactive} fiches)"
+        ]
+      },
+      "j_blueprint": {
+        "name": "Bouwtekening",
+        "text": [
+          "Kopieert vaardigheid van",
+          "{C:attention}Joker{} aan de rechterkant"
+        ]
+      },
+      "j_bootstraps": {
+        "name": "Bijbenen",
+        "text": [
+          "{C:mult}+#1#{} Multi voor elke",
+          "{C:money}$#2#{} die je hebt",
+          "{C:inactive}(Momenteel {C:mult}+#3#{C:inactive} Multi)"
+        ]
+      },
+      "j_brainstorm": {
+        "name": "Brainstormen",
+        "text": [
+          "Kopieert de vaardigheid",
+          "van de meest linkse {C:attention}Joker"
+        ]
+      },
+      "j_bull": {
+        "name": "Stier",
+        "text": [
+          "{C:chips}+#1#{} fiches voor",
+          "elke {C:money}$1{} die je hebt",
+          "{C:inactive}(Momenteel {C:chips}+#2#{C:inactive} fiches)"
+        ]
+      },
+      "j_burglar": {
+        "name": "Inbreker",
+        "text": [
+          "Als {C:attention}blind{} is gekozen,",
+          "verdien je {C:red}+#1#{} handen en",
+          "{C:attention}verlies je alle weggooimogelijkheden"
+        ]
+      },
+      "j_burnt": {
+        "name": "Verbrande Joker",
+        "text": [
+          "Upgrade het level van",
+          "de eerste {C:attention}weggegooide",
+          "pokerhand elke ronde"
+        ]
+      },
+      "j_business": {
+        "name": "Visitekaartje",
+        "text": [
+          "Gespeelde {C:attention}Plaatjes{} hebben",
+          "kans van {C:green}#1# op #2#{} om",
+          "geven {C:money}$ 2{} bij scoren"
+        ]
+      },
+      "j_caino": {
+        "name": "Canio",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi op",
+          "wanneer een {C:attention}plaatje{}",
+          "wordt vernietigd",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_campfire": {
+        "name": "Kampvuur",
+        "text": [
+          "Deze Joker verdient {X:mult,C:white}X#1#{} Multi",
+          "per {C:attention}verkochte{} kaart, reset",
+          "als {C:attention}blind van een baas{} is verslagen",
+          "{C:inactive}(Nu {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_card_sharp": {
+        "name": "Kaartscherp",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde",
+          "{C:attention}pokerhand{} deze ronde al",
+          "gespeeld is"
+        ]
+      },
+      "j_cartomancer": {
+        "name": "Kaartenmagiër",
+        "text": [
+          "Maak een {C:tarot}tarot{}-kaart",
+          "als {C:attention}blind{} is geselecteerd,",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_castle": {
+        "name": "Kasteel",
+        "text": [
+          "Deze Joker verdient {C:chips}+#1#{} fiches",
+          "per weggegooide {V:1}#2#{} kaart,",
+          "de kleur verandert elke ronde",
+          "{C:inactive}(Nu {C:chips}+#3#{C:inactive} fiches)"
+        ]
+      },
+      "j_cavendish": {
+        "name": "Aanmatigend",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi",
+          "kans van {C:green}#2# op #3#{} dat deze",
+          "kaart wordt vernietigd",
+          "aan het einde van ronde"
+        ]
+      },
+      "j_ceremonial": {
+        "name": "Ceremoniële dolk",
+        "text": [
+          "Als {C:attention}blind{} is geselecteerd,",
+          "vernietig je de Joker aan de rechterkant",
+          "en voeg je zijn {C:attention}dubbele",
+          "verkoopwaarde permanent toe aan deze {C:attention}Multi",
+          "{C:inactive}(Nu {C:mult}+#1#{C:inactive} Multi)"
+        ]
+      },
+      "j_certificate": {
+        "name": "Certificaat",
+        "text": [
+          "Als de ronde begint,",
+          "wordt een willekeurige {C:attention}speelkaart{}",
+          "{C:attention}{} met een willekeurige",
+          "{C:attention}zegel{} aan je hand toegevoegd"
+        ]
+      },
+      "j_chaos": {
+        "name": "Chaos de Clown",
+        "text": [
+          "{C:green}#1#{} gratis keer {C:attention}verversen",
+          "per winkel"
+        ]
+      },
+      "j_chicot": {
+        "name": "Chicot",
+        "text": [
+          "Schakelt effect van",
+          "elke {C:attention}blind van een baas uit"
+        ]
+      },
+      "j_clever": {
+        "name": "Slimme Joker",
+        "text": [
+          "{C:chips}+#1#{} fiches als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_cloud_9": {
+        "name": "Op wolkjes",
+        "text": [
+          "Verdient {C:money}$#1#{} voor elke",
+          "{C:attention}9{} in je {C:attention}volledige kaartspel",
+          "aan het einde van ronde",
+          "{C:inactive}(Nu {C:money}$#2#{}{C:inactive})"
+        ]
+      },
+      "j_constellation": {
+        "name": "Sterrenbeeld",
+        "text": [
+          "Deze joker levert",
+          "{X:mult,C:white} X#1# {} Multi op telkens als",
+          "een {C:planet}planeet{}-kaart wordt gebruikt",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_crafty": {
+        "name": "Listige Joker",
+        "text": [
+          "{C:chips}+#1#{} fiches als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_crazy": {
+        "name": "Gekke Joker",
+        "text": [
+          "{C:red}+#1#{} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_credit_card": {
+        "name": "Creditcard",
+        "text": [
+          "Staat een schuld van",
+          "{C:red}-$#1#{} toe"
+        ]
+      },
+      "j_delayed_grat": {
+        "name": "Uitgestelde voldoening",
+        "text": [
+          "Verdien {C:money}$#1#{} per {C:attention}weggooimogelijkheid{} als",
+          "er geen kaarten zijn weggegooid",
+          "aan het einde van de ronde"
+        ]
+      },
+      "j_devious": {
+        "name": "Vileine Joker",
+        "text": [
+          "{C:chips}+#1#{} fiches als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_diet_cola": {
+        "name": "Cola light",
+        "text": [
+          "Verkoop deze kaart om",
+          "een gratis",
+          "{C:attention}#1# te maken"
+        ]
+      },
+      "j_dna": {
+        "name": "DNA",
+        "text": [
+          "Als {C:attention}eerste hand{} van de ronde",
+          "maar {C:attention}1{} kaart heeft, voeg",
+          "je een permanente kopie toe aan het kaartspel",
+          "en trek je deze naar de {C:attention}hand"
+        ]
+      },
+      "j_drivers_license": {
+        "name": "Rijbewijs",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als je",
+          "ten minste {C:attention}16",
+          "verbeterde kaarten heeft",
+          "{C:inactive}(Nu {C:attention}#2#{C:inactive})"
+        ]
+      },
+      "j_droll": {
+        "name": "Grappige Joker",
+        "text": [
+          "{C:red}+#1#{} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_drunkard": {
+        "name": "Dronkaard",
+        "text": [
+          "{C:red}+#1#{} weggooimogelijkheid",
+          "per ronde"
+        ]
+      },
+      "j_duo": {
+        "name": "Het duo",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_dusk": {
+        "name": "Schemering",
+        "text": [
+          "Reactiveer alle gespeelde",
+          "kaarten in {C:attention}laatste",
+          "{C:attention}hand{} van de ronde"
+        ]
+      },
+      "j_egg": {
+        "name": "Ei",
+        "text": [
+          "Verhoogt {C:attention}verkoopwaarde{}",
+          "met {C:money}$#1#{}  aan",
+          "het einde van de ronde"
+        ]
+      },
+      "j_erosion": {
+        "name": "Erosie",
+        "text": [
+          "{C:red}+#1#{} Multi voor elke",
+          "kaart onder {C:attention}#3#{}",
+          "in je volledige kaartspel",
+          "{C:inactive}(Nu {C:red}+#2#{C:inactive} Multi)"
+        ]
+      },
+      "j_even_steven": {
+        "name": "Gelijke Pijke",
+        "text": [
+          "Gespeelde kaarten met",
+          "een {C:attention}even{} rang geven",
+          "{C:mult}+#1#{} Multi bij scoren",
+          "{C:inactive}(10, 8, 6, 4, 2)"
+        ]
+      },
+      "j_faceless": {
+        "name": "Joker zonder gezicht",
+        "text": [
+          "Verdien {C:money}$#1#{} als {C:attention}#2#{} of",
+          "meer {C:attention}plaatjes{}",
+          "tegelijkertijd worden",
+          "weggegooid"
+        ]
+      },
+      "j_family": {
+        "name": "De familie",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_fibonacci": {
+        "name": "Fibonacci",
+        "text": [
+          "Elke gespeelde {C:attention}aas{},",
+          "{C:attention}2{}, {C:attention}3{}, {C:attention}5{} of {C:attention}8{}",
+          "geven {C:mult}+#1#{} Multi bij scoren"
+        ]
+      },
+      "j_flash": {
+        "name": "Flash-kaart",
+        "text": [
+          "Deze joker levert {C:mult}+#1#{} Multi",
+          "op per {C:attention}verversing{} in de winkel",
+          "{C:inactive}(Momenteel {C:mult}+#2#{C:inactive} Multi)"
+        ]
+      },
+      "j_flower_pot": {
+        "name": "Bloempot",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als",
+          "pokerhand een",
+          "{C:diamonds}ruiten{}-kaart, {C:clubs}klaveren{}-kaart,",
+          "{C:hearts}harten{}-kaart en {C:spades}schoppen{}-kaart bevat"
+        ]
+      },
+      "j_fortune_teller": {
+        "name": "Waarzegger",
+        "text": [
+          "{C:red}+#1#{} Multi per",
+          "gebruikte {C:purple}Tarot{}-kaart",
+          "{C:inactive}(Nu {C:red}+#2#{C:inactive})"
+        ]
+      },
+      "j_four_fingers": {
+        "name": "Vier vingers",
+        "text": [
+          "Alle {C:attention}Flushes{} en",
+          "{C:attention}Straights{} kunnen gemaakt",
+          "worden met {C:attention}4{} kaarten"
+        ]
+      },
+      "j_gift": {
+        "name": "Cadeaukaart",
+        "text": [
+          "Voegt {C:money}$#1#{} {C:attention}verkoopwaarde toe",
+          "aan elke {C:attention}Joker{} en",
+          "{C:attention}verbruiks{}-kaart bij",
+          "einde van ronde"
+        ]
+      },
+      "j_glass": {
+        "name": "Glazen Joker",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi",
+          "voor elke {C:attention}glaskaart",
+          "die wordt vernietigd",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_gluttenous_joker": {
+        "name": "Gulzige Joker",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:clubs}#2#{} geven",
+          "{C:mult}+#1#{} Multi bij scoren"
+        ]
+      },
+      "j_golden": {
+        "name": "Gouden Joker",
+        "text": [
+          "Verdien {C:money}$#1#{} aan",
+          "einde van ronde"
+        ]
+      },
+      "j_greedy_joker": {
+        "name": "Hebberige Joker",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:diamonds}#2#{} geven",
+          "{C:mult}+#1#{} Multi bij scoren"
+        ]
+      },
+      "j_green_joker": {
+        "name": "Groene Joker",
+        "text": [
+          "{C:mult}+#1#{} Multi per gespeelde hand",
+          "{C:mult}-#2#{} Multi per weggegooide kaart",
+          "{C:inactive}(Nu {C:mult}+#3#{C:inactive} Multi)"
+        ]
+      },
+      "j_gros_michel": {
+        "name": "Gros Michel",
+        "text": [
+          "{C:mult}+#1#{} Multi",
+          "Kans van {C:green}#2# op #3#{} dat deze",
+          "kaart wordt vernietigd",
+          "aan het einde van ronde"
+        ]
+      },
+      "j_hack": {
+        "name": "Bedrieger",
+        "text": [
+          "Reactiveer",
+          "elke gespeelde",
+          "{C:attention}2{}, {C:attention}3{}, {C:attention}4{} of {C:attention}5{}"
+        ]
+      },
+      "j_half": {
+        "name": "Halve Joker",
+        "text": [
+          "{C:red}+#1#{} Multi als gespeelde",
+          "hand",
+          "{C:attention}#2#{} of minder kaarten bevat"
+        ]
+      },
+      "j_hallucination": {
+        "name": "Hallucinatie",
+        "text": [
+          "Kans van {C:green}#1# op #2#{} om een",
+          "{C:tarot}tarot{}-kaart te creëren als er een",
+          "{C:attention}Boosterpakket{} is geopend",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_hanging_chad": {
+        "name": "Ongeldige stem",
+        "text": [
+          "Reactiveer de {C:attention}eerst{} gespeelde",
+          "kaart die scoort",
+          "{C:attention}#1#{} keer extra"
+        ]
+      },
+      "j_hiker": {
+        "name": "Lifter",
+        "text": [
+          "Elke gespeelde {C:attention}kaart{}",
+          "krijgt permanent",
+          "{C:chips}+#1#{} fiches bij scoren"
+        ]
+      },
+      "j_hit_the_road": {
+        "name": "De boer op",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi",
+          "op voor elke weggegooide {C:attention}boer{}",
+          "deze ronde",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_hologram": {
+        "name": "Hologram",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi",
+          "op wanneer een {C:attention}speelkaart{}",
+          "aan je kaartspel wordt toegevoegd",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_ice_cream": {
+        "name": "IJsco",
+        "text": [
+          "{C:chips}+#1#{} fiches",
+          "{C:chips}-#2#{} fiches voor",
+          "elke gespeelde hand"
+        ]
+      },
+      "j_idol": {
+        "name": "Het idool",
+        "text": [
+          "Elke gespeelde {C:attention}#2#",
+          "van {V:1}#3#{} geeft",
+          "{X:mult,C:white} X#1# {} Multi bij scoren",
+          "{s:0.8}Kaart verandert elke ronde"
+        ]
+      },
+      "j_invisible": {
+        "name": "Onzichtbare Joker",
+        "text": [
+          "Verkoop deze kaart na {C:attention}#1#{}",
+          "rondes om",
+          "een willekeurige Joker te {C:attention}verdubbelen{}",
+          "{C:inactive}(Nu {C:attention}#2#{C:inactive}/#1#)"
+        ]
+      },
+      "j_joker": {
+        "name": "Joker",
+        "text": [
+          "{C:red,s:1.1}+#1#{} Multi"
+        ]
+      },
+      "j_jolly": {
+        "name": "Vrolijke Joker",
+        "text": [
+          "{C:red}+#1#{} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_juggler": {
+        "name": "Jongleur",
+        "text": [
+          "{C:attention}+#1#{} handomvang"
+        ]
+      },
+      "j_loyalty_card": {
+        "name": "Trouwheidskaart",
+        "text": [
+          "{X:red,C:white} X#1# {} Multi per",
+          "{C:attention}#2#{} gespeelde handen",
+          "{C:inactive}#3#"
+        ]
+      },
+      "j_luchador": {
+        "name": "Luchador",
+        "text": [
+          "Verkoop deze kaart",
+          "om de huidige",
+          "{C:attention}Blind van een baas{} uit te schakelen"
+        ]
+      },
+      "j_lucky_cat": {
+        "name": "Boffende kat",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi",
+          "op telkens als een {C:attention}bof{}-kaart",
+          "{C:green}succesvol{} activeert",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_lusty_joker": {
+        "name": "Lustige Joker",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:hearts}#2#{} geven",
+          "{C:mult}+#1#{} Multi bij scoren"
+        ]
+      },
+      "j_mad": {
+        "name": "Maffe Joker",
+        "text": [
+          "{C:red}+#1#{} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_madness": {
+        "name": "Krankzinnigheid",
+        "text": [
+          "Als {C:attention}small blind{} of {C:attention}big blind{}",
+          "is geselecteerd, krijg {X:mult,C:white} X#1# {} Multi",
+          "en {C:attention}vernietig{} een willekeurige joker",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_mail": {
+        "name": "Cashback",
+        "text": [
+          "Verdien {C:money}$#1#{} voor elke",
+          "weggegooide {C:attention}#2#{}, de rang",
+          "verandert elke ronde"
+        ]
+      },
+      "j_marble": {
+        "name": "Marmeren Joker",
+        "text": [
+          "Voegt een {C:attention}steen{}-kaart toe",
+          "aan je kaartspel als",
+          "als {C:attention}blind{} is geselecteerd"
+        ]
+      },
+      "j_matador": {
+        "name": "Matador",
+        "text": [
+          "Verdien {C:money}$#1#{} als gespeelde",
+          "hand de",
+          "{C:attention}blind van een baas{}-vaardigheid activeert"
+        ]
+      },
+      "j_merry_andy": {
+        "name": "Vrolijke Andy",
+        "text": [
+          "{C:red}+#1#{} weggooimogelijkheden",
+          "per ronde,",
+          "{C:red}#2#{} handomvang"
+        ]
+      },
+      "j_midas_mask": {
+        "name": "Midasmasker",
+        "text": [
+          "Alle gespeelde {C:attention}plaatjes{}",
+          "worden {C:attention}gouden{} kaarten",
+          "bij scoren"
+        ]
+      },
+      "j_mime": {
+        "name": "Pantomime",
+        "text": [
+          "Reactiveer alle",
+          "kaarten {C:attention}vastgehouden in",
+          "{C:attention}hand{}-vaardigheden"
+        ]
+      },
+      "j_misprint": {
+        "name": "Drukfout",
+        "text": [
+          ""
+        ]
+      },
+      "j_mr_bones": {
+        "name": "Meneer Botjes",
+        "text": [
+          "Voorkomt dood",
+          "als gescoorde fiches",
+          "ten minste {C:attention}25% bedragen",
+          "van de vereiste fiches",
+          "{S:1.1,C:red,E:2}vernietigt zichzelf{}"
+        ]
+      },
+      "j_mystic_summit": {
+        "name": "Mystieke piek",
+        "text": [
+          "{C:mult}+#1#{} Multi als er",
+          "{C:attention}#2#{} weggooimogelijkheden",
+          "resteren"
+        ]
+      },
+      "j_obelisk": {
+        "name": "Obelisk",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi",
+          "op per {C:attention}opeenvolgende{} gespeelde hand",
+          "zonder je meest gespeelde",
+          "{C:attention}pokerhand",
+          "{C:inactive} te spelen (Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_odd_todd": {
+        "name": "Oneven Steven",
+        "text": [
+          "Gespeelde kaarten met",
+          "een {C:attention}oneven{} rang geven",
+          "{C:chips}+#1#{} fiches bij scoren",
+          "{C:inactive}(A, 9, 7, 5, 3)"
+        ]
+      },
+      "j_onyx_agate": {
+        "name": "Onyx-agaat",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:clubs}klaveren{} geven",
+          "{C:mult}+#1#{} Multi bij scoren"
+        ]
+      },
+      "j_oops": {
+        "name": "Oeps! Allemaal 6",
+        "text": [
+          "Verdubbelt alle {C:attention}vermelde",
+          "{C:green,E:1,S:1.1}mogelijkheden",
+          "{C:inactive}(bijv.: {C:green}1 op 3{C:inactive} -> {C:green}2 op 3{C:inactive})"
+        ]
+      },
+      "j_order": {
+        "name": "De orde",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_pareidolia": {
+        "name": "Pareidolie",
+        "text": [
+          "Alle kaarten worden",
+          "beschouwd als",
+          "{C:attention}plaatjes{}"
+        ]
+      },
+      "j_perkeo": {
+        "name": "Perkeo",
+        "text": [
+          "Maak een {C:dark_edition}negatieve{} kopie van",
+          "{C:attention}1{} willekeurige {C:attention}verbruiks{}-",
+          "kaart in je bezit",
+          "aan het eind van de {C:attention}winkel"
+        ]
+      },
+      "j_photograph": {
+        "name": "Foto",
+        "text": [
+          "Eerste gespeelde {C:attention}plaatje",
+          "levert {X:mult,C:white} X#1# {} Multi op",
+          "bij scoren"
+        ]
+      },
+      "j_popcorn": {
+        "name": "Popcorn",
+        "text": [
+          "{C:mult}+#1#{} Multi",
+          "{C:mult}-#2#{} Multi per",
+          "gespeelde ronde"
+        ]
+      },
+      "j_raised_fist": {
+        "name": "Geheven vuist",
+        "text": [
+          "Voegt de {C:attention}dubbele{} rang",
+          "van de kaart met de {C:attention}laagste{} rang",
+          "in de hand toe aan Multi"
+        ]
+      },
+      "j_ramen": {
+        "name": "Noedels",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi,",
+          "verliest {X:mult,C:white} X#2# {} Multi",
+          "per weggegooide {C:attention}kaart{}"
+        ]
+      },
+      "j_red_card": {
+        "name": "Rode kaart",
+        "text": [
+          "Deze joker levert",
+          "{C:red}+#1#{} Multi op wanneer een",
+          "{C:attention}boosterpakket{} wordt overgeslagen",
+          "{C:inactive}(Momenteel {C:red}+#2#{C:inactive} Multi)"
+        ]
+      },
+      "j_reserved_parking": {
+        "name": "Gereserveerde parkeerplaats",
+        "text": [
+          "Elk {C:attention}plaatje{}",
+          "dat je in je hand hebt",
+          "heeft een kans van {C:green}#2# op #3#{}",
+          "om {C:money}$#1#{} op te leveren"
+        ]
+      },
+      "j_ride_the_bus": {
+        "name": "Met de bus mee",
+        "text": [
+          "Deze joker levert {C:mult}+#1#{} Multi",
+          "op per {C:attention}opeenvolgende{} hand",
+          "die wordt gespeeld zonder een",
+          "scorend {C:attention}plaatje{}",
+          "{C:inactive}(Momenteel {C:mult}+#2#{C:inactive} Multi)"
+        ]
+      },
+      "j_riff_raff": {
+        "name": "Gespuis",
+        "text": [
+          "Als {C:attention}blind{} is geselecteerd,",
+          "maak {C:attention}#1# {C:blue}gewone{C:attention} Joker",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_ring_master": {
+        "name": "Ringmeester",
+        "text": [
+          "{C:attention}Jokers{}, {C:tarot}tarot{}-, {C:planet}planeet{}-kaarten",
+          "en {C:spectral}spectrale{} kaarten",
+          "verschijnen meerdere keren"
+        ]
+      },
+      "j_rocket": {
+        "name": "Raket",
+        "text": [
+          "Verdien {C:money}$#1#{} aan het eind van de ronde",
+          "Uitbetaling stijgt met {C:money}$#2#{}",
+          "wanneer een {C:attention}baasblind{} wordt verslagen"
+        ]
+      },
+      "j_rough_gem": {
+        "name": "Ruwe diamant",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:diamonds}ruiten{} leveren",
+          "{C:money}$#1#{} op bij scoren"
+        ]
+      },
+      "j_runner": {
+        "name": "Hardloper",
+        "text": [
+          "Levert {C:chips}+#2#{} fiches op",
+          "als gespeelde hand",
+          "een {C:chips}Straight{} bevat",
+          "{C:inactive}(Nu {C:chips}+#1#{C:inactive} fiches)"
+        ]
+      },
+      "j_satellite": {
+        "name": "Satelliet",
+        "text": [
+          "Verdien {C:money}$#1#{} aan het einde",
+          "van ronde per unieke {C:planet}planeet-",
+          "kaart die je dit spel gebruikt",
+          "{C:inactive}(Nu {C:money}$#2#{C:inactive})"
+        ]
+      },
+      "j_scary_face": {
+        "name": "Eng gezicht",
+        "text": [
+          "Gespeelde {C:attention}plaatjes{}",
+          "geven {C:chips}+#1#{} fiches",
+          "bij scoren"
+        ]
+      },
+      "j_scholar": {
+        "name": "Geleerde",
+        "text": [
+          "Gespeelde {C:attention}azen{}",
+          "geven {C:chips}+#2#{} fiches",
+          "en {C:mult}+#1#{} Multi",
+          "bij scoren"
+        ]
+      },
+      "j_seance": {
+        "name": "Seance",
+        "text": [
+          "Als een {C:attention}pokerhand{} een",
+          "{C:attention}#1#{} is, maak een",
+          "een willekeurige {C:spectral}spectrale{} kaart",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_seeing_double": {
+        "name": "Dubbel zien",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde hand",
+          "een scorende {C:clubs}klaveren{}-kaart",
+          "en een scorende kaart van",
+          "een andere {C:attention}kleur{} bevat"
+        ]
+      },
+      "j_selzer": {
+        "name": "Seltzer",
+        "text": [
+          "Reactiveer alle",
+          "gespeelde kaarten gedurende",
+          "de volgende {C:attention}#1#{} handen"
+        ]
+      },
+      "j_shoot_the_moon": {
+        "name": "Bereik de maan",
+        "text": [
+          "Elke {C:attention}vrouw{}",
+          "in de hand",
+          "levert {C:mult}+#1#{} Multi op"
+        ]
+      },
+      "j_shortcut": {
+        "name": "Kortere route",
+        "text": [
+          "Staat toe dat {C:attention}straights{} worden",
+          "gemaakt met leemtes van {C:attention}1 rang",
+          "{C:inactive}(bijv.: {C:attention}10 8 6 5 3{C:inactive})"
+        ]
+      },
+      "j_sixth_sense": {
+        "name": "Zesde zintuig",
+        "text": [
+          "Als {C:attention}eerste hand{} van ronde",
+          "een enkele {C:attention}6{} is, wordt deze vernietigd",
+          "en wordt een {C:spectral}spectrale{} kaart gecreëerd",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_sly": {
+        "name": "Sluwe Joker",
+        "text": [
+          "{C:chips}+#1#{} fiches als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_smeared": {
+        "name": "Besmeurde Joker",
+        "text": [
+          "{C:diamonds}Harten{} en {C:diamonds}ruiten",
+          "tellen als dezelfde kleur,",
+          "{C:spades}schoppen{} en {C:spades}klaveren",
+          "tellen als dezelfde kleur"
+        ]
+      },
+      "j_smiley": {
+        "name": "Smiley",
+        "text": [
+          "Gespeelde {C:attention}plaatjes{}",
+          "geven {C:mult}+#1#{} Multi",
+          "bij scoren"
+        ]
+      },
+      "j_sock_and_buskin": {
+        "name": "Komedie en tragedie",
+        "text": [
+          "Reactiveer alle",
+          "gespeelde {C:attention}plaatjes{}"
+        ]
+      },
+      "j_space": {
+        "name": "Ruimtejoker",
+        "text": [
+          "Kans van {C:green}#1# op #2#{} om",
+          "level van",
+          "gespeelde {C:attention}pokerhand{} te upgraden"
+        ]
+      },
+      "j_splash": {
+        "name": "Plons",
+        "text": [
+          "Elke {C:attention}gespeelde kaart",
+          "telt mee bij de score"
+        ]
+      },
+      "j_square": {
+        "name": "Vierkante Joker",
+        "text": [
+          "Deze joker levert {C:chips}+#2#{} fiches",
+          "op als gespeelde hand",
+          "precies {C:attention}4{} kaarten bevat",
+          "{C:inactive}(Momenteel {C:chips}#1#{C:inactive} fiches)"
+        ]
+      },
+      "j_steel_joker": {
+        "name": "Stalen Joker",
+        "text": [
+          "Levert {X:mult,C:white} X#1# {} Multi op",
+          "voor elke {C:attention}staalkaart",
+          "in je {C:attention}volledige kaartspel",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_stencil": {
+        "name": "Jokerstencil",
+        "text": [
+          "{X:red,C:white} X1 {} Multi voor elk",
+          "leeg {C:attention}Joker{}-vak",
+          "inclusief het {s:0.8}Jokerstencil",
+          "{C:inactive}(Nu {X:red,C:white} X#1# {C:inactive})"
+        ]
+      },
+      "j_stone": {
+        "name": "Stenen Joker",
+        "text": [
+          "Levert {C:chips}+#1#{} fiches op voor",
+          "elke {C:attention}steenkaart",
+          "in je {C:attention}volledige kaartspel",
+          "{C:inactive}(Momenteel {C:chips}+#2#{C:inactive} fiches)"
+        ]
+      },
+      "j_stuntman": {
+        "name": "Stuntman",
+        "text": [
+          "{C:chips}+#1#{} fiches,",
+          "{C:attention}-#2#{} handomvang"
+        ]
+      },
+      "j_supernova": {
+        "name": "Supernova",
+        "text": [
+          "Voegt het aantal keren dat",
+          "{C:attention}pokerhand{} is gespeeld",
+          "in dit spel toe aan Multi"
+        ]
+      },
+      "j_superposition": {
+        "name": "Superpositie",
+        "text": [
+          "Maak een {C:tarot}tarot-{}kaart als",
+          "pokerhand een",
+          "{C:attention}aas{} en een {C:attention}straight{} bevat",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "j_swashbuckler": {
+        "name": "Vrijbuiter",
+        "text": [
+          "Voegt de verkoopwaarde",
+          "van alle andere",
+          "{C:attention}jokers{} in bezit toe aan Multi",
+          "{C:inactive}(Momenteel {C:mult}+#1#{C:inactive} Multi)"
+        ]
+      },
+      "j_throwback": {
+        "name": "Retro",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi voor elke",
+          "overgeslagen {C:attention}blind{} in dit spel",
+          "{C:inactive}(Nu {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_ticket": {
+        "name": "Gouden kaartje",
+        "text": [
+          "Gespeelde {C:attention}gouden{} kaarten",
+          "leveren {C:money}$#1#{} op bij scoren"
+        ]
+      },
+      "j_to_the_moon": {
+        "name": "Naar de maan",
+        "text": [
+          "Verdien {C:money}$#1#{} extra",
+          "{C:attention}rente{} voor elke {C:money}$ 5{} die je",
+          "hebt aan het einde van ronde"
+        ]
+      },
+      "j_todo_list": {
+        "name": "Takenlijst",
+        "text": [
+          "Verdien {C:money}$#1#{} als {C:attention}pokerhand{}",
+          "een {C:attention}#2#{} is.",
+          "Pokerhand verandert",
+          "aan het eind van de ronde"
+        ]
+      },
+      "j_trading": {
+        "name": "Ruilkaart",
+        "text": [
+          "Als {C:attention}eerste weggooimogelijkheid{} van de ronde",
+          "maar {C:attention}1{} kaart heeft, vernietig",
+          "deze dan en verdien {C:money}$#1#"
+        ]
+      },
+      "j_tribe": {
+        "name": "De stam",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_triboulet": {
+        "name": "Triboulet",
+        "text": [
+          "Gespeelde {C:attention}heren{} en",
+          "{C:attention}vrouwen{} geven elk",
+          "{X:mult,C:white} X#1# {} Multi bij scoren,"
+        ]
+      },
+      "j_trio": {
+        "name": "Het trio",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_troubadour": {
+        "name": "Troubadour",
+        "text": [
+          "{C:attention}+#1#{} handomvang,",
+          "{C:blue}-#2#{} hand elke ronde"
+        ]
+      },
+      "j_trousers": {
+        "name": "Reservebroek",
+        "text": [
+          "Deze joker levert {C:mult}+#1#{} Multi",
+          "op als gespeelde hand",
+          "een {C:attention}#2#",
+          "{C:inactive} bevat (Momenteel {C:red}+#3#{C:inactive} Multi)"
+        ]
+      },
+      "j_turtle_bean": {
+        "name": "Zwarte boon",
+        "text": [
+          "{C:attention}+#1#{} handomvang,",
+          "vermindert met",
+          "{C:red}#2#{} per ronde"
+        ]
+      },
+      "j_vagabond": {
+        "name": "Vagebond",
+        "text": [
+          "Maak een {C:purple}tarot-{}kaart",
+          "als een hand wordt gespeeld",
+          "met maximaal {C:money}$#1#{}"
+        ]
+      },
+      "j_vampire": {
+        "name": "Vampier",
+        "text": [
+          "Deze joker levert {X:mult,C:white} X#1# {} Multi",
+          "op per scorende gespeelde {C:attention}verbeterde kaart{},",
+          "verwijdert {C:attention}kaartverbetering",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#2# {C:inactive} Multi)"
+        ]
+      },
+      "j_walkie_talkie": {
+        "name": "Walkietalkie",
+        "text": [
+          "Elke gespeelde {C:attention}10{} of {C:attention}4",
+          "geeft {C:chips}+#1#{} fiches en",
+          "{C:mult}+#2#{} Multi bij scoren"
+        ]
+      },
+      "j_wee": {
+        "name": "Mini-joker",
+        "text": [
+          "Deze Joker levert",
+          "{C:chips}+#2#{} fiches op per",
+          "gespeelde {C:chips}2{} die heeft gescoord",
+          "{C:inactive}(Nu {C:chips}+#1#{C:inactive} fiches)"
+        ]
+      },
+      "j_wily": {
+        "name": "Gehaaide Joker",
+        "text": [
+          "{C:chips}+#1#{} fiches als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      },
+      "j_wrathful_joker": {
+        "name": "Wraakzuchtige Joker",
+        "text": [
+          "Gespeelde kaarten met",
+          "de kleur {C:spades}#2#{} geven",
+          "{C:mult}+#1#{} Multi bij scoren"
+        ]
+      },
+      "j_yorick": {
+        "name": "Yorick",
+        "text": [
+          "Deze joker levert",
+          "{X:mult,C:white} X#1# {} Multi op telkens als {C:attention}#2#{C:inactive} [#3#]{}",
+          "kaarten worden weggegooid",
+          "{C:inactive}(Momenteel {X:mult,C:white} X#4# {C:inactive} Multi)"
+        ]
+      },
+      "j_zany": {
+        "name": "Knotsgekke Joker",
+        "text": [
+          "{C:red}+#1#{} Multi als gespeelde",
+          "hand",
+          "een {C:attention}#2# bevat"
+        ]
+      }
+    },
+    "Blind": {
+      "bl_arm": {
+        "name": "Het wapen",
+        "text": [
+          "Verlaag level van",
+          "gespeelde pokerhand"
+        ]
+      },
+      "bl_big": {
+        "name": "Big blind",
+        "text": []
+      },
+      "bl_club": {
+        "name": "De klaver",
+        "text": [
+          "Alle klaverenkaarten",
+          "verliezen hun buff"
+        ]
+      },
+      "bl_eye": {
+        "name": "Het oog",
+        "text": [
+          "Deze ronde geen",
+          "herhaalde handtypes"
+        ]
+      },
+      "bl_final_acorn": {
+        "name": "Amberkleurige eikel",
+        "text": [
+          "Draait alle Jokerkaarten om",
+          "en schudt ze"
+        ]
+      },
+      "bl_final_bell": {
+        "name": "Azuurblauwe bel",
+        "text": [
+          "Forceert 1 kaart om",
+          "altijd geselecteerd te zijn"
+        ]
+      },
+      "bl_final_heart": {
+        "name": "Karmozijnrood hart",
+        "text": [
+          "Een willekeurige Joker is",
+          "per hand uitgeschakeld"
+        ]
+      },
+      "bl_final_leaf": {
+        "name": "Groen blaadje",
+        "text": [
+          "Alle kaarten verliezen hun buff",
+          "tot er 1 Joker is verkocht"
+        ]
+      },
+      "bl_final_vessel": {
+        "name": "Violet vat",
+        "text": [
+          "Zeer grote blind"
+        ]
+      },
+      "bl_fish": {
+        "name": "De vis",
+        "text": [
+          "Met de afbeelding naar beneden getrokken",
+          "na elke gespeelde hand"
+        ]
+      },
+      "bl_flint": {
+        "name": "De vuursteen",
+        "text": [
+          "Basisfiches en",
+          "Multi worden gehalveerd"
+        ]
+      },
+      "bl_goad": {
+        "name": "De aansporing",
+        "text": [
+          "Alle schoppenkaarten",
+          "verliezen hun buff"
+        ]
+      },
+      "bl_head": {
+        "name": "Het hoofd",
+        "text": [
+          "Alle hartenkaarten",
+          "verliezen hun buff"
+        ]
+      },
+      "bl_hook": {
+        "name": "De haak",
+        "text": [
+          "Gooit 2 willekeurige kaarten",
+          "per gespeelde hand weg"
+        ]
+      },
+      "bl_house": {
+        "name": "Het huis",
+        "text": [
+          "Eerste hand wordt met de ",
+          "afbeelding naar beneden getrokken"
+        ]
+      },
+      "bl_manacle": {
+        "name": "Boeien",
+        "text": [
+          "-1 handomvang"
+        ]
+      },
+      "bl_mark": {
+        "name": "Het teken",
+        "text": [
+          "Alle plaatjes worden getrokken",
+          "met de afbeelding naar beneden"
+        ]
+      },
+      "bl_mouth": {
+        "name": "De mond",
+        "text": [
+          "Speel deze ronde",
+          "maar 1 handtype"
+        ]
+      },
+      "bl_needle": {
+        "name": "De naald",
+        "text": [
+          "Speel maar 1 hand"
+        ]
+      },
+      "bl_ox": {
+        "name": "De os",
+        "text": [
+          "Als je een #1# speelt,",
+          "gaat geld terug naar $ 0"
+        ]
+      },
+      "bl_pillar": {
+        "name": "De pilaar",
+        "text": [
+          "Eerder gespeelde kaarten",
+          "bij deze ante verliezen hun buff"
+        ]
+      },
+      "bl_plant": {
+        "name": "De plant",
+        "text": [
+          "Alle plaatjes",
+          "verliezen hun buff"
+        ]
+      },
+      "bl_psychic": {
+        "name": "De helderziende",
+        "text": [
+          "Moet 5 kaarten spelen"
+        ]
+      },
+      "bl_serpent": {
+        "name": "Het serpent",
+        "text": [
+          "Na spelen of weggooien,",
+          "trek je altijd 3 kaarten"
+        ]
+      },
+      "bl_small": {
+        "name": "Small blind",
+        "text": []
+      },
+      "bl_tooth": {
+        "name": "De tand",
+        "text": [
+          "Verlies $ 1 per",
+          "gespeelde kaart"
+        ]
+      },
+      "bl_wall": {
+        "name": "De muur",
+        "text": [
+          "Extra grote blind"
+        ]
+      },
+      "bl_water": {
+        "name": "Het water",
+        "text": [
+          "Begin met",
+          "0 weggooimogelijkheden"
+        ]
+      },
+      "bl_wheel": {
+        "name": "Het rad",
+        "text": [
+          " op 7 kaarten worden met de ",
+          "afbeelding naar beneden getrokken"
+        ]
+      },
+      "bl_window": {
+        "name": "Het raam",
+        "text": [
+          "Alle ruitenkaarten",
+          "verliezen hun buff"
+        ]
+      }
+    },
+    "Back": {
+      "b_abandoned": {
+        "name": "Verlaten kaartspel",
+        "text": [
+          "Begin het spel",
+          "zonder {C:attention}plaatjes",
+          "in je kaartspel"
+        ]
+      },
+      "b_anaglyph": {
+        "name": "Anaglyph kaartspel",
+        "text": [
+          "Na het verslaan van elke",
+          "{C:attention}blind van een baas{}",
+          "verdien je een {C:attention,T:tag_double}#1#"
+        ]
+      },
+      "b_black": {
+        "name": "Zwart kaartspel",
+        "text": [
+          "{C:attention}+#1#{} Jokervak",
+          "",
+          "{C:blue}-#2#{} hand",
+          "elke ronde"
+        ]
+      },
+      "b_blue": {
+        "name": "Blauw kaartspel",
+        "text": [
+          "{C:blue}+#1#{} hand",
+          "elke ronde"
+        ]
+      },
+      "b_challenge": {
+        "name": "Uitdagingskaartspel",
+        "text": [
+          ""
+        ]
+      },
+      "b_checkered": {
+        "name": "Geruit kaartspel",
+        "text": [
+          "Begin het spel met",
+          "{C:attention}26{C:spades} schoppen{} en",
+          "{C:attention}26{C:hearts} harten{} in het kaartspel"
+        ]
+      },
+      "b_erratic": {
+        "name": "Onzeker kaartspel",
+        "text": [
+          "Alle {C:attention}rangen{} en",
+          "{C:attention}kleuren{} in het kaartspel",
+          "zijn willekeurig"
+        ]
+      },
+      "b_ghost": {
+        "name": "Spokenkaartspel",
+        "text": [
+          "{C:spectral}Spectrale{} kaarten kunnen",
+          "verschijnen in de winkel,",
+          "je begint met een {C:spectral,T:c_hex}Hex{}-kaart"
+        ]
+      },
+      "b_green": {
+        "name": "Groen kaartspel",
+        "text": [
+          "Aan het einde van elke ronde:",
+          "{C:money}$#1#{s:0.85} per overgebleven {C:blue}hand",
+          "{C:money}$#2#{s:0.85} per overgebleven {C:red}weggooimogelijkheid",
+          "Verdien geen {C:attention}rente"
+        ]
+      },
+      "b_magic": {
+        "name": "Magisch kaartspel",
+        "text": [
+          "Begin het spel met de",
+          "{C:tarot,T:v_crystal_ball}#1#{} voucher",
+          "en {C:attention}2{} kopieën",
+          "van {C:tarot,T:c_fool}#2#"
+        ]
+      },
+      "b_nebula": {
+        "name": "Nevel kaartspel",
+        "text": [
+          "Begin het spel met de",
+          "{C:planet,T:v_telescope}#1#{} voucher",
+          "",
+          "{C:red}#2#{} verbruiksvak"
+        ]
+      },
+      "b_painted": {
+        "name": "Geschilderd kaartspel",
+        "text": [
+          "{C:attention}+#1#{} handomvang",
+          "{C:red}#2#{} Jokervak"
+        ]
+      },
+      "b_plasma": {
+        "name": "Plasmakaartspel",
+        "text": [
+          "Breng {C:blue}fiches{} en {C:red}Multi{} in",
+          "in evenwicht bij berekening",
+          "van score voor gespeelde hand",
+          "{C:red}X#1#{} basisomvang blind"
+        ]
+      },
+      "b_red": {
+        "name": "Rood kaartspel",
+        "text": [
+          "{C:red}+#1#{} weggooimogelijkheid",
+          "elke ronde"
+        ]
+      },
+      "b_yellow": {
+        "name": "Geel kaartspel",
+        "text": [
+          "Begin met",
+          "{C:money}$#1# extra"
+        ]
+      },
+      "b_zodiac": {
+        "name": "Sterrenbeeldkaartspel",
+        "text": [
+          "Begin het spel met",
+          "{C:tarot,T:v_tarot_merchant}#1#{},",
+          "{C:planet,T:v_planet_merchant}#2#{},",
+          "en {C:attention,T:v_overstock_norm}#3#"
+        ]
+      }
+    },
+    "Edition": {
+      "e_base": {
+        "name": "Basis",
+        "text": [
+          "Geen extra effecten"
+        ]
+      },
+      "e_foil": {
+        "name": "Folie",
+        "text": [
+          "{C:chips}+#1#{} fiches"
+        ]
+      },
+      "e_holo": {
+        "name": "Holografisch",
+        "text": [
+          "{C:mult}+#1#{} Multi"
+        ]
+      },
+      "e_negative": {
+        "name": "Negatief",
+        "text": [
+          "{C:dark_edition}+#1#{} Jokervak"
+        ]
+      },
+      "e_negative_consumable": {
+        "name": "Negatief",
+        "text": [
+          "{C:dark_edition}+#1#{} verbruiksvak"
+        ]
+      },
+      "e_polychrome": {
+        "name": "Polychroom",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi"
+        ]
+      }
+    },
+    "Enhanced": {
+      "m_bonus": {
+        "name": "Bonuskaart",
+        "text": []
+      },
+      "m_glass": {
+        "name": "Glazen kaart",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi",
+          "Kans van {C:green}#2# op #3#{} om",
+          "kaart te vernietigen"
+        ]
+      },
+      "m_gold": {
+        "name": "Gouden kaart",
+        "text": [
+          "{C:money}$#1#{} als deze",
+          "kaart in de hand ligt",
+          "aan het einde van ronde"
+        ]
+      },
+      "m_lucky": {
+        "name": "Bofkaart",
+        "text": [
+          "Een kans van {C:green}#1# op #3#{}",
+          "op {C:mult}+#2#{} Multi",
+          "Een kans van {C:green}#1# op #5#{}",
+          "om {C:money}$#4#{} te winnen"
+        ]
+      },
+      "m_mult": {
+        "name": "Multikaart",
+        "text": [
+          "{C:mult}+#1#{} Multi"
+        ]
+      },
+      "m_steel": {
+        "name": "Staalkaart",
+        "text": [
+          "{X:mult,C:white} X#1# {} Multi",
+          "als deze kaart",
+          "in de hand blijft"
+        ]
+      },
+      "m_stone": {
+        "name": "Steenkaart",
+        "text": [
+          "{C:chips}+#1#{} fiches",
+          "geen rang of kleur"
+        ]
+      },
+      "m_wild": {
+        "name": "Wildkaart",
+        "text": [
+          "Kan gebruikt worden",
+          "als elke kleur"
+        ]
+      }
+    },
+    "Tarot": {
+      "c_chariot": {
+        "name": "De zegewagen",
+        "text": [
+          "Verbetert {C:attention}#1#{} geselecteerde",
+          "kaart naar een",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_death": {
+        "name": "De dood",
+        "text": [
+          "Selecteer {C:attention}#1#{} kaarten,",
+          "verander de {C:attention}linker{} kaart",
+          "in de {C:attention}rechter{} kaart",
+          "{C:inactive}(Sleep om te herordenen)"
+        ]
+      },
+      "c_devil": {
+        "name": "De duivel",
+        "text": [
+          "Verbetert {C:attention}#1#{} geselecteerde",
+          "kaart naar een",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_emperor": {
+        "name": "De keizer",
+        "text": [
+          "Maakt tot {C:attention}#1#",
+          "willekeurige {C:tarot}tarot{}-kaarten verschijnen",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "c_empress": {
+        "name": "De keizerin",
+        "text": [
+          "Verbetert {C:attention}#1#",
+          "geselecteerde kaarten naar",
+          "{C:attention}#2#en"
+        ]
+      },
+      "c_fool": {
+        "name": "De dwaas",
+        "text": [
+          "Maakt de laatste",
+          "{C:tarot}tarot{}- of {C:planet}planeet{}-kaart",
+          "die in dit spel is gebruikt",
+          "met uitzondering van {s:0.8,C:tarot}de dwaas{s:0.8}"
+        ]
+      },
+      "c_hanged_man": {
+        "name": "De gehangene",
+        "text": [
+          "Vernietigt maximaal",
+          "{C:attention}#1#{} geselecteerde kaarten"
+        ]
+      },
+      "c_heirophant": {
+        "name": "De hiërofant",
+        "text": [
+          "Verbetert {C:attention}#1#",
+          "geselecteerde kaarten naar",
+          "{C:attention}#2#en"
+        ]
+      },
+      "c_hermit": {
+        "name": "De kluizenaar",
+        "text": [
+          "Verdubbelt geld",
+          "{C:inactive}(max. {C:money}$#1#{C:inactive})"
+        ]
+      },
+      "c_high_priestess": {
+        "name": "De hogepriesteres",
+        "text": [
+          "Maakt tot {C:attention}#1#",
+          "willekeurige {C:planet}planeet{}-kaarten verschijnen",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "c_judgement": {
+        "name": "Het oordeel",
+        "text": [
+          "Maakt een willekeurige",
+          "{C:attention}Joker{}-kaart verschijnen",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "c_justice": {
+        "name": "Gerechtigheid",
+        "text": [
+          "Verbetert {C:attention}#1#{} geselecteerde",
+          "kaart naar een",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_lovers": {
+        "name": "De geliefden",
+        "text": [
+          "Verbetert {C:attention}#1#{} geselecteerde",
+          "kaart naar een",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_magician": {
+        "name": "De magiër",
+        "text": [
+          "Verbetert {C:attention}#1#{}",
+          "geselecteerde kaarten naar",
+          "{C:attention}#2#s"
+        ]
+      },
+      "c_moon": {
+        "name": "De maan",
+        "text": [
+          "Verandert maximaal",
+          "{C:attention}#1#{} geselecteerde kaarten",
+          "naar {V:1}#2#{}"
+        ]
+      },
+      "c_star": {
+        "name": "De ster",
+        "text": [
+          "Verandert maximaal",
+          "{C:attention}#1#{} geselecteerde kaarten",
+          "naar {V:1}#2#{}"
+        ]
+      },
+      "c_strength": {
+        "name": "Kracht",
+        "text": [
+          "Verhoogt rang van",
+          "maximaal {C:attention}#1#{} geselecteerde",
+          "kaarten met {C:attention}1"
+        ]
+      },
+      "c_sun": {
+        "name": "De zon",
+        "text": [
+          "Verandert maximaal",
+          "{C:attention}#1#{} geselecteerde kaarten",
+          "naar {V:1}#2#{}"
+        ]
+      },
+      "c_temperance": {
+        "name": "Gematigdheid",
+        "text": [
+          "Geeft de totale verkoopwaarde",
+          "van alle huidige",
+          "Jokers {C:inactive}(max. {C:money}$#1#{C:inactive})",
+          "{C:inactive}(Nu {C:money}$#2#{C:inactive})"
+        ]
+      },
+      "c_tower": {
+        "name": "De toren",
+        "text": [
+          "Verbetert {C:attention}#1#{} geselecteerde",
+          "kaart naar een",
+          "{C:attention}#2#"
+        ]
+      },
+      "c_wheel_of_fortune": {
+        "name": "Het rad van fortuin",
+        "text": [
+          "Een kans van {C:green}#1# op #2#{} om",
+          "{C:dark_edition}folie{}, {C:dark_edition}holografische{} of",
+          "{C:dark_edition}polychrome{} editie toe te voegen",
+          "aan een willekeurige {C:attention}Joker"
+        ]
+      },
+      "c_world": {
+        "name": "De wereld",
+        "text": [
+          "Verandert maximaal",
+          "{C:attention}#1#{} geselecteerde kaarten",
+          "naar {V:1}#2#{}"
+        ]
+      }
+    },
+    "Planet": {
+      "c_ceres": {
+        "name": "Ceres",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_earth": {
+        "name": "Aarde",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_eris": {
+        "name": "Eris",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_jupiter": {
+        "name": "Jupiter",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_mars": {
+        "name": "Mars",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_mercury": {
+        "name": "Mercurius",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_neptune": {
+        "name": "Neptunus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_planet_x": {
+        "name": "Planeet X",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_pluto": {
+        "name": "Pluto",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_saturn": {
+        "name": "Saturnus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_uranus": {
+        "name": "Uranus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      },
+      "c_venus": {
+        "name": "Venus",
+        "text": [
+          "{S:0.8}({S:0.8,V:1}level #1#{S:0.8}){} Level omhoog:",
+          "{C:attention}#2#",
+          "{C:mult}+#3#{} Multi en",
+          "{C:chips}+#4#{} fiches"
+        ]
+      }
+    },
+    "Spectral": {
+      "c_ankh": {
+        "name": "Ankh",
+        "text": [
+          "Maak een kopie van een",
+          "willekeurige {C:attention}Joker{}, vernietig",
+          "alle andere Jokers"
+        ]
+      },
+      "c_aura": {
+        "name": "Aura",
+        "text": [
+          "Voeg {C:dark_edition}folie{}, {C:dark_edition}holografisch{}",
+          "of {C:dark_edition}polychroom{} effect toe aan",
+          "{C:attention}1{} geselecteerde kaart in je hand"
+        ]
+      },
+      "c_black_hole": {
+        "name": "Zwart gat",
+        "text": [
+          "Upgrade elke",
+          "{C:legendary,E:1}pokerhand",
+          "met {C:attention}1{} level"
+        ]
+      },
+      "c_cryptid": {
+        "name": "Cryptide",
+        "text": [
+          "Maak {C:attention}#1#{} kopieën van",
+          "{C:attention}1{} geselecteerde kaart",
+          "in je hand"
+        ]
+      },
+      "c_deja_vu": {
+        "name": "Déjà vu",
+        "text": [
+          "Voeg een {C:red}rode zegel{} toe",
+          "aan {C:attention}1{} geselecteerde",
+          "kaart in je hand"
+        ]
+      },
+      "c_ectoplasm": {
+        "name": "Ectoplasma",
+        "text": [
+          "Voeg {C:dark_edition}negatief{} toe aan",
+          "een willekeurige {C:attention}Joker,",
+          "{C:red}-1{} handomvang"
+        ]
+      },
+      "c_familiar": {
+        "name": "Gezel",
+        "text": [
+          "Vernietig {C:attention}1{} willekeurige",
+          "kaart in je hand, voegt",
+          "{C:attention}#1#{} willekeurige {C:attention}verbeterde plaatjes{} toe",
+          "{C:attention}{} aan je hand toe"
+        ]
+      },
+      "c_grim": {
+        "name": "Akelig",
+        "text": [
+          "Vernietig {C:attention}1{} willekeurige",
+          "kaart in je hand,",
+          "voeg {C:attention}#1#{} willekeurige {C:attention}verbeterde",
+          "{C:attention}azen{} aan je hand toe"
+        ]
+      },
+      "c_hex": {
+        "name": "Hex",
+        "text": [
+          "Voeg een {C:dark_edition}polychroom{} toe aan",
+          "willekeurige {C:attention}Joker{}, vernietig",
+          "alle andere Jokers"
+        ]
+      },
+      "c_immolate": {
+        "name": "In vlammen opgaan",
+        "text": [
+          "Vernietigt {C:attention}#1#{} willekeurige",
+          "kaarten in de hand,",
+          "levert {C:money}$#2# op"
+        ]
+      },
+      "c_incantation": {
+        "name": "Betovering",
+        "text": [
+          "Vernietig {C:attention}1{} willekeurige",
+          "kaart in je hand, voeg {C:attention}#1#",
+          "willekeurige {C:attention}verbeterde cijferkaarten",
+          "{C:attention}{} aan je hand toe"
+        ]
+      },
+      "c_medium": {
+        "name": "Medium",
+        "text": [
+          "Voeg een {C:purple}paarse zegel{} toe",
+          "aan {C:attention}1{} geselecteerde",
+          "kaart in je hand"
+        ]
+      },
+      "c_ouija": {
+        "name": "Ouija",
+        "text": [
+          "Verandert alle kaarten",
+          "in de hand in een enkele",
+          "willekeurige {C:attention}rang",
+          "{C:red}-1{} handomvang"
+        ]
+      },
+      "c_sigil": {
+        "name": "Teken",
+        "text": [
+          "Verandert alle kaarten",
+          "in de hand in een enkele",
+          "willekeurige {C:attention}kleur"
+        ]
+      },
+      "c_soul": {
+        "name": "De ziel",
+        "text": [
+          "Creëert een",
+          "{C:legendary,E:1}mythische{} Joker",
+          "{C:inactive}(Moet ruimte voor zijn)"
+        ]
+      },
+      "c_talisman": {
+        "name": "Talisman",
+        "text": [
+          "Voeg {C:attention}gouden zegel{}",
+          "toe aan {C:attention}1{} geselecteerde",
+          "kaart in je hand"
+        ]
+      },
+      "c_trance": {
+        "name": "Trance",
+        "text": [
+          "Voeg een {C:blue}blauwe zegel{} toe",
+          "aan {C:attention}1{} geselecteerde",
+          "kaart in je hand"
+        ]
+      },
+      "c_wraith": {
+        "name": "Schim",
+        "text": [
+          "Maakt een willekeurige",
+          "{C:red}zeldzame{C:attention} Joker{} verschijnen,",
+          "zet geld terug op {C:money}$ 0"
+        ]
+      }
+    },
+    "Voucher": {
+      "v_antimatter": {
+        "name": "Antimaterie",
+        "text": [
+          "{C:dark_edition}+1{} Jokervak"
+        ]
+      },
+      "v_blank": {
+        "name": "Blanco",
+        "text": [
+          "{C:inactive}Doet niets?"
+        ]
+      },
+      "v_clearance_sale": {
+        "name": "Uitverkoop",
+        "text": [
+          "Alle kaarten en pakketten in",
+          "de winkel hebben {C:attention}#1#%{} korting"
+        ]
+      },
+      "v_crystal_ball": {
+        "name": "Kristallen bol",
+        "text": [
+          "{C:attention}+1{} verbruiksvak"
+        ]
+      },
+      "v_directors_cut": {
+        "name": "Director",
+        "text": [
+          "Ververs blind van een baas",
+          "{C:attention}1{} keer per ante opnieuw,",
+          "{C:money}$#1#{} per gooi"
+        ]
+      },
+      "v_glow_up": {
+        "name": "Opbloeien",
+        "text": [
+          "{C:dark_edition}Folie{}, {C:dark_edition}holografische{} en",
+          "{C:dark_edition}polychrome{} kaarten",
+          "verschijnen {C:attention}#1# X{} vaker"
+        ]
+      },
+      "v_grabber": {
+        "name": "Grijper",
+        "text": [
+          "Verdien",
+          "permanent {C:blue}+#1#{} hand",
+          "per ronde"
+        ]
+      },
+      "v_hieroglyph": {
+        "name": "Hiëroglief",
+        "text": [
+          "{C:attention}-#1#{} Ante,",
+          "{C:blue}-#1#{} hand",
+          "elke ronde"
+        ]
+      },
+      "v_hone": {
+        "name": "Aanscherpen",
+        "text": [
+          "{C:dark_edition}Folie{}, {C:dark_edition}holografische{} en",
+          "{C:dark_edition}polychrome{} kaarten",
+          "verschijnen {C:attention}#1# X{} vaker"
+        ]
+      },
+      "v_illusion": {
+        "name": "Illusie",
+        "text": [
+          "{C:attention}Speelkaarten{} in de winkel",
+          "kunnen een {C:enhanced}verbetering{},",
+          "{C:dark_edition}editie{} en/of {C:attention}zegel{} hebben"
+        ]
+      },
+      "v_liquidation": {
+        "name": "Liquidatie",
+        "text": [
+          "Alle kaarten en pakketten in",
+          "de winkel hebben {C:attention}#1#%{} korting"
+        ]
+      },
+      "v_magic_trick": {
+        "name": "Goocheltruc",
+        "text": [
+          "{C:attention}Speelkaarten{} kunnen",
+          "gekocht worden",
+          "in de {C:attention}winkel"
+        ]
+      },
+      "v_money_tree": {
+        "name": "Geldboompje",
+        "text": [
+          "Verhoog de limiet",
+          "voor verdiende rente in",
+          "elke ronde tot {C:money}$#1#{}"
+        ]
+      },
+      "v_nacho_tong": {
+        "name": "Nacho Tong",
+        "text": [
+          "Verdien",
+          "permanent {C:blue}+#1#{} hand",
+          "per ronde"
+        ]
+      },
+      "v_observatory": {
+        "name": "Observatorium",
+        "text": [
+          "{C:planet}Planeet{}-kaarten in je",
+          "{C:attention}verbruiks{}-vakken geven",
+          "{X:red,C:white} X#1# {} Multi voor hun",
+          "opgegeven {C:attention}pokerhand"
+        ]
+      },
+      "v_omen_globe": {
+        "name": "Voortekenglobe",
+        "text": [
+          "{C:spectral}Spectrale{} kaarten kunnen",
+          "verschijnen in elk van de",
+          "{C:attention}Arcanapakketten"
+        ]
+      },
+      "v_overstock_norm": {
+        "name": "Te grote voorraad",
+        "text": [
+          "{C:attention}+1{} kaartvak",
+          "beschikbaar in winkel"
+        ]
+      },
+      "v_overstock_plus": {
+        "name": "Te grote voorraad Plus",
+        "text": [
+          "{C:attention}+1{} kaartvak",
+          "beschikbaar in winkel"
+        ]
+      },
+      "v_paint_brush": {
+        "name": "Penseel",
+        "text": [
+          "{C:attention}+#1#{} handomvang"
+        ]
+      },
+      "v_palette": {
+        "name": "Palet",
+        "text": [
+          "{C:attention}+#1#{} handomvang"
+        ]
+      },
+      "v_petroglyph": {
+        "name": "Rotstekening",
+        "text": [
+          "{C:attention}-#1#{} Ante,",
+          "{C:red}-#1#{} weggooimogelijkheid",
+          "elke ronde"
+        ]
+      },
+      "v_planet_merchant": {
+        "name": "Planeetverkoper",
+        "text": [
+          "{C:planet}Planeet{}-kaarten verschijnen",
+          "{C:attention}#1# X{} vaker",
+          "in de winkel"
+        ]
+      },
+      "v_planet_tycoon": {
+        "name": "Planeettycoon",
+        "text": [
+          "{C:planet}Planeet{}-kaarten verschijnen",
+          "{C:attention}#1# X{} vaker",
+          "in de winkel"
+        ]
+      },
+      "v_recyclomancy": {
+        "name": "Recyclomantie",
+        "text": [
+          "Krijg",
+          "permanent {C:red}+#1#{} weggooimogelijkheid",
+          "per ronde"
+        ]
+      },
+      "v_reroll_glut": {
+        "name": "Gulzig verversen",
+        "text": [
+          "Verversen kost",
+          "{C:money}$#1#{} minder"
+        ]
+      },
+      "v_reroll_surplus": {
+        "name": "Overvloedig verversen",
+        "text": [
+          "Verversen kost",
+          "{C:money}$#1#{} minder"
+        ]
+      },
+      "v_retcon": {
+        "name": "Teruggedraaid",
+        "text": [
+          "Ververs blind van een baas",
+          "{C:attention}onbeperkt{} aantal keer,",
+          "{C:money}$#1#{} per keer"
+        ]
+      },
+      "v_seed_money": {
+        "name": "Startkapitaal",
+        "text": [
+          "Verhoog de limiet",
+          "voor verdiende rente in",
+          "elke ronde tot {C:money}$#1#{}"
+        ]
+      },
+      "v_tarot_merchant": {
+        "name": "Tarotverkoper",
+        "text": [
+          "{C:tarot}Tarot{}-kaarten verschijnen",
+          "{C:attention}#1# X{} vaker",
+          "in de winkel"
+        ]
+      },
+      "v_tarot_tycoon": {
+        "name": "Tarottycoon",
+        "text": [
+          "{C:tarot}Tarot{}-kaarten verschijnen",
+          "{C:attention}#1# X{} vaker",
+          "in de winkel"
+        ]
+      },
+      "v_telescope": {
+        "name": "Telescoop",
+        "text": [
+          "{C:attention}Hemelse pakketten{} bevatten",
+          "altijd de {C:planet}planeet{}-kaart",
+          "voor je meest gespeelde",
+          "{C:attention}pokerhand"
+        ]
+      },
+      "v_wasteful": {
+        "name": "Verspillend",
+        "text": [
+          "Krijg",
+          "permanent {C:red}+#1#{} weggooimogelijkheid",
+          "per ronde"
+        ]
+      }
+    }
+  },
+  "ui": {}
+}

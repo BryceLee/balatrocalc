@@ -1256,3 +1256,15 @@ function clearHand() {
 function resetHand() {
   window.location.replace('/balatro-calculator');
 }
+
+// Localization Hook
+if (window.applyJokerLocalization) {
+  window.addEventListener('DOMContentLoaded', () => {
+      window.applyJokerLocalization().then((changed) => {
+          console.log("Localization applied. Redrawing...");
+          if (typeof redrawJokers === 'function') redrawJokers();
+          if (typeof updateTooltips === 'function') updateTooltips();
+          if (typeof redrawPlayfield === 'function') redrawPlayfield();
+      });
+  });
+}
