@@ -8,7 +8,8 @@
           "{C:attention}8{} есть шанс {C:green}#1# из #2#{} создать",
           "карту {C:tarot}таро{} при подсчете очков",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "8 Ball"
       },
       "j_abstract": {
         "name": "Абстрактный джокер",
@@ -16,14 +17,16 @@
           "{C:mult}+#1#{} множ. за",
           "каждую карту {C:attention}джокера{}",
           "{C:inactive}(сейчас {C:red}+#2#{C:inactive} множ.)"
-        ]
+        ],
+        "en_name": "Abstract Joker"
       },
       "j_acrobat": {
         "name": "Акробат",
         "text": [
           "{X:red,C:white} X#1# {} множ. на {C:attention}последней",
           "{C:attention}руке{} раунда"
-        ]
+        ],
+        "en_name": "Acrobat"
       },
       "j_ancient": {
         "name": "Древний джокер",
@@ -32,7 +35,8 @@
           "мастью {V:1}#2#{} дает",
           "{X:mult,C:white} X#1# {} множ. при подсчете очков,",
           "{s:0.8}масть меняется в конце раунда"
-        ]
+        ],
+        "en_name": "Ancient Joker"
       },
       "j_arrowhead": {
         "name": "Наконечник стрелы",
@@ -40,7 +44,8 @@
           "Сыгранные карты с",
           "{C:spades}пиковой{} мастью дают",
           "{C:chips}+#1#{} шт. фишек при подсчете"
-        ]
+        ],
+        "en_name": "Arrowhead"
       },
       "j_astronomer": {
         "name": "Астроном",
@@ -48,7 +53,8 @@
           "Все карты {C:planet}планет{} и",
           "{C:planet}небесные наборы{} в",
           "лавке {C:attention}бесплатны"
-        ]
+        ],
+        "en_name": "Astronomer"
       },
       "j_banner": {
         "name": "Баннер",
@@ -56,7 +62,8 @@
           "{C:chips}+#1#{} шт. фишек за",
           "каждый оставшийся",
           "{C:attention}сброс"
-        ]
+        ],
+        "en_name": "Banner"
       },
       "j_baron": {
         "name": "Барон",
@@ -64,14 +71,16 @@
           "Каждый {C:attention}король{}",
           "в руке",
           "дает {X:mult,C:white} X#1# {} множ."
-        ]
+        ],
+        "en_name": "Baron"
       },
       "j_baseball": {
         "name": "Бейсбольная карточка",
         "text": [
           "{C:green}Необычные{} джокеры",
           "дают по {X:mult,C:white} X#1# {} множ."
-        ]
+        ],
+        "en_name": "Baseball Card"
       },
       "j_blackboard": {
         "name": "Школьная доска",
@@ -79,7 +88,8 @@
           "{X:red,C:white} X#1# {} множ., если все",
           "карты в руке",
           "являются {C:spades}#2#{} или {C:clubs}#3#{}"
-        ]
+        ],
+        "en_name": "Blackboard"
       },
       "j_bloodstone": {
         "name": "Гелиотроп",
@@ -88,7 +98,8 @@
           "сыгранных карт с",
           "{C:hearts}червовой{} мастью дать",
           "{X:mult,C:white} X#3# {} множ. при подсчете очков,"
-        ]
+        ],
+        "en_name": "Bloodstone"
       },
       "j_blue_joker": {
         "name": "Синий джокер",
@@ -96,14 +107,16 @@
           "{C:chips}+#1#{} шт. фишек за каждую",
           "оставшуюся карту в {C:attention}колоде",
           "{C:inactive}(сейчас {C:chips}+#2#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Blue Joker"
       },
       "j_blueprint": {
         "name": "Чертеж",
         "text": [
           "Копирует способность",
           "{C:attention}джокера{} справа"
-        ]
+        ],
+        "en_name": "Blueprint"
       },
       "j_bootstraps": {
         "name": "Бутстрэп",
@@ -111,14 +124,16 @@
           "Множ. {C:mult}+#1#{} за кажд.",
           "{C:money}#2#${} у вас",
           "{C:inactive}(Сейчас: множ. {C:mult}+#3#{C:inactive})"
-        ]
+        ],
+        "en_name": "Bootstraps"
       },
       "j_brainstorm": {
         "name": "Мозговой штурм",
         "text": [
           "Копирует способность",
           "крайнего левого {C:attention}джокера"
-        ]
+        ],
+        "en_name": "Brainstorm"
       },
       "j_bull": {
         "name": "Бык",
@@ -126,7 +141,8 @@
           "{C:chips}+#1#{} шт. фишек за",
           "каждый {C:money}1${} у вас",
           "{C:inactive}(Сейчас {C:chips}+#2#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Bull"
       },
       "j_burglar": {
         "name": "Грабитель",
@@ -134,7 +150,8 @@
           "При выборе {C:attention}блайнда{}",
           "вы получите {C:blue}+#1#{} рук(и) и",
           "{C:attention}потеряете все сбросы"
-        ]
+        ],
+        "en_name": "Burglar"
       },
       "j_burnt": {
         "name": "Горелый джокер",
@@ -142,7 +159,8 @@
           "Повысить уровень",
           "первой {C:attention}сброшенной",
           "покерной руки в каждом раунде"
-        ]
+        ],
+        "en_name": "Burnt Joker"
       },
       "j_business": {
         "name": "Бизнес-карта",
@@ -150,7 +168,8 @@
           "Сыгранные карты {C:attention}с лицом{} имеют",
           "шанс {C:green}#1# из #2#{}",
           "дать {C:money}$2{} при подсчете"
-        ]
+        ],
+        "en_name": "Business Card"
       },
       "j_caino": {
         "name": "Канио",
@@ -159,7 +178,8 @@
           "за ",
           "уничтожение карты {C:attention}с лицом{}",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Canio"
       },
       "j_campfire": {
         "name": "Костер",
@@ -168,7 +188,8 @@
           "за каждую {C:attention}проданную{} карту, сбрасывается",
           "при победе над {C:attention}Босс-блайндом{}",
           "{C:inactive}(сейчас {X:mult,C:white} X#2# {C:inactive} множ.)"
-        ]
+        ],
+        "en_name": "Campfire"
       },
       "j_card_sharp": {
         "name": "Острая карта",
@@ -176,7 +197,8 @@
           "{X:mult,C:white} X#1# {} множ., если сыгранная",
           "{C:attention}покерная рука{} уже",
           "сыграла в этом раунде"
-        ]
+        ],
+        "en_name": "Card Sharp"
       },
       "j_cartomancer": {
         "name": "Картомант",
@@ -184,7 +206,8 @@
           "Создайте карту {C:tarot}Таро{}",
           "при выборе {C:attention}блайнда{}",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "Cartomancer"
       },
       "j_castle": {
         "name": "Замок",
@@ -193,7 +216,8 @@
           "за каждую сброшенную карту {V:1}#2#{},",
           "масть меняется каждый раунд",
           "{C:inactive}(сейчас {C:chips}+#3#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Castle"
       },
       "j_cavendish": {
         "name": "Кавендиш",
@@ -202,7 +226,8 @@
           "шанс {C:green}#2# из #3#{}, что",
           "карта будет уничтожена",
           "в конце раунда"
-        ]
+        ],
+        "en_name": "Cavendish"
       },
       "j_ceremonial": {
         "name": "Церемониальный кинжал",
@@ -212,7 +237,8 @@
           "и навсегда добавляется {C:attention}двойная",
           "стоимость продажи к этому {C:red}множ.",
           "{C:inactive}(сейчас {C:mult}+#1#{C:inactive} множ.)"
-        ]
+        ],
+        "en_name": "Ceremonial Dagger"
       },
       "j_certificate": {
         "name": "Сертификат",
@@ -221,21 +247,24 @@
           "добавляется случайная {C:attention}играющая",
           "{C:attention}карта{} со случайным множ.",
           "{C:attention}печать{} в вашу руку"
-        ]
+        ],
+        "en_name": "Certificate"
       },
       "j_chaos": {
         "name": "Клоун Хаос",
         "text": [
           "{C:attention}#1#{} бесплатных {C:green}перебросов",
           "за каждую лавку"
-        ]
+        ],
+        "en_name": "Chaos the Clown"
       },
       "j_chicot": {
         "name": "Шико",
         "text": [
           "Отключает эффект",
           "каждого {C:attention}Босс-блайнда"
-        ]
+        ],
+        "en_name": "Chicot"
       },
       "j_clever": {
         "name": "Умный джокер",
@@ -243,7 +272,8 @@
           "{C:chips}+#1#{} шт. фишек, если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Clever Joker"
       },
       "j_cloud_9": {
         "name": "Девятое небо",
@@ -252,7 +282,8 @@
           "{C:attention}9{} в вашей {C:attention}полной колоде",
           "в конце раунда",
           "{C:inactive}(сейчас {C:money}$#2#{}{C:inactive})"
-        ]
+        ],
+        "en_name": "Cloud 9"
       },
       "j_constellation": {
         "name": "Созвездие",
@@ -261,7 +292,8 @@
           "множ. {X:mult,C:white} x#1# {} за каждую использованную карту ",
           "{C:planet}планеты{}",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Constellation"
       },
       "j_crafty": {
         "name": "Пронырливый джокер",
@@ -269,7 +301,8 @@
           "{C:chips}+#1#{} шт. фишек, если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Crafty Joker"
       },
       "j_crazy": {
         "name": "Сумасшедший джокер",
@@ -277,14 +310,16 @@
           "{C:red}+#1#{} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Crazy Joker"
       },
       "j_credit_card": {
         "name": "Кредитная карта",
         "text": [
           "Взять до",
           "{C:red}-$#1#{} в долг"
-        ]
+        ],
+        "en_name": "Credit Card"
       },
       "j_delayed_grat": {
         "name": "Запоздалое признание",
@@ -292,7 +327,8 @@
           "Получите {C:money}$#1#{} за каждый {C:attention}сброс{}, если",
           "сбросы не использовались",
           "до конца раунда"
-        ]
+        ],
+        "en_name": "Delayed Gratification"
       },
       "j_devious": {
         "name": "Коварный джокер",
@@ -300,7 +336,8 @@
           "{C:chips}+#1#{} шт. фишек, если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Devious Joker"
       },
       "j_diet_cola": {
         "name": "Диетическая кола",
@@ -308,7 +345,8 @@
           "Продайте эту карту, чтобы",
           "бесплатно создать",
           "{C:attention}#1#"
-        ]
+        ],
+        "en_name": "Diet Cola"
       },
       "j_dna": {
         "name": "ДНК",
@@ -317,7 +355,8 @@
           "только {C:attention}1{} карта, добавьте",
           "постоянную копию в колоду",
           "и положите ее в {C:attention}руку"
-        ]
+        ],
+        "en_name": "DNA"
       },
       "j_drivers_license": {
         "name": "Водительские права",
@@ -326,7 +365,8 @@
           "не менее {C:attention}16",
           "улучшенных карт",
           "{C:inactive}(сейчас {C:attention}#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Driver"
       },
       "j_droll": {
         "name": "Забавный джокер",
@@ -334,14 +374,16 @@
           "{C:red}+#1#{} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Droll Joker"
       },
       "j_drunkard": {
         "name": "Пьяница",
         "text": [
           "{C:red}+#1#{} сброс",
           "в каждом раунде"
-        ]
+        ],
+        "en_name": "Drunkard"
       },
       "j_duo": {
         "name": "Дуэт",
@@ -349,7 +391,8 @@
           "{X:mult,C:white} X#1# {} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Duo"
       },
       "j_dusk": {
         "name": "Сумерки",
@@ -357,7 +400,8 @@
           "Перезапуск всех сыгранных",
           "карт в {C:attention}последней",
           "{C:attention}руке{} раунда"
-        ]
+        ],
+        "en_name": "Dusk"
       },
       "j_egg": {
         "name": "Яйцо",
@@ -365,7 +409,8 @@
           "Добавляет {C:money}$#1#{} к",
           "{C:attention}стоимости продажи{} в",
           "конце раунда"
-        ]
+        ],
+        "en_name": "Egg"
       },
       "j_erosion": {
         "name": "Эрозия",
@@ -374,7 +419,8 @@
           "карту ниже {C:attention}#3#{}",
           "в вашей полной колоде",
           "{C:inactive}(сейчас {C:red}+#2#{C:inactive} множ.)"
-        ]
+        ],
+        "en_name": "Erosion"
       },
       "j_even_steven": {
         "name": "Все че(с)тно",
@@ -383,7 +429,8 @@
           "{C:attention}четным{} достоинством дают",
           "{C:mult}+#1#{} множ. при подсчете",
           "{C:inactive}(10, 8, 6, 4, 2)"
-        ]
+        ],
+        "en_name": "Even Steven"
       },
       "j_faceless": {
         "name": "Безликий джокер",
@@ -392,7 +439,8 @@
           "больше {C:attention}карт с лицом{}",
           "сбрасываются",
           "за один раз"
-        ]
+        ],
+        "en_name": "Faceless Joker"
       },
       "j_family": {
         "name": "Семья",
@@ -400,7 +448,8 @@
           "{X:mult,C:white} X#1# {} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Family"
       },
       "j_fibonacci": {
         "name": "Фибоначчи",
@@ -408,7 +457,8 @@
           "Каждый сыгранный {C:attention}туз{},",
           "{C:attention}2{}, {C:attention}3{}, {C:attention}5{} или {C:attention}8{} дает",
           "{C:mult}+#1#{} множ. при подсчете"
-        ]
+        ],
+        "en_name": "Fibonacci"
       },
       "j_flash": {
         "name": "Флеш-карта",
@@ -416,7 +466,8 @@
           "Этот джокер дает множ. {C:mult}+#1#{} за",
           "каждый {C:attention}переброс{} в лавке",
           "{C:inactive}(Сейчас: множ. {C:mult}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Flash Card"
       },
       "j_flower_pot": {
         "name": "Цветочный горшок",
@@ -425,7 +476,8 @@
           "покерная рука содержит",
           "{C:diamonds}бубновую{}, {C:clubs}трефовую{},",
           "{C:hearts}червовую{} и {C:spades}пиковую{} карту"
-        ]
+        ],
+        "en_name": "Flower Pot"
       },
       "j_fortune_teller": {
         "name": "Предсказатель",
@@ -433,7 +485,8 @@
           "{C:red}+#1#{} множ. за каждую",
           "использованную карту {C:purple}Таро{}",
           "{C:inactive}(сейчас {C:red}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Fortune Teller"
       },
       "j_four_fingers": {
         "name": "Четыре пальца",
@@ -441,7 +494,8 @@
           "Все {C:attention}флеши{} и",
           "{C:attention}стриты{} можно",
           "собрать с {C:attention}4{} картами"
-        ]
+        ],
+        "en_name": "Four Fingers"
       },
       "j_gift": {
         "name": "Подарочная карта",
@@ -450,7 +504,8 @@
           "каждому {C:attention}джокеру{} и",
           "{C:attention}расходуемой карте{} при",
           "конце раунда"
-        ]
+        ],
+        "en_name": "Gift Card"
       },
       "j_glass": {
         "name": "Стеклянный джокер",
@@ -459,7 +514,8 @@
           "за каждую",
           "уничтоженную {C:attention}стеклянную карту",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Glass Joker"
       },
       "j_gluttenous_joker": {
         "name": "Прожорливый джокер",
@@ -467,14 +523,16 @@
           "Сыгранные карты с",
           "мастью {C:clubs}#2#{} дают",
           "{C:mult}+#1#{} множ. при подсчете"
-        ]
+        ],
+        "en_name": "Gluttonous Joker"
       },
       "j_golden": {
         "name": "Золотой джокер",
         "text": [
           "Получайте {C:money}$#1#{} в",
           "конце раунда"
-        ]
+        ],
+        "en_name": "Golden Joker"
       },
       "j_greedy_joker": {
         "name": "Жадный джокер",
@@ -482,7 +540,8 @@
           "Сыгранные карты с",
           "мастью {C:diamonds}#2#{} дают",
           "{C:mult}+#1#{} множ. при подсчете"
-        ]
+        ],
+        "en_name": "Greedy Joker"
       },
       "j_green_joker": {
         "name": "Зеленый джокер",
@@ -490,7 +549,8 @@
           "{C:mult}+#1#{} множ. за каждую сыгранную руку",
           "{C:mult}-#2#{} множ. за каждый сброс",
           "{C:inactive}(сейчас {C:mult}+#3#{C:inactive} множ.)"
-        ]
+        ],
+        "en_name": "Green Joker"
       },
       "j_gros_michel": {
         "name": "Гро Мишель",
@@ -499,7 +559,8 @@
           "шанс {C:green}#2# из #3#{}, что",
           "карта будет уничтожена",
           "в конце раунда"
-        ]
+        ],
+        "en_name": "Gros Michel"
       },
       "j_hack": {
         "name": "Паяц",
@@ -507,7 +568,8 @@
           "Перезапуск",
           "каждой сыгранной",
           "{C:attention}2{}, {C:attention}3{}, {C:attention}4{} или {C:attention}5{}"
-        ]
+        ],
+        "en_name": "Hack"
       },
       "j_half": {
         "name": "Полуджокер",
@@ -515,7 +577,8 @@
           "{C:red}+#1#{} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#{} или меньше карт"
-        ]
+        ],
+        "en_name": "Half Joker"
       },
       "j_hallucination": {
         "name": "Галлюцинация",
@@ -524,7 +587,8 @@
           "карту {C:tarot}Таро{} при открытии",
           "любого {C:attention}бустерного набора{}",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "Hallucination"
       },
       "j_hanging_chad": {
         "name": "Еще разок",
@@ -532,7 +596,8 @@
           "Перезапуск {C:attention}первой{} сыгранной карты,",
           "использованной в подсчете ",
           "{C:attention}#1#{} доп. р."
-        ]
+        ],
+        "en_name": "Hanging Chad"
       },
       "j_hiker": {
         "name": "Турист",
@@ -540,7 +605,8 @@
           "Каждая сыгранная {C:attention}карта{}",
           "навсегда дает",
           "{C:chips}+#1#{} шт. фишек при подсчете"
-        ]
+        ],
+        "en_name": "Hiker"
       },
       "j_hit_the_road": {
         "name": "В путь",
@@ -549,7 +615,8 @@
           "за каждого{}",
           "сброшенного в раунде {C:attention}валета",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Hit the Road"
       },
       "j_hologram": {
         "name": "Голограмма",
@@ -558,7 +625,8 @@
           "каждую добавленную в колоду {C:attention}играющую карту{}",
           "",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Hologram"
       },
       "j_ice_cream": {
         "name": "Мороженое",
@@ -566,7 +634,8 @@
           "{C:chips}+#1#{} шт. фишек",
           "{C:chips}-#2#{} шт. фишек за",
           "каждую сыгранную руку"
-        ]
+        ],
+        "en_name": "Ice Cream"
       },
       "j_idol": {
         "name": "Идол",
@@ -575,7 +644,8 @@
           "из {V:1}#3#{} дает",
           "{X:mult,C:white} X#1# {} множ. при подсчете",
           "{s:0.8}Карта меняется каждый раунд"
-        ]
+        ],
+        "en_name": "The Idol"
       },
       "j_invisible": {
         "name": "Невидимый джокер",
@@ -584,13 +654,15 @@
           "продайте эту карту, чтобы",
           "{C:attention}дублировать{} случайного джокера",
           "{C:inactive}(сейчас {C:attention}#2#{C:inactive}/#1#)"
-        ]
+        ],
+        "en_name": "Invisible Joker"
       },
       "j_joker": {
         "name": "Джокер",
         "text": [
           "{C:red,s:1.1}+#1#{} множ."
-        ]
+        ],
+        "en_name": "Joker"
       },
       "j_jolly": {
         "name": "Веселый джокер",
@@ -598,13 +670,15 @@
           "{C:red}+#1#{} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Jolly Joker"
       },
       "j_juggler": {
         "name": "Жонглер",
         "text": [
           "{C:attention}+#1#{} размер руки"
-        ]
+        ],
+        "en_name": "Juggler"
       },
       "j_loyalty_card": {
         "name": "Карта лояльности",
@@ -612,7 +686,8 @@
           "{X:red,C:white} X#1# {} множ. с каждыми",
           "{C:attention}#2#{} сыгранными руками",
           "{C:inactive}#3#"
-        ]
+        ],
+        "en_name": "Loyalty Card"
       },
       "j_luchador": {
         "name": "Лучадор",
@@ -620,7 +695,8 @@
           "Продайте эту карту, чтобы",
           "отключить текущий",
           "{C:attention}Босс-блайнд{}"
-        ]
+        ],
+        "en_name": "Luchador"
       },
       "j_lucky_cat": {
         "name": "Счастливый кот",
@@ -629,7 +705,8 @@
           "каждую {C:green}успешно{} активированную",
           "{C:attention}счастливую{} карту",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Lucky Cat"
       },
       "j_lusty_joker": {
         "name": "Похотливый джокер",
@@ -637,7 +714,8 @@
           "Сыгранные карты с",
           "мастью {C:hearts}#2#{} дают",
           "{C:mult}+#1#{} множ. при подсчете"
-        ]
+        ],
+        "en_name": "Lusty Joker"
       },
       "j_mad": {
         "name": "Безумный джокер",
@@ -645,7 +723,8 @@
           "{C:red}+#1#{} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Mad Joker"
       },
       "j_madness": {
         "name": "Безумие",
@@ -654,7 +733,8 @@
           " получите множ. {X:mult,C:white} x#1# {}",
           "и {C:attention}уничтожьте{} случайного джокера",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Madness"
       },
       "j_mail": {
         "name": "Почтовая скидка",
@@ -662,7 +742,8 @@
           "Получите {C:money}$#1#{} за каждую",
           "сброшенную {C:attention}#2#{}, достоинство",
           "меняется каждый раунд"
-        ]
+        ],
+        "en_name": "Mail-In Rebate"
       },
       "j_marble": {
         "name": "Мраморный джокер",
@@ -670,7 +751,8 @@
           "Добавляет одну {C:attention}каменную{} карту",
           "в колоду при",
           "выборе {C:attention}блайнда{}"
-        ]
+        ],
+        "en_name": "Marble Joker"
       },
       "j_matador": {
         "name": "Матадор",
@@ -678,7 +760,8 @@
           "Получите {C:money}$#1#{}, если сыгранная",
           "рука активирует",
           "способность {C:attention}Босс-блайнда{}"
-        ]
+        ],
+        "en_name": "Matador"
       },
       "j_merry_andy": {
         "name": "Веселый Энди",
@@ -686,7 +769,8 @@
           "{C:red}+#1#{} к сбросу",
           "в каждом раунде,",
           "размер руки: {C:red}#2#{}"
-        ]
+        ],
+        "en_name": "Merry Andy"
       },
       "j_midas_mask": {
         "name": "Маска Мидаса",
@@ -694,7 +778,8 @@
           "Все разыгранные карты {C:attention}с лицом{}",
           "становятся {C:attention}золотыми{}",
           "при подсчете"
-        ]
+        ],
+        "en_name": "Midas Mask"
       },
       "j_mime": {
         "name": "Мим",
@@ -702,13 +787,15 @@
           "Перезапустить все",
           "способности {C:attention}удерживаемых",
           "в {C:attention}руке{} карт"
-        ]
+        ],
+        "en_name": "Mime"
       },
       "j_misprint": {
         "name": "Опечатка",
         "text": [
           ""
-        ]
+        ],
+        "en_name": "Misprint"
       },
       "j_mr_bones": {
         "name": "Костлявый",
@@ -718,7 +805,8 @@
           "составляют минимум {C:attention}25%",
           "от необходимых фишек",
           "{S:1.1,C:red,E:2}самоуничтожается{}"
-        ]
+        ],
+        "en_name": "Mr. Bones"
       },
       "j_mystic_summit": {
         "name": "Мистическая вершина",
@@ -726,7 +814,8 @@
           "{C:mult}+#1#{} множ. при",
           "{C:attention}#2#{} оставшихся",
           "сбросах"
-        ]
+        ],
+        "en_name": "Mystic Summit"
       },
       "j_obelisk": {
         "name": "Обелиск",
@@ -736,7 +825,8 @@
           "без розыгрыша самой",
           "частой {C:attention}покерной руки",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Obelisk"
       },
       "j_odd_todd": {
         "name": "Нече(с)тные правила",
@@ -745,7 +835,8 @@
           "{C:attention}нечетным{} достоинством дают",
           "{C:chips}+#1#{} шт. фишек при подсчете",
           "{C:inactive}(Т, 9, 7, 5, 3)"
-        ]
+        ],
+        "en_name": "Odd Todd"
       },
       "j_onyx_agate": {
         "name": "Ониксовый агат",
@@ -753,7 +844,8 @@
           "Сыгранные карты с",
           "{C:clubs}трефовой{} мастью дают",
           "{C:mult}+#1#{} множ. при подсчете"
-        ]
+        ],
+        "en_name": "Onyx Agate"
       },
       "j_oops": {
         "name": "Упс! Все шестерки",
@@ -761,7 +853,8 @@
           "Удваивает все {C:attention}перечисленные",
           "{C:green,E:1,S:1.1}вероятности",
           "{C:inactive}(напр.: {C:green}1 из 3{C:inactive} -> {C:green}2 из 3{C:inactive})"
-        ]
+        ],
+        "en_name": "Oops! All 6s"
       },
       "j_order": {
         "name": "Орден",
@@ -769,7 +862,8 @@
           "{X:mult,C:white} X#1# {} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Order"
       },
       "j_pareidolia": {
         "name": "Парейдолия",
@@ -777,7 +871,8 @@
           "Все карты",
           "считаются",
           "картами с {C:attention}лицом{}"
-        ]
+        ],
+        "en_name": "Pareidolia"
       },
       "j_perkeo": {
         "name": "Перкео",
@@ -786,7 +881,8 @@
           "{C:attention}1{} случайной {C:attention}расходуемой{}",
           "карты в вашем владении",
           "в конце {C:attention}лавки"
-        ]
+        ],
+        "en_name": "Perkeo"
       },
       "j_photograph": {
         "name": "Фотография",
@@ -794,7 +890,8 @@
           "Первая сыгранная карта {C:attention}с лицом",
           "дает {X:mult,C:white} X#1# {} множ.",
           "при подсчете"
-        ]
+        ],
+        "en_name": "Photograph"
       },
       "j_popcorn": {
         "name": "Попкорн",
@@ -802,7 +899,8 @@
           "{C:mult}+#1#{} множ.",
           "{C:mult}-#2#{} множ. за каждый",
           "сыгранный раунд"
-        ]
+        ],
+        "en_name": "Popcorn"
       },
       "j_raised_fist": {
         "name": "Поднятый кулак",
@@ -810,7 +908,8 @@
           "Добавляет к множ. {C:attention}удвоенное{}",
           "достоинство {C:attention}карты с наименьшим{} достоинством",
           "в вашей руке"
-        ]
+        ],
+        "en_name": "Raised Fist"
       },
       "j_ramen": {
         "name": "Рамен",
@@ -818,7 +917,8 @@
           "{X:mult,C:white} X#1# {} множ.,",
           "теряет {X:mult,C:white} X#2# {} множ.",
           "за каждую сброшенную {C:attention}карту{}"
-        ]
+        ],
+        "en_name": "Ramen"
       },
       "j_red_card": {
         "name": "Красная карта",
@@ -827,7 +927,8 @@
           "множ. {C:red}+#1#{} за пропуск любого",
           "{C:attention}бустерного набора{}",
           "{C:inactive}(Сейчас: множ. {C:red}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Red Card"
       },
       "j_reserved_parking": {
         "name": "Зарезервированное место",
@@ -836,7 +937,8 @@
           "в руке имеет",
           "{C:green}#2# из #3#{} шанс",
           "дать {C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Reserved Parking"
       },
       "j_ride_the_bus": {
         "name": "Автобусный тур",
@@ -846,7 +948,8 @@
           "разыгранную без",
           "подсчета карты с {C:attention}лицом{}",
           "{C:inactive}(Сейчас: множ. {C:mult}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Ride the Bus"
       },
       "j_riff_raff": {
         "name": "Рифф-рафф",
@@ -854,7 +957,8 @@
           "При выборе {C:attention}блайнда{}",
           "создает {C:attention}#1# {C:blue}обычного(ых){C:attention} джокера",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "Riff-Raff"
       },
       "j_ring_master": {
         "name": "Мастер колец",
@@ -862,7 +966,8 @@
           "{C:attention}Джокер{}, {C:tarot}Таро{}, карты {C:planet}планет{}",
           "и {C:spectral}спектральные{} карты могут",
           "появляться многократно"
-        ]
+        ],
+        "en_name": "Showman"
       },
       "j_rocket": {
         "name": "Ракета",
@@ -870,7 +975,8 @@
           "Получайте {C:money}#1#${} в конце раунда",
           "Выплата увеличивается на {C:money}#2#${}",
           "после победы над {C:attention}босс-блайндом{}"
-        ]
+        ],
+        "en_name": "Rocket"
       },
       "j_rough_gem": {
         "name": "Грубый самоцвет",
@@ -878,7 +984,8 @@
           "Сыгранные карты с",
           "{C:diamonds}бубновой{} мастью дают",
           "{C:money}$#1#{} при подсчете очков"
-        ]
+        ],
+        "en_name": "Rough Gem"
       },
       "j_runner": {
         "name": "Бегун",
@@ -887,7 +994,8 @@
           "если сыгранная рука",
           "содержит {C:attention}стрит{}",
           "{C:inactive}(сейчас {C:chips}+#1#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Runner"
       },
       "j_satellite": {
         "name": "Спутник",
@@ -896,7 +1004,8 @@
           "раунда за каждую уникальную {C:planet}планету,",
           "использованную в этой партии",
           "{C:inactive}(сейчас {C:money}$#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Satellite"
       },
       "j_scary_face": {
         "name": "Жуткое лицо",
@@ -904,7 +1013,8 @@
           "Сыгранные карты {C:attention}с лицом{}",
           "дают {C:chips}+#1#{} шт. фишек",
           "при подсчете"
-        ]
+        ],
+        "en_name": "Scary Face"
       },
       "j_scholar": {
         "name": "Ученый",
@@ -913,7 +1023,8 @@
           "дают {C:chips}+#2#{} шт. фишек",
           "и {C:mult}+#1#{} множ.",
           "при подсчете"
-        ]
+        ],
+        "en_name": "Scholar"
       },
       "j_seance": {
         "name": "Сеанс",
@@ -922,7 +1033,8 @@
           "{C:attention}#1#{}, создает",
           "случайную {C:spectral}спектральную{} карту",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "Séance"
       },
       "j_seeing_double": {
         "name": "Двоение в глазах",
@@ -931,7 +1043,8 @@
           "рука содержит подсчитываемую",
           "{C:clubs}Трефовая{} карта и подсчет",
           "карты любой другой {C:attention}масти"
-        ]
+        ],
+        "en_name": "Seeing Double"
       },
       "j_selzer": {
         "name": "Зельцер",
@@ -939,7 +1052,8 @@
           "Перезапуск всех",
           "сыгранных карт для",
           "{C:attention}#1#{} следующих рук"
-        ]
+        ],
+        "en_name": "Seltzer"
       },
       "j_shoot_the_moon": {
         "name": "На Луну",
@@ -947,7 +1061,8 @@
           "Каждая {C:attention}дама{}",
           "в руке",
           "дает множ. {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Shoot the Moon"
       },
       "j_shortcut": {
         "name": "Короткий путь",
@@ -955,7 +1070,8 @@
           "Позволяет формировать {C:attention}стриты{} с",
           "пропуском карты {C:attention}1 достоинства",
           "{C:inactive}(пример: {C:attention}10 8 6 5 3{C:inactive})"
-        ]
+        ],
+        "en_name": "Shortcut"
       },
       "j_sixth_sense": {
         "name": "Шестое чувство",
@@ -964,7 +1080,8 @@
           "одиночная {C:attention}6{}, она уничтожается, и",
           "создается {C:spectral}спектральная{} карта",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "Sixth Sense"
       },
       "j_sly": {
         "name": "Хитрый джокер",
@@ -972,7 +1089,8 @@
           "{C:chips}+#1#{} шт. фишек, если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Sly Joker"
       },
       "j_smeared": {
         "name": "Смазанный джокер",
@@ -981,7 +1099,8 @@
           "считаются одной мастью,",
           "{C:spades}пики{} и {C:clubs}трефы",
           "также считаются одной мастью"
-        ]
+        ],
+        "en_name": "Smeared Joker"
       },
       "j_smiley": {
         "name": "Улыбочка",
@@ -989,14 +1108,16 @@
           "Сыгранные карты {C:attention}с лицом{}",
           "дают {C:mult}+#1#{} множ.",
           "при подсчете очков"
-        ]
+        ],
+        "en_name": "Smiley Face"
       },
       "j_sock_and_buskin": {
         "name": "Трагедия и комедия",
         "text": [
           "Перезапуск всех",
           "сыгранных карт {C:attention}с лицом{}"
-        ]
+        ],
+        "en_name": "Sock and Buskin"
       },
       "j_space": {
         "name": "Космический джокер",
@@ -1004,14 +1125,16 @@
           "{C:green}#1# из #2#{} шанс",
           "повысить уровень",
           "играемой {C:attention}покерной руки{}"
-        ]
+        ],
+        "en_name": "Space Joker"
       },
       "j_splash": {
         "name": "Всплеск",
         "text": [
           "Каждая {C:attention}сыгранная карта",
           "учитывается при подсчете"
-        ]
+        ],
+        "en_name": "Splash"
       },
       "j_square": {
         "name": "Квадратный джокер",
@@ -1020,7 +1143,8 @@
           "если в разыгранной руке",
           "ровно {C:attention}4{} карты",
           "{C:inactive}(Сейчас: {C:chips}#1#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Square Joker"
       },
       "j_steel_joker": {
         "name": "Стальной джокер",
@@ -1029,7 +1153,8 @@
           "за каждую {C:attention}стальную карту",
           "в вашей {C:attention}полной колоде",
           "{C:inactive}(сейчас множ. {X:mult,C:white} x#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Steel Joker"
       },
       "j_stencil": {
         "name": "Трафарет джокера",
@@ -1038,7 +1163,8 @@
           "пустой слот {C:attention}джокера{},",
           "{s:0.8}включая трафарет джокера",
           "{C:inactive}(сейчас {X:red,C:white} X#1# {C:inactive})"
-        ]
+        ],
+        "en_name": "Joker Stencil"
       },
       "j_stone": {
         "name": "Каменный джокер",
@@ -1047,14 +1173,16 @@
           "каждую {C:attention}каменную карту",
           "в {C:attention}полной колоде",
           "{C:inactive}(сейчас {C:chips}+#2#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Stone Joker"
       },
       "j_stuntman": {
         "name": "Каскадер",
         "text": [
           "{C:chips}+#1#{} шт. фишек,",
           "{C:attention}-#2#{} размер руки"
-        ]
+        ],
+        "en_name": "Stuntman"
       },
       "j_supernova": {
         "name": "Сверхновая",
@@ -1062,7 +1190,8 @@
           "Добавляет к множ. кол-во раз,",
           "которое в партии была",
           "разыграна {C:attention}покерная рука{}"
-        ]
+        ],
+        "en_name": "Supernova"
       },
       "j_superposition": {
         "name": "Суперпозиция",
@@ -1071,7 +1200,8 @@
           "покерная рука содержит",
           "{C:attention}туз{} и {C:attention}стрит{}",
           "{C:inactive}(должно быть место)"
-        ]
+        ],
+        "en_name": "Superposition"
       },
       "j_swashbuckler": {
         "name": "Головорез",
@@ -1080,7 +1210,8 @@
           "всех имеющихся",
           "{C:attention}джокеров{} к множ.",
           "{C:inactive}(Сейчас: множ. {C:mult}+#1#{C:inactive})"
-        ]
+        ],
+        "en_name": "Swashbuckler"
       },
       "j_throwback": {
         "name": "Возврат",
@@ -1088,14 +1219,16 @@
           "{X:mult,C:white} X#1# {} для каждого",
           "{C:attention}блайнда{}, пропущенного в этой партии",
           "{C:inactive}(сейчас {X:mult,C:white} X#2# {C:inactive} множ.)"
-        ]
+        ],
+        "en_name": "Throwback"
       },
       "j_ticket": {
         "name": "Золотой билет",
         "text": [
           "Сыгранные {C:attention}золотые{} карты",
           "дают {C:money}$#1#{} при подсчете"
-        ]
+        ],
+        "en_name": "Golden Ticket"
       },
       "j_to_the_moon": {
         "name": "До Луны",
@@ -1103,7 +1236,8 @@
           "Получите дополнительно {C:money}$#1#{}",
           "{C:attention}процентов{} за каждые {C:money}$5{} у вас",
           "в конце раунда"
-        ]
+        ],
+        "en_name": "To the Moon"
       },
       "j_todo_list": {
         "name": "Список дел",
@@ -1112,7 +1246,8 @@
           " — {C:attention}#2#{},",
           "покерная рука меняется",
           "в конце раунда"
-        ]
+        ],
+        "en_name": "To Do List"
       },
       "j_trading": {
         "name": "Торговая карта",
@@ -1120,7 +1255,8 @@
           "Если в {C:attention}первом сбросе{} раунда",
           "только {C:attention}1{} карта, уничтожьте",
           "ее и получите {C:money}$#1#"
-        ]
+        ],
+        "en_name": "Trading Card"
       },
       "j_tribe": {
         "name": "Племя",
@@ -1128,7 +1264,8 @@
           "{X:mult,C:white} X#1# {} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Tribe"
       },
       "j_triboulet": {
         "name": "Трибуле",
@@ -1136,7 +1273,8 @@
           "Сыгранные {C:attention}короли{} и",
           "{C:attention}дамы{} дают",
           "{X:mult,C:white} X#1# {} множ. при подсчете очков,"
-        ]
+        ],
+        "en_name": "Triboulet"
       },
       "j_trio": {
         "name": "Трио",
@@ -1144,14 +1282,16 @@
           "{X:mult,C:white} X#1# {} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Trio"
       },
       "j_troubadour": {
         "name": "Трубадур",
         "text": [
           "{C:attention}+#1#{} к размеру руки,",
           "{C:blue}-#2#{} от руки в каждом раунде"
-        ]
+        ],
+        "en_name": "Troubadour"
       },
       "j_trousers": {
         "name": "Запасные брюки",
@@ -1160,7 +1300,8 @@
           "если сыгранная рука содержит",
           "{C:attention}#2#",
           "{C:inactive}(Сейчас: множ. {C:red}+#3#{C:inactive})"
-        ]
+        ],
+        "en_name": "Spare Trousers"
       },
       "j_turtle_bean": {
         "name": "Черепаховый боб",
@@ -1168,7 +1309,8 @@
           "Размер руки {C:attention}+#1#{},",
           "уменьшается на",
           "{C:red}#2#{} каждый раунд"
-        ]
+        ],
+        "en_name": "Turtle Bean"
       },
       "j_vagabond": {
         "name": "Бродяга",
@@ -1176,7 +1318,8 @@
           "Создайте карту {C:purple}Таро{},",
           "если рука сыграна",
           "с {C:money}$#1#{} или меньше"
-        ]
+        ],
+        "en_name": "Vagabond"
       },
       "j_vampire": {
         "name": "Вампир",
@@ -1185,7 +1328,8 @@
           "за разыгранную и подсчитанную {C:attention}улучшенную карту{},",
           "а также убирает {C:attention}улучшение карты",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#2# {C:inactive})"
-        ]
+        ],
+        "en_name": "Vampire"
       },
       "j_walkie_talkie": {
         "name": "Рация",
@@ -1193,7 +1337,8 @@
           "Каждая сыгранная {C:attention}10{} или {C:attention}4",
           "дает {C:chips}+#1#{} шт. фишек и",
           "{C:mult}+#2#{} множ. при подсчете очков"
-        ]
+        ],
+        "en_name": "Walkie Talkie"
       },
       "j_wee": {
         "name": "Трусливый джокер",
@@ -1202,7 +1347,8 @@
           "{C:chips}+#2#{} шт. фишей при подсчете",
           "каждой сыгранной {C:attention}2-ки{}",
           "{C:inactive}(сейчас {C:chips}+#1#{C:inactive} шт. фишек)"
-        ]
+        ],
+        "en_name": "Wee Joker"
       },
       "j_wily": {
         "name": "Ловкий джокер",
@@ -1210,7 +1356,8 @@
           "{C:chips}+#1#{} шт. фишек, если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Wily Joker"
       },
       "j_wrathful_joker": {
         "name": "Гневный джокер",
@@ -1218,7 +1365,8 @@
           "Сыгранные карты с",
           "мастью {C:spades}#2#{} дают",
           "{C:mult}+#1#{} множ. при подсчете"
-        ]
+        ],
+        "en_name": "Wrathful Joker"
       },
       "j_yorick": {
         "name": "Йорик",
@@ -1227,7 +1375,8 @@
           "множ. {X:mult,C:white} x#1# {} за каждую карту {C:attention}#2#{C:inactive} [#3#]{}",
           "в сбросе",
           "{C:inactive}(Сейчас: множ. {X:mult,C:white} x#4# {C:inactive})"
-        ]
+        ],
+        "en_name": "Yorick"
       },
       "j_zany": {
         "name": "Дурацкий джокер",
@@ -1235,7 +1384,8 @@
           "{C:red}+#1#{} множ., если сыгранная",
           "рука содержит",
           "{C:attention}#2#"
-        ]
+        ],
+        "en_name": "Zany Joker"
       }
     },
     "Blind": {

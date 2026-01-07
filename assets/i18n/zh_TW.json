@@ -8,7 +8,8 @@
           "若得分，則有{C:green}#1#/#2#{}機率",
           "產生一張{C:tarot}塔羅{}牌",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "8 Ball"
       },
       "j_abstract": {
         "name": "抽象小丑",
@@ -16,14 +17,16 @@
           "每張{C:attention}小丑牌{}",
           "{C:mult}+#1#{}倍數",
           "{C:inactive}(目前為{C:red}+#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Abstract Joker"
       },
       "j_acrobat": {
         "name": "雜技演員",
         "text": [
           "每回合{C:attention}最後一次{C:attention}出牌{}",
           "可得到{X:red,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "Acrobat"
       },
       "j_ancient": {
         "name": "古代小丑",
@@ -32,7 +35,8 @@
           "{V:1}#2#{}花色的牌，",
           "得分時獲得{X:mult,C:white}X#1#{}倍數",
           "{s:0.8}花色於每回合結束時變更"
-        ]
+        ],
+        "en_name": "Ancient Joker"
       },
       "j_arrowhead": {
         "name": "石箭頭",
@@ -40,7 +44,8 @@
           "只要每次打出",
           "{C:spades}黑桃{}花色牌，",
           "得分時{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Arrowhead"
       },
       "j_astronomer": {
         "name": "天文學家",
@@ -48,7 +53,8 @@
           "商店裡的{C:planet}行星牌{}",
           "以及{C:planet}天外禮包{}",
           "全部{C:attention}免費"
-        ]
+        ],
+        "en_name": "Astronomer"
       },
       "j_banner": {
         "name": "旗幟",
@@ -56,7 +62,8 @@
           "每一個剩餘的",
           "{C:attention}棄牌{}次數可獲得",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Banner"
       },
       "j_baron": {
         "name": "男爵",
@@ -64,14 +71,16 @@
           "手牌中，每",
           "持有一張{C:attention}K{}，",
           "給予{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "Baron"
       },
       "j_baseball": {
         "name": "棒球牌",
         "text": [
           "每張擁有的{C:green}罕見{}小丑牌",
           "給予{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "Baseball Card"
       },
       "j_blackboard": {
         "name": "黑板小丑",
@@ -79,7 +88,8 @@
           "如果手牌中未打出的牌",
           "都是{C:spades}#2#{}或{C:clubs}#3#{}，",
           "倍數{X:red,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Blackboard"
       },
       "j_bloodstone": {
         "name": "血石",
@@ -88,7 +98,8 @@
           "{C:hearts}紅心{}花色牌",
           "有{C:green}#1#/#2#{}的機率",
           "獲得{X:mult,C:white}X#3#{}倍數"
-        ]
+        ],
+        "en_name": "Bloodstone"
       },
       "j_blue_joker": {
         "name": "藍色小丑",
@@ -96,14 +107,16 @@
           "每張在{C:attention}牌組{}剩下的牌",
           "可{C:chips}+#1#{}籌碼",
           "{C:inactive}(目前為{C:chips}+#2#{C:inactive}籌碼)"
-        ]
+        ],
+        "en_name": "Blue Joker"
       },
       "j_blueprint": {
         "name": "藍圖小丑",
         "text": [
           "複製",
           "右邊{C:attention}小丑牌{}的能力"
-        ]
+        ],
+        "en_name": "Blueprint"
       },
       "j_bootstraps": {
         "name": "拔靴帶",
@@ -111,14 +124,16 @@
           "每持有{C:money}$#2#{}",
           "倍數{C:mult}+#1#{}",
           "{C:inactive}(目前{C:mult}+#3#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Bootstraps"
       },
       "j_brainstorm": {
         "name": "腦力激盪",
         "text": [
           "複製",
           "最左邊{C:attention}小丑牌的能力"
-        ]
+        ],
+        "en_name": "Brainstorm"
       },
       "j_bull": {
         "name": "鬥牛",
@@ -126,7 +141,8 @@
           "每持有{C:money}$1{}，",
           "籌碼{C:chips}+#1#{}張",
           "{C:inactive}(目前{C:chips}+#2#{C:inactive}張籌碼)"
-        ]
+        ],
+        "en_name": "Bull"
       },
       "j_burglar": {
         "name": "竊賊小丑",
@@ -134,7 +150,8 @@
           "選擇{C:attention}盲注{}後，",
           "{C:blue}+#1#{}出牌次數並",
           "{C:attention}失去所有棄牌次數"
-        ]
+        ],
+        "en_name": "Burglar"
       },
       "j_burnt": {
         "name": "累爆小丑",
@@ -142,7 +159,8 @@
           "升級",
           "每回合中",
           "第一次{C:attention}棄牌的牌型"
-        ]
+        ],
+        "en_name": "Burnt Joker"
       },
       "j_business": {
         "name": "名片",
@@ -150,7 +168,8 @@
           "打出的{C:attention}人頭牌{}有",
           "{C:green}#1#/#2#{}的機率",
           "在得分時獲得{C:money}$2{}"
-        ]
+        ],
+        "en_name": "Business Card"
       },
       "j_caino": {
         "name": "白臉小丑",
@@ -159,7 +178,8 @@
           "被銷毀，此小丑獲得",
           "{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Canio"
       },
       "j_campfire": {
         "name": "營火",
@@ -168,7 +188,8 @@
           "此小丑獲得{X:mult,C:white}X#1#{}倍數，",
           "每戰勝{C:attention}Boss盲注{}時重置",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Campfire"
       },
       "j_card_sharp": {
         "name": "老千小丑",
@@ -176,7 +197,8 @@
           "當這一{C:attention}牌型{}",
           "已經在這回合出過時，",
           "倍數{X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Card Sharp"
       },
       "j_cartomancer": {
         "name": "卜卦小丑",
@@ -184,7 +206,8 @@
           "在選了{C:attention}盲注{}後",
           "產生一張{C:tarot}塔羅牌{}",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "Cartomancer"
       },
       "j_castle": {
         "name": "城堡",
@@ -193,7 +216,8 @@
           "此小丑牌獲得{C:chips}+#1#{}籌碼",
           "每回合花色都會變更",
           "{C:inactive}(目前為{C:chips}+#3#{C:inactive}籌碼)"
-        ]
+        ],
+        "en_name": "Castle"
       },
       "j_cavendish": {
         "name": "華蕉",
@@ -202,7 +226,8 @@
           "每回合結束時",
           "有{C:green}#2#/#3#{}的機率",
           "此牌會被摧毀"
-        ]
+        ],
+        "en_name": "Cavendish"
       },
       "j_ceremonial": {
         "name": "恐佈匕首",
@@ -212,7 +237,8 @@
           "並永久增加其賣出價",
           "的{C:attention}兩倍{}至目前{C:red}倍數",
           "{C:inactive}(目前為{C:mult}+#1#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Ceremonial Dagger"
       },
       "j_certificate": {
         "name": "證書",
@@ -221,21 +247,24 @@
           "隨機增加一張",
           "帶有隨機{C:attention}封蠟章{}的",
           "牌到手牌中"
-        ]
+        ],
+        "en_name": "Certificate"
       },
       "j_chaos": {
         "name": "慌亂小丑",
         "text": [
           "每回合在商店可",
           "{C:green}免費{}重摋{C:attention}#1#{}次"
-        ]
+        ],
+        "en_name": "Chaos the Clown"
       },
       "j_chicot": {
         "name": "奇科特",
         "text": [
           "每個{C:attention}Boss盲注",
           "限制條件消失"
-        ]
+        ],
+        "en_name": "Chicot"
       },
       "j_clever": {
         "name": "機靈小丑",
@@ -243,7 +272,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#，",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Clever Joker"
       },
       "j_cloud_9": {
         "name": "9霄雲外",
@@ -252,7 +282,8 @@
           "在每回合結束時",
           "獲得{C:money}$#1#{}",
           "{C:inactive}(目前{C:money}$#2#{}{C:inactive})"
-        ]
+        ],
+        "en_name": "Cloud 9"
       },
       "j_constellation": {
         "name": "星空小丑",
@@ -261,7 +292,8 @@
           "這個小丑獲得",
           "{X:mult,C:white} X#1# {}倍數",
           "{C:inactive}(目前{X:mult,C:white} X#2# {C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Constellation"
       },
       "j_crafty": {
         "name": "鬼靈精小丑",
@@ -269,7 +301,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#，",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Crafty Joker"
       },
       "j_crazy": {
         "name": "瘋狂小丑",
@@ -277,14 +310,16 @@
           "如果打出的牌包含",
           "{C:attention}#2#{}，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Crazy Joker"
       },
       "j_credit_card": {
         "name": "信用卡",
         "text": [
           "最多可負債",
           "至{C:red}$#1#{}"
-        ]
+        ],
+        "en_name": "Credit Card"
       },
       "j_delayed_grat": {
         "name": "最後獎賞",
@@ -292,7 +327,8 @@
           "如果在本回合未使用棄牌，",
           "每一個{C:attention}棄牌數{}",
           "獲得{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Delayed Gratification"
       },
       "j_devious": {
         "name": "心機小丑",
@@ -300,7 +336,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#，",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Devious Joker"
       },
       "j_diet_cola": {
         "name": "低卡可樂",
@@ -308,7 +345,8 @@
           "賣出這張牌卡以",
           "建立一個免費",
           "{C:attention}#1#"
-        ]
+        ],
+        "en_name": "Diet Cola"
       },
       "j_dna": {
         "name": "DNA",
@@ -317,7 +355,8 @@
           "只有出{C:attention}1{}張牌",
           "將永久複製{C:attention}那張牌{}到牌組",
           "並放到{C:attention}手牌{}"
-        ]
+        ],
+        "en_name": "DNA"
       },
       "j_drivers_license": {
         "name": "駕照",
@@ -326,7 +365,8 @@
           "{C:attention}16{}張加強牌",
           "{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{C:attention}#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Driver"
       },
       "j_droll": {
         "name": "古怪小丑",
@@ -334,14 +374,16 @@
           "如果打出的牌包含",
           "{C:attention}#2#{}，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Droll Joker"
       },
       "j_drunkard": {
         "name": "喝掛小丑",
         "text": [
           "每一回合",
           "{C:red}+#1#{}次棄牌"
-        ]
+        ],
+        "en_name": "Drunkard"
       },
       "j_duo": {
         "name": "二重奏",
@@ -349,7 +391,8 @@
           "如果打出的牌",
           "包含{C:attention}#2#{}，",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "The Duo"
       },
       "j_dusk": {
         "name": "夕陽卡",
@@ -357,7 +400,8 @@
           "在{C:attention}最後{}",
           "{C:attention}一次出牌{}時，",
           "該手牌會被觸發兩次"
-        ]
+        ],
+        "en_name": "Dusk"
       },
       "j_egg": {
         "name": "蛋頭小丑",
@@ -365,7 +409,8 @@
           "在回合結束時",
           "本卡的{C:attention}出售價值",
           "增加{C:money}$#1#"
-        ]
+        ],
+        "en_name": "Egg"
       },
       "j_erosion": {
         "name": "侵蝕",
@@ -374,7 +419,8 @@
           "每張小於{C:attention}#3#{}的牌",
           "均可獲得{C:red}+#1#{}倍數",
           "{C:inactive}(目前為{C:red}+#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Erosion"
       },
       "j_even_steven": {
         "name": "互不相欠",
@@ -383,7 +429,8 @@
           "{C:attention}偶數{}點的牌，",
           "得分時，{C:mult}+#1#{}倍數",
           "{C:inactive}(10、8、6、4、2)"
-        ]
+        ],
+        "en_name": "Even Steven"
       },
       "j_faceless": {
         "name": "無臉小丑",
@@ -392,7 +439,8 @@
           "{C:attention}#2#{}張或更多張",
           "{C:attention}人頭牌{}",
           "獲得{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Faceless Joker"
       },
       "j_family": {
         "name": "鐵支",
@@ -400,7 +448,8 @@
           "如果打出的牌",
           "包含{C:attention}#2#{}，",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "The Family"
       },
       "j_fibonacci": {
         "name": "黃金分割數",
@@ -408,7 +457,8 @@
           "每次打出{C:attention}A{}、",
           "{C:attention}2{}、{C:attention}3{}、{C:attention}5{}、或{C:attention}8{}時，",
           "得分時{C:mult}+#1#{}倍數"
-        ]
+        ],
+        "en_name": "Fibonacci"
       },
       "j_flash": {
         "name": "閃卡",
@@ -416,7 +466,8 @@
           "每次商店{C:attention}重摋{}",
           "此小丑獲得{C:mult}+#1#{}倍數",
           "{C:inactive}(目前{C:mult}+#2#{C:inactive} 倍)"
-        ]
+        ],
+        "en_name": "Flash Card"
       },
       "j_flower_pot": {
         "name": "盆栽",
@@ -425,7 +476,8 @@
           "一張{C:diamonds}方塊{}、{C:clubs}梅花{}、",
           "{C:hearts}紅心{}和{C:spades}黑桃{}牌，",
           "則倍數{X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Flower Pot"
       },
       "j_fortune_teller": {
         "name": "占卜師小丑",
@@ -433,7 +485,8 @@
           "本賽局每使用一張{C:purple}塔羅牌{}時",
           "倍數{C:red}+#1#{}",
           "{C:inactive}(目前為{C:red}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Fortune Teller"
       },
       "j_four_fingers": {
         "name": "四張牌",
@@ -441,7 +494,8 @@
           "所有{C:attention}同花{}和",
           "{C:attention}順子{}可以",
           "只用{C:attention}4{}張牌湊成"
-        ]
+        ],
+        "en_name": "Four Fingers"
       },
       "j_gift": {
         "name": "禮物卡",
@@ -450,7 +504,8 @@
           "每張擁有的{C:attention}小丑牌{}",
           "及{C:attention}消耗卡{}",
           "{C:attention}售價{}加{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Gift Card"
       },
       "j_glass": {
         "name": "玻璃小丑",
@@ -459,7 +514,8 @@
           "被銷毀，此小丑獲得",
           "{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Glass Joker"
       },
       "j_gluttenous_joker": {
         "name": "貪吃小丑",
@@ -467,14 +523,16 @@
           "每打出一張",
           "{C:clubs}#2#{}花色的牌，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Gluttonous Joker"
       },
       "j_golden": {
         "name": "黃金小丑",
         "text": [
           "於每一回合結束時",
           "獲得{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Golden Joker"
       },
       "j_greedy_joker": {
         "name": "貪心小丑",
@@ -482,7 +540,8 @@
           "每打出一張",
           "{C:diamonds}#2#{}花色的牌，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Greedy Joker"
       },
       "j_green_joker": {
         "name": "綠色小丑",
@@ -490,7 +549,8 @@
           "每次出牌，{C:mult}+#1#{}倍數",
           "每次棄牌，{C:mult}-#2#{}倍數",
           "{C:inactive}(目前為{C:mult}+#3#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Green Joker"
       },
       "j_gros_michel": {
         "name": "大麥克香蕉",
@@ -499,7 +559,8 @@
           "每回合結束時",
           "有{C:green}#2#/#3#{}的機率",
           "此牌會被銷毀"
-        ]
+        ],
+        "en_name": "Gros Michel"
       },
       "j_hack": {
         "name": "爛脫口秀演員",
@@ -507,7 +568,8 @@
           "重新觸發",
           "所有打出的",
           "{C:attention}2{}、{C:attention}3{}、{C:attention}4{}、或{C:attention}5{}"
-        ]
+        ],
+        "en_name": "Hack"
       },
       "j_half": {
         "name": "半個小丑",
@@ -515,7 +577,8 @@
           "如果打出",
           "不超過{C:attention}#2#{}張牌，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Half Joker"
       },
       "j_hallucination": {
         "name": "產生幻覺",
@@ -524,7 +587,8 @@
           "有{C:green}#1#/#2#{}的機會",
           "產生一張{C:tarot}塔羅牌{}",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "Hallucination"
       },
       "j_hanging_chad": {
         "name": "懸孔票",
@@ -532,7 +596,8 @@
           "重新觸發得分中",
           "{C:attention}最先{}打出的牌",
           "額外{C:attention}#1#{}次"
-        ]
+        ],
+        "en_name": "Hanging Chad"
       },
       "j_hiker": {
         "name": "登山小丑",
@@ -540,7 +605,8 @@
           "每張打出的",
           "{C:attention}計分牌{}可永久",
           "獲得{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Hiker"
       },
       "j_hit_the_road": {
         "name": "一路暢通",
@@ -549,7 +615,8 @@
           "被棄牌，此小丑獲得",
           "{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Hit the Road"
       },
       "j_hologram": {
         "name": "全像",
@@ -558,7 +625,8 @@
           "此小丑獲得",
           "{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Hologram"
       },
       "j_ice_cream": {
         "name": "冰淇淋",
@@ -566,7 +634,8 @@
           "{C:chips}+#1#{}籌碼，",
           "每次出牌",
           "{C:chips}-#2#{}籌碼"
-        ]
+        ],
+        "en_name": "Ice Cream"
       },
       "j_idol": {
         "name": "偶像小丑",
@@ -575,7 +644,8 @@
           "{C:attention}#2#{}在得分時",
           "{X:mult,C:white}X#1#{}倍數",
           "{s:0.8}每個回合牌都會變"
-        ]
+        ],
+        "en_name": "The Idol"
       },
       "j_invisible": {
         "name": "隱形小丑",
@@ -584,13 +654,15 @@
           "賣出這張牌卡以",
           "{C:attention}複製{}隨機一張小丑牌",
           "{C:inactive}(目前為{C:attention}#2#{C:inactive}/#1#)"
-        ]
+        ],
+        "en_name": "Invisible Joker"
       },
       "j_joker": {
         "name": "小丑",
         "text": [
           "倍數{C:red,s:1.1}+#1#{}"
-        ]
+        ],
+        "en_name": "Joker"
       },
       "j_jolly": {
         "name": "開心小丑",
@@ -598,13 +670,15 @@
           "如果打出的牌包含",
           "{C:attention}#2#{}，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Jolly Joker"
       },
       "j_juggler": {
         "name": "雜耍小丑",
         "text": [
           "{C:attention}+#1#{}手牌數量"
-        ]
+        ],
+        "en_name": "Juggler"
       },
       "j_loyalty_card": {
         "name": "積分卡",
@@ -612,7 +686,8 @@
           "每出牌{C:attention}#2#{}次",
           "獲得一次倍數{X:red,C:white}X#1#{}",
           "{C:inactive}#3#次"
-        ]
+        ],
+        "en_name": "Loyalty Card"
       },
       "j_luchador": {
         "name": "鬥士",
@@ -620,7 +695,8 @@
           "賣出這張牌卡以",
           "消除目前的",
           "{C:attention}Boss盲注{}限制功能"
-        ]
+        ],
+        "en_name": "Luchador"
       },
       "j_lucky_cat": {
         "name": "幸運貓",
@@ -629,7 +705,8 @@
           "{C:green}成功{}觸發時，",
           "此小丑牌獲得{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Lucky Cat"
       },
       "j_lusty_joker": {
         "name": "好色小丑",
@@ -637,7 +714,8 @@
           "每打出一張",
           "{C:hearts}#2#{}花色的牌，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Lusty Joker"
       },
       "j_mad": {
         "name": "生氣小丑",
@@ -645,7 +723,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#{}，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Mad Joker"
       },
       "j_madness": {
         "name": "瘋狂小丑",
@@ -654,7 +733,8 @@
           "獲得{X:mult,C:white}X#1#{}倍數",
           "並{C:attention}銷毀{}一個隨機小丑",
           "{C:inactive}(目前{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Madness"
       },
       "j_mail": {
         "name": "郵件",
@@ -662,7 +742,8 @@
           "每棄掉一張{C:attention}#2#{}，",
           "獲得{C:money}$#1#{}，",
           "每回合數字都會變更"
-        ]
+        ],
+        "en_name": "Mail-In Rebate"
       },
       "j_marble": {
         "name": "大理石小丑",
@@ -670,7 +751,8 @@
           "每次選完{C:attention}盲注{}，",
           "增加1張{C:attention}石頭牌{}",
           "到牌組中"
-        ]
+        ],
+        "en_name": "Marble Joker"
       },
       "j_matador": {
         "name": "鬥牛小丑",
@@ -678,7 +760,8 @@
           "如果打出的牌觸發",
           "{C:attention}Boss盲注{}的限制條件，",
           "獲得{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Matador"
       },
       "j_merry_andy": {
         "name": "快樂小丑",
@@ -686,7 +769,8 @@
           "每一回合",
           "{C:red}+#1#{}次棄牌，",
           "{C:red}#2#{}手牌數量"
-        ]
+        ],
+        "en_name": "Merry Andy"
       },
       "j_midas_mask": {
         "name": "邁達斯面具",
@@ -694,7 +778,8 @@
           "打出的全部{C:attention}人頭牌{}",
           "在得分時",
           "變為{C:attention}金色{}牌"
-        ]
+        ],
+        "en_name": "Midas Mask"
       },
       "j_mime": {
         "name": "默劇小丑",
@@ -702,13 +787,15 @@
           "重新觸發",
           "所有手中{C:attention}持有的",
           "{C:attention}手牌{}的能力"
-        ]
+        ],
+        "en_name": "Mime"
       },
       "j_misprint": {
         "name": "印錯小丑",
         "text": [
           ""
-        ]
+        ],
+        "en_name": "Misprint"
       },
       "j_mr_bones": {
         "name": "骷髏頭",
@@ -718,7 +805,8 @@
           "{C:attention}25%{}或以上，",
           "可避免死亡",
           "{S:1.1,C:red,E:2}自我毀滅{}"
-        ]
+        ],
+        "en_name": "Mr. Bones"
       },
       "j_mystic_summit": {
         "name": "神秘之峰",
@@ -726,7 +814,8 @@
           "當剩下{C:attention}#2#{}次",
           "棄牌數時，",
           "倍數{C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Mystic Summit"
       },
       "j_obelisk": {
         "name": "方尖碑",
@@ -736,7 +825,8 @@
           "此小丑獲得",
           "{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Obelisk"
       },
       "j_odd_todd": {
         "name": "古怪托德",
@@ -745,7 +835,8 @@
           "{C:attention}奇數{}點的牌，",
           "得分時，{C:chips}+#1#{}籌碼",
           "{C:inactive}(A、9、7、5、3)"
-        ]
+        ],
+        "en_name": "Odd Todd"
       },
       "j_onyx_agate": {
         "name": "黑瑪瑙",
@@ -753,7 +844,8 @@
           "只要每次打出",
           "{C:clubs}梅花{}花色牌，",
           "得分時，{C:mult}+#1#{}倍數"
-        ]
+        ],
+        "en_name": "Onyx Agate"
       },
       "j_oops": {
         "name": "六六大順",
@@ -761,7 +853,8 @@
           "所有{C:attention}機率牌{}的",
           "{C:green,E:1,S:1.1}機率加倍",
           "{C:inactive}(例：{C:green}1/3{C:inactive} -> {C:green}2/3{C:inactive})"
-        ]
+        ],
+        "en_name": "Oops! All 6s"
       },
       "j_order": {
         "name": "順子",
@@ -769,7 +862,8 @@
           "如果打出的牌",
           "包含{C:attention}#2#{}，",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "The Order"
       },
       "j_pareidolia": {
         "name": "迷幻錯覺",
@@ -777,7 +871,8 @@
           "所有牌",
           "一律會被視為",
           "{C:attention}人頭牌{}"
-        ]
+        ],
+        "en_name": "Pareidolia"
       },
       "j_perkeo": {
         "name": "佩爾基",
@@ -786,7 +881,8 @@
           "隨機複製{C:attention}1{}張",
           "擁有的{C:attention}消耗牌{}",
           "並給那張牌{C:dark_edition}負片{}效果"
-        ]
+        ],
+        "en_name": "Perkeo"
       },
       "j_photograph": {
         "name": "攝影",
@@ -794,7 +890,8 @@
           "得分時，第一張",
           "打出的{C:attention}人頭牌{}",
           "獲得{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "Photograph"
       },
       "j_popcorn": {
         "name": "爆米花",
@@ -802,7 +899,8 @@
           "{C:mult}+#1#{}倍數，",
           "每結束一回合",
           "{C:mult}-#2#{}倍數"
-        ]
+        ],
+        "en_name": "Popcorn"
       },
       "j_raised_fist": {
         "name": "致勝之拳",
@@ -810,7 +908,8 @@
           "按照手中點數{C:attention}最低{}",
           "的牌，向倍數追加",
           "其點數的{C:attention}兩倍{}"
-        ]
+        ],
+        "en_name": "Raised Fist"
       },
       "j_ramen": {
         "name": "拉麵",
@@ -818,7 +917,8 @@
           "擁有{X:mult,C:white}X#1#{}倍數",
           "每{C:attention}丟棄一張牌{}，",
           "失去{X:mult,C:white}X#2#{}倍數"
-        ]
+        ],
+        "en_name": "Ramen"
       },
       "j_red_card": {
         "name": "紅牌",
@@ -827,7 +927,8 @@
           "此小丑獲得",
           "{C:red}+#1#{}倍數",
           "{C:inactive}(目前為{C:red}+#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Red Card"
       },
       "j_reserved_parking": {
         "name": "私人車位",
@@ -836,7 +937,8 @@
           "每張持有的{C:attention}人頭牌{}",
           "有{C:green}#2#/#3#{}的機率",
           "給予{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Reserved Parking"
       },
       "j_ride_the_bus": {
         "name": "公車卡",
@@ -846,7 +948,8 @@
           "這個小丑可獲得",
           "{C:mult}+#1#{}倍數",
           "{C:inactive}(目前{C:mult}+#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Ride the Bus"
       },
       "j_riff_raff": {
         "name": "即興演出",
@@ -854,7 +957,8 @@
           "每當選擇{C:attention}盲注{}時",
           "其會產生{C:attention}#1#張{C:blue}一般{C:attention}小丑牌",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "Riff-Raff"
       },
       "j_ring_master": {
         "name": "馬戲王小丑",
@@ -862,7 +966,8 @@
           "{C:attention}小丑牌{}、{C:tarot}塔羅牌{}、{C:planet}行星牌{}和",
           "{C:spectral}幻靈牌{}會在商店出現",
           "多次"
-        ]
+        ],
+        "en_name": "Showman"
       },
       "j_rocket": {
         "name": "火箭",
@@ -870,7 +975,8 @@
           "於回合結束時獲得{C:money}$#1#{}",
           "{C:attention}Boss盲註{}",
           "被擊敗時獎金提升{C:money}$#2#{}"
-        ]
+        ],
+        "en_name": "Rocket"
       },
       "j_rough_gem": {
         "name": "原礦",
@@ -878,7 +984,8 @@
           "只要每次打出",
           "{C:diamonds}方塊{}花色牌，",
           "得分時{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Rough Gem"
       },
       "j_runner": {
         "name": "跑者小丑",
@@ -887,7 +994,8 @@
           "就會獲得",
           "{C:chips}+#2#{}籌碼",
           "{C:inactive}(目前{C:chips}+#1#{C:inactive}籌碼)"
-        ]
+        ],
+        "en_name": "Runner"
       },
       "j_satellite": {
         "name": "衛星",
@@ -896,7 +1004,8 @@
           "{C:planet}行星牌{}，每回合結束時",
           "可得到{C:money}$#1#{}",
           "{C:inactive}(目前為{C:money}$#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Satellite"
       },
       "j_scary_face": {
         "name": "駭人的臉",
@@ -904,7 +1013,8 @@
           "打出{C:attention}人頭牌{}時，",
           "得分時",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Scary Face"
       },
       "j_scholar": {
         "name": "學者小丑",
@@ -913,7 +1023,8 @@
           "得分時，",
           "{C:chips}+#2#{}籌碼、",
           "{C:mult}+#1#{}倍數"
-        ]
+        ],
+        "en_name": "Scholar"
       },
       "j_seance": {
         "name": "亡靈之約",
@@ -922,7 +1033,8 @@
           "即產生一張",
           "隨機的{C:spectral}幻靈牌{}",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "Séance"
       },
       "j_seeing_double": {
         "name": "幻視",
@@ -931,7 +1043,8 @@
           "包含{C:clubs}梅花{}和",
           "其他任意{C:attention}花色{}，",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "Seeing Double"
       },
       "j_selzer": {
         "name": "氣泡水",
@@ -939,7 +1052,8 @@
           "未來{C:attention}#1#{}次出牌",
           "重新觸發所有",
           "打出的牌"
-        ]
+        ],
+        "en_name": "Seltzer"
       },
       "j_shoot_the_moon": {
         "name": "射月亮",
@@ -947,7 +1061,8 @@
           "手牌中，每",
           "持有一張{C:attention}Q{}，",
           "給予{C:mult}+#1#{}倍數"
-        ]
+        ],
+        "en_name": "Shoot the Moon"
       },
       "j_shortcut": {
         "name": "捷徑",
@@ -955,7 +1070,8 @@
           "允許{C:attention}順子{}可跨",
           "{C:attention}1點達成",
           "{C:inactive}(如：{C:attention}10 8 6 5 3{C:inactive})"
-        ]
+        ],
+        "en_name": "Shortcut"
       },
       "j_sixth_sense": {
         "name": "第六感",
@@ -964,7 +1080,8 @@
           "單張數字{C:attention}6{}，將銷毀那張牌並且",
           "產生一張隨機的{C:spectral}幻靈牌{}",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "Sixth Sense"
       },
       "j_sly": {
         "name": "狡詐小丑",
@@ -972,7 +1089,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#，",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Sly Joker"
       },
       "j_smeared": {
         "name": "歪臉小丑",
@@ -981,7 +1099,8 @@
           "視為相同花色，",
           "{C:spades}黑桃{}和{C:clubs}梅花",
           "視為相同花色"
-        ]
+        ],
+        "en_name": "Smeared Joker"
       },
       "j_smiley": {
         "name": "笑臉",
@@ -989,14 +1108,16 @@
           "得分時，",
           "打出的{C:attention}人頭牌{}",
           "給予{C:mult}+#1#{}倍數"
-        ]
+        ],
+        "en_name": "Smiley Face"
       },
       "j_sock_and_buskin": {
         "name": "悲與喜",
         "text": [
           "重新觸發全部",
           "打出的{C:attention}人頭牌{}"
-        ]
+        ],
+        "en_name": "Sock and Buskin"
       },
       "j_space": {
         "name": "太空小丑",
@@ -1004,14 +1125,16 @@
           "每次出牌",
           "有{C:green}#1#/#2#{}的機率",
           "升級{C:attention}牌型等級{}"
-        ]
+        ],
+        "en_name": "Space Joker"
       },
       "j_splash": {
         "name": "水花噴濺",
         "text": [
           "每張{C:attention}打出的牌",
           "都會計分"
-        ]
+        ],
+        "en_name": "Splash"
       },
       "j_square": {
         "name": "方塊小丑",
@@ -1020,7 +1143,8 @@
           "恰好為{C:attention}4{}張牌，",
           "此小丑獲得{C:chips}+#2#{}張籌碼",
           "{C:inactive}(目前為{C:chips}#1#{C:inactive}張籌碼)"
-        ]
+        ],
+        "en_name": "Square Joker"
       },
       "j_steel_joker": {
         "name": "鋼鐵小丑",
@@ -1029,7 +1153,8 @@
           "每張鋼鐵牌",
           "均可獲得{X:mult,C:white} X#1# {}倍數",
           "{C:inactive}(目前為{X:mult,C:white} X#2# {C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Steel Joker"
       },
       "j_stencil": {
         "name": "模具小丑",
@@ -1038,7 +1163,8 @@
           "獲得{X:red,C:white}X#1#{}倍數。",
           "包含{s:0.8}模具小丑",
           "{C:inactive}(目前為{X:red,C:white}X#1#{C:inactive})"
-        ]
+        ],
+        "en_name": "Joker Stencil"
       },
       "j_stone": {
         "name": "石頭小丑",
@@ -1047,14 +1173,16 @@
           "每有一張{C:attention}石頭牌，",
           "給予{C:chips}+#1#{}張籌碼",
           "{C:inactive}(目前{C:chips}+#2#{C:inactive}張籌碼)"
-        ]
+        ],
+        "en_name": "Stone Joker"
       },
       "j_stuntman": {
         "name": "特技演員",
         "text": [
           "{C:chips}+#1#{}籌碼",
           "{C:attention}-#2#{}手牌數量"
-        ]
+        ],
+        "en_name": "Stuntman"
       },
       "j_supernova": {
         "name": "超新星",
@@ -1062,7 +1190,8 @@
           "向倍數追加本次比賽中",
           "打出的{C:attention}牌型{}手數相等的",
           "數值"
-        ]
+        ],
+        "en_name": "Supernova"
       },
       "j_superposition": {
         "name": "完美位置",
@@ -1071,7 +1200,8 @@
           "一張{C:attention}A{}及{C:attention}順子{}",
           "即產生一張{C:tarot}塔羅牌{}",
           "{C:inactive}(必須有空位)"
-        ]
+        ],
+        "en_name": "Superposition"
       },
       "j_swashbuckler": {
         "name": "盜賊小丑",
@@ -1080,7 +1210,8 @@
           "{C:attention}小丑{}，",
           "追加其全體賣出價格至倍數",
           "{C:inactive}(目前{C:mult}+#1#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Swashbuckler"
       },
       "j_throwback": {
         "name": "復古小丑",
@@ -1088,14 +1219,16 @@
           "此比賽中每跳過一次",
           "{C:attention}盲注{}，{X:mult,C:white}X#1#{}倍數",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Throwback"
       },
       "j_ticket": {
         "name": "黃金門票",
         "text": [
           "若打出{C:money}黃金牌{}，",
           "得分時，{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Golden Ticket"
       },
       "j_to_the_moon": {
         "name": "登月",
@@ -1103,7 +1236,8 @@
           "每回合結束時，",
           "每擁有{C:money}$5{}，",
           "皆可獲得額外{C:money}$#1#{}利息"
-        ]
+        ],
+        "en_name": "To the Moon"
       },
       "j_todo_list": {
         "name": "待辦事項",
@@ -1112,7 +1246,8 @@
           "則在回合結束時，",
           "贏得{C:money}$#1#{}，",
           "隨後牌型變更"
-        ]
+        ],
+        "en_name": "To Do List"
       },
       "j_trading": {
         "name": "交換卡",
@@ -1120,7 +1255,8 @@
           "每回合的{C:attention}第一次棄牌{}",
           "如果只有棄{C:attention}1{}張牌",
           "摧毀那張牌並獲得{C:money}$#1#"
-        ]
+        ],
+        "en_name": "Trading Card"
       },
       "j_tribe": {
         "name": "同花",
@@ -1128,7 +1264,8 @@
           "如果打出的牌",
           "包含{C:attention}#2#{}，",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "The Tribe"
       },
       "j_triboulet": {
         "name": "弄臣小丑",
@@ -1136,7 +1273,8 @@
           "打出的{C:attention}K{}和{C:attention}Q",
           "各自獲得",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "Triboulet"
       },
       "j_trio": {
         "name": "三重奏",
@@ -1144,14 +1282,16 @@
           "如果打出的牌",
           "包含{C:attention}#2#{}，",
           "{X:mult,C:white}X#1#{}倍數"
-        ]
+        ],
+        "en_name": "The Trio"
       },
       "j_troubadour": {
         "name": "吟遊詩人",
         "text": [
           "{C:attention}+#1#{}手牌數量，",
           "每回合{C:blue}-#2#{}次出牌次數"
-        ]
+        ],
+        "en_name": "Troubadour"
       },
       "j_trousers": {
         "name": "備用長褲",
@@ -1160,7 +1300,8 @@
           "{C:attention}#2#",
           "{C:inactive}",
           "此小丑獲得{C:mult}+#1#{}倍數(目前{C:red}+#3#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Spare Trousers"
       },
       "j_turtle_bean": {
         "name": "烏龜豆",
@@ -1168,7 +1309,8 @@
           "手牌數量{C:attention}+#1#{}",
           "每一回合",
           "減少{C:red}#2#{}"
-        ]
+        ],
+        "en_name": "Turtle Bean"
       },
       "j_vagabond": {
         "name": "流浪者",
@@ -1176,7 +1318,8 @@
           "若在出牌時當下",
           "擁有{C:money}$#1#{}或更少的金錢",
           "產生一張{C:purple}塔羅牌{}"
-        ]
+        ],
+        "en_name": "Vagabond"
       },
       "j_vampire": {
         "name": "吸血鬼小丑",
@@ -1185,7 +1328,8 @@
           "此小丑獲得{X:mult,C:white}X#1#{}倍數，",
           "移除牌的{C:attention}加強",
           "{C:inactive}(目前為{X:mult,C:white}X#2#{C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Vampire"
       },
       "j_walkie_talkie": {
         "name": "對講機",
@@ -1193,7 +1337,8 @@
           "每打出數字{C:attention}10{}或{C:attention}4，",
           "得分時給予{C:chips}+#1#{}籌碼及",
           "{C:mult}+#2#{}倍數"
-        ]
+        ],
+        "en_name": "Walkie Talkie"
       },
       "j_wee": {
         "name": "小小丑",
@@ -1202,7 +1347,8 @@
           "這張小丑牌",
           "永久獲得{C:chips}+#2#{}籌碼",
           "{C:inactive}(目前為{C:chips}+#1#{C:inactive}籌碼)"
-        ]
+        ],
+        "en_name": "Wee Joker"
       },
       "j_wily": {
         "name": "狡猾小丑",
@@ -1210,7 +1356,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#，",
           "{C:chips}+#1#{}籌碼"
-        ]
+        ],
+        "en_name": "Wily Joker"
       },
       "j_wrathful_joker": {
         "name": "憤怒小丑",
@@ -1218,7 +1365,8 @@
           "每打出一張",
           "{C:spades}#2#{}花色的牌，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Wrathful Joker"
       },
       "j_yorick": {
         "name": "約里克",
@@ -1227,7 +1375,8 @@
           "這個小丑獲得",
           "{X:mult,C:white} X#1# {}倍數",
           "{C:inactive}(目前{X:mult,C:white} X#4# {C:inactive}倍)"
-        ]
+        ],
+        "en_name": "Yorick"
       },
       "j_zany": {
         "name": "滑稽小丑",
@@ -1235,7 +1384,8 @@
           "如果打出的牌包含",
           "{C:attention}#2#{}，",
           "倍數{C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Zany Joker"
       }
     },
     "Blind": {

@@ -8,7 +8,8 @@
           "{C:attention}8{}마다",
           "{C:tarot}타로{} 카드를 생성",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "8 Ball"
       },
       "j_abstract": {
         "name": "추상화 조커",
@@ -16,14 +17,16 @@
           "{C:attention}조커{} 카드마다",
           "{C:mult}+#1#{} 배수",
           "{C:inactive}(현재 {C:red}+#2#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Abstract Joker"
       },
       "j_acrobat": {
         "name": "곡예사",
         "text": [
           "라운드의 {C:attention}최종 핸드{} 에서",
           "{X:red,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "Acrobat"
       },
       "j_ancient": {
         "name": "고대 조커",
@@ -32,7 +35,8 @@
           "플레이할 때마다 득점 시",
           "{X:mult,C:white} X#1# {} 배수를 제공하며,",
           "{s:0.8}라운드 종료 시 수트가 변경됩니다"
-        ]
+        ],
+        "en_name": "Ancient Joker"
       },
       "j_arrowhead": {
         "name": "화살촉",
@@ -40,7 +44,8 @@
           "{C:spades}스페이드{} 수트의",
           "카드를 플레이할 때마다",
           "득점 시 {C:chips}+#1#{} 개의 칩"
-        ]
+        ],
+        "en_name": "Arrowhead"
       },
       "j_astronomer": {
         "name": "천문학자",
@@ -48,7 +53,8 @@
           "모든 {C:planet}행성{} 카드와",
           "{C:planet}천체 팩{}",
           "{C:attention}무료{} 입니다"
-        ]
+        ],
+        "en_name": "Astronomer"
       },
       "j_banner": {
         "name": "현수막",
@@ -56,7 +62,8 @@
           "남은",
           "{C:attention}버리기{} 마다",
           "{C:chips}+#1#{} 개의 칩"
-        ]
+        ],
+        "en_name": "Banner"
       },
       "j_baron": {
         "name": "남작",
@@ -64,14 +71,16 @@
           "핸드에 있는",
           "{C:attention}킹{}마다",
           "{X:mult,C:white} X#1# {} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Baron"
       },
       "j_baseball": {
         "name": "야구 카드",
         "text": [
           "{C:green}희귀{} 조커마다",
           "{X:mult,C:white} X#1# {} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Baseball Card"
       },
       "j_blackboard": {
         "name": "칠판",
@@ -79,7 +88,8 @@
           "핸드에 있는 모든 카드가",
           "{C:spades}#2#{} 또는 {C:clubs}#3#{} 인 경우",
           "{X:red,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "Blackboard"
       },
       "j_bloodstone": {
         "name": "혈석",
@@ -88,7 +98,8 @@
           "카드를 플레이할 때마다",
           "{C:green}#1#/#2#{} 확률",
           "{X:mult,C:white} X#3# {} 배수를 제공하며,"
-        ]
+        ],
+        "en_name": "Bloodstone"
       },
       "j_blue_joker": {
         "name": "블루 조커",
@@ -96,14 +107,16 @@
           "{C:attention}덱{} 에 남은 각 카드마다",
           "{C:chips}+#1#{} 개의 칩",
           "{C:inactive}(현재 {C:chips}+#2#{C:inactive} 개의 칩)"
-        ]
+        ],
+        "en_name": "Blue Joker"
       },
       "j_blueprint": {
         "name": "청사진",
         "text": [
           "오른쪽 {C:attention}조커{} 의",
           "능력을 복사합니다"
-        ]
+        ],
+        "en_name": "Blueprint"
       },
       "j_bootstraps": {
         "name": "자력",
@@ -111,14 +124,16 @@
           "가지고 있는 {C:money}$#2#{}당",
           "{C:mult}+#1#{} 배수",
           "{C:inactive}(현재 {C:mult}+#3#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Bootstraps"
       },
       "j_brainstorm": {
         "name": "브레인스토밍",
         "text": [
           "가장 왼쪽 {C:attention}조커{}의 능력을",
           "복사합니다"
-        ]
+        ],
+        "en_name": "Brainstorm"
       },
       "j_bull": {
         "name": "황소",
@@ -126,7 +141,8 @@
           "가지고 있는 {C:money}$1{}당",
           "{C:chips}+#1#{}개의 칩",
           "{C:inactive}(현재 {C:chips}+#2#{C:inactive}개의 칩)"
-        ]
+        ],
+        "en_name": "Bull"
       },
       "j_burglar": {
         "name": "절도범",
@@ -134,7 +150,8 @@
           "{C:attention}블라인드{} 를 선택하면,",
           "{C:blue}+#1#{} 핸드를 얻고",
           "{C:attention}버리기를 모두 잃습니다"
-        ]
+        ],
+        "en_name": "Burglar"
       },
       "j_burnt": {
         "name": "타버린 조커",
@@ -142,7 +159,8 @@
           "라운드마다 첫 번째",
           "{C:attention}버린{} 포커 핸드의",
           "레벨을 업그레이드합니다"
-        ]
+        ],
+        "en_name": "Burnt Joker"
       },
       "j_business": {
         "name": "명함",
@@ -150,7 +168,8 @@
           "플레이할 때",
           "{C:attention}그림{} 카드가",
           "득점 시 1/2 확률로 {C:money}$2{}를 제공합니다"
-        ]
+        ],
+        "en_name": "Business Card"
       },
       "j_caino": {
         "name": "카니오",
@@ -159,7 +178,8 @@
           "파괴될 때",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Canio"
       },
       "j_campfire": {
         "name": "캠프파이어",
@@ -168,7 +188,8 @@
           "{X:mult,C:white}X#1#{} 배수를 획득하며,",
           "{C:attention}보스 블라인드{}가 패배하면 초기화됩니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Campfire"
       },
       "j_card_sharp": {
         "name": "야바위꾼",
@@ -176,7 +197,8 @@
           "이 라운드에서 이미 플레이된",
           "{C:attention}포커 핸드{} 를 플레이할 시",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "Card Sharp"
       },
       "j_cartomancer": {
         "name": "카토맨서",
@@ -184,7 +206,8 @@
           "{C:attention}블라인드{} 를 선택할 때",
           "{C:tarot}타로{} 카드를 생성합니다",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "Cartomancer"
       },
       "j_castle": {
         "name": "성",
@@ -193,7 +216,8 @@
           "{C:chips}+#1#{}개의 칩을 획득하며,",
           "수트가 매 라운드 변경됩니다",
           "{C:inactive}(현재 {C:chips}+#3#{C:inactive}개의 칩)"
-        ]
+        ],
+        "en_name": "Castle"
       },
       "j_cavendish": {
         "name": "캐번디시",
@@ -202,7 +226,8 @@
           "라운드가 끝날 때",
           "{C:green}#2# / #3#{} 의 확률로",
           "이 카드가 파괴됩니다"
-        ]
+        ],
+        "en_name": "Cavendish"
       },
       "j_ceremonial": {
         "name": "의식용 단검",
@@ -212,7 +237,8 @@
           "이 {C:red} 배수{}에 그 판매 가치를",
           " {C:attention}두 배{}로 영구적으로 추가합니다",
           "{C:inactive}(현재 {C:mult}+#1#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Ceremonial Dagger"
       },
       "j_certificate": {
         "name": "증명서",
@@ -221,21 +247,24 @@
           "무작위로 무작위의 {C:attention}플레잉",
           "{C:attention}카드{}를 추가합니다",
           "{C:attention}봉인{}을 추가합니다"
-        ]
+        ],
+        "en_name": "Certificate"
       },
       "j_chaos": {
         "name": "혼돈의 광대",
         "text": [
           "상점당",
           "{C:green}#1#{} 무료 {C:green}리롤"
-        ]
+        ],
+        "en_name": "Chaos the Clown"
       },
       "j_chicot": {
         "name": "치코",
         "text": [
           "모든 {C:attention}보스 블라인드{} 의",
           "효과를 비활성화합니다"
-        ]
+        ],
+        "en_name": "Chicot"
       },
       "j_clever": {
         "name": "영리한 조커",
@@ -243,7 +272,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "칩 {C:chips}+#1#{}개"
-        ]
+        ],
+        "en_name": "Clever Joker"
       },
       "j_cloud_9": {
         "name": "클라우드 9",
@@ -252,7 +282,8 @@
           "{C:attention}9{}마다",
           "{C:money}$#1#{}를 획득합니다",
           "{C:inactive}(현재 {C:money}$#2#{}{C:inactive})"
-        ]
+        ],
+        "en_name": "Cloud 9"
       },
       "j_constellation": {
         "name": "별자리",
@@ -261,7 +292,8 @@
           "{C:planet}행성{} 카드가 사용될 때마다",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Constellation"
       },
       "j_crafty": {
         "name": "간교한 조커",
@@ -269,7 +301,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "칩 {C:chips}+#1#{}개"
-        ]
+        ],
+        "en_name": "Crafty Joker"
       },
       "j_crazy": {
         "name": "정신 나간 조커",
@@ -277,14 +310,16 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "{C:red}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Crazy Joker"
       },
       "j_credit_card": {
         "name": "신용 카드",
         "text": [
           "부채를",
           "최대 {C:red}-$#1#{} 합니다"
-        ]
+        ],
+        "en_name": "Credit Card"
       },
       "j_delayed_grat": {
         "name": "늦춰진 희열",
@@ -292,7 +327,8 @@
           "라운드가 끝날 때까지",
           "버리기를 사용하지 않으면",
           "{C:attention}버리기{}당 {C:money}$#1#{}를 획득합니다"
-        ]
+        ],
+        "en_name": "Delayed Gratification"
       },
       "j_devious": {
         "name": "기만적인 조커",
@@ -300,7 +336,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "칩 {C:chips}+#1#{}개"
-        ]
+        ],
+        "en_name": "Devious Joker"
       },
       "j_diet_cola": {
         "name": "다이어트 콜라",
@@ -308,7 +345,8 @@
           "이 카드를 팔아서",
           "무료 {C:attention}#1#",
           "생성"
-        ]
+        ],
+        "en_name": "Diet Cola"
       },
       "j_dna": {
         "name": "DNA",
@@ -317,7 +355,8 @@
           "{C:attention}1{} 장의 카드만 있으면,",
           "덱에 복사 카드를 영구적으로 추가하고",
           "{C:attention}핸드{}로 뽑습니다"
-        ]
+        ],
+        "en_name": "DNA"
       },
       "j_drivers_license": {
         "name": "운전면허증",
@@ -326,7 +365,8 @@
           "장 이상이면",
           "{X:mult,C:white} X#1# {} 배수",
           "{C:inactive}(현재 {C:attention}#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Driver"
       },
       "j_droll": {
         "name": "괴짜 조커",
@@ -334,14 +374,16 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "{C:red}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Droll Joker"
       },
       "j_drunkard": {
         "name": "술고래",
         "text": [
           "라운드마다",
           "{C:red}+#1#{} 버리기"
-        ]
+        ],
+        "en_name": "Drunkard"
       },
       "j_duo": {
         "name": "듀오",
@@ -349,7 +391,8 @@
           "플레이한 핸드가",
           "{C:attention}#2#{} 을(를) 포함 시",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "The Duo"
       },
       "j_dusk": {
         "name": "땅거미",
@@ -357,7 +400,8 @@
           "라운드의 {C:attention}최종 핸드{} 에서",
           "플레이한 모든 카드를",
           "다시 트리거합니다"
-        ]
+        ],
+        "en_name": "Dusk"
       },
       "j_egg": {
         "name": "알",
@@ -365,7 +409,8 @@
           "라운드 종료 시",
           "{C:money}$#1#{} 의",
           "{C:attention}판매 가치{} 를 획득합니다"
-        ]
+        ],
+        "en_name": "Egg"
       },
       "j_erosion": {
         "name": "침식",
@@ -374,7 +419,8 @@
           "카드 매수만큼",
           "{C:red}+#1#{} 배수",
           "{C:inactive}(현재 {C:red}+#2#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Erosion"
       },
       "j_even_steven": {
         "name": "이븐 스티븐",
@@ -383,7 +429,8 @@
           "플레이한 카드는",
           "득점 시 {C:mult}+#1#{} 배수를 제공합니다",
           "{C:inactive}(10, 8, 6, 4, 2)"
-        ]
+        ],
+        "en_name": "Even Steven"
       },
       "j_faceless": {
         "name": "얼굴 없는 조커",
@@ -392,7 +439,8 @@
           "{C:attention}그림 카드{} 를 동시에",
           "버리면",
           "{C:money}$#1#{} 를 획득합니다"
-        ]
+        ],
+        "en_name": "Faceless Joker"
       },
       "j_family": {
         "name": "가족",
@@ -400,7 +448,8 @@
           "플레이한 핸드가",
           "{C:attention}#2#{} 을(를) 포함 시",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "The Family"
       },
       "j_fibonacci": {
         "name": "피보나치",
@@ -408,7 +457,8 @@
           "득점할 때",
           "{C:attention}에이스{}, {C:attention}2{}, {C:attention}3{}, {C:attention}5{} 또는 {C:attention}8{} 마다",
           "{C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Fibonacci"
       },
       "j_flash": {
         "name": "플래시 카드",
@@ -416,7 +466,8 @@
           "이 조커는 상점 {C:attention}리롤{}당",
           "{C:mult}+#1#{} 배수를 획득합니다",
           "{C:inactive}(현재 {C:mult}+#2#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Flash Card"
       },
       "j_flower_pot": {
         "name": "화분",
@@ -425,7 +476,8 @@
           "핸드에",
           "{C:diamonds}다이아몬드{} 카드, {C:clubs}클럽{} 카드,",
           "{C:hearts}하트{} 카드, {C:spades}스페이드{} 카드가 있을 경우 {X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "Flower Pot"
       },
       "j_fortune_teller": {
         "name": "점쟁이",
@@ -433,7 +485,8 @@
           "사용한 {C:purple}타로{} 카드당",
           "{C:red}+#1#{} 배수",
           "{C:inactive}(현재 {C:red}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Fortune Teller"
       },
       "j_four_fingers": {
         "name": "네 개의 손가락",
@@ -441,7 +494,8 @@
           "모든 {C:attention}플러시{} 와",
           "{C:attention}스트레이트{} 를",
           "{C:attention}4{} 장의 카드로 만듭니다"
-        ]
+        ],
+        "en_name": "Four Fingers"
       },
       "j_gift": {
         "name": "기프트 카드",
@@ -450,7 +504,8 @@
           "{C:attention}소모품{} 카드에",
           "{C:money}$#1#{}의 {C:attention}판매 가치{}를 추가합니다",
           " "
-        ]
+        ],
+        "en_name": "Gift Card"
       },
       "j_glass": {
         "name": "글래스 조커",
@@ -459,7 +514,8 @@
           "파괴될 때마다",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Glass Joker"
       },
       "j_gluttenous_joker": {
         "name": "게걸스러운 조커",
@@ -467,14 +523,16 @@
           "{C:clubs}#2#{} 수트와 함께",
           "카드를 플레이할 때마다",
           "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Gluttonous Joker"
       },
       "j_golden": {
         "name": "골든 조커",
         "text": [
           "라운드 종료 시",
           "{C:money}$#1#{} 를 획득합니다"
-        ]
+        ],
+        "en_name": "Golden Joker"
       },
       "j_greedy_joker": {
         "name": "탐욕스러운 조커",
@@ -482,7 +540,8 @@
           "{C:diamonds}#2#{} 문양과 함께",
           "카드를 플레이할 때마다",
           "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Greedy Joker"
       },
       "j_green_joker": {
         "name": "그린 조커",
@@ -490,7 +549,8 @@
           "플레이한 핸드당 {C:mult}+#1#{} 배수",
           "버리기당 {C:mult}-#2#{} 배수",
           "{C:inactive}(현재 {C:mult}+#3#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Green Joker"
       },
       "j_gros_michel": {
         "name": "그로 미셸",
@@ -499,7 +559,8 @@
           "라운드가 끝날 때",
           "{C:green}#2# / #3#{} 의 확률로",
           "이 카드가 파괴됩니다"
-        ]
+        ],
+        "en_name": "Gros Michel"
       },
       "j_hack": {
         "name": "사기꾼",
@@ -507,7 +568,8 @@
           "플레이할 때마다",
           "{C:attention}2{}, {C:attention}3{},",
           "{C:attention}4{} 또는 {C:attention}5{} 카드를 다시 트리거합니다"
-        ]
+        ],
+        "en_name": "Hack"
       },
       "j_half": {
         "name": "반쪽 조커",
@@ -515,7 +577,8 @@
           "플레이한 핸드에",
           "카드가 {C:attention}#2#{} 장 이하면",
           "{C:red}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Half Joker"
       },
       "j_hallucination": {
         "name": "환각",
@@ -524,7 +587,8 @@
           "{C:green}#1#/#2#{}의 확률로",
           "{C:tarot}타로{} 카드를 생성",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "Hallucination"
       },
       "j_hanging_chad": {
         "name": "종이 구멍",
@@ -532,7 +596,8 @@
           "득점에 사용된 {C:attention}첫{} 플레이한",
           "카드를",
           "추가 {C:attention}#1#{}회 리트리거합니다"
-        ]
+        ],
+        "en_name": "Hanging Chad"
       },
       "j_hiker": {
         "name": "도보 여행자",
@@ -540,7 +605,8 @@
           "{C:attention}득점시 플레이된 카드{}는 ",
           "영구적으로",
           "{C:chips}+#1#{} 개의 칩을 추가로 얻습니다"
-        ]
+        ],
+        "en_name": "Hiker"
       },
       "j_hit_the_road": {
         "name": "여행 출발",
@@ -549,7 +615,8 @@
           "{C:attention}잭{}을 버릴 때마다",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Hit the Road"
       },
       "j_hologram": {
         "name": "홀로그램",
@@ -558,7 +625,8 @@
           "덱에 추가될 때마다",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Hologram"
       },
       "j_ice_cream": {
         "name": "아이스크림",
@@ -566,7 +634,8 @@
           "{C:chips}+#1#{} 개의 칩",
           "핸드를 플레이할 때마다",
           "{C:chips}-#2#{} 개의 칩"
-        ]
+        ],
+        "en_name": "Ice Cream"
       },
       "j_idol": {
         "name": "우상",
@@ -575,7 +644,8 @@
           "득점시",
           "{X:mult,C:white} X#1# {} 배수를 제공합니다",
           "카드가 매 라운드 변경됩니다"
-        ]
+        ],
+        "en_name": "The Idol"
       },
       "j_invisible": {
         "name": "투명 조커",
@@ -584,13 +654,15 @@
           "이 카드를 팔아서",
           "무작위 조커를 {C:attention}중복합니다{}",
           "{C:inactive}(현재 {C:attention}#2#{C:inactive}/#1#)"
-        ]
+        ],
+        "en_name": "Invisible Joker"
       },
       "j_joker": {
         "name": "조커",
         "text": [
           "{C:red,s:1.1}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Joker"
       },
       "j_jolly": {
         "name": "쾌활한 조커",
@@ -598,13 +670,15 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "{C:red}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Jolly Joker"
       },
       "j_juggler": {
         "name": "저글러",
         "text": [
           "{C:attention}+#1#{} 핸드 크기"
-        ]
+        ],
+        "en_name": "Juggler"
       },
       "j_loyalty_card": {
         "name": "로열티 카드",
@@ -612,7 +686,8 @@
           "{C:attention}#2#{} 번의 핸드를 플레이할 때마다",
           "{X:red,C:white} X#1# {} 배수",
           "{C:inactive}#3#"
-        ]
+        ],
+        "en_name": "Loyalty Card"
       },
       "j_luchador": {
         "name": "루차도르",
@@ -620,7 +695,8 @@
           "이 카드를 팔아서",
           "현재 {C:attention}보스 블라인드{}를",
           "비활성화합니다"
-        ]
+        ],
+        "en_name": "Luchador"
       },
       "j_lucky_cat": {
         "name": "행운의 고양이",
@@ -629,7 +705,8 @@
           "{C:green}성공적으로{} 트리거될 때마다",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Lucky Cat"
       },
       "j_lusty_joker": {
         "name": "건장한 조커",
@@ -637,7 +714,8 @@
           "{C:hearts}#2#{} 수트와 함께",
           "카드를 플레이할 때마다",
           "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Lusty Joker"
       },
       "j_mad": {
         "name": "미친 조커",
@@ -645,7 +723,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "{C:red}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Mad Joker"
       },
       "j_madness": {
         "name": "광기",
@@ -654,7 +733,8 @@
           "를 선택한 경우, {X:mult,C:white} X#1# {} 배수를 획득하고",
           "무작위 조커를{C:attention}파괴{}합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Madness"
       },
       "j_mail": {
         "name": "편지",
@@ -662,7 +742,8 @@
           "{C:attention}#2#{}을(를) 버릴 때마다",
           "{C:money}$#1#{}를 획득하며,",
           "랭크가 매 라운드 변경됩니다"
-        ]
+        ],
+        "en_name": "Mail-In Rebate"
       },
       "j_marble": {
         "name": "마블 조커",
@@ -670,7 +751,8 @@
           "{C:attention}블라인드{}가 선택되면",
           "덱에",
           "{C:attention}스톤{} 카드를 1장 추가합니다"
-        ]
+        ],
+        "en_name": "Marble Joker"
       },
       "j_matador": {
         "name": "투우사",
@@ -678,7 +760,8 @@
           "플레이한 핸드가",
           "{C:attention}보스 블라인드{} 능력을 트리거하면 ",
           "{C:money}$#1#{} 를 획득합니다"
-        ]
+        ],
+        "en_name": "Matador"
       },
       "j_merry_andy": {
         "name": "즐거운 앤디",
@@ -686,7 +769,8 @@
           "라운드마다",
           "{C:red}+#1#{} 버리기,",
           "{C:red}#2#{} 핸드 크기"
-        ]
+        ],
+        "en_name": "Merry Andy"
       },
       "j_midas_mask": {
         "name": "미다스 가면",
@@ -694,7 +778,8 @@
           "득점 시",
           "플레이한 모든 {C:attention}그림{} 카드",
           "가 {C:attention}골드{} 카드가 됩니다"
-        ]
+        ],
+        "en_name": "Midas Mask"
       },
       "j_mime": {
         "name": "마임",
@@ -702,13 +787,15 @@
           "{C:attention}핸드에",
           "{C:attention}있는{} 모든 카드 능력을",
           "다시 트리거합니다"
-        ]
+        ],
+        "en_name": "Mime"
       },
       "j_misprint": {
         "name": "오탈자",
         "text": [
           ""
-        ]
+        ],
+        "en_name": "Misprint"
       },
       "j_mr_bones": {
         "name": "미스터 본즈",
@@ -718,7 +805,8 @@
           "필요한 칩의 {C:attention}25%{} 이상인 경우",
           "죽음을 막고 ",
           "{S:1.1,C:red,E:2}자멸합니다{}"
-        ]
+        ],
+        "en_name": "Mr. Bones"
       },
       "j_mystic_summit": {
         "name": "신비의 정점",
@@ -726,7 +814,8 @@
           "남은 버리기가",
           "{C:attention}#2#{} 번일 때",
           "{C:mult}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Mystic Summit"
       },
       "j_obelisk": {
         "name": "오벨리스크",
@@ -736,7 +825,8 @@
           "{C:attention}포커 핸드 플레이 없이",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Obelisk"
       },
       "j_odd_todd": {
         "name": "오드 토드",
@@ -745,7 +835,8 @@
           "플레이한 카드는",
           "득점 시 {C:chips}+#1#{} 개의 칩을 제공합니다",
           "{C:inactive}(A, 9, 7, 5, 3)"
-        ]
+        ],
+        "en_name": "Odd Todd"
       },
       "j_onyx_agate": {
         "name": "오닉스 아게이트",
@@ -753,7 +844,8 @@
           "{C:clubs}클럽{} 수트의",
           "카드를 플레이할 때마다",
           "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Onyx Agate"
       },
       "j_oops": {
         "name": "이런, 모두 6이야!",
@@ -761,7 +853,8 @@
           "모든  {C:attention}나열된",
           "{C:green,E:1,S:1.1}가능성{} 을 두배로 늘립니다",
           "{C:inactive}(예: {C:green}1/3{C:inactive} -> {C:green}2/3{C:inactive})"
-        ]
+        ],
+        "en_name": "Oops! All 6s"
       },
       "j_order": {
         "name": "지시",
@@ -769,7 +862,8 @@
           "플레이한 핸드가",
           "{C:attention}#2#{} 을(를) 포함 시",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "The Order"
       },
       "j_pareidolia": {
         "name": "변상증",
@@ -777,7 +871,8 @@
           "모든 카드가",
           "{C:attention}그림{} 카드로",
           "취급됩니다"
-        ]
+        ],
+        "en_name": "Pareidolia"
       },
       "j_perkeo": {
         "name": "페르케오",
@@ -786,7 +881,8 @@
           "소유한",
           "{C:attention}1{}장의 무작위 {C:attentin}소모품{} 카드의",
           "{C:dark_edition}네거티브{}를 생성합니다"
-        ]
+        ],
+        "en_name": "Perkeo"
       },
       "j_photograph": {
         "name": "사진",
@@ -794,7 +890,8 @@
           "득점에 사용된",
           "첫 번째 플레이한 {C:attention}페이스{} 카드에",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "Photograph"
       },
       "j_popcorn": {
         "name": "팝콘",
@@ -802,7 +899,8 @@
           "{C:mult}+#1#{} 배수",
           "라운드를 플레이할 때마다",
           "{C:mult}-#2#{} 배수"
-        ]
+        ],
+        "en_name": "Popcorn"
       },
       "j_raised_fist": {
         "name": "들어 올린 주먹",
@@ -810,7 +908,8 @@
           "핸드에 있는 {C:attention}최하{} 랭크 카드의",
           "랭크의 {C:attention}두 배{}를",
           "배수에 추가"
-        ]
+        ],
+        "en_name": "Raised Fist"
       },
       "j_ramen": {
         "name": "라면",
@@ -818,7 +917,8 @@
           "{X:mult,C:white} X#1# {} 배수,",
           "{C:attention}카드{}를 버릴 때마다",
           "{X:mult,C:white} X#2# {} 배수를 잃습니다"
-        ]
+        ],
+        "en_name": "Ramen"
       },
       "j_red_card": {
         "name": "레드카드",
@@ -827,7 +927,8 @@
           "{C:attention}부스터 팩{}을 건너뛸 때",
           "{C:red}+#1#{} 배수를 획득합니다",
           "{C:inactive}(현재 {C:red}+#2#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Red Card"
       },
       "j_reserved_parking": {
         "name": "지정 주차 공간",
@@ -836,7 +937,8 @@
           "{C:attention}그림{} 카드마다",
           "{C:green}#2#/#3#{} 확률을 보유합니다",
           "{C:money}$#1#{}을(를) 제공합니다"
-        ]
+        ],
+        "en_name": "Reserved Parking"
       },
       "j_ride_the_bus": {
         "name": "버스 탑승",
@@ -846,7 +948,8 @@
           " 득점 없이",
           "{C:mult}+#1#{} 배수를 획득합니다",
           "{C:inactive}(현재 {C:mult}+#2#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Ride the Bus"
       },
       "j_riff_raff": {
         "name": "쓰레기",
@@ -854,7 +957,8 @@
           "{C:attention}블라인드{}가 선택될 때,",
           "{C:attention}#1#장의 {C:blue}일반{} 조커를 생성합니다",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "Riff-Raff"
       },
       "j_ring_master": {
         "name": "링 마스터",
@@ -862,7 +966,8 @@
           "{C:attention}조커{}, {C:tarot}타로{}, {C:planet}행성{}",
           "그리고 {C:spectral}유령{} 카드가",
           "여러 번 나타납니다"
-        ]
+        ],
+        "en_name": "Showman"
       },
       "j_rocket": {
         "name": "로켓",
@@ -870,7 +975,8 @@
           "라운드 종료 시 {C:money}$#1#{}를 획득합니다",
           "{C:attention}보스 블라인드{} 처치 시",
           "지불이 {C:money}$#2#{}인상됩니다"
-        ]
+        ],
+        "en_name": "Rocket"
       },
       "j_rough_gem": {
         "name": "원석",
@@ -878,7 +984,8 @@
           "{C:diamonds}다이아몬드{} 수트의",
           "카드를 플레이할 때마다",
           "득점 시 {C:money}$#1#{}를 획득합니다"
-        ]
+        ],
+        "en_name": "Rough Gem"
       },
       "j_runner": {
         "name": "주자",
@@ -887,7 +994,8 @@
           "{C:attention}스트레이트{}가 있으면",
           "{C:chips}+#2#{}개의 칩을 획득합니다",
           "{C:inactive}(현재 {C:chips}+#1#{C:inactive}개의 칩)"
-        ]
+        ],
+        "en_name": "Runner"
       },
       "j_satellite": {
         "name": "인공위성",
@@ -896,7 +1004,8 @@
           "모든 고유 {C:planet}행성{} 카드에 대해",
           "라운드가 끝나면 {C:money}$#1#{} 를 획득합니다",
           "{C:inactive}(현재 {C:money}$#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Satellite"
       },
       "j_scary_face": {
         "name": "무서운 얼굴",
@@ -904,7 +1013,8 @@
           "득점할 때",
           "{C:attention}그림{} 카드가",
           "{C:chips}+#1#{} 개의 칩을 제공합니다"
-        ]
+        ],
+        "en_name": "Scary Face"
       },
       "j_scholar": {
         "name": "학자",
@@ -913,7 +1023,8 @@
           "각 에이스가",
           "득점 시 추가 {C:mult}+#1#{} 배수 및",
           "{C:chips}+#2#{}개의 칩을 제공합니다"
-        ]
+        ],
+        "en_name": "Scholar"
       },
       "j_seance": {
         "name": "교령회",
@@ -922,7 +1033,8 @@
           "{C:attention}#1#{} 인 경우,",
           "무작위 {C:spectral}유령{} 카드를 생성합니다",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "Séance"
       },
       "j_seeing_double": {
         "name": "둘로 보기",
@@ -931,7 +1043,8 @@
           "{X:mult,C:white} X#1# {} 배수",
           "{C:clubs}클럽{} 카드 및",
           "기타{C:attention} 수트의 득점 카드"
-        ]
+        ],
+        "en_name": "Seeing Double"
       },
       "j_selzer": {
         "name": "탄산수",
@@ -939,7 +1052,8 @@
           "다음 {C:attention}#1#{}번의 핸드에서",
           "플레이한 모든 카드를",
           "다시 트리거합니다"
-        ]
+        ],
+        "en_name": "Seltzer"
       },
       "j_shoot_the_moon": {
         "name": "야반도주",
@@ -947,7 +1061,8 @@
           "핸드에 있는",
           "{C:attention}퀸{}마다",
           "{C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Shoot the Moon"
       },
       "j_shortcut": {
         "name": "지름길",
@@ -955,7 +1070,8 @@
           "{C:attention}1 랭크 간격을 두고",
           "{C:attention}스트레이트{}를 만들 수 있음",
           "{C:inactive}(예: {C:attention}10 8 6 5 3{C:inactive})"
-        ]
+        ],
+        "en_name": "Shortcut"
       },
       "j_sixth_sense": {
         "name": "육감",
@@ -964,7 +1080,8 @@
           "싱글 {C:attention}6{}이면, 그걸 파괴하고",
           "{C:spectral}유령{} 카드를 생성합니다",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "Sixth Sense"
       },
       "j_sly": {
         "name": "교활한 조커",
@@ -972,7 +1089,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "칩 {C:chips}+#1#{}개"
-        ]
+        ],
+        "en_name": "Sly Joker"
       },
       "j_smeared": {
         "name": "얼룩진 조커",
@@ -981,7 +1099,8 @@
           "같은 수트로 취급되며,",
           "{C:spades}스페이드{} 와 {C:spades}클럽{} 이",
           "같은 수트로 취급됩니다"
-        ]
+        ],
+        "en_name": "Smeared Joker"
       },
       "j_smiley": {
         "name": "웃는 얼굴",
@@ -989,14 +1108,16 @@
           "득점하면",
           "플레이한 {C:attention}페이스{} 카드가",
           "{C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Smiley Face"
       },
       "j_sock_and_buskin": {
         "name": "희극과 비극",
         "text": [
           "플레이한 모든 {C:attention}그림",
           "카드를 다시 트리거합니다"
-        ]
+        ],
+        "en_name": "Sock and Buskin"
       },
       "j_space": {
         "name": "스페이스 조커",
@@ -1004,14 +1125,16 @@
           "{C:green}#1# / #2#{} 의 확률로",
           "플레이한 {C:attention}포커 핸드{} 레벨을",
           "업그레이드합니다"
-        ]
+        ],
+        "en_name": "Space Joker"
       },
       "j_splash": {
         "name": "첨벙",
         "text": [
           "{C:attention}플레이한 카드{} 가 모두",
           "득점에 계산됩니다"
-        ]
+        ],
+        "en_name": "Splash"
       },
       "j_square": {
         "name": "정사각형 조커",
@@ -1020,7 +1143,8 @@
           "정확히 {C:attention}4{}장의 카드가 있을 때",
           "{C:chips}+#2#{}개의 칩을 획득합니다",
           "{C:inactive}(현재 {C:chips}#1#{C:inactive}개의 칩)"
-        ]
+        ],
+        "en_name": "Square Joker"
       },
       "j_steel_joker": {
         "name": "스틸 조커",
@@ -1029,7 +1153,8 @@
           "각 {C:attention}스틸 카드마다",
           "{X:mult,C:white} X#1# {} 배수 제공",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Steel Joker"
       },
       "j_stencil": {
         "name": "조커 스텐실",
@@ -1038,7 +1163,8 @@
           "빈 {C:attention}조커{} 슬롯마다",
           "{X:red,C:white} X1 {} 배수",
           "{C:inactive}(현재 {X:red,C:white} X#1# {C:inactive})"
-        ]
+        ],
+        "en_name": "Joker Stencil"
       },
       "j_stone": {
         "name": "스톤 조커",
@@ -1047,14 +1173,16 @@
           "각 {C:attention}스톤 카드마다",
           "{C:chips}+#1#{}개의 칩을 제공합니다",
           "{C:inactive}(현재 {C:chips}+#2#{C:inactive}개의 칩)"
-        ]
+        ],
+        "en_name": "Stone Joker"
       },
       "j_stuntman": {
         "name": "스턴트맨",
         "text": [
           "{C:chips}+#1#{}개의 칩,",
           "{C:attention}-#2#{} 핸드 크기"
-        ]
+        ],
+        "en_name": "Stuntman"
       },
       "j_supernova": {
         "name": "초신성",
@@ -1062,7 +1190,8 @@
           "이번 런에서",
           "{C:attention}포커 핸드{}가 플레이된",
           "횟수를 배수에 추가"
-        ]
+        ],
+        "en_name": "Supernova"
       },
       "j_superposition": {
         "name": "중첩",
@@ -1071,7 +1200,8 @@
           "{C:attention}에이스{} 가 포함된 {C:attention}스트레이트{}라면,",
           "{C:tarot}타로{} 카드를 생성합니다",
           "{C:inactive}(공간이 있어야 합니다)"
-        ]
+        ],
+        "en_name": "Superposition"
       },
       "j_swashbuckler": {
         "name": "깡패",
@@ -1080,7 +1210,8 @@
           "{C:attention}조커{}의 판매 가치를",
           "배수에 추가합니다",
           "{C:inactive}(현재 {C:mult}+#1#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Swashbuckler"
       },
       "j_throwback": {
         "name": "회귀",
@@ -1088,14 +1219,16 @@
           "이 런을 건너뛴 {C:planet}블라인드{} 당",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다",
           "{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Throwback"
       },
       "j_ticket": {
         "name": "골든 티켓",
         "text": [
           "{C:attention}골드{} 카드를 플레이할 때마다",
           "득점 시 {C:money}$#1#{} 를 획득합니다"
-        ]
+        ],
+        "en_name": "Golden Ticket"
       },
       "j_to_the_moon": {
         "name": "달을 향해",
@@ -1103,7 +1236,8 @@
           "라운드가 끝날 때",
           "보유한 {C:money}$5{}마다 추가 {C:money}$#1#{}의",
           "{C:attention}이자{}를 획득합니다"
-        ]
+        ],
+        "en_name": "To the Moon"
       },
       "j_todo_list": {
         "name": "할 일 목록",
@@ -1112,7 +1246,8 @@
           "가 {C:attention}#2#{}인 경우 {C:money}$#1#{}를 획득합니다",
           "라운드 종료 시",
           "포커 핸드를 바꿉니다"
-        ]
+        ],
+        "en_name": "To Do List"
       },
       "j_trading": {
         "name": "트레이딩 카드",
@@ -1120,7 +1255,8 @@
           "라운드의 {C:attention}첫 번째 버리기{}에",
           "{C:attention}1{} 카드만 있으면, 그건 파괴하고",
           "{C:money}$#1#{}를 획득합니다"
-        ]
+        ],
+        "en_name": "Trading Card"
       },
       "j_tribe": {
         "name": "패거리",
@@ -1128,7 +1264,8 @@
           "플레이한 핸드가",
           "{C:attention}#2#{} 을(를) 포함 시",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "The Tribe"
       },
       "j_triboulet": {
         "name": "트리불레",
@@ -1137,7 +1274,8 @@
           "{C:attention}퀸{}이 각각 x2 배수를",
           "제공합니다",
           "{X:mult,C:white} X#1# {} 배수를 제공하며,"
-        ]
+        ],
+        "en_name": "Triboulet"
       },
       "j_trio": {
         "name": "트리오",
@@ -1145,14 +1283,16 @@
           "플레이한 핸드가",
           "{C:attention}#2#{} 을(를) 포함 시",
           "{X:mult,C:white} X#1# {} 배수"
-        ]
+        ],
+        "en_name": "The Trio"
       },
       "j_troubadour": {
         "name": "음유시인",
         "text": [
           "{C:attention}+#1#{} 핸드 크기,",
           "라운드마다 {C:blue}-#2#{} 핸드"
-        ]
+        ],
+        "en_name": "Troubadour"
       },
       "j_trousers": {
         "name": "여벌 바지",
@@ -1161,7 +1301,8 @@
           "{C:attention}#2# 포함 시",
           "{C:mult}+#1#{} 배수를 획득합니다",
           "{C:inactive}(현재 {C:red}+#3#{C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Spare Trousers"
       },
       "j_turtle_bean": {
         "name": "거북 콩",
@@ -1169,7 +1310,8 @@
           "{C:attention}+#1#{} 핸드 크기,",
           "{C:red}#2#{} 라운드마다",
           "감소합니다"
-        ]
+        ],
+        "en_name": "Turtle Bean"
       },
       "j_vagabond": {
         "name": "방랑자",
@@ -1177,7 +1319,8 @@
           "핸드가 {C:money}$#1#{} 이하로",
           "플레이되면",
           "{C:purple}타로{} 카드를 생성합니다"
-        ]
+        ],
+        "en_name": "Vagabond"
       },
       "j_vampire": {
         "name": "뱀파이어",
@@ -1186,7 +1329,8 @@
           "{X:mult,C:white} X#1# {} 배수를 획득하고",
           "카드 {C:attention}강화",
           "를 제거합니다{C:inactive}(현재 {X:mult,C:white} X#2# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Vampire"
       },
       "j_walkie_talkie": {
         "name": "워키토키",
@@ -1194,7 +1338,8 @@
           "{C:attention}10{} 또는 {C:attention}4{}를 플레이할 때마다",
           "득점 시 {C:chips}+#1#{}개의 칩과",
           "{C:mult}+#2#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Walkie Talkie"
       },
       "j_wee": {
         "name": "아주 작은 조커",
@@ -1203,7 +1348,8 @@
           "조커는",
           "{C:chips}+#2#{}개의 칩을 획득합니다",
           "{C:inactive}(현재 {C:chips}+#1#{C:inactive}개의 칩)"
-        ]
+        ],
+        "en_name": "Wee Joker"
       },
       "j_wily": {
         "name": "악랄한 조커",
@@ -1211,7 +1357,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "칩 {C:chips}+#1#{}개"
-        ]
+        ],
+        "en_name": "Wily Joker"
       },
       "j_wrathful_joker": {
         "name": "격노한 조커",
@@ -1219,7 +1366,8 @@
           "{C:spades}#2#{} 문양과 함께",
           "카드를 플레이할 때마다",
           "득점 시 {C:mult}+#1#{} 배수를 제공합니다"
-        ]
+        ],
+        "en_name": "Wrathful Joker"
       },
       "j_yorick": {
         "name": "요릭",
@@ -1228,7 +1376,8 @@
           "{C:attention}#2#{C:inactive} [#3#]{}개의",
           "카드가 버려질 때마다",
           "{X:mult,C:white} X#1# {} 배수를 획득합니다{C:inactive}(현재 {X:mult,C:white} X#4# {C:inactive} 배수)"
-        ]
+        ],
+        "en_name": "Yorick"
       },
       "j_zany": {
         "name": "엉뚱한 조커",
@@ -1236,7 +1385,8 @@
           "플레이한 핸드에",
           "{C:attention}#2#{} 포함 시",
           "{C:red}+#1#{} 배수"
-        ]
+        ],
+        "en_name": "Zany Joker"
       }
     },
     "Blind": {

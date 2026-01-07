@@ -8,7 +8,8 @@
           "{C:green}#2#{} 分の #1#{} の確率で",
           "{C:tarot}タロット{}カードを作る",
           "{C:inactive}（空きが必要）"
-        ]
+        ],
+        "en_name": "8 Ball"
       },
       "j_abstract": {
         "name": "アブストラクトジョーカー",
@@ -16,14 +17,16 @@
           "{C:attention}ジョーカー{} カード1枚につき",
           "倍率 {C:mult}+#1#{}",
           "{C:inactive}（現在 倍率 {C:red}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Abstract Joker"
       },
       "j_acrobat": {
         "name": "アクロバット",
         "text": [
           "ラウンドの {C:attention}最終ハンド{} の",
           "倍率 {X:red,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Acrobat"
       },
       "j_ancient": {
         "name": "エンシェントジョーカー",
@@ -32,7 +35,8 @@
           "{V:1}#2#{} スーツでプレイされたカードごとに",
           "倍率 {X:mult,C:white}X#1#{}",
           "{s:0.8} スーツはラウンド終了時に変わる"
-        ]
+        ],
+        "en_name": "Ancient Joker"
       },
       "j_arrowhead": {
         "name": "アローヘッド",
@@ -40,7 +44,8 @@
           "プレイされた {C:spades}スペード{} スーツのカードが",
           "スコアされた時",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Arrowhead"
       },
       "j_astronomer": {
         "name": "天文学者",
@@ -48,7 +53,8 @@
           "ショップの {C:planet}惑星{} カードと",
           "{C:planet}天体パック{} ",
           "がすべて {C:attention}無料{} になる"
-        ]
+        ],
+        "en_name": "Astronomer"
       },
       "j_banner": {
         "name": "バナー",
@@ -56,7 +62,8 @@
           "残りの {C:attention}ディスカード{}",
           "1枚につき",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Banner"
       },
       "j_baron": {
         "name": "バロン",
@@ -64,14 +71,16 @@
           "手札にある {C:attention}キング{} 1枚につき",
           "倍率 {X:mult,C:white}X#1#{} を",
           "与える"
-        ]
+        ],
+        "en_name": "Baron"
       },
       "j_baseball": {
         "name": "ベースボールカード",
         "text": [
           "それぞれの {C:green}アンコモン{} ジョーカーが",
           "倍率 {X:mult,C:white}X#1#{} を与える"
-        ]
+        ],
+        "en_name": "Baseball Card"
       },
       "j_blackboard": {
         "name": "黒板",
@@ -79,7 +88,8 @@
           "手札にあるすべてのカードが",
           "{C:spades}#2#{} または {C:clubs}#3#{} の場合",
           "倍率 {X:red,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Blackboard"
       },
       "j_bloodstone": {
         "name": "ブラッドストーン",
@@ -88,7 +98,8 @@
           "{C:hearts}ハート{} スーツのカードがスコアされると",
           "倍率 {C:mult}+#1#{} を与える",
           "倍率 {X:mult,C:white}X#3#{}"
-        ]
+        ],
+        "en_name": "Bloodstone"
       },
       "j_blue_joker": {
         "name": "ブルージョーカー",
@@ -96,14 +107,16 @@
           "{C:attention}デッキ{} の残りのカード1枚につき",
           "チップ {C:chips}+#1#{}",
           "{C:inactive}（現在 チップ {C:chips}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Blue Joker"
       },
       "j_blueprint": {
         "name": "ブループリント",
         "text": [
           "右の {C:attention}ジョーカー{} の能力を",
           "コピーする"
-        ]
+        ],
+        "en_name": "Blueprint"
       },
       "j_bootstraps": {
         "name": "ブートストラップ",
@@ -111,14 +124,16 @@
           "自分が持っている",
           "{C:money}$#2#{}につき、倍率{C:mult}+#1#{}",
           "{C:inactive}（現在 倍率{C:mult}+#3#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Bootstraps"
       },
       "j_brainstorm": {
         "name": "ブレインストーム",
         "text": [
           "一番左の {C:attention}ジョーカー{} の",
           "能力をコピーする"
-        ]
+        ],
+        "en_name": "Brainstorm"
       },
       "j_bull": {
         "name": "ブル",
@@ -126,7 +141,8 @@
           "自分が持っている",
           "{C:money}$1{}につき、チップ {C:chips}+#1#{}",
           "{C:inactive}（現在 チップ{C:chips}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Bull"
       },
       "j_burglar": {
         "name": "強盗",
@@ -134,7 +150,8 @@
           "{C:attention}ブラインド{} が選択された時",
           "ハンドを {C:blue}+#1#{} 得て",
           "{C:attention}すべてのディスカードを失う"
-        ]
+        ],
+        "en_name": "Burglar"
       },
       "j_burnt": {
         "name": "バーントジョーカー",
@@ -142,7 +159,8 @@
           "各ラウンドで",
           "最初に{C:attention}ディスカード{} されたポーカーハンドの",
           "レベルをアップグレードする"
-        ]
+        ],
+        "en_name": "Burnt Joker"
       },
       "j_business": {
         "name": "ビジネスカード",
@@ -150,7 +168,8 @@
           "プレイされた {C:attention}フェイス{} カードがスコアされた時",
           "{C:green}#2#分の#1#{} の確率で",
           "{C:money}$2{} を与える"
-        ]
+        ],
+        "en_name": "Business Card"
       },
       "j_caino": {
         "name": "カイーノ",
@@ -159,7 +178,8 @@
           "破壊されるたびに、",
           "倍率{X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Canio"
       },
       "j_campfire": {
         "name": "キャンプファイヤー",
@@ -168,7 +188,8 @@
           "倍率 {X:mult,C:white}X#1#{} を得る",
           "{C:attention}ボスブラインド{} を倒すとリセットされる",
           "{C:inactive}（現在 倍率 {X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Campfire"
       },
       "j_card_sharp": {
         "name": "カードシャープ",
@@ -176,7 +197,8 @@
           "プレイした {C:attention}ポーカーハンド{} が",
           "すでにこのラウンドでプレイされていた場合",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Card Sharp"
       },
       "j_cartomancer": {
         "name": "カード占い",
@@ -184,7 +206,8 @@
           "{C:attention}ブラインド{} が選択された時",
           "{C:tarot}タロット{} カードを1枚作る",
           "{C:inactive}（空きが必要）"
-        ]
+        ],
+        "en_name": "Cartomancer"
       },
       "j_castle": {
         "name": "キャッスル",
@@ -193,7 +216,8 @@
           "チップ {C:chips}+#1#{} を得る",
           "スーツはラウンドごとに変わる",
           "{C:inactive}（現在 チップ {C:chips}+#3#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Castle"
       },
       "j_cavendish": {
         "name": "カベンディッシュ",
@@ -202,7 +226,8 @@
           "このカードはラウンド終了時に",
           "{C:green}#3#分の#2#{} の確率で",
           "破壊される"
-        ]
+        ],
+        "en_name": "Cavendish"
       },
       "j_ceremonial": {
         "name": "儀式の短剣",
@@ -212,7 +237,8 @@
           "永久的にそのセルバリューの2倍の値を",
           "この {C:red}倍率{} に加える",
           "{C:inactive}（現在 倍率 {C:mult}+#1#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Ceremonial Dagger"
       },
       "j_certificate": {
         "name": "証明書",
@@ -221,21 +247,24 @@
           "ランダムな {C:attention}シール{} のついた",
           "ランダムな{C:attention}トランプカード{} を",
           "1枚手札に加える"
-        ]
+        ],
+        "en_name": "Certificate"
       },
       "j_chaos": {
         "name": "カオス・ザ・クラウン",
         "text": [
           "ショップに行くたびに",
           "{C:attention}#1#{} 回無料で {C:green}リロール{} できる"
-        ]
+        ],
+        "en_name": "Chaos the Clown"
       },
       "j_chicot": {
         "name": "チコット",
         "text": [
           "すべての {C:attention}ボスブラインド{} の",
           "効果を無効にする"
-        ]
+        ],
+        "en_name": "Chicot"
       },
       "j_clever": {
         "name": "クレバージョーカー",
@@ -243,7 +272,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Clever Joker"
       },
       "j_cloud_9": {
         "name": "クラウド9",
@@ -252,7 +282,8 @@
           "{C:attention}フルデッキ{} にある{C:attention} 9{} 1枚につき",
           "{C:money}$#1#{} を得る",
           "{C:inactive}（現在{C:money}$#2#{}{C:inactive}）"
-        ]
+        ],
+        "en_name": "Cloud 9"
       },
       "j_constellation": {
         "name": "星座",
@@ -261,7 +292,8 @@
           "使用されるたびに、",
           "倍率{X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Constellation"
       },
       "j_crafty": {
         "name": "クラフティジョーカー",
@@ -269,7 +301,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Crafty Joker"
       },
       "j_crazy": {
         "name": "クレイジージョーカー",
@@ -277,14 +310,16 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Crazy Joker"
       },
       "j_credit_card": {
         "name": "クレジットカード",
         "text": [
           "負債額が",
           "{C:red}-$#1#{} まで増える"
-        ]
+        ],
+        "en_name": "Credit Card"
       },
       "j_delayed_grat": {
         "name": "遅れた満足感",
@@ -292,7 +327,8 @@
           "ラウンド終了までに",
           "ディスカードが使われなかった場合",
           "{C:attention}ディスカード{} ごとに {C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Delayed Gratification"
       },
       "j_devious": {
         "name": "ディヴィアスジョーカー",
@@ -300,7 +336,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Devious Joker"
       },
       "j_diet_cola": {
         "name": "ダイエットコーラ",
@@ -308,7 +345,8 @@
           "このカードを売ると",
           "無料の {C:attention}#1#{} を",
           "作る"
-        ]
+        ],
+        "en_name": "Diet Cola"
       },
       "j_dna": {
         "name": "DNA",
@@ -317,7 +355,8 @@
           "{C:attention}1{} 枚しかない場合",
           "永久的なコピーを1枚デッキに加えて",
           "ドローしてから {C:attention}手札{} に加える"
-        ]
+        ],
+        "en_name": "DNA"
       },
       "j_drivers_license": {
         "name": "運転免許証",
@@ -326,7 +365,8 @@
           "{C:attention}16{} 枚以上ある場合",
           "倍率 {X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 {C:attention}#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Driver"
       },
       "j_droll": {
         "name": "ドロールジョーカー",
@@ -334,14 +374,16 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Droll Joker"
       },
       "j_drunkard": {
         "name": "大酒飲み",
         "text": [
           "毎ラウンドで",
           "ディスカード {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Drunkard"
       },
       "j_duo": {
         "name": "デュオ",
@@ -349,7 +391,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "The Duo"
       },
       "j_dusk": {
         "name": "ダスク",
@@ -357,7 +400,8 @@
           "ラウンドの {C:attention}最終ハンド{} で",
           "すべてのプレイしたカードを",
           "再発動する"
-        ]
+        ],
+        "en_name": "Dusk"
       },
       "j_egg": {
         "name": "エッグ",
@@ -365,7 +409,8 @@
           "ラウンド終了時に",
           "{C:attention}セルバリュー{} を",
           "{C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Egg"
       },
       "j_erosion": {
         "name": "イロージョン",
@@ -374,7 +419,8 @@
           "カード1枚につき",
           "倍率 {C:red}+#1#{}",
           "{C:inactive}（現在 倍率 {C:red}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Erosion"
       },
       "j_even_steven": {
         "name": "イーブンスティーブン",
@@ -383,7 +429,8 @@
           "カードがスコアされた時",
           "倍率 {C:mult}+#1#{}",
           "{C:inactive}（10、8、6、4、2）"
-        ]
+        ],
+        "en_name": "Even Steven"
       },
       "j_faceless": {
         "name": "フェイスレスジョーカー",
@@ -392,7 +439,8 @@
           "{C:attention}フェイスカード{} が",
           "同時にディスカードされた場合",
           "{C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Faceless Joker"
       },
       "j_family": {
         "name": "ファミリー",
@@ -400,7 +448,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "The Family"
       },
       "j_fibonacci": {
         "name": "フィボナッチ",
@@ -408,7 +457,8 @@
           "{C:attention}エース{}、 {C:attention}2{}、 {C:attention}3{}、 {C:attention}5{}、 {C:attention}8{} の",
           "いずれかがプレイされ、スコアされると",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Fibonacci"
       },
       "j_flash": {
         "name": "フラッシュカード",
@@ -416,7 +466,8 @@
           "ショップで{C:attention}リロール{}",
           "するたびに、倍率{C:mult}+#1#{}",
           "{C:inactive}（現在 倍率{C:mult}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Flash Card"
       },
       "j_flower_pot": {
         "name": "フラワーポット",
@@ -425,7 +476,8 @@
           "{C:diamonds}ダイヤ{}、{C:clubs}クラブ{}、",
           "{C:hearts}ハート{}、{C:spades}スペード{}を",
           "含む場合、倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Flower Pot"
       },
       "j_fortune_teller": {
         "name": "占い師",
@@ -433,7 +485,8 @@
           "使用された {C:purple}タロット{} カード1枚につき",
           "倍率 {C:red}+#1#{}",
           "{C:inactive}（現在 {C:red}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Fortune Teller"
       },
       "j_four_fingers": {
         "name": "フォーフィンガー",
@@ -441,7 +494,8 @@
           "すべての {C:attention}フラッシュ{} と",
           "{C:attention}ストレート{} を",
           "{C:attention}4{} 枚のカードで作ることができる"
-        ]
+        ],
+        "en_name": "Four Fingers"
       },
       "j_gift": {
         "name": "ギフトカード",
@@ -450,7 +504,8 @@
           "すべての {C:attention}ジョーカー{} と {C:attention}消耗{} カードの",
           "{C:attention}セルバリュー{} に",
           "{C:money}$#1#{} を加える"
-        ]
+        ],
+        "en_name": "Gift Card"
       },
       "j_glass": {
         "name": "グラスジョーカー",
@@ -459,7 +514,8 @@
           "が破壊されるたびに",
           "倍率 {X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Glass Joker"
       },
       "j_gluttenous_joker": {
         "name": "グラトナスジョーカー",
@@ -467,14 +523,16 @@
           "プレイされた {C:clubs}#2#{} スーツの",
           "カードがスコアされた時",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Gluttonous Joker"
       },
       "j_golden": {
         "name": "ゴールデンジョーカー",
         "text": [
           "ラウンド終了時に",
           "{C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Golden Joker"
       },
       "j_greedy_joker": {
         "name": "グリーディージョーカー",
@@ -482,7 +540,8 @@
           "プレイされた {C:diamonds}#2#{} スーツの",
           "カードがスコアされた時",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Greedy Joker"
       },
       "j_green_joker": {
         "name": "グリーンジョーカー",
@@ -490,7 +549,8 @@
           "プレイされたハンドごとに倍率 {C:mult}+#1#{}",
           "ディスカードするごとに倍率 {C:mult}-#2#{}",
           "{C:inactive}（現在 倍率 {C:mult}+#3#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Green Joker"
       },
       "j_gros_michel": {
         "name": "グロスミッチェル",
@@ -499,7 +559,8 @@
           "このカードはラウンド終了時に",
           "{C:green}#3#分の#2#{} の確率で",
           "破壊される"
-        ]
+        ],
+        "en_name": "Gros Michel"
       },
       "j_hack": {
         "name": "詐欺師",
@@ -507,7 +568,8 @@
           "{C:attention}2{}、 {C:attention}3{}、 {C:attention}4{}、 {C:attention}5{} のカードが",
           "プレイされるごとに",
           "再発動する"
-        ]
+        ],
+        "en_name": "Hack"
       },
       "j_half": {
         "name": "ハーフジョーカー",
@@ -515,7 +577,8 @@
           "プレイしたハンドの枚数が{C:attention}#2#{} ",
           "以下なら",
           "倍率 {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Half Joker"
       },
       "j_hallucination": {
         "name": "ハルシネーション",
@@ -524,7 +587,8 @@
           "{C:green}#2# 分の #1#{} の確率で",
           "{C:tarot}タロット{} カードを作る",
           "{C:inactive}（空きが必要）"
-        ]
+        ],
+        "en_name": "Hallucination"
       },
       "j_hanging_chad": {
         "name": "ハンギングチャド",
@@ -532,7 +596,8 @@
           "プレイしたカードで、",
           "{C:attention}最初に{}スコアされたものを",
           "{C:attention}#1#{}回追加で再発動する"
-        ]
+        ],
+        "en_name": "Hanging Chad"
       },
       "j_hiker": {
         "name": "ハイカー",
@@ -540,7 +605,8 @@
           "プレイされた {C:attention}カード{} が",
           "スコアされた時、永久的に",
           "チップ {C:chips}+#1#{} を与える"
-        ]
+        ],
+        "en_name": "Hiker"
       },
       "j_hit_the_road": {
         "name": "ヒット・ザ・ロード",
@@ -549,7 +615,8 @@
           "ディスカードされるたびに",
           "倍率 {X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Hit the Road"
       },
       "j_hologram": {
         "name": "ホログラム",
@@ -558,7 +625,8 @@
           "追加されるたびに、",
           "倍率 {X:mult,C:white}X#1#{}を得る",
           "{C:inactive}（現在 倍率 {X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Hologram"
       },
       "j_ice_cream": {
         "name": "アイスクリーム",
@@ -566,7 +634,8 @@
           "チップ {C:chips}+#1#{}",
           "手札がプレイされるたびに",
           "チップ {C:chips}-#2#{}"
-        ]
+        ],
+        "en_name": "Ice Cream"
       },
       "j_idol": {
         "name": "アイドル",
@@ -575,7 +644,8 @@
           "スコアされるごとに",
           "倍率 {X:mult,C:white}X#1#{}",
           "{s:0.8}カードはラウンドごとに変わる"
-        ]
+        ],
+        "en_name": "The Idol"
       },
       "j_invisible": {
         "name": "インビジブルジョーカー",
@@ -584,13 +654,15 @@
           "このカードを売ると",
           "ランダムなジョーカーを {C:attention}複製{} する",
           "{C:inactive}（現在 {C:attention}#2#{C:inactive}/#1#）"
-        ]
+        ],
+        "en_name": "Invisible Joker"
       },
       "j_joker": {
         "name": "ジョーカー",
         "text": [
           "倍率 {C:red,s:1.1}+#1#{}"
-        ]
+        ],
+        "en_name": "Joker"
       },
       "j_jolly": {
         "name": "ジョリージョーカー",
@@ -598,13 +670,15 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Jolly Joker"
       },
       "j_juggler": {
         "name": "ジャグラー",
         "text": [
           "ハンドサイズ {C:attention}+#1#{}"
-        ]
+        ],
+        "en_name": "Juggler"
       },
       "j_loyalty_card": {
         "name": "ロイヤルティカード",
@@ -612,7 +686,8 @@
           "{C:attention}#2#{} ハンドがプレイされるたびに",
           "倍率 {X:red,C:white}X#1#{}",
           "{C:inactive}#3#"
-        ]
+        ],
+        "en_name": "Loyalty Card"
       },
       "j_luchador": {
         "name": "ルチャドール",
@@ -620,7 +695,8 @@
           "このカードを売ると",
           "現在の {C:attention}ボスブラインド{} を",
           "無効にする"
-        ]
+        ],
+        "en_name": "Luchador"
       },
       "j_lucky_cat": {
         "name": "ラッキーキャット",
@@ -629,7 +705,8 @@
           "発動に{C:green}成功{}するたびに、",
           "倍率{X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Lucky Cat"
       },
       "j_lusty_joker": {
         "name": "ラスティジョーカー",
@@ -637,7 +714,8 @@
           "プレイされた {C:hearts}#2#{} スーツの",
           "カードがスコアされた時",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Lusty Joker"
       },
       "j_mad": {
         "name": "マッドジョーカー",
@@ -645,7 +723,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Mad Joker"
       },
       "j_madness": {
         "name": "マッドネス",
@@ -654,7 +733,8 @@
           "が選択された時、倍率 {X:mult,C:white}X#1#{}を得て、",
           "ランダムなジョーカー1枚を{C:attention}破壊{}する",
           "{C:inactive}（現在 倍率 {X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Madness"
       },
       "j_mail": {
         "name": "メールによる払い戻し",
@@ -662,7 +742,8 @@
           "{C:attention}#2#{} がディスカードされるたびに",
           "{C:money}$#1#{} を得る",
           "ランクはラウンドごとに変わる"
-        ]
+        ],
+        "en_name": "Mail-In Rebate"
       },
       "j_marble": {
         "name": "マーブルジョーカー",
@@ -670,7 +751,8 @@
           "{C:attention}ブラインド{} が選択された時",
           "デッキに",
           "{C:attention}ストーン{} カードを1枚加える"
-        ]
+        ],
+        "en_name": "Marble Joker"
       },
       "j_matador": {
         "name": "マタドール",
@@ -678,7 +760,8 @@
           "プレイしたハンドが",
           "{C:attention}ボスブラインド{} の能力を発動した場合",
           "{C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Matador"
       },
       "j_merry_andy": {
         "name": "メリーアンディ",
@@ -686,7 +769,8 @@
           "毎ラウンドで",
           "ディスカード {C:red}+#1#{}",
           "ハンドサイズ{C:red}#2#{}"
-        ]
+        ],
+        "en_name": "Merry Andy"
       },
       "j_midas_mask": {
         "name": "ミダスマスク",
@@ -694,7 +778,8 @@
           "プレイした全ての{C:attention}フェイス{}カードが、",
           "スコアされた時に",
           "{C:attention}ゴールド{}カードになる"
-        ]
+        ],
+        "en_name": "Midas Mask"
       },
       "j_mime": {
         "name": "マイム",
@@ -702,13 +787,15 @@
           "{C:attention}手札にある{}",
           "すべてのカードの能力を",
           "再発動させる"
-        ]
+        ],
+        "en_name": "Mime"
       },
       "j_misprint": {
         "name": "ミスプリント",
         "text": [
           ""
-        ]
+        ],
+        "en_name": "Misprint"
       },
       "j_mr_bones": {
         "name": "ミスターボーンズ",
@@ -718,7 +805,8 @@
           "{C:attention}25%{} 以上だった場合",
           "死を防ぎ",
           "{S:1.1,C:red,E:2}自らを破壊する{}"
-        ]
+        ],
+        "en_name": "Mr. Bones"
       },
       "j_mystic_summit": {
         "name": "ミスティックサミット",
@@ -726,7 +814,8 @@
           "{C:attention}#2#{} ディスカード",
           "が残っていない時",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Mystic Summit"
       },
       "j_obelisk": {
         "name": "オベリスク",
@@ -736,7 +825,8 @@
           "プレイするたびに",
           "倍率{X:mult,C:white}X#1#",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Obelisk"
       },
       "j_odd_todd": {
         "name": "オッドトッド",
@@ -745,7 +835,8 @@
           "カードがスコアされた時",
           "チップ {C:chips}+#1#{}",
           "{C:inactive}（A、9、7、5、3）"
-        ]
+        ],
+        "en_name": "Odd Todd"
       },
       "j_onyx_agate": {
         "name": "オニキスアゲート",
@@ -753,7 +844,8 @@
           "プレイされた {C:clubs}クラブ{} スーツのカードが",
           "スコアされた時",
           "倍率 {C:mult}+#1#{} "
-        ]
+        ],
+        "en_name": "Onyx Agate"
       },
       "j_oops": {
         "name": "すべてが6！",
@@ -761,7 +853,8 @@
           "すべての {C:green,E:1,S:1.1}確率{} を",
           "2倍にする",
           "{C:inactive}（例：{C:green}3分の1{C:inactive}　→　{C:green}3分の2{C:inactive}）"
-        ]
+        ],
+        "en_name": "Oops! All 6s"
       },
       "j_order": {
         "name": "オーダー",
@@ -769,7 +862,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "The Order"
       },
       "j_pareidolia": {
         "name": "パレイドリア",
@@ -777,7 +871,8 @@
           "すべてのカードが",
           "{C:attention}フェイス{} カードと",
           "みなされる"
-        ]
+        ],
+        "en_name": "Pareidolia"
       },
       "j_perkeo": {
         "name": "ペルケオ",
@@ -786,7 +881,8 @@
           "ランダムな {C:tarot}消耗{} カード{C:attention}1{} 枚を",
           "{C:dark_edition}ネガティブ{} にした",
           "コピーを作る"
-        ]
+        ],
+        "en_name": "Perkeo"
       },
       "j_photograph": {
         "name": "フォトグラフ",
@@ -794,7 +890,8 @@
           "最初にプレイされた{C:attention}フェイス{} カードが",
           "スコアされた時",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Photograph"
       },
       "j_popcorn": {
         "name": "ポップコーン",
@@ -802,7 +899,8 @@
           "倍率 {C:mult}+#1#{}",
           "プレイされたラウンドごとに",
           "倍率 {C:mult}-#2#{}"
-        ]
+        ],
+        "en_name": "Popcorn"
       },
       "j_raised_fist": {
         "name": "レイズドフィスト",
@@ -810,7 +908,8 @@
           "手札にある{C:attention}最も低い{}",
           "ランクのカードの{C:attention}2倍{}を",
           "倍率に加算する。"
-        ]
+        ],
+        "en_name": "Raised Fist"
       },
       "j_ramen": {
         "name": "ラーメン",
@@ -818,7 +917,8 @@
           "倍率 {X:mult,C:white}X#1#{}",
           "ディスカードされた {C:attention}カード{} 1枚につき",
           "倍率 {X:mult,C:white}X#2#{} を失う"
-        ]
+        ],
+        "en_name": "Ramen"
       },
       "j_red_card": {
         "name": "レッドカード",
@@ -827,7 +927,8 @@
           "スキップされた時、",
           "倍率{C:red}+#1#{}",
           "{C:inactive}（現在 倍率{C:red}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Red Card"
       },
       "j_reserved_parking": {
         "name": "リザーブドパーキング",
@@ -836,7 +937,8 @@
           "{C:attention}フェイス{} カード1枚につき",
           "{C:green}#3#分の#2#{} の確率で",
           "{C:money}$#1#{}を与える"
-        ]
+        ],
+        "en_name": "Reserved Parking"
       },
       "j_ride_the_bus": {
         "name": "ライド・ザ・バス",
@@ -846,7 +948,8 @@
           "プレイするたびに、",
           "倍率{C:mult}+#1#{}",
           "{C:inactive}（現在 倍率{C:mult}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Ride the Bus"
       },
       "j_riff_raff": {
         "name": "リフ・ラフ",
@@ -854,7 +957,8 @@
           "{C:attention}ブラインド{} が選択された時",
           "{C:attention}#1#{} {C:blue}コモン{} {C:attention}ジョーカー{} を作る",
           "{C:inactive}（空きが必要）"
-        ]
+        ],
+        "en_name": "Riff-Raff"
       },
       "j_ring_master": {
         "name": "リングマスター",
@@ -862,7 +966,8 @@
           "{C:attention}ジョーカー{} 、{C:tarot}タロット{} 、{C:planet}惑星{} 、",
           "{C:spectral}スペクトル{} カードが",
           "複数回出現する"
-        ]
+        ],
+        "en_name": "Showman"
       },
       "j_rocket": {
         "name": "ロケット",
@@ -870,7 +975,8 @@
           "ラウンド終了時に{C:money}$#1#{}を得る",
           "{C:attention}ボスブラインド{}を倒すと、",
           "{C:money}$#2#{}増加する"
-        ]
+        ],
+        "en_name": "Rocket"
       },
       "j_rough_gem": {
         "name": "ラフジェム",
@@ -878,7 +984,8 @@
           "{C:diamonds}ダイヤ{} スーツでプレイされた",
           "カードがスコアされた時",
           "{C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Rough Gem"
       },
       "j_runner": {
         "name": "ランナー",
@@ -887,7 +994,8 @@
           "{C:attention}ストレート{} が含まれる場合",
           "チップ {C:chips}+#2#{}",
           "{C:inactive}（現在 {C:chips}+#1#{C:inactive} チップ）"
-        ]
+        ],
+        "en_name": "Runner"
       },
       "j_satellite": {
         "name": "サテライト",
@@ -896,7 +1004,8 @@
           "このランで使われた {C:planet}惑星{} カード1種類ごとに",
           "{C:money}$#1#{} を得る",
           "{C:inactive}（現在 {C:money}$#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Satellite"
       },
       "j_scary_face": {
         "name": "スケアリーフェイス",
@@ -904,7 +1013,8 @@
           "プレイされた {C:attention}フェイス{} カードが",
           "スコアされた時",
           "チップを {C:chips}+#1#{} 与える"
-        ]
+        ],
+        "en_name": "Scary Face"
       },
       "j_scholar": {
         "name": "学者",
@@ -913,7 +1023,8 @@
           "チップ {C:chips}+#2#{} と",
           "倍率 {C:mult}+#1#{} を",
           "与える"
-        ]
+        ],
+        "en_name": "Scholar"
       },
       "j_seance": {
         "name": "降霊術",
@@ -922,7 +1033,8 @@
           "ランダムな {C:spectral}スペクトル{} カードを",
           "1枚作る",
           "{C:inactive} 空きが必要）"
-        ]
+        ],
+        "en_name": "Séance"
       },
       "j_seeing_double": {
         "name": "シーイングダブル",
@@ -931,7 +1043,8 @@
           "{C:clubs}クラブ{} のスコアリングカード1枚と",
           "その他の{C:attention}スーツ{} の",
           "スコアリングカード1枚があると倍率 {X:mult,C:white} X#1#{} "
-        ]
+        ],
+        "en_name": "Seeing Double"
       },
       "j_selzer": {
         "name": "セルツァー",
@@ -939,7 +1052,8 @@
           "次の {C:attention}#1#{} ハンドに",
           "プレイされたすべてのカードを",
           "再発動する"
-        ]
+        ],
+        "en_name": "Seltzer"
       },
       "j_shoot_the_moon": {
         "name": "シュート・ザ・ムーン",
@@ -947,7 +1061,8 @@
           "手札にある {C:attention}クイーン{}",
           "1枚につき",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Shoot the Moon"
       },
       "j_shortcut": {
         "name": "ショートカット",
@@ -955,7 +1070,8 @@
           "{C:attention}1ランク{}の差があっても",
           "{C:attention}ストレート{}を作ることができる",
           "{C:inactive}（例：{C:attention}10 8 6 5 3{C:inactive}）"
-        ]
+        ],
+        "en_name": "Shortcut"
       },
       "j_sixth_sense": {
         "name": "シックスセンス",
@@ -964,7 +1080,8 @@
           "{C:attention}6{} のカード1枚を使用した時",
           "それを破壊し、{C:spectral}スペクトル{} カードを1枚作る",
           "{C:inactive}（空きが必要）"
-        ]
+        ],
+        "en_name": "Sixth Sense"
       },
       "j_sly": {
         "name": "スライジョーカー",
@@ -972,7 +1089,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Sly Joker"
       },
       "j_smeared": {
         "name": "スメアードジョーカー",
@@ -981,7 +1099,8 @@
           "同じスーツとみなされ",
           "{C:spades}スペード{} と{C:clubs}クラブ{} が",
           "同じスーツとみなさる"
-        ]
+        ],
+        "en_name": "Smeared Joker"
       },
       "j_smiley": {
         "name": "スマイリーフェイス",
@@ -989,14 +1108,16 @@
           "スコアされた時",
           "プレイされた {C:attention}フェイス{} カードが",
           "倍率 {C:mult}+#1#{} を与える"
-        ]
+        ],
+        "en_name": "Smiley Face"
       },
       "j_sock_and_buskin": {
         "name": "ソックスとバスキン",
         "text": [
           "すべてのプレイされた{C:attention}フェイス{} カードが",
           "再発動する"
-        ]
+        ],
+        "en_name": "Sock and Buskin"
       },
       "j_space": {
         "name": "スペースジョーカー",
@@ -1004,14 +1125,16 @@
           "{C:green}#2#分の#1#{} の確率で",
           "プレイした {C:attention}ポーカーハンド{} の",
           "レベルがアップグレードする"
-        ]
+        ],
+        "en_name": "Space Joker"
       },
       "j_splash": {
         "name": "スプラッシュ",
         "text": [
           "すべての {C:attention}プレイされたカード{} が",
           "スコアにカウントされる"
-        ]
+        ],
+        "en_name": "Splash"
       },
       "j_square": {
         "name": "スクエアジョーカー",
@@ -1020,7 +1143,8 @@
           "ちょうど{C:attention}4{}枚の場合、",
           "チップ {C:chips}+#2#{}を得る",
           "{C:inactive}（現在 チップ{C:chips}#1#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Square Joker"
       },
       "j_steel_joker": {
         "name": "スチールジョーカー",
@@ -1029,7 +1153,8 @@
           "{C:attention}スチールカード1枚につき、",
           "倍率 {X:mult,C:white}X#1#",
           "{C:inactive}（現在 倍率 {X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Steel Joker"
       },
       "j_stencil": {
         "name": "ジョーカーステンシル",
@@ -1038,7 +1163,8 @@
           "倍率 {X:red,C:white}X1{}",
           "{s:0.8}ジョーカーステンシルを含む",
           "{C:inactive}（現在{X:red,C:white}X#1#{C:inactive} ）"
-        ]
+        ],
+        "en_name": "Joker Stencil"
       },
       "j_stone": {
         "name": "ストーンジョーカー",
@@ -1047,14 +1173,16 @@
           "{C:attention}ストーンカード",
           "1枚につきチップ {C:chips}+#1#",
           "{C:inactive}（現在 チップ {C:chips}+#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Stone Joker"
       },
       "j_stuntman": {
         "name": "スタントマン",
         "text": [
           "チップ {C:chips}+#1#{}",
           "ハンドサイズ {C:attention}-#2#{}"
-        ]
+        ],
+        "en_name": "Stuntman"
       },
       "j_supernova": {
         "name": "超新星",
@@ -1062,7 +1190,8 @@
           "このランでプレイした",
           "{C:attention}ポーカーハンド{}の回数を",
           "倍率に加算する"
-        ]
+        ],
+        "en_name": "Supernova"
       },
       "j_superposition": {
         "name": "スーパーポジション",
@@ -1071,7 +1200,8 @@
           "{C:attention}エース{} と {C:attention}ストレート{} を含む場合",
           "{C:tarot}タロット{} カードを1枚作る",
           "{C:inactive}（空きが必要）"
-        ]
+        ],
+        "en_name": "Superposition"
       },
       "j_swashbuckler": {
         "name": "スワッシュバックラー",
@@ -1080,7 +1210,8 @@
           "ジョーカーの{C:attention}セルバリュー{}を",
           "倍率に加算する",
           "{C:inactive}（現在 倍率{C:mult}+#1#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Swashbuckler"
       },
       "j_throwback": {
         "name": "スローバック",
@@ -1088,14 +1219,16 @@
           "このランで {C:attention}ブラインド{} をスキップするごとに",
           "倍率 {X:mult,C:white}X#1#{} を得る",
           "{C:inactive}（現在 倍率 {X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Throwback"
       },
       "j_ticket": {
         "name": "ゴールデンチケット",
         "text": [
           "プレイされた {C:attention}ゴールドカード{} がスコアされた時",
           "{C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Golden Ticket"
       },
       "j_to_the_moon": {
         "name": "トゥ・ザ・ムーン",
@@ -1103,7 +1236,8 @@
           "ラウンド終了時の",
           "所持金 {C:money}$5{} ごとに",
           "追加の {C:attention}利息{} を{C:money}$#1#{} 得る"
-        ]
+        ],
+        "en_name": "To the Moon"
       },
       "j_todo_list": {
         "name": "ToDoリスト",
@@ -1112,7 +1246,8 @@
           "{C:money}$#1#{}を得る。",
           "ポーカーハンドはラウンド",
           "終了時に変化する"
-        ]
+        ],
+        "en_name": "To Do List"
       },
       "j_trading": {
         "name": "トレーディングカード",
@@ -1120,7 +1255,8 @@
           "ラウンドの {C:attention}最初のディスカード{} が",
           "{C:attention}1{} 枚だった場合",
           "それを破壊して {C:money}$#1#{} を得る"
-        ]
+        ],
+        "en_name": "Trading Card"
       },
       "j_tribe": {
         "name": "トライブ",
@@ -1128,7 +1264,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "The Tribe"
       },
       "j_triboulet": {
         "name": "トリブレ",
@@ -1136,7 +1273,8 @@
           "プレイされた {C:attention}キング{} と {C:attention}クイーン{} が",
           "それぞれスコアされた時",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "Triboulet"
       },
       "j_trio": {
         "name": "トリオ",
@@ -1144,14 +1282,16 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {X:mult,C:white}X#1#{}"
-        ]
+        ],
+        "en_name": "The Trio"
       },
       "j_troubadour": {
         "name": "トルバドゥール",
         "text": [
           "ハンドサイズ {C:attention}+#1#{}、",
           "毎ラウンドのハンド{C:blue}-#2#{}"
-        ]
+        ],
+        "en_name": "Troubadour"
       },
       "j_trousers": {
         "name": "スペアトラウザー",
@@ -1160,7 +1300,8 @@
           "{C:attention}#2#{}を含む場合",
           "倍率 {C:mult}+#1#",
           "{C:inactive}（現在 倍率{C:red}+#3#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Spare Trousers"
       },
       "j_turtle_bean": {
         "name": "タートルビーン",
@@ -1168,7 +1309,8 @@
           "ハンドサイズ {C:attention}+#1#{}",
           "ラウンドごとに",
           "{C:red}#2#{} 枚ずつ減らす"
-        ]
+        ],
+        "en_name": "Turtle Bean"
       },
       "j_vagabond": {
         "name": "バガボンド",
@@ -1176,7 +1318,8 @@
           "{C:money}$#1#{} 以下の",
           "ハンドがプレイされた場合",
           "{C:purple}タロット{} カードを作る"
-        ]
+        ],
+        "en_name": "Vagabond"
       },
       "j_vampire": {
         "name": "ヴァンパイア",
@@ -1185,7 +1328,8 @@
           "プレイされるたびに倍率 {X:mult,C:white}X#1#{}を得るが、",
           "カードの{C:attention}強化{}を解除する",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#2#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Vampire"
       },
       "j_walkie_talkie": {
         "name": "ウォーキートーキー",
@@ -1193,7 +1337,8 @@
           "スコアされた時",
           "プレイされた {C:attention}10{} または {C:attention}4{} ごとに",
           "チップ {C:chips}+#1#{} を与え、倍率 {C:mult}+#2#{}"
-        ]
+        ],
+        "en_name": "Walkie Talkie"
       },
       "j_wee": {
         "name": "ウィージョーカー",
@@ -1202,7 +1347,8 @@
           "プレイした {C:attention}2{} のカードがスコアされるごとに",
           "チップを{C:chips}+#2#{} 得る",
           "{C:inactive}（現在{C:chips}+#1#{C:inactive} チップ）"
-        ]
+        ],
+        "en_name": "Wee Joker"
       },
       "j_wily": {
         "name": "ウィリージョーカー",
@@ -1210,7 +1356,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "チップ {C:chips}+#1#{}"
-        ]
+        ],
+        "en_name": "Wily Joker"
       },
       "j_wrathful_joker": {
         "name": "ラスフルジョーカー",
@@ -1218,7 +1365,8 @@
           "プレイされた {C:spades}#2#{} スーツの",
           "カードがスコアされた時",
           "倍率 {C:mult}+#1#{}"
-        ]
+        ],
+        "en_name": "Wrathful Joker"
       },
       "j_yorick": {
         "name": "ヨリック",
@@ -1227,7 +1375,8 @@
           "ディスカードされるたびに、",
           "倍率{X:mult,C:white}X#1#{}",
           "{C:inactive}（現在 倍率{X:mult,C:white}X#4#{C:inactive}）"
-        ]
+        ],
+        "en_name": "Yorick"
       },
       "j_zany": {
         "name": "ザニージョーカー",
@@ -1235,7 +1384,8 @@
           "プレイしたハンドが",
           "{C:attention}#2#{} を含む場合",
           "倍率 {C:red}+#1#{}"
-        ]
+        ],
+        "en_name": "Zany Joker"
       }
     },
     "Blind": {

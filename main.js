@@ -635,7 +635,7 @@ function jredrawCards() {
     if (i === 9) { i++; }
     for (let j = 0; j < 10; j++) {
       const title = (jokerTexts.length > i && jokerTexts[i].length > j) ? jokerTexts[i][j][0] : 'WIP';
-      const description = (jokerTexts.length > i && jokerTexts[i].length > j) ? eval('`' + jokerTexts[i][j][1] + '`') : 'WIP';
+      const description = (jokerTexts.length > i && jokerTexts[i].length > j) ? renderJokerDescription(i, j, { jokerValue }) : 'WIP';
       if (title.toLowerCase().indexOf(searchVal.toLowerCase()) >= 0 || description.replace(/\<[^\>]+\>/g, '').toLowerCase().indexOf(searchVal.toLowerCase()) >= 0) {
         txt += `<div class='tooltip'><div class="jokerCard${jokerString(i, j, jmodifiers)} onclick="addJoker(${i}, ${j})" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div><span class='tooltiptext'>` +
           `<div class='title'>${title}</div><br style="display: none">` +
@@ -679,7 +679,7 @@ function updateTooltips() {
     let i = playfieldJokers[joker].type[0];
     let j = playfieldJokers[joker].type[1];
     let jokerValue = playfieldJokers[joker].value;
-    playfieldJokers[joker].tooltip = (jokerTexts.length > i && jokerTexts[i].length > j) ? [jokerTexts[i][j][0], eval('`' + jokerTexts[i][j][1] + '`')] : ['WIP', 'WIP'];
+    playfieldJokers[joker].tooltip = (jokerTexts.length > i && jokerTexts[i].length > j) ? [jokerTexts[i][j][0], renderJokerDescription(i, j, { jokerValue })] : ['WIP', 'WIP'];
   }
 }
 
@@ -697,7 +697,7 @@ function addJoker(i, j, sell = false) {
       value: jokerValue,
       sell: sell !== false ? sell : Math.floor((jokerPrice[i][j] + ((jmodifiers.foil || jmodifiers.holographic || jmodifiers.polychrome) ? 1 : 0)) / 2),
       string: jokerString(i, j, jmodifiers),
-      tooltip: (jokerTexts.length > i && jokerTexts[i].length > j) ? [jokerTexts[i][j][0], eval('`' + jokerTexts[i][j][1] + '`')] : ['WIP', 'WIP']
+      tooltip: (jokerTexts.length > i && jokerTexts[i].length > j) ? [jokerTexts[i][j][0], renderJokerDescription(i, j, { jokerValue })] : ['WIP', 'WIP']
     };
   }
 
@@ -1041,10 +1041,7 @@ function incrementModifyJokerValue(inc) {
   }
   modifyingJokerValDiv.innerText = joker.value;
 
-  let tmp = jokerValue;
-  jokerValue = joker.value;
-  joker.tooltip[1] = (jokerTexts.length > joker.type[0] && jokerTexts[joker.type[0]].length > joker.type[1]) ? eval('`' + jokerTexts[joker.type[0]][joker.type[1]][1] + '`') : 'WIP'
-  jokerValue = tmp;
+  joker.tooltip[1] = (jokerTexts.length > joker.type[0] && jokerTexts[joker.type[0]].length > joker.type[1]) ? renderJokerDescription(joker.type[0], joker.type[1], { jokerValue: joker.value }) : 'WIP'
 
   redrawPlayfield();
   updateModifyingJoker();
@@ -1066,10 +1063,7 @@ function setModifyJokerValue() {
     joker.value = 0;
   }
 
-  let tmp = jokerValue;
-  jokerValue = joker.value;
-  joker.tooltip[1] = (jokerTexts.length > joker.type[0] && jokerTexts[joker.type[0]].length > joker.type[1]) ? eval('`' + jokerTexts[joker.type[0]][joker.type[1]][1] + '`') : 'WIP'
-  jokerValue = tmp;
+  joker.tooltip[1] = (jokerTexts.length > joker.type[0] && jokerTexts[joker.type[0]].length > joker.type[1]) ? renderJokerDescription(joker.type[0], joker.type[1], { jokerValue: joker.value }) : 'WIP'
 
   if (willBlur) modifyingJokerValDiv.blur();
 
@@ -1114,11 +1108,8 @@ function setModifyJokerSellValue() {
 
 
 function updateJokerValue(joker) {
-  let tmp = jokerValue;
-  jokerValue = joker.value;
   joker.string = jokerString(joker.type[0], joker.type[1], joker.modifiers);
-  joker.tooltip[1] = (jokerTexts.length > joker.type[0] && jokerTexts[joker.type[0]].length > joker.type[1]) ? eval('`' + jokerTexts[joker.type[0]][joker.type[1]][1] + '`') : 'WIP';
-  jokerValue = tmp;
+  joker.tooltip[1] = (jokerTexts.length > joker.type[0] && jokerTexts[joker.type[0]].length > joker.type[1]) ? renderJokerDescription(joker.type[0], joker.type[1], { jokerValue: joker.value }) : 'WIP';
 }
 
 function playHand() {

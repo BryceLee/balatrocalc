@@ -123,6 +123,21 @@ const UI_TRANSLATIONS = {
     }
 };
 
+// Cache English names first
+let englishNames = {};
+
+// We need to process en-us first or read it specifically
+try {
+    const enContent = fs.readFileSync(path.join(LOCALIZATION_DIR, 'en-us.lua'), 'utf-8');
+    const enData = parseLuaLocalizationIndent(enContent);
+    for (const [key, val] of Object.entries(enData.descriptions.Joker)) {
+        if (val.name) englishNames[key] = val.name;
+    }
+    console.log(`Loaded ${Object.keys(englishNames).length} English Joker names.`);
+} catch (e) {
+    console.error("Could not load en-us.lua for name mapping:", e);
+}
+
 async function processFile(filename) {
     if (!filename.endsWith('.lua')) return;
     const langCode = path.basename(filename, '.lua');
@@ -130,6 +145,15 @@ async function processFile(filename) {
     const content = fs.readFileSync(path.join(LOCALIZATION_DIR, filename), 'utf-8');
 
     const data = parseLuaLocalizationIndent(content);
+
+    // Inject English Names into Joker entries for easier lookup
+    if (data.descriptions && data.descriptions.Joker) {
+        for (const [key, val] of Object.entries(data.descriptions.Joker)) {
+            if (englishNames[key]) {
+                val.en_name = englishNames[key];
+            }
+        }
+    }
 
     if (UI_TRANSLATIONS[langCode]) data.ui = UI_TRANSLATIONS[langCode];
     else data.ui = {};

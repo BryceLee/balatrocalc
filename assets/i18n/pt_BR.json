@@ -8,7 +8,8 @@
           "{C:attention}8{} jogado para criar",
           "uma carta de {C:tarot}Tarô{} quando pontuada",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "8 Ball"
       },
       "j_abstract": {
         "name": "Curinga Abstrato",
@@ -16,14 +17,16 @@
           "{C:mult}+#1#{} Multi por",
           "cada carta {C:attention}Curinga{}",
           "{C:inactive}(No momento {C:red}+#2#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Abstract Joker"
       },
       "j_acrobat": {
         "name": "Acrobata",
         "text": [
           "{X:red,C:white} X#1# {} Multi na {C:attention}mão",
           "{C:attention}final{} da rodada"
-        ]
+        ],
+        "en_name": "Acrobat"
       },
       "j_ancient": {
         "name": "Curinga Antigo",
@@ -32,7 +35,8 @@
           "naipe {V:1}#2#{} dá",
           "{X:mult,C:white} X#1# {} Multi ao pontuar,",
           "{s:0.8}naipe muda no fim da rodada"
-        ]
+        ],
+        "en_name": "Ancient Joker"
       },
       "j_arrowhead": {
         "name": "Ponta de Flecha",
@@ -40,7 +44,8 @@
           "Cartas jogadas com",
           "naipe de {C:spades}Espadas{} dão",
           "{C:chips}+#1#{} Fichas quando pontuadas"
-        ]
+        ],
+        "en_name": "Arrowhead"
       },
       "j_astronomer": {
         "name": "Astrônomo",
@@ -48,7 +53,8 @@
           "Todas as cartas de {C:planet}Planeta{} e",
           "{C:planet}Pacotes Celestiais{} em",
           "na loja ficam {C:attention}grátis"
-        ]
+        ],
+        "en_name": "Astronomer"
       },
       "j_banner": {
         "name": "Estandarte",
@@ -56,7 +62,8 @@
           "{C:chips}+#1#{} Fichas",
           "por cada",
           "{C:attention}descarte restante"
-        ]
+        ],
+        "en_name": "Banner"
       },
       "j_baron": {
         "name": "Barão",
@@ -64,14 +71,16 @@
           "Cada {C:attention}Rei{}",
           "na mão",
           "dá {X:mult,C:white} X#1# {} Multi"
-        ]
+        ],
+        "en_name": "Baron"
       },
       "j_baseball": {
         "name": "Carta de Beisebol",
         "text": [
           "Curingas {C:green}Incomuns{}",
           "cada um dá {X:mult,C:white} X#1# {} Multi"
-        ]
+        ],
+        "en_name": "Baseball Card"
       },
       "j_blackboard": {
         "name": "Quadro Negro",
@@ -79,7 +88,8 @@
           "{X:red,C:white} X#1# {} Multi se todas as",
           "cartas mantidas na mão",
           "forem {C:spades}#2#{} ou {C:clubs}#3#{}"
-        ]
+        ],
+        "en_name": "Blackboard"
       },
       "j_bloodstone": {
         "name": "Pedra de Sangue",
@@ -88,7 +98,8 @@
           "cartas jogadas com",
           "naipe de {C:hearts}Copas{} darem",
           "{X:mult,C:white} X#3# {} Multi ao pontuar,"
-        ]
+        ],
+        "en_name": "Bloodstone"
       },
       "j_blue_joker": {
         "name": "Curinga Azul",
@@ -96,14 +107,16 @@
           "{C:chips}+#1#{} Fichas por cada",
           "carta restante no {C:attention}baralho",
           "{C:inactive}(No momento {C:chips}+#2#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Blue Joker"
       },
       "j_blueprint": {
         "name": "Projeto",
         "text": [
           "Copia a habilidade do",
           "{C:attention}Curinga{} da direita"
-        ]
+        ],
+        "en_name": "Blueprint"
       },
       "j_bootstraps": {
         "name": "Bonificação",
@@ -111,14 +124,16 @@
           "{C:mult}+#1#{} Multi para cada",
           "{C:money}$#2#{} que você tem",
           "{C:inactive}(No momento, {C:mult}+#3#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Bootstraps"
       },
       "j_brainstorm": {
         "name": "Boa Ideia",
         "text": [
           "Copia a habilidade",
           "do {C:attention}Curinga que está mais à esquerda"
-        ]
+        ],
+        "en_name": "Brainstorm"
       },
       "j_bull": {
         "name": "Touro",
@@ -126,7 +141,8 @@
           "{C:chips}+#1#{} Fichas para",
           "cada {C:money}$1{} que você tem",
           "{C:inactive}(No momento, {C:chips}+#2#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Bull"
       },
       "j_burglar": {
         "name": "Ladrão",
@@ -134,7 +150,8 @@
           "Quando o {C:attention}Blind{} é selecionado,",
           "ganha {C:blue}+#1#{} Mãos e",
           "{C:attention}perde todos os descartes"
-        ]
+        ],
+        "en_name": "Burglar"
       },
       "j_burnt": {
         "name": "Curinga Queimado",
@@ -142,7 +159,8 @@
           "Aprimore o nível da",
           "primeira mão {C:attention}descartada",
           "em cada rodada"
-        ]
+        ],
+        "en_name": "Burnt Joker"
       },
       "j_business": {
         "name": "Cartão de Visita",
@@ -150,7 +168,8 @@
           "Cartas de {C:attention}realeza{} jogadas têm",
           "a chance de {C:green}#1# em #2#{} de",
           "dar {C:money}$2{} quando pontuadas"
-        ]
+        ],
+        "en_name": "Business Card"
       },
       "j_caino": {
         "name": "Caino",
@@ -159,7 +178,8 @@
           "quando uma carta de {C:attention}realeza{}",
           "é destruída",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Canio"
       },
       "j_campfire": {
         "name": "Fogueira",
@@ -168,7 +188,8 @@
           "por cada carta {C:attention}vendida{}, redefine",
           "quando o {C:attention}Blind de Chefe{} é derrotado",
           "{C:inactive}(No momento {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Campfire"
       },
       "j_card_sharp": {
         "name": "Carta Afiada",
@@ -176,7 +197,8 @@
           "{X:mult,C:white} X#1# {} Multi se a",
           "{C:attention}mão de pôquer{} já tiver sido",
           "jogada nesta rodada"
-        ]
+        ],
+        "en_name": "Card Sharp"
       },
       "j_cartomancer": {
         "name": "Cartomante",
@@ -184,7 +206,8 @@
           "Cria uma carta de {C:tarot}Tarô{}",
           "quando o {C:attention}Blind{} é selecionado",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "Cartomancer"
       },
       "j_castle": {
         "name": "Castelo",
@@ -193,7 +216,8 @@
           "por cada carta {V:1}#2#{} descartada,",
           "naipe muda em cada rodada",
           "{C:inactive}(No momento {C:chips}+#3#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Castle"
       },
       "j_cavendish": {
         "name": "Cavendish",
@@ -202,7 +226,8 @@
           "{C:green}#2# de #3#{} chance desta",
           "carta ser destruída",
           "no fim da rodada"
-        ]
+        ],
+        "en_name": "Cavendish"
       },
       "j_ceremonial": {
         "name": "Adaga Cerimonial",
@@ -212,7 +237,8 @@
           "e adiciona, permanentemente, o {C:attention}dobro",
           "do valor de venda a esta {C:red}Multi",
           "{C:inactive}(No momento {C:mult}+#1#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Ceremonial Dagger"
       },
       "j_certificate": {
         "name": "Certificado",
@@ -221,21 +247,24 @@
           "adiciona uma {C:attention}carta de jogo",
           "{C:attention}aleatória{} com um",
           "{C:attention}selo{} para a sua mão"
-        ]
+        ],
+        "en_name": "Certificate"
       },
       "j_chaos": {
         "name": "Caos, o Palhaço",
         "text": [
           "{C:attention}#1#{} {C:green}atualização(ões) grátis",
           "na loja"
-        ]
+        ],
+        "en_name": "Chaos the Clown"
       },
       "j_chicot": {
         "name": "Chicot",
         "text": [
           "Desativa o efeito de",
           "cada {C:attention}Blind de Chefe"
-        ]
+        ],
+        "en_name": "Chicot"
       },
       "j_clever": {
         "name": "Curinga Astuto",
@@ -243,7 +272,8 @@
           "{C:chips}+#1#{} Fichas se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Clever Joker"
       },
       "j_cloud_9": {
         "name": "9dades",
@@ -252,7 +282,8 @@
           "{C:attention}9{} no seu {C:attention}baralho completo",
           "no fim da rodada",
           "{C:inactive}(No momento {C:money}$#2#{}{C:inactive})"
-        ]
+        ],
+        "en_name": "Cloud 9"
       },
       "j_constellation": {
         "name": "Constelação",
@@ -261,7 +292,8 @@
           "{X:mult,C:white} X#1# {} Multi sempre",
           "que uma carta de {C:planet}Planeta{} é usada",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Constellation"
       },
       "j_crafty": {
         "name": "Curinga Engenhoso",
@@ -269,7 +301,8 @@
           "{C:chips}+#1#{} Fichas se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Crafty Joker"
       },
       "j_crazy": {
         "name": "Curinga Maluco",
@@ -277,14 +310,16 @@
           "{C:red}+#1#{} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Crazy Joker"
       },
       "j_credit_card": {
         "name": "Cartão de Crédito",
         "text": [
           "Tenha até",
           "{C:red}-$#1#{} em dívida"
-        ]
+        ],
+        "en_name": "Credit Card"
       },
       "j_delayed_grat": {
         "name": "Gratificação Atrasada",
@@ -292,7 +327,8 @@
           "Ganhe {C:money}$#1#{} por {C:attention}descarte{} se",
           "nenhum descarte for usado",
           "até o fim da rodada"
-        ]
+        ],
+        "en_name": "Delayed Gratification"
       },
       "j_devious": {
         "name": "Curinga Desonesto",
@@ -300,7 +336,8 @@
           "{C:chips}+#1#{} Fichas se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Devious Joker"
       },
       "j_diet_cola": {
         "name": "Cola Diet",
@@ -308,7 +345,8 @@
           "Venda esta carta para",
           "criar um(a)",
           "{C:attention}#1# grátis"
-        ]
+        ],
+        "en_name": "Diet Cola"
       },
       "j_dna": {
         "name": "DNA",
@@ -317,7 +355,8 @@
           "tiver somente {C:attention}1{} carta, adiciona uma",
           "cópia permanente ao baralho",
           "e a coloca na {C:attention}mão"
-        ]
+        ],
+        "en_name": "DNA"
       },
       "j_drivers_license": {
         "name": "Carteira de Habilitação",
@@ -326,7 +365,8 @@
           "tiver pelo menos {C:attention}16",
           "cartas aprimoradas",
           "{C:inactive}(No momento {C:attention}#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Driver"
       },
       "j_droll": {
         "name": "Curinga Engraçado",
@@ -334,14 +374,16 @@
           "{C:red}+#1#{} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Droll Joker"
       },
       "j_drunkard": {
         "name": "Bêbado",
         "text": [
           "{C:red}+#1#{} descarte",
           "a cada rodada"
-        ]
+        ],
+        "en_name": "Drunkard"
       },
       "j_duo": {
         "name": "A Dupla",
@@ -349,7 +391,8 @@
           "{X:mult,C:white} X#1# {} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Duo"
       },
       "j_dusk": {
         "name": "Anoitecer",
@@ -357,7 +400,8 @@
           "Reativa as cartas",
           "pontuadoras na {C:attention}mão",
           "{C:attention}final{} da rodada"
-        ]
+        ],
+        "en_name": "Dusk"
       },
       "j_egg": {
         "name": "Ovo",
@@ -365,7 +409,8 @@
           "Ganha {C:money}$#1#{} do",
           "{C:attention}valor de venda{} ao",
           "fim da rodada"
-        ]
+        ],
+        "en_name": "Egg"
       },
       "j_erosion": {
         "name": "Erosão",
@@ -374,7 +419,8 @@
           "carta abaixo de {C:attention}#3#{}",
           "no seu baralho completo",
           "{C:inactive}(No momento {C:red}+#2#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Erosion"
       },
       "j_even_steven": {
         "name": "Osmar Vados",
@@ -383,7 +429,8 @@
           "classe {C:attention}par{} dão",
           "{C:mult}+#1#{} Multi quando pontuadas",
           "{C:inactive}(10, 8, 6, 4, 2)"
-        ]
+        ],
+        "en_name": "Even Steven"
       },
       "j_faceless": {
         "name": "Curinga Plebeu",
@@ -392,7 +439,8 @@
           "mais {C:attention}cartas de Realeza{}",
           "são descartadas",
           "ao mesmo tempo"
-        ]
+        ],
+        "en_name": "Faceless Joker"
       },
       "j_family": {
         "name": "A Família",
@@ -400,7 +448,8 @@
           "{X:mult,C:white} X#1# {} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Family"
       },
       "j_fibonacci": {
         "name": "Fibonacci",
@@ -408,7 +457,8 @@
           "Cada {C:attention}Ás{},",
           "{C:attention}2{}, {C:attention}3{}, {C:attention}5{} ou {C:attention}8{} jogados dão",
           "{C:mult}+#1#{} Multi quando pontuados"
-        ]
+        ],
+        "en_name": "Fibonacci"
       },
       "j_flash": {
         "name": "Carta Relâmpago",
@@ -416,7 +466,8 @@
           "Este Curinga ganha {C:mult}+#1#{} Multi",
           "por {C:attention}atualização{} na loja",
           "{C:inactive}(No momento, {C:mult}+#2#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Flash Card"
       },
       "j_flower_pot": {
         "name": "Vaso de Flores",
@@ -425,7 +476,8 @@
           "de pôquer contém",
           "uma carta de {C:diamonds}Ouros{}, uma carta de {C:clubs}Paus{},",
           "uma carta de {C:hearts}Copas{} e uma carta de {C:spades}Espadas{}"
-        ]
+        ],
+        "en_name": "Flower Pot"
       },
       "j_fortune_teller": {
         "name": "Vidente",
@@ -433,7 +485,8 @@
           "{C:red}+#1#{} Multi por",
           "carta de {C:purple}Tarô{} usada",
           "{C:inactive}(No momento {C:red}+#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Fortune Teller"
       },
       "j_four_fingers": {
         "name": "Quatro Dedos",
@@ -441,7 +494,8 @@
           "Todos os {C:attention}Flushes{} e",
           "{C:attention}Sequências{} podem",
           "ser efetuados com {C:attention}4{} cartas"
-        ]
+        ],
+        "en_name": "Four Fingers"
       },
       "j_gift": {
         "name": "Cartão Presente",
@@ -450,7 +504,8 @@
           "a cada {C:attention}Curinga{} e",
           "a cada carta {C:attention}Consumível{} em",
           "fim da rodada"
-        ]
+        ],
+        "en_name": "Gift Card"
       },
       "j_glass": {
         "name": "Curinga de Vidro",
@@ -459,7 +514,8 @@
           "para cada {C:attention}Carta de Vidro",
           "destruída",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Glass Joker"
       },
       "j_gluttenous_joker": {
         "name": "Curinga Guloso",
@@ -467,14 +523,16 @@
           "Cartas jogadas com",
           "naipe de {C:clubs}#2#{} dão",
           "{C:mult}+#1#{} Multi quando pontuadas"
-        ]
+        ],
+        "en_name": "Gluttonous Joker"
       },
       "j_golden": {
         "name": "Curinga Dourado",
         "text": [
           "Ganhe {C:money}$#1#{} no",
           "fim da rodada"
-        ]
+        ],
+        "en_name": "Golden Joker"
       },
       "j_greedy_joker": {
         "name": "Curinga Ganancioso",
@@ -482,7 +540,8 @@
           "Cartas jogadas com",
           "naipe de {C:diamonds}#2#{} dão",
           "{C:mult}+#1#{} Multi quando pontuadas"
-        ]
+        ],
+        "en_name": "Greedy Joker"
       },
       "j_green_joker": {
         "name": "Curinga Verde",
@@ -490,7 +549,8 @@
           "{C:mult}+#1#{} Multi por mão jogada",
           "{C:mult}-#2#{} Multi por descarte",
           "{C:inactive}(No momento {C:mult}+#3#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Green Joker"
       },
       "j_gros_michel": {
         "name": "Banana-prata",
@@ -499,7 +559,8 @@
           "{C:green}#2# de #3#{} chance desta",
           "carta ser destruída",
           "no fim da rodada"
-        ]
+        ],
+        "en_name": "Gros Michel"
       },
       "j_hack": {
         "name": "Impostor",
@@ -507,7 +568,8 @@
           "Reativa",
           "cada",
           "{C:attention}2{}, {C:attention}3{}, {C:attention}4{} ou {C:attention}5{}"
-        ]
+        ],
+        "en_name": "Hack"
       },
       "j_half": {
         "name": "Meio Curinga",
@@ -515,7 +577,8 @@
           "{C:red}+#1#{} Multi se a mão",
           "jogada contém",
           "{C:attention}#2#{} ou menos cartas"
-        ]
+        ],
+        "en_name": "Half Joker"
       },
       "j_hallucination": {
         "name": "Alucinação",
@@ -524,7 +587,8 @@
           "uma carta de {C:tarot}Tarô{} quando qualquer",
           "{C:attention}Pacote de Reforço{} for aberto",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "Hallucination"
       },
       "j_hanging_chad": {
         "name": "Comprovante",
@@ -532,7 +596,8 @@
           "Reativa a {C:attention}primeira{} carta",
           "jogada usada em pontuação",
           "{C:attention}#1#{} vezes adicionais"
-        ]
+        ],
+        "en_name": "Hanging Chad"
       },
       "j_hiker": {
         "name": "Caminhante",
@@ -540,7 +605,8 @@
           "Todas as {C:attention}cartas{} jogadas",
           "ganham, permanentemente,",
           "{C:chips}+#1#{} Fichas quando pontuadas"
-        ]
+        ],
+        "en_name": "Hiker"
       },
       "j_hit_the_road": {
         "name": "Cai Fora",
@@ -549,7 +615,8 @@
           "para cada {C:attention}Valete{}",
           "descartado nesta rodada",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Hit the Road"
       },
       "j_hologram": {
         "name": "Holograma",
@@ -558,7 +625,8 @@
           "sempre que uma {C:attention}carta de jogo{}",
           "é adicionada ao seu baralho",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Hologram"
       },
       "j_ice_cream": {
         "name": "Sorvete",
@@ -566,7 +634,8 @@
           "{C:chips}+#1#{} Fichas",
           "{C:chips}-#2#{} Fichas por",
           "cada mão jogada"
-        ]
+        ],
+        "en_name": "Ice Cream"
       },
       "j_idol": {
         "name": "O Ídolo",
@@ -575,7 +644,8 @@
           "de {V:1}#3#{} jogado dá",
           "{X:mult,C:white} X#1# {} Multi ao pontuar",
           "{s:0.8}Carta muda em cada rodada"
-        ]
+        ],
+        "en_name": "The Idol"
       },
       "j_invisible": {
         "name": "Curinga Invisível",
@@ -584,13 +654,15 @@
           "venda esta carta para",
           "{C:attention}Duplicar{} um Curinga aleatório",
           "{C:inactive}(No momento {C:attention}#2#{C:inactive}/#1#)"
-        ]
+        ],
+        "en_name": "Invisible Joker"
       },
       "j_joker": {
         "name": "Curinga",
         "text": [
           "{C:red,s:1.1}+#1#{} Multi"
-        ]
+        ],
+        "en_name": "Joker"
       },
       "j_jolly": {
         "name": "Curinga Alegre",
@@ -598,13 +670,15 @@
           "{C:red}+#1#{} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Jolly Joker"
       },
       "j_juggler": {
         "name": "Malabarista",
         "text": [
           "{C:attention}+#1#{} tamanho de mão"
-        ]
+        ],
+        "en_name": "Juggler"
       },
       "j_loyalty_card": {
         "name": "Carta de Lealdade",
@@ -612,7 +686,8 @@
           "{X:red,C:white} X#1# {} Multi a cada",
           "{C:attention}#2#{} mãos jogadas",
           "{C:inactive}#3#"
-        ]
+        ],
+        "en_name": "Loyalty Card"
       },
       "j_luchador": {
         "name": "Luchador",
@@ -620,7 +695,8 @@
           "Venda esta carta para",
           "desativar o",
           "{C:attention}Blind de Chefe{} atual"
-        ]
+        ],
+        "en_name": "Luchador"
       },
       "j_lucky_cat": {
         "name": "Gato Sortudo",
@@ -629,7 +705,8 @@
           "sempre que uma carta da {C:attention}Sorte{}",
           "ativa {C:green}com êxito{}",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Lucky Cat"
       },
       "j_lusty_joker": {
         "name": "Curinga Vigoroso",
@@ -637,7 +714,8 @@
           "Cartas jogadas com",
           "naipe de {C:hearts}#2#{} dão",
           "{C:mult}+#1#{} Multi quando pontuadas"
-        ]
+        ],
+        "en_name": "Lusty Joker"
       },
       "j_mad": {
         "name": "Curinga Irritado",
@@ -645,7 +723,8 @@
           "{C:red}+#1#{} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Mad Joker"
       },
       "j_madness": {
         "name": "Insanidade",
@@ -654,7 +733,8 @@
           "é selecionado, ganhe {X:mult,C:white} X#1# {} Multi",
           "e {C:attention}destrua{} um Curinga aleatório",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Madness"
       },
       "j_mail": {
         "name": "Desconto de Correio",
@@ -662,7 +742,8 @@
           "Ganhe {C:money}$#1#{} por cada",
           "{C:attention}#2#{} descartado, a classe",
           "muda em cada rodada"
-        ]
+        ],
+        "en_name": "Mail-In Rebate"
       },
       "j_marble": {
         "name": "Curinga de Mármore",
@@ -670,7 +751,8 @@
           "Adiciona uma carta de {C:attention}Pedra{}",
           "ao seu baralho quando",
           "o {C:attention}Blind{} é selecionado"
-        ]
+        ],
+        "en_name": "Marble Joker"
       },
       "j_matador": {
         "name": "Matador",
@@ -678,7 +760,8 @@
           "Ganhe {C:money}$#1#{} se a",
           "mão jogada ativa a",
           "habilidade {C:attention}Blind de Chefe{}"
-        ]
+        ],
+        "en_name": "Matador"
       },
       "j_merry_andy": {
         "name": "Jogada de Descartes",
@@ -686,7 +769,8 @@
           "{C:red}+#1#{} descartes",
           "a cada rodada,",
           "{C:red}#2#{} de tamanho de mão"
-        ]
+        ],
+        "en_name": "Merry Andy"
       },
       "j_midas_mask": {
         "name": "Máscara de Midas",
@@ -694,7 +778,8 @@
           "Todas as cartas de {C:attention}realeza{}",
           "se tornam cartas de {C:attention}Ouro{}",
           "quando pontuadas"
-        ]
+        ],
+        "en_name": "Midas Mask"
       },
       "j_mime": {
         "name": "Mímico",
@@ -702,13 +787,15 @@
           "Reativa todas as",
           "habilidades das cartas {C:attention}na sua",
           "{C:attention}mão{}"
-        ]
+        ],
+        "en_name": "Mime"
       },
       "j_misprint": {
         "name": "Erro de Impressão",
         "text": [
           ""
-        ]
+        ],
+        "en_name": "Misprint"
       },
       "j_mr_bones": {
         "name": "Sr. Osso",
@@ -718,7 +805,8 @@
           "forem, pelo menos, {C:attention}25%",
           "das fichas necessárias",
           "{S:1.1,C:red,E:2}se autodestrói{}"
-        ]
+        ],
+        "en_name": "Mr. Bones"
       },
       "j_mystic_summit": {
         "name": "Pico Místico",
@@ -726,7 +814,8 @@
           "{C:mult}+#1#{} Multi quando",
           "{C:attention}#2#{} descartes",
           "restantes"
-        ]
+        ],
+        "en_name": "Mystic Summit"
       },
       "j_obelisk": {
         "name": "Obelisco",
@@ -736,7 +825,8 @@
           "sem jogar a sua",
           "{C:attention}mão de pôquer mais jogada",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Obelisk"
       },
       "j_odd_todd": {
         "name": "Ímpar Imperfeito",
@@ -745,7 +835,8 @@
           "classe {C:attention}ímpar{} dão",
           "{C:chips}+#1#{} Fichas quando pontuadas",
           "{C:inactive}(A, 9, 7, 5, 3)"
-        ]
+        ],
+        "en_name": "Odd Todd"
       },
       "j_onyx_agate": {
         "name": "Ágata Ônix",
@@ -753,7 +844,8 @@
           "Cartas jogadas com",
           "naipe de {C:clubs}Paus{} dão",
           "{C:mult}+#1#{} Multi quando pontuadas"
-        ]
+        ],
+        "en_name": "Onyx Agate"
       },
       "j_oops": {
         "name": "Opa! Tudo 6",
@@ -761,7 +853,8 @@
           "Dobra {C:attention}todas as",
           "{C:green,E:1,S:1.1}probabilidades",
           "{C:inactive}(ex: {C:green}1 em 3{C:inactive} -> {C:green}2 em 3{C:inactive})"
-        ]
+        ],
+        "en_name": "Oops! All 6s"
       },
       "j_order": {
         "name": "A Ordem",
@@ -769,7 +862,8 @@
           "{X:mult,C:white} X#1# {} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Order"
       },
       "j_pareidolia": {
         "name": "Pareidolia",
@@ -777,7 +871,8 @@
           "Todas as cartas são",
           "consideradas",
           "cartas de {C:attention}Realeza{}"
-        ]
+        ],
+        "en_name": "Pareidolia"
       },
       "j_perkeo": {
         "name": "Perkeo",
@@ -786,7 +881,8 @@
           "{C:attention}1{} carta {C:attention}consumível{} aleatória",
           "em sua posse",
           "no final da {C:attention}loja"
-        ]
+        ],
+        "en_name": "Perkeo"
       },
       "j_photograph": {
         "name": "Fotografia",
@@ -794,7 +890,8 @@
           "Primeira carta de {C:attention}realeza",
           "jogada dá {X:mult,C:white} X#1# {} Multi",
           "quando pontuada"
-        ]
+        ],
+        "en_name": "Photograph"
       },
       "j_popcorn": {
         "name": "Pipoca",
@@ -802,7 +899,8 @@
           "{C:mult}+#1#{} Multi",
           "{C:mult}-#2#{} Multi por",
           "rodada jogada"
-        ]
+        ],
+        "en_name": "Popcorn"
       },
       "j_raised_fist": {
         "name": "Punho Erguido",
@@ -810,7 +908,8 @@
           "Adiciona o {C:attention}dobro{} da classe",
           "da carta de classe {C:attention}mais baixa{}",
           "presente na mão ao Multi"
-        ]
+        ],
+        "en_name": "Raised Fist"
       },
       "j_ramen": {
         "name": "Lámen",
@@ -818,7 +917,8 @@
           "{X:mult,C:white} X#1# {} Multi,",
           "perde {X:mult,C:white} X#2# {} Multi",
           "por {C:attention}carta{} descartada"
-        ]
+        ],
+        "en_name": "Ramen"
       },
       "j_red_card": {
         "name": "Carta Vermelha",
@@ -827,7 +927,8 @@
           "{C:red}+#1#{} Multi quando qualquer",
           "{C:attention}Pacote de Reforço{} é ignorado",
           "{C:inactive}(No momento, {C:red}+#2#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Red Card"
       },
       "j_reserved_parking": {
         "name": "Estacionamento Reservado",
@@ -836,7 +937,8 @@
           "na sua mão tem",
           "uma chance de {C:green}#2# em #3#{}",
           "para dar {C:money}$#1#{}"
-        ]
+        ],
+        "en_name": "Reserved Parking"
       },
       "j_ride_the_bus": {
         "name": "Passear de Ônibus",
@@ -846,7 +948,8 @@
           "sem nenhuma",
           "carta de {C:attention}realeza{} de pontuação",
           "{C:inactive}(No momento, {C:mult}+#2#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Ride the Bus"
       },
       "j_riff_raff": {
         "name": "Ralé",
@@ -854,7 +957,8 @@
           "Quando o {C:attention}Blind{} é selecionado,",
           "cria {C:attention}#1# {C:blue}{C:attention}Curinga Comum",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "Riff-Raff"
       },
       "j_ring_master": {
         "name": "Mestre do Ringue",
@@ -862,7 +966,8 @@
           "Cartas de {C:attention}Curinga{}, {C:tarot}Tarô{}, {C:planet}Planeta{}",
           "e {C:spectral}Espectral{} podem",
           "aparecer várias vezes"
-        ]
+        ],
+        "en_name": "Showman"
       },
       "j_rocket": {
         "name": "Foguete",
@@ -870,7 +975,8 @@
           "Ganhe {C:money}$#1#{} no fim da rodada",
           "O pagamento aumenta em {C:money}$#2#{}",
           "quando o {C:attention}Blind de Chefe{} é derrotado"
-        ]
+        ],
+        "en_name": "Rocket"
       },
       "j_rough_gem": {
         "name": "Joia Bruta",
@@ -878,7 +984,8 @@
           "Cartas jogadas com",
           "naipe de {C:diamonds}Ouros{} ganham",
           "{C:money}$#1#{} quando pontuadas"
-        ]
+        ],
+        "en_name": "Rough Gem"
       },
       "j_runner": {
         "name": "Atleta",
@@ -887,7 +994,8 @@
           "se a mão jogada",
           "tiver uma {C:attention}Sequência{}",
           "{C:inactive}(No momento {C:chips}+#1#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Runner"
       },
       "j_satellite": {
         "name": "Satélite",
@@ -896,7 +1004,8 @@
           "rodada por {C:planet}Planeta único",
           "usada nesta tentativa",
           "{C:inactive}(No momento {C:money}$#2#{C:inactive})"
-        ]
+        ],
+        "en_name": "Satellite"
       },
       "j_scary_face": {
         "name": "Realeza Assustadora",
@@ -904,7 +1013,8 @@
           "Cartas de {C:attention}realeza{} jogadas",
           "dão {C:chips}+#1#{} Fichas",
           "quando pontuadas"
-        ]
+        ],
+        "en_name": "Scary Face"
       },
       "j_scholar": {
         "name": "Estudioso",
@@ -913,7 +1023,8 @@
           "dão {C:chips}+#2#{} Fichas",
           "e {C:mult}+#1#{} Multi",
           "quando pontuados"
-        ]
+        ],
+        "en_name": "Scholar"
       },
       "j_seance": {
         "name": "Sessão Mediúnica",
@@ -922,7 +1033,8 @@
           "{C:attention}#1#{}, cria um(a)",
           "carta {C:spectral}Espectral{} aleatória",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "Séance"
       },
       "j_seeing_double": {
         "name": "Visão Duplicada",
@@ -931,7 +1043,8 @@
           "uma mão com carta pontuadora de",
           "Carta de {C:clubs}Paus{} e uma carta",
           "de pontuação de qualquer outro {C:attention}naipe"
-        ]
+        ],
+        "en_name": "Seeing Double"
       },
       "j_selzer": {
         "name": "Seltzer",
@@ -939,7 +1052,8 @@
           "Reativa todas as",
           "cartas jogadas para as",
           "próximas {C:attention}#1#{} mãos"
-        ]
+        ],
+        "en_name": "Seltzer"
       },
       "j_shoot_the_moon": {
         "name": "Alcance os Céus",
@@ -947,7 +1061,8 @@
           "Cada {C:attention}Dama{}",
           "na mão",
           "dá {C:mult}+#1#{} Multi"
-        ]
+        ],
+        "en_name": "Shoot the Moon"
       },
       "j_shortcut": {
         "name": "Atalho",
@@ -955,7 +1070,8 @@
           "Permite fazer {C:attention}Sequências{}",
           "com lacunas de {C:attention}1 classe",
           "{C:inactive}(ex.: {C:attention}10 8 6 5 3{C:inactive})"
-        ]
+        ],
+        "en_name": "Shortcut"
       },
       "j_sixth_sense": {
         "name": "Sexto Sentido",
@@ -964,7 +1080,8 @@
           "um único {C:attention}6{}, destrói a mesma e",
           "cria uma carta {C:spectral}Espectral{}",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "Sixth Sense"
       },
       "j_sly": {
         "name": "Curinga Malandro",
@@ -972,7 +1089,8 @@
           "{C:chips}+#1#{} Fichas se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Sly Joker"
       },
       "j_smeared": {
         "name": "Curinga Borrado",
@@ -981,7 +1099,8 @@
           "contam como o mesmo naipe,",
           "{C:spades}Espadas{} e {C:clubs}Paus",
           "contam como o mesmo naipe"
-        ]
+        ],
+        "en_name": "Smeared Joker"
       },
       "j_smiley": {
         "name": "Carinha Sorridente",
@@ -989,14 +1108,16 @@
           "Cartas de {C:attention}realeza{} jogadas",
           "dão {C:mult}+#1#{} Multi",
           "quando pontuadas"
-        ]
+        ],
+        "en_name": "Smiley Face"
       },
       "j_sock_and_buskin": {
         "name": "A Meia e o Coturno",
         "text": [
           "Reativa todas as",
           "cartas de {C:attention}realeza{} jogadas"
-        ]
+        ],
+        "en_name": "Sock and Buskin"
       },
       "j_space": {
         "name": "Curinga Espacial",
@@ -1004,14 +1125,16 @@
           "Chance de {C:green}#1# em #2#{} para",
           "aprimorar o nível da",
           "{C:attention}mão de pôquer{} jogada"
-        ]
+        ],
+        "en_name": "Space Joker"
       },
       "j_splash": {
         "name": "Splash",
         "text": [
           "Cada {C:attention}carta jogada",
           "conta na pontuação"
-        ]
+        ],
+        "en_name": "Splash"
       },
       "j_square": {
         "name": "Curinga Quadrado",
@@ -1020,7 +1143,8 @@
           "se a mão jogada tem",
           "exatamente {C:attention}4{} cartas",
           "{C:inactive}(No momento, {C:chips}#1#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Square Joker"
       },
       "j_steel_joker": {
         "name": "Curinga de Aço",
@@ -1029,7 +1153,8 @@
           "para cada {C:attention}Carta de Aço",
           "do seu {C:attention}baralho completo",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Steel Joker"
       },
       "j_stencil": {
         "name": "Curinga Estampado",
@@ -1038,7 +1163,8 @@
           "espaço de {C:attention}Curinga{} vazio",
           "{s:0.8}Curinga Estampado incluído",
           "{C:inactive}(No momento {X:red,C:white} X#1# {C:inactive})"
-        ]
+        ],
+        "en_name": "Joker Stencil"
       },
       "j_stone": {
         "name": "Curinga de Pedra",
@@ -1047,14 +1173,16 @@
           "cada {C:attention}Carta de Pedra",
           "do seu {C:attention}baralho completo",
           "{C:inactive}(No momento, {C:chips}+#2#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Stone Joker"
       },
       "j_stuntman": {
         "name": "Dublê",
         "text": [
           "{C:chips}+#1#{} Fichas,",
           "{C:attention}-#2#{} de tamanho de mão"
-        ]
+        ],
+        "en_name": "Stuntman"
       },
       "j_supernova": {
         "name": "Supernova",
@@ -1062,7 +1190,8 @@
           "Adiciona o número de vezes",
           "que a {C:attention}mão de pôquer{} foi",
           "jogada nesta tentativa ao Multi"
-        ]
+        ],
+        "en_name": "Supernova"
       },
       "j_superposition": {
         "name": "Sobreposição",
@@ -1071,7 +1200,8 @@
           "a mão de pôquer tiver um",
           "{C:attention}Às{} e uma {C:attention}Sequência{}",
           "{C:inactive}(Deve ter espaço)"
-        ]
+        ],
+        "en_name": "Superposition"
       },
       "j_swashbuckler": {
         "name": "Aventureiro",
@@ -1080,7 +1210,8 @@
           "de todos os outros ",
           "{C:attention}Curingas{} em posse ao Multi",
           "{C:inactive}(No momento, {C:mult}+#1#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Swashbuckler"
       },
       "j_throwback": {
         "name": "Retorno",
@@ -1088,14 +1219,16 @@
           "{X:mult,C:white} X#1# {} Multi por cada",
           "{C:attention}Blind{} ignorado nesta rodada",
           "{C:inactive}(No momento {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Throwback"
       },
       "j_ticket": {
         "name": "Bilhete Dourado",
         "text": [
           "Cartas {C:attention}Douradas{} jogadas",
           "ganham {C:money}$#1#{} quando pontuadas"
-        ]
+        ],
+        "en_name": "Golden Ticket"
       },
       "j_to_the_moon": {
         "name": "Para a Lua",
@@ -1103,7 +1236,8 @@
           "Ganhe {C:money}$#1#{} adicional de",
           "{C:attention}juros{} por cada {C:money}$5{} que",
           "tiver no fim da rodada"
-        ]
+        ],
+        "en_name": "To the Moon"
       },
       "j_todo_list": {
         "name": "Lista de Tarefas",
@@ -1112,7 +1246,8 @@
           "for uma {C:attention}#2#{},",
           "a mão de pôquer muda",
           "no fim da rodada"
-        ]
+        ],
+        "en_name": "To Do List"
       },
       "j_trading": {
         "name": "Carta de Troca",
@@ -1120,7 +1255,8 @@
           "Se o {C:attention}primeiro descarte{} da rodada",
           "tiver somente {C:attention}1{} carta, destrói",
           "a mesma e ganha {C:money}$#1#"
-        ]
+        ],
+        "en_name": "Trading Card"
       },
       "j_tribe": {
         "name": "A Tribo",
@@ -1128,7 +1264,8 @@
           "{X:mult,C:white} X#1# {} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Tribe"
       },
       "j_triboulet": {
         "name": "Triboulet",
@@ -1136,7 +1273,8 @@
           "{C:attention}Reis{} e",
           "{C:attention}Rainhas{} jogados dão",
           "{X:mult,C:white} X#1# {} Multi ao pontuar,"
-        ]
+        ],
+        "en_name": "Triboulet"
       },
       "j_trio": {
         "name": "O Trio",
@@ -1144,14 +1282,16 @@
           "{X:mult,C:white} X#1# {} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "The Trio"
       },
       "j_troubadour": {
         "name": "Trovador",
         "text": [
           "{C:attention}+#1#{} de tamanho de mão,",
           "{C:blue}-#2#{} mão a cada rodada"
-        ]
+        ],
+        "en_name": "Troubadour"
       },
       "j_trousers": {
         "name": "Calças Sobressalentes",
@@ -1160,7 +1300,8 @@
           "se a mão jogada contém",
           "um(a) {C:attention}#2#",
           "{C:inactive}(No momento, {C:red}+#3#{C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Spare Trousers"
       },
       "j_turtle_bean": {
         "name": "Feijão Preto",
@@ -1168,7 +1309,8 @@
           "{C:attention}+#1#{} tamanho de mão,",
           "reduz por",
           "{C:red}#2#{} a cada rodada"
-        ]
+        ],
+        "en_name": "Turtle Bean"
       },
       "j_vagabond": {
         "name": "Vagabundo",
@@ -1176,7 +1318,8 @@
           "Cria uma carta de {C:purple}Tarô{}",
           "se a mão é jogada",
           "com {C:money}$#1#{} ou menos"
-        ]
+        ],
+        "en_name": "Vagabond"
       },
       "j_vampire": {
         "name": "Vampiro",
@@ -1185,7 +1328,8 @@
           "por {C:attention}carta Aprimorada{} de pontuação jogada,",
           "remove o {C:attention}Aprimoramento da carta",
           "{C:inactive}(No momento, {X:mult,C:white} X#2# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Vampire"
       },
       "j_walkie_talkie": {
         "name": "Walkie Talkie",
@@ -1193,7 +1337,8 @@
           "Cada vez que joga {C:attention}10{} ou {C:attention}4",
           "dá {C:chips}+#1#{} Fichas e",
           "{C:mult}+#2#{} Multi ao pontuar"
-        ]
+        ],
+        "en_name": "Walkie Talkie"
       },
       "j_wee": {
         "name": "Curinguinha",
@@ -1202,7 +1347,8 @@
           "{C:chips}+#2#{} Fichas quando cada",
           "{C:attention}2{} jogado pontua",
           "{C:inactive}(No momento {C:chips}+#1#{C:inactive} Fichas)"
-        ]
+        ],
+        "en_name": "Wee Joker"
       },
       "j_wily": {
         "name": "Curinga Sagaz",
@@ -1210,7 +1356,8 @@
           "{C:chips}+#1#{} Fichas se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Wily Joker"
       },
       "j_wrathful_joker": {
         "name": "Curinga Furioso",
@@ -1218,7 +1365,8 @@
           "Cartas jogadas com",
           "naipe de {C:spades}#2#{} dão",
           "{C:mult}+#1#{} Multi quando pontuadas"
-        ]
+        ],
+        "en_name": "Wrathful Joker"
       },
       "j_yorick": {
         "name": "Yorick",
@@ -1227,7 +1375,8 @@
           "{X:mult,C:white} X#1# {} Multi a cada {C:attention}#2#{C:inactive} [#3#]{}",
           "cartas descartadas",
           "{C:inactive}(No momento, {X:mult,C:white} X#4# {C:inactive} Multi)"
-        ]
+        ],
+        "en_name": "Yorick"
       },
       "j_zany": {
         "name": "Curinga Bobo",
@@ -1235,7 +1384,8 @@
           "{C:red}+#1#{} Multi se a mão",
           "jogada contém",
           "um(a) {C:attention}#2#"
-        ]
+        ],
+        "en_name": "Zany Joker"
       }
     },
     "Blind": {

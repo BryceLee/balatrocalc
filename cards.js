@@ -224,6 +224,36 @@ const rarityNames = [
   'Legendary'
 ];
 
+// Cache compiled joker description templates to avoid repeated eval on every render.
+const jokerDescriptionCache = [];
+function renderJokerDescription(i, j, ctx = {}) {
+  const row = jokerDescriptionCache[i] || (jokerDescriptionCache[i] = []);
+  const entry = (jokerTexts[i] && jokerTexts[i][j]) || null;
+  if (!entry || !entry[1]) return 'WIP';
+  const template = entry[1];
+
+  if (!row[j] || row[j].src !== template) {
+    row[j] = {
+      src: template,
+      fn: new Function('ctx', `
+        const { jokerValue = 0, jokerValue2 = 0, jokerValue3 = 0, jokerValue4 = 0, jokerValue5 = 0 } = ctx || {};
+        return \`${template}\`;
+      `)
+    };
+  }
+
+  try {
+    return row[j].fn(ctx);
+  } catch (error) {
+    console.error('renderJokerDescription failed', error);
+    return template;
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.renderJokerDescription = renderJokerDescription;
+}
+
 
 
 
@@ -534,70 +564,31 @@ function applyJokerLocalization() {
       if (data.descriptions && data.descriptions.Joker) {
         const nameLookup = new Map();
         const textLookup = new Map();
-        const englishNameByKey = new Map();
 
-        // Prefer in-memory joker definitions when available.
-        for (const [key] of Object.entries(data.descriptions.Joker)) {
-          if (window[key] && window[key].name) {
-            englishNameByKey.set(key, window[key].name);
-          }
-        }
-
-        // Fallback to en-us localization names to map keys to English.
-        if (englishNameByKey.size === 0) {
-          try {
-            const enResponse = await fetch('/assets/i18n/en-us.json');
-            if (enResponse.ok) {
-              const enData = await enResponse.json();
-              if (enData.descriptions && enData.descriptions.Joker) {
-                for (const [key, info] of Object.entries(enData.descriptions.Joker)) {
-                  if (info && info.name) {
-                    englishNameByKey.set(key, info.name);
-                  }
-                }
-              }
-            }
-          } catch (error) {
-            console.warn('Failed to load en-us joker names for localization.', error);
-          }
-        }
-
-        // Iterate keys in JSON (j_joker, j_greedy_joker)
+        // Optimized Loop: Use 'en_name' directly from JSON (added by build script)
         for (const [key, info] of Object.entries(data.descriptions.Joker)) {
-          const englishName = englishNameByKey.get(key);
-          if (!englishName) continue;
+            const englishName = info.en_name; 
+            // If en_name is missing (should not happen with new build), fall back to name if it looks like English? 
+            // Or just skip.
+            if (!englishName) continue;
 
-          const localizedName = info.name;
-          if (localizedName) {
-            nameLookup.set(englishName, localizedName);
-          }
-          if (!preferEnglishDescriptions && info.text && info.text.length > 0) {
-            textLookup.set(englishName, info.text);
-          }
+            const localizedName = info.name;
+            if (localizedName) {
+                nameLookup.set(englishName, localizedName);
+            }
+            if (info.text && info.text.length > 0) {
+                textLookup.set(englishName, info.text);
+            }
         }
 
-        if (nameLookup.size > 0 || textLookup.size > 0) {
-          for (let i = 0; i < jokerTexts.length; i++) {
-            const row = jokerTexts[i];
-            if (!row) continue;
-            for (let j = 0; j < row.length; j++) {
-              const entry = row[j];
-              if (!entry || !entry[0]) continue;
-
-              const originalName = entry[0];
-              const localizedName = nameLookup.get(originalName);
-
-              if (localizedName && localizedName !== originalName) {
-                entry[0] = localizedName;
-                changed = true;
-              }
-
-              // Description Replacement
-              const locText = textLookup.get(originalName); // Look up by original English name
-              if (locText) {
-                let textStr = locText.join('<br>');
-
-                const colorMap = {
+        if (nameLookup.size > 0) {
+             // Pre-compile Regexes
+             const varsRegex = /#(\d+)#/g;
+             const colorRegex = /\{([CcsS]):([^,}]+)(?:,[^}]*)?\}/g; // Matches {C:red}, {s:1.2,C:red}, {c:red}
+             // const xRegex = /\{X:[^}]+\}/g; // Handled by manual check or generic color map if X:mult is mapped?
+             // Actually original code had specific X:mult mapping.
+             
+             const colorMap = {
                   attention: '${numc}',
                   chips: '${chipc}',
                   blue: '${chipc}',
@@ -618,36 +609,57 @@ function applyJokerLocalization() {
                   legendary: '${moneyc}',
                   enhanced: '${chipc}',
                   dark_edition: '${shadowc}',
-                };
+             };
 
-                // Markup Mapping
-                textStr = textStr.replace(/\{X:[^}]+\}/g, '${xmultc}');
-                textStr = textStr.replace(/\{[sS]:[^}]*C:([^,}]+)[^}]*\}/g, (match, color) => {
-                  const key = color.toLowerCase();
-                  return colorMap[key] || '${defaultc}';
-                });
-                textStr = textStr.replace(/\{[Cc]:([^,}]+)[^}]*\}/g, (match, color) => {
-                  const key = color.toLowerCase();
-                  return colorMap[key] || '${defaultc}';
-                });
-                textStr = textStr.replace(/\{[sS]:[^}]+\}/g, '');
-                textStr = textStr.replace(/\{[Vv]:[^}]+\}/g, '');
-                textStr = textStr.replace(/\{\}/g, '${endc}');
+            for (let i = 0; i < jokerTexts.length; i++) {
+                const row = jokerTexts[i];
+                if (!row) continue;
+                for (let j = 0; j < row.length; j++) {
+                    const entry = row[j];
+                    if (!entry || !entry[0]) continue;
+                    
+                    const originalName = entry[0];
+                    const localizedName = nameLookup.get(originalName);
+                    
+                    if (localizedName && localizedName !== originalName) {
+                        entry[0] = localizedName;
+                        changed = true;
+                    }
+                    
+                    // Description Replacement
+                    const locText = textLookup.get(originalName);
+                    if (locText) {
+                         let textStr = locText.join('<br>');
+                         
+                         // Optimized Regex Logic
+                         // 1. Color/Style Tags
+                         textStr = textStr.replace(colorRegex, (match, type, val) => {
+                             if (type.toUpperCase() === 'S') return ''; // Remove scale {s:1.2}
+                             if (type.toUpperCase() === 'V') return ''; // Remove var {V:1}
+                             const key = val.toLowerCase();
+                             return colorMap[key] || '${defaultc}';
+                         });
 
-                // Variables
-                textStr = textStr.replace(/#1#/g, '${jokerValue}');
-                textStr = textStr.replace(/#2#/g, '${typeof jokerValue2 !== "undefined" ? jokerValue2 : 0}');
-                textStr = textStr.replace(/#3#/g, '${typeof jokerValue3 !== "undefined" ? jokerValue3 : 0}');
-                textStr = textStr.replace(/#4#/g, '${typeof jokerValue4 !== "undefined" ? jokerValue4 : 0}');
-                textStr = textStr.replace(/#5#/g, '${typeof jokerValue5 !== "undefined" ? jokerValue5 : 0}');
+                         // 2. Specific XMult Style (X:mult,C:white)
+                         textStr = textStr.replace(/\{X:[^}]+\}/g, '${xmultc}'); 
+                         
+                         // 3. Variables
+                         textStr = textStr.replace(/#1#/g, '${jokerValue}');
+                         textStr = textStr.replace(/#2#/g, '${typeof jokerValue2 !== "undefined" ? jokerValue2 : 0}');
+                         textStr = textStr.replace(/#3#/g, '${typeof jokerValue3 !== "undefined" ? jokerValue3 : 0}');
+                         textStr = textStr.replace(/#4#/g, '${typeof jokerValue4 !== "undefined" ? jokerValue4 : 0}');
+                         textStr = textStr.replace(/#5#/g, '${typeof jokerValue5 !== "undefined" ? jokerValue5 : 0}');
 
-                if (entry[1] !== textStr) {
-                  entry[1] = textStr;
-                  changed = true;
+                         // 4. Cleanup empty {}
+                         textStr = textStr.replace(/\{\}/g, '${endc}');
+                         
+                         if (entry[1] !== textStr) {
+                             entry[1] = textStr;
+                             changed = true;
+                         }
+                    }
                 }
-              }
             }
-          }
         }
       }
       return changed;
