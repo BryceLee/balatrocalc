@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Balatro Seed Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Analyze Balatro seeds and review routes.">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-seed-analyzer.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+  <div id="titleBar">
+    <h1>Balatro Seed Analyzer</h1>
+    <span class="subtitle">Route review & seed insights</span>
+  </div>
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
+    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+  </nav>
+
+  <div id="mainContainer">
+    <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px 20px;">
+      <div class="seed-card">
+        <h2 style="color: #ffd700; font-size: 24px; margin-bottom: 12px;">Balatro Seed Analyzer</h2>
+        <p style="color: #bfc7d5; font-size: 16px; margin: 0 0 18px; line-height: 1.6;">
+          This page is ready for the upcoming seed analyzer tool. Add seed routes, verify shop rolls, and share your
+          findings.
+        </p>
+        <a class="detailsBtn" href="/balatro-seeds.html">Back to seeds</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Balatro Background Shader -->
+  <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec2 a_position;
+      attribute vec2 a_texCoord;
+      varying vec2 v_texCoord;
+      varying vec2 v_screenCoord;
+
+      void main() {
+        gl_Position = vec4(a_position, 0.0, 1.0);
+        v_texCoord = a_texCoord;
+        v_screenCoord = (a_position + 1.0) * 0.5;
+      }
+    </script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+
+      uniform float u_time;
+      uniform float u_spin_time;
+      uniform vec4 u_colour_1;
+      uniform vec4 u_colour_2;
+      uniform vec4 u_colour_3;
+      uniform float u_contrast;
+      uniform float u_spin_amount;
+      uniform vec2 u_resolution;
+
+      varying vec2 v_texCoord;
+      varying vec2 v_screenCoord;
+
+      #define PIXEL_SIZE_FAC 700.0
+      #define SPIN_EASE 0.5
+
+      void main() {
+        float pixel_size = length(u_resolution) / PIXEL_SIZE_FAC;
+        vec2 uv = (floor(v_screenCoord * u_resolution / pixel_size) * pixel_size - 0.5 * u_resolution) / length(u_resolution) - vec2(0.12, 0.0);
+        float uv_len = length(uv);
+
+        float speed = (u_spin_time * SPIN_EASE * 0.2) + 302.2;
+        float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE * 20.0 * (1.0 * u_spin_amount * uv_len + (1.0 - 1.0 * u_spin_amount));
+        vec2 mid = (u_resolution / length(u_resolution)) / 2.0;
+        uv = vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid;
+
+        uv *= 30.0;
+        speed = u_time * 2.0;
+        vec2 uv2 = vec2(uv.x + uv.y);
+
+        for(int i = 0; i < 5; i++) {
+            uv2 += sin(max(uv.x, uv.y)) + uv;
+            uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121), sin(uv2.x - 0.113 * speed));
+            uv -= 1.0 * cos(uv.x + uv.y) - 1.0 * sin(uv.x * 0.711 - uv.y);
+        }
+
+        float contrast_mod = (0.25 * u_contrast + 0.5 * u_spin_amount + 1.2);
+        float paint_res = min(2.0, max(0.0, length(uv) * 0.035 * contrast_mod));
+        float c1p = max(0.0, 1.0 - contrast_mod * abs(1.0 - paint_res));
+        float c2p = max(0.0, 1.0 - contrast_mod * abs(paint_res));
+        float c3p = 1.0 - min(1.0, c1p + c2p);
+
+        vec4 ret_col = (0.3 / u_contrast) * u_colour_1 + (1.0 - 0.3 / u_contrast) * (u_colour_1 * c1p + u_colour_2 * c2p + vec4(c3p * u_colour_3.rgb, c3p * u_colour_1.a));
+
+        gl_FragColor = ret_col;
+      }
+    </script>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+</body>
+
+</html>

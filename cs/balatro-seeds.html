@@ -92,13 +92,87 @@
 
   <div id="mainContainer">
     <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px 20px;">
-      
+      <div class="seed-quick-links">
+        <a class="quick-link" href="/cs/balatro-seeds.html#seed-generator">Seed Generator</a>
+        <a class="quick-link" href="/cs/balatro-seeds.html#good-fun-seeds">Good or Fun Balatro Seeds</a>
+        <a class="quick-link" href="/balatro-seed-analyzer.html">Balatro Seed Analyzer</a>
+      </div>
 
-            <!-- Featured Joker Seeds Section -->
+<div class="seed-grid" id="seed-generator">
+
+        <div class="seed-card">
+          <h3>Seed Generator</h3>
+          <p>Generate random seeds for Balatro runs</p>
+          <div class="seed-display">
+            <code id="generated-seed">ABCD1234</code>
+            <button class="copyBtn"
+              onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
+            <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+          </div>
+        </div>
+
+        <div class="seed-card">
+          <h3>Popular Seeds</h3>
+          <p>Community favorite seeds</p>
+          <div class="seed-list">
+            <div class="seed-item">
+              <code>JOKER123</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">Great joker start</span>
+            </div>
+            <div class="seed-item">
+              <code>MULT999</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">High mult potential</span>
+            </div>
+            <div class="seed-item">
+              <code>LUCKY777</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">Lucky draws</span>
+            </div>
+            <div class="seed-item">
+              <code>33cyvh75</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">balatro seed with blueprint first round</span>
+            </div>
+
+            <div class="seed-item">
+              <code>2F4TYFD8</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">endless-friendly seed with Yorick start</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="seed-card">
+          <h3>Challenge Seeds</h3>
+          <p>Seeds for specific challenges</p>
+          <div class="seed-list">
+            <div class="seed-item">
+              <code>HARD001</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">No jokers challenge</span>
+            </div>
+            <div class="seed-item">
+              <code>SPEED42</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">Speed run seed</span>
+            </div>
+            <div class="seed-item">
+              <code>ANTE999</code><button class="copyBtn"
+                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <span class="seed-desc">High ante push</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Featured Joker Seeds Section -->
       <p class="featured-joker-intro">Looking for a seed with a specific Joker? Here are some popular seeds featuring
         powerful Jokers from the first round!</p>
 
-      <div class="featured-joker-grid">
+      <div class="featured-joker-grid" id="good-fun-seeds">
         <div class="featured-joker-card">
           <div class="joker-img-container">
             <div class="joker-sprite blueprint-joker"></div>
@@ -240,77 +314,7 @@
         </div>
       </section>
 
-<div class="seed-grid">
-
-        <div class="seed-card">
-          <h3>Seed Generator</h3>
-          <p>Generate random seeds for Balatro runs</p>
-          <div class="seed-display">
-            <code id="generated-seed">ABCD1234</code>
-            <button class="copyBtn"
-              onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
-            <button class="resetBtn" onclick="generateSeed()">Generate New</button>
-          </div>
-        </div>
-
-        <div class="seed-card">
-          <h3>Popular Seeds</h3>
-          <p>Community favorite seeds</p>
-          <div class="seed-list">
-            <div class="seed-item">
-              <code>JOKER123</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">Great joker start</span>
-            </div>
-            <div class="seed-item">
-              <code>MULT999</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">High mult potential</span>
-            </div>
-            <div class="seed-item">
-              <code>LUCKY777</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">Lucky draws</span>
-            </div>
-            <div class="seed-item">
-              <code>33cyvh75</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">balatro seed with blueprint first round</span>
-            </div>
-
-            <div class="seed-item">
-              <code>2F4TYFD8</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">endless-friendly seed with Yorick start</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="seed-card">
-          <h3>Challenge Seeds</h3>
-          <p>Seeds for specific challenges</p>
-          <div class="seed-list">
-            <div class="seed-item">
-              <code>HARD001</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">No jokers challenge</span>
-            </div>
-            <div class="seed-item">
-              <code>SPEED42</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">Speed run seed</span>
-            </div>
-            <div class="seed-item">
-              <code>ANTE999</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
-              <span class="seed-desc">High ante push</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Seed Generator Features Section -->
+<!-- Seed Generator Features Section -->
       <div class="seed-card" style="margin-top: 2em; grid-column: 1 / -1;">
         <h2 style="color: #ffd700; font-size: 24px; margin-bottom: 16px;">Balatro Seed Generator Features</h2>
         <p style="color: #bfc7d5; font-size: 16px; margin-bottom: 20px;">
@@ -687,21 +691,22 @@
     .seed-warning strong {
       color: #ffd700;
     }
-
     .seed-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
+      margin-top: 72px;
     }
 
-    @media (max-width: 600px) {
+@media (max-width: 600px) {
       .seed-grid {
         grid-template-columns: 1fr;
         /* Stack single column on mobile */
         gap: 16px;
+        margin-top: 112px;
       }
 
-      .seed-card {
+.seed-card {
         padding: 16px;
         /* Reduce padding */
       }
@@ -1038,8 +1043,54 @@
     .turtle-bean-joker {
       background-position: -284px -1235px;
     }
+    .seed-quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-start;
+      align-items: center;
+      position: fixed;
+      top: 84px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1160px;
+      z-index: 1100;
+      margin: 0;
+      padding: 8px 0;
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
 
-</style>
+.seed-quick-links .quick-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .seed-quick-links .quick-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    #seed-generator,
+    #good-fun-seeds {
+      scroll-margin-top: 120px;
+    }
+
+  </style>
 </body>
 
 </html>
