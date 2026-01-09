@@ -1245,3 +1245,95 @@ button.resetBtn[onclick*="resetHand"]:hover,
 button.resetBtn[onClick*="resetHand"]:hover {
   background: linear-gradient(135deg, #f66159 0%, #e53935 100%) !important;
 }
+
+/* Seed analyzer layout (Blueprint embed) */
+body.seed-analyzer-page {
+  --seed-top-offset: 104px;
+  background-color: transparent;
+  color: var(--mantine-color-text, #fff);
+  display: block;
+  font-family: var(--mantine-font-family, 'm6x11Plus', monospace);
+  font-size: var(--mantine-font-size-md, 1rem);
+  line-height: var(--mantine-line-height, 1.55);
+  margin: 0;
+  padding-top: 0;
+}
+
+body.seed-analyzer-page #mainContainer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: calc(var(--seed-top-offset) + 12px) 0 0;
+  display: block;
+}
+
+body.seed-analyzer-page #titleBar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  margin: 0;
+}
+
+body.seed-analyzer-page #topNav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+body.seed-analyzer-page #root {
+  min-height: 100dvh;
+  color: inherit;
+  --mantine-color-text: #ffd700;
+  --mantine-color-dimmed: #bfc7d5;
+  --mantine-color-anchor: #ffd700;
+  --mantine-color-body: rgba(0, 0, 0, 0.28);
+  --mantine-color-dark-7: rgba(0, 0, 0, 0.32);
+  --mantine-color-dark-6: rgba(0, 0, 0, 0.26);
+  --mantine-color-dark-5: rgba(0, 0, 0, 0.22);
+  --mantine-color-dark-4: rgba(255, 215, 0, 0.25);
+}
+
+/* Offset Mantine AppShell for the fixed site header on this page. */
+body.seed-analyzer-page #root .m_89ab340 {
+  --app-shell-header-offset: calc(var(--app-shell-header-height, 0rem) + var(--seed-top-offset));
+}
+
+body.seed-analyzer-page #root .m_3b16f56b {
+  top: var(--seed-top-offset);
+  background-color: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(4px);
+}
+
+body.seed-analyzer-page #root .m_45252eee,
+body.seed-analyzer-page #root .m_9cdde9a {
+  background-color: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(4px);
+}
+
+body.seed-analyzer-page #root .m_3b16f56b,
+body.seed-analyzer-page #root .m_45252eee,
+body.seed-analyzer-page #root .m_9cdde9a {
+  border-color: rgba(255, 215, 0, 0.2);
+}
+
+body.seed-analyzer-page #root a {
+  color: var(--mantine-color-anchor, inherit);
+}
+
+body.seed-analyzer-page #root a:hover {
+  color: var(--mantine-color-anchor, inherit);
+}
+
+@media (max-width: 600px) {
+  body.seed-analyzer-page {
+    --seed-top-offset: 84px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.seed-analyzer-page {
+    --seed-top-offset: 76px;
+  }
+}

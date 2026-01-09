@@ -3,20 +3,32 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Balatro Seed Analyzer</title>
+  <title>Balatro Seed Analyzer | Seed Routing & Analysis</title>
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Analyze Balatro seeds and review routes.">
+  <link rel="stylesheet" href="/blueprint-dist/assets/index.css" crossorigin>
+  <meta name="description" content="Balatro Seed Analyzer for seed routing and analysis. Review shop queues, compare antes, and plan Balatro seed routes.">
+  <meta name="keywords" content="balatro seed analyzer, balatro seeds, balatro seed routing, balatro seed analysis, balatro seed calculator">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://balatrocalc.com/balatro-seed-analyzer.html">
+  <meta property="og:title" content="Balatro Seed Analyzer">
+  <meta property="og:description" content="Balatro Seed Analyzer for seed routing and analysis. Review shop queues, compare antes, and plan Balatro seed routes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-seed-analyzer.html">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Seed Analyzer">
+  <meta name="twitter:description" content="Balatro Seed Analyzer for seed routing and analysis. Review shop queues, compare antes, and plan Balatro seed routes.">
+  <meta name="theme-color" content="#2b3b34">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 
-<body>
+<body class="seed-analyzer-page">
   <canvas id="backgroundCanvas"></canvas>
   <div id="titleBar">
     <h1>Balatro Seed Analyzer</h1>
-    <span class="subtitle">Route review & seed insights</span>
+    <span class="subtitle">seed routing & analysis</span>
   </div>
   <nav id="topNav">
     <a href="/" class="nav-link">calculator</a>
@@ -26,16 +38,7 @@
   </nav>
 
   <div id="mainContainer">
-    <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px 20px;">
-      <div class="seed-card">
-        <h2 style="color: #ffd700; font-size: 24px; margin-bottom: 12px;">Balatro Seed Analyzer</h2>
-        <p style="color: #bfc7d5; font-size: 16px; margin: 0 0 18px; line-height: 1.6;">
-          This page is ready for the upcoming seed analyzer tool. Add seed routes, verify shop rolls, and share your
-          findings.
-        </p>
-        <a class="detailsBtn" href="/balatro-seeds.html">Back to seeds</a>
-      </div>
-    </div>
+    <div id="root"></div>
   </div>
 
   <!-- Balatro Background Shader -->
@@ -102,6 +105,7 @@
       }
     </script>
 
+  <script type="module" crossorigin src="/blueprint-dist/assets/index.js"></script>
   <script type="text/javascript" src="balatro-background.js"></script>
 </body>
 
