@@ -71,6 +71,7 @@
   <nav id="topNav">
     <a href="/pl/" class="nav-link">calculator</a>
     <a href="/pl/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
     <a href="/apk.html" class="nav-link">apk</a>
     <a href="/support.html" class="nav-link">support</a>
     <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
@@ -118,13 +119,13 @@
       <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleJoker" class="handLevel">
           <span id="toggleJokerBtn" class="lvlBtn" onclick="toggleJoker()">X</span>
-          <span class="handName">Optimize Jokers (slow)</span>
+          <span id="ui_optimize_jokers" class="handName">Optimize Jokers (slow)</span>
         </div>
       </div>
       <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleCard" class="handLevel">
           <span id="toggleCardBtn" class="lvlBtn" onclick="toggleCard()">X</span>
-          <span class="handName">Optimize Hand (slow)</span>
+          <span id="ui_optimize_hand" class="handName">Optimize Hand (slow)</span>
         </div>
       </div>
       <div id="jokerArea"></div>
@@ -142,7 +143,7 @@
       <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleMinimize" class="handLevel">
           <span id="toggleMinimizeBtn" class="lvlBtn" onclick="toggleMinimize();">&nbsp;</span>
-          <span class="handName">Minimize Score</span>
+          <span id="ui_minimize_score" class="handName">Minimize Score</span>
         </div>
         <div id="toggleTheFlint" class="handLevel">
           <span id="toggleTheFintBtn" class="lvlBtn" onclick="toggleTheFlint()">&nbsp;</span>
@@ -163,8 +164,8 @@
         <div id="consumables" style="display: none"></div>
       </div>
       <!-- <a href="https://discord.gg/ARHq4BbyjY"><img src="assets/Discord-Logo-Color.svg" style="height: 48px; position: relative"></a> -->
-      <button type="button" class="resetBtn" onClick="playHand()">Play hand</button>
-      <button type="button" class="resetBtn" onClick="clearHand()">Clear hand</button>
+      <button id="ui_play_hand" type="button" class="resetBtn" onClick="playHand()">Play hand</button>
+      <button id="ui_clear_hand" type="button" class="resetBtn" onClick="clearHand()">Clear hand</button>
       <button type="button" class="resetBtn" onClick="resetHand()" style="display: none;">Reset</button>
     </div>
     <div id="containerRight">
@@ -181,7 +182,7 @@
             <span class="lvlBtn" onclick="incrementJokerCount(-1)">-</span>
             <span class="lvlBtn" onclick="incrementJokerCount( 0)">1</span>
             <span class="lvlBtn" onclick="incrementJokerCount( 1)">+</span>
-            <span
+            <span id="lbl_joker_count"
               style="display: block; float: left; margin-left: 0.7em; margin-right:0.5em;margin-top: 0.125em;">Count</span>
             <span contenteditable="true" id="jokerCnt" class="handLvl"
               style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;"
@@ -194,7 +195,7 @@
             <span class="lvlBtn" onclick="incrementJokerValue(-1)">-</span>
             <span class="lvlBtn" onclick="incrementJokerValue( 0)">0</span>
             <span class="lvlBtn" onclick="incrementJokerValue( 1)">+</span>
-            <span
+            <span id="lbl_joker_value"
               style="display: block; float: left; margin-left: 0.7em; margin-right:0.5em;margin-top: 0.125em;">Value</span>
             <span contenteditable="true" id="jokerVal" class="handLvl"
               style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;"
@@ -204,7 +205,7 @@
         <div style="text-align: center;">
           <div id="jokerSearch" class="handLevel"
             style="display: inline-block; width: auto; margin: 0.2em; min-width: 0">
-            <span
+            <span id="lbl_joker_search"
               style="display: block; float: left; margin-left: 0.7em; margin-right:0.5em;margin-top: 0.125em;">Search</span>
             <input id="SearchVal" class="handLvl" type="text" oninput="searchJoker()" placeholder="Joker Name"
               style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;">
@@ -256,7 +257,7 @@
             <span class="lvlBtn" onclick="incrementCardCount(-1)">-</span>
             <span class="lvlBtn" onclick="incrementCardCount( 0)">1</span>
             <span class="lvlBtn" onclick="incrementCardCount( 1)">+</span>
-            <span
+            <span id="lbl_cards_count"
               style="display: block; float: left; margin-left: 0.7em; margin-right:0.5em;margin-top: 0.125em;">Count</span>
             <span contenteditable="true" id="cardCnt" class="handLvl"
               style="width: auto; padding-left: 0.25em; padding-right: 0.25em; min-width: 2.5em;"

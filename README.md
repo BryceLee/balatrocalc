@@ -23,3 +23,26 @@ Regenerate localized pages + `sitemap.xml`:
 ```bash
 node tools/build-i18n.mjs --write
 ```
+
+
+balatro-seed-finder？
+googd or fun balatro seeds飙升
+2
+balatro seed searcher飙升
+5
+balatro seed analyzer+190%
+balatro joker order calculator
+
+# balatro 学习对象
+https://github.com/EFHIII/balatro-calculator
+https://github.com/miaklwalker/Blueprint
+
+https://github.com/SpectralPack/Immolate
+https://github.com/SpectralPack/TheSoul
+https://github.com/izanagi1995/balatro-seed-finder
+https://github.com/SpectralPack/
+#？
+https://github.com/blake502/balatro-mobile-maker
+
+https://balatrolator.com/
+https://balatrowiki.org/  攻略玩家
