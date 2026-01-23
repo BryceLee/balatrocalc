@@ -245,16 +245,18 @@ function getOrientationCopy() {
     if (isZh) {
         return {
             title: '请将设备旋转至横屏',
-            desc: '移动端请使用横屏以获得更好体验。'
+            desc: '移动端请使用横屏以获得更好体验。',
+            close: '关闭提示'
         };
     }
     return {
         title: 'Rotate to landscape',
-        desc: 'Use landscape on mobile for the best experience.'
+        desc: 'Use landscape on mobile for the best experience.',
+        close: 'Dismiss'
     };
 }
 
-function setupOrientationLock() {
+function setupOrientationNotice() {
     const hasCalculatorLayout = document.getElementById('containerLeft') && document.getElementById('containerRight');
     if (!hasCalculatorLayout) {
         return;
@@ -263,28 +265,58 @@ function setupOrientationLock() {
     document.body.classList.add('calculator-layout');
 
     let overlay = document.getElementById('orientationLock');
+    const storageKey = 'balatro_orientation_notice_dismissed';
+
+    const readDismissed = () => {
+        try {
+            return localStorage.getItem(storageKey) === '1';
+        } catch (err) {
+            return false;
+        }
+    };
+
+    const writeDismissed = () => {
+        try {
+            localStorage.setItem(storageKey, '1');
+        } catch (err) {
+            // Ignore storage errors.
+        }
+    };
+
     if (!overlay) {
         const copy = getOrientationCopy();
         overlay = document.createElement('div');
         overlay.id = 'orientationLock';
-        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('role', 'status');
         overlay.setAttribute('aria-live', 'polite');
         overlay.setAttribute('aria-hidden', 'true');
         overlay.innerHTML = `
             <div class="orientationLock__inner">
-                <div class="orientationLock__title">${copy.title}</div>
-                <div class="orientationLock__desc">${copy.desc}</div>
+                <div class="orientationLock__text">
+                    <div class="orientationLock__title">${copy.title}</div>
+                    <div class="orientationLock__desc">${copy.desc}</div>
+                </div>
+                <button type="button" class="orientationLock__close" aria-label="${copy.close}">X</button>
             </div>
         `;
         document.body.appendChild(overlay);
+
+        const closeBtn = overlay.querySelector('.orientationLock__close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                writeDismissed();
+                overlay.classList.remove('is-visible');
+                overlay.setAttribute('aria-hidden', 'true');
+            });
+        }
     }
 
     const update = () => {
         const isPortrait = window.matchMedia('(orientation: portrait)').matches;
         const isMobile = window.matchMedia('(pointer: coarse)').matches && window.matchMedia('(max-width: 900px)').matches;
-        const shouldLock = isMobile && isPortrait;
-        document.body.classList.toggle('mobile-portrait', shouldLock);
-        overlay.setAttribute('aria-hidden', shouldLock ? 'false' : 'true');
+        const shouldShow = isMobile && isPortrait && !readDismissed();
+        overlay.classList.toggle('is-visible', shouldShow);
+        overlay.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
     };
 
     update();
@@ -295,5 +327,5 @@ function setupOrientationLock() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new BalatroBG();
-    setupOrientationLock();
+    setupOrientationNotice();
 });

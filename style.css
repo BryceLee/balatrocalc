@@ -214,55 +214,66 @@ body {
 
 #orientationLock {
   position: fixed;
-  inset: 0;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
   display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: rgba(12, 16, 18, 0.92);
+  width: min(420px, calc(100% - 24px));
   z-index: 2000;
-  text-align: center;
   font-family: 'm6x11Plus', monospace;
+  pointer-events: auto;
 }
 
 #orientationLock .orientationLock__inner {
-  max-width: 420px;
-  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(12, 16, 18, 0.92);
   border: 1px solid rgba(255, 215, 0, 0.35);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
+#orientationLock .orientationLock__text {
+  flex: 1;
+}
+
 #orientationLock .orientationLock__title {
-  font-size: 20px;
+  font-size: 16px;
   color: #ffd700;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   letter-spacing: 1px;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 #orientationLock .orientationLock__desc {
-  font-size: 14px;
+  font-size: 12px;
   color: #bfc7d5;
   line-height: 1.6;
 }
 
-body.calculator-layout.mobile-portrait {
-  overflow: hidden;
+#orientationLock .orientationLock__close {
+  appearance: none;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
 }
 
-body.calculator-layout.mobile-portrait #orientationLock {
-  display: flex;
+#orientationLock .orientationLock__close:hover {
+  background: rgba(255, 215, 0, 0.25);
+  border-color: rgba(255, 215, 0, 0.7);
 }
 
-body.calculator-layout.mobile-portrait #mainContainer,
-body.calculator-layout.mobile-portrait #topNav,
-body.calculator-layout.mobile-portrait #titleBar,
-body.calculator-layout.mobile-portrait #footer {
-  filter: blur(2px);
-  pointer-events: none;
-  user-select: none;
+#orientationLock.is-visible {
+  display: block;
 }
 
 @media (max-width: 900px) and (orientation: landscape) and (pointer: coarse) {
@@ -317,7 +328,7 @@ body.calculator-layout.mobile-portrait #footer {
   body.calculator-layout #jokerArea,
   body.calculator-layout #bestPlay,
   body.calculator-layout #cardsInHand {
-    height: 78px;
+    height: 94px;
     margin-bottom: 1em;
   }
 }
