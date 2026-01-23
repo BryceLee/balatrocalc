@@ -111,6 +111,86 @@
 
   <script type="module" crossorigin src="/blueprint-dist/assets/index.js"></script>
   <script type="text/javascript" src="balatro-background.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const seedParam = params.get('seed');
+      if (!seedParam) return;
+
+      const seed = seedParam.trim();
+      if (!seed) return;
+
+      const setInputValue = (input, value) => {
+        const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
+        const lastValue = input.value;
+        if (setter) {
+          setter.call(input, value);
+        } else {
+          input.value = value;
+        }
+        const tracker = input._valueTracker;
+        if (tracker) {
+          tracker.setValue(lastValue);
+        }
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      };
+
+      const isSeedInput = (input) => {
+        if (!input || input.disabled) return false;
+        const type = (input.getAttribute('type') || 'text').toLowerCase();
+        if (type === 'hidden') return false;
+        const placeholder = (input.getAttribute('placeholder') || '').toLowerCase();
+        const ariaLabel = (input.getAttribute('aria-label') || '').toLowerCase();
+        const name = (input.getAttribute('name') || '').toLowerCase();
+        const id = (input.getAttribute('id') || '').toLowerCase();
+        return placeholder.includes('seed') || ariaLabel.includes('seed') || name.includes('seed') || id.includes('seed');
+      };
+
+      const findAnalyzeButton = () => {
+        const buttons = Array.from(document.querySelectorAll('button'));
+        return buttons.find((btn) => {
+          const text = (btn.textContent || '').trim().toLowerCase();
+          const label = (btn.getAttribute('aria-label') || '').trim().toLowerCase();
+          return (text.includes('analyze') && text.includes('seed')) || (label.includes('analyze') && label.includes('seed'));
+        });
+      };
+
+      const findSeedInput = (root) => {
+        const inputs = Array.from((root || document).querySelectorAll('input'));
+        const direct = inputs.find(isSeedInput);
+        if (direct) return direct;
+        const textInputs = inputs.filter((input) => {
+          const type = (input.getAttribute('type') || 'text').toLowerCase();
+          return type === 'text' || type === 'search' || type === '';
+        });
+        return textInputs.length === 1 ? textInputs[0] : null;
+      };
+
+      const maxAttempts = 80;
+      let attempts = 0;
+      const timer = setInterval(() => {
+        attempts += 1;
+        const analyzeBtn = findAnalyzeButton();
+        const scope = analyzeBtn?.closest('form') || analyzeBtn?.closest('div') || document;
+        const seedInput = findSeedInput(scope) || findSeedInput(document);
+
+        if (seedInput) {
+          setInputValue(seedInput, seed);
+        }
+
+        if (seedInput && analyzeBtn) {
+          clearInterval(timer);
+          setTimeout(() => analyzeBtn.click(), 50);
+          return;
+        }
+
+        if (attempts >= maxAttempts) {
+          clearInterval(timer);
+        }
+      }, 250);
+    })();
+  </script>
 </body>
 
 </html>

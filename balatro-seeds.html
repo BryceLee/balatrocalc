@@ -98,9 +98,16 @@
           <p>Generate random seeds for Balatro runs</p>
           <div class="seed-display">
             <code id="generated-seed">ABCD1234</code>
-            <button class="copyBtn"
-              onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
-            <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+            <div class="seed-actions">
+              <div class="seed-actions-row">
+                <button class="copyBtn"
+                  onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
+                <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+              </div>
+              <div class="seed-actions-row">
+                <button class="resetBtn analyzeSeedBtn" onclick="analyzeSeedFromGenerator()">Analyze Seed</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -450,6 +457,14 @@
         console.error('Failed to copy: ', err);
       });
     }
+
+    function analyzeSeedFromGenerator() {
+      const seed = document.getElementById('generated-seed').textContent.trim();
+      if (!seed) return;
+      const analyzerUrl = new URL('/balatro-seed-analyzer.html', window.location.origin);
+      analyzerUrl.searchParams.set('seed', seed);
+      window.location.href = analyzerUrl.toString();
+    }
   </script>
 
   <!-- Balatro Background Shader -->
@@ -548,6 +563,20 @@
 
     .seed-display {
       text-align: center;
+    }
+
+    .seed-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .seed-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
     }
 
     .seed-display code {
