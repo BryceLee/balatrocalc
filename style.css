@@ -212,6 +212,116 @@ body {
   }
 }
 
+#orientationLock {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(12, 16, 18, 0.92);
+  z-index: 2000;
+  text-align: center;
+  font-family: 'm6x11Plus', monospace;
+}
+
+#orientationLock .orientationLock__inner {
+  max-width: 420px;
+  padding: 20px 22px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+#orientationLock .orientationLock__title {
+  font-size: 20px;
+  color: #ffd700;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+#orientationLock .orientationLock__desc {
+  font-size: 14px;
+  color: #bfc7d5;
+  line-height: 1.6;
+}
+
+body.calculator-layout.mobile-portrait {
+  overflow: hidden;
+}
+
+body.calculator-layout.mobile-portrait #orientationLock {
+  display: flex;
+}
+
+body.calculator-layout.mobile-portrait #mainContainer,
+body.calculator-layout.mobile-portrait #topNav,
+body.calculator-layout.mobile-portrait #titleBar,
+body.calculator-layout.mobile-portrait #footer {
+  filter: blur(2px);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 900px) and (orientation: landscape) and (pointer: coarse) {
+  body.calculator-layout {
+    padding-top: 10px;
+  }
+
+  body.calculator-layout #mainContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: 44px;
+  }
+
+  body.calculator-layout #containerLeft,
+  body.calculator-layout #containerRight {
+    width: 50%;
+  }
+
+  body.calculator-layout #containerLeft {
+    margin-top: 0;
+    min-height: 0;
+  }
+
+  body.calculator-layout #topNav {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+
+  body.calculator-layout #titleBar {
+    top: 8px;
+    left: 8px;
+  }
+
+  body.calculator-layout .nav-link {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  body.calculator-layout .handLevel {
+    font-size: 16px;
+    min-width: 16em;
+  }
+
+  body.calculator-layout .menuBtn {
+    font-size: 16px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  body.calculator-layout #jokerArea,
+  body.calculator-layout #bestPlay,
+  body.calculator-layout #cardsInHand {
+    height: 78px;
+    margin-bottom: 1em;
+  }
+}
+
 div {
   -webkit-tap-highlight-color: transparent !important;
 }

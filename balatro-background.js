@@ -239,7 +239,61 @@ void main() {
 }
 `;
 
+function getOrientationCopy() {
+    const lang = (document.documentElement.lang || '').toLowerCase();
+    const isZh = lang.startsWith('zh');
+    if (isZh) {
+        return {
+            title: '请将设备旋转至横屏',
+            desc: '移动端请使用横屏以获得更好体验。'
+        };
+    }
+    return {
+        title: 'Rotate to landscape',
+        desc: 'Use landscape on mobile for the best experience.'
+    };
+}
+
+function setupOrientationLock() {
+    const hasCalculatorLayout = document.getElementById('containerLeft') && document.getElementById('containerRight');
+    if (!hasCalculatorLayout) {
+        return;
+    }
+
+    document.body.classList.add('calculator-layout');
+
+    let overlay = document.getElementById('orientationLock');
+    if (!overlay) {
+        const copy = getOrientationCopy();
+        overlay = document.createElement('div');
+        overlay.id = 'orientationLock';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-live', 'polite');
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = `
+            <div class="orientationLock__inner">
+                <div class="orientationLock__title">${copy.title}</div>
+                <div class="orientationLock__desc">${copy.desc}</div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    const update = () => {
+        const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+        const isMobile = window.matchMedia('(pointer: coarse)').matches && window.matchMedia('(max-width: 900px)').matches;
+        const shouldLock = isMobile && isPortrait;
+        document.body.classList.toggle('mobile-portrait', shouldLock);
+        overlay.setAttribute('aria-hidden', shouldLock ? 'false' : 'true');
+    };
+
+    update();
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new BalatroBG();
+    setupOrientationLock();
 });
