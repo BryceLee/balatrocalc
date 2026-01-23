@@ -225,10 +225,8 @@ body {
 }
 
 #orientationLock .orientationLock__inner {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 14px;
+  position: relative;
+  padding: 12px 38px 12px 14px;
   border-radius: 12px;
   background: rgba(12, 16, 18, 0.92);
   border: 1px solid rgba(255, 215, 0, 0.35);
@@ -259,12 +257,15 @@ body {
   background: rgba(255, 215, 0, 0.15);
   color: #ffd700;
   border-radius: 8px;
-  width: 28px;
-  height: 28px;
-  font-size: 18px;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
   line-height: 1;
   cursor: pointer;
   padding: 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 #orientationLock .orientationLock__close:hover {
@@ -284,18 +285,26 @@ body {
   body.calculator-layout #mainContainer {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: flex-start;
     margin-top: 44px;
+    min-height: 0;
   }
 
   body.calculator-layout #containerLeft,
   body.calculator-layout #containerRight {
     width: 50%;
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   body.calculator-layout #containerLeft {
     margin-top: 0;
     min-height: 0;
+  }
+
+  body.calculator-layout #containerRight {
+    padding-bottom: 12px;
   }
 
   body.calculator-layout #topNav {
