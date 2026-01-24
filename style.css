@@ -1456,6 +1456,13 @@ body.seed-analyzer-page #root a:hover {
   color: var(--mantine-color-anchor, inherit);
 }
 
+body.seed-analyzer-page input[placeholder*="Seed"],
+body.seed-analyzer-page input[aria-label*="Seed"],
+body.seed-analyzer-page input[name*="seed"],
+body.seed-analyzer-page input[id*="seed"] {
+  font-weight: 700;
+}
+
 @media (max-width: 600px) {
   body.seed-analyzer-page {
     --seed-top-offset: 84px;

@@ -99,14 +99,10 @@
           <div class="seed-display">
             <code id="generated-seed">ABCD1234</code>
             <div class="seed-actions">
-              <div class="seed-actions-row">
-                <button class="copyBtn"
-                  onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
-                <button class="resetBtn" onclick="generateSeed()">Generate New</button>
-              </div>
-              <div class="seed-actions-row">
-                <button class="resetBtn analyzeSeedBtn" onclick="analyzeSeedFromGenerator()">Analyze Seed</button>
-              </div>
+              <button class="copyBtn"
+                onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
+              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+              <button class="resetBtn analyzeSeedBtn" onclick="analyzeSeedFromGenerator()">Analyze Seed</button>
             </div>
           </div>
         </div>
@@ -566,17 +562,24 @@
     }
 
     .seed-actions {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, max-content));
       gap: 10px;
+      justify-content: center;
       align-items: center;
     }
 
-    .seed-actions-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
+    .seed-actions .analyzeSeedBtn {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+
+    .seed-actions .copyBtn {
+      min-width: 120px;
+      text-align: center;
+      font-size: 18px;
+      padding: 12px 24px;
+      border-radius: 12px;
     }
 
     .seed-display code {
