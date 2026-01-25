@@ -60,7 +60,7 @@
     <h1>Seed Analyzer Admin</h1>
 
     <section>
-      <h2>Search Payments</h2>
+      <h2>Search Memberships</h2>
       <label for="searchEmail">Email</label>
       <input id="searchEmail" type="email" placeholder="user@example.com">
       <button id="searchBtn" type="button">Search</button>
@@ -68,14 +68,14 @@
     </section>
 
     <section>
-      <h2>Add Manual Payment (USDT)</h2>
+      <h2>Add Manual Membership (USDT)</h2>
       <label for="paymentEmail">Email</label>
       <input id="paymentEmail" type="email" placeholder="user@example.com">
       <label for="paymentPlan">Plan</label>
       <select id="paymentPlan">
-        <option value="monthly">Monthly</option>
-        <option value="yearly">Yearly</option>
-        <option value="lifetime">Lifetime</option>
+        <option value="seed-monthly">Seed Monthly</option>
+        <option value="seed-yearly">Seed Yearly</option>
+        <option value="seed-lifetime">Seed Lifetime</option>
       </select>
       <label for="paymentAmount">Amount (USD)</label>
       <input id="paymentAmount" type="number" step="0.01" value="5">

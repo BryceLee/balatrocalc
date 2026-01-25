@@ -33,39 +33,33 @@ export async function onRequestPost({ request, env }) {
   const now = nowIso();
 
   const existing = await env.DB.prepare(
-    'SELECT id, plan FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+    'SELECT id, email, plan, feature_key FROM subscriptions WHERE subscription_id = ? LIMIT 1'
   ).bind(subscriptionId).first();
 
-  const plan = existing?.plan || (data.plan_id === env.PAYPAL_PLAN_YEARLY ? 'yearly' : 'monthly');
+  const plan = existing?.plan;
+  const featureKey = existing?.feature_key;
+  const storedEmail = existing?.email;
+  const resolvedEmail = normalizeEmail(storedEmail || email);
 
-  if (existing) {
-    await env.DB.prepare(
-      'UPDATE subscriptions SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ? WHERE subscription_id = ?'
-    ).bind(
-      status,
-      now,
-      data.billing_info?.next_billing_time || null,
-      data.billing_info?.last_payment?.time || null,
-      subscriptionId
-    ).run();
-  } else {
-    await env.DB.prepare(
-      'INSERT INTO subscriptions (email, plan, provider, subscription_id, status, created_at, updated_at, next_billing_at, last_payment_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    ).bind(
-      email,
-      plan,
-      'paypal',
-      subscriptionId,
-      status,
-      now,
-      now,
-      data.billing_info?.next_billing_time || null,
-      data.billing_info?.last_payment?.time || null
-    ).run();
+  if (!existing) {
+    return errorResponse('Subscription not found', 404);
+  }
+  if (!plan || !featureKey) {
+    return errorResponse('Subscription plan missing', 500);
   }
 
+  await env.DB.prepare(
+    'UPDATE subscriptions SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ? WHERE subscription_id = ?'
+  ).bind(
+    status,
+    now,
+    data.billing_info?.next_billing_time || null,
+    data.billing_info?.last_payment?.time || null,
+    subscriptionId
+  ).run();
+
   if (status !== 'ACTIVE') {
-    return jsonResponse({ active: false, plan, email, expiresAt: null });
+    return jsonResponse({ active: false, plan, email: resolvedEmail, expiresAt: null });
   }
 
   const config = planConfig(plan);
@@ -74,15 +68,16 @@ export async function onRequestPost({ request, env }) {
   }
 
   const existingPayment = await env.DB.prepare(
-    'SELECT id FROM payments WHERE txn_id = ? AND provider = ? LIMIT 1'
+    'SELECT id FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
   ).bind(subscriptionId, 'paypal').first();
 
   const expiresAt = addDaysIso(config.days);
   if (!existingPayment) {
     await env.DB.prepare(
-      'INSERT INTO payments (email, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
-      email,
+      resolvedEmail,
+      featureKey || config.feature,
       plan,
       config.amount,
       'USD',
@@ -96,7 +91,7 @@ export async function onRequestPost({ request, env }) {
 
   return jsonResponse({
     active: true,
-    email,
+    email: resolvedEmail,
     plan,
     expiresAt
   });

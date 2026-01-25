@@ -39,7 +39,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const subscription = await env.DB.prepare(
-      'SELECT email, plan FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+      'SELECT email, plan, feature_key FROM subscriptions WHERE subscription_id = ? LIMIT 1'
     ).bind(subscriptionId).first();
 
     if (!subscription) {
@@ -52,14 +52,15 @@ export async function onRequestPost({ request, env }) {
     }
 
     const existingPayment = await env.DB.prepare(
-      'SELECT id FROM payments WHERE txn_id = ? LIMIT 1'
+      'SELECT id FROM memberships WHERE txn_id = ? LIMIT 1'
     ).bind(resource.id).first();
 
     if (!existingPayment) {
       await env.DB.prepare(
-        'INSERT INTO payments (email, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
         subscription.email,
+        subscription.feature_key || config.feature,
         subscription.plan,
         config.amount,
         'USD',

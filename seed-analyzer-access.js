@@ -1,17 +1,19 @@
 (function () {
-  const FEATURE_KEY = 'seed_analyzer';
+  const FEATURE_KEY = 'seed';
   const FREE_DAILY_LIMIT = 3;
   const STORAGE_KEYS = {
     deviceId: 'bc_device_id',
     usage: 'bc_usage_daily',
     paidEmail: 'bc_paid_email',
-    paidUntil: 'bc_paid_until',
-    paidPlan: 'bc_paid_plan'
+    paidFeatures: 'bc_paid_features'
   };
   const PLAN_LABELS = {
     monthly: 'Monthly',
     yearly: 'Yearly',
     lifetime: 'Lifetime'
+  };
+  const FEATURE_LABELS = {
+    seed: 'Seed'
   };
 
   let quotaRemainingEl;
@@ -106,27 +108,63 @@
     saveUsage(data);
   }
 
-  function getPaidInfo() {
-    const plan = localStorage.getItem(STORAGE_KEYS.paidPlan);
-    const email = localStorage.getItem(STORAGE_KEYS.paidEmail);
-    if (!plan) return { active: false };
-    if (plan === 'lifetime') {
-      return { active: true, plan, email, expiresAt: null };
+  function loadPaidFeatures() {
+    const raw = localStorage.getItem(STORAGE_KEYS.paidFeatures);
+    if (!raw) return {};
+    try {
+      return JSON.parse(raw) || {};
+    } catch {
+      return {};
     }
-    const until = localStorage.getItem(STORAGE_KEYS.paidUntil);
-    if (!until) return { active: false };
-    const active = new Date(until).getTime() > Date.now();
-    return { active, plan, email, expiresAt: until };
+  }
+
+  function savePaidFeatures(data) {
+    localStorage.setItem(STORAGE_KEYS.paidFeatures, JSON.stringify(data));
+  }
+
+  function parsePlan(plan) {
+    const parts = String(plan || '').split('-');
+    if (parts.length !== 2) return null;
+    const [feature, period] = parts;
+    if (!feature || !period) return null;
+    return { feature, period };
+  }
+
+  function formatPlanLabel(plan) {
+    const parsed = parsePlan(plan);
+    if (!parsed) return plan || '';
+    const featureLabel = FEATURE_LABELS[parsed.feature] || parsed.feature;
+    const periodLabel = PLAN_LABELS[parsed.period] || parsed.period;
+    return `${featureLabel} ${periodLabel}`;
+  }
+
+  function getPaidInfo() {
+    const email = localStorage.getItem(STORAGE_KEYS.paidEmail);
+    const data = loadPaidFeatures();
+    const entry = data[FEATURE_KEY];
+    if (!entry || !entry.plan) return { active: false };
+
+    const parsed = parsePlan(entry.plan);
+    if (!parsed || parsed.feature !== FEATURE_KEY) {
+      return { active: false };
+    }
+
+    if (parsed.period === 'lifetime') {
+      return { active: true, plan: entry.plan, email, expiresAt: null };
+    }
+    if (!entry.expiresAt) return { active: false };
+    const active = new Date(entry.expiresAt).getTime() > Date.now();
+    return { active, plan: entry.plan, email, expiresAt: entry.expiresAt };
   }
 
   function setPaidInfo(email, plan, expiresAt) {
     localStorage.setItem(STORAGE_KEYS.paidEmail, email);
-    localStorage.setItem(STORAGE_KEYS.paidPlan, plan);
-    if (expiresAt) {
-      localStorage.setItem(STORAGE_KEYS.paidUntil, expiresAt);
-    } else {
-      localStorage.removeItem(STORAGE_KEYS.paidUntil);
-    }
+    const data = loadPaidFeatures();
+    data[FEATURE_KEY] = {
+      plan,
+      expiresAt: expiresAt || null
+    };
+    savePaidFeatures(data);
   }
 
   function formatDate(iso) {
@@ -141,8 +179,9 @@
     if (paid.active) {
       quotaRemainingEl.textContent = 'Unlimited';
       quotaTotalEl.textContent = '';
-      quotaPlanEl.textContent = paid.plan ? `Plan: ${PLAN_LABELS[paid.plan] || paid.plan}` : '';
-      if (paid.plan === 'lifetime') {
+      quotaPlanEl.textContent = paid.plan ? `Plan: ${formatPlanLabel(paid.plan)}` : '';
+      const parsed = parsePlan(paid.plan);
+      if (parsed && parsed.period === 'lifetime') {
         quotaResetEl.textContent = 'Lifetime access';
       } else if (paid.expiresAt) {
         quotaResetEl.textContent = `Valid until ${formatDate(paid.expiresAt)} UTC`;
@@ -178,7 +217,7 @@
 
   function getSelectedPlan() {
     const selected = document.querySelector('input[name="seedPlan"]:checked');
-    return selected ? selected.value : 'monthly';
+    return selected ? selected.value : `${FEATURE_KEY}-monthly`;
   }
 
   function normalizeEmail(value) {
@@ -220,12 +259,12 @@
       return;
     }
     try {
-      const data = await getJson(`/api/subscription?email=${encodeURIComponent(email)}`);
+      const data = await getJson(`/api/subscription?email=${encodeURIComponent(email)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
       if (!data.active) {
         setStatus('No active subscription found.', true);
         return;
       }
-      setPaidInfo(email, data.plan || 'monthly', data.expiresAt || null);
+      setPaidInfo(email, data.plan || `${FEATURE_KEY}-monthly`, data.expiresAt || null);
       updateQuotaUI();
       setStatus('Subscription active. Access unlocked on this device.', false);
     } catch (error) {
@@ -241,7 +280,12 @@
       return;
     }
     const plan = getSelectedPlan();
-    const endpoint = plan === 'lifetime' ? '/api/paypal/create-order' : '/api/paypal/create-subscription';
+    const parsed = parsePlan(plan);
+    if (!parsed) {
+      setStatus('Invalid plan selected.', true);
+      return;
+    }
+    const endpoint = parsed.period === 'lifetime' ? '/api/paypal/create-order' : '/api/paypal/create-subscription';
     try {
       setStatus('Redirecting to PayPal...', false);
       const data = await postJson(endpoint, { email, plan });
@@ -272,9 +316,15 @@
       cleanupPaypalParams(params);
       return;
     }
+    const parsed = parsePlan(plan);
+    if (!parsed) {
+      setStatus('Invalid plan from PayPal.', true);
+      cleanupPaypalParams(params);
+      return;
+    }
     setStatus('Finalizing PayPal...', false);
     try {
-      if (plan === 'lifetime') {
+      if (parsed.period === 'lifetime') {
         const token = params.get('token');
         if (!token) throw new Error('Missing PayPal order token.');
         const data = await postJson('/api/paypal/capture', { orderId: token });

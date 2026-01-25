@@ -16,15 +16,15 @@ export async function onRequestPost({ request, env }) {
   }
 
   const plan = body.plan;
-  if (plan !== 'monthly' && plan !== 'yearly') {
-    return errorResponse('Invalid subscription plan');
-  }
-
   const email = normalizeEmail(body.email);
   const config = planConfig(plan);
   if (!config) return errorResponse('Invalid plan');
+  if (config.period !== 'monthly' && config.period !== 'yearly') {
+    return errorResponse('Invalid subscription plan');
+  }
 
-  const planId = plan === 'monthly' ? env.PAYPAL_PLAN_MONTHLY : env.PAYPAL_PLAN_YEARLY;
+  const planIdKey = `PAYPAL_PLAN_${config.feature.toUpperCase()}_${config.period.toUpperCase()}`;
+  const planId = env[planIdKey];
   if (!planId) {
     return errorResponse('Missing PayPal plan id');
   }
@@ -62,9 +62,10 @@ export async function onRequestPost({ request, env }) {
 
   const now = nowIso();
   await env.DB.prepare(
-    'INSERT INTO subscriptions (email, plan, provider, subscription_id, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO subscriptions (email, feature_key, plan, provider, subscription_id, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
   ).bind(
     email,
+    config.feature,
     plan,
     'paypal',
     data.id,

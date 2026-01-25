@@ -84,7 +84,7 @@
     }
     try {
       await postJson('/api/admin/revoke', { email });
-      revokeStatus.textContent = 'Revoked active payments';
+      revokeStatus.textContent = 'Revoked active memberships';
     } catch (error) {
       revokeStatus.textContent = error.message || 'Revoke failed';
     }

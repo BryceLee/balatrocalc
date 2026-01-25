@@ -17,12 +17,13 @@ export async function onRequestPost({ request, env }) {
   }
 
   const txnId = body.txn_id || body.txnId || `manual_${Date.now()}`;
-  const expiresAt = plan === 'lifetime' ? null : addDaysIso(config.days);
+  const expiresAt = config.period === 'lifetime' ? null : addDaysIso(config.days);
 
   await env.DB.prepare(
-    'INSERT INTO payments (email, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
   ).bind(
     email,
+    config.feature,
     plan,
     amount,
     'USD',
