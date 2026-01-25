@@ -1474,3 +1474,179 @@ body.seed-analyzer-page input[id*="seed"] {
     --seed-top-offset: 76px;
   }
 }
+
+/* Seed analyzer quota bar and paywall */
+body.seed-analyzer-page #seedQuotaBar {
+  position: sticky;
+  top: calc(var(--seed-top-offset) + 8px);
+  z-index: 3;
+  width: min(960px, calc(100% - 24px));
+  margin: 0 auto 12px;
+  padding: 0.75em 1em;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+body.seed-analyzer-page .seedQuotaTitle {
+  font-size: 0.95em;
+  opacity: 0.9;
+  margin-bottom: 0.25em;
+}
+
+body.seed-analyzer-page .seedQuotaMeta {
+  font-size: 1.1em;
+  font-weight: 700;
+  display: flex;
+  gap: 0.25em;
+  align-items: baseline;
+}
+
+body.seed-analyzer-page .seedQuotaPlan {
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin-left: 0.5em;
+}
+
+body.seed-analyzer-page .seedQuotaReset {
+  font-size: 0.8em;
+  opacity: 0.75;
+}
+
+body.seed-analyzer-page .seedQuotaBtn {
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  padding: 0.5em 0.9em;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+body.seed-analyzer-page .seedQuotaBtn:hover {
+  background: rgba(255, 215, 0, 0.25);
+}
+
+body.seed-analyzer-page #seedPaywall {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+body.seed-analyzer-page #seedPaywall.active {
+  display: flex;
+}
+
+body.seed-analyzer-page .seedPaywallContent {
+  width: min(540px, 92vw);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  border-radius: 16px;
+  padding: 1.5em;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+body.seed-analyzer-page .seedPaywallClose {
+  position: absolute;
+  top: 0.75em;
+  right: 0.75em;
+  border: none;
+  background: transparent;
+  color: #ffd700;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+body.seed-analyzer-page .seedPaywallPlans {
+  display: grid;
+  gap: 0.5em;
+  margin: 1em 0;
+}
+
+body.seed-analyzer-page .seedPaywallNote {
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin: 0.25em 0 0.75em;
+}
+
+body.seed-analyzer-page .seedPaywallPlan {
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 0.75em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75em;
+  cursor: pointer;
+}
+
+body.seed-analyzer-page .seedPaywallPlan input {
+  margin-right: 0.5em;
+}
+
+body.seed-analyzer-page .seedPaywallPlanPrice {
+  font-weight: 700;
+}
+
+body.seed-analyzer-page .seedPaywallField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  margin: 0.75em 0;
+}
+
+body.seed-analyzer-page .seedPaywallField input {
+  padding: 0.5em 0.6em;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffd700;
+}
+
+body.seed-analyzer-page .seedPaywallPrimary {
+  width: 100%;
+  border: 1px solid rgba(255, 215, 0, 0.7);
+  background: rgba(255, 215, 0, 0.25);
+  color: #ffd700;
+  padding: 0.65em 1em;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+body.seed-analyzer-page .seedPaywallPrimary:hover {
+  background: rgba(255, 215, 0, 0.35);
+}
+
+body.seed-analyzer-page .seedPaywallDivider {
+  margin: 1em 0 0.5em;
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+body.seed-analyzer-page .seedPaywallStatus {
+  margin-top: 0.75em;
+  font-size: 0.85em;
+  min-height: 1.2em;
+}
+
+body.seed-analyzer-page .seedPaywallStatus.error {
+  color: #ff7a7a;
+}
+
+@media (max-width: 720px) {
+  body.seed-analyzer-page #seedQuotaBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -42,7 +42,50 @@
   </nav>
 
   <div id="mainContainer">
+    <div id="seedQuotaBar">
+      <div>
+        <div class="seedQuotaTitle">Seed Analyzer Access</div>
+        <div class="seedQuotaMeta">
+          <span id="seedQuotaRemaining">3</span>
+          <span id="seedQuotaTotal">/3</span>
+          <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+        </div>
+        <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+      </div>
+      <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Manage Access</button>
+    </div>
     <div id="root"></div>
+  </div>
+
+  <div id="seedPaywall">
+    <div class="seedPaywallContent" role="dialog" aria-modal="true" aria-labelledby="seedPaywallTitle">
+      <button id="seedPaywallClose" class="seedPaywallClose" type="button" aria-label="Close">&times;</button>
+      <h2 id="seedPaywallTitle">Unlimited Seed Analysis</h2>
+      <p>Subscribe for unlimited access across all premium features.</p>
+      <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime.</p>
+      <div class="seedPaywallPlans">
+        <label class="seedPaywallPlan">
+          <span><input type="radio" name="seedPlan" value="monthly" checked>Monthly</span>
+          <span class="seedPaywallPlanPrice">$5 / 30 days</span>
+        </label>
+        <label class="seedPaywallPlan">
+          <span><input type="radio" name="seedPlan" value="yearly">Yearly</span>
+          <span class="seedPaywallPlanPrice">$39 / 365 days</span>
+        </label>
+        <label class="seedPaywallPlan">
+          <span><input type="radio" name="seedPlan" value="lifetime">Lifetime</span>
+          <span class="seedPaywallPlanPrice">$100 one-time</span>
+        </label>
+      </div>
+      <div class="seedPaywallField">
+        <label for="seedPaywallEmail">Email (used for subscription lookup)</label>
+        <input id="seedPaywallEmail" type="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <button id="seedPaywallPay" class="seedPaywallPrimary" type="button">Pay with PayPal</button>
+      <div class="seedPaywallDivider">Already paid?</div>
+      <button id="seedPaywallCheck" class="seedPaywallPrimary" type="button">Check subscription</button>
+      <div id="seedPaywallStatus" class="seedPaywallStatus"></div>
+    </div>
   </div>
 
   <!-- Balatro Background Shader -->
@@ -111,6 +154,7 @@
 
   <script type="module" crossorigin src="/blueprint-dist/assets/index.js"></script>
   <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="seed-analyzer-access.js"></script>
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search);
