@@ -61,6 +61,14 @@
     <div class="seedPaywallContent" role="dialog" aria-modal="true" aria-labelledby="seedPaywallTitle">
       <button id="seedPaywallClose" class="seedPaywallClose" type="button" aria-label="Close">&times;</button>
       <h2 id="seedPaywallTitle">Unlimited Seed Analysis</h2>
+      <div id="seedPaywallMember" class="seedPaywallMember" aria-live="polite">
+        <div class="seedPaywallMemberBadge">Seed Pro</div>
+        <div class="seedPaywallMemberMeta">
+          <div id="seedPaywallMemberPlan" class="seedPaywallMemberPlan"></div>
+          <div id="seedPaywallMemberExpires" class="seedPaywallMemberExpires"></div>
+        </div>
+        <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
+      </div>
       <p>Subscribe for unlimited access to Seed Analyzer.</p>
       <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime.</p>
       <div class="seedPaywallPlans">
@@ -87,6 +95,7 @@
       <div id="seedPaywallStatus" class="seedPaywallStatus"></div>
     </div>
   </div>
+  <div id="seedToast" class="seedToast" role="status" aria-live="polite"></div>
 
   <!-- Balatro Background Shader -->
   <script id="vertex-shader" type="x-shader/x-vertex">

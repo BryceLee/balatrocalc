@@ -1579,6 +1579,42 @@ body.seed-analyzer-page .seedPaywallNote {
   margin: 0.25em 0 0.75em;
 }
 
+body.seed-analyzer-page .seedPaywallMember {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0.75em 0 0.5em;
+  padding: 0.75em 1em;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 12px;
+  background: rgba(255, 215, 0, 0.08);
+}
+
+body.seed-analyzer-page .seedPaywallMember.active {
+  display: flex;
+}
+
+body.seed-analyzer-page .seedPaywallMemberBadge {
+  font-weight: 700;
+  color: #ffd700;
+}
+
+body.seed-analyzer-page .seedPaywallMemberMeta {
+  flex: 1;
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+body.seed-analyzer-page .seedPaywallMemberPlan {
+  font-weight: 700;
+}
+
+body.seed-analyzer-page .seedPaywallMemberExpires {
+  margin-top: 0.2em;
+  opacity: 0.8;
+}
+
 body.seed-analyzer-page .seedPaywallPlan {
   border: 1px solid rgba(255, 215, 0, 0.3);
   border-radius: 12px;
@@ -1628,6 +1664,20 @@ body.seed-analyzer-page .seedPaywallPrimary:hover {
   background: rgba(255, 215, 0, 0.35);
 }
 
+body.seed-analyzer-page .seedPaywallSecondary {
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffd700;
+  padding: 0.4em 0.75em;
+  border-radius: 999px;
+  font-size: 0.85em;
+  cursor: pointer;
+}
+
+body.seed-analyzer-page .seedPaywallSecondary:hover {
+  background: rgba(255, 215, 0, 0.2);
+}
+
 body.seed-analyzer-page .seedPaywallDivider {
   margin: 1em 0 0.5em;
   font-size: 0.85em;
@@ -1636,12 +1686,38 @@ body.seed-analyzer-page .seedPaywallDivider {
 
 body.seed-analyzer-page .seedPaywallStatus {
   margin-top: 0.75em;
-  font-size: 0.85em;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #ffe37a;
   min-height: 1.2em;
+}
+
+body.seed-analyzer-page .seedPaywallStatus.success {
+  color: #9af5aa;
 }
 
 body.seed-analyzer-page .seedPaywallStatus.error {
   color: #ff7a7a;
+}
+
+body.seed-analyzer-page .seedToast {
+  position: fixed;
+  right: 1.5em;
+  top: 1.5em;
+  max-width: min(360px, 90vw);
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  color: #ffd700;
+  padding: 0.75em 1em;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  font-weight: 600;
+  display: none;
+  z-index: 1000;
+}
+
+body.seed-analyzer-page .seedToast.active {
+  display: block;
 }
 
 @media (max-width: 720px) {
