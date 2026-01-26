@@ -221,7 +221,7 @@
     quotaTotalEl.textContent = `/${FREE_DAILY_LIMIT}`;
     quotaPlanEl.textContent = '';
     quotaResetEl.textContent = 'Resets daily at 00:00 UTC';
-    manageBtn.textContent = 'Manage Access';
+    manageBtn.textContent = 'Upgrade Pro';
     setUserEmail(email);
     updatePaywallMembership(paid);
   }
