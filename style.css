@@ -1480,8 +1480,8 @@ body.seed-analyzer-page #seedQuotaBar {
   position: sticky;
   top: calc(var(--seed-top-offset) + 8px);
   z-index: 3;
-  width: min(520px, calc(100% - 24px));
-  margin: 0 auto 12px 24px;
+  width: min(480px, 50vw);
+  margin: 0 auto 12px 20px;
   padding: 0.75em 1em;
   background: rgba(0, 0, 0, 0.55);
   border: 1px solid rgba(255, 215, 0, 0.3);
