@@ -71,6 +71,7 @@
     setupPaywallActions();
     setupAnalyzeIntercept();
     handlePaypalReturn();
+    ensureQuotaBarPlacement();
 
     return true;
   }
@@ -471,6 +472,76 @@
       paywallEmail.value = '';
       showPaywall();
     });
+  }
+
+  function attachQuotaBarToHeaderRow() {
+    const quotaBar = document.getElementById('seedQuotaBar');
+    const root = document.getElementById('root');
+    if (!quotaBar || !root) return false;
+    const searchInput = root.querySelector('input[placeholder*="Search"], input[aria-label*="Search"]');
+    const candidates = root.querySelectorAll('h1, h2, [role="heading"]');
+    let title = null;
+    for (const candidate of candidates) {
+      const text = (candidate.textContent || '').trim().toLowerCase();
+      if (text.includes('balatro seed analyzer')) {
+        title = candidate;
+        break;
+      }
+    }
+    if (!title || !searchInput) return false;
+
+    let host = searchInput.parentElement;
+    while (host && host !== root && !host.contains(title)) {
+      host = host.parentElement;
+    }
+    if (!host || host === root) return false;
+    if (title.parentElement && title.parentElement === host) {
+      title.insertAdjacentElement('afterend', quotaBar);
+    } else {
+      host.insertBefore(quotaBar, searchInput.closest('div') || searchInput);
+    }
+    host.classList.add('seedQuotaBarHost');
+    quotaBar.classList.add('seedQuotaBar--inline');
+    return true;
+  }
+
+  function attachQuotaBarToTabs() {
+    const quotaBar = document.getElementById('seedQuotaBar');
+    const root = document.getElementById('root');
+    if (!quotaBar || !root) return false;
+    const tabList = root.querySelector('[role="tablist"]');
+    if (!tabList) return false;
+    const container = tabList.parentElement;
+    if (!container || container.contains(quotaBar)) {
+      quotaBar.classList.remove('seedQuotaBar--inline');
+      return true;
+    }
+    container.insertBefore(quotaBar, tabList);
+    quotaBar.classList.remove('seedQuotaBar--inline');
+    return true;
+  }
+
+  function ensureQuotaBarPlacement() {
+    const navRow = document.getElementById('seedNavRow');
+    const quotaBar = document.getElementById('seedQuotaBar');
+    if (navRow && quotaBar) {
+      const topNav = document.getElementById('topNav');
+      if (!navRow.contains(quotaBar)) {
+        navRow.insertBefore(quotaBar, topNav || null);
+      }
+      quotaBar.classList.remove('seedQuotaBar--inline');
+      return;
+    }
+    if (attachQuotaBarToHeaderRow()) return;
+    if (attachQuotaBarToTabs()) return;
+    const root = document.getElementById('root');
+    if (!root) return;
+    const observer = new MutationObserver(() => {
+      if (attachQuotaBarToHeaderRow() || attachQuotaBarToTabs()) {
+        observer.disconnect();
+      }
+    });
+    observer.observe(root, { childList: true, subtree: true });
   }
 
   function isAnalyzeButton(button) {

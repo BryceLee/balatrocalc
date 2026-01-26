@@ -1406,10 +1406,20 @@ body.seed-analyzer-page #titleBar {
   margin: 0;
 }
 
-body.seed-analyzer-page #topNav {
+body.seed-analyzer-page #seedNavRow {
   position: fixed;
   top: 20px;
   right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 4;
+}
+
+body.seed-analyzer-page #topNav {
+  position: static;
+  top: auto;
+  right: auto;
 }
 
 body.seed-analyzer-page #root {
@@ -1491,6 +1501,30 @@ body.seed-analyzer-page #seedQuotaBar {
   align-items: center;
   justify-content: space-between;
   gap: 1em;
+}
+
+body.seed-analyzer-page #seedNavRow #seedQuotaBar {
+  position: static;
+  width: min(420px, 45vw);
+  margin: 0;
+  top: auto;
+}
+
+body.seed-analyzer-page #seedQuotaBar.seedQuotaBar--inline {
+  position: static;
+  width: min(420px, 42vw);
+  margin: 0 0 0 16px;
+  padding: 0.4em 0.75em;
+  top: auto;
+  align-self: center;
+}
+
+body.seed-analyzer-page .seedQuotaBarHost {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 body.seed-analyzer-page .seedQuotaInfo {

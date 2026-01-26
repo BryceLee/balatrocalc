@@ -33,31 +33,33 @@
     <h1>Balatro Seed Analyzer</h1>
     <span class="subtitle">seed routing & analysis</span>
   </div>
-  <div id="seedQuotaBar">
-    <div class="seedQuotaInfo">
-      <div class="seedQuotaTitle">Seed Analyzer Access</div>
-      <div class="seedQuotaMeta">
-        <span id="seedQuotaRemaining">100</span>
-        <span id="seedQuotaTotal">/100</span>
-        <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+  <div id="seedNavRow">
+    <div id="seedQuotaBar">
+      <div class="seedQuotaInfo">
+        <div class="seedQuotaTitle">Seed Analyzer Access</div>
+        <div class="seedQuotaMeta">
+          <span id="seedQuotaRemaining">100</span>
+          <span id="seedQuotaTotal">/100</span>
+          <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+        </div>
+        <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+        <div id="seedQuotaUser" class="seedQuotaUser">
+          <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
+          <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
+        </div>
       </div>
-      <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
-      <div id="seedQuotaUser" class="seedQuotaUser">
-        <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
-        <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
+      <div class="seedQuotaActions">
+        <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Upgrade Pro</button>
       </div>
     </div>
-    <div class="seedQuotaActions">
-      <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Upgrade Pro</button>
-    </div>
+    <nav id="topNav">
+      <a href="/" class="nav-link">calculator</a>
+      <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
+      <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
+      <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+    </nav>
   </div>
-  <nav id="topNav">
-    <a href="/" class="nav-link">calculator</a>
-    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
-    <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
-    <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
-    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
-  </nav>
 
   <div id="mainContainer">
     <div id="root"></div>
