@@ -1,4 +1,5 @@
 (function () {
+
   const FEATURE_KEY = 'seed';
   const FREE_DAILY_LIMIT = 100;
   const STORAGE_KEYS = {
