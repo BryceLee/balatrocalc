@@ -15,14 +15,13 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Missing email or plan');
   }
 
-  const plan = body.plan;
-  if (plan !== 'lifetime') {
-    return errorResponse('Plan not supported for one-time order');
-  }
-
   const email = normalizeEmail(body.email);
+  const plan = body.plan;
   const config = planConfig(plan);
   if (!config) return errorResponse('Invalid plan');
+  if (config.period !== 'lifetime') {
+    return errorResponse('Plan not supported for one-time order');
+  }
 
   const { returnUrl, cancelUrl } = getReturnUrls(request, plan);
   const token = await getPaypalAccessToken(env);
@@ -62,8 +61,8 @@ export async function onRequestPost({ request, env }) {
   }
 
   await env.DB.prepare(
-    'INSERT INTO orders (email, order_id, plan, status, created_at) VALUES (?, ?, ?, ?, ?)'
-  ).bind(email, data.id, plan, data.status || 'CREATED', nowIso()).run();
+    'INSERT INTO orders (email, feature_key, order_id, plan, status, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+  ).bind(email, config.feature, data.id, plan, data.status || 'CREATED', nowIso()).run();
 
   return jsonResponse({ approvalUrl, orderId: data.id });
 }

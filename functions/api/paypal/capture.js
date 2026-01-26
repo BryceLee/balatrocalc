@@ -29,16 +29,23 @@ export async function onRequestPost({ request, env }) {
   }
 
   const order = await env.DB.prepare(
-    'SELECT email, plan FROM orders WHERE order_id = ? LIMIT 1'
+    'SELECT email, plan, feature_key FROM orders WHERE order_id = ? LIMIT 1'
   ).bind(orderId).first();
 
+  if (!order) {
+    return errorResponse('Order not found', 404);
+  }
+
   const email = normalizeEmail(
-    order?.email || data.purchase_units?.[0]?.custom_id || ''
+    order.email || data.purchase_units?.[0]?.custom_id || ''
   );
-  const plan = order?.plan || 'lifetime';
+  const plan = order.plan;
   const config = planConfig(plan);
-  if (!email || !config) {
-    return errorResponse('Missing email or plan for order', 500);
+  if (!email) {
+    return errorResponse('Missing email for order', 500);
+  }
+  if (!config) {
+    return errorResponse('Invalid plan for order', 500);
   }
 
   await env.DB.prepare(
@@ -46,14 +53,15 @@ export async function onRequestPost({ request, env }) {
   ).bind(data.status || 'COMPLETED', orderId).run();
 
   const existingPayment = await env.DB.prepare(
-    'SELECT id FROM payments WHERE txn_id = ? AND provider = ? LIMIT 1'
+    'SELECT id FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
   ).bind(orderId, 'paypal').first();
 
   if (!existingPayment) {
     await env.DB.prepare(
-      'INSERT INTO payments (email, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
       email,
+      order?.feature_key || config.feature,
       plan,
       config.amount,
       'USD',

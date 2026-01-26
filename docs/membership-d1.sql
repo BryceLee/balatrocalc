@@ -1,6 +1,7 @@
-CREATE TABLE IF NOT EXISTS payments (
+CREATE TABLE IF NOT EXISTS memberships (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
+  feature_key TEXT NOT NULL,
   plan TEXT NOT NULL,
   amount INTEGER NOT NULL,
   currency TEXT NOT NULL,
@@ -11,24 +12,25 @@ CREATE TABLE IF NOT EXISTS payments (
   expires_at TEXT
 );
 
-CREATE INDEX IF NOT EXISTS idx_payments_email_created
-  ON payments (email, created_at);
+CREATE INDEX IF NOT EXISTS idx_memberships_email_feature_created
+  ON memberships (email, feature_key, created_at);
 
 CREATE TABLE IF NOT EXISTS orders (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
+  feature_key TEXT NOT NULL,
   order_id TEXT NOT NULL,
   plan TEXT NOT NULL,
   status TEXT NOT NULL,
   created_at TEXT NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_orders_order_id
-  ON orders (order_id);
+
 
 CREATE TABLE IF NOT EXISTS subscriptions (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
+  feature_key TEXT NOT NULL,
   plan TEXT NOT NULL,
   provider TEXT NOT NULL,
   subscription_id TEXT NOT NULL,
@@ -39,8 +41,8 @@ CREATE TABLE IF NOT EXISTS subscriptions (
   next_billing_at TEXT
 );
 
-CREATE INDEX IF NOT EXISTS idx_subscriptions_email
-  ON subscriptions (email);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_email_feature
+  ON subscriptions (email, feature_key);
 
 CREATE INDEX IF NOT EXISTS idx_subscriptions_id
   ON subscriptions (subscription_id);

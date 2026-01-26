@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Seed Paywall UI Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      body.seed-analyzer-page {
+        background: #0f1c16;
+        min-height: 100vh;
+        padding: 1.5em;
+      }
+      .seedTestControls {
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        border-radius: 12px;
+        padding: 1em;
+        background: rgba(0, 0, 0, 0.4);
+        width: min(520px, 90vw);
+        position: fixed;
+        top: 1.5em;
+        left: 1.5em;
+        z-index: 1001;
+      }
+      .seedTestTitle {
+        font-weight: 700;
+        margin-bottom: 0.75em;
+        color: #ffd700;
+      }
+      .seedTestButtons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75em;
+      }
+      .seedTestButtons button {
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        background: rgba(255, 215, 0, 0.18);
+        color: #ffd700;
+        padding: 0.5em 0.9em;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .seedTestButtons button:hover {
+        background: rgba(255, 215, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body class="seed-analyzer-page">
+    <div class="seedTestControls">
+      <div class="seedTestTitle">Seed Paywall UI Test</div>
+      <div class="seedTestButtons">
+        <button id="simulateSuccess" type="button">Simulate Success</button>
+        <button id="simulateCancel" type="button">Simulate Cancel</button>
+        <button id="simulateFailure" type="button">Simulate Failure</button>
+        <button id="simulateReset" type="button">Reset</button>
+      </div>
+    </div>
+
+    <div id="seedQuotaBar">
+      <div>
+        <div class="seedQuotaTitle">Seed Analyzer Access</div>
+        <div class="seedQuotaMeta">
+          <span id="seedQuotaRemaining">100</span>
+          <span id="seedQuotaTotal">/100</span>
+          <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+        </div>
+        <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+      </div>
+      <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Manage Access</button>
+    </div>
+
+    <div id="seedPaywall" class="active">
+      <div class="seedPaywallContent" role="dialog" aria-modal="true" aria-labelledby="seedPaywallTitle">
+        <button id="seedPaywallClose" class="seedPaywallClose" type="button" aria-label="Close">&times;</button>
+        <h2 id="seedPaywallTitle">Unlimited Seed Analysis</h2>
+        <div id="seedPaywallMember" class="seedPaywallMember" aria-live="polite">
+          <div class="seedPaywallMemberBadge">Seed Pro</div>
+          <div class="seedPaywallMemberMeta">
+            <div id="seedPaywallMemberPlan" class="seedPaywallMemberPlan"></div>
+            <div id="seedPaywallMemberExpires" class="seedPaywallMemberExpires"></div>
+          </div>
+          <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
+        </div>
+        <p>Subscribe for unlimited access to Seed Analyzer.</p>
+        <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime.</p>
+        <div class="seedPaywallPlans">
+          <label class="seedPaywallPlan">
+            <span><input type="radio" name="seedPlan" value="seed-monthly" checked>Monthly</span>
+            <span class="seedPaywallPlanPrice">$5 / 30 days</span>
+          </label>
+          <label class="seedPaywallPlan">
+            <span><input type="radio" name="seedPlan" value="seed-yearly">Yearly</span>
+            <span class="seedPaywallPlanPrice">$39 / 365 days</span>
+          </label>
+          <label class="seedPaywallPlan">
+            <span><input type="radio" name="seedPlan" value="seed-lifetime">Lifetime</span>
+            <span class="seedPaywallPlanPrice">$100 one-time</span>
+          </label>
+        </div>
+        <div class="seedPaywallField">
+          <label for="seedPaywallEmail">Email (used for subscription lookup)</label>
+          <input id="seedPaywallEmail" type="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <button id="seedPaywallPay" class="seedPaywallPrimary" type="button">Pay with PayPal</button>
+        <div class="seedPaywallDivider">Already paid?</div>
+        <button id="seedPaywallCheck" class="seedPaywallPrimary" type="button">Check subscription</button>
+        <div id="seedPaywallStatus" class="seedPaywallStatus"></div>
+      </div>
+    </div>
+
+    <div id="seedToast" class="seedToast" role="status" aria-live="polite"></div>
+
+    <script>
+      (function () {
+        const FREE_LIMIT = 100;
+        const paywall = document.getElementById('seedPaywall');
+        const statusEl = document.getElementById('seedPaywallStatus');
+        const toastEl = document.getElementById('seedToast');
+        const memberBox = document.getElementById('seedPaywallMember');
+        const memberPlan = document.getElementById('seedPaywallMemberPlan');
+        const memberExpires = document.getElementById('seedPaywallMemberExpires');
+
+        const quotaRemaining = document.getElementById('seedQuotaRemaining');
+        const quotaTotal = document.getElementById('seedQuotaTotal');
+        const quotaPlan = document.getElementById('seedQuotaPlan');
+        const quotaReset = document.getElementById('seedQuotaReset');
+        const manageBtn = document.getElementById('seedQuotaManage');
+
+        const successBtn = document.getElementById('simulateSuccess');
+        const cancelBtn = document.getElementById('simulateCancel');
+        const failureBtn = document.getElementById('simulateFailure');
+        const resetBtn = document.getElementById('simulateReset');
+
+        let toastTimer;
+
+        function showPaywall() {
+          paywall.classList.add('active');
+        }
+
+        function hidePaywall() {
+          paywall.classList.remove('active');
+        }
+
+        function setStatus(message, type) {
+          statusEl.textContent = message || '';
+          statusEl.classList.toggle('error', type === 'error');
+          statusEl.classList.toggle('success', type === 'success');
+        }
+
+        function showToast(message) {
+          if (!message) return;
+          toastEl.textContent = message;
+          toastEl.classList.add('active');
+          if (toastTimer) clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toastEl.classList.remove('active');
+          }, 2600);
+        }
+
+        function setMemberState(active, planLabel, expiresLabel) {
+          if (active) {
+            memberBox.classList.add('active');
+            memberPlan.textContent = `Seed Pro · ${planLabel}`;
+            memberExpires.textContent = expiresLabel ? `Valid until ${expiresLabel} UTC` : 'Lifetime access';
+
+            quotaRemaining.textContent = 'Unlimited';
+            quotaTotal.textContent = '';
+            quotaPlan.textContent = `Seed Pro · ${planLabel}`;
+            quotaReset.textContent = expiresLabel ? `Valid until ${expiresLabel} UTC` : 'Lifetime access';
+            manageBtn.textContent = 'Manage Pro';
+          } else {
+            memberBox.classList.remove('active');
+            memberPlan.textContent = '';
+            memberExpires.textContent = '';
+            quotaRemaining.textContent = String(FREE_LIMIT);
+            quotaTotal.textContent = `/${FREE_LIMIT}`;
+            quotaPlan.textContent = '';
+            quotaReset.textContent = 'Resets daily at 00:00 UTC';
+            manageBtn.textContent = 'Manage Access';
+          }
+        }
+
+        function simulateSuccess() {
+          setMemberState(true, 'Seed Monthly', '2026-02-25');
+          setStatus('Subscription active. Access unlocked.', 'success');
+          hidePaywall();
+          showToast('Subscription successful. Start using the product.');
+        }
+
+        function simulateCancel() {
+          setMemberState(false);
+          showPaywall();
+          setStatus('Payment canceled.', 'error');
+        }
+
+        function simulateFailure() {
+          setMemberState(false);
+          showPaywall();
+          setStatus('Payment failed. Please try again.', 'error');
+        }
+
+        function resetState() {
+          setMemberState(false);
+          showPaywall();
+          setStatus('', '');
+        }
+
+        successBtn.addEventListener('click', simulateSuccess);
+        cancelBtn.addEventListener('click', simulateCancel);
+        failureBtn.addEventListener('click', simulateFailure);
+        resetBtn.addEventListener('click', resetState);
+
+        resetState();
+      })();
+    </script>
+  </body>
+</html>

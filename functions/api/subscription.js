@@ -3,14 +3,19 @@ import { jsonResponse, errorResponse, normalizeEmail } from './_utils.js';
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const emailParam = url.searchParams.get('email');
+  const featureParam = url.searchParams.get('feature');
   if (!emailParam) {
     return errorResponse('Missing email');
   }
+  if (!featureParam) {
+    return errorResponse('Missing feature');
+  }
   const email = normalizeEmail(emailParam);
+  const feature = String(featureParam).trim().toLowerCase();
 
   const payment = await env.DB.prepare(
-    'SELECT plan, expires_at FROM payments WHERE email = ? AND status = ? ORDER BY created_at DESC LIMIT 1'
-  ).bind(email, 'paid').first();
+    'SELECT plan, expires_at FROM memberships WHERE email = ? AND feature_key = ? AND status = ? ORDER BY created_at DESC LIMIT 1'
+  ).bind(email, feature, 'paid').first();
 
   const now = Date.now();
   if (payment) {
@@ -25,8 +30,8 @@ export async function onRequestGet({ request, env }) {
   }
 
   const subscription = await env.DB.prepare(
-    'SELECT plan, status, next_billing_at FROM subscriptions WHERE email = ? ORDER BY updated_at DESC LIMIT 1'
-  ).bind(email).first();
+    'SELECT plan, status, next_billing_at FROM subscriptions WHERE email = ? AND feature_key = ? ORDER BY updated_at DESC LIMIT 1'
+  ).bind(email, feature).first();
 
   if (subscription && subscription.status === 'ACTIVE') {
     return jsonResponse({
@@ -37,5 +42,5 @@ export async function onRequestGet({ request, env }) {
     });
   }
 
-  return jsonResponse({ active: false, email });
+  return jsonResponse({ active: false, email, feature });
 }

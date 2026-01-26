@@ -39,7 +39,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const subscription = await env.DB.prepare(
-      'SELECT email, plan FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+      'SELECT email, plan, feature_key FROM subscriptions WHERE subscription_id = ? LIMIT 1'
     ).bind(subscriptionId).first();
 
     if (!subscription) {
@@ -51,15 +51,34 @@ export async function onRequestPost({ request, env }) {
       return jsonResponse({ ok: true });
     }
 
+    const targetFeature = subscription.feature_key || config.feature;
     const existingPayment = await env.DB.prepare(
-      'SELECT id FROM payments WHERE txn_id = ? LIMIT 1'
+      'SELECT id FROM memberships WHERE txn_id = ? LIMIT 1'
     ).bind(resource.id).first();
 
     if (!existingPayment) {
+      let expiresAt = null;
+      if (config.days === null) {
+        expiresAt = null;
+      } else {
+        const lifetime = await env.DB.prepare(
+          'SELECT id FROM memberships WHERE email = ? AND feature_key = ? AND status = ? AND expires_at IS NULL LIMIT 1'
+        ).bind(subscription.email, targetFeature, 'paid').first();
+        if (lifetime) {
+          expiresAt = null;
+        } else {
+          const latest = await env.DB.prepare(
+            'SELECT MAX(expires_at) AS expires_at FROM memberships WHERE email = ? AND feature_key = ? AND status = ? AND expires_at IS NOT NULL'
+          ).bind(subscription.email, targetFeature, 'paid').first();
+          const baseTime = latest?.expires_at && latest.expires_at > now ? latest.expires_at : now;
+          expiresAt = addDaysIso(config.days, baseTime);
+        }
+      }
       await env.DB.prepare(
-        'INSERT INTO payments (email, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
         subscription.email,
+        targetFeature,
         subscription.plan,
         config.amount,
         'USD',
@@ -67,7 +86,7 @@ export async function onRequestPost({ request, env }) {
         resource.id,
         'paid',
         now,
-        addDaysIso(config.days)
+        expiresAt
       ).run();
     }
 

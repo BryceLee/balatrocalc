@@ -33,27 +33,35 @@
     <h1>Balatro Seed Analyzer</h1>
     <span class="subtitle">seed routing & analysis</span>
   </div>
-  <nav id="topNav">
-    <a href="/" class="nav-link">calculator</a>
-    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
-    <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
-    <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
-    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
-  </nav>
-
-  <div id="mainContainer">
+  <div id="seedNavRow">
     <div id="seedQuotaBar">
-      <div>
+      <div class="seedQuotaInfo">
         <div class="seedQuotaTitle">Seed Analyzer Access</div>
         <div class="seedQuotaMeta">
-          <span id="seedQuotaRemaining">3</span>
-          <span id="seedQuotaTotal">/3</span>
+          <span id="seedQuotaRemaining">100</span>
+          <span id="seedQuotaTotal">/100</span>
           <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
         </div>
         <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+        <div id="seedQuotaUser" class="seedQuotaUser">
+          <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
+          <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
+        </div>
       </div>
-      <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Manage Access</button>
+      <div class="seedQuotaActions">
+        <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Upgrade Pro</button>
+      </div>
     </div>
+    <nav id="topNav">
+      <a href="/" class="nav-link">calculator</a>
+      <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+      <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
+      <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
+      <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+    </nav>
+  </div>
+
+  <div id="mainContainer">
     <div id="root"></div>
   </div>
 
@@ -61,19 +69,28 @@
     <div class="seedPaywallContent" role="dialog" aria-modal="true" aria-labelledby="seedPaywallTitle">
       <button id="seedPaywallClose" class="seedPaywallClose" type="button" aria-label="Close">&times;</button>
       <h2 id="seedPaywallTitle">Unlimited Seed Analysis</h2>
-      <p>Subscribe for unlimited access across all premium features.</p>
+      <div id="seedPaywallMember" class="seedPaywallMember" aria-live="polite">
+        <div class="seedPaywallMemberBadge">Seed Pro</div>
+        <div class="seedPaywallMemberMeta">
+          <div id="seedPaywallMemberPlan" class="seedPaywallMemberPlan"></div>
+          <div id="seedPaywallMemberEmail" class="seedPaywallMemberEmail"></div>
+          <div id="seedPaywallMemberExpires" class="seedPaywallMemberExpires"></div>
+        </div>
+        <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
+      </div>
+      <p>Subscribe for unlimited access to Seed Analyzer.</p>
       <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime.</p>
       <div class="seedPaywallPlans">
         <label class="seedPaywallPlan">
-          <span><input type="radio" name="seedPlan" value="monthly" checked>Monthly</span>
+          <span><input type="radio" name="seedPlan" value="seed-monthly" checked>Monthly</span>
           <span class="seedPaywallPlanPrice">$5 / 30 days</span>
         </label>
         <label class="seedPaywallPlan">
-          <span><input type="radio" name="seedPlan" value="yearly">Yearly</span>
+          <span><input type="radio" name="seedPlan" value="seed-yearly">Yearly</span>
           <span class="seedPaywallPlanPrice">$39 / 365 days</span>
         </label>
         <label class="seedPaywallPlan">
-          <span><input type="radio" name="seedPlan" value="lifetime">Lifetime</span>
+          <span><input type="radio" name="seedPlan" value="seed-lifetime">Lifetime</span>
           <span class="seedPaywallPlanPrice">$100 one-time</span>
         </label>
       </div>
@@ -87,6 +104,7 @@
       <div id="seedPaywallStatus" class="seedPaywallStatus"></div>
     </div>
   </div>
+  <div id="seedToast" class="seedToast" role="status" aria-live="polite"></div>
 
   <!-- Balatro Background Shader -->
   <script id="vertex-shader" type="x-shader/x-vertex">

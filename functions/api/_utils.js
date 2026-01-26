@@ -17,22 +17,41 @@ export function nowIso() {
   return new Date().toISOString();
 }
 
-export function addDaysIso(days) {
-  const time = Date.now() + days * 24 * 60 * 60 * 1000;
+export function addDaysIso(days, from) {
+  if (days === null || days === undefined) return null;
+  let baseTime = Date.now();
+  if (from) {
+    const fromTime = typeof from === 'number' ? from : new Date(from).getTime();
+    if (!Number.isNaN(fromTime)) {
+      baseTime = fromTime;
+    }
+  }
+  const time = baseTime + days * 24 * 60 * 60 * 1000;
   return new Date(time).toISOString();
 }
 
 export function planConfig(plan) {
-  switch (plan) {
-    case 'monthly':
-      return { amount: 5, days: 30, label: 'monthly' };
-    case 'yearly':
-      return { amount: 39, days: 365, label: 'yearly' };
-    case 'lifetime':
-      return { amount: 100, days: null, label: 'lifetime' };
-    default:
-      return null;
-  }
+  if (!plan) return null;
+  const parts = String(plan).split('-');
+  if (parts.length !== 2) return null;
+  const [feature, period] = parts;
+  const pricing = {
+    seed: {
+      monthly: { amount: 5, days: 30 },
+      yearly: { amount: 39, days: 365 },
+      lifetime: { amount: 100, days: null }
+    }
+  };
+  const featurePricing = pricing[feature];
+  if (!featurePricing || !featurePricing[period]) return null;
+  const entry = featurePricing[period];
+  return {
+    feature,
+    period,
+    amount: entry.amount,
+    days: entry.days,
+    label: plan
+  };
 }
 
 export function paypalApiBase(env) {
