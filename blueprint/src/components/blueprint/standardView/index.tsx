@@ -562,7 +562,7 @@ export function Blueprint({ SeedResults, theme, setTheme }: { SeedResults: SeedR
 
     return (
         <AppShell
-            header={{ height: { base: 60, md: 70, lg: 80 } }}
+            header={{ height: { base: 52, md: 56, lg: 60 } }}
             aside={{
                 width: { base: '100%', md: 400, lg: 550 },
                 breakpoint: 'md',

@@ -1378,7 +1378,7 @@ button.resetBtn[onClick*="resetHand"]:hover {
 
 /* Seed analyzer layout (Blueprint embed) */
 body.seed-analyzer-page {
-  --seed-top-offset: 104px;
+  --seed-top-offset: 72px;
   background-color: transparent;
   color: var(--mantine-color-text, #fff);
   display: block;
@@ -1395,7 +1395,7 @@ body.seed-analyzer-page #mainContainer {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: calc(var(--seed-top-offset) + 12px) 0 0;
+  padding: 12px 0 0;
   display: block;
 }
 
@@ -1475,13 +1475,13 @@ body.seed-analyzer-page input[id*="seed"] {
 
 @media (max-width: 600px) {
   body.seed-analyzer-page {
-    --seed-top-offset: 84px;
+    --seed-top-offset: 64px;
   }
 }
 
 @media (max-width: 480px) {
   body.seed-analyzer-page {
-    --seed-top-offset: 76px;
+    --seed-top-offset: 56px;
   }
 }
 
