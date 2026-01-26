@@ -17,8 +17,16 @@ export function nowIso() {
   return new Date().toISOString();
 }
 
-export function addDaysIso(days) {
-  const time = Date.now() + days * 24 * 60 * 60 * 1000;
+export function addDaysIso(days, from) {
+  if (days === null || days === undefined) return null;
+  let baseTime = Date.now();
+  if (from) {
+    const fromTime = typeof from === 'number' ? from : new Date(from).getTime();
+    if (!Number.isNaN(fromTime)) {
+      baseTime = fromTime;
+    }
+  }
+  const time = baseTime + days * 24 * 60 * 60 * 1000;
   return new Date(time).toISOString();
 }
 

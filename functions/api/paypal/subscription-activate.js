@@ -67,17 +67,34 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Invalid plan', 500);
   }
 
+  const targetFeature = featureKey || config.feature;
   const existingPayment = await env.DB.prepare(
-    'SELECT id FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
+    'SELECT id, expires_at FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
   ).bind(subscriptionId, 'paypal').first();
 
-  const expiresAt = addDaysIso(config.days);
+  let expiresAt = existingPayment?.expires_at || null;
   if (!existingPayment) {
+    if (config.days === null) {
+      expiresAt = null;
+    } else {
+      const lifetime = await env.DB.prepare(
+        'SELECT id FROM memberships WHERE email = ? AND feature_key = ? AND status = ? AND expires_at IS NULL LIMIT 1'
+      ).bind(resolvedEmail, targetFeature, 'paid').first();
+      if (lifetime) {
+        expiresAt = null;
+      } else {
+        const latest = await env.DB.prepare(
+          'SELECT MAX(expires_at) AS expires_at FROM memberships WHERE email = ? AND feature_key = ? AND status = ? AND expires_at IS NOT NULL'
+        ).bind(resolvedEmail, targetFeature, 'paid').first();
+        const baseTime = latest?.expires_at && latest.expires_at > now ? latest.expires_at : now;
+        expiresAt = addDaysIso(config.days, baseTime);
+      }
+    }
     await env.DB.prepare(
       'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
       resolvedEmail,
-      featureKey || config.feature,
+      targetFeature,
       plan,
       config.amount,
       'USD',

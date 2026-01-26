@@ -1,6 +1,6 @@
 (function () {
   const FEATURE_KEY = 'seed';
-  const FREE_DAILY_LIMIT = 3;
+  const FREE_DAILY_LIMIT = 100;
   const STORAGE_KEYS = {
     deviceId: 'bc_device_id',
     usage: 'bc_usage_daily',
@@ -20,6 +20,9 @@
   let quotaTotalEl;
   let quotaPlanEl;
   let quotaResetEl;
+  let quotaUserEl;
+  let quotaEmailEl;
+  let quotaLogoutBtn;
   let manageBtn;
   let paywall;
   let paywallClose;
@@ -29,6 +32,7 @@
   let paywallStatus;
   let paywallMember;
   let paywallMemberPlan;
+  let paywallMemberEmail;
   let paywallMemberExpires;
   let paywallUpgrade;
   let toastEl;
@@ -39,6 +43,9 @@
     quotaTotalEl = document.getElementById('seedQuotaTotal');
     quotaPlanEl = document.getElementById('seedQuotaPlan');
     quotaResetEl = document.getElementById('seedQuotaReset');
+    quotaUserEl = document.getElementById('seedQuotaUser');
+    quotaEmailEl = document.getElementById('seedQuotaEmail');
+    quotaLogoutBtn = document.getElementById('seedQuotaLogout');
     manageBtn = document.getElementById('seedQuotaManage');
     paywall = document.getElementById('seedPaywall');
     paywallClose = document.getElementById('seedPaywallClose');
@@ -48,13 +55,15 @@
     paywallStatus = document.getElementById('seedPaywallStatus');
     paywallMember = document.getElementById('seedPaywallMember');
     paywallMemberPlan = document.getElementById('seedPaywallMemberPlan');
+    paywallMemberEmail = document.getElementById('seedPaywallMemberEmail');
     paywallMemberExpires = document.getElementById('seedPaywallMemberExpires');
     paywallUpgrade = document.getElementById('seedPaywallUpgrade');
     toastEl = document.getElementById('seedToast');
 
     if (!quotaRemainingEl || !quotaTotalEl || !quotaPlanEl || !quotaResetEl) return false;
+    if (!quotaUserEl || !quotaEmailEl || !quotaLogoutBtn) return false;
     if (!manageBtn || !paywall || !paywallClose || !paywallEmail || !paywallPay || !paywallCheck || !paywallStatus) return false;
-    if (!paywallMember || !paywallMemberPlan || !paywallMemberExpires || !paywallUpgrade) return false;
+    if (!paywallMember || !paywallMemberPlan || !paywallMemberEmail || !paywallMemberExpires || !paywallUpgrade) return false;
 
     ensureDeviceId();
     hydrateEmail();
@@ -188,6 +197,7 @@
 
   function updateQuotaUI() {
     const paid = getPaidInfo();
+    const email = paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || '';
     if (paid.active) {
       quotaRemainingEl.textContent = 'Unlimited';
       quotaTotalEl.textContent = '';
@@ -200,7 +210,8 @@
       } else {
         quotaResetEl.textContent = 'Subscription active';
       }
-      manageBtn.textContent = 'Manage Pro';
+      manageBtn.textContent = 'Upgrade / Extend';
+      setUserEmail(email);
       updatePaywallMembership(paid);
       return;
     }
@@ -211,7 +222,18 @@
     quotaPlanEl.textContent = '';
     quotaResetEl.textContent = 'Resets daily at 00:00 UTC';
     manageBtn.textContent = 'Manage Access';
+    setUserEmail(email);
     updatePaywallMembership(paid);
+  }
+
+  function setUserEmail(email) {
+    if (!email) {
+      quotaUserEl.classList.remove('active');
+      quotaEmailEl.textContent = '';
+      return;
+    }
+    quotaEmailEl.textContent = email;
+    quotaUserEl.classList.add('active');
   }
 
   function updatePaywallMembership(paid) {
@@ -219,6 +241,7 @@
     if (!paid || !paid.active) {
       paywallMember.classList.remove('active');
       paywallMemberPlan.textContent = '';
+      paywallMemberEmail.textContent = '';
       paywallMemberExpires.textContent = '';
       return;
     }
@@ -226,6 +249,7 @@
     paywallMemberPlan.textContent = paid.plan
       ? `Seed Pro · ${formatPlanLabel(paid.plan)}`
       : 'Seed Pro';
+    paywallMemberEmail.textContent = paid.email || '';
     const parsed = parsePlan(paid.plan);
     if (parsed && parsed.period === 'lifetime') {
       paywallMemberExpires.textContent = 'Lifetime access';
@@ -268,6 +292,12 @@
     hidePaywall();
     clearStatus();
     showToast(message);
+  }
+
+  function clearPaidInfo() {
+    localStorage.removeItem(STORAGE_KEYS.paidEmail);
+    localStorage.removeItem(STORAGE_KEYS.paidFeatures);
+    updateQuotaUI();
   }
 
   function getSelectedPlan() {
@@ -321,7 +351,7 @@
       }
       setPaidInfo(email, data.plan || `${FEATURE_KEY}-monthly`, data.expiresAt || null);
       updateQuotaUI();
-      closePaywallWithToast('订阅成功，开始使用产品。');
+      closePaywallWithToast('Subscription confirmed. Access unlocked.');
     } catch (error) {
       setStatus(error.message || 'Subscription check failed.', true);
     }
@@ -386,7 +416,7 @@
         if (data.active) {
           setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan, data.expiresAt || null);
           updateQuotaUI();
-          closePaywallWithToast('订阅成功，开始使用产品。');
+          closePaywallWithToast('Subscription confirmed. Access unlocked.');
         } else {
           setStatus('Payment pending. Please retry later.', true);
         }
@@ -397,7 +427,7 @@
         if (data.active) {
           setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan, data.expiresAt || null);
           updateQuotaUI();
-          closePaywallWithToast('订阅成功，开始使用产品。');
+          closePaywallWithToast('Subscription confirmed. Access unlocked.');
         } else {
           setStatus('Subscription not active yet. Please retry later.', true);
         }
@@ -435,6 +465,11 @@
         plans.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       setStatus('Choose a plan to upgrade or extend.', false);
+    });
+    quotaLogoutBtn.addEventListener('click', () => {
+      clearPaidInfo();
+      paywallEmail.value = '';
+      showPaywall();
     });
   }
 

@@ -33,6 +33,24 @@
     <h1>Balatro Seed Analyzer</h1>
     <span class="subtitle">seed routing & analysis</span>
   </div>
+  <div id="seedQuotaBar">
+    <div class="seedQuotaInfo">
+      <div class="seedQuotaTitle">Seed Analyzer Access</div>
+      <div class="seedQuotaMeta">
+        <span id="seedQuotaRemaining">100</span>
+        <span id="seedQuotaTotal">/100</span>
+        <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+      </div>
+      <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+      <div id="seedQuotaUser" class="seedQuotaUser">
+        <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
+        <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Switch account</button>
+      </div>
+    </div>
+    <div class="seedQuotaActions">
+      <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Manage Access</button>
+    </div>
+  </div>
   <nav id="topNav">
     <a href="/" class="nav-link">calculator</a>
     <a href="/balatro-seeds.html" class="nav-link">seeds</a>
@@ -42,18 +60,6 @@
   </nav>
 
   <div id="mainContainer">
-    <div id="seedQuotaBar">
-      <div>
-        <div class="seedQuotaTitle">Seed Analyzer Access</div>
-        <div class="seedQuotaMeta">
-          <span id="seedQuotaRemaining">3</span>
-          <span id="seedQuotaTotal">/3</span>
-          <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
-        </div>
-        <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
-      </div>
-      <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Manage Access</button>
-    </div>
     <div id="root"></div>
   </div>
 
@@ -65,6 +71,7 @@
         <div class="seedPaywallMemberBadge">Seed Pro</div>
         <div class="seedPaywallMemberMeta">
           <div id="seedPaywallMemberPlan" class="seedPaywallMemberPlan"></div>
+          <div id="seedPaywallMemberEmail" class="seedPaywallMemberEmail"></div>
           <div id="seedPaywallMemberExpires" class="seedPaywallMemberExpires"></div>
         </div>
         <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
