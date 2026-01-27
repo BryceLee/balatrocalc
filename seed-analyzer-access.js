@@ -1,7 +1,7 @@
 (function () {
 
   const FEATURE_KEY = 'seed';
-  const FREE_DAILY_LIMIT = 100;
+  const FREE_DAILY_LIMIT = 3;
   const STORAGE_KEYS = {
     deviceId: 'bc_device_id',
     usage: 'bc_usage_daily',
