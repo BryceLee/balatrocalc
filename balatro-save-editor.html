@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
+    crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <title>Balatro Save Editor — BalatroCalc</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Balatro Save Editor for .jkr save files. Load, edit, and download your Balatro settings, meta, and profile saves.">
+  <meta name="keywords" content="balatro save editor, balatro jkr, balatro tools, balatro save file editor">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-save-editor.html">
+</head>
+
+<body class="save-editor-page">
+  <canvas id="backgroundCanvas"></canvas>
+  <div id="titleBar">
+    <h1>Balatro Save Editor</h1>
+    <span class="subtitle">edit .jkr save files</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="/balatro-save-editor.html" class="nav-link nav-link--proper-case nav-link--active">Balatro Save Editor</a>
+    <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
+    <a href="/apk.html" class="nav-link">apk</a>
+    <a href="/support.html" class="nav-link">support</a>
+    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()">
+        <!-- I18N_LANG_OPTIONS_START -->
+        <option value="en" selected>EN</option>
+        <option value="cn">中文(简体)</option>
+        <option value="tw">中文(繁體)</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="it">Italiano</option>
+        <option value="pt-br">Português (BR)</option>
+        <option value="pt-pt">Português (PT)</option>
+        <option value="ru">Русский</option>
+        <option value="uk">Українська</option>
+        <option value="pl">Polski</option>
+        <option value="nl">Nederlands</option>
+        <option value="sv">Svenska</option>
+        <option value="no">Norsk</option>
+        <option value="da">Dansk</option>
+        <option value="fi">Suomi</option>
+        <option value="tr">Türkçe</option>
+        <option value="ar">العربية</option>
+        <option value="he">עברית</option>
+        <option value="hi">हिन्दी</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="th">ไทย</option>
+        <option value="ms">Bahasa Melayu</option>
+        <option value="tl">Filipino</option>
+        <option value="ro">Română</option>
+        <option value="hu">Magyar</option>
+        <option value="cs">Čeština</option>
+        <option value="el">Ελληνικά</option>
+        <!-- I18N_LANG_OPTIONS_END -->
+      </select>
+    </div>
+  </nav>
+
+  <div id="mainContainer">
+    <main class="save-editor-shell">
+      <section class="save-editor-card">
+        <h1 class="save-editor-title">Balatro Save Editor</h1>
+
+        <p class="save-editor-subtext" id="saveEditorSubtext">Save files (.jkr) can be found at:
+- Windows: %APPDATA%/Balatro
+- Linux: [steam path]/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/
+- Mac: /Users/[user]/Library/Application Support/Balatro/
+
+<span class="warn">Modded files may not work properly. Please do not report issues with modded saves.</span></p>
+
+        <label class="save-editor-file" for="saveEditorFileInput">
+          <input id="saveEditorFileInput" type="file" accept=".jkr" hidden>
+          <span class="save-editor-file-btn">Choose File</span>
+        </label>
+
+        <div id="saveEditorStatus" class="save-editor-status" role="status" aria-live="polite"></div>
+
+        <div id="saveEditorControls" class="save-editor-controls" hidden>
+          <div class="save-editor-row">
+            <select id="saveEditorMode" class="save-editor-select" aria-label="Editor mode">
+              <option value="normal">Normal</option>
+              <option value="json">JSON</option>
+              <option value="raw">Raw</option>
+            </select>
+            <button id="saveEditorDownload" class="save-editor-btn secondary" type="button">Download</button>
+          </div>
+
+          <div id="saveEditorNote" class="save-editor-note"></div>
+
+          <div id="saveEditorPanel" class="save-editor-panel"></div>
+
+          <button id="saveEditorDownloadBottom" class="save-editor-btn" type="button">Download</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+  <script type="text/javascript" src="save-editor.js"></script>
+</body>
+
+</html>
