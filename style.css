@@ -1651,6 +1651,22 @@ body.seed-analyzer-page .seedPaywallNote {
   margin: 0.25em 0 0.75em;
 }
 
+body.seed-analyzer-page .seedPaywallSupport {
+  font-size: 0.85em;
+  opacity: 0.75;
+  margin: 0 0 0.75em;
+}
+
+body.seed-analyzer-page .seedPaywallSupportLink {
+  border: none;
+  background: none;
+  color: #ffd700;
+  text-decoration: underline;
+  padding: 0 0 0 0.25em;
+  font: inherit;
+  cursor: pointer;
+}
+
 body.seed-analyzer-page .seedPaywallMember {
   display: none;
   align-items: center;
@@ -1676,6 +1692,13 @@ body.seed-analyzer-page .seedPaywallMemberMeta {
   flex: 1;
   font-size: 0.85em;
   opacity: 0.9;
+}
+
+body.seed-analyzer-page .seedPaywallMemberActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: flex-end;
 }
 
 body.seed-analyzer-page .seedPaywallMemberPlan {
@@ -1779,8 +1802,9 @@ body.seed-analyzer-page .seedPaywallStatus.error {
 
 body.seed-analyzer-page .seedToast {
   position: fixed;
-  right: 1.5em;
-  top: 1.5em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   max-width: min(360px, 90vw);
   background: rgba(0, 0, 0, 0.9);
   border: 1px solid rgba(255, 215, 0, 0.5);

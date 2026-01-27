@@ -36,6 +36,8 @@
   let paywallMemberEmail;
   let paywallMemberExpires;
   let paywallUpgrade;
+  let paywallManage;
+  let paywallSupportEmail;
   let toastEl;
   let toastTimer;
 
@@ -59,6 +61,8 @@
     paywallMemberEmail = document.getElementById('seedPaywallMemberEmail');
     paywallMemberExpires = document.getElementById('seedPaywallMemberExpires');
     paywallUpgrade = document.getElementById('seedPaywallUpgrade');
+    paywallManage = document.getElementById('seedPaywallManage');
+    paywallSupportEmail = document.getElementById('seedPaywallSupportEmail');
     toastEl = document.getElementById('seedToast');
 
     if (!quotaRemainingEl || !quotaTotalEl || !quotaPlanEl || !quotaResetEl) return false;
@@ -468,11 +472,49 @@
       }
       setStatus('Choose a plan to upgrade or extend.', false);
     });
+    if (paywallManage) {
+      paywallManage.addEventListener('click', () => {
+        const host = window.location.hostname;
+        const isSandbox = host.includes('pages.dev') || host.includes('localhost') || host.includes('127.0.0.1');
+        const base = isSandbox ? 'https://www.sandbox.paypal.com' : 'https://www.paypal.com';
+        window.open(`${base}/myaccount/autopay/`, '_blank', 'noopener');
+      });
+    }
+    if (paywallSupportEmail) {
+      paywallSupportEmail.addEventListener('click', () => {
+        const email = paywallSupportEmail.dataset.email || paywallSupportEmail.textContent || '';
+        if (!email) return;
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(email).then(() => {
+            showToast('Support email copied.');
+          }).catch(() => {
+            fallbackCopy(email);
+          });
+        } else {
+          fallbackCopy(email);
+        }
+      });
+    }
     quotaLogoutBtn.addEventListener('click', () => {
       clearPaidInfo();
       paywallEmail.value = '';
       showPaywall();
     });
+  }
+
+  function fallbackCopy(text) {
+    const input = document.createElement('input');
+    input.value = text;
+    document.body.appendChild(input);
+    input.select();
+    try {
+      document.execCommand('copy');
+      showToast('Support email copied.');
+    } catch {
+      setStatus('Unable to copy email. Please copy manually.', true);
+    } finally {
+      document.body.removeChild(input);
+    }
   }
 
   function attachQuotaBarToHeaderRow() {

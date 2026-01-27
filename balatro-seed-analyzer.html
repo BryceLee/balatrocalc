@@ -76,10 +76,19 @@
           <div id="seedPaywallMemberEmail" class="seedPaywallMemberEmail"></div>
           <div id="seedPaywallMemberExpires" class="seedPaywallMemberExpires"></div>
         </div>
-        <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
+        <div class="seedPaywallMemberActions">
+          <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
+          <button id="seedPaywallManage" class="seedPaywallSecondary" type="button">Manage in PayPal</button>
+        </div>
       </div>
       <p>Subscribe for unlimited access to Seed Analyzer.</p>
       <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime.</p>
+      <p class="seedPaywallSupport">
+        If you cannot pay or encounter issues, contact
+        <button id="seedPaywallSupportEmail" class="seedPaywallSupportLink" type="button" data-email="support@balatrocalc.com">
+          support@balatrocalc.com
+        </button>.
+      </p>
       <div class="seedPaywallPlans">
         <label class="seedPaywallPlan">
           <span><input type="radio" name="seedPlan" value="seed-monthly" checked>Monthly</span>
