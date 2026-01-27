@@ -1410,10 +1410,17 @@ body.seed-analyzer-page #seedNavRow {
   position: fixed;
   top: 20px;
   right: 20px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 16px;
   z-index: 4;
+  width: max-content;
+  max-width: calc(100% - 40px);
+  pointer-events: none;
+}
+
+body.seed-analyzer-page #seedNavRow > * {
+  pointer-events: auto;
 }
 
 body.seed-analyzer-page #topNav {
