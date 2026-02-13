@@ -38,7 +38,7 @@ export function planConfig(plan) {
   const pricing = {
     seed: {
       monthly: { amount: 5, days: 30 },
-      yearly: { amount: 39, days: 365 },
+      yearly: { amount: 49, days: 365 },
       lifetime: { amount: 100, days: null }
     }
   };

@@ -10,7 +10,7 @@
 - email：用户邮箱（不验证，仅用于查询与跨设备）
 - feature_key：功能标识，如 `seed`
 - plan：套餐类型，格式为 `功能-周期`，如 `seed-monthly` / `seed-yearly` / `seed-lifetime`
-- amount：金额（USD），整数（5 / 39 / 100）
+- amount：金额（USD），整数（5 / 49 / 100）
 - currency：币种，固定 `USD`
 - provider：支付渠道，`paypal` / `usdt`
 - txn_id：交易号（PayPal 订单/捕获 ID 或 USDT 凭证号）
