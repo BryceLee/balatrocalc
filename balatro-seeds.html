@@ -460,6 +460,8 @@
       if (!seed) return;
       const analyzerUrl = new URL('/balatro-seed-analyzer.html', window.location.origin);
       analyzerUrl.searchParams.set('seed', seed);
+      analyzerUrl.searchParams.set('source', 'seed-generator');
+      analyzerUrl.searchParams.set('sourceToken', `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`);
       window.location.href = analyzerUrl.toString();
     }
   </script>

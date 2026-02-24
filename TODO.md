@@ -1,3 +1,6 @@
+# 需求挖掘：
+-  search seeds that contain specific jokers
+- upload my awesome new seed，点赞，踩踏，排行榜
 # bug fix
 https://github.com/EFHIII/balatro-calculator/commits/main/
 
@@ -12,13 +15,12 @@ https://github.com/EFHIII/balatro-calculator/commits/main/
 - 让用户更新当前手牌页面截图和剩余卡牌截图。继续沟通。
 - 新加一个tab，需要强调ai的样式，字体加粗
 
-对分析种子功能收费，免费试用3次：一个月3刀，年费30刀，终身100刀。
+对分析种子功能收费，免费试用3次：一个月5刀，年费39刀，终身100刀。
 接受paypal 收费，或者usdt 支付后，联系email，提供支付凭证，我手动添加权限。
 不需要注册，支付的时候提供邮箱，支付成功后，把用户的付费金额，邮箱写到一个数据表里，
 然后本地存他的邮箱或者什么信息表示登陆过，
 是否支付过如何判定呢？你想一想。
-剩余的逻辑你看还有没有什么需要确定的呢？
-我没有服务器，最好用cf。
+
 
 
 - /wiki/jokers/

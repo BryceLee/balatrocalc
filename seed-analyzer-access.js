@@ -16,6 +16,10 @@
   const FEATURE_LABELS = {
     seed: 'Seed'
   };
+  const SOURCE_PARAMS = {
+    source: 'source',
+    token: 'sourceToken'
+  };
 
   let quotaRemainingEl;
   let quotaTotalEl;
@@ -38,8 +42,10 @@
   let paywallUpgrade;
   let paywallManage;
   let paywallSupportEmail;
+  let copySeedBtn;
   let toastEl;
   let toastTimer;
+  let skipProgrammaticAnalyzeCountUntil = 0;
 
   function init() {
     quotaRemainingEl = document.getElementById('seedQuotaRemaining');
@@ -73,10 +79,12 @@
     ensureDeviceId();
     hydrateEmail();
     updateQuotaUI();
+    consumeSeedGeneratorRedirect();
     setupPaywallActions();
     setupAnalyzeIntercept();
     handlePaypalReturn();
     ensureQuotaBarPlacement();
+    ensureCopySeedButtonPlacement();
 
     return true;
   }
@@ -306,6 +314,61 @@
     updateQuotaUI();
   }
 
+  function replaceUrlWithParams(params) {
+    const query = params.toString();
+    const hash = window.location.hash || '';
+    const nextUrl = query ? `${window.location.pathname}?${query}${hash}` : `${window.location.pathname}${hash}`;
+    window.history.replaceState({}, '', nextUrl);
+  }
+
+  function consumeSeedGeneratorRedirect() {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get(SOURCE_PARAMS.source);
+    const sourceToken = params.get(SOURCE_PARAMS.token);
+
+    if (!source && !sourceToken) return;
+
+    params.delete(SOURCE_PARAMS.source);
+    params.delete(SOURCE_PARAMS.token);
+
+    const isGeneratorSource = source === 'seed-generator' && Boolean(sourceToken);
+    if (!isGeneratorSource) {
+      replaceUrlWithParams(params);
+      return;
+    }
+
+    const sourceHandleKey = `bc_source_seed_${getTodayKey()}_${sourceToken}`;
+    let alreadyHandled = false;
+    try {
+      alreadyHandled = sessionStorage.getItem(sourceHandleKey) === '1';
+      if (!alreadyHandled) {
+        sessionStorage.setItem(sourceHandleKey, '1');
+      }
+    } catch {
+      // Ignore storage restrictions and continue without dedupe fallback.
+    }
+
+    if (alreadyHandled) {
+      replaceUrlWithParams(params);
+      return;
+    }
+
+    const paid = getPaidInfo();
+    if (!paid.active) {
+      if (remainingUses() <= 0) {
+        params.delete('seed');
+        setStatus('Daily free limit reached. Subscribe for unlimited access.', true);
+        showPaywall();
+      } else {
+        recordUse();
+        updateQuotaUI();
+        skipProgrammaticAnalyzeCountUntil = Date.now() + 5000;
+      }
+    }
+
+    replaceUrlWithParams(params);
+  }
+
   function getSelectedPlan() {
     const selected = document.querySelector('input[name="seedPlan"]:checked');
     return selected ? selected.value : `${FEATURE_KEY}-monthly`;
@@ -484,15 +547,11 @@
       paywallSupportEmail.addEventListener('click', () => {
         const email = paywallSupportEmail.dataset.email || paywallSupportEmail.textContent || '';
         if (!email) return;
-        if (navigator.clipboard?.writeText) {
-          navigator.clipboard.writeText(email).then(() => {
-            showToast('Support email copied.');
-          }).catch(() => {
-            fallbackCopy(email);
-          });
-        } else {
-          fallbackCopy(email);
-        }
+        copyTextWithFeedback(
+          email,
+          'Support email copied.',
+          'Unable to copy email. Please copy manually.'
+        );
       });
     }
     quotaLogoutBtn.addEventListener('click', () => {
@@ -502,19 +561,67 @@
     });
   }
 
-  function fallbackCopy(text) {
+  function copyTextWithFeedback(text, successMessage, failMessage) {
+    if (!text) return;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage);
+      }).catch(() => {
+        fallbackCopy(text, successMessage, failMessage);
+      });
+      return;
+    }
+    fallbackCopy(text, successMessage, failMessage);
+  }
+
+  function fallbackCopy(text, successMessage, failMessage) {
     const input = document.createElement('input');
     input.value = text;
     document.body.appendChild(input);
     input.select();
     try {
       document.execCommand('copy');
-      showToast('Support email copied.');
+      showToast(successMessage);
     } catch {
-      setStatus('Unable to copy email. Please copy manually.', true);
+      setStatus(failMessage, true);
     } finally {
       document.body.removeChild(input);
     }
+  }
+
+  function isSeedInputField(input) {
+    if (!input || input.disabled) return false;
+    const type = (input.getAttribute('type') || 'text').toLowerCase();
+    if (type === 'hidden' || type === 'email') return false;
+    const placeholder = (input.getAttribute('placeholder') || '').toLowerCase();
+    const ariaLabel = (input.getAttribute('aria-label') || '').toLowerCase();
+    const name = (input.getAttribute('name') || '').toLowerCase();
+    const id = (input.getAttribute('id') || '').toLowerCase();
+    return placeholder.includes('seed') || ariaLabel.includes('seed') || name.includes('seed') || id.includes('seed');
+  }
+
+  function normalizeSeed(value) {
+    return String(value || '').trim().toUpperCase();
+  }
+
+  function getCurrentSeedValue() {
+    const params = new URLSearchParams(window.location.search);
+    const urlSeed = normalizeSeed(params.get('seed'));
+    if (urlSeed) return urlSeed;
+
+    const input = Array.from(document.querySelectorAll('input')).find((candidate) => isSeedInputField(candidate));
+    if (!input) return '';
+
+    return normalizeSeed(input.value);
+  }
+
+  function copySeedToClipboard() {
+    const seed = getCurrentSeedValue();
+    if (!seed) {
+      showToast('No seed available to copy.');
+      return;
+    }
+    copyTextWithFeedback(seed, 'Seed copied.', 'Unable to copy seed. Please copy manually.');
   }
 
   function attachQuotaBarToHeaderRow() {
@@ -594,12 +701,71 @@
       (label.includes('analyze') && label.includes('seed'));
   }
 
+  function findAnalyzeButton() {
+    const buttons = Array.from(document.querySelectorAll('button'));
+    return buttons.find((button) => button.id !== 'seedCopyBtn' && isAnalyzeButton(button)) || null;
+  }
+
+  function forceCopyButtonEnabledStyle(button) {
+    if (!button) return;
+    button.removeAttribute('disabled');
+    button.removeAttribute('data-disabled');
+    button.removeAttribute('aria-disabled');
+    button.removeAttribute('tabindex');
+    button.disabled = false;
+    button.style.setProperty('cursor', 'pointer');
+    button.style.setProperty('opacity', '1');
+    button.style.setProperty('--button-bg', 'var(--mantine-color-green-filled, #2f9e44)');
+    button.style.setProperty('--button-hover', 'var(--mantine-color-green-filled-hover, #2b8a3e)');
+    button.style.setProperty('--button-color', 'var(--mantine-color-white, #ffffff)');
+  }
+
+  function mountCopySeedButtonUnderAnalyze() {
+    const analyzeBtn = findAnalyzeButton();
+    if (!analyzeBtn || !analyzeBtn.parentElement) return false;
+
+    const existing = document.getElementById('seedCopyBtn');
+    if (existing) {
+      copySeedBtn = existing;
+      forceCopyButtonEnabledStyle(existing);
+      if (existing.parentElement !== analyzeBtn.parentElement || existing.previousElementSibling !== analyzeBtn) {
+        analyzeBtn.insertAdjacentElement('afterend', existing);
+      }
+      return true;
+    }
+
+    const button = analyzeBtn.cloneNode(false);
+    button.id = 'seedCopyBtn';
+    button.textContent = 'Copy Seed';
+    button.setAttribute('aria-label', 'Copy Seed');
+    forceCopyButtonEnabledStyle(button);
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      copySeedToClipboard();
+    });
+
+    analyzeBtn.insertAdjacentElement('afterend', button);
+    copySeedBtn = button;
+    return true;
+  }
+
+  function ensureCopySeedButtonPlacement() {
+    const root = document.getElementById('root') || document.body;
+    const observer = new MutationObserver(() => {
+      mountCopySeedButtonUnderAnalyze();
+    });
+    observer.observe(root, { childList: true, subtree: true });
+    mountCopySeedButtonUnderAnalyze();
+  }
+
   function setupAnalyzeIntercept() {
     document.addEventListener('click', (event) => {
       const target = event.target instanceof Element ? event.target : null;
       if (!target) return;
       const button = target.closest('button');
       if (!button || !isAnalyzeButton(button)) return;
+      if (!event.isTrusted && Date.now() < skipProgrammaticAnalyzeCountUntil) return;
 
       const paid = getPaidInfo();
       if (paid.active) return;
