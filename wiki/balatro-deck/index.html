@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
+    crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <title>Balatro Deck Guide - All 15 Decks, Effects, and Unlock Conditions</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Balatro deck guide for all 15 decks: deck effects and unlock conditions in one table.">
+  <meta name="keywords"
+    content="balatro deck, balatro decks, balatro all decks, balatro deck unlock, balatro deck guide">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Balatro Deck Guide - All 15 Decks">
+  <meta property="og:description" content="View all 15 Balatro decks with effects and unlock conditions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/wiki/balatro-deck">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Deck Guide - All 15 Decks">
+  <meta name="twitter:description" content="All Balatro decks in a single table.">
+  <meta name="theme-color" content="#2b3b34">
+  <link rel="canonical" href="https://balatrocalc.com/wiki/balatro-deck">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>Balatro Deck Guide</h1>
+    <span class="subtitle">balatro deck · all 15 decks</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="/balatro-seed-analyzer.html" class="nav-link">analyzer</a>
+    <a href="/wiki/balatro-deck" class="nav-link nav-link--active">decks</a>
+    <a href="/balatro-save-editor.html" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()">
+        <option value="en" selected>EN</option>
+        <option value="cn">CN</option>
+      </select>
+    </div>
+  </nav>
+
+  <div id="mainContainer">
+    <div class="contentPageWrap deck-page-wrap">
+      <section class="contentCard deck-card-wrap">
+        <h2 class="contentTitle">All 15 Balatro Decks</h2>
+        <p class="contentLead">Deck effects and unlock conditions.</p>
+
+        <div class="deck-table-scroller">
+          <table class="deck-table" aria-label="Balatro deck list">
+            <thead>
+              <tr>
+                <th class="col-nr">Nr</th>
+                <th class="col-deck">Deck</th>
+                <th class="col-desc">Description</th>
+                <th class="col-unlock">Unlock condition</th>
+              </tr>
+            </thead>
+            <tbody id="deckRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const DECKS = [
+      {
+        key: 'b_red',
+        name: 'Red Deck',
+        pos: { x: 0, y: 0 },
+        desc: '+1 discard every round',
+        unlock: 'Unlocked from start'
+      },
+      {
+        key: 'b_blue',
+        name: 'Blue Deck',
+        pos: { x: 0, y: 2 },
+        desc: '+1 hand every round',
+        unlock: 'Discover at least 20 items from your collection'
+      },
+      {
+        key: 'b_yellow',
+        name: 'Yellow Deck',
+        pos: { x: 1, y: 2 },
+        desc: 'Start with extra $10',
+        unlock: 'Discover at least 50 items from your collection'
+      },
+      {
+        key: 'b_green',
+        name: 'Green Deck',
+        pos: { x: 2, y: 2 },
+        desc: 'No interest. End of each round: +$2 per remaining hand, +$1 per remaining discard',
+        unlock: 'Discover at least 75 items from your collection'
+      },
+      {
+        key: 'b_black',
+        name: 'Black Deck',
+        pos: { x: 3, y: 2 },
+        desc: '+1 Joker slot, -1 hand every round',
+        unlock: 'Discover at least 100 items from your collection'
+      },
+      {
+        key: 'b_magic',
+        name: 'Magic Deck',
+        pos: { x: 0, y: 3 },
+        desc: 'Start with Crystal Ball voucher and 2 copies of The Fool',
+        unlock: 'Win a run with Red Deck'
+      },
+      {
+        key: 'b_nebula',
+        name: 'Nebula Deck',
+        pos: { x: 3, y: 0 },
+        desc: 'Start with Telescope voucher, -1 consumable slot',
+        unlock: 'Win a run with Blue Deck'
+      },
+      {
+        key: 'b_ghost',
+        name: 'Ghost Deck',
+        pos: { x: 6, y: 2 },
+        desc: 'Spectral cards may appear in the shop, start with a Hex card',
+        unlock: 'Win a run with Yellow Deck'
+      },
+      {
+        key: 'b_abandoned',
+        name: 'Abandoned Deck',
+        pos: { x: 3, y: 3 },
+        desc: 'Start run with no face cards in your deck',
+        unlock: 'Win a run with Green Deck'
+      },
+      {
+        key: 'b_checkered',
+        name: 'Checkered Deck',
+        pos: { x: 1, y: 3 },
+        desc: 'Start with 26 Spades and 26 Hearts in deck',
+        unlock: 'Win a run with Black Deck'
+      },
+      {
+        key: 'b_zodiac',
+        name: 'Zodiac Deck',
+        pos: { x: 3, y: 4 },
+        desc: 'Start with Tarot Merchant, Planet Merchant, and Overstock vouchers',
+        unlock: 'Win with any deck on Red Stake or higher'
+      },
+      {
+        key: 'b_painted',
+        name: 'Painted Deck',
+        pos: { x: 4, y: 3 },
+        desc: '+2 hand size, -1 Joker slot',
+        unlock: 'Win with any deck on Green Stake or higher'
+      },
+      {
+        key: 'b_anaglyph',
+        name: 'Anaglyph Deck',
+        pos: { x: 2, y: 4 },
+        desc: 'After defeating each Boss Blind, gain a Double Tag',
+        unlock: 'Win with any deck on Black Stake or higher'
+      },
+      {
+        key: 'b_plasma',
+        name: 'Plasma Deck',
+        pos: { x: 4, y: 2 },
+        desc: 'Balance Chips and Mult when scoring. Blind size x2',
+        unlock: 'Win with any deck on Blue Stake or higher'
+      },
+      {
+        key: 'b_erratic',
+        name: 'Erratic Deck',
+        pos: { x: 2, y: 3 },
+        desc: 'All ranks and suits in deck are randomized',
+        unlock: 'Win with any deck on Orange Stake or higher'
+      }
+    ];
+
+    function toColoredText(text) {
+      return text
+        .replace(/\+\d+/g, '<span class="up">$&</span>')
+        .replace(/-\d+/g, '<span class="down">$&</span>')
+        .replace(/\$\d+/g, '<span class="gold">$&</span>')
+        .replace(/\b(\d+)\b/g, '<span class="gold">$1</span>');
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('deckRows');
+      if (!tbody) return;
+
+      tbody.innerHTML = DECKS.map((deck, index) => {
+        const bgX = -deck.pos.x * 71;
+        const bgY = -deck.pos.y * 95;
+
+        return `
+          <tr>
+            <td class="cell-nr">${index + 1}</td>
+            <td class="cell-deck">
+              <div class="deck-cell-wrap">
+                <span class="deck-sprite" style="background-position:${bgX}px ${bgY}px" aria-label="${deck.name}"></span>
+                <div class="deck-name">${deck.name}</div>
+              </div>
+            </td>
+            <td class="cell-desc">${toColoredText(deck.desc)}</td>
+            <td class="cell-unlock">${toColoredText(deck.unlock)}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function switchLanguage() {
+      const select = document.getElementById('langSelect');
+      if (!select) return;
+      window.location.href = select.value === 'cn' ? '/cn/wiki/balatro-deck' : '/wiki/balatro-deck';
+    }
+
+    renderTable();
+  </script>
+
+  <!-- Balatro Background Shader -->
+  <script id="vertex-shader" type="x-shader/x-vertex">
+      attribute vec2 a_position;
+      attribute vec2 a_texCoord;
+      varying vec2 v_texCoord;
+      varying vec2 v_screenCoord;
+      void main() {
+        gl_Position = vec4(a_position, 0.0, 1.0);
+        v_texCoord = a_texCoord;
+        v_screenCoord = (a_position + 1.0) * 0.5;
+      }
+    </script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+      precision mediump float;
+      uniform float u_time;
+      uniform float u_spin_time;
+      uniform vec4 u_colour_1;
+      uniform vec4 u_colour_2;
+      uniform vec4 u_colour_3;
+      uniform float u_contrast;
+      uniform float u_spin_amount;
+      uniform vec2 u_resolution;
+      varying vec2 v_texCoord;
+      varying vec2 v_screenCoord;
+      #define PIXEL_SIZE_FAC 700.0
+      #define SPIN_EASE 0.5
+      void main() {
+        float pixel_size = length(u_resolution) / PIXEL_SIZE_FAC;
+        vec2 uv = (floor(v_screenCoord * u_resolution / pixel_size) * pixel_size - 0.5 * u_resolution) / length(u_resolution) - vec2(0.12, 0.0);
+        float uv_len = length(uv);
+        float speed = (u_spin_time * SPIN_EASE * 0.2) + 302.2;
+        float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE * 20.0 * (1.0 * u_spin_amount * uv_len + (1.0 - 1.0 * u_spin_amount));
+        vec2 mid = (u_resolution / length(u_resolution)) / 2.0;
+        uv = vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid;
+        uv *= 30.0;
+        speed = u_time * 2.0;
+        vec2 uv2 = vec2(uv.x + uv.y);
+        for(int i = 0; i < 5; i++) {
+            uv2 += sin(max(uv.x, uv.y)) + uv;
+            uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121), sin(uv2.x - 0.113 * speed));
+            uv -= 1.0 * cos(uv.x + uv.y) - 1.0 * sin(uv.x * 0.711 - uv.y);
+        }
+        float contrast_mod = (0.25 * u_contrast + 0.5 * u_spin_amount + 1.2);
+        float paint_res = min(2.0, max(0.0, length(uv) * 0.035 * contrast_mod));
+        float c1p = max(0.0, 1.0 - contrast_mod * abs(1.0 - paint_res));
+        float c2p = max(0.0, 1.0 - contrast_mod * abs(paint_res));
+        float c3p = 1.0 - min(1.0, c1p + c2p);
+        vec4 ret_col = (0.3 / u_contrast) * u_colour_1 + (1.0 - 0.3 / u_contrast) * (u_colour_1 * c1p + u_colour_2 * c2p + vec4(c3p * u_colour_3.rgb, c3p * u_colour_1.a));
+        gl_FragColor = ret_col;
+      }
+    </script>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+
+  <style>
+    .deck-page-wrap {
+      max-width: 1420px;
+      padding-top: 120px;
+      padding-bottom: 42px;
+    }
+
+    .deck-card-wrap {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .deck-table-scroller {
+      overflow-x: auto;
+      border: 1px solid rgba(148, 170, 178, 0.25);
+      border-radius: 8px;
+    }
+
+    .deck-table {
+      width: 100%;
+      min-width: 960px;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .deck-table th,
+    .deck-table td {
+      border: 1px solid rgba(148, 170, 178, 0.3);
+      padding: 10px 12px;
+      vertical-align: middle;
+      background: rgba(58, 68, 73, 0.72);
+    }
+
+    .deck-table th {
+      background: rgba(1, 10, 16, 0.95);
+      color: #e8edf4;
+      font-size: 38px;
+      font-weight: normal;
+      text-transform: none;
+      letter-spacing: 0.4px;
+    }
+
+    .col-nr {
+      width: 60px;
+      text-align: center;
+    }
+
+    .col-deck {
+      width: 150px;
+      text-align: left;
+    }
+
+    .col-desc {
+      width: 470px;
+    }
+
+    .col-unlock {
+      width: 360px;
+    }
+
+    .cell-nr {
+      text-align: center;
+      font-size: 38px;
+      color: #ecf0f6;
+    }
+
+    .deck-cell-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .deck-sprite {
+      width: 71px;
+      height: 95px;
+      border-radius: 8px;
+      background-image: url('images/Enhancers.png');
+      background-repeat: no-repeat;
+      background-size: 497px 475px;
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      image-rendering: pixelated;
+      display: inline-block;
+    }
+
+    .deck-name {
+      font-size: 42px;
+      color: #ffd700;
+      line-height: 1.2;
+      text-transform: none;
+    }
+
+    .cell-desc,
+    .cell-unlock {
+      font-size: 40px;
+      line-height: 1.55;
+      color: #e3e8ef;
+    }
+
+    .up {
+      color: #ff5454;
+    }
+
+    .down {
+      color: #76b0ff;
+    }
+
+    .gold {
+      color: #ffac33;
+    }
+
+    @media (max-width: 900px) {
+      .deck-page-wrap {
+        padding-top: 108px;
+      }
+
+      .deck-table {
+        min-width: 840px;
+      }
+
+      .deck-table th,
+      .deck-table td,
+      .cell-desc,
+      .cell-unlock,
+      .deck-name,
+      .cell-nr {
+        font-size: 28px;
+      }
+    }
+  </style>
+</body>
+
+</html>
