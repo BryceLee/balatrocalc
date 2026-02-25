@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Blog Hub - Deck Guide and DBD Redeem Code</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Balatro blog hub page for deck guide and DBD redeem code pages.">
+  <meta name="keywords" content="balatro blog, balatro deck, balatro code dbd, jokerswild">
+  <meta property="og:title" content="Balatro Blog Hub">
+  <meta property="og:description" content="Browse Balatro deck guide and DBD redeem code pages.">
+  <meta property="og:url" content="https://balatrocalc.com/blog">
+  <link rel="canonical" href="https://balatrocalc.com/blog">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>balatro blog</h1>
+    <span class="subtitle">pages and guides</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="/blog" class="nav-link nav-link--active">blog</a>
+    <a href="/balatro-save-editor.html" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <a href="/apk.html" class="nav-link">apk</a>
+    <a href="/support.html" class="nav-link">support</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()">
+        <option value="en" selected>EN</option>
+        <option value="cn">中文(简体)</option>
+      </select>
+    </div>
+  </nav>
+
+  <div id="mainContainer">
+    <div class="contentPageWrap">
+      <div class="contentCard">
+        <h2 class="contentTitle">Blog Pages</h2>
+        <p class="contentLead">Quick access to the latest blog pages.</p>
+
+        <div class="blog-grid">
+          <a class="blog-card" href="/blog/balatro-deck">
+            <h3>Balatro Deck Guide</h3>
+            <p>All 15 decks, effects, and unlock conditions.</p>
+            <span class="blog-path">/blog/balatro-deck</span>
+          </a>
+
+          <a class="blog-card" href="/blog/balatro-code-dbd">
+            <h3>Balatro Code DBD</h3>
+            <p>Dead by Daylight x Balatro redeem code page.</p>
+            <span class="blog-path">/blog/balatro-code-dbd</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .blog-card {
+      display: block;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+      color: #d8dee7;
+      text-decoration: none;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 215, 0, 0.7);
+    }
+
+    .blog-card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #ffd700;
+      font-weight: normal;
+      text-transform: none;
+    }
+
+    .blog-card p {
+      margin: 0 0 10px;
+      font-size: 16px;
+      line-height: 1.55;
+      color: #c9d2df;
+    }
+
+    .blog-path {
+      display: inline-block;
+      font-size: 14px;
+      color: #ffb347;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 179, 71, 0.35);
+      padding: 5px 8px;
+      border-radius: 8px;
+    }
+  </style>
+</body>
+
+</html>

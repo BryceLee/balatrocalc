@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-CN" dir="ltr">
 
 <head>
   <meta charset="utf-8">
@@ -7,23 +7,21 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
     crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-1275876891096923">
-  <title>Balatro Deck Guide - All 15 Decks, Effects, and Unlock Conditions</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description"
-    content="Balatro deck guide for all 15 decks: deck effects and unlock conditions in one table.">
-  <meta name="keywords"
-    content="balatro deck, balatro decks, balatro all decks, balatro deck unlock, balatro deck guide">
+  <title>Balatro Deck 牌组总览 - 15 种牌组效果与解锁条件</title>
+    <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Balatro 15 种牌组总览：Description 描述与 Unlock condition 解锁条件。">
+  <meta name="keywords" content="balatro deck, balatro牌组, balatro全牌组">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Balatro Deck Guide - All 15 Decks">
-  <meta property="og:description" content="View all 15 Balatro decks with effects and unlock conditions.">
+  <meta property="og:title" content="Balatro Deck 牌组总览">
+  <meta property="og:description" content="15 种 Balatro 牌组效果和解锁条件表格。">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://balatrocalc.com/wiki/balatro-deck">
+  <meta property="og:url" content="https://balatrocalc.com/cn/blog/balatro-deck">
   <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Balatro Deck Guide - All 15 Decks">
-  <meta name="twitter:description" content="All Balatro decks in a single table.">
+  <meta name="twitter:title" content="Balatro Deck 牌组总览">
+  <meta name="twitter:description" content="15 种牌组效果与解锁条件。">
   <meta name="theme-color" content="#2b3b34">
-  <link rel="canonical" href="https://balatrocalc.com/wiki/balatro-deck">
+  <link rel="canonical" href="https://balatrocalc.com/cn/blog/balatro-deck">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -33,20 +31,20 @@
   <canvas id="backgroundCanvas"></canvas>
 
   <div id="titleBar">
-    <h1>Balatro Deck Guide</h1>
-    <span class="subtitle">balatro deck · all 15 decks</span>
+    <h1>Balatro Deck 牌组总览</h1>
+    <span class="subtitle">15 decks · description · unlock condition</span>
   </div>
 
   <nav id="topNav">
-    <a href="/" class="nav-link">calculator</a>
-    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="/cn/" class="nav-link">calculator</a>
+    <a href="/cn/balatro-seeds.html" class="nav-link">seeds</a>
     <a href="/balatro-seed-analyzer.html" class="nav-link">analyzer</a>
-    <a href="/wiki/balatro-deck" class="nav-link nav-link--active">decks</a>
+    <a href="/cn/blog/balatro-deck" class="nav-link nav-link--active">decks</a>
     <a href="/balatro-save-editor.html" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
     <div class="language-switcher">
       <select id="langSelect" onchange="switchLanguage()">
-        <option value="en" selected>EN</option>
-        <option value="cn">CN</option>
+        <option value="en">EN</option>
+        <option value="cn" selected>CN</option>
       </select>
     </div>
   </nav>
@@ -55,16 +53,16 @@
     <div class="contentPageWrap deck-page-wrap">
       <section class="contentCard deck-card-wrap">
         <h2 class="contentTitle">All 15 Balatro Decks</h2>
-        <p class="contentLead">Deck effects and unlock conditions.</p>
+        <p class="contentLead">Description 描述 · Unlock condition 解锁条件</p>
 
         <div class="deck-table-scroller">
           <table class="deck-table" aria-label="Balatro deck list">
             <thead>
               <tr>
-                <th class="col-nr">Nr</th>
-                <th class="col-deck">Deck</th>
-                <th class="col-desc">Description</th>
-                <th class="col-unlock">Unlock condition</th>
+                <th class="col-nr">Nr 编号</th>
+                <th class="col-deck">Deck 牌组</th>
+                <th class="col-desc">Description 描述</th>
+                <th class="col-unlock">Unlock condition 解锁条件</th>
               </tr>
             </thead>
             <tbody id="deckRows"></tbody>
@@ -78,108 +76,153 @@
     const DECKS = [
       {
         key: 'b_red',
-        name: 'Red Deck',
+        enName: 'Red Deck',
+        zhName: '红牌组',
         pos: { x: 0, y: 0 },
-        desc: '+1 discard every round',
-        unlock: 'Unlocked from start'
+        descEn: '+1 discard every round',
+        descZh: '每回合 +1 弃牌',
+        unlockEn: 'Unlocked from start',
+        unlockZh: '初始解锁'
       },
       {
         key: 'b_blue',
-        name: 'Blue Deck',
+        enName: 'Blue Deck',
+        zhName: '蓝牌组',
         pos: { x: 0, y: 2 },
-        desc: '+1 hand every round',
-        unlock: 'Discover at least 20 items from your collection'
+        descEn: '+1 hand every round',
+        descZh: '每回合 +1 手牌',
+        unlockEn: 'Discover at least 20 items from your collection',
+        unlockZh: '从收藏中发现至少 20 件物品'
       },
       {
         key: 'b_yellow',
-        name: 'Yellow Deck',
+        enName: 'Yellow Deck',
+        zhName: '黄牌组',
         pos: { x: 1, y: 2 },
-        desc: 'Start with extra $10',
-        unlock: 'Discover at least 50 items from your collection'
+        descEn: 'Start with extra $10',
+        descZh: '开局额外 $10',
+        unlockEn: 'Discover at least 50 items from your collection',
+        unlockZh: '从收藏中发现至少 50 件物品'
       },
       {
         key: 'b_green',
-        name: 'Green Deck',
+        enName: 'Green Deck',
+        zhName: '绿牌组',
         pos: { x: 2, y: 2 },
-        desc: 'No interest. End of each round: +$2 per remaining hand, +$1 per remaining discard',
-        unlock: 'Discover at least 75 items from your collection'
+        descEn: 'No interest. End of each round: +$2 per remaining hand, +$1 per remaining discard',
+        descZh: '无利息。每回合结束：每剩 1 次出牌 +$2，每剩 1 次弃牌 +$1',
+        unlockEn: 'Discover at least 75 items from your collection',
+        unlockZh: '从收藏中发现至少 75 件物品'
       },
       {
         key: 'b_black',
-        name: 'Black Deck',
+        enName: 'Black Deck',
+        zhName: '黑牌组',
         pos: { x: 3, y: 2 },
-        desc: '+1 Joker slot, -1 hand every round',
-        unlock: 'Discover at least 100 items from your collection'
+        descEn: '+1 Joker slot, -1 hand every round',
+        descZh: '+1 小丑槽，每回合 -1 手牌',
+        unlockEn: 'Discover at least 100 items from your collection',
+        unlockZh: '从收藏中发现至少 100 件物品'
       },
       {
         key: 'b_magic',
-        name: 'Magic Deck',
+        enName: 'Magic Deck',
+        zhName: '魔法牌组',
         pos: { x: 0, y: 3 },
-        desc: 'Start with Crystal Ball voucher and 2 copies of The Fool',
-        unlock: 'Win a run with Red Deck'
+        descEn: 'Start with Crystal Ball voucher and 2 copies of The Fool',
+        descZh: '开局拥有 Crystal Ball，并带 2 张 The Fool',
+        unlockEn: 'Win a run with Red Deck',
+        unlockZh: '使用 Red Deck 获胜一局'
       },
       {
         key: 'b_nebula',
-        name: 'Nebula Deck',
+        enName: 'Nebula Deck',
+        zhName: '星云牌组',
         pos: { x: 3, y: 0 },
-        desc: 'Start with Telescope voucher, -1 consumable slot',
-        unlock: 'Win a run with Blue Deck'
+        descEn: 'Start with Telescope voucher, -1 consumable slot',
+        descZh: '开局拥有 Telescope，消耗槽 -1',
+        unlockEn: 'Win a run with Blue Deck',
+        unlockZh: '使用 Blue Deck 获胜一局'
       },
       {
         key: 'b_ghost',
-        name: 'Ghost Deck',
+        enName: 'Ghost Deck',
+        zhName: '幽灵牌组',
         pos: { x: 6, y: 2 },
-        desc: 'Spectral cards may appear in the shop, start with a Hex card',
-        unlock: 'Win a run with Yellow Deck'
+        descEn: 'Spectral cards may appear in the shop, start with a Hex card',
+        descZh: '商店可出现幻灵牌，开局带 Hex',
+        unlockEn: 'Win a run with Yellow Deck',
+        unlockZh: '使用 Yellow Deck 获胜一局'
       },
       {
         key: 'b_abandoned',
-        name: 'Abandoned Deck',
+        enName: 'Abandoned Deck',
+        zhName: '废弃牌组',
         pos: { x: 3, y: 3 },
-        desc: 'Start run with no face cards in your deck',
-        unlock: 'Win a run with Green Deck'
+        descEn: 'Start run with no face cards in your deck',
+        descZh: '开局牌组没有人头牌',
+        unlockEn: 'Win a run with Green Deck',
+        unlockZh: '使用 Green Deck 获胜一局'
       },
       {
         key: 'b_checkered',
-        name: 'Checkered Deck',
+        enName: 'Checkered Deck',
+        zhName: '方格牌组',
         pos: { x: 1, y: 3 },
-        desc: 'Start with 26 Spades and 26 Hearts in deck',
-        unlock: 'Win a run with Black Deck'
+        descEn: 'Start with 26 Spades and 26 Hearts in deck',
+        descZh: '开局牌组为 26 黑桃 + 26 红桃',
+        unlockEn: 'Win a run with Black Deck',
+        unlockZh: '使用 Black Deck 获胜一局'
       },
       {
         key: 'b_zodiac',
-        name: 'Zodiac Deck',
+        enName: 'Zodiac Deck',
+        zhName: '黄道牌组',
         pos: { x: 3, y: 4 },
-        desc: 'Start with Tarot Merchant, Planet Merchant, and Overstock vouchers',
-        unlock: 'Win with any deck on Red Stake or higher'
+        descEn: 'Start with Tarot Merchant, Planet Merchant, and Overstock vouchers',
+        descZh: '开局拥有 Tarot Merchant、Planet Merchant、Overstock',
+        unlockEn: 'Win with any deck on Red Stake or higher',
+        unlockZh: '任意牌组在红注及以上获胜'
       },
       {
         key: 'b_painted',
-        name: 'Painted Deck',
+        enName: 'Painted Deck',
+        zhName: '彩绘牌组',
         pos: { x: 4, y: 3 },
-        desc: '+2 hand size, -1 Joker slot',
-        unlock: 'Win with any deck on Green Stake or higher'
+        descEn: '+2 hand size, -1 Joker slot',
+        descZh: '+2 手牌上限，-1 小丑槽',
+        unlockEn: 'Win with any deck on Green Stake or higher',
+        unlockZh: '任意牌组在绿注及以上获胜'
       },
       {
         key: 'b_anaglyph',
-        name: 'Anaglyph Deck',
+        enName: 'Anaglyph Deck',
+        zhName: '浮雕牌组',
         pos: { x: 2, y: 4 },
-        desc: 'After defeating each Boss Blind, gain a Double Tag',
-        unlock: 'Win with any deck on Black Stake or higher'
+        descEn: 'After defeating each Boss Blind, gain a Double Tag',
+        descZh: '每次击败 Boss 盲注后获得 Double Tag',
+        unlockEn: 'Win with any deck on Black Stake or higher',
+        unlockZh: '任意牌组在黑注及以上获胜'
       },
       {
         key: 'b_plasma',
-        name: 'Plasma Deck',
+        enName: 'Plasma Deck',
+        zhName: '等离子牌组',
         pos: { x: 4, y: 2 },
-        desc: 'Balance Chips and Mult when scoring. Blind size x2',
-        unlock: 'Win with any deck on Blue Stake or higher'
+        descEn: 'Balance Chips and Mult when scoring. Blind size x2',
+        descZh: '计分时平衡筹码与倍率。盲注分数 x2',
+        unlockEn: 'Win with any deck on Blue Stake or higher',
+        unlockZh: '任意牌组在蓝注及以上获胜'
       },
       {
         key: 'b_erratic',
-        name: 'Erratic Deck',
+        enName: 'Erratic Deck',
+        zhName: '古怪牌组',
         pos: { x: 2, y: 3 },
-        desc: 'All ranks and suits in deck are randomized',
-        unlock: 'Win with any deck on Orange Stake or higher'
+        descEn: 'All ranks and suits in deck are randomized',
+        descZh: '牌组中的点数和花色随机化',
+        unlockEn: 'Win with any deck on Orange Stake or higher',
+        unlockZh: '任意牌组在橙注及以上获胜'
       }
     ];
 
@@ -204,12 +247,19 @@
             <td class="cell-nr">${index + 1}</td>
             <td class="cell-deck">
               <div class="deck-cell-wrap">
-                <span class="deck-sprite" style="background-position:${bgX}px ${bgY}px" aria-label="${deck.name}"></span>
-                <div class="deck-name">${deck.name}</div>
+                <span class="deck-sprite" style="background-position:${bgX}px ${bgY}px" aria-label="${deck.enName}"></span>
+                <div class="deck-name">${deck.enName}</div>
+                <div class="deck-name-zh">${deck.zhName}</div>
               </div>
             </td>
-            <td class="cell-desc">${toColoredText(deck.desc)}</td>
-            <td class="cell-unlock">${toColoredText(deck.unlock)}</td>
+            <td class="cell-desc">
+              <div>${toColoredText(deck.descEn)}</div>
+              <div class="desc-zh">${toColoredText(deck.descZh)}</div>
+            </td>
+            <td class="cell-unlock">
+              <div>${toColoredText(deck.unlockEn)}</div>
+              <div class="desc-zh">${toColoredText(deck.unlockZh)}</div>
+            </td>
           </tr>
         `;
       }).join('');
@@ -218,7 +268,7 @@
     function switchLanguage() {
       const select = document.getElementById('langSelect');
       if (!select) return;
-      window.location.href = select.value === 'cn' ? '/cn/wiki/balatro-deck' : '/wiki/balatro-deck';
+      window.location.href = select.value === 'en' ? '/blog/balatro-deck' : '/cn/blog/balatro-deck';
     }
 
     renderTable();
@@ -373,11 +423,22 @@
       text-transform: none;
     }
 
+    .deck-name-zh {
+      font-size: 34px;
+      color: #d8dee7;
+      line-height: 1.2;
+    }
+
     .cell-desc,
     .cell-unlock {
-      font-size: 40px;
+      font-size: 38px;
       line-height: 1.55;
       color: #e3e8ef;
+    }
+
+    .desc-zh {
+      margin-top: 6px;
+      color: #cad4e2;
     }
 
     .up {
@@ -406,8 +467,9 @@
       .cell-desc,
       .cell-unlock,
       .deck-name,
+      .deck-name-zh,
       .cell-nr {
-        font-size: 28px;
+        font-size: 26px;
       }
     }
   </style>
