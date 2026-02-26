@@ -58,10 +58,10 @@
   function switchToLanguage(lang) {
     const { restPath } = parseLanguagePath(getCurrentPath());
     const rootOnlyPages = new Set([
-      '/support.html',
-      '/apk.html',
+      '/support',
+      '/apk',
       '/debug.html',
-      '/balatro-save-editor.html',
+      '/balatro-save-editor',
     ]);
     const effectiveRestPath = (lang !== 'en' && rootOnlyPages.has(restPath)) ? '/' : restPath;
     const prefix = lang === 'en' ? '' : `/${lang}`;

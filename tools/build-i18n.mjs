@@ -84,7 +84,7 @@ function prefixLanguageLinks(html, code) {
   // Keep root-only pages (support/apk/debug) at root
   html = html
     .replaceAll('href="/#', `href="${prefix}/#`)
-    .replaceAll('href="/balatro-seeds.html"', `href="${prefix}/balatro-seeds.html"`)
+    .replaceAll('href="/balatro-seeds"', `href="${prefix}/balatro-seeds"`)
     .replaceAll('href="/about/"', `href="${prefix}/about/"`)
     .replaceAll('href="/privacy-policy/"', `href="${prefix}/privacy-policy/"`)
     .replaceAll('href="/terms/"', `href="${prefix}/terms/"`)
@@ -200,7 +200,7 @@ async function localizeSeeds({ baseHtml, languages, lang }) {
   html = setTitle(html, locale.seeds?.title || 'Balatro Seeds - balatrocalc');
   html = setMetaDescription(html, locale.seeds?.description || 'Balatro seeds collection and generator');
 
-  const canonical = languageUrl(lang.code, '/balatro-seeds.html');
+  const canonical = languageUrl(lang.code, '/balatro-seeds');
   html = setCanonical(html, canonical);
   html = ensureBase(html, '../');
   html = prefixLanguageLinks(html, lang.code);

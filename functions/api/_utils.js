@@ -85,8 +85,8 @@ export async function getPaypalAccessToken(env) {
 export function getReturnUrls(request, plan) {
   const origin = new URL(request.url).origin;
   return {
-    returnUrl: `${origin}/balatro-seed-analyzer.html?paypal=success&plan=${plan}`,
-    cancelUrl: `${origin}/balatro-seed-analyzer.html?paypal=cancel&plan=${plan}`
+    returnUrl: `${origin}/balatro-seed-analyzer?paypal=success&plan=${plan}`,
+    cancelUrl: `${origin}/balatro-seed-analyzer?paypal=cancel&plan=${plan}`
   };
 }
 
