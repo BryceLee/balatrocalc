@@ -5,32 +5,25 @@
 
 /index.html / 301
 
-/balatro-seed-analyzer.html /balatro-seed-analyzer 301
-/balatro-seed-analyzer/ /balatro-seed-analyzer 301
+/balatro-seed-analyzer/ /balatro-seed-analyzer.html 200
 /balatro-seed-analyzer /balatro-seed-analyzer.html 200
 
-/balatro-seeds.html /balatro-seeds 301
-/balatro-seeds/ /balatro-seeds 301
+/balatro-seeds/ /balatro-seeds.html 200
 /balatro-seeds /balatro-seeds.html 200
 
-/:lang/balatro-seeds.html /:lang/balatro-seeds 301
-/:lang/balatro-seeds/ /:lang/balatro-seeds 301
+/:lang/balatro-seeds/ /:lang/balatro-seeds.html 200
 /:lang/balatro-seeds /:lang/balatro-seeds.html 200
 
-/balatro-save-editor.html /balatro-save-editor 301
-/balatro-save-editor/ /balatro-save-editor 301
+/balatro-save-editor/ /balatro-save-editor.html 200
 /balatro-save-editor /balatro-save-editor.html 200
 
-/apk.html /apk 301
-/apk/ /apk 301
+/apk/ /apk.html 200
 /apk /apk.html 200
 
-/support.html /support 301
-/support/ /support 301
+/support/ /support.html 200
 /support /support.html 200
 
-/da/seed-2F4TYFD8.html /da/seed-2F4TYFD8 301
-/da/seed-2F4TYFD8/ /da/seed-2F4TYFD8 301
+/da/seed-2F4TYFD8/ /da/seed-2F4TYFD8.html 200
 /da/seed-2F4TYFD8 /da/seed-2F4TYFD8.html 200
 
 /blog/balatro-deck.html /blog/balatro-deck 301
