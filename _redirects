@@ -1,30 +1,4 @@
-/blog /blog/index.html 200
-/blog/ /blog/index.html 200
-/cn/blog /cn/blog/index.html 200
-/cn/blog/ /cn/blog/index.html 200
-
 /index.html / 301
-
-/balatro-seed-analyzer/ /balatro-seed-analyzer.html 200
-/balatro-seed-analyzer /balatro-seed-analyzer.html 200
-
-/balatro-seeds/ /balatro-seeds.html 200
-/balatro-seeds /balatro-seeds.html 200
-
-/:lang/balatro-seeds/ /:lang/balatro-seeds.html 200
-/:lang/balatro-seeds /:lang/balatro-seeds.html 200
-
-/balatro-save-editor/ /balatro-save-editor.html 200
-/balatro-save-editor /balatro-save-editor.html 200
-
-/apk/ /apk.html 200
-/apk /apk.html 200
-
-/support/ /support.html 200
-/support /support.html 200
-
-/da/seed-2F4TYFD8/ /da/seed-2F4TYFD8.html 200
-/da/seed-2F4TYFD8 /da/seed-2F4TYFD8.html 200
 
 /blog/balatro-deck.html /blog/balatro-deck 301
 /cn/blog/balatro-deck.html /cn/blog/balatro-deck 301
@@ -46,12 +20,3 @@
 /balatro-gameplay /blog/balatro-gameplay 301
 /balatro-gameplay/ /blog/balatro-gameplay 301
 /balatro-gameplay.html /blog/balatro-gameplay 301
-
-/blog/balatro-deck /blog/balatro-deck/index.html 200
-/blog/balatro-deck/ /blog/balatro-deck/index.html 200
-/blog/balatro-code-dbd /blog/balatro-code-dbd/index.html 200
-/blog/balatro-code-dbd/ /blog/balatro-code-dbd/index.html 200
-/blog/balatro-gameplay /blog/balatro-gameplay/index.html 200
-/blog/balatro-gameplay/ /blog/balatro-gameplay/index.html 200
-/cn/blog/balatro-deck /cn/blog/balatro-deck/index.html 200
-/cn/blog/balatro-deck/ /cn/blog/balatro-deck/index.html 200
