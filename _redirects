@@ -1,23 +1,10 @@
-/wiki /blog 301
-/wiki/ /blog 301
-/cn/wiki /cn/blog 301
-/cn/wiki/ /cn/blog 301
-/blog/ /blog 301
-/cn/blog/ /cn/blog 301
+/blog/ /blog/index.html 200
+/cn/blog/ /cn/blog/index.html 200
 
-/wiki/balatro-deck /blog/balatro-deck 301
-/wiki/balatro-deck/ /blog/balatro-deck 301
-/wiki/balatro-deck.html /blog/balatro-deck 301
 /blog/balatro-deck.html /blog/balatro-deck 301
 
-/cn/wiki/balatro-deck /cn/blog/balatro-deck 301
-/cn/wiki/balatro-deck/ /cn/blog/balatro-deck 301
-/cn/wiki/balatro-deck.html /cn/blog/balatro-deck 301
 /cn/blog/balatro-deck.html /cn/blog/balatro-deck 301
 
-/wiki/balatro-code-dbd /blog/balatro-code-dbd 301
-/wiki/balatro-code-dbd/ /blog/balatro-code-dbd 301
-/wiki/balatro-code-dbd.html /blog/balatro-code-dbd 301
 /blog/balatro-code-dbd.html /blog/balatro-code-dbd 301
 
 /balatro-deck /blog/balatro-deck 301
@@ -31,3 +18,19 @@
 /balatro-code-dbd /blog/balatro-code-dbd 301
 /balatro-code-dbd/ /blog/balatro-code-dbd 301
 /balatro-code-dbd.html /blog/balatro-code-dbd 301
+
+/blog/balatro-gameplay.html /blog/balatro-gameplay 301
+
+/balatro-gameplay /blog/balatro-gameplay 301
+/balatro-gameplay/ /blog/balatro-gameplay 301
+/balatro-gameplay.html /blog/balatro-gameplay 301
+
+/blog/balatro-deck/ /blog/balatro-deck/index.html 200
+/blog/balatro-code-dbd/ /blog/balatro-code-dbd/index.html 200
+/blog/balatro-gameplay/ /blog/balatro-gameplay/index.html 200
+/cn/blog/balatro-deck/ /cn/blog/balatro-deck/index.html 200
+
+/blog/balatro-deck /blog/balatro-deck/index.html 200
+/blog/balatro-code-dbd /blog/balatro-code-dbd/index.html 200
+/blog/balatro-gameplay /blog/balatro-gameplay/index.html 200
+/cn/blog/balatro-deck /cn/blog/balatro-deck/index.html 200

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Gameplay Guide - A Clear Winning Playbook</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="A practical Balatro gameplay guide with clear strategy, left-side table of contents, and section-based learning from early ante to late game.">
+  <meta name="keywords"
+    content="balatro gameplay guide, balatro strategy, balatro tips, balatro jokers, balatro blind strategy">
+  <meta property="og:title" content="Balatro Gameplay Guide - A Clear Winning Playbook">
+  <meta property="og:description" content="Learn Balatro in focused sections: loop, scoring, economy, jokers, bosses, and run planning.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://balatrocalc.com/blog/balatro-gameplay">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Gameplay Guide">
+  <meta name="twitter:description" content="A practical, section-based guide for stronger Balatro runs.">
+  <meta name="theme-color" content="#2b3b34">
+  <link rel="canonical" href="https://balatrocalc.com/blog/balatro-gameplay">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>Balatro Gameplay Guide</h1>
+    <span class="subtitle">clear strategy · section by section</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds.html" class="nav-link">seeds</a>
+    <a href="/balatro-seed-analyzer.html" class="nav-link">analyzer</a>
+    <a href="/blog" class="nav-link nav-link--active">blog</a>
+    <a href="/balatro-save-editor.html" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+  </nav>
+
+  <main class="gameplay-layout">
+    <aside class="toc-sidebar">
+      <div class="toc-card">
+        <p class="toc-kicker">Contents</p>
+        <h2 class="toc-title">Pick Your Section</h2>
+        <nav class="toc-nav" aria-label="Article table of contents">
+          <a href="#overview" class="toc-link">1. How to read this guide</a>
+          <a href="#loop" class="toc-link">2. The core round loop</a>
+          <a href="#scoring" class="toc-link">3. Scoring fundamentals</a>
+          <a href="#resources" class="toc-link">4. Baseline run resources</a>
+          <a href="#economy" class="toc-link">5. Shop and economy rules</a>
+          <a href="#jokers" class="toc-link">6. Joker build patterns</a>
+          <a href="#bosses" class="toc-link">7. Boss blind adaptation</a>
+          <a href="#gameplan" class="toc-link">8. Early to late game plan</a>
+          <a href="#mistakes" class="toc-link">9. Common mistakes</a>
+          <a href="#checklist" class="toc-link">10. Quick checklist</a>
+        </nav>
+      </div>
+    </aside>
+
+    <article class="guide-article contentCard">
+      <header class="guide-header">
+        <p class="guide-badge">Balatro Fundamentals</p>
+        <h1 class="contentTitle">Balatro Gameplay Guide: Build More Consistent Winning Runs</h1>
+        <p class="contentLead">
+          This guide turns Balatro into a decision framework. Instead of memorizing every card, focus on the loop,
+          your economy, and your scaling path. Use the left menu to jump straight to the part you need.
+        </p>
+      </header>
+
+      <section id="overview" class="guide-section">
+        <h2>1. How to read this guide</h2>
+        <p>
+          Balatro rewards planning under uncertainty. A strong run is usually not about one lucky Joker, but about
+          linking many small choices:
+        </p>
+        <ul>
+          <li>Pick a reliable scoring line early.</li>
+          <li>Spend only where score growth is meaningful.</li>
+          <li>Protect flexibility against blinds and boss mechanics.</li>
+          <li>Transition into a scaling setup before the late antes.</li>
+        </ul>
+        <p class="guide-note">
+          If you only keep one idea: every purchase should either improve your next blind immediately or improve your
+          scaling for the next 2-3 rounds.
+        </p>
+      </section>
+
+      <section id="loop" class="guide-section">
+        <h2>2. The core round loop</h2>
+        <p>Each ante follows a repeatable structure:</p>
+        <ol>
+          <li>Enter blind: evaluate score target and restrictions.</li>
+          <li>Play hands: convert limited actions into enough score.</li>
+          <li>Use discards: shape better hands, not random fishing.</li>
+          <li>Win blind: keep extra hands/discards when possible for efficiency.</li>
+          <li>Visit shop: buy power, reroll selectively, and plan your next blind.</li>
+        </ol>
+        <p>
+          Thinking in loops helps you avoid panic rerolls and impulse buys. Your shop decisions should solve the next
+          blind while also pushing your long-term multiplier/chips growth.
+        </p>
+      </section>
+
+      <section id="scoring" class="guide-section">
+        <h2>3. Scoring fundamentals</h2>
+        <p>
+          Most winning lines are built around one truth: chips and multiplier must scale together. If one side grows
+          and the other stalls, score growth collapses in later antes.
+        </p>
+        <h3>Practical scoring priorities</h3>
+        <ul>
+          <li>Early game: stabilize one hand type you can hit often.</li>
+          <li>Mid game: add effects that multiply your existing pattern, not random side plans.</li>
+          <li>Late game: prefer compounding effects over flat value unless survival is urgent.</li>
+        </ul>
+        <p>
+          Consistency beats ceiling in the early antes. Ceiling wins only after your base line is stable.
+        </p>
+      </section>
+
+      <section id="resources" class="guide-section">
+        <h2>4. Baseline run resources</h2>
+        <p>
+          Before deck and stake modifiers, a run starts from a common baseline. Treat these as your budgeting limits:
+        </p>
+        <div class="resource-table-wrap">
+          <table class="resource-table" aria-label="Baseline Balatro resources">
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Baseline</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Starting cash</td>
+                <td>$4</td>
+                <td>Defines first shop flexibility.</td>
+              </tr>
+              <tr>
+                <td>Hand size</td>
+                <td>8</td>
+                <td>Controls your hand-shaping ceiling.</td>
+              </tr>
+              <tr>
+                <td>Discards per blind</td>
+                <td>3</td>
+                <td>Core resource for consistency.</td>
+              </tr>
+              <tr>
+                <td>Hands per blind</td>
+                <td>4</td>
+                <td>Main action budget for scoring.</td>
+              </tr>
+              <tr>
+                <td>Joker slots</td>
+                <td>5</td>
+                <td>Sets your build architecture.</td>
+              </tr>
+              <tr>
+                <td>Consumable slots</td>
+                <td>2</td>
+                <td>Limits tactical burst options.</td>
+              </tr>
+              <tr>
+                <td>Base shop reroll cost</td>
+                <td>$5</td>
+                <td>Punishes low-discipline rerolling.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="economy" class="guide-section">
+        <h2>5. Shop and economy rules</h2>
+        <p>A clean economy is what keeps strong runs alive after Ante 3.</p>
+        <h3>Simple buying framework</h3>
+        <ul>
+          <li>Buy immediate survival first.</li>
+          <li>Then buy scaling pieces that fit your current hand pattern.</li>
+          <li>Avoid expensive pivots unless your current line is clearly dead.</li>
+        </ul>
+        <h3>Reroll discipline</h3>
+        <ul>
+          <li>Do not reroll with no target in mind.</li>
+          <li>Set a budget before you click reroll.</li>
+          <li>Stop rerolling once your next blind is solved.</li>
+        </ul>
+      </section>
+
+      <section id="jokers" class="guide-section">
+        <h2>6. Joker build patterns</h2>
+        <p>Think of Joker slots as roles, not just card slots.</p>
+        <ul>
+          <li>1-2 slots for stable base value.</li>
+          <li>1-2 slots for scaling growth.</li>
+          <li>0-1 slot for utility or blind-specific coverage.</li>
+          <li>Reserve room to upgrade into higher-impact synergies.</li>
+        </ul>
+        <p>
+          The best Joker setups usually look boring at first: clean, compatible, and easy to trigger every blind.
+          Flashy but inconsistent interactions often fail under boss pressure.
+        </p>
+      </section>
+
+      <section id="bosses" class="guide-section">
+        <h2>7. Boss blind adaptation</h2>
+        <p>
+          Boss blinds punish one-dimensional builds. Before entering, ask: what is my failure condition this round?
+        </p>
+        <ul>
+          <li>If your line depends on one suit/rank, secure alternatives.</li>
+          <li>If your line depends on many actions, avoid waste in earlier plays.</li>
+          <li>If your score is backloaded, protect enough resources to survive setup turns.</li>
+        </ul>
+        <p>
+          You do not need to counter every boss perfectly. You only need to remove the one constraint that would
+          instantly break your line.
+        </p>
+      </section>
+
+      <section id="gameplan" class="guide-section">
+        <h2>8. Early to late game plan</h2>
+        <h3>Early game (Ante 1-2)</h3>
+        <ul>
+          <li>Stabilize a hand type you can hit consistently.</li>
+          <li>Protect economy; avoid greedy rerolls.</li>
+          <li>Take power that solves immediate blinds.</li>
+        </ul>
+        <h3>Mid game (Ante 3-5)</h3>
+        <ul>
+          <li>Convert from temporary value to scalable engines.</li>
+          <li>Cut dead synergies quickly.</li>
+          <li>Use shop visits to prepare for known weaknesses.</li>
+        </ul>
+        <h3>Late game (Ante 6+)</h3>
+        <ul>
+          <li>Prioritize compounding score interactions.</li>
+          <li>Spend for reliability under boss constraints.</li>
+          <li>Avoid full pivots unless the run is already collapsing.</li>
+        </ul>
+      </section>
+
+      <section id="mistakes" class="guide-section">
+        <h2>9. Common mistakes that kill runs</h2>
+        <ul>
+          <li>Buying cards for novelty instead of role fit.</li>
+          <li>Over-rerolling early and entering mid game broke.</li>
+          <li>Keeping weak legacy pieces too long.</li>
+          <li>Ignoring boss constraints until the blind starts.</li>
+          <li>Chasing perfect hands instead of reliable clears.</li>
+        </ul>
+      </section>
+
+      <section id="checklist" class="guide-section">
+        <h2>10. Quick checklist before each shop</h2>
+        <ol>
+          <li>Can I beat the next blind with current setup?</li>
+          <li>Which single purchase gives the highest score stability?</li>
+          <li>Do I need to save money instead of rerolling now?</li>
+          <li>Is any Joker slot underperforming and replaceable?</li>
+          <li>What boss weakness must I solve before the next ante?</li>
+        </ol>
+        <p class="guide-note">
+          Follow this checklist for ten runs in a row and your consistency will improve faster than by memorizing card
+          lists alone.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <script src="balatro-background.js"></script>
+  <script>
+    const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+    const sections = Array.from(document.querySelectorAll('.guide-section[id]'));
+    const byId = new Map(tocLinks.map((link) => [link.getAttribute('href').slice(1), link]));
+
+    const updateActiveLink = (id) => {
+      tocLinks.forEach((link) => link.classList.remove('is-active'));
+      const active = byId.get(id);
+      if (active) active.classList.add('is-active');
+    };
+
+    if (sections.length > 0) {
+      updateActiveLink(sections[0].id);
+
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) updateActiveLink(visible[0].target.id);
+      }, {
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0.1, 0.35, 0.6]
+      });
+
+      sections.forEach((section) => observer.observe(section));
+    }
+  </script>
+
+  <style>
+    .gameplay-layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 110px 18px 42px;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .toc-sidebar {
+      position: sticky;
+      top: 92px;
+      align-self: start;
+    }
+
+    .toc-card {
+      border-radius: 14px;
+      padding: 14px 12px;
+      background: rgba(7, 9, 10, 0.42);
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .toc-kicker {
+      margin: 0;
+      color: #ffb347;
+      letter-spacing: 1px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .toc-title {
+      margin: 4px 0 10px;
+      color: #ffd700;
+      font-size: 22px;
+      font-weight: normal;
+      letter-spacing: 0.8px;
+      line-height: 1.25;
+    }
+
+    .toc-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: calc(100dvh - 170px);
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .toc-link {
+      display: block;
+      color: #c8d1dd;
+      text-decoration: none;
+      padding: 8px 9px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: rgba(20, 24, 27, 0.42);
+      transition: all 0.16s ease;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .toc-link:hover {
+      color: #ffffff;
+      border-color: rgba(255, 215, 0, 0.5);
+      transform: translateX(1px);
+    }
+
+    .toc-link.is-active {
+      color: #ffe8a3;
+      border-color: rgba(255, 215, 0, 0.72);
+      background: rgba(255, 215, 0, 0.13);
+      box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.22);
+    }
+
+    .guide-article {
+      margin-top: 0;
+      padding: 18px 20px 20px;
+    }
+
+    .guide-header {
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.18);
+      margin-bottom: 6px;
+    }
+
+    .guide-badge {
+      margin: 0 0 8px;
+      display: inline-block;
+      border: 1px solid rgba(255, 179, 71, 0.45);
+      background: rgba(255, 179, 71, 0.12);
+      color: #ffcc85;
+      padding: 4px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .guide-section {
+      scroll-margin-top: 96px;
+      padding-top: 4px;
+      margin-top: 8px;
+    }
+
+    .guide-section h2 {
+      margin-top: 18px;
+    }
+
+    .guide-note {
+      border-radius: 10px;
+      background: rgba(0, 157, 255, 0.11);
+      border: 1px solid rgba(0, 157, 255, 0.3);
+      padding: 10px 12px;
+      color: #d9ecff;
+    }
+
+    .resource-table-wrap {
+      margin-top: 10px;
+      border-radius: 12px;
+      overflow: auto;
+      border: 1px solid rgba(255, 215, 0, 0.24);
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .resource-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+
+    .resource-table th,
+    .resource-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.14);
+      color: #d3dbe7;
+      font-size: 15px;
+      line-height: 1.55;
+      vertical-align: top;
+    }
+
+    .resource-table th {
+      color: #ffe290;
+      background: rgba(255, 215, 0, 0.08);
+      letter-spacing: 0.4px;
+    }
+
+    .resource-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    @media (max-width: 1000px) {
+      .gameplay-layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding-top: 100px;
+      }
+
+      .toc-sidebar {
+        position: static;
+      }
+
+      .toc-card {
+        padding: 12px;
+      }
+
+      .toc-nav {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .guide-article {
+        padding: 14px 14px 16px;
+      }
+
+      .toc-title {
+        font-size: 20px;
+      }
+
+      .toc-link {
+        font-size: 14px;
+        padding: 7px 8px;
+      }
+    }
+  </style>
+</body>
+
+</html>
