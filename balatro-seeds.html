@@ -172,23 +172,35 @@
           <p>Community favorite seeds</p>
           <div class="seed-list">
             <div class="seed-item">
-              <code>JOKER123</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>JOKER123</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('JOKER123', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('JOKER123', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">Great joker start</span>
             </div>
             <div class="seed-item">
-              <code>MULT999</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>MULT999</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('MULT999', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('MULT999', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">High mult potential</span>
             </div>
             <div class="seed-item">
-              <code>LUCKY777</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>LUCKY777</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('LUCKY777', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('LUCKY777', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">Lucky draws</span>
             </div>
             <div class="seed-item">
-              <code>33cyvh75</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>33cyvh75</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('33cyvh75', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('33cyvh75', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">balatro seed with blueprint first round</span>
             </div>
           </div>
@@ -199,18 +211,27 @@
           <p>Seeds for specific challenges</p>
           <div class="seed-list">
             <div class="seed-item">
-              <code>HARD001</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>HARD001</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('HARD001', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('HARD001', 'challenge-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">No jokers challenge</span>
             </div>
             <div class="seed-item">
-              <code>SPEED42</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>SPEED42</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('SPEED42', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('SPEED42', 'challenge-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">Speed run seed</span>
             </div>
             <div class="seed-item">
-              <code>ANTE999</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>ANTE999</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('ANTE999', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('ANTE999', 'challenge-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">High ante push</span>
             </div>
           </div>
@@ -234,6 +255,7 @@
             <div class="joker-seed-row">
               <code>33cyvh75</code>
               <button class="copyBtn" onclick="copySeed('33cyvh75', this)">Copy</button>
+              <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('33cyvh75', 'featured-joker')">Analyze Seed</button>
             </div>
             <span class="seed-desc">Blueprint in first round</span>
           </div>
@@ -252,6 +274,7 @@
             <div class="joker-seed-row">
               <code>2k9h9hn</code>
               <button class="copyBtn" onclick="copySeed('2k9h9hn', this)">Copy</button>
+              <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('2k9h9hn', 'featured-joker')">Analyze Seed</button>
             </div>
             <span class="seed-desc">Blueprint and DNA in first round</span>
           </div>
@@ -269,6 +292,7 @@
             <div class="seed-code-row">
               <code>2F4TYFD8</code>
               <button class="copyBtn" onclick="copySeed('2F4TYFD8', this)">Copy</button>
+              <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('2F4TYFD8', 'seed-spotlight')">Analyze Seed</button>
               <a class="detailsBtn" href="/da/seed-2F4TYFD8" target="_blank" rel="noopener">Detail Guide</a>
             </div>
             <div class="seed-spotlight-tags">
@@ -554,14 +578,19 @@
       });
     }
 
-    function analyzeSeedFromGenerator() {
-      const seed = document.getElementById('generated-seed').textContent.trim();
-      if (!seed) return;
+    function analyzeSeed(seed, source = 'seed-list') {
+      const normalizedSeed = (seed || '').trim();
+      if (!normalizedSeed) return;
       const analyzerUrl = new URL('/balatro-seed-analyzer', window.location.origin);
-      analyzerUrl.searchParams.set('seed', seed);
-      analyzerUrl.searchParams.set('source', 'seed-generator');
+      analyzerUrl.searchParams.set('seed', normalizedSeed);
+      analyzerUrl.searchParams.set('source', source);
       analyzerUrl.searchParams.set('sourceToken', `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`);
       window.location.href = analyzerUrl.toString();
+    }
+
+    function analyzeSeedFromGenerator() {
+      const seed = document.getElementById('generated-seed').textContent;
+      analyzeSeed(seed, 'seed-generator');
     }
   </script>
 
@@ -720,6 +749,13 @@
       font-size: 16px;
     }
 
+    .seed-item-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .seed-desc {
       color: #bfc7d5;
       font-size: 14px;
@@ -738,6 +774,20 @@
       transition: all 0.2s ease;
       margin-left: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .seed-item-actions .copyBtn,
+    .joker-seed-row .copyBtn,
+    .seed-code-row .copyBtn {
+      margin-left: 0;
+    }
+
+    .analyzeSeedInlineBtn {
+      background: linear-gradient(135deg, #7b4cc9 0%, #5d36a8 100%);
+    }
+
+    .copyBtn.analyzeSeedInlineBtn:hover {
+      background: linear-gradient(135deg, #8d61d6 0%, #7149bf 100%);
     }
 
     .copyBtn:hover {
@@ -884,10 +934,13 @@
       }
 
       .copyBtn {
-        margin-left: auto;
-        /* Push to right in flex container if needed */
+        margin-left: 0;
         padding: 6px 12px;
         /* Larger touch target */
+      }
+
+      .seed-item-actions {
+        width: 100%;
       }
 
       .seed-desc {
