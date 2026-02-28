@@ -147,6 +147,10 @@
         <a class="quick-link" href="/balatro-seeds#seed-generator">Seed Generator</a>
         <a class="quick-link" href="/balatro-seeds#seed-finder">Seed Finder Online</a>
         <a class="quick-link" href="/balatro-seeds#good-fun-seeds">Good or Fun Balatro Seeds</a>
+        <a class="quick-link quick-link--pro" href="/balatro-seeds#community-seed-library">
+          <span>VIP Seed Pro Library</span>
+          <span class="quick-link-badge">PRO</span>
+        </a>
         <a class="quick-link" href="/balatro-seeds#seed-faq">Seed FAQ</a>
         <a class="quick-link" href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>
       </div>
@@ -397,253 +401,56 @@
           </div>
         </div>
 
-        <div class="seed-library">
-          <h3>Community Seed Library</h3>
-          <p class="seed-library-intro">
-            Curated from community reports and seed roundups. Outcomes can vary by unlock state, deck choice, and game
-            version.
-          </p>
+        <div class="seed-library" id="community-seed-library">
+          <div class="seed-library-headline">
+            <div>
+              <h3>VIP Seed Pro Library</h3>
+              <p class="seed-library-intro">
+                Deduped, source-backed premium seeds for high-score routes, stable clears, copy engines, negative
+                builds, and legendary openers. Free users can browse the first 3 cards. Unlock the full library with
+                the same Seed Pro membership used by Balatro Seed Analyzer.
+              </p>
+            </div>
+            <div class="seed-library-kicker">
+              <span class="seed-library-kicker-label">Public-source note</span>
+              <span class="seed-library-kicker-copy">Version and platform are marked "Unknown (source incomplete)" when the original post does not specify them.</span>
+            </div>
+          </div>
 
-          <div class="seed-library-list">
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>H554B4BG</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('H554B4BG', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('H554B4BG', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Magic Deck opener. Early Hermit line into Jasper-style scaling makes this route very stable.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Magic Deck</span>
-                <span class="seed-library-tag">Stable opener</span>
-              </div>
-            </article>
+          <div class="seed-library-access" id="seedLibraryAccessBar">
+            <div class="seed-library-access-copy">
+              <span class="seed-library-access-eyebrow">Shared Seed Pro access</span>
+              <strong id="seedLibraryAccessTitle">Free preview: first 3 seeds unlocked</strong>
+              <span id="seedLibraryAccessMeta">Unlock the other 47 cards with the same membership used by Balatro Seed Analyzer.</span>
+            </div>
+            <div class="seed-library-access-actions">
+              <button class="copyBtn seed-library-upgrade-btn" id="seedLibraryUnlockBtn" type="button">Unlock All Seeds</button>
+            </div>
+          </div>
 
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>9C7C4X28</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('9C7C4X28', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('9C7C4X28', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Anaglyph Deck route with a clear early plan and strong joker core (Blueprint, Mime, Perkeo path).</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Anaglyph Deck</span>
-                <span class="seed-library-tag">Strong core jokers</span>
-              </div>
-            </article>
+          <div class="seed-library-preview">
+            <div class="seed-library-section-label">Preview Seeds</div>
+            <div class="seed-library-list" id="seedLibraryPreviewList"></div>
+          </div>
 
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>8Q47WV6K</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('8Q47WV6K', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('8Q47WV6K', 'spotlight-library')">Analyze Seed</button>
+          <div class="seed-library-locked-zone is-locked" id="seedLibraryLockedZone">
+            <div class="seed-library-section-label seed-library-section-label--muted">Premium Seed Archive</div>
+            <div class="seed-library-list" id="seedLibraryLockedList"></div>
+            <div class="seed-library-lock-overlay" id="seedLibraryLockOverlay">
+              <div class="seed-library-lock-panel">
+                <span class="seed-library-lock-badge">Premium seed archive</span>
+                <h4>Unlock the full curated library</h4>
+                <p>
+                  Get every Perkeo opener, Triboulet route, Steel Kings line, negative build, and endless-scaling seed
+                  in this list. Membership is shared with Balatro Seed Analyzer.
+                </p>
+                <div class="seed-library-lock-actions">
+                  <button class="copyBtn seed-library-upgrade-btn" id="seedLibraryOverlayUnlock" type="button">Upgrade to Unlock</button>
+                  <button class="seed-library-plain-btn" id="seedLibraryOverlayCheck" type="button">I already paid</button>
                 </div>
+                <span class="seed-library-lock-footnote">One Seed Pro membership unlocks both tools.</span>
               </div>
-              <p class="seed-library-note">Popular double-legendary setup (often Triboulet + Perkeo) with huge late-game potential.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Legendary route</span>
-                <span class="seed-library-tag">Late-game scaling</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>ZQ24RCLB</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('ZQ24RCLB', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('ZQ24RCLB', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Straight-focused route with practical early joker layout for consistent hand development.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Straight build</span>
-                <span class="seed-library-tag">Early consistency</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>DVT1I9ZM</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('DVT1I9ZM', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('DVT1I9ZM', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Skip the first two blinds for two Mega Arcana packs. Can lead to explosive Polychrome Triboulet lines.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">High roll</span>
-                <span class="seed-library-tag">Mega Arcana path</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>28SFSSNU</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('28SFSSNU', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('28SFSSNU', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Early Perkeo and Fool package gives strong extension options for multiple midgame branches.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Perkeo opener</span>
-                <span class="seed-library-tag">Flexible midgame</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>2BVAPW1L</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('2BVAPW1L', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('2BVAPW1L', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Community-recommended high-potential run. Less scripted, good for experimentation.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Exploratory</span>
-                <span class="seed-library-tag">High ceiling</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>B66917TD</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('B66917TD', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('B66917TD', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Early Polychrome Perkeo + Brainstorm potential, with DNA showing later for strong scaling layers.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Polychrome line</span>
-                <span class="seed-library-tag">Endless potential</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>11EVFRPQ</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('11EVFRPQ', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('11EVFRPQ', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Technical route with layered joker activation windows and strong endless growth if piloted cleanly.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Technical run</span>
-                <span class="seed-library-tag">Endless scaling</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>WYLDZBGU</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('WYLDZBGU', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('WYLDZBGU', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Ghost Deck route with Red Seals, Perkeo, and Ankh interactions. Very fun if you like combo-heavy lines.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Ghost Deck</span>
-                <span class="seed-library-tag">Combo-heavy</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>11Y68BMP</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('11Y68BMP', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('11Y68BMP', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Early double Polychrome Brainstorm + Holographic Perkeo setup can spike power extremely fast.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Aggressive scaling</span>
-                <span class="seed-library-tag">High roll start</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>Z7P15XAA</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('Z7P15XAA', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('Z7P15XAA', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Community favorite fun seed with multiple Invisible Joker interactions and unconventional pivots.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Fun route</span>
-                <span class="seed-library-tag">Invisible Joker</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>2K9H9HN</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('2K9H9HN', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('2K9H9HN', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Widely shared as a "broken" style seed with extreme joker value and top-end score potential.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Meta favorite</span>
-                <span class="seed-library-tag">Very high ceiling</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>XEQH7CP9</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('XEQH7CP9', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('XEQH7CP9', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Erratic-style special combo route. Best used as a puzzle seed for creative line planning.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Erratic style</span>
-                <span class="seed-library-tag">Puzzle run</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>ALEEB</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('ALEEB', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('ALEEB', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Classic easter-egg seed that is still worth a run for novelty and legendary-heavy vibes.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Easter egg</span>
-                <span class="seed-library-tag">Legendary flavor</span>
-              </div>
-            </article>
-
-            <article class="seed-library-item">
-              <div class="seed-library-item-head">
-                <code>HYPTVAPV</code>
-                <div class="seed-item-actions">
-                  <button class="copyBtn" onclick="copySeed('HYPTVAPV', this)">Copy</button>
-                  <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('HYPTVAPV', 'spotlight-library')">Analyze Seed</button>
-                </div>
-              </div>
-              <p class="seed-library-note">Balanced community recommendation with a smooth progression curve and good recovery windows.</p>
-              <div class="seed-library-tags">
-                <span class="seed-library-tag">Balanced pick</span>
-                <span class="seed-library-tag">Beginner-friendly</span>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
@@ -796,6 +603,61 @@
     </div>
   </div>
 
+  <div id="seedLibraryPaywall" class="seed-library-paywall" aria-hidden="true">
+    <div class="seed-library-paywall-content" role="dialog" aria-modal="true" aria-labelledby="seedLibraryPaywallTitle">
+      <button id="seedLibraryPaywallClose" class="seed-library-paywall-close" type="button" aria-label="Close">&times;</button>
+      <h2 id="seedLibraryPaywallTitle">Unlock the VIP Seed Pro Library</h2>
+      <div id="seedLibraryPaywallMember" class="seed-library-paywall-member" aria-live="polite">
+        <div class="seed-library-paywall-member-badge">Seed Pro</div>
+        <div class="seed-library-paywall-member-meta">
+          <div id="seedLibraryPaywallMemberPlan" class="seed-library-paywall-member-plan"></div>
+          <div id="seedLibraryPaywallMemberEmail" class="seed-library-paywall-member-email"></div>
+          <div id="seedLibraryPaywallMemberExpires" class="seed-library-paywall-member-expires"></div>
+        </div>
+        <div class="seed-library-paywall-member-actions">
+          <button id="seedLibraryPaywallUpgrade" class="seed-library-paywall-secondary" type="button">Upgrade / Extend</button>
+          <button id="seedLibraryPaywallManage" class="seed-library-paywall-secondary" type="button">Manage in PayPal</button>
+          <button id="seedLibraryPaywallLogout" class="seed-library-paywall-secondary" type="button">Log out</button>
+        </div>
+      </div>
+      <p>
+        Unlock the full VIP seed library. Seed Pro is shared with
+        <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>.
+      </p>
+      <p class="seed-library-paywall-note">Monthly and yearly plans auto-renew. Cancel anytime.</p>
+      <p class="seed-library-paywall-support">
+        If you cannot pay or run into issues, contact
+        <button id="seedLibrarySupportEmail" class="seed-library-paywall-support-link" type="button" data-email="support@balatrocalc.com">
+          support@balatrocalc.com
+        </button>.
+      </p>
+      <div class="seed-library-paywall-plans">
+        <label class="seed-library-paywall-plan">
+          <span><input type="radio" name="seedLibraryPlan" value="seed-monthly" checked>Monthly</span>
+          <span class="seed-library-paywall-plan-price">$5 / 30 days</span>
+        </label>
+        <label class="seed-library-paywall-plan">
+          <span><input type="radio" name="seedLibraryPlan" value="seed-yearly">Yearly</span>
+          <span class="seed-library-paywall-plan-price">$49 / 365 days</span>
+        </label>
+        <label class="seed-library-paywall-plan">
+          <span><input type="radio" name="seedLibraryPlan" value="seed-lifetime">Lifetime</span>
+          <span class="seed-library-paywall-plan-price">$100 one-time</span>
+        </label>
+      </div>
+      <div class="seed-library-paywall-field">
+        <label for="seedLibraryPaywallEmail">Email (used for subscription lookup)</label>
+        <input id="seedLibraryPaywallEmail" type="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <button id="seedLibraryPaywallPay" class="seed-library-paywall-primary" type="button">Pay with PayPal</button>
+      <div class="seed-library-paywall-divider">Already paid? Enter your email to refresh access.</div>
+      <button id="seedLibraryPaywallCheck" class="seed-library-paywall-primary" type="button">Check subscription</button>
+      <div id="seedLibraryPaywallStatus" class="seed-library-paywall-status"></div>
+    </div>
+  </div>
+
+  <div id="seedLibraryToast" class="seed-library-toast" role="status" aria-live="polite"></div>
+
 
 
   <script>
@@ -850,6 +712,1011 @@
       const seed = document.getElementById('generated-seed').textContent;
       analyzeSeed(seed, 'seed-generator');
     }
+  </script>
+
+  <script>
+    const COMMUNITY_SEED_LIBRARY = [
+      {
+        rank: 1,
+        seed: "CXU5C38F",
+        title: "Flush Super Start",
+        summary: "Checkered Deck exclusive. Early straight flushes, fast economy, and strong core joker scaling make this one of the cleanest satisfaction seeds in the library.",
+        tags: ["Checkered Deck", "Stable opener"],
+        source: "https://balatroseed.net/seeds/2"
+      },
+      {
+        rank: 2,
+        seed: "NA337S31",
+        title: "Mindless Double Erratic Build",
+        summary: "Erratic Deck exclusive. Double tags and negative-card pressure snowball into huge chips and mult without a complicated pilot line.",
+        tags: ["Erratic Deck", "Double tags"],
+        source: "https://balatroseed.net/seeds/4"
+      },
+      {
+        rank: 3,
+        seed: "LKLQFRVY",
+        title: "Spectral DNA Copy Build",
+        summary: "Ghost or Spectral route. Skip the first round into an early DNA setup, copy Kings, and build toward Steel Kings plus rainbow scaling.",
+        tags: ["DNA route", "Spectral Deck"],
+        source: "https://balatroseed.net/seeds/5"
+      },
+      {
+        rank: 4,
+        seed: "X8WTK1U1",
+        title: "Five Legendary Fun Seed",
+        summary: "Collect five legendary jokers by ante three and convert the run into a massive late-game Baron line with absurd score potential.",
+        tags: ["Legendary stack", "Late-game scaling"],
+        source: "https://balatroseed.net/seeds/7"
+      },
+      {
+        rank: 5,
+        seed: "ZC4V88NS",
+        title: "Straight Chip Explosion Build",
+        summary: "Straight Deck exclusive. Sequence jokers, Hologram support, and spectral upgrades make this a practical high-score straight route.",
+        tags: ["Straight Deck", "Consistency"],
+        source: "https://balatroseed.net/seeds/11"
+      },
+      {
+        rank: 6,
+        seed: "57ITHUMG",
+        title: "Non-Legendary Ante 26 Build",
+        summary: "No legendary jokers required. Core pieces like Runner, Blueprint, Baron, and Mime carry the route to deep antes with strong stability.",
+        tags: ["No legends", "Deep ante"],
+        source: "https://balatroseed.net/seeds/12"
+      },
+      {
+        rank: 7,
+        seed: "76NM2KFK",
+        title: "Negative Blueprint Breakthrough Build",
+        summary: "Erratic Golden Stake route. An early negative Blueprint can copy Burglar and other core pieces for more plays and a smoother breakthrough run.",
+        tags: ["Negative build", "Blueprint"],
+        source: "https://balatroseed.net/seeds/13"
+      },
+      {
+        rank: 8,
+        seed: "3YXW6DQJ",
+        title: "Perfect Steel K High Score Build",
+        summary: "Naturally generates negative jokers and forms a Steel Kings engine with very little friction, making the route both stable and high ceiling.",
+        tags: ["Steel Kings", "Negative line"],
+        source: "https://balatroseed.net/seeds/14"
+      },
+      {
+        rank: 9,
+        seed: "UAZB8P17",
+        title: "Guided Steel K High Score Build",
+        summary: "Works with all unlock states. Followable path into Brainstorm, Blueprint, DNA, Mime, Baron, and red-seal Steel Kings.",
+        tags: ["Steel Kings", "Guided route"],
+        source: "https://balatroseed.net/seeds/15"
+      },
+      {
+        rank: 10,
+        seed: "4G9N3SQN",
+        title: "Premium Rare Negative Build",
+        summary: "Skip early blinds for a premium negative Burnt Joker line. Mega packs can add Blueprint and Sixth Sense for a rare, powerful setup.",
+        tags: ["Negative build", "Rare opener"],
+        source: "https://balatroseed.net/seeds/16"
+      },
+      {
+        rank: 11,
+        seed: "U8RJYV6N",
+        title: "Balatro Nuclear Fun Game",
+        summary: "Easy access to Blueprint, legendary support, and explosive spectral scaling. Built for players who want a premium power fantasy run.",
+        tags: ["High ceiling", "Explosive run"],
+        source: "https://balatroseed.net/seeds/17"
+      },
+      {
+        rank: 12,
+        seed: "9ZPU1V32",
+        title: "Super Wax Seal K Build",
+        summary: "Triboulet, Blueprint, Baron, and Perkeo combine with early wax-seal Kings for both cash flow and monstrous late-game scoring.",
+        tags: ["Wax-seal Kings", "Premium core"],
+        source: "https://balatroseed.net/seeds/18"
+      },
+      {
+        rank: 13,
+        seed: "VH1A55LV",
+        title: "God Hand Anti-Addiction Steel K Build",
+        summary: "God-hand Steel Kings route with blind refresh support and Cryptid pressure for an extreme endless-style experience.",
+        tags: ["Steel Kings", "Extreme endless"],
+        source: "https://balatroseed.net/seeds/19"
+      },
+      {
+        rank: 14,
+        seed: "T2T6YX69",
+        title: "Red Deck Speedrun Experience",
+        summary: "Red Deck exclusive. Fast path through the deck's strengths, ideal for newer players or anyone wanting a quick completion-style run.",
+        tags: ["Red Deck", "Speedrun"],
+        source: "https://balatroseed.net/seeds/21"
+      },
+      {
+        rank: 15,
+        seed: "DQJ7CEZU",
+        title: "Yellow Deck Strategy Challenge",
+        summary: "Yellow Deck exclusive. A practical route for players who enjoy experimenting with alternate lines and strategic pivots.",
+        tags: ["Yellow Deck", "Strategy"],
+        source: "https://balatroseed.net/seeds/22"
+      },
+      {
+        rank: 16,
+        seed: "8Z2P1F11",
+        title: "Blue Deck Efficient Completion",
+        summary: "Blue Deck exclusive. Smooth early tempo and efficient scaling make it a strong seed for clean deck-specific clears.",
+        tags: ["Blue Deck", "Efficient clear"],
+        source: "https://balatroseed.net/seeds/23"
+      },
+      {
+        rank: 17,
+        seed: "D8ALFJ1G",
+        title: "Green Deck Combination Fun",
+        summary: "Green Deck exclusive. Good for players who want to lean into combo-heavy sequencing and still maintain a forgiving curve.",
+        tags: ["Green Deck", "Combo route"],
+        source: "https://balatroseed.net/seeds/24"
+      },
+      {
+        rank: 18,
+        seed: "T1RPE2UT",
+        title: "Black Deck Ultimate Style",
+        summary: "Black Deck exclusive. A harder-edged deck route that stays flavorful while still delivering a viable completion path.",
+        tags: ["Black Deck", "Challenge route"],
+        source: "https://balatroseed.net/seeds/25"
+      },
+      {
+        rank: 19,
+        seed: "28SFSSNU",
+        title: "Perkeo High Score",
+        summary: "Starts with Perkeo and follows with a guaranteed Hermit line after the boss, opening several strong midgame branches.",
+        tags: ["Perkeo opener", "Flexible midgame"],
+        source: "https://balatroseed.net/seeds/26"
+      },
+      {
+        rank: 20,
+        seed: "2BVAPW1L",
+        title: "Mystery Exploration Build",
+        summary: "Popular community seed with less scripting than the others. Good for players who want room to improvise and test new lines.",
+        tags: ["Exploratory", "High ceiling"],
+        source: "https://balatroseed.net/seeds/27"
+      },
+      {
+        rank: 21,
+        seed: "8Q47WV6K",
+        title: "Double Tag Super Build",
+        summary: "Skip the first two blinds for double tags and a Mega Arcana pack. Excellent if you want fast setup turns and spike potential.",
+        tags: ["Double tags", "Arcana spike"],
+        source: "https://balatroseed.net/seeds/28"
+      },
+      {
+        rank: 22,
+        seed: "86GRJT3C",
+        title: "Triboulet Speed Build",
+        summary: "Skip the first small blind to grab Triboulet early, then convert into a quick burst-style line with strong tempo.",
+        tags: ["Triboulet", "Speed build"],
+        source: "https://balatroseed.net/seeds/29"
+      },
+      {
+        rank: 23,
+        seed: "B66917TD",
+        title: "Multi-Core Combination Build",
+        summary: "Early Polychrome Perkeo, DNA support, and additional premium pieces create a layered scaling route with endless upside.",
+        tags: ["Polychrome line", "Endless potential"],
+        source: "https://balatroseed.net/seeds/30"
+      },
+      {
+        rank: 24,
+        seed: "11EVFRPQ",
+        title: "Rare Speed Experience",
+        summary: "Observatory, Director's Cut, and other rare power spikes arrive early enough to turn the run into a technical endless climb.",
+        tags: ["Technical run", "Rare power"],
+        source: "https://balatroseed.net/seeds/31"
+      },
+      {
+        rank: 25,
+        seed: "D97FB8XS",
+        title: "Blueprint High Score Build",
+        summary: "Skip the first small blind for Triboulet, then add Ankh and Blueprint after the first boss for one of the cleanest copy-scaling routes.",
+        tags: ["Blueprint", "Copy scaling"],
+        source: "https://balatroseed.net/seeds/32"
+      },
+      {
+        rank: 26,
+        seed: "PTSBMSMQ",
+        title: "Ghost Mime Legion",
+        summary: "Ghost Deck exclusive. Builds a dense Mime army with strong chain-explosion payoff for players who enjoy stacked triggers.",
+        tags: ["Ghost Deck", "Mime stack"],
+        source: "https://balatroseed.net/seeds/33"
+      },
+      {
+        rank: 27,
+        seed: "XD55DZ57",
+        title: "Quadruple DNA Explosion",
+        summary: "Ghost Deck exclusive. Supports triple and even quadruple DNA lines for outsized burst turns and ridiculous card-copy pressure.",
+        tags: ["Ghost Deck", "DNA copies"],
+        source: "https://balatroseed.net/seeds/34"
+      },
+      {
+        rank: 28,
+        seed: "2VJZV6KK",
+        title: "Negative Speed Score Build",
+        summary: "Double-Perkeo style consumable engine that ramps score extremely fast once the negative package starts snowballing.",
+        tags: ["Negative consumables", "Fast scaling"],
+        source: "https://balatroseed.net/seeds/35"
+      },
+      {
+        rank: 29,
+        seed: "QD3F4XVW",
+        title: "DNA Filter High Score",
+        summary: "Triboulet plus DNA creates a focused Kings route, deck filtering, and a reliable path into high-score copy sequencing.",
+        tags: ["DNA filter", "King scaling"],
+        source: "https://balatroseed.net/seeds/36"
+      },
+      {
+        rank: 30,
+        seed: "7LB2WVPK",
+        title: "Ten of Spades Extreme",
+        summary: "Erratic Deck exclusive. The deck compresses into a near-monochrome Ten of Spades gimmick that can support extreme hand-type play.",
+        tags: ["Erratic Deck", "Extreme gimmick"],
+        source: "https://balatroseed.net/seeds/37"
+      },
+      {
+        rank: 31,
+        seed: "F2AXGQ52",
+        title: "Six Legendary Score Explosion",
+        summary: "Heavy legendary payoff seed with copy options around Perkeo. Built for players chasing absurd late-game power.",
+        tags: ["Legendary stack", "High ceiling"],
+        source: "https://balatroseed.net/seeds/38"
+      },
+      {
+        rank: 32,
+        seed: "8P7W6QG5",
+        title: "Legendary Glass King",
+        summary: "Canio and Triboulet anchor a Glass Kings route with huge reward if you assemble the line cleanly.",
+        tags: ["Glass Kings", "Legendary route"],
+        source: "https://balatroseed.net/seeds/39"
+      },
+      {
+        rank: 33,
+        seed: "1EK6XQHS",
+        title: "Negative Canio Build",
+        summary: "Negative Canio provides a premium multiplier core for players who want a sharper, more fragile high-score route.",
+        tags: ["Canio", "Negative build"],
+        source: "https://balatroseed.net/seeds/41"
+      },
+      {
+        rank: 34,
+        seed: "BUMBYCX2",
+        title: "Burnt Baron Build",
+        summary: "Ante 1 DNA and Baron, Ante 2 Acrobat, and a later negative Burnt Joker create a layered route with several premium pivot points.",
+        tags: ["Baron", "Layered build"],
+        source: "https://balatroseed.net/seeds/44"
+      },
+      {
+        rank: 35,
+        seed: "18Y2RT7B",
+        title: "Double Legendary Copy",
+        summary: "Starts with a double-legendary copy shell and quickly branches into multiple oppressive endgame lines.",
+        tags: ["Legendary opener", "Copy engine"],
+        source: "https://balatroseed.net/seeds/45"
+      },
+      {
+        rank: 36,
+        seed: "MEN5H5B8",
+        title: "Spectral Blueprint Build",
+        summary: "Spectral deck line with double polychrome pressure, Blueprint, Brainstorm, and several joker-copy branches.",
+        tags: ["Spectral Deck", "Blueprint"],
+        source: "https://balatroseed.net/seeds/47"
+      },
+      {
+        rank: 37,
+        seed: "HSC1L2DX",
+        title: "Double DNA Copy Joy",
+        summary: "Free skip into an early DNA joker, with Ankh later turning the route into a fast-developing copy build.",
+        tags: ["DNA opener", "Fast growth"],
+        source: "https://balatroseed.net/seeds/48"
+      },
+      {
+        rank: 38,
+        seed: "4T1SZKLF",
+        title: "Mystery Copy Build",
+        summary: "Ghost deck copy route built around repeated Cryptid interactions and Perkeo stacking for experienced endless players.",
+        tags: ["Ghost Deck", "Expert route"],
+        source: "https://balatroseed.net/seeds/49"
+      },
+      {
+        rank: 39,
+        seed: "APQI6LSV",
+        title: "Five of a Kind Aces Route",
+        summary: "Steam users highlight a Five of a Kind plus Aces route with Jupiter and Fool support and a heavier mid-to-late payoff curve.",
+        tags: ["Aces route", "Midgame burst"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 40,
+        seed: "VCS2B75K",
+        title: "Stencil Blueprint Opener",
+        summary: "Early Spectral gives Stencil and later blinds can add Blueprint. Community reports call out a very strong opening tempo.",
+        tags: ["Stencil opener", "Blueprint"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 41,
+        seed: "DSKRTMSB",
+        title: "Triple Negative Money Deck",
+        summary: "Steam discussion notes a Money Deck line with three negative jokers, balancing economy, stability, and upside.",
+        tags: ["Money Deck", "Negative stack"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 42,
+        seed: "LD6FR1R5",
+        title: "Stable Stencil Blueprint Opener",
+        summary: "Similar to VCS2B75K but framed by the community as a steadier snowball route built around the same core opener.",
+        tags: ["Stable opener", "Blueprint"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 43,
+        seed: "3PP8A5VE",
+        title: "Negative Ride the Bus Easy Win",
+        summary: "Community note: a negative Ride the Bus arrives by round two, making this a notably stable clear-oriented seed.",
+        tags: ["Easy win", "Ride the Bus"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 44,
+        seed: "1Y8ENIBV",
+        title: "Reinforced Aces Copy Route",
+        summary: "Shared as a seed that can copy heavily enhanced Aces, supporting both score and multiplier growth in parallel.",
+        tags: ["Aces route", "Copy build"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 45,
+        seed: "MW67PQLQ",
+        title: "Five of a Kind Baseball Line",
+        summary: "Reported as a good Five of a Kind route with Baseball Card-style value points and strong streak potential.",
+        tags: ["Five of a Kind", "Baseball line"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 46,
+        seed: "1J144PAL",
+        title: "Blue Deck Baseball Economy",
+        summary: "Blue Deck route with early Baseball Bat and Golden Joker support, giving the run a smooth economy and stable midgame.",
+        tags: ["Blue Deck", "Economy"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/4346606879507996239/?l=english"
+      },
+      {
+        rank: 47,
+        seed: "Y46JTJG3",
+        title: "Abandoned Deck Economy Stack",
+        summary: "Abandoned Deck path built around Vagabond, Egg, Gift Card, and Swashbuckler for a very noticeable economy explosion.",
+        tags: ["Abandoned Deck", "Economy stack"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/4346606879507996239/?l=english"
+      },
+      {
+        rank: 48,
+        seed: "4NB3QANG",
+        title: "Polychrome Blueprint Fast Climb",
+        summary: "Skip the first two blinds to get a Polychrome Blueprint opener. Community expectation puts the line at least into ante 16.",
+        tags: ["Polychrome", "Fast climb"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/604162199750097502/?l=english"
+      },
+      {
+        rank: 49,
+        seed: "XEE4DBIZ",
+        title: "Oops! All 6 Endless Push",
+        summary: "Companion community seed that gets significantly stronger if the run later pairs with Oops! All 6s for added ceiling.",
+        tags: ["Oops! All 6s", "Endless push"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/604162199750097502/?l=english"
+      },
+      {
+        rank: 50,
+        seed: "VJRPISZL",
+        title: "Easiest Win Buccaneer Gift",
+        summary: "Steam users describe this as an especially easy win seed, centered on an early Buccaneer plus Gift opener.",
+        tags: ["Easy win", "Beginner-friendly"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/596265123885104257/?l=english"
+      },
+      {
+        rank: 51,
+        seed: "H554B4BG",
+        title: "Magic Deck Stable Opener",
+        summary: "Magic Deck opener with an early Hermit line into Jasper-style scaling, giving the route a very stable early and midgame.",
+        tags: ["Magic Deck", "Stable opener"],
+        source: "legacy-library"
+      },
+      {
+        rank: 52,
+        seed: "9C7C4X28",
+        title: "Anaglyph Core Joker Route",
+        summary: "Anaglyph Deck route with a clear early plan and a premium joker core, often leaning toward Blueprint, Mime, and Perkeo scaling.",
+        tags: ["Anaglyph Deck", "Core jokers"],
+        source: "legacy-library"
+      },
+      {
+        rank: 53,
+        seed: "ZQ24RCLB",
+        title: "Straight Build Consistency Route",
+        summary: "Straight-focused route with a practical early joker layout for consistent hand development and a smoother opening curve.",
+        tags: ["Straight build", "Early consistency"],
+        source: "legacy-library"
+      },
+      {
+        rank: 54,
+        seed: "DVT1I9ZM",
+        title: "Mega Arcana High Roll",
+        summary: "Skip the first two blinds for two Mega Arcana packs. Strong if you want explosive Polychrome Triboulet-style branches.",
+        tags: ["High roll", "Mega Arcana"],
+        source: "legacy-library"
+      },
+      {
+        rank: 55,
+        seed: "WYLDZBGU",
+        title: "Ghost Deck Red Seal Combo",
+        summary: "Ghost Deck route with Red Seals, Perkeo, and Ankh interactions. Good for players who enjoy combo-heavy sequencing.",
+        tags: ["Ghost Deck", "Combo-heavy"],
+        source: "legacy-library"
+      },
+      {
+        rank: 56,
+        seed: "11Y68BMP",
+        title: "Double Polychrome Spike",
+        summary: "Early double Polychrome Brainstorm plus Holographic Perkeo can spike power extremely fast and create a very volatile opener.",
+        tags: ["Aggressive scaling", "High roll start"],
+        source: "legacy-library"
+      },
+      {
+        rank: 57,
+        seed: "Z7P15XAA",
+        title: "Invisible Joker Fun Route",
+        summary: "Community-favorite fun seed with multiple Invisible Joker interactions and several unconventional pivot lines.",
+        tags: ["Fun route", "Invisible Joker"],
+        source: "legacy-library"
+      },
+      {
+        rank: 58,
+        seed: "2K9H9HN",
+        title: "Broken Ceiling Meta Favorite",
+        summary: "Widely shared as a broken-style seed with extreme joker value and top-end score potential for players chasing ceiling.",
+        tags: ["Meta favorite", "Very high ceiling"],
+        source: "legacy-library"
+      },
+      {
+        rank: 59,
+        seed: "XEQH7CP9",
+        title: "Erratic Puzzle Route",
+        summary: "Erratic-style special combo route best approached like a puzzle seed for creative line planning and unusual pivots.",
+        tags: ["Erratic style", "Puzzle run"],
+        source: "legacy-library"
+      },
+      {
+        rank: 60,
+        seed: "ALEEB",
+        title: "Classic Easter Egg Seed",
+        summary: "Classic easter-egg seed worth playing for novelty value and legendary-heavy flavor even if it is not the most technical route.",
+        tags: ["Easter egg", "Legendary flavor"],
+        source: "legacy-library"
+      },
+      {
+        rank: 61,
+        seed: "HYPTVAPV",
+        title: "Balanced Beginner Pick",
+        summary: "Balanced community recommendation with a smooth progression curve, decent recovery windows, and a forgiving early game.",
+        tags: ["Balanced pick", "Beginner-friendly"],
+        source: "legacy-library"
+      }
+    ];
+
+    (function () {
+      const FEATURE_KEY = "seed";
+      const FREE_VISIBLE_COUNT = 3;
+      const UNKNOWN_VERSION = "Unknown (source incomplete)";
+      const STORAGE_KEYS = {
+        paidEmail: "bc_paid_email",
+        paidFeatures: "bc_paid_features"
+      };
+      const PLAN_LABELS = {
+        monthly: "Monthly",
+        yearly: "Yearly",
+        lifetime: "Lifetime"
+      };
+
+      const dedupedSeeds = Array.from(
+        new Map(
+          COMMUNITY_SEED_LIBRARY.map((item) => [
+            String(item.seed || "").trim().toUpperCase(),
+            {
+              ...item,
+              seed: String(item.seed || "").trim().toUpperCase()
+            }
+          ])
+        ).values()
+      ).map((item, index) => ({
+        ...item,
+        rank: index + 1
+      }));
+
+      let previewList;
+      let lockedList;
+      let lockedZone;
+      let accessTitle;
+      let accessMeta;
+      let unlockBtn;
+      let overlayUnlockBtn;
+      let overlayCheckBtn;
+      let paywall;
+      let paywallEmail;
+      let paywallStatus;
+      let paywallMember;
+      let paywallMemberPlan;
+      let paywallMemberEmail;
+      let paywallMemberExpires;
+      let paywallUpgrade;
+      let paywallManage;
+      let paywallLogout;
+      let toastEl;
+      let toastTimer;
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function parsePlan(plan) {
+        const parts = String(plan || "").split("-");
+        if (parts.length !== 2) return null;
+        return {
+          feature: parts[0],
+          period: parts[1]
+        };
+      }
+
+      function formatPlanLabel(plan) {
+        const parsed = parsePlan(plan);
+        if (!parsed) return plan || "";
+        return `${parsed.feature === FEATURE_KEY ? "Seed" : parsed.feature} ${PLAN_LABELS[parsed.period] || parsed.period}`;
+      }
+
+      function loadPaidFeatures() {
+        const raw = localStorage.getItem(STORAGE_KEYS.paidFeatures);
+        if (!raw) return {};
+        try {
+          return JSON.parse(raw) || {};
+        } catch {
+          return {};
+        }
+      }
+
+      function savePaidFeatures(data) {
+        localStorage.setItem(STORAGE_KEYS.paidFeatures, JSON.stringify(data));
+      }
+
+      function getPaidInfo() {
+        const email = localStorage.getItem(STORAGE_KEYS.paidEmail) || "";
+        const data = loadPaidFeatures();
+        const entry = data[FEATURE_KEY];
+        if (!entry || !entry.plan) return { active: false, email };
+
+        const parsed = parsePlan(entry.plan);
+        if (!parsed || parsed.feature !== FEATURE_KEY) {
+          return { active: false, email };
+        }
+        if (parsed.period === "lifetime") {
+          return { active: true, email, plan: entry.plan, expiresAt: null };
+        }
+        if (!entry.expiresAt) {
+          return { active: false, email };
+        }
+        const active = new Date(entry.expiresAt).getTime() > Date.now();
+        return { active, email, plan: entry.plan, expiresAt: entry.expiresAt || null };
+      }
+
+      function setPaidInfo(email, plan, expiresAt) {
+        const normalizedEmail = String(email || "").trim().toLowerCase();
+        localStorage.setItem(STORAGE_KEYS.paidEmail, normalizedEmail);
+        const data = loadPaidFeatures();
+        data[FEATURE_KEY] = {
+          plan,
+          expiresAt: expiresAt || null
+        };
+        savePaidFeatures(data);
+      }
+
+      function clearPaidInfo() {
+        localStorage.removeItem(STORAGE_KEYS.paidEmail);
+        localStorage.removeItem(STORAGE_KEYS.paidFeatures);
+      }
+
+      function formatDate(iso) {
+        if (!iso) return "";
+        const parsed = new Date(iso);
+        if (Number.isNaN(parsed.getTime())) return iso;
+        return parsed.toISOString().slice(0, 10);
+      }
+
+      function getSelectedPlan() {
+        const selected = document.querySelector('input[name="seedLibraryPlan"]:checked');
+        return selected ? selected.value : "seed-monthly";
+      }
+
+      function normalizeEmail(value) {
+        return String(value || "").trim().toLowerCase();
+      }
+
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      async function getJson(url) {
+        const response = await fetch(url, { credentials: "same-origin" });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || "Request failed");
+        }
+        return data;
+      }
+
+      async function postJson(url, payload) {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || "Request failed");
+        }
+        return data;
+      }
+
+      function openPaywall() {
+        paywall.classList.add("active");
+        paywall.setAttribute("aria-hidden", "false");
+      }
+
+      function closePaywall() {
+        paywall.classList.remove("active");
+        paywall.setAttribute("aria-hidden", "true");
+      }
+
+      function setPaywallStatus(message, type) {
+        paywallStatus.textContent = message || "";
+        paywallStatus.classList.toggle("error", type === "error");
+        paywallStatus.classList.toggle("success", type === "success");
+      }
+
+      function clearPaywallStatus() {
+        setPaywallStatus("", "");
+      }
+
+      function showToast(message, durationMs = 2600) {
+        if (!message) return;
+        toastEl.textContent = message;
+        toastEl.classList.add("active");
+        if (toastTimer) {
+          clearTimeout(toastTimer);
+        }
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove("active");
+        }, durationMs);
+      }
+
+      function updatePaywallMemberBox(paid) {
+        if (!paid.active) {
+          paywallMember.classList.remove("active");
+          paywallMemberPlan.textContent = "";
+          paywallMemberEmail.textContent = "";
+          paywallMemberExpires.textContent = "";
+          return;
+        }
+
+        paywallMember.classList.add("active");
+        paywallMemberPlan.textContent = `Seed Pro · ${formatPlanLabel(paid.plan)}`;
+        paywallMemberEmail.textContent = paid.email || "";
+        if (parsePlan(paid.plan)?.period === "lifetime") {
+          paywallMemberExpires.textContent = "Lifetime access";
+          return;
+        }
+        paywallMemberExpires.textContent = paid.expiresAt
+          ? `Valid until ${formatDate(paid.expiresAt)} UTC`
+          : "Subscription active";
+      }
+
+      function updateAccessBar() {
+        const paid = getPaidInfo();
+        const lockedCount = Math.max(dedupedSeeds.length - FREE_VISIBLE_COUNT, 0);
+
+        if (paid.active) {
+          accessTitle.textContent = `Full library unlocked · ${dedupedSeeds.length} / ${dedupedSeeds.length} seeds`;
+          accessMeta.textContent = paid.expiresAt
+            ? `${formatPlanLabel(paid.plan)} active until ${formatDate(paid.expiresAt)} UTC${paid.email ? ` · ${paid.email}` : ""}`
+            : `Seed Pro lifetime access${paid.email ? ` · ${paid.email}` : ""}`;
+          unlockBtn.textContent = "Manage Seed Pro";
+          lockedZone.classList.remove("is-locked");
+        } else {
+          accessTitle.textContent = `Free preview: ${FREE_VISIBLE_COUNT} / ${dedupedSeeds.length} seeds visible`;
+          accessMeta.textContent = `Unlock the other ${lockedCount} cards with the same membership used by Balatro Seed Analyzer.`;
+          unlockBtn.textContent = "Unlock All Seeds";
+          lockedZone.classList.add("is-locked");
+        }
+
+        updatePaywallMemberBox(paid);
+      }
+
+      function syncSharedMembershipState() {
+        const paid = getPaidInfo();
+        const cachedEmail = localStorage.getItem(STORAGE_KEYS.paidEmail) || "";
+        if (document.activeElement !== paywallEmail) {
+          paywallEmail.value = paid.email || cachedEmail;
+        }
+        updateAccessBar();
+      }
+
+      function renderCard(item) {
+        const tags = item.tags
+          .map((tag) => `<span class="seed-library-tag">${escapeHtml(tag)}</span>`)
+          .join("");
+        const seed = escapeHtml(item.seed);
+        const title = escapeHtml(item.title);
+        const summary = escapeHtml(item.summary);
+        const isHttpSource = /^https?:\/\//i.test(String(item.source || ""));
+        const sourceMarkup = isHttpSource
+          ? `<a href="${escapeHtml(item.source)}" target="_blank" rel="noopener nofollow">Source</a>`
+          : `<span>${escapeHtml(item.source === "legacy-library" ? "Legacy library" : "Source unavailable")}</span>`;
+
+        return `
+          <article class="seed-library-item" data-seed="${seed}">
+            <div class="seed-library-item-head">
+              <div class="seed-library-code-stack">
+                <span class="seed-library-rank">#${item.rank}</span>
+                <code>${seed}</code>
+              </div>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('${seed}', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('${seed}', 'community-seed-library')">Analyze Seed</button>
+              </div>
+            </div>
+            <p class="seed-library-title">${title}</p>
+            <p class="seed-library-note">${summary}</p>
+            <div class="seed-library-meta">
+              <span>${escapeHtml(UNKNOWN_VERSION)}</span>
+              ${sourceMarkup}
+            </div>
+            <div class="seed-library-tags">${tags}</div>
+          </article>
+        `;
+      }
+
+      function renderLibrary() {
+        previewList.innerHTML = dedupedSeeds.slice(0, FREE_VISIBLE_COUNT).map(renderCard).join("");
+        lockedList.innerHTML = dedupedSeeds.slice(FREE_VISIBLE_COUNT).map(renderCard).join("");
+        syncSharedMembershipState();
+      }
+
+      async function checkSubscription() {
+        clearPaywallStatus();
+        const email = normalizeEmail(paywallEmail.value);
+        if (!validateEmail(email)) {
+          setPaywallStatus("Enter a valid email.", "error");
+          return;
+        }
+
+        try {
+          const data = await getJson(`/api/subscription?email=${encodeURIComponent(email)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
+          if (!data.active) {
+            setPaywallStatus("No active Seed Pro subscription found.", "error");
+            return;
+          }
+          setPaidInfo(data.email || email, data.plan || "seed-monthly", data.expiresAt || null);
+          renderLibrary();
+          setPaywallStatus("Seed Pro unlocked for this device.", "success");
+          showToast("Subscription confirmed. Full library unlocked.");
+          setTimeout(closePaywall, 500);
+        } catch (error) {
+          setPaywallStatus(error.message || "Subscription check failed.", "error");
+        }
+      }
+
+      async function startPayment() {
+        clearPaywallStatus();
+        const email = normalizeEmail(paywallEmail.value);
+        if (!validateEmail(email)) {
+          setPaywallStatus("Enter a valid email before paying.", "error");
+          return;
+        }
+
+        const plan = getSelectedPlan();
+        const parsed = parsePlan(plan);
+        if (!parsed) {
+          setPaywallStatus("Invalid plan selected.", "error");
+          return;
+        }
+
+        const endpoint = parsed.period === "lifetime"
+          ? "/api/paypal/create-order"
+          : "/api/paypal/create-subscription";
+
+        try {
+          setPaywallStatus("Redirecting to PayPal...", "");
+          const data = await postJson(endpoint, {
+            email,
+            plan,
+            returnPath: window.location.pathname
+          });
+          if (!data.approvalUrl) {
+            throw new Error("Missing PayPal approval link.");
+          }
+          window.location.href = data.approvalUrl;
+        } catch (error) {
+          setPaywallStatus(error.message || "Failed to start PayPal checkout.", "error");
+        }
+      }
+
+      function cleanupPaypalParams(params) {
+        ["paypal", "plan", "token", "subscription_id", "ba_token", "PayerID"].forEach((key) => {
+          params.delete(key);
+        });
+        const nextUrl = params.toString()
+          ? `${window.location.pathname}?${params.toString()}${window.location.hash || ""}`
+          : `${window.location.pathname}${window.location.hash || ""}`;
+        window.history.replaceState({}, "", nextUrl);
+      }
+
+      async function handlePaypalReturn() {
+        const params = new URLSearchParams(window.location.search);
+        const paypalState = params.get("paypal");
+        if (!paypalState) return;
+
+        openPaywall();
+        if (paypalState === "cancel") {
+          setPaywallStatus("Payment canceled.", "error");
+          cleanupPaypalParams(params);
+          return;
+        }
+
+        const plan = params.get("plan");
+        const parsed = parsePlan(plan);
+        if (!parsed) {
+          setPaywallStatus("Missing or invalid plan info from PayPal.", "error");
+          cleanupPaypalParams(params);
+          return;
+        }
+
+        setPaywallStatus("Finalizing PayPal...", "");
+
+        try {
+          let data;
+          if (parsed.period === "lifetime") {
+            const token = params.get("token");
+            if (!token) {
+              throw new Error("Missing PayPal order token.");
+            }
+            data = await postJson("/api/paypal/capture", { orderId: token });
+          } else {
+            const subscriptionId = params.get("subscription_id");
+            if (!subscriptionId) {
+              throw new Error("Missing PayPal subscription id.");
+            }
+            data = await postJson("/api/paypal/subscription-activate", { subscriptionId });
+          }
+
+          if (!data.active) {
+            throw new Error("Payment was created but not active yet. Please retry in a moment.");
+          }
+
+          setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan || plan, data.expiresAt || null);
+          renderLibrary();
+          setPaywallStatus("Seed Pro unlocked.", "success");
+          showToast("Payment confirmed. Full library unlocked.");
+          setTimeout(closePaywall, 500);
+        } catch (error) {
+          setPaywallStatus(error.message || "PayPal verification failed.", "error");
+        } finally {
+          cleanupPaypalParams(params);
+        }
+      }
+
+      function openPayPalManage() {
+        const host = window.location.hostname;
+        const isSandbox = host.includes("pages.dev") || host.includes("localhost") || host.includes("127.0.0.1");
+        const base = isSandbox ? "https://www.sandbox.paypal.com" : "https://www.paypal.com";
+        window.open(`${base}/myaccount/autopay/`, "_blank", "noopener");
+      }
+
+      function copySupportEmail() {
+        const email = document.getElementById("seedLibrarySupportEmail")?.dataset.email || "support@balatrocalc.com";
+        navigator.clipboard.writeText(email).then(() => {
+          showToast("Support email copied.");
+        }).catch(() => {
+          setPaywallStatus("Unable to copy email. Please copy manually.", "error");
+        });
+      }
+
+      function bindEvents() {
+        unlockBtn.addEventListener("click", openPaywall);
+        overlayUnlockBtn.addEventListener("click", openPaywall);
+        overlayCheckBtn.addEventListener("click", () => {
+          openPaywall();
+          setPaywallStatus("Enter your purchase email to unlock Seed Pro.", "");
+          paywallEmail.focus();
+        });
+        document.getElementById("seedLibraryPaywallClose").addEventListener("click", closePaywall);
+        paywall.addEventListener("click", (event) => {
+          if (event.target === paywall) {
+            closePaywall();
+          }
+        });
+        document.getElementById("seedLibraryPaywallPay").addEventListener("click", startPayment);
+        document.getElementById("seedLibraryPaywallCheck").addEventListener("click", checkSubscription);
+        paywallUpgrade.addEventListener("click", () => {
+          clearPaywallStatus();
+          document.querySelector(".seed-library-paywall-plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          setPaywallStatus("Choose a plan to upgrade or extend Seed Pro.", "");
+        });
+        paywallManage.addEventListener("click", openPayPalManage);
+        paywallLogout.addEventListener("click", () => {
+          clearPaidInfo();
+          paywallEmail.value = "";
+          renderLibrary();
+          setPaywallStatus("Signed out on this device.", "success");
+        });
+        document.getElementById("seedLibrarySupportEmail").addEventListener("click", copySupportEmail);
+        window.addEventListener("storage", (event) => {
+          if (!event.key || event.key === STORAGE_KEYS.paidEmail || event.key === STORAGE_KEYS.paidFeatures) {
+            syncSharedMembershipState();
+          }
+        });
+        window.addEventListener("pageshow", syncSharedMembershipState);
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) {
+            syncSharedMembershipState();
+          }
+        });
+      }
+
+      function init() {
+        previewList = document.getElementById("seedLibraryPreviewList");
+        lockedList = document.getElementById("seedLibraryLockedList");
+        lockedZone = document.getElementById("seedLibraryLockedZone");
+        accessTitle = document.getElementById("seedLibraryAccessTitle");
+        accessMeta = document.getElementById("seedLibraryAccessMeta");
+        unlockBtn = document.getElementById("seedLibraryUnlockBtn");
+        overlayUnlockBtn = document.getElementById("seedLibraryOverlayUnlock");
+        overlayCheckBtn = document.getElementById("seedLibraryOverlayCheck");
+        paywall = document.getElementById("seedLibraryPaywall");
+        paywallEmail = document.getElementById("seedLibraryPaywallEmail");
+        paywallStatus = document.getElementById("seedLibraryPaywallStatus");
+        paywallMember = document.getElementById("seedLibraryPaywallMember");
+        paywallMemberPlan = document.getElementById("seedLibraryPaywallMemberPlan");
+        paywallMemberEmail = document.getElementById("seedLibraryPaywallMemberEmail");
+        paywallMemberExpires = document.getElementById("seedLibraryPaywallMemberExpires");
+        paywallUpgrade = document.getElementById("seedLibraryPaywallUpgrade");
+        paywallManage = document.getElementById("seedLibraryPaywallManage");
+        paywallLogout = document.getElementById("seedLibraryPaywallLogout");
+        toastEl = document.getElementById("seedLibraryToast");
+
+        if (!previewList || !lockedList || !lockedZone || !paywall) return;
+
+        const cachedEmail = localStorage.getItem(STORAGE_KEYS.paidEmail);
+        if (cachedEmail) {
+          paywallEmail.value = cachedEmail;
+        }
+
+        bindEvents();
+        renderLibrary();
+        handlePaypalReturn();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init, { once: true });
+      } else {
+        init();
+      }
+    })();
   </script>
 
   <!-- Balatro Background Shader -->
@@ -1476,8 +2343,18 @@
 
     .seed-library {
       margin-top: 22px;
-      padding-top: 18px;
+      padding-top: 20px;
       border-top: 1px solid rgba(255, 215, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .seed-library-headline {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(240px, 1fr);
+      gap: 16px;
+      align-items: start;
     }
 
     .seed-library h3 {
@@ -1489,34 +2366,144 @@
     }
 
     .seed-library-intro {
-      margin: 0 0 12px;
+      margin: 0;
       color: #bfc7d5;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    .seed-library-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px;
-    }
-
-    .seed-library-item {
-      padding: 12px;
-      border-radius: 10px;
+    .seed-library-kicker {
+      padding: 14px 16px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 215, 0, 0.2);
-      background: rgba(0, 0, 0, 0.28);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(13, 20, 12, 0.3));
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .seed-library-item-head {
+    .seed-library-kicker-label {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+    }
+
+    .seed-library-kicker-copy {
+      color: #d9dfeb;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .seed-library-access {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.2) 48%, rgba(88, 47, 183, 0.2));
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .seed-library-access-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .seed-library-access-eyebrow {
+      color: #ffe37a;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-access-copy strong {
+      color: #fff7c2;
+      display: block;
+      padding: 2px 0 4px;
+      font-size: 18px;
+      line-height: 1.45;
+      overflow: visible;
+      text-rendering: optimizeLegibility;
+    }
+
+    .seed-library-access-copy span:last-child {
+      color: #d2d7e2;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .seed-library-access-actions {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
+    }
+
+    .seed-library-upgrade-btn {
+      min-width: 180px;
+      justify-content: center;
+    }
+
+    .seed-library-section-label {
+      margin-bottom: 10px;
+      color: #ffe37a;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-section-label--muted {
+      color: rgba(255, 227, 122, 0.72);
+    }
+
+    .seed-library-preview,
+    .seed-library-locked-zone {
+      position: relative;
+    }
+
+    .seed-library-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .seed-library-item {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 220px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .seed-library-item-head {
+      display: flex;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .seed-library-code-stack {
+      display: flex;
+      align-items: center;
       gap: 8px;
       flex-wrap: wrap;
+    }
+
+    .seed-library-rank {
+      color: rgba(255, 227, 122, 0.82);
+      font-family: 'm6x11Plus', monospace;
+      font-size: 13px;
+      letter-spacing: 0.4px;
     }
 
     .seed-library-item code {
@@ -1529,11 +2516,41 @@
       padding: 4px 8px;
     }
 
+    .seed-library-title {
+      margin: 0;
+      color: #fff4b0;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
     .seed-library-note {
       margin: 0;
       color: #bfc7d5;
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.58;
+      flex: 1;
+    }
+
+    .seed-library-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: rgba(214, 221, 233, 0.78);
+      font-size: 11px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-meta a {
+      color: #8ec7ff;
+      text-decoration: none;
+    }
+
+    .seed-library-meta a:hover {
+      text-decoration: underline;
     }
 
     .seed-library-tags {
@@ -1550,6 +2567,379 @@
       color: #ffd700;
       background: rgba(255, 215, 0, 0.1);
       letter-spacing: 0.2px;
+    }
+
+    .seed-library-locked-zone {
+      padding: 4px 0 0;
+    }
+
+    .seed-library-locked-zone.is-locked .seed-library-list {
+      filter: blur(10px);
+      opacity: 0.48;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .seed-library-lock-overlay {
+      position: absolute;
+      inset: 28px 0 0;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(10, 12, 8, 0.15), rgba(8, 10, 12, 0.62));
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 14px 18px 18px;
+      backdrop-filter: blur(2px);
+    }
+
+    .seed-library-locked-zone:not(.is-locked) .seed-library-lock-overlay {
+      display: none;
+    }
+
+    .seed-library-lock-panel {
+      width: min(920px, 100%);
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: linear-gradient(180deg, rgba(6, 12, 8, 0.92), rgba(6, 10, 8, 0.82));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+      text-align: left;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) auto;
+      gap: 16px 20px;
+      align-items: center;
+    }
+
+    .seed-library-lock-badge {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffd700;
+      font-size: 11px;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-lock-panel h4 {
+      margin: 8px 0 8px;
+      color: #fff0a8;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .seed-library-lock-panel p {
+      margin: 0;
+      max-width: 780px;
+      color: #d8deea;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .seed-library-lock-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 0;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+    }
+
+    .seed-library-plain-btn {
+      border: 1px solid rgba(255, 215, 0, 0.38);
+      background: rgba(0, 0, 0, 0.28);
+      color: #ffd700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .seed-library-plain-btn:hover {
+      background: rgba(255, 215, 0, 0.16);
+    }
+
+    .seed-library-lock-footnote {
+      display: block;
+      margin-top: 4px;
+      color: rgba(216, 222, 234, 0.72);
+      font-size: 12px;
+    }
+
+    .seed-library-paywall {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.74);
+    }
+
+    .seed-library-paywall.active {
+      display: flex;
+    }
+
+    .seed-library-paywall-content {
+      width: min(560px, 92vw);
+      max-height: min(92vh, 900px);
+      overflow-y: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      background: rgba(0, 0, 0, 0.92);
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+    }
+
+    .seed-library-paywall-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      color: #ffd700;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .seed-library-paywall-content h2 {
+      margin: 0 0 10px;
+      color: #fff2b3;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .seed-library-paywall-content p {
+      margin: 0 0 10px;
+      color: #d4dceb;
+      line-height: 1.55;
+    }
+
+    .seed-library-paywall-content a {
+      color: #8ec7ff;
+    }
+
+    .seed-library-paywall-note,
+    .seed-library-paywall-support {
+      font-size: 13px;
+      color: rgba(212, 220, 235, 0.78);
+    }
+
+    .seed-library-paywall-support-link {
+      border: none;
+      background: none;
+      color: #ffd700;
+      text-decoration: underline;
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .seed-library-paywall-member {
+      display: none;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 16px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.34);
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .seed-library-paywall-member.active {
+      display: flex;
+    }
+
+    .seed-library-paywall-member-badge {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 16px;
+      min-width: 72px;
+    }
+
+    .seed-library-paywall-member-meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: #d4dceb;
+      font-size: 13px;
+    }
+
+    .seed-library-paywall-member-plan {
+      color: #fff2b3;
+      font-weight: 700;
+    }
+
+    .seed-library-paywall-member-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .seed-library-paywall-plans {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .seed-library-paywall-plan {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .seed-library-paywall-plan-price {
+      color: #fff0a8;
+      font-weight: 700;
+    }
+
+    .seed-library-paywall-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .seed-library-paywall-field label {
+      color: #d4dceb;
+      font-size: 13px;
+    }
+
+    .seed-library-paywall-field input {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff6c9;
+      font-size: 15px;
+    }
+
+    .seed-library-paywall-primary,
+    .seed-library-paywall-secondary {
+      cursor: pointer;
+    }
+
+    .seed-library-paywall-primary {
+      width: 100%;
+      border: 1px solid rgba(255, 215, 0, 0.55);
+      background: rgba(255, 215, 0, 0.22);
+      color: #ffd700;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+    }
+
+    .seed-library-paywall-primary:hover {
+      background: rgba(255, 215, 0, 0.3);
+    }
+
+    .seed-library-paywall-secondary {
+      border: 1px solid rgba(255, 215, 0, 0.36);
+      background: rgba(0, 0, 0, 0.25);
+      color: #ffd700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+    }
+
+    .seed-library-paywall-secondary:hover {
+      background: rgba(255, 215, 0, 0.14);
+    }
+
+    .seed-library-paywall-divider {
+      margin: 14px 0 10px;
+      color: rgba(212, 220, 235, 0.78);
+      font-size: 13px;
+    }
+
+    .seed-library-paywall-status {
+      min-height: 20px;
+      margin-top: 12px;
+      color: #ffe37a;
+      font-weight: 700;
+    }
+
+    .seed-library-paywall-status.success {
+      color: #9ef0b2;
+    }
+
+    .seed-library-paywall-status.error {
+      color: #ff8e8e;
+    }
+
+    .seed-library-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1250;
+      display: none;
+      max-width: min(360px, 90vw);
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.38);
+      background: rgba(0, 0, 0, 0.92);
+      color: #ffd700;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.38);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .seed-library-toast.active {
+      display: block;
+    }
+
+    @media (max-width: 820px) {
+      .seed-library-headline,
+      .seed-library-access {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .seed-library-access-actions {
+        justify-content: flex-start;
+      }
+
+      .seed-library-upgrade-btn {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .seed-library-lock-panel {
+        text-align: left;
+        grid-template-columns: 1fr;
+      }
+
+      .seed-library-lock-actions {
+        justify-content: flex-start;
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .seed-library-paywall-member {
+        flex-direction: column;
+      }
+
+      .seed-library-paywall-member-actions {
+        width: 100%;
+        align-items: stretch;
+      }
     }
 
     .seed-card-tile {
@@ -1627,6 +3017,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       padding: 10px 16px;
       border-radius: 10px;
       background: rgba(0, 0, 0, 0.35);
@@ -1644,8 +3035,40 @@
       background: rgba(0, 0, 0, 0.45);
     }
 
+    .seed-quick-links .quick-link--pro {
+      padding-right: 44px;
+      background: linear-gradient(135deg, rgba(27, 18, 0, 0.55), rgba(52, 20, 0, 0.36));
+      border-color: rgba(255, 215, 0, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.14), 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .seed-quick-links .quick-link--pro:hover {
+      background: linear-gradient(135deg, rgba(42, 28, 0, 0.72), rgba(84, 28, 0, 0.42));
+    }
+
+    .seed-quick-links .quick-link-badge {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffd84d 0%, #ffb800 100%);
+      color: #241700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: 0.35px;
+      box-shadow: 0 3px 8px rgba(255, 184, 0, 0.3);
+    }
+
     #seed-generator,
     #good-fun-seeds,
+    #community-seed-library,
     #seed-finder,
     #seed-faq {
       scroll-margin-top: 120px;

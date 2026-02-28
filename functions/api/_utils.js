@@ -82,11 +82,34 @@ export async function getPaypalAccessToken(env) {
   return data.access_token;
 }
 
-export function getReturnUrls(request, plan) {
+function normalizeReturnPath(value) {
+  const fallback = '/balatro-seed-analyzer';
+  if (!value || typeof value !== 'string') return fallback;
+
+  try {
+    const parsed = new URL(value, 'https://balatrocalc.local');
+    if (parsed.origin !== 'https://balatrocalc.local') return fallback;
+    if (!parsed.pathname.startsWith('/')) return fallback;
+    if (parsed.pathname.startsWith('//')) return fallback;
+    return `${parsed.pathname}${parsed.search}${parsed.hash}`;
+  } catch {
+    return fallback;
+  }
+}
+
+export function getReturnUrls(request, plan, returnPath) {
   const origin = new URL(request.url).origin;
+  const safePath = normalizeReturnPath(returnPath);
+  const buildUrl = (paypalState) => {
+    const target = new URL(safePath, origin);
+    target.searchParams.set('paypal', paypalState);
+    target.searchParams.set('plan', plan);
+    return target.toString();
+  };
+
   return {
-    returnUrl: `${origin}/balatro-seed-analyzer?paypal=success&plan=${plan}`,
-    cancelUrl: `${origin}/balatro-seed-analyzer?paypal=cancel&plan=${plan}`
+    returnUrl: buildUrl('success'),
+    cancelUrl: buildUrl('cancel')
   };
 }
 

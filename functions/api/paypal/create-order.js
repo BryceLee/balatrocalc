@@ -23,7 +23,7 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Plan not supported for one-time order');
   }
 
-  const { returnUrl, cancelUrl } = getReturnUrls(request, plan);
+  const { returnUrl, cancelUrl } = getReturnUrls(request, plan, body.returnPath);
   const token = await getPaypalAccessToken(env);
   const res = await fetch(`${paypalApiBase(env)}/v2/checkout/orders`, {
     method: 'POST',

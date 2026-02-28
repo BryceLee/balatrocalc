@@ -29,7 +29,7 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Missing PayPal plan id');
   }
 
-  const { returnUrl, cancelUrl } = getReturnUrls(request, plan);
+  const { returnUrl, cancelUrl } = getReturnUrls(request, plan, body.returnPath);
   const token = await getPaypalAccessToken(env);
   const res = await fetch(`${paypalApiBase(env)}/v1/billing/subscriptions`, {
     method: 'POST',
