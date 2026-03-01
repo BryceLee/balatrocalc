@@ -66,6 +66,9 @@
           <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
         </div>
         <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+        <a id="seedQuotaLibraryLink" class="seedQuotaLibraryLink" href="/balatro-seeds#community-seed-library">
+          You can also use VIP Seed Pro Library with unlimited access.
+        </a>
       </div>
       <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Manage Access</button>
     </div>
@@ -83,6 +86,7 @@
           <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
         </div>
         <p>Subscribe for unlimited access to Seed Analyzer.</p>
+        <p class="seedPaywallNote">Seed Pro membership is shared with the <a class="seedPaywallInlineLink" href="/balatro-seeds#community-seed-library">VIP Seed Pro Library</a>, so one upgrade unlocks unlimited use in both tools at the same time.</p>
         <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime.</p>
         <div class="seedPaywallPlans">
           <label class="seedPaywallPlan">
@@ -125,6 +129,7 @@
         const quotaTotal = document.getElementById('seedQuotaTotal');
         const quotaPlan = document.getElementById('seedQuotaPlan');
         const quotaReset = document.getElementById('seedQuotaReset');
+        const quotaLibraryLink = document.getElementById('seedQuotaLibraryLink');
         const manageBtn = document.getElementById('seedQuotaManage');
 
         const successBtn = document.getElementById('simulateSuccess');
@@ -168,6 +173,7 @@
             quotaTotal.textContent = '';
             quotaPlan.textContent = `Seed Pro · ${planLabel}`;
             quotaReset.textContent = expiresLabel ? `Valid until ${expiresLabel} UTC` : 'Lifetime access';
+            quotaLibraryLink.classList.add('active');
             manageBtn.textContent = 'Manage Pro';
           } else {
             memberBox.classList.remove('active');
@@ -177,6 +183,7 @@
             quotaTotal.textContent = `/${FREE_LIMIT}`;
             quotaPlan.textContent = '';
             quotaReset.textContent = 'Resets daily at 00:00 UTC';
+            quotaLibraryLink.classList.remove('active');
             manageBtn.textContent = 'Manage Access';
           }
         }

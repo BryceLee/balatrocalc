@@ -25,6 +25,7 @@
   let quotaTotalEl;
   let quotaPlanEl;
   let quotaResetEl;
+  let quotaLibraryLink;
   let quotaUserEl;
   let quotaEmailEl;
   let quotaLogoutBtn;
@@ -52,6 +53,7 @@
     quotaTotalEl = document.getElementById('seedQuotaTotal');
     quotaPlanEl = document.getElementById('seedQuotaPlan');
     quotaResetEl = document.getElementById('seedQuotaReset');
+    quotaLibraryLink = document.getElementById('seedQuotaLibraryLink');
     quotaUserEl = document.getElementById('seedQuotaUser');
     quotaEmailEl = document.getElementById('seedQuotaEmail');
     quotaLogoutBtn = document.getElementById('seedQuotaLogout');
@@ -212,6 +214,9 @@
   function updateQuotaUI() {
     const paid = getPaidInfo();
     const email = paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || '';
+    if (quotaLibraryLink) {
+      quotaLibraryLink.classList.toggle('active', Boolean(paid.active));
+    }
     if (paid.active) {
       quotaRemainingEl.textContent = 'Unlimited';
       quotaTotalEl.textContent = '';
