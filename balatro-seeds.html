@@ -406,15 +406,49 @@
             <div>
               <h3>VIP Seed Pro Library</h3>
               <p class="seed-library-intro">
-                Reddit-first, source-backed premium seeds for high-score routes, stable clears, copy engines, negative builds,
-                and legendary openers. Free users can browse the first 3 cards. Unlock the full library with the same
-                Seed Pro membership used by Balatro Seed Analyzer.
+                Reddit-first, source-backed premium seeds organized around five practical tracks: legendary high-rolls,
+                copy engines, economy and spectral snowballs, specialized deck routes, and stable clears. Free users
+                can browse the first 3 cards. Unlock the full library with the same Seed Pro membership used by
+                Balatro Seed Analyzer.
               </p>
             </div>
             <div class="seed-library-kicker">
               <span class="seed-library-kicker-label">Public-source note</span>
               <span class="seed-library-kicker-copy">Version and platform are marked "Unknown (source incomplete)" when the original post does not specify them.</span>
             </div>
+          </div>
+
+          <div class="seed-library-track-grid" id="seedLibraryTrackGrid">
+            <article class="seed-library-track-card" data-track="legendary">
+              <span class="seed-library-track-label">Track 01</span>
+              <strong>Legendary & Soul</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Perkeo, Triboulet, Canio, Yorick, Chicot, and other premium openers that define ceiling-first runs.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="copy">
+              <span class="seed-library-track-label">Track 02</span>
+              <strong>Copy Engines</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Blueprint, Brainstorm, DNA, Mime, Ankh, and Invisible Joker routes built for duplication loops.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="economy">
+              <span class="seed-library-track-label">Track 03</span>
+              <strong>Economy & Spectral</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Money-first lines, Hermit and Arcana spikes, negative consumables, and spectral-heavy pivots.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="specialized">
+              <span class="seed-library-track-label">Track 04</span>
+              <strong>Specialized Decks</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Ghost, Erratic, Checkered, Plasma, Magic, and other deck-specific seeds with sharper identity.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="stable">
+              <span class="seed-library-track-label">Track 05</span>
+              <strong>Stable Clears</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Consistency-first seeds for unlocks, completion pushes, forgiving openers, and smoother clear rates.</p>
+            </article>
           </div>
 
           <div class="seed-library-access" id="seedLibraryAccessBar">
@@ -1827,6 +1861,34 @@
         yearly: "Yearly",
         lifetime: "Lifetime"
       };
+      const SEED_TRACKS = [
+        {
+          id: "legendary",
+          label: "Legendary & Soul",
+          badge: "Legendary route"
+        },
+        {
+          id: "copy",
+          label: "Copy Engines",
+          badge: "Copy engine"
+        },
+        {
+          id: "economy",
+          label: "Economy & Spectral",
+          badge: "Economy / spectral"
+        },
+        {
+          id: "specialized",
+          label: "Specialized Decks",
+          badge: "Deck specialist"
+        },
+        {
+          id: "stable",
+          label: "Stable Clears",
+          badge: "Stable clear"
+        }
+      ];
+      const SEED_TRACKS_BY_ID = new Map(SEED_TRACKS.map((track) => [track.id, track]));
 
       function getSourceDomain(source) {
         try {
@@ -1840,6 +1902,69 @@
         const domain = getSourceDomain(source);
         if (domain === "reddit.com") return 0;
         return 1;
+      }
+
+      function getSourceBadge(source) {
+        const domain = getSourceDomain(source);
+        if (domain === "reddit.com") return "Reddit forum";
+        if (domain === "taptap.cn") return "TapTap forum";
+        if (domain === "steamcommunity.com") return "Steam forum";
+        if (domain === "m.ali213.net") return "Community article";
+        if (String(source || "") === "legacy-library") return "Legacy archive";
+        return "";
+      }
+
+      function getSeedSearchText(item) {
+        return [
+          item.seed,
+          item.title,
+          item.summary,
+          ...(Array.isArray(item.tags) ? item.tags : [])
+        ]
+          .join(" ")
+          .toLowerCase();
+      }
+
+      function getSeedTrack(item) {
+        const text = getSeedSearchText(item);
+        const hasNoLegendarySignal = /(no legendary|no legends|without legendary)/.test(text);
+        if (!hasNoLegendarySignal && /(perkeo|triboulet|canio|yorick|chicot|legendary|soul)/.test(text)) {
+          return "legendary";
+        }
+        if (/(blueprint|brainstorm|dna|mime|copy|ankh|invisible joker)/.test(text)) {
+          return "copy";
+        }
+        if (/(stable|consisten|beginner|completion|easy|forgiving|speedrun|unlock|guide thread|guide|clear)/.test(text)) {
+          return "stable";
+        }
+        if (/(spectral|arcana|hermit|voucher|money|economy|cash|negative consumable|mega arcana|planet)/.test(text)) {
+          return "economy";
+        }
+        if (/(ghost deck|erratic|checkered|plasma|anaglyph|abandoned|magic deck|yellow deck|red deck|blue deck|green deck|black deck|straight deck|deck exclusive|deck route)/.test(text)) {
+          return "specialized";
+        }
+        return "stable";
+      }
+
+      function getDisplayTags(item) {
+        const tags = [];
+        const seen = new Set();
+        const track = SEED_TRACKS_BY_ID.get(getSeedTrack(item));
+        const sourceBadge = getSourceBadge(item.source);
+
+        function pushTag(tag) {
+          const normalized = String(tag || "").trim();
+          if (!normalized) return;
+          const key = normalized.toLowerCase();
+          if (seen.has(key)) return;
+          seen.add(key);
+          tags.push(normalized);
+        }
+
+        if (track) pushTag(track.badge);
+        if (sourceBadge) pushTag(sourceBadge);
+        (Array.isArray(item.tags) ? item.tags : []).forEach(pushTag);
+        return tags.slice(0, 4);
       }
 
       const dedupedSeeds = Array.from(
@@ -1870,6 +1995,7 @@
       let previewList;
       let lockedList;
       let lockedZone;
+      let trackGrid;
       let accessTitle;
       let accessMeta;
       let unlockBtn;
@@ -2079,6 +2205,24 @@
         updatePaywallMemberBox(paid);
       }
 
+      function updateTrackGrid() {
+        if (!trackGrid) return;
+        const counts = new Map(SEED_TRACKS.map((track) => [track.id, 0]));
+        dedupedSeeds.forEach((item) => {
+          const trackId = getSeedTrack(item);
+          counts.set(trackId, (counts.get(trackId) || 0) + 1);
+        });
+
+        trackGrid.querySelectorAll("[data-track]").forEach((card) => {
+          const trackId = card.getAttribute("data-track");
+          const count = counts.get(trackId) || 0;
+          const countEl = card.querySelector("[data-track-count]");
+          if (countEl) {
+            countEl.textContent = `${count} seeds`;
+          }
+        });
+      }
+
       function syncSharedMembershipState() {
         const paid = getPaidInfo();
         const cachedEmail = localStorage.getItem(STORAGE_KEYS.paidEmail) || "";
@@ -2089,7 +2233,7 @@
       }
 
       function renderCard(item) {
-        const tags = item.tags
+        const tags = getDisplayTags(item)
           .map((tag) => `<span class="seed-library-tag">${escapeHtml(tag)}</span>`)
           .join("");
         const seed = escapeHtml(item.seed);
@@ -2124,6 +2268,7 @@
       }
 
       function renderLibrary() {
+        updateTrackGrid();
         previewList.innerHTML = dedupedSeeds.slice(0, FREE_VISIBLE_COUNT).map(renderCard).join("");
         lockedList.innerHTML = dedupedSeeds.slice(FREE_VISIBLE_COUNT).map(renderCard).join("");
         syncSharedMembershipState();
@@ -2311,6 +2456,7 @@
       }
 
       function init() {
+        trackGrid = document.getElementById("seedLibraryTrackGrid");
         previewList = document.getElementById("seedLibraryPreviewList");
         lockedList = document.getElementById("seedLibraryLockedList");
         lockedZone = document.getElementById("seedLibraryLockedZone");
@@ -3027,6 +3173,53 @@
       line-height: 1.5;
     }
 
+    .seed-library-track-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .seed-library-track-card {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.07), rgba(0, 0, 0, 0.26));
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-height: 138px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .seed-library-track-label {
+      color: rgba(255, 227, 122, 0.84);
+      font-family: 'm6x11Plus', monospace;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-track-card strong {
+      color: #fff2aa;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+
+    .seed-library-track-count {
+      color: #8ec7ff;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-track-card p {
+      margin: 0;
+      color: #c8d0dd;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
     .seed-library-access {
       display: flex;
       justify-content: space-between;
@@ -3544,6 +3737,10 @@
         display: grid;
       }
 
+      .seed-library-track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .seed-library-access-actions {
         justify-content: flex-start;
       }
@@ -3571,6 +3768,12 @@
       .seed-library-paywall-member-actions {
         width: 100%;
         align-items: stretch;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .seed-library-track-grid {
+        grid-template-columns: 1fr;
       }
     }
 
