@@ -1,19 +1,12 @@
 User-agent: *
 Allow: /
 
-# Allow all language versions
-Allow: /cn/
-Allow: /ja/
-Allow: /ko/
-Allow: /fr/
-Allow: /de/
-Allow: /es/
-Allow: /ru/
-
 # Sitemap
 Sitemap: https://balatrocalc.com/sitemap.xml
 
-# Block development files
-Disallow: /*.js$
-Disallow: /*.css$
-Disallow: /assets/
+# Keep internal-only pages out of crawler queues
+Disallow: /admin/
+Disallow: /blueprint/
+Disallow: /blueprint-dist/
+Disallow: /debug.html
+Disallow: /paywall-test.html

@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
+    crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Mod Manager Guide - Install Balatro Mods the Safe Way</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Balatro Mod Manager guide for players who want to install Balatro mods safely. Learn whether you need the Steam version, what the manager does, and how to start modding.">
+  <meta name="keywords"
+    content="balatro mod manager, balatro mods, how to install balatro mods, balatro steamodded, balatro mod guide, balatro mod loader">
+  <meta property="og:title" content="Balatro Mod Manager Guide">
+  <meta property="og:description"
+    content="A practical guide to Balatro Mod Manager: what it does, who should use it, and the easiest way to get started with Balatro mods.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-mod-manager">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Mod Manager Guide">
+  <meta name="twitter:description"
+    content="Balatro modding starts with the right game version and the right install flow. This page gives you the cleanest path.">
+  <meta name="theme-color" content="#23352e">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-mod-manager">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Balatro Mod Manager Guide",
+        "description": "Guide to Balatro Mod Manager, Steam-first mod setup, and Balatro mod installation basics.",
+        "url": "https://balatrocalc.com/balatro-mod-manager"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I need to buy Balatro before using Balatro Mod Manager?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Balatro Mod Manager is not the game itself. You need a Balatro copy first, and the simplest modding path is the Steam version."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a special or deluxe edition of Balatro?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. A normal Steam copy of Balatro is enough for most modding setups."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Balatro Mod Manager with Xbox Game Pass?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The project documentation says Balatro Mod Manager does not support the Game Pass version."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Balatro Mod Manager official?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It is a community-built third-party project for managing Balatro mods."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <div class="titleBarBrand">balatro mods</div>
+    <span class="subtitle">mod manager guide &amp; setup path</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/blog" class="nav-link">blog</a>
+    <a href="/balatro-mod-manager" class="nav-link nav-link--active nav-link--proper-case">Balatro Mod Manager</a>
+    <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <a href="/support" class="nav-link">support</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()">
+        <!-- I18N_LANG_OPTIONS_START -->
+        <option value="en" selected>EN</option>
+        <option value="cn">中文(简体)</option>
+        <option value="tw">中文(繁體)</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="it">Italiano</option>
+        <option value="pt-br">Português (BR)</option>
+        <option value="pt-pt">Português (PT)</option>
+        <option value="ru">Русский</option>
+        <option value="uk">Українська</option>
+        <option value="pl">Polski</option>
+        <option value="nl">Nederlands</option>
+        <option value="sv">Svenska</option>
+        <option value="no">Norsk</option>
+        <option value="da">Dansk</option>
+        <option value="fi">Suomi</option>
+        <option value="tr">Türkçe</option>
+        <option value="ar">العربية</option>
+        <option value="he">עברית</option>
+        <option value="hi">हिन्दी</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="th">ไทย</option>
+        <option value="ms">Bahasa Melayu</option>
+        <option value="tl">Filipino</option>
+        <option value="ro">Română</option>
+        <option value="hu">Magyar</option>
+        <option value="cs">Čeština</option>
+        <option value="el">Ελληνικά</option>
+        <!-- I18N_LANG_OPTIONS_END -->
+      </select>
+    </div>
+  </nav>
+
+  <div id="mainContainer">
+    <div class="contentPageWrap modPageWrap">
+      <section class="modHero">
+        <div class="modHeroGlow"></div>
+        <div class="modHeroGrid">
+          <div class="modHeroCopy">
+            <div class="modEyebrow">Community-built desktop tool</div>
+            <h1 class="modHeroTitle">Balatro Mod Manager is the easiest on-ramp if you want to install Balatro mods without digging through folders by hand.</h1>
+            <p class="modHeroLead">
+              Short version: buy or install the normal <strong>Steam</strong> version of Balatro first, launch the
+              vanilla game once, then use the community Balatro Mod Manager if you want a cleaner workflow for mod
+              discovery, installation, and updates.
+            </p>
+
+            <div class="modHeroActions">
+              <a class="modPrimaryBtn" href="https://github.com/skyline69/balatro-mod-manager/releases" target="_blank"
+                rel="noopener nofollow">View latest releases</a>
+              <a class="modSecondaryBtn" href="https://store.steampowered.com/app/2379780/Balatro/" target="_blank"
+                rel="noopener nofollow">Get Balatro on Steam</a>
+              <a class="modTertiaryBtn" href="/balatro-seeds">Use seed tools instead</a>
+            </div>
+
+            <div class="modPillRow">
+              <span class="modPill">Windows / macOS / Linux</span>
+              <span class="modPill">Best with Steam copy</span>
+              <span class="modPill">Not the game itself</span>
+              <span class="modPill">Unofficial third-party project</span>
+            </div>
+          </div>
+
+          <aside class="modSnapshotCard">
+            <div class="modSnapshotHeader">
+              <span class="modSnapshotLabel">Compatibility snapshot</span>
+              <span class="modSnapshotDate">Updated March 17, 2026</span>
+            </div>
+
+            <div class="modSnapshotList">
+              <div class="modSnapshotItem modSnapshotItem--good">
+                <span class="modSnapshotKey">Steam copy</span>
+                <strong>Recommended</strong>
+              </div>
+              <div class="modSnapshotItem modSnapshotItem--neutral">
+                <span class="modSnapshotKey">Regular Balatro edition</span>
+                <strong>Enough</strong>
+              </div>
+              <div class="modSnapshotItem modSnapshotItem--warn">
+                <span class="modSnapshotKey">Xbox Game Pass</span>
+                <strong>Not supported</strong>
+              </div>
+              <div class="modSnapshotItem modSnapshotItem--neutral">
+                <span class="modSnapshotKey">Main use case</span>
+                <strong>Download, enable, update mods</strong>
+              </div>
+            </div>
+
+            <p class="modSnapshotNote">
+              This page is an independent guide. We do not own or maintain Balatro Mod Manager, and Balatro remains the
+              property of its respective owners.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="contentCard modDecisionCard">
+        <h2 class="contentTitle">What situation are you in?</h2>
+        <p class="contentLead">
+          Pick the closest match. This gives you the cleanest next step instead of forcing everyone into the same modding flow.
+        </p>
+
+        <div class="platformChooser" role="tablist" aria-label="Balatro modding scenarios">
+          <button class="platformBtn platformBtn--active" type="button" data-platform="no-game">I do not own Balatro yet</button>
+          <button class="platformBtn" type="button" data-platform="steam">I own Balatro on Steam</button>
+          <button class="platformBtn" type="button" data-platform="gamepass">I use Game Pass</button>
+          <button class="platformBtn" type="button" data-platform="console">I play on console</button>
+        </div>
+
+        <div id="platformResult" class="platformResult" aria-live="polite"></div>
+      </section>
+
+      <section class="modGrid">
+        <article class="contentCard modPanel">
+          <h2 class="contentTitle">What Balatro Mod Manager actually does</h2>
+          <div class="modFeatureList">
+            <div class="modFeature">
+              <span class="modFeatureStep">01</span>
+              <div>
+                <h3>Finds and organizes mods</h3>
+                <p>Instead of manually juggling archive files and folders, it centralizes common mod-management steps in one desktop tool.</p>
+              </div>
+            </div>
+            <div class="modFeature">
+              <span class="modFeatureStep">02</span>
+              <div>
+                <h3>Handles install flow more cleanly</h3>
+                <p>Good if you want a more guided process than downloading pieces one by one and guessing where each file belongs.</p>
+              </div>
+            </div>
+            <div class="modFeature">
+              <span class="modFeatureStep">03</span>
+              <div>
+                <h3>Helps with updates and profiles</h3>
+                <p>Useful when you start testing different mod combinations and do not want your setup to turn into a folder mess.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="contentCard modPanel">
+          <h2 class="contentTitle">What it does not replace</h2>
+          <ul class="modCheckList">
+            <li>You still need the Balatro game itself.</li>
+            <li>You still need the version that works best with community modding, which is usually Steam.</li>
+            <li>It does not turn the browser into a local installer.</li>
+            <li>It is not the same thing as our calculator, seed tools, or save editor.</li>
+          </ul>
+          <div class="contentNote">
+            <strong>Practical split:</strong> use a desktop manager for local mod installs, and use web tools for score math,
+            route planning, seeds, and save utilities.
+          </div>
+        </article>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">Balatro modding quick start</h2>
+        <p class="contentLead">If you want the shortest path that works for most players, follow this order.</p>
+
+        <div class="modTimeline">
+          <div class="modTimelineItem">
+            <div class="modTimelineNumber">1</div>
+            <div>
+              <h3>Install Balatro first</h3>
+              <p>Buy or install the normal Balatro PC version. The straightforward choice for modding is the Steam version.</p>
+            </div>
+          </div>
+          <div class="modTimelineItem">
+            <div class="modTimelineNumber">2</div>
+            <div>
+              <h3>Launch vanilla once</h3>
+              <p>Run the unmodded game first so the base install and save folders exist before you introduce anything extra.</p>
+            </div>
+          </div>
+          <div class="modTimelineItem">
+            <div class="modTimelineNumber">3</div>
+            <div>
+              <h3>Download Balatro Mod Manager</h3>
+              <p>Use the official GitHub releases page for your platform, then point the manager to your Balatro install directory.</p>
+            </div>
+          </div>
+          <div class="modTimelineItem">
+            <div class="modTimelineNumber">4</div>
+            <div>
+              <h3>Install mods and keep a backup</h3>
+              <p>Start with a small set, confirm the game boots correctly, and keep a backup of your saves before trying larger mod packs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">Do you need to buy a special version?</h2>
+        <p class="contentLead">No deluxe version is required. What matters is the platform and distribution channel.</p>
+
+        <div class="modMatrix">
+          <div class="modMatrixHead">
+            <span>Version / platform</span>
+            <span>Good for mod manager?</span>
+            <span>Notes</span>
+          </div>
+          <div class="modMatrixRow">
+            <span>Steam PC / Mac / Linux</span>
+            <strong class="modMatrixStatus modMatrixStatus--good">Yes</strong>
+            <span>Best default path for players who want to mod.</span>
+          </div>
+          <div class="modMatrixRow">
+            <span>Xbox Game Pass</span>
+            <strong class="modMatrixStatus modMatrixStatus--bad">No</strong>
+            <span>The project documentation says it is not supported.</span>
+          </div>
+          <div class="modMatrixRow">
+            <span>Console versions</span>
+            <strong class="modMatrixStatus modMatrixStatus--bad">No</strong>
+            <span>Desktop mod managers are not the normal path for console installs.</span>
+          </div>
+          <div class="modMatrixRow">
+            <span>Web browser only</span>
+            <strong class="modMatrixStatus modMatrixStatus--bad">No</strong>
+            <span>Web tools help with planning, not with writing files into a game install.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">If you are not ready to install mods yet</h2>
+        <p class="contentLead">
+          You can still use Balatro tools immediately from the browser while deciding whether the local modding workflow is worth it for you.
+        </p>
+
+        <div class="modRelatedGrid">
+          <a class="modRelatedCard" href="/how-to-install-balatro-mods">
+            <span class="modRelatedTag">Guide</span>
+            <h3>How to Install Balatro Mods</h3>
+            <p>Use the longer step-by-step path if you want the install order, safety checks, and common mistakes spelled out.</p>
+          </a>
+          <a class="modRelatedCard" href="/">
+            <span class="modRelatedTag">Web tool</span>
+            <h3>Balatro Calculator</h3>
+            <p>Check hand score math, joker order, and score breakdown without touching your local game files.</p>
+          </a>
+          <a class="modRelatedCard" href="/balatro-seeds">
+            <span class="modRelatedTag">Web tool</span>
+            <h3>Balatro Seeds</h3>
+            <p>Find seed ideas, browse tested runs, and jump into route analysis before you commit to a build.</p>
+          </a>
+          <a class="modRelatedCard" href="/balatro-save-editor">
+            <span class="modRelatedTag">Desktop-adjacent utility</span>
+            <h3>Balatro Save Editor</h3>
+            <p>Use a dedicated tool when you need save manipulation, which is a different problem from installing mods.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">FAQ</h2>
+        <div class="faqList">
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="true">
+              <span>Do I need to buy Balatro before using Balatro Mod Manager?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer faqAnswer--open">
+              <p>Yes. The manager is not the game. You need Balatro installed first, and the easiest modding path is the regular Steam copy.</p>
+            </div>
+          </article>
+
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>Do I need a special or deluxe edition of Balatro?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>No. A standard Steam copy is enough. The important choice is the platform, not a premium edition tier.</p>
+            </div>
+          </article>
+
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>Can I use Balatro Mod Manager with Xbox Game Pass?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>No. The project documentation says the Game Pass version is not supported, so treat Steam as the safer default if modding is part of your plan.</p>
+            </div>
+          </article>
+
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>Is Balatro Mod Manager official?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>No. It is a third-party community project. That does not make it useless, but you should think of it as an unofficial tool and keep backups before large changes.</p>
+            </div>
+          </article>
+
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>Can I still use balatrocalc if I never install mods?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>Yes. Our calculator, seed tools, and other planning utilities work independently from Balatro Mod Manager.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div id="footer">
+        <div id="footerLinks">
+          <a href="/">calculator</a>
+          <a href="/balatro-seeds">seeds</a>
+          <a href="/blog/">blog</a>
+          <a href="/about/">about</a>
+          <a href="/privacy-policy/">privacy</a>
+          <a href="/terms/">terms</a>
+        </div>
+        <div id="credits">Independent guide page. Not affiliated with LocalThunk, Playstack, or the Balatro Mod Manager maintainers.</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+  <script>
+    const platformMessages = {
+      "no-game": `
+        <div class="platformResultCard platformResultCard--good">
+          <h3>Start with the game, not the manager</h3>
+          <p>Buy Balatro first. If modding matters to you, the safest recommendation is the normal <strong>Steam</strong> version. After that, you can install Balatro Mod Manager as a separate desktop tool.</p>
+          <a class="platformInlineLink" href="https://store.steampowered.com/app/2379780/Balatro/" target="_blank" rel="noopener nofollow">Open Steam page</a>
+        </div>
+      `,
+      steam: `
+        <div class="platformResultCard platformResultCard--good">
+          <h3>You are on the right platform</h3>
+          <p>If you already own Balatro on Steam, you have the cleanest path. Launch the vanilla game once, then grab the manager from GitHub releases and start with a small test mod set.</p>
+          <a class="platformInlineLink" href="https://github.com/skyline69/balatro-mod-manager/releases" target="_blank" rel="noopener nofollow">Open releases</a>
+        </div>
+      `,
+      gamepass: `
+        <div class="platformResultCard platformResultCard--warn">
+          <h3>Game Pass is the blocker</h3>
+          <p>The project says the Game Pass version is not supported. If your main goal is modding, treat a Steam copy as the practical route instead of forcing the wrong platform.</p>
+        </div>
+      `,
+      console: `
+        <div class="platformResultCard platformResultCard--warn">
+          <h3>Console is not the normal target for desktop mod managers</h3>
+          <p>Balatro Mod Manager is meant for desktop installs. If you stay on console, use browser tools like the calculator and seed pages instead of expecting one-click mod installs.</p>
+          <a class="platformInlineLink" href="/" rel="noopener">Open Balatro Calculator</a>
+        </div>
+      `
+    };
+
+    const chooserButtons = Array.from(document.querySelectorAll("[data-platform]"));
+    const platformResult = document.getElementById("platformResult");
+
+    function renderPlatformMessage(platform) {
+      platformResult.innerHTML = platformMessages[platform] || "";
+      chooserButtons.forEach((button) => {
+        const isActive = button.dataset.platform === platform;
+        button.classList.toggle("platformBtn--active", isActive);
+        button.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+    }
+
+    chooserButtons.forEach((button) => {
+      button.addEventListener("click", () => renderPlatformMessage(button.dataset.platform));
+    });
+    renderPlatformMessage("no-game");
+
+    document.querySelectorAll(".faqBtn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", isOpen ? "false" : "true");
+        answer.classList.toggle("faqAnswer--open", !isOpen);
+      });
+    });
+  </script>
+
+  <style>
+    .modPageWrap {
+      max-width: 1160px;
+    }
+
+    .modHero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      background:
+        radial-gradient(circle at top right, rgba(255, 196, 61, 0.18), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(64, 184, 136, 0.2), transparent 28%),
+        linear-gradient(135deg, rgba(9, 14, 16, 0.72), rgba(22, 32, 29, 0.9));
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    .modHeroGlow {
+      position: absolute;
+      inset: -40% auto auto -12%;
+      width: 380px;
+      height: 380px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 214, 88, 0.22), transparent 68%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .modHeroGrid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+      gap: 20px;
+      padding: 28px;
+      align-items: stretch;
+    }
+
+    .modEyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      color: #ffe79a;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .modHeroTitle {
+      margin: 16px 0 14px;
+      max-width: 12ch;
+      color: #fff6d4;
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: 0.98;
+      font-weight: normal;
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .modHeroLead {
+      max-width: 62ch;
+      color: #d5e0da;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .modHeroLead strong {
+      color: #fff6d4;
+      font-weight: normal;
+    }
+
+    .modHeroActions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .modPrimaryBtn,
+    .modSecondaryBtn,
+    .modTertiaryBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .modPrimaryBtn {
+      background: linear-gradient(180deg, #ffd978 0%, #e8ad29 100%);
+      color: #201404;
+      border: 1px solid rgba(255, 217, 120, 0.7);
+      box-shadow: 0 12px 22px rgba(232, 173, 41, 0.18);
+    }
+
+    .modSecondaryBtn {
+      background: rgba(0, 0, 0, 0.28);
+      color: #fff2c3;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+    }
+
+    .modTertiaryBtn {
+      background: rgba(0, 157, 255, 0.12);
+      color: #96deff;
+      border: 1px solid rgba(0, 157, 255, 0.2);
+    }
+
+    .modPrimaryBtn:hover,
+    .modSecondaryBtn:hover,
+    .modTertiaryBtn:hover,
+    .platformInlineLink:hover,
+    .platformBtn:hover,
+    .modRelatedCard:hover {
+      transform: translateY(-2px);
+    }
+
+    .modPillRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modPill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #c8d7cf;
+      font-size: 14px;
+    }
+
+    .modSnapshotCard {
+      align-self: stretch;
+      padding: 18px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(12, 17, 19, 0.86), rgba(20, 29, 27, 0.92));
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .modSnapshotHeader {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .modSnapshotLabel {
+      color: #ffd700;
+      font-size: 16px;
+    }
+
+    .modSnapshotDate {
+      color: rgba(202, 213, 210, 0.78);
+      font-size: 13px;
+    }
+
+    .modSnapshotList {
+      display: grid;
+      gap: 10px;
+    }
+
+    .modSnapshotItem {
+      display: grid;
+      gap: 6px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .modSnapshotItem strong {
+      font-weight: normal;
+      font-size: 18px;
+    }
+
+    .modSnapshotKey,
+    .modSnapshotNote {
+      color: #c7d3cd;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .modSnapshotItem--good strong,
+    .modMatrixStatus--good {
+      color: #96efb4;
+    }
+
+    .modSnapshotItem--warn strong,
+    .modMatrixStatus--bad {
+      color: #ffac84;
+    }
+
+    .modSnapshotItem--neutral strong {
+      color: #fff1b3;
+    }
+
+    .platformChooser {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .platformBtn {
+      appearance: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      background: rgba(0, 0, 0, 0.22);
+      color: #f5d97a;
+      cursor: pointer;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+    }
+
+    .platformBtn--active {
+      background: rgba(255, 215, 0, 0.14);
+      border-color: rgba(255, 215, 0, 0.52);
+      color: #fff8d8;
+    }
+
+    .platformResultCard {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .platformResultCard h3 {
+      margin: 0 0 8px;
+      color: #ffd700;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    .platformResultCard p {
+      margin: 0;
+      color: #cfdbd5;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .platformResultCard--good {
+      border-color: rgba(96, 212, 144, 0.35);
+      background: rgba(29, 73, 52, 0.22);
+    }
+
+    .platformResultCard--warn {
+      border-color: rgba(255, 140, 84, 0.35);
+      background: rgba(92, 46, 26, 0.18);
+    }
+
+    .platformInlineLink {
+      display: inline-flex;
+      margin-top: 12px;
+      color: #fff5cf;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.35);
+      transition: transform 0.18s ease;
+    }
+
+    .modGrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .modPanel {
+      height: 100%;
+    }
+
+    .modFeatureList {
+      display: grid;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .modFeature {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .modFeatureStep,
+    .modTimelineNumber {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.18), rgba(255, 215, 0, 0.08));
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      color: #ffd700;
+      font-size: 17px;
+    }
+
+    .modFeature h3,
+    .modTimelineItem h3,
+    .modRelatedCard h3 {
+      margin: 0 0 6px;
+      color: #fff3c0;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    .modFeature p,
+    .modTimelineItem p,
+    .modRelatedCard p {
+      margin: 0;
+      color: #c7d2cf;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .modCheckList {
+      padding-left: 20px;
+    }
+
+    .modTimeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .modTimelineItem {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .modMatrix {
+      margin-top: 10px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .modMatrixHead,
+    .modMatrixRow {
+      display: grid;
+      grid-template-columns: minmax(160px, 1.25fr) minmax(110px, 0.7fr) minmax(0, 1.5fr);
+      gap: 14px;
+      padding: 14px 16px;
+      align-items: center;
+    }
+
+    .modMatrixHead {
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffe58f;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .modMatrixRow {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: #d2ddd8;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .modRelatedGrid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .modRelatedCard {
+      display: block;
+      height: 100%;
+      padding: 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.28));
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .modRelatedCard:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .modRelatedTag {
+      display: inline-flex;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: rgba(0, 157, 255, 0.14);
+      border: 1px solid rgba(0, 157, 255, 0.18);
+      color: #9fddff;
+      font-size: 13px;
+    }
+
+    .faqList {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faqItem {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      background: rgba(0, 0, 0, 0.14);
+      overflow: hidden;
+    }
+
+    .faqBtn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px;
+      background: transparent;
+      color: #fff2be;
+      border: 0;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faqIcon {
+      color: #ffd700;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .faqAnswer {
+      display: none;
+      padding: 0 16px 16px;
+    }
+
+    .faqAnswer--open {
+      display: block;
+    }
+
+    .faqAnswer p {
+      margin: 0;
+      color: #cfdbd5;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 920px) {
+      .modHeroGrid,
+      .modGrid,
+      .modRelatedGrid {
+        grid-template-columns: 1fr;
+      }
+
+      .modMatrixHead,
+      .modMatrixRow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .modPageWrap {
+        padding-top: 128px;
+      }
+
+      .modHeroGrid {
+        padding: 18px;
+      }
+
+      .modHeroTitle {
+        max-width: none;
+        font-size: 34px;
+      }
+
+      .modHeroLead {
+        font-size: 16px;
+      }
+
+      .platformChooser,
+      .modHeroActions {
+        flex-direction: column;
+      }
+
+      .modPrimaryBtn,
+      .modSecondaryBtn,
+      .modTertiaryBtn,
+      .platformBtn {
+        width: 100%;
+      }
+    }
+  </style>
+</body>
+
+</html>

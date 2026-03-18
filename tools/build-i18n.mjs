@@ -3,8 +3,131 @@ import path from 'node:path';
 
 const SITE_ORIGIN = 'https://balatrocalc.com';
 const IGNORE_HTML_PATHS = ['i18n/seo/'];
-const SITEMAP_EXCLUDE_PATHS = new Set(['debug.html', 'apk.html']);
-const IGNORE_DIRS = new Set(['.git', 'node_modules']);
+const SITEMAP_EXCLUDE_PATHS = new Set([
+  'apk.html',
+  'balatro-code-dbd.html',
+  'balatro-deck.html',
+  'debug.html',
+  'paywall-test.html',
+]);
+const IGNORE_DIRS = new Set(['.git', 'node_modules', 'admin', 'blueprint', 'blueprint-dist']);
+const FALLBACK_INDEX_NOTICE = {
+  it: {
+    heading: 'Aggiornamento della pagina in italiano',
+    body1: 'Il calcolatore resta disponibile in questa sezione linguistica.',
+    body2: 'La guida dettagliata e i testi informativi sono ancora in traduzione. Per ora la versione inglese resta il riferimento piu completo.',
+  },
+  'pt-br': {
+    heading: 'Atualizacao da pagina em portugues (BR)',
+    body1: 'A calculadora continua disponivel nesta secao de idioma.',
+    body2: 'O guia detalhado e os textos informativos ainda estao sendo traduzidos. Por enquanto, a versao em ingles continua sendo a referencia mais completa.',
+  },
+  'pt-pt': {
+    heading: 'Atualizacao da pagina em portugues (PT)',
+    body1: 'A calculadora continua disponivel nesta secao de idioma.',
+    body2: 'O guia detalhado e os textos informativos ainda estao a ser traduzidos. Para ja, a versao em ingles continua a ser a referencia mais completa.',
+  },
+  uk: {
+    heading: 'Оновлення української сторінки',
+    body1: 'Калькулятор залишається доступним у цьому мовному розділі.',
+    body2: 'Детальний гайд і довідкові тексти ще перекладаються. Поки що найповніша версія доступна англійською мовою.',
+  },
+  pl: {
+    heading: 'Aktualizacja strony po polsku',
+    body1: 'Kalkulator pozostaje dostepny w tej sekcji jezykowej.',
+    body2: 'Szczegolowy poradnik i teksty informacyjne sa jeszcze tlumaczone. Na razie najbardziej kompletna pozostaje wersja angielska.',
+  },
+  nl: {
+    heading: 'Update van de Nederlandstalige pagina',
+    body1: 'De calculator blijft beschikbaar in deze taalversie.',
+    body2: 'De uitgebreide gids en informatieve teksten worden nog vertaald. Voorlopig blijft de Engelstalige versie de volledigste referentie.',
+  },
+  sv: {
+    heading: 'Uppdatering av den svenska sidan',
+    body1: 'Kalkylatorn finns fortfarande tillganglig i den har spraksektionen.',
+    body2: 'Den detaljerade guiden och informationstexterna oversatts fortfarande. Tills vidare ar den engelska versionen den mest kompletta referensen.',
+  },
+  no: {
+    heading: 'Oppdatering av den norske siden',
+    body1: 'Kalkulatoren er fortsatt tilgjengelig i denne sprakseksjonen.',
+    body2: 'Den detaljerte guiden og informasjonstekstene oversettes fortsatt. Inntil videre er den engelske versjonen den mest komplette referansen.',
+  },
+  da: {
+    heading: 'Opdatering af den danske side',
+    body1: 'Beregneren er fortsat tilgaengelig i denne sprogsektion.',
+    body2: 'Den detaljerede guide og informationsteksterne bliver stadig oversat. Indtil videre er den engelske version den mest komplette reference.',
+  },
+  fi: {
+    heading: 'Suomenkielisen sivun paivitys',
+    body1: 'Laskuri on edelleen kaytettavissa talla kielisivulla.',
+    body2: 'Yksityiskohtaista opasta ja tietoteksteja kaannetaan edelleen. Toistaiseksi englanninkielinen versio on kattavin lahde.',
+  },
+  tr: {
+    heading: 'Turkce sayfa guncellemesi',
+    body1: 'Hesaplayici bu dil bolumunde kullanilmaya devam ediyor.',
+    body2: 'Ayrintili rehber ve bilgilendirici metinler halen cevriliyor. Simdilik en kapsamli referans Ingilizce surumdur.',
+  },
+  ar: {
+    heading: 'تحديث الصفحة العربية',
+    body1: 'لا تزال الحاسبة متاحة في هذا القسم اللغوي.',
+    body2: 'الدليل التفصيلي والنصوص التوضيحية ما زالت قيد الترجمة. حاليا تبقى النسخة الانجليزية هي المرجع الاكثر اكتمالا.',
+  },
+  he: {
+    heading: 'עדכון העמוד בעברית',
+    body1: 'המחשבון עדיין זמין בחלק השפתי הזה.',
+    body2: 'המדריך המפורט וטקסטי ההסבר עדיין בתהליך תרגום. כרגע הגרסה באנגלית היא המקור המלא ביותר.',
+  },
+  hi: {
+    heading: 'हिंदी पेज अपडेट',
+    body1: 'यह कैलकुलेटर इस भाषा सेक्शन में उपलब्ध रहेगा।',
+    body2: 'विस्तृत गाइड और जानकारी वाले टेक्स्ट अभी अनुवाद में हैं। फिलहाल English version सबसे पूरा reference है।',
+  },
+  id: {
+    heading: 'Pembaruan halaman Bahasa Indonesia',
+    body1: 'Kalkulator tetap tersedia di bagian bahasa ini.',
+    body2: 'Panduan rinci dan teks informatif masih dalam proses terjemahan. Untuk saat ini, versi bahasa Inggris masih menjadi referensi yang paling lengkap.',
+  },
+  vi: {
+    heading: 'Cap nhat trang tieng Viet',
+    body1: 'Cong cu tinh van tiep tuc hoat dong trong phan ngon ngu nay.',
+    body2: 'Huong dan chi tiet va cac noi dung giai thich van dang duoc dich. Hien tai, phien ban tieng Anh van la tai lieu day du nhat.',
+  },
+  th: {
+    heading: 'อัปเดตหน้าภาษาไทย',
+    body1: 'เครื่องคำนวณยังใช้งานได้ในส่วนภาษานี้',
+    body2: 'คู่มือแบบละเอียดและข้อความอธิบายยังอยู่ระหว่างการแปล ตอนนี้เวอร์ชันภาษาอังกฤษยังเป็นข้อมูลอ้างอิงที่ครบที่สุด',
+  },
+  ms: {
+    heading: 'Kemas kini halaman Bahasa Melayu',
+    body1: 'Kalkulator masih tersedia dalam bahagian bahasa ini.',
+    body2: 'Panduan terperinci dan teks penerangan masih sedang diterjemahkan. Buat masa ini, versi bahasa Inggeris masih menjadi rujukan yang paling lengkap.',
+  },
+  tl: {
+    heading: 'Update ng pahinang Filipino',
+    body1: 'Mananatiling available ang calculator sa seksyong ito ng wika.',
+    body2: 'Isinasalin pa ang detalyadong guide at mga paliwanag. Sa ngayon, ang English version pa rin ang pinakakumpletong reference.',
+  },
+  ro: {
+    heading: 'Actualizare pentru pagina in romana',
+    body1: 'Calculatorul ramane disponibil in aceasta sectiune de limba.',
+    body2: 'Ghidul detaliat si textele informative sunt inca in curs de traducere. Deocamdata, versiunea in engleza ramane referinta cea mai completa.',
+  },
+  hu: {
+    heading: 'A magyar oldal frissitese',
+    body1: 'A kalkulator tovabbra is elerheto ebben a nyelvi reszben.',
+    body2: 'A reszletes utmutato es a tajekoztato szovegek forditasa meg folyamatban van. Jelenleg az angol verzio a legteljesebb hivatkozasi alap.',
+  },
+  cs: {
+    heading: 'Aktualizace ceske stranky',
+    body1: 'Kalkulacka zustava dostupna v teto jazykove sekci.',
+    body2: 'Podrobny pruvodce a informacni texty se stale prekladaji. Zatim zustava anglicka verze nejuplnejsim zdrojem.',
+  },
+  el: {
+    heading: 'Ενημερωση της ελληνικης σελιδας',
+    body1: 'Ο υπολογιστης παραμενει διαθεσιμος σε αυτη τη γλωσσικη ενοτητα.',
+    body2: 'Ο αναλυτικος οδηγος και τα κειμενα πληροφοριων εξακολουθουν να μεταφραζονται. Προς το παρον, η αγγλικη εκδοση παραμενει η πιο πληρης αναφορα.',
+  },
+};
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -67,28 +190,61 @@ function setTitle(html, title) {
 }
 
 function setMetaDescription(html, description) {
-  return html.replace(/<meta name="description" content="[^"]*">/i, `<meta name="description" content="${description}">`);
+  return html.replace(
+    /<meta name="description"[\s\S]*?content="[^"]*"[\s\S]*?>/i,
+    `<meta name="description" content="${description}">`,
+  );
 }
 
 function setCanonical(html, canonicalHref) {
   return html.replace(/<link rel="canonical" href="[^"]*">/i, `<link rel="canonical" href="${canonicalHref}">`);
 }
 
+function setHreflangs(html, links) {
+  const start = '<!-- I18N_HREFLANG_START -->';
+  const end = '<!-- I18N_HREFLANG_END -->';
+  const inner = links.join('\n');
+  if (html.includes(start) && html.includes(end)) {
+    return replaceBetween(html, start, end, inner);
+  }
+  return html.replace(
+    /<link rel="canonical" href="[^"]*">/i,
+    (match) => `${match}\n  ${start}\n${inner}\n  ${end}`,
+  );
+}
+
 function setOgUrl(html, url) {
   return html.replace(/<meta property="og:url" content="[^"]*">/i, `<meta property="og:url" content="${url}">`);
 }
 
-function prefixLanguageLinks(html, code) {
+function prefixLanguageLinks(
+  html,
+  code,
+  {
+    localizedHome = true,
+    localizedHomeAnchors = true,
+    localizedSeeds = false,
+    localizedLegal = false,
+  } = {},
+) {
   if (code === 'en') return html;
   const prefix = `/${code}`;
-  // Keep root-only pages (support/apk/debug) at root
-  html = html
-    .replaceAll('href="/#', `href="${prefix}/#`)
-    .replaceAll('href="/balatro-seeds"', `href="${prefix}/balatro-seeds"`)
-    .replaceAll('href="/about/"', `href="${prefix}/about/"`)
-    .replaceAll('href="/privacy-policy/"', `href="${prefix}/privacy-policy/"`)
-    .replaceAll('href="/terms/"', `href="${prefix}/terms/"`)
-    .replaceAll('href="/"', `href="${prefix}/"`);
+  if (localizedHomeAnchors) {
+    html = html.replaceAll('href="/#', `href="${prefix}/#`);
+  }
+  if (localizedHome) {
+    html = html.replaceAll('href="/"', `href="${prefix}/"`);
+  }
+  if (localizedSeeds) {
+    html = html.replaceAll('href="/balatro-seeds#', `href="${prefix}/balatro-seeds#`);
+    html = html.replaceAll('href="/balatro-seeds"', `href="${prefix}/balatro-seeds"`);
+  }
+  if (localizedLegal) {
+    html = html
+      .replaceAll('href="/about/"', `href="${prefix}/about/"`)
+      .replaceAll('href="/privacy-policy/"', `href="${prefix}/privacy-policy/"`)
+      .replaceAll('href="/terms/"', `href="${prefix}/terms/"`);
+  }
   return html;
 }
 
@@ -96,6 +252,16 @@ function languageUrl(code, pathname) {
   if (code === 'en') return `${SITE_ORIGIN}${pathname}`;
   if (pathname === '/') return `${SITE_ORIGIN}/${code}/`;
   return `${SITE_ORIGIN}/${code}${pathname}`;
+}
+
+function buildIndexHreflangLinks(localizedIndexCodes, languages) {
+  const indexedLangs = languages.filter((lang) => localizedIndexCodes.has(lang.code));
+  const links = indexedLangs.map((lang) => {
+    const href = languageUrl(lang.code, '/');
+    return `  <link rel="alternate" hreflang="${lang.htmlLang}" href="${href}">`;
+  });
+  links.push(`  <link rel="alternate" hreflang="x-default" href="${languageUrl('en', '/')}">`);
+  return links;
 }
 
 function toPosixPath(filePath) {
@@ -136,6 +302,9 @@ function htmlPathToUrlPath(relPath) {
   if (relPath.endsWith('/index.html')) {
     return `/${relPath.slice(0, -'index.html'.length)}`;
   }
+  if (relPath.endsWith('.html')) {
+    return `/${relPath.slice(0, -'.html'.length)}`;
+  }
   return `/${relPath}`;
 }
 
@@ -151,9 +320,76 @@ async function loadSeoBlock(code, fallbackSeoBlock) {
   return fallbackSeoBlock;
 }
 
-async function localizeIndex({ baseHtml, languages, lang }) {
+function setMetaRobots(html, content) {
+  const meta = `<meta name="robots" content="${content}">`;
+  if (/<meta name="robots" content="[^"]*">/i.test(html)) {
+    return html.replace(/<meta name="robots" content="[^"]*">/i, meta);
+  }
+  return html.replace(/<meta charset="[^"]*">\s*/i, (match) => `${match}  ${meta}\n`);
+}
+
+function buildFallbackIndexNotice(code) {
+  const copy = FALLBACK_INDEX_NOTICE[code];
+  if (!copy) {
+    return `
+<div id="seoContent" class="contentPageWrapBelow">
+  <div class="contentCard">
+    <h2 class="contentTitle">Translation update</h2>
+    <p class="contentLead">This language section stays online while we finish the translated guide content.</p>
+    <p>The calculator still works normally here, but the English pages remain the most complete reference for now.</p>
+  </div>
+</div>`.trim();
+  }
+
+  return `
+<div id="seoContent" class="contentPageWrapBelow">
+  <div class="contentCard">
+    <h2 class="contentTitle">${copy.heading}</h2>
+    <p class="contentLead">${copy.body1}</p>
+    <p>${copy.body2}</p>
+  </div>
+</div>`.trim();
+}
+
+async function collectLocalizedIndexCodes(languages) {
+  const localizedCodes = new Set(['en']);
+
+  for (const lang of languages) {
+    if (lang.code === 'en') continue;
+    if (await fileExists(path.join('i18n', 'seo', `${lang.code}.html`))) {
+      localizedCodes.add(lang.code);
+    }
+  }
+
+  return localizedCodes;
+}
+
+function shouldIncludeInSitemap(relPath, localizedIndexCodes) {
+  if (SITEMAP_EXCLUDE_PATHS.has(relPath)) return false;
+
+  const parts = relPath.split('/');
+  const first = parts[0];
+  const hasLangPrefix =
+    parts.length > 1 &&
+    first !== 'about' &&
+    first !== 'admin' &&
+    first !== 'blog' &&
+    first !== 'privacy-policy' &&
+    first !== 'terms';
+
+  if (!hasLangPrefix) return true;
+
+  if (parts.length === 2 && parts[1] === 'index.html') {
+    return localizedIndexCodes.has(first);
+  }
+
+  return false;
+}
+
+async function localizeIndex({ baseHtml, languages, lang, localizedIndexCodes }) {
   const locale = await loadLocale(lang.code);
   const optionsInner = renderLangOptions(languages, lang.code);
+  const hasLocalizedIndexCopy = localizedIndexCodes.has(lang.code);
   let html = baseHtml;
 
   // Extract base SEO block for fallback (English)
@@ -166,7 +402,9 @@ async function localizeIndex({ baseHtml, languages, lang }) {
     .slice(seoStartIndex + seoStart.length, seoEndIndex)
     .trim();
 
-  const seoBlock = await loadSeoBlock(lang.code, fallbackSeoBlock);
+  const seoBlock = hasLocalizedIndexCopy
+    ? await loadSeoBlock(lang.code, fallbackSeoBlock)
+    : buildFallbackIndexNotice(lang.code);
   html = replaceBetween(html, seoStart, seoEnd, seoBlock);
 
   const optStart = '<!-- I18N_LANG_OPTIONS_START -->';
@@ -174,16 +412,32 @@ async function localizeIndex({ baseHtml, languages, lang }) {
   html = replaceBetween(html, optStart, optEnd, optionsInner);
 
   html = setHtmlLang(html, lang.htmlLang, lang.dir);
-  html = setTitle(html, locale.index?.title || 'Balatro Calculator - Calculate Hand Scores & Optimize Jokers');
-  html = setMetaDescription(html, locale.index?.description || 'Calculate the score of any Balatro hand');
+  const defaultTitle = hasLocalizedIndexCopy
+    ? 'Balatro Calculator - Calculate Hand Scores & Optimize Jokers'
+    : `Balatro Calculator - ${lang.label}`;
+  const defaultDescription = hasLocalizedIndexCopy
+    ? 'Calculate the score of any Balatro hand'
+    : 'Localized calculator access while the translated guide is still being prepared.';
+
+  html = setTitle(html, locale.index?.title || defaultTitle);
+  html = setMetaDescription(html, locale.index?.description || defaultDescription);
 
   const canonical = languageUrl(lang.code, '/');
   html = setCanonical(html, canonical);
+  if (hasLocalizedIndexCopy) {
+    html = setHreflangs(html, buildIndexHreflangLinks(localizedIndexCodes, languages));
+  }
   html = setOgUrl(html, canonical);
+  html = setMetaRobots(html, hasLocalizedIndexCopy ? 'index, follow' : 'noindex, follow');
 
   // Make root assets work from /<lang>/... both on HTTP and file://
   html = ensureBase(html, '../');
-  html = prefixLanguageLinks(html, lang.code);
+  html = prefixLanguageLinks(html, lang.code, {
+    localizedHome: true,
+    localizedHomeAnchors: true,
+    localizedSeeds: true,
+    localizedLegal: true,
+  });
   return html;
 }
 
@@ -202,8 +456,15 @@ async function localizeSeeds({ baseHtml, languages, lang }) {
 
   const canonical = languageUrl(lang.code, '/balatro-seeds');
   html = setCanonical(html, canonical);
+  html = setOgUrl(html, canonical);
+  html = setMetaRobots(html, 'noindex, follow');
   html = ensureBase(html, '../');
-  html = prefixLanguageLinks(html, lang.code);
+  html = prefixLanguageLinks(html, lang.code, {
+    localizedHome: true,
+    localizedHomeAnchors: true,
+    localizedSeeds: true,
+    localizedLegal: true,
+  });
   return html;
 }
 
@@ -216,17 +477,25 @@ async function localizeLegal({ baseHtml, languages, lang, pagePath }) {
   html = replaceBetween(html, optStart, optEnd, optionsInner);
 
   html = setHtmlLang(html, lang.htmlLang, lang.dir);
-  html = setCanonical(html, languageUrl(lang.code, pagePath));
+  const canonical = languageUrl(lang.code, pagePath);
+  html = setCanonical(html, canonical);
+  html = setOgUrl(html, canonical);
+  html = setMetaRobots(html, 'noindex, follow');
   html = ensureBase(html, '../../');
-  html = prefixLanguageLinks(html, lang.code);
+  html = prefixLanguageLinks(html, lang.code, {
+    localizedHome: true,
+    localizedHomeAnchors: true,
+    localizedSeeds: true,
+    localizedLegal: true,
+  });
   return html;
 }
 
-async function buildSitemapXmlFromFiles() {
+async function buildSitemapXmlFromFiles(localizedIndexCodes) {
   const lastmod = todayISO();
   const htmlFiles = await collectHtmlFiles('.');
   const urlPaths = htmlFiles
-    .filter((relPath) => !SITEMAP_EXCLUDE_PATHS.has(relPath))
+    .filter((relPath) => shouldIncludeInSitemap(relPath, localizedIndexCodes))
     .map(htmlPathToUrlPath);
   const uniquePaths = Array.from(new Set(urlPaths)).sort();
   const urls = uniquePaths.map((pathname) => {
@@ -247,6 +516,7 @@ ${urls.join('\n')}
 async function main() {
   const write = process.argv.includes('--write');
   const languages = JSON.parse(await readText(path.join('i18n', 'languages.json')));
+  const localizedIndexCodes = await collectLocalizedIndexCodes(languages);
 
   const baseIndex = await readText('index.html');
   const baseSeeds = await readText('balatro-seeds.html');
@@ -258,7 +528,7 @@ async function main() {
 
   for (const lang of languages) {
     if (lang.code === 'en') continue;
-    const localizedIndex = await localizeIndex({ baseHtml: baseIndex, languages, lang });
+    const localizedIndex = await localizeIndex({ baseHtml: baseIndex, languages, lang, localizedIndexCodes });
     const localizedSeeds = await localizeSeeds({ baseHtml: baseSeeds, languages, lang });
     const localizedAbout = await localizeLegal({ baseHtml: baseAbout, languages, lang, pagePath: '/about/' });
     const localizedPrivacy = await localizeLegal({ baseHtml: basePrivacy, languages, lang, pagePath: '/privacy-policy/' });
@@ -271,7 +541,7 @@ async function main() {
     outputs.push([path.join(lang.code, 'terms', 'index.html'), localizedTerms]);
   }
 
-  const sitemap = await buildSitemapXmlFromFiles();
+  const sitemap = await buildSitemapXmlFromFiles(localizedIndexCodes);
   outputs.push(['sitemap.xml', sitemap]);
 
   if (!write) {

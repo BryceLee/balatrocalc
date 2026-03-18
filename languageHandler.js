@@ -61,7 +61,20 @@
       '/support',
       '/apk',
       '/debug.html',
+      '/balatro-seed-analyzer',
+      '/balatro-seed-analyzer.html',
       '/balatro-save-editor',
+      '/balatro-save-editor.html',
+      '/balatro-mod-manager',
+      '/balatro-mod-manager.html',
+      '/how-to-install-balatro-mods',
+      '/how-to-install-balatro-mods.html',
+      '/balatro-save-locations',
+      '/balatro-save-locations.html',
+      '/balatro-jokers',
+      '/balatro-jokers.html',
+      '/balatro-builds',
+      '/balatro-builds.html',
     ]);
     const effectiveRestPath = (lang !== 'en' && rootOnlyPages.has(restPath)) ? '/' : restPath;
     const prefix = lang === 'en' ? '' : `/${lang}`;

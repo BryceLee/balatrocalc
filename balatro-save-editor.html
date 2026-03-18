@@ -6,22 +6,83 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
     crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-1275876891096923">
-  <title>Balatro Save Editor — BalatroCalc</title>
+  <meta name="robots" content="index, follow">
+  <title>Balatro Save Editor - Open, Edit, and Download .jkr Save Files</title>
   <link rel="stylesheet" href="style.css">
   <meta name="description"
-    content="Balatro Save Editor for .jkr save files. Load, edit, and download your Balatro settings, meta, and profile saves.">
-  <meta name="keywords" content="balatro save editor, balatro jkr, balatro tools, balatro save file editor">
+    content="Balatro Save Editor for .jkr files. Open settings, meta, profile, and save files in the browser, edit safely, and download your updated Balatro save.">
+  <meta name="keywords" content="balatro save editor, balatro save file editor, balatro jkr, balatro profile save, balatro meta save">
+  <meta property="og:title" content="Balatro Save Editor">
+  <meta property="og:description"
+    content="Open, edit, and download Balatro .jkr save files from the browser. Includes file locations, safety notes, and editing modes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-save-editor">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Save Editor">
+  <meta name="twitter:description"
+    content="Edit Balatro settings, meta, profile, and save .jkr files in the browser with a safer workflow and backup guidance.">
+  <meta name="theme-color" content="#23352e">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="canonical" href="https://balatrocalc.com/balatro-save-editor">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Balatro Save Editor",
+        "description": "Browser-based Balatro save editor for .jkr files including settings, meta, profile, and save data.",
+        "url": "https://balatrocalc.com/balatro-save-editor",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where are Balatro save files stored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Common locations are %APPDATA%/Balatro on Windows, the Balatro AppData path inside Steam compatdata on Linux and Steam Deck, and /Users/[user]/Library/Application Support/Balatro on macOS."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I edit modded Balatro save files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can try, but modded saves are more fragile. Always back them up first and do not expect every modded file to parse cleanly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What file types does this editor support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This editor is built for Balatro .jkr save files and can handle settings, meta, profile, and save variants."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="save-editor-page">
   <canvas id="backgroundCanvas"></canvas>
   <div id="titleBar">
-    <h1>Balatro Save Editor</h1>
-    <span class="subtitle">edit .jkr save files</span>
+    <div class="titleBarBrand">balatrocalc</div>
+    <span class="subtitle">save editor</span>
   </div>
 
   <nav id="topNav">
@@ -29,10 +90,7 @@
     <a href="/balatro-seeds" class="nav-link">seeds</a>
     <a href="/blog" class="nav-link">blog</a>
     <a href="/balatro-save-editor" class="nav-link nav-link--proper-case nav-link--active">Balatro Save Editor</a>
-    <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
-    <a href="/apk" class="nav-link">apk</a>
     <a href="/support" class="nav-link">support</a>
-    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
     <div class="language-switcher">
       <select id="langSelect" onchange="switchLanguage()">
         <!-- I18N_LANG_OPTIONS_START -->
@@ -75,20 +133,45 @@
 
   <div id="mainContainer">
     <main class="save-editor-shell">
-      <section class="save-editor-card">
+      <section class="save-editor-card save-editor-card--hero">
+        <div class="save-editor-badge">Browser-based tool</div>
         <h1 class="save-editor-title">Balatro Save Editor</h1>
+        <p class="save-editor-intro">
+          Open a Balatro <code>.jkr</code> file in the browser, inspect the data, make targeted edits, and download the
+          updated file without installing a separate desktop editor.
+        </p>
 
-        <p class="save-editor-subtext" id="saveEditorSubtext">Save files (.jkr) can be found at:
-- Windows: %APPDATA%/Balatro
-- Linux: [steam path]/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/
-- Mac: /Users/[user]/Library/Application Support/Balatro/
+        <div class="save-editor-grid">
+          <div>
+            <div class="save-editor-subtext" id="saveEditorSubtext">
+              <strong>Common save locations</strong>
+              <ul>
+                <li><strong>Windows:</strong> <code>%APPDATA%/Balatro</code></li>
+                <li><strong>Linux / Steam Deck:</strong> <code>[steam path]/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/</code></li>
+                <li><strong>macOS:</strong> <code>/Users/[user]/Library/Application Support/Balatro/</code></li>
+              </ul>
+              <span class="warn">Modded files may not work properly. Back up everything first and do not expect every modded save to parse cleanly.</span>
+            </div>
 
-<span class="warn">Modded files may not work properly. Please do not report issues with modded saves.</span></p>
+            <label class="save-editor-file" for="saveEditorFileInput">
+              <input id="saveEditorFileInput" type="file" accept=".jkr" hidden>
+              <span class="save-editor-file-btn">Choose .jkr file</span>
+            </label>
+          </div>
 
-        <label class="save-editor-file" for="saveEditorFileInput">
-          <input id="saveEditorFileInput" type="file" accept=".jkr" hidden>
-          <span class="save-editor-file-btn">Choose File</span>
-        </label>
+          <div class="save-editor-sidepanel">
+            <div class="save-editor-sidepanel-title">Supports</div>
+            <ul class="save-editor-sidepanel-list">
+              <li>Settings files</li>
+              <li>Meta files</li>
+              <li>Profile files</li>
+              <li>Full save files</li>
+            </ul>
+            <div class="save-editor-sidepanel-note">
+              Best workflow: duplicate the original file first, then edit the copy so rollback is trivial.
+            </div>
+          </div>
+        </div>
 
         <div id="saveEditorStatus" class="save-editor-status" role="status" aria-live="polite"></div>
 
@@ -103,10 +186,120 @@
           </div>
 
           <div id="saveEditorNote" class="save-editor-note"></div>
-
           <div id="saveEditorPanel" class="save-editor-panel"></div>
-
           <button id="saveEditorDownloadBottom" class="save-editor-btn" type="button">Download</button>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">How to use this Balatro save editor safely</h2>
+        <div class="save-guide-grid">
+          <div class="save-guide-card">
+            <span class="save-guide-step">1</span>
+            <h3>Copy the original file first</h3>
+            <p>Never edit your only copy. Duplicate the file in the Balatro save folder so you can instantly roll back if something breaks.</p>
+          </div>
+          <div class="save-guide-card">
+            <span class="save-guide-step">2</span>
+            <h3>Open the cleanest mode you need</h3>
+            <p><strong>Normal</strong> is safest. <strong>JSON</strong> is good for structured edits. <strong>Raw</strong> is only for advanced users.</p>
+          </div>
+          <div class="save-guide-card">
+            <span class="save-guide-step">3</span>
+            <h3>Download and replace carefully</h3>
+            <p>Write the edited file back only after saving your backup. On Steam Deck or Linux, double-check the correct compatdata folder before replacing anything.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">What this page is good for</h2>
+        <p class="contentLead">This tool is strongest when you know exactly what you are trying to inspect or fix.</p>
+        <div class="save-guide-grid save-guide-grid--two">
+          <div class="save-guide-card">
+            <h3>Profile and unlock checks</h3>
+            <p>Inspect profile-level values and understand whether a change is being stored in settings, meta, or the profile file.</p>
+          </div>
+          <div class="save-guide-card">
+            <h3>Settings repairs</h3>
+            <p>Useful when you want to verify a settings file or move between Normal, JSON, and Raw views for troubleshooting.</p>
+          </div>
+          <div class="save-guide-card">
+            <h3>Backup-friendly edits</h3>
+            <p>The browser-first workflow is fast for single-file edits and avoids spinning up a heavier external editor just to inspect a few fields.</p>
+          </div>
+          <div class="save-guide-card">
+            <h3>Modded save caution</h3>
+            <p>When mods are involved, use this as a careful inspection tool, not as a promise that every custom structure will round-trip perfectly.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">FAQ</h2>
+        <div class="faqList">
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="true">
+              <span>Where is the Balatro save file folder?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer faqAnswer--open">
+              <p>Common locations are listed above for Windows, Linux / Steam Deck, and macOS. If you use Proton, make sure you are editing the file inside the Balatro compatdata AppData path rather than a different Steam prefix.</p>
+            </div>
+          </article>
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>Can this editor handle modded saves?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>Sometimes, but modded saves are riskier. Back them up first and treat successful parsing as a convenience, not a guarantee.</p>
+            </div>
+          </article>
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>What is the safest editing mode?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>Normal mode is the safest default. JSON mode is easier to bulk-edit if you understand the structure. Raw mode is best reserved for users who already know the Lua-style layout.</p>
+            </div>
+          </article>
+          <article class="faqItem">
+            <button class="faqBtn" type="button" aria-expanded="false">
+              <span>Can I use this without installing anything?</span>
+              <span class="faqIcon">+</span>
+            </button>
+            <div class="faqAnswer">
+              <p>Yes. It runs in the browser. You choose a local <code>.jkr</code> file, edit it locally, and then download the updated file.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contentCard">
+        <h2 class="contentTitle">Related tools</h2>
+        <div class="save-related-grid">
+          <a class="save-related-card" href="/balatro-save-locations">
+            <span class="save-related-tag">Guide</span>
+            <h3>Balatro Save Locations</h3>
+            <p>Find the correct save folder on each platform before replacing edited files or restoring backups.</p>
+          </a>
+          <a class="save-related-card" href="/">
+            <span class="save-related-tag">Calculator</span>
+            <h3>Balatro Calculator</h3>
+            <p>Use this when your question is score math, joker order, or hand optimization.</p>
+          </a>
+          <a class="save-related-card" href="/balatro-seeds">
+            <span class="save-related-tag">Seeds</span>
+            <h3>Balatro Seeds</h3>
+            <p>Browse strong seeds, test routes, and move from seed discovery into analysis.</p>
+          </a>
+          <a class="save-related-card" href="/balatro-mod-manager">
+            <span class="save-related-tag">Mods</span>
+            <h3>Balatro Mod Manager Guide</h3>
+            <p>Read this before mixing save edits with modded installs so you understand the risk boundary.</p>
+          </a>
         </div>
       </section>
     </main>
@@ -115,6 +308,248 @@
   <script type="text/javascript" src="balatro-background.js"></script>
   <script type="text/javascript" src="languageHandler.js"></script>
   <script type="text/javascript" src="save-editor.js"></script>
+  <script>
+    document.querySelectorAll('.faqBtn').forEach((button) => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        answer.classList.toggle('faqAnswer--open', !isOpen);
+      });
+    });
+  </script>
+
+  <style>
+    .save-editor-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 120px 20px 40px;
+    }
+
+    .save-editor-card--hero {
+      padding: 22px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 215, 0, 0.12), transparent 25%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.28));
+    }
+
+    .save-editor-badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      color: #ffe38c;
+      font-size: 13px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .save-editor-title {
+      margin: 14px 0 10px;
+      color: #fff3c3;
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    .save-editor-intro {
+      margin: 0 0 18px;
+      color: #d1dbd7;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .save-editor-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.9fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .save-editor-subtext {
+      color: #c7d2cf;
+      line-height: 1.8;
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .save-editor-subtext strong {
+      display: block;
+      color: #fff1bf;
+      margin-bottom: 8px;
+      font-weight: normal;
+    }
+
+    .save-editor-subtext ul {
+      margin: 0 0 14px 18px;
+      padding: 0;
+    }
+
+    .save-editor-subtext code,
+    .faqAnswer code {
+      color: #ffd700;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      padding: 2px 6px;
+      border-radius: 6px;
+      word-break: break-word;
+    }
+
+    .save-editor-sidepanel {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .save-editor-sidepanel-title {
+      color: #ffd700;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .save-editor-sidepanel-list {
+      margin: 0 0 14px 18px;
+      padding: 0;
+      color: #d0dad6;
+      line-height: 1.7;
+    }
+
+    .save-editor-sidepanel-note {
+      color: #bfcbd0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .save-guide-grid,
+    .save-related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .save-guide-grid--two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .save-guide-card,
+    .save-related-card {
+      display: block;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .save-guide-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: rgba(255, 215, 0, 0.14);
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      color: #ffd700;
+      font-size: 18px;
+    }
+
+    .save-guide-card h3,
+    .save-related-card h3 {
+      margin: 0 0 8px;
+      color: #fff0bc;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    .save-guide-card p,
+    .save-related-card p {
+      margin: 0;
+      color: #cad3d0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .save-related-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 215, 0, 0.35);
+    }
+
+    .save-related-tag {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0, 157, 255, 0.14);
+      border: 1px solid rgba(0, 157, 255, 0.18);
+      color: #a9deff;
+      font-size: 13px;
+    }
+
+    .faqList {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faqItem {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      background: rgba(0, 0, 0, 0.14);
+      overflow: hidden;
+    }
+
+    .faqBtn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px;
+      background: transparent;
+      color: #fff2be;
+      border: 0;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faqIcon {
+      color: #ffd700;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .faqAnswer {
+      display: none;
+      padding: 0 16px 16px;
+    }
+
+    .faqAnswer--open {
+      display: block;
+    }
+
+    .faqAnswer p {
+      margin: 0;
+      color: #cfdbd5;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 920px) {
+      .save-editor-grid,
+      .save-guide-grid,
+      .save-related-grid,
+      .save-guide-grid--two {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </body>
 
 </html>

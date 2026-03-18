@@ -18,8 +18,7 @@ https://github.com/EFHIII/balatro-calculator/commits/main/
 对分析种子功能收费，免费试用3次：一个月5刀，年费39刀，终身100刀。
 接受paypal 收费，或者usdt 支付后，联系email，提供支付凭证，我手动添加权限。
 不需要注册，支付的时候提供邮箱，支付成功后，把用户的付费金额，邮箱写到一个数据表里，
-然后本地存他的邮箱或者什么信息表示登陆过，
-是否支付过如何判定呢？你想一想。
+- 
 
 
 
@@ -30,3 +29,15 @@ https://github.com/EFHIII/balatro-calculator/commits/main/
 
 
 - Balatro Save Editor
+#
+multiplayer balatro
+
+https://balatrowiki.org/w/Decks
+本地有代码
+/Users/lizhongxin/SoloProduct/game/balatro
+
+balatrocalc我认为算是成功了，收到105美金，解下来丰富网站，接入adsence，特定区域少量展示广告，购买会员不展示广告。 然后能不能挖掘类似的游戏，提供游戏辅助工具呢 最好是市场上有成熟开源，我们做整合就可以
+
+高级 seed 库
+Joker 组合推荐引擎
+balatroseed.net 和 balatroseeds.com

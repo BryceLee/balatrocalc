@@ -9,8 +9,21 @@
   <title>Balatro Seeds - balatrocalc</title>
     <base href="../">
   <link rel="stylesheet" href="style.css">
-  <meta name="description"
-    content="Free Balatro seed generator with random seed creation and curated collection of popular Balatro seeds. Find seeds for specific jokers like Blueprint and DNA.">
+  <meta name="description" content="Balatro seeds collection and generator">
+  <meta name="keywords"
+    content="balatro seed generator, balatro seed finder, random balatro seed generator, balatro random seed generator, balatro seed maker, seed generator balatro, seed finder balatro, balatro seed calculator, balatro seed analyzer, balatro seed search, balatro seed solver, balatro seed checker">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:title" content="Balatro Seed Generator & Seed Finder">
+  <meta property="og:description"
+    content="Generate random Balatro seeds, use a seed finder online, and jump into Seed Analyzer routes in one place.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/hu/balatro-seeds">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Seed Generator & Seed Finder">
+  <meta name="twitter:description"
+    content="Use this Balatro seed generator and finder online to create random seeds, browse tested seeds, and analyze routes.">
+  <meta name="theme-color" content="#2b3b34">
   <link rel="canonical" href="https://balatrocalc.com/hu/balatro-seeds">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -18,16 +31,58 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Balatro Seed Generator",
-    "description": "Random Balatro seed generator and seeds database",
-    "url": "https://balatrocalc.com/balatro-seeds",
-    "applicationCategory": "GameApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Balatro Seed Generator & Seed Finder",
+        "description": "Random Balatro seed generator, seed finder online, and tested Balatro seed database.",
+        "url": "https://balatrocalc.com/balatro-seeds",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Balatro Seed Generator",
+          "Balatro Seed Finder Online",
+          "Random Balatro Seed Maker",
+          "Popular and challenge seed lists",
+          "Balatro Seed Analyzer link",
+          "Balatro Seed Calculator link"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this page a Balatro seed finder online?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. It works as both a Balatro seed generator and seed finder online. You can create random seeds and browse tested seeds by purpose."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between Balatro seed generator, seed analyzer, and seed calculator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The seed generator creates random seed codes. The seed analyzer helps inspect route outcomes for a specific seed. The seed calculator helps evaluate score and joker order decisions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a Balatro seed checker or seed solver guarantee a win?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Seed tools improve consistency and planning, but wins still depend on unlock state, choices, and run execution."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -35,16 +90,15 @@
 <body>
   <canvas id="backgroundCanvas"></canvas>
   <div id="titleBar">
-    <h1>Balatro Seed Generator</h1>
-    <span class="subtitle">Random Seeds & Database</span>
+    <h1>Balatro Seed Generator & Finder</h1>
+    <span class="subtitle">Random Seeds, Finder & Database</span>
   </div>
   <nav id="topNav">
     <a href="/hu/" class="nav-link">calculator</a>
     <a href="/hu/balatro-seeds" class="nav-link">seeds</a>
-      <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
-    <a href="https://printabc.co/balatro-calendar-generator/" class="nav-link" target="_blank" rel="noopener">balatro calendar generator</a>
-    <a href="https://www.playbalatro.com/" target="_blank" class="nav-link">apk</a>
-    <a href="https://x.com/LocalThunk" target="_blank" class="nav-link">localthunk</a>
+    <a href="/blog" class="nav-link">blog</a>
+    <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <a href="/support" class="nav-link">support</a>
     <div class="language-switcher">
       <select id="langSelect" onchange="switchLanguage()">
         <!-- I18N_LANG_OPTIONS_START -->
@@ -88,8 +142,14 @@
   <div id="mainContainer">
     <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px 20px;">
       <div class="seed-quick-links">
-        <a class="quick-link" href="/balatro-seeds#seed-generator">Seed Generator</a>
-        <a class="quick-link" href="/balatro-seeds#good-fun-seeds">Good or Fun Balatro Seeds</a>
+        <a class="quick-link" href="/hu/balatro-seeds#seed-generator">Seed Generator</a>
+        <a class="quick-link" href="/hu/balatro-seeds#seed-finder">Seed Finder Online</a>
+        <a class="quick-link" href="/hu/balatro-seeds#good-fun-seeds">Good or Fun Balatro Seeds</a>
+        <a class="quick-link quick-link--pro" href="/hu/balatro-seeds#community-seed-library">
+          <span>VIP Seed Pro Library</span>
+          <span class="quick-link-badge">PRO</span>
+        </a>
+        <a class="quick-link" href="/hu/balatro-seeds#seed-faq">Seed FAQ</a>
         <a class="quick-link" href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>
       </div>
 
@@ -100,9 +160,12 @@
           <p>Generate random seeds for Balatro runs</p>
           <div class="seed-display">
             <code id="generated-seed">ABCD1234</code>
-            <button class="copyBtn"
-              onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
-            <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+            <div class="seed-actions">
+              <button class="copyBtn"
+                onclick="copySeed(document.getElementById('generated-seed').innerText, this)">Copy</button>
+              <button class="resetBtn" onclick="generateSeed()">Generate New</button>
+              <button class="resetBtn analyzeSeedBtn" onclick="analyzeSeedFromGenerator()">Analyze Seed</button>
+            </div>
           </div>
         </div>
 
@@ -111,45 +174,74 @@
           <p>Community favorite seeds</p>
           <div class="seed-list">
             <div class="seed-item">
-              <code>JOKER123</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>JOKER123</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('JOKER123', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('JOKER123', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">Great joker start</span>
             </div>
             <div class="seed-item">
-              <code>MULT999</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>MULT999</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('MULT999', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('MULT999', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">High mult potential</span>
             </div>
             <div class="seed-item">
-              <code>LUCKY777</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>LUCKY777</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('LUCKY777', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('LUCKY777', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">Lucky draws</span>
             </div>
             <div class="seed-item">
-              <code>33cyvh75</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>33cyvh75</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('33cyvh75', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('33cyvh75', 'popular-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">balatro seed with blueprint first round</span>
             </div>
           </div>
         </div>
 
         <div class="seed-card">
-          <h3>Challenge Seeds</h3>
-          <p>Seeds for specific challenges</p>
+          <h3>Recommended Seeds</h3>
+          <p>Recommended picks from the community</p>
           <div class="seed-list">
             <div class="seed-item">
-              <code>HARD001</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>HYPTVAPV</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('HYPTVAPV', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('HYPTVAPV', 'recommended-seeds')">Analyze Seed</button>
+              </div>
+              <span class="seed-desc">Community favorite recommendation</span>
+            </div>
+            <div class="seed-item">
+              <code>HARD001</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('HARD001', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('HARD001', 'recommended-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">No jokers challenge</span>
             </div>
             <div class="seed-item">
-              <code>SPEED42</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>SPEED42</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('SPEED42', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('SPEED42', 'recommended-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">Speed run seed</span>
             </div>
             <div class="seed-item">
-              <code>ANTE999</code><button class="copyBtn"
-                onclick="copySeed(this.previousElementSibling.innerText, this)">Copy</button>
+              <code>ANTE999</code>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('ANTE999', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('ANTE999', 'recommended-seeds')">Analyze Seed</button>
+              </div>
               <span class="seed-desc">High ante push</span>
             </div>
           </div>
@@ -173,6 +265,7 @@
             <div class="joker-seed-row">
               <code>33cyvh75</code>
               <button class="copyBtn" onclick="copySeed('33cyvh75', this)">Copy</button>
+              <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('33cyvh75', 'featured-joker')">Analyze Seed</button>
             </div>
             <span class="seed-desc">Blueprint in first round</span>
           </div>
@@ -191,6 +284,7 @@
             <div class="joker-seed-row">
               <code>2k9h9hn</code>
               <button class="copyBtn" onclick="copySeed('2k9h9hn', this)">Copy</button>
+              <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('2k9h9hn', 'featured-joker')">Analyze Seed</button>
             </div>
             <span class="seed-desc">Blueprint and DNA in first round</span>
           </div>
@@ -208,6 +302,7 @@
             <div class="seed-code-row">
               <code>2F4TYFD8</code>
               <button class="copyBtn" onclick="copySeed('2F4TYFD8', this)">Copy</button>
+              <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('2F4TYFD8', 'seed-spotlight')">Analyze Seed</button>
               <a class="detailsBtn" href="/da/seed-2F4TYFD8" target="_blank" rel="noopener">Detail Guide</a>
             </div>
             <div class="seed-spotlight-tags">
@@ -303,11 +398,98 @@
             </div>
           </div>
         </div>
+
+        <div class="seed-library" id="community-seed-library">
+          <div class="seed-library-headline">
+            <div>
+              <h3>VIP Seed Pro Library</h3>
+              <p class="seed-library-intro">
+                Reddit-first, source-backed premium seeds organized around five practical tracks: legendary high-rolls,
+                copy engines, economy and spectral snowballs, specialized deck routes, and stable clears. Free users
+                can browse the first 3 cards. Unlock the full library with the same Seed Pro membership used by
+                Balatro Seed Analyzer.
+              </p>
+            </div>
+            <div class="seed-library-kicker">
+              <span class="seed-library-kicker-label">Public-source note</span>
+              <span class="seed-library-kicker-copy">Version and platform are marked "Unknown (source incomplete)" when the original post does not specify them.</span>
+            </div>
+          </div>
+
+          <div class="seed-library-track-grid" id="seedLibraryTrackGrid">
+            <article class="seed-library-track-card" data-track="legendary">
+              <span class="seed-library-track-label">Track 01</span>
+              <strong>Legendary & Soul</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Perkeo, Triboulet, Canio, Yorick, Chicot, and other premium openers that define ceiling-first runs.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="copy">
+              <span class="seed-library-track-label">Track 02</span>
+              <strong>Copy Engines</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Blueprint, Brainstorm, DNA, Mime, Ankh, and Invisible Joker routes built for duplication loops.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="economy">
+              <span class="seed-library-track-label">Track 03</span>
+              <strong>Economy & Spectral</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Money-first lines, Hermit and Arcana spikes, negative consumables, and spectral-heavy pivots.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="specialized">
+              <span class="seed-library-track-label">Track 04</span>
+              <strong>Specialized Decks</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Ghost, Erratic, Checkered, Plasma, Magic, and other deck-specific seeds with sharper identity.</p>
+            </article>
+            <article class="seed-library-track-card" data-track="stable">
+              <span class="seed-library-track-label">Track 05</span>
+              <strong>Stable Clears</strong>
+              <span class="seed-library-track-count" data-track-count>0 seeds</span>
+              <p>Consistency-first seeds for unlocks, completion pushes, forgiving openers, and smoother clear rates.</p>
+            </article>
+          </div>
+
+          <div class="seed-library-access" id="seedLibraryAccessBar">
+            <div class="seed-library-access-copy">
+              <span class="seed-library-access-eyebrow">Shared Seed Pro access</span>
+              <strong id="seedLibraryAccessTitle">Free preview: first 3 seeds unlocked</strong>
+              <span id="seedLibraryAccessMeta">Unlock the other 47 cards with the same membership used by Balatro Seed Analyzer.</span>
+            </div>
+            <div class="seed-library-access-actions">
+              <button class="copyBtn seed-library-upgrade-btn" id="seedLibraryUnlockBtn" type="button">Unlock All Seeds</button>
+            </div>
+          </div>
+
+          <div class="seed-library-preview">
+            <div class="seed-library-section-label">Preview Seeds</div>
+            <div class="seed-library-list" id="seedLibraryPreviewList"></div>
+          </div>
+
+          <div class="seed-library-locked-zone is-locked" id="seedLibraryLockedZone">
+            <div class="seed-library-section-label seed-library-section-label--muted">Premium Seed Archive</div>
+            <div class="seed-library-list" id="seedLibraryLockedList"></div>
+            <div class="seed-library-lock-overlay" id="seedLibraryLockOverlay">
+              <div class="seed-library-lock-panel">
+                <span class="seed-library-lock-badge">Premium seed archive</span>
+                <h4>Unlock the full curated library</h4>
+                <p>
+                  Get every Perkeo opener, Triboulet route, Steel Kings line, negative build, and endless-scaling seed
+                  in this list. Membership is shared with Balatro Seed Analyzer.
+                </p>
+                <div class="seed-library-lock-actions">
+                  <button class="copyBtn seed-library-upgrade-btn" id="seedLibraryOverlayUnlock" type="button">Upgrade to Unlock</button>
+                  <button class="seed-library-plain-btn" id="seedLibraryOverlayCheck" type="button">I already paid</button>
+                </div>
+                <span class="seed-library-lock-footnote">One Seed Pro membership unlocks both tools.</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
 <!-- Seed Generator Features Section -->
       <div class="seed-card" style="margin-top: 2em; grid-column: 1 / -1;">
-        <h2 style="color: #ffd700; font-size: 24px; margin-bottom: 16px;">Balatro Seed Generator Features</h2>
+        <h2 style="color: #ffd700; font-size: 24px; margin-bottom: 16px;">Balatro Seed Generator, Finder, and Search Tools</h2>
         <p style="color: #bfc7d5; font-size: 16px; margin-bottom: 20px;">
           Discover and generate Balatro seeds for your perfect run. Find seeds with specific jokers, test different
           strategies, and share your best discoveries.
@@ -325,28 +507,49 @@
 
           <div
             style="padding: 14px; background: rgba(0,0,0,0.25); border-radius: 8px; border: 1px solid rgba(255,215,0,0.15);">
-            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Balatro Seeds Database</h3>
+            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Balatro Seed Finder & Search Database</h3>
             <p style="color: #bfc7d5; font-size: 14px; margin: 0; line-height: 1.5;">Curated collection of tested and
               verified Balatro seeds. Browse popular seeds, challenge seeds, and community favorites.</p>
           </div>
 
           <div
             style="padding: 14px; background: rgba(0,0,0,0.25); border-radius: 8px; border: 1px solid rgba(255,215,0,0.15);">
-            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Joker-Specific Seeds</h3>
+            <h3 style="color: #ffd700; font-size: 18px; margin: 0 0 8px;">Balatro Seed Analyzer Ready</h3>
             <p style="color: #bfc7d5; font-size: 14px; margin: 0; line-height: 1.5;">Find seeds featuring powerful
-              jokers like Blueprint, DNA, and more. Perfect for testing specific joker combinations and strategies.</p>
+              jokers like Blueprint, DNA, and more. Perfect for testing specific joker combinations and strategies in
+              your seed analyzer route.</p>
           </div>
 
         </div>
 
         <p style="margin-top: 20px; text-align: center; color: #bfc7d5; font-size: 15px;">
           Want to test your seeds? Use our <a href="/hu/" style="color: #ffd700; text-decoration: underline;">Balatro
-            calculator</a> to calculate exact scores and optimize your joker order.
+            Seed Calculator</a> to calculate exact scores and optimize your joker order.
         </p>
       </div>
 
+      <section class="seed-intro" id="seed-finder">
+        <h2>Balatro Seed Finder Online</h2>
+        <p>
+          Use this page as your <strong>Balatro seed generator</strong>, <strong>seed finder</strong>, and
+          <strong>seed searcher</strong>. Generate a random Balatro seed instantly, then browse tested seeds for
+          jokers, tags, and challenge goals.
+        </p>
+        <p>
+          Whether you call it a seed maker, seed creator, seed checker, or seed solver, the workflow is the same:
+          generate a seed, copy it, and validate your route. For deeper route checks, open the
+          <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>. For score math and joker order, use the
+          <a href="/hu/">Balatro Seed Calculator</a>.
+        </p>
+        <ul>
+          <li>Generate unlimited random Balatro seeds with one click.</li>
+          <li>Find community-tested seeds by joker type and run style.</li>
+          <li>Jump from seed discovery to analysis and scoring tools quickly.</li>
+        </ul>
+      </section>
+
       <section class="seed-explainer">
-        <h2>What is a Seed in Balatro?</h2>
+        <h2 id="seed-faq">What is a Seed in Balatro?</h2>
         <p>
           In Balatro, a <strong>seed</strong> is a short code (letters and/or numbers) that controls all of the
           random events in a single run. If two players use the same seed and the same starting deck, the
@@ -380,7 +583,7 @@
           For the most accurate reproduction of a seed, use a <strong>fully unlocked save file</strong>.
         </div>
 
-        <h3>Seed & Unlocks – Quick FAQ</h3>
+        <h3>Seed Finder & Unlocks - Quick FAQ</h3>
 
         <h4>Why do I see different Jokers than someone else using the same seed?</h4>
         <p>
@@ -408,10 +611,84 @@
           Without a full-unlock save, the seed will still work, but some Jokers or rewards may be different
           or replaced.
         </p>
+
+        <h4>Is this a Balatro seed finder online?</h4>
+        <p>
+          Yes. This page is both a Balatro seed generator and Balatro seed finder online. You can create random seeds,
+          copy tested seed codes, and move into route analysis from the same workflow.
+        </p>
+
+        <h4>What is the difference between seed generator, seed analyzer, and seed calculator?</h4>
+        <p>
+          The seed generator creates random seeds. The
+          <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a> helps inspect route outcomes for a specific
+          seed. The <a href="/hu/">Balatro Seed Calculator</a> helps you optimize score and joker order decisions.
+        </p>
+
+        <h4>Can a Balatro seed checker or seed solver guarantee a win?</h4>
+        <p>
+          No. A seed checker improves repeatability, but it cannot guarantee a win. Unlock state, deck choice, and
+          in-run decisions still matter even with a strong seed.
+        </p>
       </section>
 
     </div>
   </div>
+
+  <div id="seedLibraryPaywall" class="seed-library-paywall" aria-hidden="true">
+    <div class="seed-library-paywall-content" role="dialog" aria-modal="true" aria-labelledby="seedLibraryPaywallTitle">
+      <button id="seedLibraryPaywallClose" class="seed-library-paywall-close" type="button" aria-label="Close">&times;</button>
+      <h2 id="seedLibraryPaywallTitle">Unlock the VIP Seed Pro Library</h2>
+      <div id="seedLibraryPaywallMember" class="seed-library-paywall-member" aria-live="polite">
+        <div class="seed-library-paywall-member-badge">Seed Pro</div>
+        <div class="seed-library-paywall-member-meta">
+          <div id="seedLibraryPaywallMemberPlan" class="seed-library-paywall-member-plan"></div>
+          <div id="seedLibraryPaywallMemberEmail" class="seed-library-paywall-member-email"></div>
+          <div id="seedLibraryPaywallMemberExpires" class="seed-library-paywall-member-expires"></div>
+        </div>
+        <div class="seed-library-paywall-member-actions">
+          <button id="seedLibraryPaywallUpgrade" class="seed-library-paywall-secondary" type="button">Upgrade / Extend</button>
+          <button id="seedLibraryPaywallManage" class="seed-library-paywall-secondary" type="button">Manage in PayPal</button>
+          <button id="seedLibraryPaywallLogout" class="seed-library-paywall-secondary" type="button">Log out</button>
+        </div>
+      </div>
+      <p>
+        Unlock the full VIP seed library. Seed Pro is shared with
+        <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>.
+      </p>
+      <p class="seed-library-paywall-note">Monthly and yearly plans auto-renew. Cancel anytime.</p>
+      <p class="seed-library-paywall-support">
+        If you cannot pay or run into issues, contact
+        <button id="seedLibrarySupportEmail" class="seed-library-paywall-support-link" type="button" data-email="support@balatrocalc.com">
+          support@balatrocalc.com
+        </button>.
+      </p>
+      <div class="seed-library-paywall-plans">
+        <label class="seed-library-paywall-plan">
+          <span><input type="radio" name="seedLibraryPlan" value="seed-monthly" checked>Monthly</span>
+          <span class="seed-library-paywall-plan-price">$5 / 30 days</span>
+        </label>
+        <label class="seed-library-paywall-plan">
+          <span><input type="radio" name="seedLibraryPlan" value="seed-yearly">Yearly</span>
+          <span class="seed-library-paywall-plan-price">$49 / 365 days</span>
+        </label>
+        <label class="seed-library-paywall-plan">
+          <span><input type="radio" name="seedLibraryPlan" value="seed-lifetime">Lifetime</span>
+          <span class="seed-library-paywall-plan-price">$100 one-time</span>
+        </label>
+      </div>
+      <div class="seed-library-paywall-field">
+        <label for="seedLibraryPaywallEmail">Email (used for subscription lookup)</label>
+        <input id="seedLibraryPaywallEmail" type="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <button id="seedLibraryPaywallPay" class="seed-library-paywall-primary" type="button">Pay with PayPal</button>
+      <div class="seed-library-paywall-divider">Already paid? Enter your email to refresh access.</div>
+      <button id="seedLibraryPaywallCheck" class="seed-library-paywall-primary" type="button">Check subscription</button>
+      <div id="seedLibraryPaywallStatus" class="seed-library-paywall-status"></div>
+    </div>
+  </div>
+
+  <div id="seedLibraryToast" class="seed-library-toast" role="status" aria-live="polite"></div>
 
 
 
@@ -452,6 +729,1770 @@
         console.error('Failed to copy: ', err);
       });
     }
+
+    function analyzeSeed(seed, source = 'seed-list') {
+      const normalizedSeed = (seed || '').trim();
+      if (!normalizedSeed) return;
+      const analyzerUrl = new URL('/balatro-seed-analyzer', window.location.origin);
+      analyzerUrl.searchParams.set('seed', normalizedSeed);
+      analyzerUrl.searchParams.set('source', source);
+      analyzerUrl.searchParams.set('sourceToken', `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`);
+      window.location.href = analyzerUrl.toString();
+    }
+
+    function analyzeSeedFromGenerator() {
+      const seed = document.getElementById('generated-seed').textContent;
+      analyzeSeed(seed, 'seed-generator');
+    }
+  </script>
+
+  <script>
+    const COMMUNITY_SEED_LIBRARY = [
+      {
+        rank: 1,
+        seed: "CXU5C38F",
+        title: "Flush Super Start",
+        summary: "Checkered Deck exclusive. Early straight flushes, fast economy, and strong core joker scaling make this one of the cleanest satisfaction seeds in the library.",
+        tags: ["Checkered Deck", "Stable opener"],
+        source: "https://balatroseed.net/seeds/2"
+      },
+      {
+        rank: 2,
+        seed: "NA337S31",
+        title: "Mindless Double Erratic Build",
+        summary: "Erratic Deck exclusive. Double tags and negative-card pressure snowball into huge chips and mult without a complicated pilot line.",
+        tags: ["Erratic Deck", "Double tags"],
+        source: "https://balatroseed.net/seeds/4"
+      },
+      {
+        rank: 3,
+        seed: "LKLQFRVY",
+        title: "Spectral DNA Copy Build",
+        summary: "Ghost or Spectral route. Skip the first round into an early DNA setup, copy Kings, and build toward Steel Kings plus rainbow scaling.",
+        tags: ["DNA route", "Spectral Deck"],
+        source: "https://balatroseed.net/seeds/5"
+      },
+      {
+        rank: 4,
+        seed: "X8WTK1U1",
+        title: "Five Legendary Fun Seed",
+        summary: "Collect five legendary jokers by ante three and convert the run into a massive late-game Baron line with absurd score potential.",
+        tags: ["Legendary stack", "Late-game scaling"],
+        source: "https://balatroseed.net/seeds/7"
+      },
+      {
+        rank: 5,
+        seed: "ZC4V88NS",
+        title: "Straight Chip Explosion Build",
+        summary: "Straight Deck exclusive. Sequence jokers, Hologram support, and spectral upgrades make this a practical high-score straight route.",
+        tags: ["Straight Deck", "Consistency"],
+        source: "https://balatroseed.net/seeds/11"
+      },
+      {
+        rank: 6,
+        seed: "57ITHUMG",
+        title: "Non-Legendary Ante 26 Build",
+        summary: "No legendary jokers required. Core pieces like Runner, Blueprint, Baron, and Mime carry the route to deep antes with strong stability.",
+        tags: ["No legends", "Deep ante"],
+        source: "https://balatroseed.net/seeds/12"
+      },
+      {
+        rank: 7,
+        seed: "76NM2KFK",
+        title: "Negative Blueprint Breakthrough Build",
+        summary: "Erratic Golden Stake route. An early negative Blueprint can copy Burglar and other core pieces for more plays and a smoother breakthrough run.",
+        tags: ["Negative build", "Blueprint"],
+        source: "https://balatroseed.net/seeds/13"
+      },
+      {
+        rank: 8,
+        seed: "3YXW6DQJ",
+        title: "Perfect Steel K High Score Build",
+        summary: "Naturally generates negative jokers and forms a Steel Kings engine with very little friction, making the route both stable and high ceiling.",
+        tags: ["Steel Kings", "Negative line"],
+        source: "https://balatroseed.net/seeds/14"
+      },
+      {
+        rank: 9,
+        seed: "UAZB8P17",
+        title: "Guided Steel K High Score Build",
+        summary: "Works with all unlock states. Followable path into Brainstorm, Blueprint, DNA, Mime, Baron, and red-seal Steel Kings.",
+        tags: ["Steel Kings", "Guided route"],
+        source: "https://balatroseed.net/seeds/15"
+      },
+      {
+        rank: 10,
+        seed: "4G9N3SQN",
+        title: "Premium Rare Negative Build",
+        summary: "Skip early blinds for a premium negative Burnt Joker line. Mega packs can add Blueprint and Sixth Sense for a rare, powerful setup.",
+        tags: ["Negative build", "Rare opener"],
+        source: "https://balatroseed.net/seeds/16"
+      },
+      {
+        rank: 11,
+        seed: "U8RJYV6N",
+        title: "Balatro Nuclear Fun Game",
+        summary: "Easy access to Blueprint, legendary support, and explosive spectral scaling. Built for players who want a premium power fantasy run.",
+        tags: ["High ceiling", "Explosive run"],
+        source: "https://balatroseed.net/seeds/17"
+      },
+      {
+        rank: 12,
+        seed: "9ZPU1V32",
+        title: "Super Wax Seal K Build",
+        summary: "Triboulet, Blueprint, Baron, and Perkeo combine with early wax-seal Kings for both cash flow and monstrous late-game scoring.",
+        tags: ["Wax-seal Kings", "Premium core"],
+        source: "https://balatroseed.net/seeds/18"
+      },
+      {
+        rank: 13,
+        seed: "VH1A55LV",
+        title: "God Hand Anti-Addiction Steel K Build",
+        summary: "God-hand Steel Kings route with blind refresh support and Cryptid pressure for an extreme endless-style experience.",
+        tags: ["Steel Kings", "Extreme endless"],
+        source: "https://balatroseed.net/seeds/19"
+      },
+      {
+        rank: 14,
+        seed: "T2T6YX69",
+        title: "Red Deck Speedrun Experience",
+        summary: "Red Deck exclusive. Fast path through the deck's strengths, ideal for newer players or anyone wanting a quick completion-style run.",
+        tags: ["Red Deck", "Speedrun"],
+        source: "https://balatroseed.net/seeds/21"
+      },
+      {
+        rank: 15,
+        seed: "DQJ7CEZU",
+        title: "Yellow Deck Strategy Challenge",
+        summary: "Yellow Deck exclusive. A practical route for players who enjoy experimenting with alternate lines and strategic pivots.",
+        tags: ["Yellow Deck", "Strategy"],
+        source: "https://balatroseed.net/seeds/22"
+      },
+      {
+        rank: 16,
+        seed: "8Z2P1F11",
+        title: "Blue Deck Efficient Completion",
+        summary: "Blue Deck exclusive. Smooth early tempo and efficient scaling make it a strong seed for clean deck-specific clears.",
+        tags: ["Blue Deck", "Efficient clear"],
+        source: "https://balatroseed.net/seeds/23"
+      },
+      {
+        rank: 17,
+        seed: "D8ALFJ1G",
+        title: "Green Deck Combination Fun",
+        summary: "Green Deck exclusive. Good for players who want to lean into combo-heavy sequencing and still maintain a forgiving curve.",
+        tags: ["Green Deck", "Combo route"],
+        source: "https://balatroseed.net/seeds/24"
+      },
+      {
+        rank: 18,
+        seed: "T1RPE2UT",
+        title: "Black Deck Ultimate Style",
+        summary: "Black Deck exclusive. A harder-edged deck route that stays flavorful while still delivering a viable completion path.",
+        tags: ["Black Deck", "Challenge route"],
+        source: "https://balatroseed.net/seeds/25"
+      },
+      {
+        rank: 19,
+        seed: "28SFSSNU",
+        title: "Perkeo High Score",
+        summary: "Starts with Perkeo and follows with a guaranteed Hermit line after the boss, opening several strong midgame branches.",
+        tags: ["Perkeo opener", "Flexible midgame"],
+        source: "https://balatroseed.net/seeds/26"
+      },
+      {
+        rank: 20,
+        seed: "2BVAPW1L",
+        title: "Mystery Exploration Build",
+        summary: "Popular community seed with less scripting than the others. Good for players who want room to improvise and test new lines.",
+        tags: ["Exploratory", "High ceiling"],
+        source: "https://balatroseed.net/seeds/27"
+      },
+      {
+        rank: 21,
+        seed: "8Q47WV6K",
+        title: "Double Tag Super Build",
+        summary: "Skip the first two blinds for double tags and a Mega Arcana pack. Excellent if you want fast setup turns and spike potential.",
+        tags: ["Double tags", "Arcana spike"],
+        source: "https://www.reddit.com/r/balatro/comments/1clvbv1/stumbled_across_an_insane_seed/"
+      },
+      {
+        rank: 22,
+        seed: "86GRJT3C",
+        title: "Triboulet Speed Build",
+        summary: "Skip the first small blind to grab Triboulet early, then convert into a quick burst-style line with strong tempo.",
+        tags: ["Triboulet", "Speed build"],
+        source: "https://balatroseed.net/seeds/29"
+      },
+      {
+        rank: 23,
+        seed: "B66917TD",
+        title: "Multi-Core Combination Build",
+        summary: "Early Polychrome Perkeo, DNA support, and additional premium pieces create a layered scaling route with endless upside.",
+        tags: ["Polychrome line", "Endless potential"],
+        source: "https://m.ali213.net/news/gl2503/1638523.html"
+      },
+      {
+        rank: 24,
+        seed: "11EVFRPQ",
+        title: "Rare Speed Experience",
+        summary: "Observatory, Director's Cut, and other rare power spikes arrive early enough to turn the run into a technical endless climb.",
+        tags: ["Technical run", "Rare power"],
+        source: "https://balatroseed.net/seeds/31"
+      },
+      {
+        rank: 25,
+        seed: "D97FB8XS",
+        title: "Blueprint High Score Build",
+        summary: "Skip the first small blind for Triboulet, then add Ankh and Blueprint after the first boss for one of the cleanest copy-scaling routes.",
+        tags: ["Blueprint", "Copy scaling"],
+        source: "https://balatroseed.net/seeds/32"
+      },
+      {
+        rank: 26,
+        seed: "PTSBMSMQ",
+        title: "Ghost Mime Legion",
+        summary: "Ghost Deck exclusive. Builds a dense Mime army with strong chain-explosion payoff for players who enjoy stacked triggers.",
+        tags: ["Ghost Deck", "Mime stack"],
+        source: "https://www.reddit.com/r/balatro/comments/1hnzgwo/fun_double_mine_seed/"
+      },
+      {
+        rank: 27,
+        seed: "XD55DZ57",
+        title: "Quadruple DNA Explosion",
+        summary: "Ghost Deck exclusive. Supports triple and even quadruple DNA lines for outsized burst turns and ridiculous card-copy pressure.",
+        tags: ["Ghost Deck", "DNA copies"],
+        source: "https://www.taptap.cn/moment/737266120037238720"
+      },
+      {
+        rank: 28,
+        seed: "2VJZV6KK",
+        title: "Negative Speed Score Build",
+        summary: "Double-Perkeo style consumable engine that ramps score extremely fast once the negative package starts snowballing.",
+        tags: ["Negative consumables", "Fast scaling"],
+        source: "https://www.taptap.cn/moment/737266120037238720"
+      },
+      {
+        rank: 29,
+        seed: "QD3F4XVW",
+        title: "DNA Filter High Score",
+        summary: "Triboulet plus DNA creates a focused Kings route, deck filtering, and a reliable path into high-score copy sequencing.",
+        tags: ["DNA filter", "King scaling"],
+        source: "https://balatroseed.net/seeds/36"
+      },
+      {
+        rank: 30,
+        seed: "7LB2WVPK",
+        title: "Ten of Spades Extreme",
+        summary: "Erratic Deck exclusive. The deck compresses into a near-monochrome Ten of Spades gimmick that can support extreme hand-type play.",
+        tags: ["Erratic Deck", "Extreme gimmick"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hum46l/erratic_deck_all_10_of_spades_7lb2wvpk/"
+      },
+      {
+        rank: 31,
+        seed: "F2AXGQ52",
+        title: "Six Legendary Score Explosion",
+        summary: "Heavy legendary payoff seed with copy options around Perkeo. Built for players chasing absurd late-game power.",
+        tags: ["Legendary stack", "High ceiling"],
+        source: "https://balatroseed.net/seeds/38"
+      },
+      {
+        rank: 32,
+        seed: "8P7W6QG5",
+        title: "Legendary Glass King",
+        summary: "Canio and Triboulet anchor a Glass Kings route with huge reward if you assemble the line cleanly.",
+        tags: ["Glass Kings", "Legendary route"],
+        source: "https://balatroseed.net/seeds/39"
+      },
+      {
+        rank: 33,
+        seed: "1EK6XQHS",
+        title: "Negative Canio Build",
+        summary: "Negative Canio provides a premium multiplier core for players who want a sharper, more fragile high-score route.",
+        tags: ["Canio", "Negative build"],
+        source: "https://www.reddit.com/r/balatro/comments/1dsg5zm/the_best_canio_seed_ive_ever_seen_1ek6xqhs/"
+      },
+      {
+        rank: 34,
+        seed: "BUMBYCX2",
+        title: "Burnt Baron Build",
+        summary: "Ante 1 DNA and Baron, Ante 2 Acrobat, and a later negative Burnt Joker create a layered route with several premium pivot points.",
+        tags: ["Baron", "Layered build"],
+        source: "https://balatroseed.net/seeds/44"
+      },
+      {
+        rank: 35,
+        seed: "18Y2RT7B",
+        title: "Double Legendary Copy",
+        summary: "Starts with a double-legendary copy shell and quickly branches into multiple oppressive endgame lines.",
+        tags: ["Legendary opener", "Copy engine"],
+        source: "https://balatroseed.net/seeds/45"
+      },
+      {
+        rank: 36,
+        seed: "MEN5H5B8",
+        title: "Spectral Blueprint Build",
+        summary: "Spectral deck line with double polychrome pressure, Blueprint, Brainstorm, and several joker-copy branches.",
+        tags: ["Spectral Deck", "Blueprint"],
+        source: "https://balatroseed.net/seeds/47"
+      },
+      {
+        rank: 37,
+        seed: "HSC1L2DX",
+        title: "Double DNA Copy Joy",
+        summary: "Free skip into an early DNA joker, with Ankh later turning the route into a fast-developing copy build.",
+        tags: ["DNA opener", "Fast growth"],
+        source: "https://balatroseed.net/seeds/48"
+      },
+      {
+        rank: 38,
+        seed: "4T1SZKLF",
+        title: "Mystery Copy Build",
+        summary: "Ghost deck copy route built around repeated Cryptid interactions and Perkeo stacking for experienced endless players.",
+        tags: ["Ghost Deck", "Expert route"],
+        source: "https://balatroseed.net/seeds/49"
+      },
+      {
+        rank: 39,
+        seed: "APQI6LSV",
+        title: "Five of a Kind Aces Route",
+        summary: "Steam users highlight a Five of a Kind plus Aces route with Jupiter and Fool support and a heavier mid-to-late payoff curve.",
+        tags: ["Aces route", "Midgame burst"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 40,
+        seed: "VCS2B75K",
+        title: "Stencil Blueprint Opener",
+        summary: "Early Spectral gives Stencil and later blinds can add Blueprint. Community reports call out a very strong opening tempo.",
+        tags: ["Stencil opener", "Blueprint"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 41,
+        seed: "DSKRTMSB",
+        title: "Triple Negative Money Deck",
+        summary: "Steam discussion notes a Money Deck line with three negative jokers, balancing economy, stability, and upside.",
+        tags: ["Money Deck", "Negative stack"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 42,
+        seed: "LD6FR1R5",
+        title: "Stable Stencil Blueprint Opener",
+        summary: "Similar to VCS2B75K but framed by the community as a steadier snowball route built around the same core opener.",
+        tags: ["Stable opener", "Blueprint"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 43,
+        seed: "3PP8A5VE",
+        title: "Negative Ride the Bus Easy Win",
+        summary: "Community note: a negative Ride the Bus arrives by round two, making this a notably stable clear-oriented seed.",
+        tags: ["Easy win", "Ride the Bus"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 44,
+        seed: "1Y8ENIBV",
+        title: "Reinforced Aces Copy Route",
+        summary: "Shared as a seed that can copy heavily enhanced Aces, supporting both score and multiplier growth in parallel.",
+        tags: ["Aces route", "Copy build"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 45,
+        seed: "MW67PQLQ",
+        title: "Five of a Kind Baseball Line",
+        summary: "Reported as a good Five of a Kind route with Baseball Card-style value points and strong streak potential.",
+        tags: ["Five of a Kind", "Baseball line"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/3879347633298771940/?ctp=1&l=english"
+      },
+      {
+        rank: 46,
+        seed: "1J144PAL",
+        title: "Blue Deck Baseball Economy",
+        summary: "Blue Deck route with early Baseball Bat and Golden Joker support, giving the run a smooth economy and stable midgame.",
+        tags: ["Blue Deck", "Economy"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/4346606879507996239/?l=english"
+      },
+      {
+        rank: 47,
+        seed: "Y46JTJG3",
+        title: "Abandoned Deck Economy Stack",
+        summary: "Abandoned Deck path built around Vagabond, Egg, Gift Card, and Swashbuckler for a very noticeable economy explosion.",
+        tags: ["Abandoned Deck", "Economy stack"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/4346606879507996239/?l=english"
+      },
+      {
+        rank: 48,
+        seed: "4NB3QANG",
+        title: "Polychrome Blueprint Fast Climb",
+        summary: "Skip the first two blinds to get a Polychrome Blueprint opener. Community expectation puts the line at least into ante 16.",
+        tags: ["Polychrome", "Fast climb"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/604162199750097502/?l=english"
+      },
+      {
+        rank: 49,
+        seed: "XEE4DBIZ",
+        title: "Oops! All 6 Endless Push",
+        summary: "Companion community seed that gets significantly stronger if the run later pairs with Oops! All 6s for added ceiling.",
+        tags: ["Oops! All 6s", "Endless push"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/604162199750097502/?l=english"
+      },
+      {
+        rank: 50,
+        seed: "VJRPISZL",
+        title: "Easiest Win Buccaneer Gift",
+        summary: "Steam users describe this as an especially easy win seed, centered on an early Buccaneer plus Gift opener.",
+        tags: ["Easy win", "Beginner-friendly"],
+        source: "https://steamcommunity.com/app/2379780/discussions/0/596265123885104257/?l=english"
+      },
+      {
+        rank: 51,
+        seed: "H554B4BG",
+        title: "Magic Deck Stable Opener",
+        summary: "Magic Deck opener with an early Hermit line into Jasper-style scaling, giving the route a very stable early and midgame.",
+        tags: ["Magic Deck", "Stable opener"],
+        source: "https://www.reddit.com/r/balatro/comments/1h6l99r/the_best_seed_ive_found_in_the_2024_game_of_the/"
+      },
+      {
+        rank: 52,
+        seed: "9C7C4X28",
+        title: "Anaglyph Core Joker Route",
+        summary: "Anaglyph Deck route with a clear early plan and a premium joker core, often leaning toward Blueprint, Mime, and Perkeo scaling.",
+        tags: ["Anaglyph Deck", "Core jokers"],
+        source: "https://www.reddit.com/r/balatro/comments/1c0ipso/the_new_update_is/"
+      },
+      {
+        rank: 53,
+        seed: "ZQ24RCLB",
+        title: "Straight Build Consistency Route",
+        summary: "Straight-focused route with a practical early joker layout for consistent hand development and a smoother opening curve.",
+        tags: ["Straight build", "Early consistency"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 54,
+        seed: "DVT1I9ZM",
+        title: "Mega Arcana High Roll",
+        summary: "Skip the first two blinds for two Mega Arcana packs. Strong if you want explosive Polychrome Triboulet-style branches.",
+        tags: ["High roll", "Mega Arcana"],
+        source: "https://www.reddit.com/r/balatro/comments/1b5840t/yellow_deck_is_awesome/"
+      },
+      {
+        rank: 55,
+        seed: "WYLDZBGU",
+        title: "Ghost Deck Red Seal Combo",
+        summary: "Ghost Deck route with Red Seals, Perkeo, and Ankh interactions. Good for players who enjoy combo-heavy sequencing.",
+        tags: ["Ghost Deck", "Combo-heavy"],
+        source: "legacy-library"
+      },
+      {
+        rank: 56,
+        seed: "11Y68BMP",
+        title: "Double Polychrome Spike",
+        summary: "Early double Polychrome Brainstorm plus Holographic Perkeo can spike power extremely fast and create a very volatile opener.",
+        tags: ["Aggressive scaling", "High roll start"],
+        source: "https://www.reddit.com/r/balatro/comments/1c2k80t/turns_out_if_you_just_play_like_balatro/"
+      },
+      {
+        rank: 57,
+        seed: "Z7P15XAA",
+        title: "Invisible Joker Fun Route",
+        summary: "Community-favorite fun seed with multiple Invisible Joker interactions and several unconventional pivot lines.",
+        tags: ["Fun route", "Invisible Joker"],
+        source: "legacy-library"
+      },
+      {
+        rank: 58,
+        seed: "2K9H9HN",
+        title: "Broken Ceiling Meta Favorite",
+        summary: "Widely shared as a broken-style seed with extreme joker value and top-end score potential for players chasing ceiling.",
+        tags: ["Meta favorite", "Very high ceiling"],
+        source: "https://www.reddit.com/r/balatro/comments/1csvv6x/ive_hit_the_softcap_for_scoring_i_call_it_black/"
+      },
+      {
+        rank: 59,
+        seed: "XEQH7CP9",
+        title: "Erratic Puzzle Route",
+        summary: "Erratic-style special combo route best approached like a puzzle seed for creative line planning and unusual pivots.",
+        tags: ["Erratic style", "Puzzle run"],
+        source: "https://www.reddit.com/r/balatro/comments/1c0ipso/the_new_update_is/"
+      },
+      {
+        rank: 60,
+        seed: "ALEEB",
+        title: "Classic Easter Egg Seed",
+        summary: "Classic easter-egg seed worth playing for novelty value and legendary-heavy flavor even if it is not the most technical route.",
+        tags: ["Easter egg", "Legendary flavor"],
+        source: "https://www.taptap.cn/moment/737266120037238720"
+      },
+      {
+        rank: 61,
+        seed: "HYPTVAPV",
+        title: "Balanced Beginner Pick",
+        summary: "Balanced community recommendation with a smooth progression curve, decent recovery windows, and a forgiving early game.",
+        tags: ["Balanced pick", "Beginner-friendly"],
+        source: "https://www.reddit.com/r/balatro/comments/1d707w9/my_journey_with_balatro_so_far/"
+      },
+      {
+        rank: 62,
+        seed: "LHZYIWR6",
+        title: "Blueprint Enhancement Build",
+        summary: "Double Blueprint plus Baron, King multiplier can reach 10x, late game can also get Brainstorm, perfect for focusing on single card extreme stacking.",
+        tags: ["Blueprint", "Source-backed"],
+        source: "https://balatroseed.net/seeds/50"
+      },
+      {
+        rank: 63,
+        seed: "29ZSW8MY",
+        title: "Blueprint Brainstorm Build",
+        summary: "Start with Blueprint and Brainstorm, combined with Photograph, perfect for players who enjoy stable high scores and diverse gameplay.",
+        tags: ["Blueprint", "Source-backed"],
+        source: "https://balatroseed.net/seeds/51"
+      },
+      {
+        rank: 64,
+        seed: "PQNVFI72",
+        title: "Perfect Opening Build",
+        summary: "First round can get Photograph or Ancient Joker, third shop guarantees legendary joker, can later stack Cryptid, easy high scores.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/52"
+      },
+      {
+        rank: 65,
+        seed: "AYU7KNQ7",
+        title: "Erratic Multiplier Explosion",
+        summary: "Skip first blind, get polychrome erratic joker, third round copy, extremely high multiplier stacking, easy completion, perfect for players who enjoy high multiplier satisfaction.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/53"
+      },
+      {
+        rank: 66,
+        seed: "99K6IUBD",
+        title: "Double Copy Opening",
+        summary: "First shop has negative Blueprint and Brainstorm, can copy powerful jokers, quick early formation, perfect for players pursuing multiple combinations.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/54"
+      },
+      {
+        rank: 67,
+        seed: "PKF1939A",
+        title: "Triple Rare Speed Build",
+        summary: "Skip first two blinds, quickly get Burnt, Brainstorm, Blueprint three rare jokers, strong early burst power, perfect for speed high score players.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/55"
+      },
+      {
+        rank: 68,
+        seed: "RBPTDL2H",
+        title: "Tarot Multiplier Stack Build",
+        summary: "Skip first two blinds, get Perkeo and polychrome Cartomancer, Tarot card multiplier stacking, both economy and burst, perfect for players who enjoy Tarot builds.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/56"
+      },
+      {
+        rank: 69,
+        seed: "X4WH84AX",
+        title: "Faceless Riding Build",
+        summary: "First shop guarantees Riding Joker, combined with Faceless deck, easily stack multiplier to 40+, perfect for players who enjoy alternative high score gameplay.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/57"
+      },
+      {
+        rank: 70,
+        seed: "QVGFVAPD",
+        title: "DNA Hologram Burst Build",
+        summary: "Yellow Deck exclusive, DNA+Blueprint construction, Glass Hologram 10 sets of Five of a Kind, combined with Steven, Dusk, Blackboard jokers, smooth gold development, high score breakthrough 800 billion, perfect for players pursuing ultimate burst scores.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/58"
+      },
+      {
+        rank: 71,
+        seed: "4YY5NT94",
+        title: "Five Baron Steel Seal Build",
+        summary: "Spectral deck, can collect up to 5 Poly Barons, Steel+Red Seal Kings combination, expert level 50+, breakthrough Ante 18, ultra high score challenging limits.",
+        tags: ["Steel route", "Source-backed"],
+        source: "https://balatroseed.net/seeds/59"
+      },
+      {
+        rank: 72,
+        seed: "8D8FD8CT",
+        title: "First Round Boss Skip Build",
+        summary: "Yellow Deck, skip Boss in first round, immediately get immunity joker, easily handle subsequent challenges, perfect for quick progression and beginner experience.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/60"
+      },
+      {
+        rank: 73,
+        seed: "2NJBMGJ5",
+        title: "Face Card Pair Burst Score",
+        summary: "Plasma Deck, Observatory voucher assistance, Blue Joker, Photograph, Constellation combination, focus on Pairs or High Cards, combined with negative jokers, easily reach 600 million points.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/61"
+      },
+      {
+        rank: 74,
+        seed: "6BVS29F1",
+        title: "Multiple Negative Sacrifice",
+        summary: "Triple Sacrifice, Negative Idol, DNA, Blueprint, Brainstorm and other negative constructions, perfect for players who enjoy extreme negative gameplay.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/62"
+      },
+      {
+        rank: 75,
+        seed: "3J6FZFE4",
+        title: "Early Universal Copy",
+        summary: "Start with Perkeo, early Blueprint, Mime, Baron and other jokers gather, red seal Steel K can be copied, Ante 39 extreme scoring, perfect for high score players.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/63"
+      },
+      {
+        rank: 76,
+        seed: "KH77XUG6",
+        title: "Tycoon Takeoff Seed",
+        summary: "Plasma Deck exclusive, first two blinds can be skipped, double tags + investment gold explosion, quickly get Observatory, Walkie Talkie and other core items, easy winning streak, perfect for players seeking high scores and satisfaction.",
+        tags: ["Curated pick", "Source-backed"],
+        source: "https://balatroseed.net/seeds/64"
+      },
+      {
+        rank: 77,
+        seed: "BG2TSZN1",
+        title: "Ultimate Ghost Fun Game",
+        summary: "Ghost Deck Gold difficulty, quickly get Acrobat and Green Joker at start, combined with polychrome Hex cards, effortless high scores with no pressure, perfect for players who enjoy Ghost burst gameplay.",
+        tags: ["Ghost Deck", "Source-backed"],
+        source: "https://balatroseed.net/seeds/65"
+      },
+      {
+        rank: 78,
+        seed: "PNDBQE98",
+        title: "Ghost Copy Extreme Build",
+        summary: "Ghost Deck opening, use Perkeo to copy Spectral and red seal Kings, combined with Mime Baron for infinite multiplier stacking, easily reach infinite score, perfect for players who enjoy extreme burst.",
+        tags: ["Ghost Deck", "Source-backed"],
+        source: "https://balatroseed.net/seeds/66"
+      },
+      {
+        rank: 79,
+        seed: "Y9F3UFZP",
+        title: "Blueprint Brainstorm Fun Game",
+        summary: "Ghost Deck essential, shop has high probability of core jokers, combined with Blueprint and Brainstorm, simple operation, easily achieve infinite score, perfect for players wanting speedrun high scores.",
+        tags: ["Blueprint", "Source-backed"],
+        source: "https://balatroseed.net/seeds/67"
+      },
+      {
+        rank: 80,
+        seed: "FE3FPGMV",
+        title: "Ludicrous Reddit High-Roll",
+        summary: "Reddit community favorite flagged as a ridiculous high-roll run with premium upside and strong late-game conversion potential.",
+        tags: ["Reddit source", "High roll"],
+        source: "https://www.reddit.com/r/balatro/comments/1cx83lm/the_most_ludicrous_seed_ive_stumbled_across_so_far/"
+      },
+      {
+        rank: 81,
+        seed: "ZNSBUSPX",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 82,
+        seed: "MPY9WR1V",
+        title: "Community Favorite Reddit Seed",
+        summary: "Surfaced in a broad Reddit community discussion and kept here as a memorable seed with enough public enthusiasm to justify testing.",
+        tags: ["Reddit source", "Community favorite"],
+        source: "https://www.reddit.com/r/balatro/comments/1cwr8g7/is_balatro_potentially_one_of_the_best_games_ever/"
+      },
+      {
+        rank: 83,
+        seed: "WMS9CJZC",
+        title: "Consistency Tier List Seed",
+        summary: "Mentioned in a Reddit consistency-focused tier list and worth testing for stable clears rather than pure jackpot variance.",
+        tags: ["Reddit source", "Consistency"],
+        source: "https://www.reddit.com/r/balatro/comments/1b4a6kw/my_personal_tier_list_for_consistently_beating/"
+      },
+      {
+        rank: 84,
+        seed: "7YFQU36I",
+        title: "Journey Thread Community Seed",
+        summary: "Surfaced in a Reddit progress thread as a memorable run with enough payoff or weirdness to deserve inclusion in the premium archive.",
+        tags: ["Reddit source", "Community favorite"],
+        source: "https://www.reddit.com/r/balatro/comments/1d707w9/my_journey_with_balatro_so_far/"
+      },
+      {
+        rank: 85,
+        seed: "I35WMDHT",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 86,
+        seed: "WDLP9XTR",
+        title: "All Spectral Cards Seed",
+        summary: "Reddit-reported seed built around an unusually spectral-heavy opener, making it a good test case for volatile consumable lines and oddball conversions.",
+        tags: ["Reddit source", "Spectral route"],
+        source: "https://www.reddit.com/r/balatro/comments/1btv358/an_all_spectral_cards_seed/"
+      },
+      {
+        rank: 87,
+        seed: "3T9V8KK1",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 88,
+        seed: "TE897U38",
+        title: "Cross-Community Starter Seed",
+        summary: "Shared in a broader roguelite discussion and useful as a more approachable community seed for players still calibrating Balatro fundamentals.",
+        tags: ["Reddit source", "General discussion"],
+        source: "https://www.reddit.com/r/roguelites/comments/1b115vl/what_am_i_missing_with_balatro/"
+      },
+      {
+        rank: 89,
+        seed: "8LN7LHBU",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 90,
+        seed: "5HIQL3D1",
+        title: "Knowledge Check Community Seed",
+        summary: "Pulled from a Reddit knowledge-sharing thread and kept as a community seed for players who enjoy testing learned lines and overlooked interactions.",
+        tags: ["Reddit source", "Knowledge check"],
+        source: "https://www.reddit.com/r/balatro/comments/1bex00j/what_are_some_things_that_you_think_everyone/"
+      },
+      {
+        rank: 91,
+        seed: "A23HXXP9",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 92,
+        seed: "CHHRG4TN",
+        title: "Completion Route Community Seed",
+        summary: "Collected from a Reddit completion-planning thread and kept as a community-reported route with practical deck-building value.",
+        tags: ["Reddit source", "Completion route"],
+        source: "https://www.reddit.com/r/balatro/comments/1b218fp/here_goes_my_100_completion_plans/"
+      },
+      {
+        rank: 93,
+        seed: "8N73E3QT",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 94,
+        seed: "H4WAPZ7Q",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 95,
+        seed: "BF7KC5IH",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 96,
+        seed: "9764LMIV",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 97,
+        seed: "A6W31C31",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 98,
+        seed: "KW1IS19G",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 99,
+        seed: "X47D6PC7",
+        title: "Reddit Community Seed Spotlight",
+        summary: "Included from a Reddit discussion where players called out the seed as notable, unusual, or worth testing in the analyzer.",
+        tags: ["Reddit source", "Community pick"],
+        source: "https://www.reddit.com/r/balatro/comments/1bsmrp0/i_am_so_grateful_that_balatro_does_not_contain/"
+      },
+      {
+        rank: 100,
+        seed: "5FH896WI",
+        title: "High Card Reddit Seed",
+        summary: "Surfaced in a Reddit high-card strategy discussion as a clean candidate for compact hand scaling and practical endless testing.",
+        tags: ["Reddit source", "High card"],
+        source: "https://www.reddit.com/r/balatro/comments/1b2loe7/forget_flushes_the_best_strategy_is_high_card/"
+      },
+      {
+        rank: 101,
+        seed: "ZSW6UMQ6",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 102,
+        seed: "2MGUAYPF",
+        title: "Journey Thread Community Seed",
+        summary: "Surfaced in a Reddit progress thread as a memorable run with enough payoff or weirdness to deserve inclusion in the premium archive.",
+        tags: ["Reddit source", "Community favorite"],
+        source: "https://www.reddit.com/r/balatro/comments/1d707w9/my_journey_with_balatro_so_far/"
+      },
+      {
+        rank: 103,
+        seed: "UGQF2G8D",
+        title: "Community Favorite Reddit Seed",
+        summary: "Surfaced in a broad Reddit community discussion and kept here as a memorable seed with enough public enthusiasm to justify testing.",
+        tags: ["Reddit source", "Community favorite"],
+        source: "https://www.reddit.com/r/balatro/comments/1b0j8wt/lets_take_a_moment_and_applaud_balatro_for_being/"
+      },
+      {
+        rank: 104,
+        seed: "XEMVEV80",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 105,
+        seed: "E4EI3UQK",
+        title: "Reddit Community Seed Spotlight",
+        summary: "Included from a Reddit discussion where players called out the seed as notable, unusual, or worth testing in the analyzer.",
+        tags: ["Reddit source", "Community pick"],
+        source: "https://www.reddit.com/r/balatro/comments/1b585ya/balatro/"
+      },
+      {
+        rank: 106,
+        seed: "C5EFV38I",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 107,
+        seed: "UEWC6ZQF",
+        title: "Patch-Era Community Seed",
+        summary: "Mentioned around a Reddit update thread and preserved as a patch-era community seed worth checking against your current unlock state.",
+        tags: ["Reddit source", "Patch-era"],
+        source: "https://www.reddit.com/r/balatro/comments/1bpq1bp/update_from_thunk/"
+      },
+      {
+        rank: 108,
+        seed: "XJUB5V1S",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 109,
+        seed: "MKKPAZ64",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 110,
+        seed: "HPUNNTX",
+        title: "Balatro University Style Seed",
+        summary: "Community seed tied to a Balatro University style of play, with enough structure to appeal to players who want a more deliberate pilot line.",
+        tags: ["Reddit source", "Structured play"],
+        source: "https://www.reddit.com/r/balatro/comments/1c2k80t/turns_out_if_you_just_play_like_balatro/"
+      },
+      {
+        rank: 111,
+        seed: "6UFGIMS6",
+        title: "Double Perkeo Blueprint Seed",
+        summary: "Fun Reddit seed centered on Double Perkeo and Blueprint upside, with the kind of premium scaling ceiling players hunt for in endless routes.",
+        tags: ["Reddit source", "Perkeo line"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvy6yz/fun_seed_double_perkeo_blueprint_along_with/"
+      },
+      {
+        rank: 112,
+        seed: "W9PGFLMK",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 113,
+        seed: "W5MU3EZH",
+        title: "Strategy Thread Community Seed",
+        summary: "Pulled from a Reddit strategy discussion where players shared dependable lines, pivots, and community-tested seed picks.",
+        tags: ["Reddit source", "Strategy thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bvkd7w/whats_your_goto_strategy/"
+      },
+      {
+        rank: 114,
+        seed: "V4WMG56R",
+        title: "Community Favorite Reddit Seed",
+        summary: "Surfaced in a broad Reddit community discussion and kept here as a memorable seed with enough public enthusiasm to justify testing.",
+        tags: ["Reddit source", "Community favorite"],
+        source: "https://www.reddit.com/r/balatro/comments/1dm3sqj/why_do_you_feel_balatro_got_as_popular_as_it_has/"
+      },
+      {
+        rank: 115,
+        seed: "L8CXCYRE",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 116,
+        seed: "YYQMGC6M",
+        title: "Community Favorite Reddit Seed",
+        summary: "Surfaced in a broad Reddit community discussion and kept here as a memorable seed with enough public enthusiasm to justify testing.",
+        tags: ["Reddit source", "Community favorite"],
+        source: "https://www.reddit.com/r/balatro/comments/1b0j8wt/lets_take_a_moment_and_applaud_balatro_for_being/"
+      },
+      {
+        rank: 117,
+        seed: "GAP61TSG",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 118,
+        seed: "DU1Q7355",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 119,
+        seed: "8UIN94Z6",
+        title: "Beginner-Friendly Reddit Seed",
+        summary: "Pulled from a beginner-focused Reddit guide and included as a cleaner community route for players who want something more practical than a pure high roll.",
+        tags: ["Reddit source", "Beginner-friendly"],
+        source: "https://www.reddit.com/r/balatro/comments/1bkn05d/a_beginners_guide_to_dominating_balatro/"
+      },
+      {
+        rank: 120,
+        seed: "VY2FPD2H",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 121,
+        seed: "865PKDAC",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 122,
+        seed: "FNPI3P1W",
+        title: "Guide Thread Community Seed",
+        summary: "Collected from a Reddit guide and comment chain focused on consistent wins, making it a practical analyzer seed for route testing and shop planning.",
+        tags: ["Reddit source", "Guide thread"],
+        source: "https://www.reddit.com/r/balatro/comments/1bbh75a/how_to_win_chips_and_influence_mult_a_thorough/"
+      },
+      {
+        rank: 123,
+        seed: "KLATYP3Q",
+        title: "Yellow Deck Reddit Favorite",
+        summary: "Collected from a Reddit roundup of best seeds for every deck. Shared as a Yellow Deck community favorite with a practical route and stable clear potential.",
+        tags: ["Reddit source", "Yellow Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 124,
+        seed: "ABZWXTQ1",
+        title: "Magic Deck Reddit Favorite",
+        summary: "Pulled from a Reddit every-deck seed roundup and flagged as a strong Magic Deck route worth testing for opener quality and flexible scaling.",
+        tags: ["Reddit source", "Magic Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 125,
+        seed: "WNLK7YAB",
+        title: "Ghost Deck Reddit Favorite",
+        summary: "Listed in a Reddit community roundup as a standout Ghost Deck seed, making it a good candidate for testing spectral lines and ghost-specific pivots.",
+        tags: ["Reddit source", "Ghost Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 126,
+        seed: "BLXIALTC",
+        title: "Checkered Deck Reddit Favorite",
+        summary: "Another Reddit every-deck recommendation, shared as a Checkered Deck seed with good community feedback and deck-specific value.",
+        tags: ["Reddit source", "Checkered Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 127,
+        seed: "NC43D6EX",
+        title: "Plasma Deck Reddit Favorite",
+        summary: "Mentioned in a Reddit deck-by-deck seed list as a Plasma Deck pick with enough community confidence to include in the VIP archive.",
+        tags: ["Reddit source", "Plasma Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 128,
+        seed: "UZXYI1QC",
+        title: "Abandoned Deck Reddit Favorite",
+        summary: "Collected from a Reddit forum roundup and kept as an Abandoned Deck seed with solid community reputation and route-testing value.",
+        tags: ["Reddit source", "Abandoned Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 129,
+        seed: "2Z6XGH1V",
+        title: "Erratic Deck Reddit Favorite",
+        summary: "Reddit users highlighted this as an Erratic Deck favorite, useful for players who want a community-vetted deck-specific run instead of a generic high roll.",
+        tags: ["Reddit source", "Erratic Deck"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1hws72u/best_seeds_for_every_deck/"
+      },
+      {
+        rank: 130,
+        seed: "CHHJL43E",
+        title: "Baron Mime High Card Seed",
+        summary: "Reddit high-card route with early DNA, Brainstorm, and Baron access. Mime appears before Ante 8, and the post also calls out a red-seal King line from the first spectral pack.",
+        tags: ["Reddit source", "Baron high card"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1eg68ob/best_baron_mime_high_card_seed/"
+      },
+      {
+        rank: 131,
+        seed: "FH48VXIE",
+        title: "Early Blueprint Glass Aces",
+        summary: "Shared on Reddit as a fun seed with first-shop Blueprint, early DNA, and a clean path into Glass Aces. The post also notes a legendary pack around Ante 4.",
+        tags: ["Reddit source", "Blueprint opener"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1frb925/fun_seed/"
+      },
+      {
+        rank: 132,
+        seed: "WPV1C7QC",
+        title: "Baron Brainstorm Blueprint Run",
+        summary: "Reddit users called out the early Baron, Brainstorm, and Blueprint combination here, making it one of the cleaner community-sourced setup seeds to test.",
+        tags: ["Reddit source", "Blueprint core"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1jcfw2u/good_seed/"
+      },
+      {
+        rank: 133,
+        seed: "BIRTHA",
+        title: "Yellow Deck Legendary Shop",
+        summary: "Posted to Reddit as an accidental great find. The opener is notable for early Gluttonous, Greedy, Wrathful, and Triboulet pressure on Yellow Deck.",
+        tags: ["Reddit source", "Legendary opener"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1j0ws7n/awesome_seed_found_by_accident/"
+      },
+      {
+        rank: 134,
+        seed: "RZX6JDE6",
+        title: "Perkeo Fun Seed",
+        summary: "Community-shared Reddit seed with a strong premium-joker trajectory and enough late-game room to make it worth keeping in the VIP archive.",
+        tags: ["Reddit source", "High ceiling"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1jvk2dy/fun_seed/"
+      },
+      {
+        rank: 135,
+        seed: "QA2PLGRG",
+        title: "Impossible High-Score Seed",
+        summary: "Shared on Reddit as an extreme-ceiling run with unusual score potential, aimed at players who want a more explosive and experimental route.",
+        tags: ["Reddit source", "Extreme score"],
+        source: "https://www.reddit.com/r/Balatro_Seeds/comments/1h3mo2t/impossible_seed/"
+      },
+      {
+        rank: 136,
+        seed: "FTJWSWVZ",
+        title: "TapTap DNA Copy Route",
+        summary: "TapTap community seed with a fixed-value spectral opener, round-3 DNA, and a duplication plus Supernova branch that gives the run a clear growth line.",
+        tags: ["TapTap source", "DNA route"],
+        source: "https://www.taptap.cn/moment/514875817105295478"
+      },
+      {
+        rank: 137,
+        seed: "SAKURA14",
+        title: "TapTap Endless Perkeo Seed",
+        summary: "TapTap users highlighted this as an endless-friendly opener with a very early Perkeo line, making it a strong pick for long-run setups.",
+        tags: ["TapTap source", "Endless route"],
+        source: "https://www.taptap.cn/moment/696484630404005994"
+      }
+    ];
+
+    (function () {
+      const FEATURE_KEY = "seed";
+      const FREE_VISIBLE_COUNT = 3;
+      const UNKNOWN_VERSION = "Unknown (source incomplete)";
+      const STORAGE_KEYS = {
+        paidEmail: "bc_paid_email",
+        paidFeatures: "bc_paid_features"
+      };
+      const PLAN_LABELS = {
+        monthly: "Monthly",
+        yearly: "Yearly",
+        lifetime: "Lifetime"
+      };
+      const SEED_TRACKS = [
+        {
+          id: "legendary",
+          label: "Legendary & Soul",
+          badge: "Legendary route"
+        },
+        {
+          id: "copy",
+          label: "Copy Engines",
+          badge: "Copy engine"
+        },
+        {
+          id: "economy",
+          label: "Economy & Spectral",
+          badge: "Economy / spectral"
+        },
+        {
+          id: "specialized",
+          label: "Specialized Decks",
+          badge: "Deck specialist"
+        },
+        {
+          id: "stable",
+          label: "Stable Clears",
+          badge: "Stable clear"
+        }
+      ];
+      const SEED_TRACKS_BY_ID = new Map(SEED_TRACKS.map((track) => [track.id, track]));
+
+      function getSourceDomain(source) {
+        try {
+          return new URL(String(source || "")).hostname.replace(/^www\./i, "").toLowerCase();
+        } catch {
+          return "";
+        }
+      }
+
+      function getSourcePriority(source) {
+        const domain = getSourceDomain(source);
+        if (domain === "reddit.com") return 0;
+        return 1;
+      }
+
+      function getSourceBadge(source) {
+        const domain = getSourceDomain(source);
+        if (domain === "reddit.com") return "Reddit forum";
+        if (domain === "taptap.cn") return "TapTap forum";
+        if (domain === "steamcommunity.com") return "Steam forum";
+        if (domain === "m.ali213.net") return "Community article";
+        if (String(source || "") === "legacy-library") return "Legacy archive";
+        return "";
+      }
+
+      function getSeedSearchText(item) {
+        return [
+          item.seed,
+          item.title,
+          item.summary,
+          ...(Array.isArray(item.tags) ? item.tags : [])
+        ]
+          .join(" ")
+          .toLowerCase();
+      }
+
+      function getSeedTrack(item) {
+        const text = getSeedSearchText(item);
+        const hasNoLegendarySignal = /(no legendary|no legends|without legendary)/.test(text);
+        if (!hasNoLegendarySignal && /(perkeo|triboulet|canio|yorick|chicot|legendary|soul)/.test(text)) {
+          return "legendary";
+        }
+        if (/(blueprint|brainstorm|dna|mime|copy|ankh|invisible joker)/.test(text)) {
+          return "copy";
+        }
+        if (/(stable|consisten|beginner|completion|easy|forgiving|speedrun|unlock|guide thread|guide|clear)/.test(text)) {
+          return "stable";
+        }
+        if (/(spectral|arcana|hermit|voucher|money|economy|cash|negative consumable|mega arcana|planet)/.test(text)) {
+          return "economy";
+        }
+        if (/(ghost deck|erratic|checkered|plasma|anaglyph|abandoned|magic deck|yellow deck|red deck|blue deck|green deck|black deck|straight deck|deck exclusive|deck route)/.test(text)) {
+          return "specialized";
+        }
+        return "stable";
+      }
+
+      function getDisplayTags(item) {
+        const tags = [];
+        const seen = new Set();
+        const track = SEED_TRACKS_BY_ID.get(getSeedTrack(item));
+        const sourceBadge = getSourceBadge(item.source);
+
+        function pushTag(tag) {
+          const normalized = String(tag || "").trim();
+          if (!normalized) return;
+          const key = normalized.toLowerCase();
+          if (seen.has(key)) return;
+          seen.add(key);
+          tags.push(normalized);
+        }
+
+        if (track) pushTag(track.badge);
+        if (sourceBadge) pushTag(sourceBadge);
+        (Array.isArray(item.tags) ? item.tags : []).forEach(pushTag);
+        return tags.slice(0, 4);
+      }
+
+      const dedupedSeeds = Array.from(
+        new Map(
+          COMMUNITY_SEED_LIBRARY.map((item) => [
+            String(item.seed || "").trim().toUpperCase(),
+            {
+              ...item,
+              seed: String(item.seed || "").trim().toUpperCase()
+            }
+          ])
+        ).values()
+      )
+        .map((item, index) => ({
+          ...item,
+          originalIndex: index
+        }))
+        .sort((a, b) => {
+          const priorityDiff = getSourcePriority(a.source) - getSourcePriority(b.source);
+          if (priorityDiff !== 0) return priorityDiff;
+          return a.originalIndex - b.originalIndex;
+        })
+        .map(({ originalIndex, ...item }, index) => ({
+          ...item,
+          rank: index + 1
+        }));
+
+      let previewList;
+      let lockedList;
+      let lockedZone;
+      let trackGrid;
+      let accessTitle;
+      let accessMeta;
+      let unlockBtn;
+      let overlayUnlockBtn;
+      let overlayCheckBtn;
+      let paywall;
+      let paywallEmail;
+      let paywallStatus;
+      let paywallMember;
+      let paywallMemberPlan;
+      let paywallMemberEmail;
+      let paywallMemberExpires;
+      let paywallUpgrade;
+      let paywallManage;
+      let paywallLogout;
+      let toastEl;
+      let toastTimer;
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function parsePlan(plan) {
+        const parts = String(plan || "").split("-");
+        if (parts.length !== 2) return null;
+        return {
+          feature: parts[0],
+          period: parts[1]
+        };
+      }
+
+      function formatPlanLabel(plan) {
+        const parsed = parsePlan(plan);
+        if (!parsed) return plan || "";
+        return `${parsed.feature === FEATURE_KEY ? "Seed" : parsed.feature} ${PLAN_LABELS[parsed.period] || parsed.period}`;
+      }
+
+      function loadPaidFeatures() {
+        const raw = localStorage.getItem(STORAGE_KEYS.paidFeatures);
+        if (!raw) return {};
+        try {
+          return JSON.parse(raw) || {};
+        } catch {
+          return {};
+        }
+      }
+
+      function savePaidFeatures(data) {
+        localStorage.setItem(STORAGE_KEYS.paidFeatures, JSON.stringify(data));
+      }
+
+      function getPaidInfo() {
+        const email = localStorage.getItem(STORAGE_KEYS.paidEmail) || "";
+        const data = loadPaidFeatures();
+        const entry = data[FEATURE_KEY];
+        if (!entry || !entry.plan) return { active: false, email };
+
+        const parsed = parsePlan(entry.plan);
+        if (!parsed || parsed.feature !== FEATURE_KEY) {
+          return { active: false, email };
+        }
+        if (parsed.period === "lifetime") {
+          return { active: true, email, plan: entry.plan, expiresAt: null };
+        }
+        if (!entry.expiresAt) {
+          return { active: false, email };
+        }
+        const active = new Date(entry.expiresAt).getTime() > Date.now();
+        return { active, email, plan: entry.plan, expiresAt: entry.expiresAt || null };
+      }
+
+      function setPaidInfo(email, plan, expiresAt) {
+        const normalizedEmail = String(email || "").trim().toLowerCase();
+        localStorage.setItem(STORAGE_KEYS.paidEmail, normalizedEmail);
+        const data = loadPaidFeatures();
+        data[FEATURE_KEY] = {
+          plan,
+          expiresAt: expiresAt || null
+        };
+        savePaidFeatures(data);
+      }
+
+      function clearPaidInfo() {
+        localStorage.removeItem(STORAGE_KEYS.paidEmail);
+        localStorage.removeItem(STORAGE_KEYS.paidFeatures);
+      }
+
+      function formatDate(iso) {
+        if (!iso) return "";
+        const parsed = new Date(iso);
+        if (Number.isNaN(parsed.getTime())) return iso;
+        return parsed.toISOString().slice(0, 10);
+      }
+
+      function getSelectedPlan() {
+        const selected = document.querySelector('input[name="seedLibraryPlan"]:checked');
+        return selected ? selected.value : "seed-monthly";
+      }
+
+      function normalizeEmail(value) {
+        return String(value || "").trim().toLowerCase();
+      }
+
+      function validateEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      async function getJson(url) {
+        const response = await fetch(url, { credentials: "same-origin" });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || "Request failed");
+        }
+        return data;
+      }
+
+      async function postJson(url, payload) {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || "Request failed");
+        }
+        return data;
+      }
+
+      function openPaywall() {
+        paywall.classList.add("active");
+        paywall.setAttribute("aria-hidden", "false");
+      }
+
+      function closePaywall() {
+        paywall.classList.remove("active");
+        paywall.setAttribute("aria-hidden", "true");
+      }
+
+      function setPaywallStatus(message, type) {
+        paywallStatus.textContent = message || "";
+        paywallStatus.classList.toggle("error", type === "error");
+        paywallStatus.classList.toggle("success", type === "success");
+      }
+
+      function clearPaywallStatus() {
+        setPaywallStatus("", "");
+      }
+
+      function showToast(message, durationMs = 2600) {
+        if (!message) return;
+        toastEl.textContent = message;
+        toastEl.classList.add("active");
+        if (toastTimer) {
+          clearTimeout(toastTimer);
+        }
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove("active");
+        }, durationMs);
+      }
+
+      function updatePaywallMemberBox(paid) {
+        if (!paid.active) {
+          paywallMember.classList.remove("active");
+          paywallMemberPlan.textContent = "";
+          paywallMemberEmail.textContent = "";
+          paywallMemberExpires.textContent = "";
+          return;
+        }
+
+        paywallMember.classList.add("active");
+        paywallMemberPlan.textContent = `Seed Pro · ${formatPlanLabel(paid.plan)}`;
+        paywallMemberEmail.textContent = paid.email || "";
+        if (parsePlan(paid.plan)?.period === "lifetime") {
+          paywallMemberExpires.textContent = "Lifetime access";
+          return;
+        }
+        paywallMemberExpires.textContent = paid.expiresAt
+          ? `Valid until ${formatDate(paid.expiresAt)} UTC`
+          : "Subscription active";
+      }
+
+      function updateAccessBar() {
+        const paid = getPaidInfo();
+        const lockedCount = Math.max(dedupedSeeds.length - FREE_VISIBLE_COUNT, 0);
+
+        if (paid.active) {
+          accessTitle.textContent = `Full library unlocked · ${dedupedSeeds.length} / ${dedupedSeeds.length} seeds`;
+          accessMeta.textContent = paid.expiresAt
+            ? `${formatPlanLabel(paid.plan)} active until ${formatDate(paid.expiresAt)} UTC${paid.email ? ` · ${paid.email}` : ""}`
+            : `Seed Pro lifetime access${paid.email ? ` · ${paid.email}` : ""}`;
+          unlockBtn.textContent = "Manage Seed Pro";
+          lockedZone.classList.remove("is-locked");
+        } else {
+          accessTitle.textContent = `Free preview: ${FREE_VISIBLE_COUNT} / ${dedupedSeeds.length} seeds visible`;
+          accessMeta.textContent = `Unlock the other ${lockedCount} cards with the same membership used by Balatro Seed Analyzer.`;
+          unlockBtn.textContent = "Unlock All Seeds";
+          lockedZone.classList.add("is-locked");
+        }
+
+        updatePaywallMemberBox(paid);
+      }
+
+      function updateTrackGrid() {
+        if (!trackGrid) return;
+        const counts = new Map(SEED_TRACKS.map((track) => [track.id, 0]));
+        dedupedSeeds.forEach((item) => {
+          const trackId = getSeedTrack(item);
+          counts.set(trackId, (counts.get(trackId) || 0) + 1);
+        });
+
+        trackGrid.querySelectorAll("[data-track]").forEach((card) => {
+          const trackId = card.getAttribute("data-track");
+          const count = counts.get(trackId) || 0;
+          const countEl = card.querySelector("[data-track-count]");
+          if (countEl) {
+            countEl.textContent = `${count} seeds`;
+          }
+        });
+      }
+
+      function syncSharedMembershipState() {
+        const paid = getPaidInfo();
+        const cachedEmail = localStorage.getItem(STORAGE_KEYS.paidEmail) || "";
+        if (document.activeElement !== paywallEmail) {
+          paywallEmail.value = paid.email || cachedEmail;
+        }
+        updateAccessBar();
+      }
+
+      function renderCard(item) {
+        const tags = getDisplayTags(item)
+          .map((tag) => `<span class="seed-library-tag">${escapeHtml(tag)}</span>`)
+          .join("");
+        const seed = escapeHtml(item.seed);
+        const title = escapeHtml(item.title);
+        const summary = escapeHtml(item.summary);
+        const isHttpSource = /^https?:\/\//i.test(String(item.source || ""));
+        const sourceMarkup = isHttpSource
+          ? `<a href="${escapeHtml(item.source)}" target="_blank" rel="noopener nofollow">Source</a>`
+          : `<span>${escapeHtml(item.source === "legacy-library" ? "Legacy library" : "Source unavailable")}</span>`;
+
+        return `
+          <article class="seed-library-item" data-seed="${seed}">
+            <div class="seed-library-item-head">
+              <div class="seed-library-code-stack">
+                <span class="seed-library-rank">#${item.rank}</span>
+                <code>${seed}</code>
+              </div>
+              <div class="seed-item-actions">
+                <button class="copyBtn" onclick="copySeed('${seed}', this)">Copy</button>
+                <button class="copyBtn analyzeSeedInlineBtn" onclick="analyzeSeed('${seed}', 'community-seed-library')">Analyze Seed</button>
+              </div>
+            </div>
+            <p class="seed-library-title">${title}</p>
+            <p class="seed-library-note">${summary}</p>
+            <div class="seed-library-meta">
+              <span>${escapeHtml(UNKNOWN_VERSION)}</span>
+              ${sourceMarkup}
+            </div>
+            <div class="seed-library-tags">${tags}</div>
+          </article>
+        `;
+      }
+
+      function renderLibrary() {
+        updateTrackGrid();
+        previewList.innerHTML = dedupedSeeds.slice(0, FREE_VISIBLE_COUNT).map(renderCard).join("");
+        lockedList.innerHTML = dedupedSeeds.slice(FREE_VISIBLE_COUNT).map(renderCard).join("");
+        syncSharedMembershipState();
+      }
+
+      async function checkSubscription() {
+        clearPaywallStatus();
+        const email = normalizeEmail(paywallEmail.value);
+        if (!validateEmail(email)) {
+          setPaywallStatus("Enter a valid email.", "error");
+          return;
+        }
+
+        try {
+          const data = await getJson(`/api/subscription?email=${encodeURIComponent(email)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
+          if (!data.active) {
+            setPaywallStatus("No active Seed Pro subscription found.", "error");
+            return;
+          }
+          setPaidInfo(data.email || email, data.plan || "seed-monthly", data.expiresAt || null);
+          renderLibrary();
+          setPaywallStatus("Seed Pro unlocked for this device.", "success");
+          showToast("Subscription confirmed. Full library unlocked.");
+          setTimeout(closePaywall, 500);
+        } catch (error) {
+          setPaywallStatus(error.message || "Subscription check failed.", "error");
+        }
+      }
+
+      async function startPayment() {
+        clearPaywallStatus();
+        const email = normalizeEmail(paywallEmail.value);
+        if (!validateEmail(email)) {
+          setPaywallStatus("Enter a valid email before paying.", "error");
+          return;
+        }
+
+        const plan = getSelectedPlan();
+        const parsed = parsePlan(plan);
+        if (!parsed) {
+          setPaywallStatus("Invalid plan selected.", "error");
+          return;
+        }
+
+        const endpoint = parsed.period === "lifetime"
+          ? "/api/paypal/create-order"
+          : "/api/paypal/create-subscription";
+
+        try {
+          setPaywallStatus("Redirecting to PayPal...", "");
+          const data = await postJson(endpoint, {
+            email,
+            plan,
+            returnPath: window.location.pathname
+          });
+          if (!data.approvalUrl) {
+            throw new Error("Missing PayPal approval link.");
+          }
+          window.location.href = data.approvalUrl;
+        } catch (error) {
+          setPaywallStatus(error.message || "Failed to start PayPal checkout.", "error");
+        }
+      }
+
+      function cleanupPaypalParams(params) {
+        ["paypal", "plan", "token", "subscription_id", "ba_token", "PayerID"].forEach((key) => {
+          params.delete(key);
+        });
+        const nextUrl = params.toString()
+          ? `${window.location.pathname}?${params.toString()}${window.location.hash || ""}`
+          : `${window.location.pathname}${window.location.hash || ""}`;
+        window.history.replaceState({}, "", nextUrl);
+      }
+
+      async function handlePaypalReturn() {
+        const params = new URLSearchParams(window.location.search);
+        const paypalState = params.get("paypal");
+        if (!paypalState) return;
+
+        openPaywall();
+        if (paypalState === "cancel") {
+          setPaywallStatus("Payment canceled.", "error");
+          cleanupPaypalParams(params);
+          return;
+        }
+
+        const plan = params.get("plan");
+        const parsed = parsePlan(plan);
+        if (!parsed) {
+          setPaywallStatus("Missing or invalid plan info from PayPal.", "error");
+          cleanupPaypalParams(params);
+          return;
+        }
+
+        setPaywallStatus("Finalizing PayPal...", "");
+
+        try {
+          let data;
+          if (parsed.period === "lifetime") {
+            const token = params.get("token");
+            if (!token) {
+              throw new Error("Missing PayPal order token.");
+            }
+            data = await postJson("/api/paypal/capture", { orderId: token });
+          } else {
+            const subscriptionId = params.get("subscription_id");
+            if (!subscriptionId) {
+              throw new Error("Missing PayPal subscription id.");
+            }
+            data = await postJson("/api/paypal/subscription-activate", { subscriptionId });
+          }
+
+          if (!data.active) {
+            throw new Error("Payment was created but not active yet. Please retry in a moment.");
+          }
+
+          setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan || plan, data.expiresAt || null);
+          renderLibrary();
+          setPaywallStatus("Seed Pro unlocked.", "success");
+          showToast("Payment confirmed. Full library unlocked.");
+          setTimeout(closePaywall, 500);
+        } catch (error) {
+          setPaywallStatus(error.message || "PayPal verification failed.", "error");
+        } finally {
+          cleanupPaypalParams(params);
+        }
+      }
+
+      function openPayPalManage() {
+        const host = window.location.hostname;
+        const isSandbox = host.includes("pages.dev") || host.includes("localhost") || host.includes("127.0.0.1");
+        const base = isSandbox ? "https://www.sandbox.paypal.com" : "https://www.paypal.com";
+        window.open(`${base}/myaccount/autopay/`, "_blank", "noopener");
+      }
+
+      function copySupportEmail() {
+        const email = document.getElementById("seedLibrarySupportEmail")?.dataset.email || "support@balatrocalc.com";
+        navigator.clipboard.writeText(email).then(() => {
+          showToast("Support email copied.");
+        }).catch(() => {
+          setPaywallStatus("Unable to copy email. Please copy manually.", "error");
+        });
+      }
+
+      function bindEvents() {
+        unlockBtn.addEventListener("click", openPaywall);
+        overlayUnlockBtn.addEventListener("click", openPaywall);
+        overlayCheckBtn.addEventListener("click", () => {
+          openPaywall();
+          setPaywallStatus("Enter your purchase email to unlock Seed Pro.", "");
+          paywallEmail.focus();
+        });
+        document.getElementById("seedLibraryPaywallClose").addEventListener("click", closePaywall);
+        paywall.addEventListener("click", (event) => {
+          if (event.target === paywall) {
+            closePaywall();
+          }
+        });
+        document.getElementById("seedLibraryPaywallPay").addEventListener("click", startPayment);
+        document.getElementById("seedLibraryPaywallCheck").addEventListener("click", checkSubscription);
+        paywallUpgrade.addEventListener("click", () => {
+          clearPaywallStatus();
+          document.querySelector(".seed-library-paywall-plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          setPaywallStatus("Choose a plan to upgrade or extend Seed Pro.", "");
+        });
+        paywallManage.addEventListener("click", openPayPalManage);
+        paywallLogout.addEventListener("click", () => {
+          clearPaidInfo();
+          paywallEmail.value = "";
+          renderLibrary();
+          setPaywallStatus("Signed out on this device.", "success");
+        });
+        document.getElementById("seedLibrarySupportEmail").addEventListener("click", copySupportEmail);
+        window.addEventListener("storage", (event) => {
+          if (!event.key || event.key === STORAGE_KEYS.paidEmail || event.key === STORAGE_KEYS.paidFeatures) {
+            syncSharedMembershipState();
+          }
+        });
+        window.addEventListener("pageshow", syncSharedMembershipState);
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) {
+            syncSharedMembershipState();
+          }
+        });
+      }
+
+      function init() {
+        trackGrid = document.getElementById("seedLibraryTrackGrid");
+        previewList = document.getElementById("seedLibraryPreviewList");
+        lockedList = document.getElementById("seedLibraryLockedList");
+        lockedZone = document.getElementById("seedLibraryLockedZone");
+        accessTitle = document.getElementById("seedLibraryAccessTitle");
+        accessMeta = document.getElementById("seedLibraryAccessMeta");
+        unlockBtn = document.getElementById("seedLibraryUnlockBtn");
+        overlayUnlockBtn = document.getElementById("seedLibraryOverlayUnlock");
+        overlayCheckBtn = document.getElementById("seedLibraryOverlayCheck");
+        paywall = document.getElementById("seedLibraryPaywall");
+        paywallEmail = document.getElementById("seedLibraryPaywallEmail");
+        paywallStatus = document.getElementById("seedLibraryPaywallStatus");
+        paywallMember = document.getElementById("seedLibraryPaywallMember");
+        paywallMemberPlan = document.getElementById("seedLibraryPaywallMemberPlan");
+        paywallMemberEmail = document.getElementById("seedLibraryPaywallMemberEmail");
+        paywallMemberExpires = document.getElementById("seedLibraryPaywallMemberExpires");
+        paywallUpgrade = document.getElementById("seedLibraryPaywallUpgrade");
+        paywallManage = document.getElementById("seedLibraryPaywallManage");
+        paywallLogout = document.getElementById("seedLibraryPaywallLogout");
+        toastEl = document.getElementById("seedLibraryToast");
+
+        if (!previewList || !lockedList || !lockedZone || !paywall) return;
+
+        const cachedEmail = localStorage.getItem(STORAGE_KEYS.paidEmail);
+        if (cachedEmail) {
+          paywallEmail.value = cachedEmail;
+        }
+
+        bindEvents();
+        renderLibrary();
+        handlePaypalReturn();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init, { once: true });
+      } else {
+        init();
+      }
+    })();
   </script>
 
   <!-- Balatro Background Shader -->
@@ -552,6 +2593,27 @@
       text-align: center;
     }
 
+    .seed-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .seed-actions .analyzeSeedBtn {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+
+    .seed-actions .copyBtn {
+      min-width: 120px;
+      text-align: center;
+      font-size: 18px;
+      padding: 12px 24px;
+      border-radius: 12px;
+    }
+
     .seed-display code {
       display: block;
       background: rgba(255, 215, 0, 0.1);
@@ -588,6 +2650,13 @@
       font-size: 16px;
     }
 
+    .seed-item-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .seed-desc {
       color: #bfc7d5;
       font-size: 14px;
@@ -606,6 +2675,20 @@
       transition: all 0.2s ease;
       margin-left: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .seed-item-actions .copyBtn,
+    .joker-seed-row .copyBtn,
+    .seed-code-row .copyBtn {
+      margin-left: 0;
+    }
+
+    .analyzeSeedInlineBtn {
+      background: linear-gradient(135deg, #7b4cc9 0%, #5d36a8 100%);
+    }
+
+    .copyBtn.analyzeSeedInlineBtn:hover {
+      background: linear-gradient(135deg, #8d61d6 0%, #7149bf 100%);
     }
 
     .copyBtn:hover {
@@ -635,6 +2718,41 @@
       font-size: 24px;
       letter-spacing: 1px;
       text-transform: lowercase;
+    }
+
+    .seed-intro {
+      max-width: 980px;
+      margin: 28px auto 20px;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .seed-intro h2 {
+      margin: 0 0 12px;
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 24px;
+      letter-spacing: 1px;
+      text-transform: lowercase;
+    }
+
+    .seed-intro p,
+    .seed-intro li {
+      color: #bfc7d5;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .seed-intro ul {
+      margin: 10px 0 0 20px;
+    }
+
+    .seed-intro a {
+      color: #ffd700;
+      text-decoration: underline;
     }
 
     .seed-explainer h3 {
@@ -717,10 +2835,13 @@
       }
 
       .copyBtn {
-        margin-left: auto;
-        /* Push to right in flex container if needed */
+        margin-left: 0;
         padding: 6px 12px;
         /* Larger touch target */
+      }
+
+      .seed-item-actions {
+        width: 100%;
       }
 
       .seed-desc {
@@ -731,7 +2852,16 @@
         padding: 16px 14px 12px;
       }
 
+      .seed-intro {
+        margin-top: 20px;
+        padding: 16px 14px 12px;
+      }
+
       .seed-explainer h2 {
+        font-size: 20px;
+      }
+
+      .seed-intro h2 {
         font-size: 20px;
       }
 
@@ -750,6 +2880,10 @@
 
 
       .seed-spotlight-card {
+        grid-template-columns: 1fr;
+      }
+
+      .seed-library-list {
         grid-template-columns: 1fr;
       }
 
@@ -983,6 +3117,664 @@
       gap: 12px;
     }
 
+    .seed-library {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .seed-library-headline {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(240px, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .seed-library h3 {
+      margin: 0 0 8px;
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 20px;
+      letter-spacing: 0.8px;
+    }
+
+    .seed-library-intro {
+      margin: 0;
+      color: #bfc7d5;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .seed-library-kicker {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(13, 20, 12, 0.3));
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .seed-library-kicker-label {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+    }
+
+    .seed-library-kicker-copy {
+      color: #d9dfeb;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .seed-library-track-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .seed-library-track-card {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.07), rgba(0, 0, 0, 0.26));
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-height: 138px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .seed-library-track-label {
+      color: rgba(255, 227, 122, 0.84);
+      font-family: 'm6x11Plus', monospace;
+      font-size: 12px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-track-card strong {
+      color: #fff2aa;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+
+    .seed-library-track-count {
+      color: #8ec7ff;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-track-card p {
+      margin: 0;
+      color: #c8d0dd;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .seed-library-access {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.2) 48%, rgba(88, 47, 183, 0.2));
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .seed-library-access-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .seed-library-access-eyebrow {
+      color: #ffe37a;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-access-copy strong {
+      color: #fff7c2;
+      display: block;
+      padding: 2px 0 4px;
+      font-size: 18px;
+      line-height: 1.45;
+      overflow: visible;
+      text-rendering: optimizeLegibility;
+    }
+
+    .seed-library-access-copy span:last-child {
+      color: #d2d7e2;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .seed-library-access-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .seed-library-upgrade-btn {
+      min-width: 180px;
+      justify-content: center;
+    }
+
+    .seed-library-section-label {
+      margin-bottom: 10px;
+      color: #ffe37a;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-section-label--muted {
+      color: rgba(255, 227, 122, 0.72);
+    }
+
+    .seed-library-preview,
+    .seed-library-locked-zone {
+      position: relative;
+    }
+
+    .seed-library-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .seed-library-item {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.22);
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 220px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .seed-library-item-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .seed-library-code-stack {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .seed-library-rank {
+      color: rgba(255, 227, 122, 0.82);
+      font-family: 'm6x11Plus', monospace;
+      font-size: 13px;
+      letter-spacing: 0.4px;
+    }
+
+    .seed-library-item code {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+
+    .seed-library-title {
+      margin: 0;
+      color: #fff4b0;
+      font-size: 16px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .seed-library-note {
+      margin: 0;
+      color: #bfc7d5;
+      font-size: 13px;
+      line-height: 1.58;
+      flex: 1;
+    }
+
+    .seed-library-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: rgba(214, 221, 233, 0.78);
+      font-size: 11px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-meta a {
+      color: #8ec7ff;
+      text-decoration: none;
+    }
+
+    .seed-library-meta a:hover {
+      text-decoration: underline;
+    }
+
+    .seed-library-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .seed-library-tag {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #ffd700;
+      background: rgba(255, 215, 0, 0.1);
+      letter-spacing: 0.2px;
+    }
+
+    .seed-library-locked-zone {
+      padding: 4px 0 0;
+    }
+
+    .seed-library-locked-zone.is-locked .seed-library-list {
+      filter: blur(10px);
+      opacity: 0.48;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .seed-library-lock-overlay {
+      position: absolute;
+      inset: 28px 0 0;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(10, 12, 8, 0.15), rgba(8, 10, 12, 0.62));
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 14px 18px 18px;
+      backdrop-filter: blur(2px);
+    }
+
+    .seed-library-locked-zone:not(.is-locked) .seed-library-lock-overlay {
+      display: none;
+    }
+
+    .seed-library-lock-panel {
+      width: min(920px, 100%);
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: linear-gradient(180deg, rgba(6, 12, 8, 0.92), rgba(6, 10, 8, 0.82));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+      text-align: left;
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) auto;
+      gap: 16px 20px;
+      align-items: center;
+    }
+
+    .seed-library-lock-badge {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffd700;
+      font-size: 11px;
+      letter-spacing: 0.35px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-lock-panel h4 {
+      margin: 8px 0 8px;
+      color: #fff0a8;
+      font-size: 20px;
+      line-height: 1.15;
+    }
+
+    .seed-library-lock-panel p {
+      margin: 0;
+      max-width: 780px;
+      color: #d8deea;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .seed-library-lock-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 0;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+    }
+
+    .seed-library-plain-btn {
+      border: 1px solid rgba(255, 215, 0, 0.38);
+      background: rgba(0, 0, 0, 0.28);
+      color: #ffd700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .seed-library-plain-btn:hover {
+      background: rgba(255, 215, 0, 0.16);
+    }
+
+    .seed-library-lock-footnote {
+      display: block;
+      margin-top: 4px;
+      color: rgba(216, 222, 234, 0.72);
+      font-size: 12px;
+    }
+
+    .seed-library-paywall {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.74);
+    }
+
+    .seed-library-paywall.active {
+      display: flex;
+    }
+
+    .seed-library-paywall-content {
+      width: min(560px, 92vw);
+      max-height: min(92vh, 900px);
+      overflow-y: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      background: rgba(0, 0, 0, 0.92);
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+    }
+
+    .seed-library-paywall-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      color: #ffd700;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .seed-library-paywall-content h2 {
+      margin: 0 0 10px;
+      color: #fff2b3;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .seed-library-paywall-content p {
+      margin: 0 0 10px;
+      color: #d4dceb;
+      line-height: 1.55;
+    }
+
+    .seed-library-paywall-content a {
+      color: #8ec7ff;
+    }
+
+    .seed-library-paywall-note,
+    .seed-library-paywall-support {
+      font-size: 13px;
+      color: rgba(212, 220, 235, 0.78);
+    }
+
+    .seed-library-paywall-support-link {
+      border: none;
+      background: none;
+      color: #ffd700;
+      text-decoration: underline;
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .seed-library-paywall-member {
+      display: none;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 16px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 215, 0, 0.34);
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .seed-library-paywall-member.active {
+      display: flex;
+    }
+
+    .seed-library-paywall-member-badge {
+      color: #ffd700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 16px;
+      min-width: 72px;
+    }
+
+    .seed-library-paywall-member-meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: #d4dceb;
+      font-size: 13px;
+    }
+
+    .seed-library-paywall-member-plan {
+      color: #fff2b3;
+      font-weight: 700;
+    }
+
+    .seed-library-paywall-member-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .seed-library-paywall-plans {
+      display: grid;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .seed-library-paywall-plan {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .seed-library-paywall-plan-price {
+      color: #fff0a8;
+      font-weight: 700;
+    }
+
+    .seed-library-paywall-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .seed-library-paywall-field label {
+      color: #d4dceb;
+      font-size: 13px;
+    }
+
+    .seed-library-paywall-field input {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff6c9;
+      font-size: 15px;
+    }
+
+    .seed-library-paywall-primary,
+    .seed-library-paywall-secondary {
+      cursor: pointer;
+    }
+
+    .seed-library-paywall-primary {
+      width: 100%;
+      border: 1px solid rgba(255, 215, 0, 0.55);
+      background: rgba(255, 215, 0, 0.22);
+      color: #ffd700;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 18px;
+    }
+
+    .seed-library-paywall-primary:hover {
+      background: rgba(255, 215, 0, 0.3);
+    }
+
+    .seed-library-paywall-secondary {
+      border: 1px solid rgba(255, 215, 0, 0.36);
+      background: rgba(0, 0, 0, 0.25);
+      color: #ffd700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 14px;
+    }
+
+    .seed-library-paywall-secondary:hover {
+      background: rgba(255, 215, 0, 0.14);
+    }
+
+    .seed-library-paywall-divider {
+      margin: 14px 0 10px;
+      color: rgba(212, 220, 235, 0.78);
+      font-size: 13px;
+    }
+
+    .seed-library-paywall-status {
+      min-height: 20px;
+      margin-top: 12px;
+      color: #ffe37a;
+      font-weight: 700;
+    }
+
+    .seed-library-paywall-status.success {
+      color: #9ef0b2;
+    }
+
+    .seed-library-paywall-status.error {
+      color: #ff8e8e;
+    }
+
+    .seed-library-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1250;
+      display: none;
+      max-width: min(360px, 90vw);
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.38);
+      background: rgba(0, 0, 0, 0.92);
+      color: #ffd700;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.38);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .seed-library-toast.active {
+      display: block;
+    }
+
+    @media (max-width: 820px) {
+      .seed-library-headline,
+      .seed-library-access {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .seed-library-track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .seed-library-access-actions {
+        justify-content: flex-start;
+      }
+
+      .seed-library-upgrade-btn {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .seed-library-lock-panel {
+        text-align: left;
+        grid-template-columns: 1fr;
+      }
+
+      .seed-library-lock-actions {
+        justify-content: flex-start;
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .seed-library-paywall-member {
+        flex-direction: column;
+      }
+
+      .seed-library-paywall-member-actions {
+        width: 100%;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .seed-library-track-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .seed-card-tile {
       display: flex;
       align-items: center;
@@ -1058,6 +3850,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       padding: 10px 16px;
       border-radius: 10px;
       background: rgba(0, 0, 0, 0.35);
@@ -1075,8 +3868,42 @@
       background: rgba(0, 0, 0, 0.45);
     }
 
+    .seed-quick-links .quick-link--pro {
+      padding-right: 44px;
+      background: linear-gradient(135deg, rgba(27, 18, 0, 0.55), rgba(52, 20, 0, 0.36));
+      border-color: rgba(255, 215, 0, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.14), 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .seed-quick-links .quick-link--pro:hover {
+      background: linear-gradient(135deg, rgba(42, 28, 0, 0.72), rgba(84, 28, 0, 0.42));
+    }
+
+    .seed-quick-links .quick-link-badge {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 18px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffd84d 0%, #ffb800 100%);
+      color: #241700;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: 0.35px;
+      box-shadow: 0 3px 8px rgba(255, 184, 0, 0.3);
+    }
+
     #seed-generator,
-    #good-fun-seeds {
+    #good-fun-seeds,
+    #community-seed-library,
+    #seed-finder,
+    #seed-faq {
       scroll-margin-top: 120px;
     }
 

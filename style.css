@@ -86,7 +86,8 @@ body {
   pointer-events: none;
 }
 
-#titleBar h1 {
+#titleBar h1,
+#titleBar .titleBarBrand {
   margin: 0;
   font-size: 32px;
   font-weight: normal;
@@ -209,7 +210,8 @@ body {
     left: 10px;
   }
   
-  #titleBar h1 {
+  #titleBar h1,
+  #titleBar .titleBarBrand {
     font-size: 24px;
   }
 }
