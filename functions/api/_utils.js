@@ -37,6 +37,26 @@ export function addDaysIso(days, from) {
   return new Date(time).toISOString();
 }
 
+function toValidTime(value) {
+  if (!value) return null;
+  const time = new Date(value).getTime();
+  return Number.isNaN(time) ? null : time;
+}
+
+export function maxIso(...values) {
+  let best = null;
+  let bestTime = null;
+  for (const value of values) {
+    const time = toValidTime(value);
+    if (time === null) continue;
+    if (bestTime === null || time > bestTime) {
+      best = value;
+      bestTime = time;
+    }
+  }
+  return best;
+}
+
 export function planConfig(plan) {
   if (!plan) return null;
   const parts = String(plan).split('-');
@@ -59,6 +79,15 @@ export function planConfig(plan) {
     days: entry.days,
     label: plan
   };
+}
+
+export function deriveSubscriptionAccessExpiresAt(plan, { nextBillingTime = null, lastPaymentTime = null } = {}) {
+  const config = planConfig(plan);
+  if (!config || config.days === null) return null;
+  const paidThroughFromLastPayment = lastPaymentTime
+    ? addDaysIso(config.days, lastPaymentTime)
+    : null;
+  return maxIso(nextBillingTime, paidThroughFromLastPayment);
 }
 
 export function normalizeCheckoutSource(value) {
@@ -140,6 +169,21 @@ export async function getPaypalAccessToken(env) {
     throw new Error('PayPal auth failed');
   }
   return data.access_token;
+}
+
+export async function getPaypalSubscriptionDetails(env, subscriptionId) {
+  const token = await getPaypalAccessToken(env);
+  const res = await fetch(`${paypalApiBase(env)}/v1/billing/subscriptions/${subscriptionId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data?.message || 'PayPal subscription lookup failed');
+  }
+  return data;
 }
 
 function normalizeReturnPath(value) {

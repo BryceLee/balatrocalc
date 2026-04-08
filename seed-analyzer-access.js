@@ -82,6 +82,7 @@
     ensureDeviceId();
     hydrateEmail();
     updateQuotaUI();
+    refreshSubscriptionState();
     consumeSeedGeneratorRedirect();
     setupPaywallActions();
     setupAnalyzeIntercept();
@@ -320,6 +321,13 @@
     updateQuotaUI();
   }
 
+  function clearPaidFeature(featureKey) {
+    const data = loadPaidFeatures();
+    if (!data[featureKey]) return;
+    delete data[featureKey];
+    savePaidFeatures(data);
+  }
+
   function replaceUrlWithParams(params) {
     const query = params.toString();
     const hash = window.location.hash || '';
@@ -438,6 +446,23 @@
       closePaywallWithToast('Subscription confirmed. Access unlocked.');
     } catch (error) {
       setStatus(error.message || 'Subscription check failed.', true);
+    }
+  }
+
+  async function refreshSubscriptionState() {
+    const cachedEmail = normalizeEmail(localStorage.getItem(STORAGE_KEYS.paidEmail) || paywallEmail?.value || '');
+    if (!validateEmail(cachedEmail)) return;
+
+    try {
+      const data = await getJson(`/api/subscription?email=${encodeURIComponent(cachedEmail)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
+      if (data.active) {
+        setPaidInfo(data.email || cachedEmail, data.plan || `${FEATURE_KEY}-monthly`, data.expiresAt || null);
+      } else {
+        clearPaidFeature(FEATURE_KEY);
+      }
+      updateQuotaUI();
+    } catch {
+      // Keep the last known local state when the network or API is unavailable.
     }
   }
 

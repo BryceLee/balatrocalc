@@ -3,10 +3,10 @@ import {
   errorResponse,
   normalizeEmail,
   planConfig,
-  getPaypalAccessToken,
-  paypalApiBase,
   nowIso,
-  addDaysIso
+  addDaysIso,
+  deriveSubscriptionAccessExpiresAt,
+  getPaypalSubscriptionDetails
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -16,16 +16,11 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Missing subscriptionId');
   }
 
-  const token = await getPaypalAccessToken(env);
-  const res = await fetch(`${paypalApiBase(env)}/v1/billing/subscriptions/${subscriptionId}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    }
-  });
-  const data = await res.json();
-  if (!res.ok) {
-    return errorResponse('PayPal subscription lookup failed', 502, { details: data });
+  let data;
+  try {
+    data = await getPaypalSubscriptionDetails(env, subscriptionId);
+  } catch (error) {
+    return errorResponse('PayPal subscription lookup failed', 502, { details: error.message || String(error) });
   }
 
   const email = normalizeEmail(data.custom_id || data.subscriber?.email_address || '');
@@ -48,13 +43,19 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Subscription plan missing', 500);
   }
 
+  const lastPaymentAt = data.billing_info?.last_payment?.time || null;
+  const accessExpiresAt = deriveSubscriptionAccessExpiresAt(plan, {
+    nextBillingTime: data.billing_info?.next_billing_time || null,
+    lastPaymentTime: lastPaymentAt
+  });
+
   await env.DB.prepare(
     'UPDATE subscriptions SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ? WHERE subscription_id = ?'
   ).bind(
     status,
     now,
-    data.billing_info?.next_billing_time || null,
-    data.billing_info?.last_payment?.time || null,
+    accessExpiresAt,
+    lastPaymentAt,
     subscriptionId
   ).run();
 
@@ -72,7 +73,7 @@ export async function onRequestPost({ request, env }) {
     'SELECT id, expires_at FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
   ).bind(subscriptionId, 'paypal').first();
 
-  let expiresAt = existingPayment?.expires_at || null;
+  let expiresAt = existingPayment?.expires_at || accessExpiresAt || null;
   if (!existingPayment) {
     if (config.days === null) {
       expiresAt = null;
