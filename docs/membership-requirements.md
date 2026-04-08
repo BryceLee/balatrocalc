@@ -44,6 +44,21 @@
 - 前端请求：`GET /api/subscription?email=...&feature=...`。
 - 若有效，将对应 feature 的 plan 和 expiresAt 写入本地缓存。
 
+## 开通来源记录
+- 每次支付/续费都记录来源入口，而不是只给用户存一个固定来源。
+- 当前来源 code：
+  - `seed_library_paywall`
+  - `seed_analyzer_paywall`
+  - `admin_manual`
+  - `unknown`
+- 来源信息分两层：
+  - `checkout_source`：标准化来源 code
+  - `checkout_source_meta`：JSON 字符串，补充页面、组件、CTA 等上下文
+- 记录链路：
+  - 前端入口发起支付时上送来源
+  - `orders` / `subscriptions` 先保存来源
+  - `capture` / `subscription-activate` / `webhook` 再把来源写入 `memberships`
+
 ## Cloudflare 后端
 - D1 表：
   - `memberships`：会员主表（按功能维度）
@@ -96,4 +111,5 @@
 
 ## 备注
 - D1 建表 SQL：`docs/membership-d1.sql`
+- D1 增量迁移 SQL：`docs/membership-d1-add-checkout-source.sql`
 - D1 字段说明：`docs/membership-d1-fields.md`

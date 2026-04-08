@@ -9,7 +9,9 @@ CREATE TABLE IF NOT EXISTS memberships (
   txn_id TEXT,
   status TEXT NOT NULL,
   created_at TEXT NOT NULL,
-  expires_at TEXT
+  expires_at TEXT,
+  checkout_source TEXT NOT NULL DEFAULT 'unknown',
+  checkout_source_meta TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_memberships_email_feature_created
@@ -22,7 +24,9 @@ CREATE TABLE IF NOT EXISTS orders (
   order_id TEXT NOT NULL,
   plan TEXT NOT NULL,
   status TEXT NOT NULL,
-  created_at TEXT NOT NULL
+  created_at TEXT NOT NULL,
+  checkout_source TEXT NOT NULL DEFAULT 'unknown',
+  checkout_source_meta TEXT
 );
 
 
@@ -38,7 +42,9 @@ CREATE TABLE IF NOT EXISTS subscriptions (
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   last_payment_at TEXT,
-  next_billing_at TEXT
+  next_billing_at TEXT,
+  checkout_source TEXT NOT NULL DEFAULT 'unknown',
+  checkout_source_meta TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_subscriptions_email_feature

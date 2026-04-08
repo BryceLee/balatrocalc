@@ -13,6 +13,7 @@
     yearly: 'Yearly',
     lifetime: 'Lifetime'
   };
+  const CHECKOUT_SOURCE = 'seed_analyzer_paywall';
   const FEATURE_LABELS = {
     seed: 'Seed'
   };
@@ -387,6 +388,15 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
+  function getCheckoutSourceMeta() {
+    return {
+      page: window.location.pathname,
+      component: 'seed-paywall',
+      cta: 'upgrade_pro',
+      feature: FEATURE_KEY
+    };
+  }
+
   async function getJson(url) {
     const res = await fetch(url, { credentials: 'same-origin' });
     const data = await res.json().catch(() => ({}));
@@ -447,7 +457,13 @@
     const endpoint = parsed.period === 'lifetime' ? '/api/paypal/create-order' : '/api/paypal/create-subscription';
     try {
       setStatus('Redirecting to PayPal...', false);
-      const data = await postJson(endpoint, { email, plan });
+      const data = await postJson(endpoint, {
+        email,
+        plan,
+        returnPath: window.location.pathname,
+        checkoutSource: CHECKOUT_SOURCE,
+        checkoutSourceMeta: getCheckoutSourceMeta()
+      });
       if (!data.approvalUrl) {
         setStatus('Missing PayPal approval link.', true);
         return;

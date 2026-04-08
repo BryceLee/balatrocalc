@@ -3,6 +3,7 @@ import {
   errorResponse,
   normalizeEmail,
   planConfig,
+  getCheckoutContext,
   getPaypalAccessToken,
   paypalApiBase,
   getReturnUrls,
@@ -29,6 +30,7 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Missing PayPal plan id');
   }
 
+  const { checkoutSource, checkoutSourceMeta } = getCheckoutContext(body);
   const { returnUrl, cancelUrl } = getReturnUrls(request, plan, body.returnPath);
   const token = await getPaypalAccessToken(env);
   const res = await fetch(`${paypalApiBase(env)}/v1/billing/subscriptions`, {
@@ -62,7 +64,7 @@ export async function onRequestPost({ request, env }) {
 
   const now = nowIso();
   await env.DB.prepare(
-    'INSERT INTO subscriptions (email, feature_key, plan, provider, subscription_id, status, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT INTO subscriptions (email, feature_key, plan, provider, subscription_id, status, created_at, updated_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
   ).bind(
     email,
     config.feature,
@@ -71,7 +73,9 @@ export async function onRequestPost({ request, env }) {
     data.id,
     data.status || 'CREATED',
     now,
-    now
+    now,
+    checkoutSource,
+    checkoutSourceMeta
   ).run();
 
   return jsonResponse({ approvalUrl, subscriptionId: data.id });

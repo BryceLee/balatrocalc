@@ -33,7 +33,7 @@ export async function onRequestPost({ request, env }) {
   const now = nowIso();
 
   const existing = await env.DB.prepare(
-    'SELECT id, email, plan, feature_key FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+    'SELECT id, email, plan, feature_key, checkout_source, checkout_source_meta FROM subscriptions WHERE subscription_id = ? LIMIT 1'
   ).bind(subscriptionId).first();
 
   const plan = existing?.plan;
@@ -91,7 +91,7 @@ export async function onRequestPost({ request, env }) {
       }
     }
     await env.DB.prepare(
-      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
       resolvedEmail,
       targetFeature,
@@ -102,7 +102,9 @@ export async function onRequestPost({ request, env }) {
       subscriptionId,
       'paid',
       now,
-      expiresAt
+      expiresAt,
+      existing.checkout_source || 'unknown',
+      existing.checkout_source_meta || null
     ).run();
   }
 

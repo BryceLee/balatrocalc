@@ -3,6 +3,7 @@ import {
   errorResponse,
   normalizeEmail,
   planConfig,
+  getCheckoutContext,
   getPaypalAccessToken,
   paypalApiBase,
   getReturnUrls,
@@ -23,6 +24,7 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Plan not supported for one-time order');
   }
 
+  const { checkoutSource, checkoutSourceMeta } = getCheckoutContext(body);
   const { returnUrl, cancelUrl } = getReturnUrls(request, plan, body.returnPath);
   const token = await getPaypalAccessToken(env);
   const res = await fetch(`${paypalApiBase(env)}/v2/checkout/orders`, {
@@ -61,8 +63,17 @@ export async function onRequestPost({ request, env }) {
   }
 
   await env.DB.prepare(
-    'INSERT INTO orders (email, feature_key, order_id, plan, status, created_at) VALUES (?, ?, ?, ?, ?, ?)'
-  ).bind(email, config.feature, data.id, plan, data.status || 'CREATED', nowIso()).run();
+    'INSERT INTO orders (email, feature_key, order_id, plan, status, created_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+  ).bind(
+    email,
+    config.feature,
+    data.id,
+    plan,
+    data.status || 'CREATED',
+    nowIso(),
+    checkoutSource,
+    checkoutSourceMeta
+  ).run();
 
   return jsonResponse({ approvalUrl, orderId: data.id });
 }

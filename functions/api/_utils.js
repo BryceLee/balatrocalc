@@ -13,6 +13,13 @@ export function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase();
 }
 
+const CHECKOUT_SOURCES = new Set([
+  'seed_library_paywall',
+  'seed_analyzer_paywall',
+  'admin_manual',
+  'unknown'
+]);
+
 export function nowIso() {
   return new Date().toISOString();
 }
@@ -51,6 +58,59 @@ export function planConfig(plan) {
     amount: entry.amount,
     days: entry.days,
     label: plan
+  };
+}
+
+export function normalizeCheckoutSource(value) {
+  const normalized = String(value || '').trim().toLowerCase();
+  if (!normalized) return 'unknown';
+  return CHECKOUT_SOURCES.has(normalized) ? normalized : 'unknown';
+}
+
+export function serializeCheckoutSourceMeta(value) {
+  if (value === undefined || value === null || value === '') {
+    return null;
+  }
+
+  let raw = null;
+  if (typeof value === 'string') {
+    raw = value.trim();
+  } else {
+    try {
+      raw = JSON.stringify(value);
+    } catch {
+      raw = null;
+    }
+  }
+
+  if (!raw) return null;
+  return raw.length > 2000 ? raw.slice(0, 2000) : raw;
+}
+
+function inferCheckoutSourceFromPath(value) {
+  if (!value || typeof value !== 'string') return 'unknown';
+
+  try {
+    const parsed = new URL(value, 'https://balatrocalc.local');
+    const pathname = parsed.pathname.toLowerCase();
+    if (pathname === '/balatro-seeds' || pathname.endsWith('/balatro-seeds.html')) {
+      return 'seed_library_paywall';
+    }
+    if (pathname === '/balatro-seed-analyzer' || pathname.endsWith('/balatro-seed-analyzer.html')) {
+      return 'seed_analyzer_paywall';
+    }
+  } catch {
+    return 'unknown';
+  }
+
+  return 'unknown';
+}
+
+export function getCheckoutContext(body) {
+  const inferredSource = inferCheckoutSourceFromPath(body?.returnPath);
+  return {
+    checkoutSource: normalizeCheckoutSource(body?.checkoutSource || body?.source || inferredSource),
+    checkoutSourceMeta: serializeCheckoutSourceMeta(body?.checkoutSourceMeta ?? body?.sourceMeta ?? null)
   };
 }
 

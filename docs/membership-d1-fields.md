@@ -17,6 +17,8 @@
 - status：状态，`paid` / `refunded` / `revoked` 等
 - created_at：创建时间（UTC ISO）
 - expires_at：到期时间（UTC ISO），终身可为空
+- checkout_source：本次开通/续费的来源入口，当前取值如 `seed_library_paywall` / `seed_analyzer_paywall` / `admin_manual` / `unknown`
+- checkout_source_meta：来源补充信息，JSON 字符串，例如页面路径、组件名、CTA 名称
 
 ## orders（一次性订单）
 
@@ -29,6 +31,8 @@
 - plan：套餐类型，如 `seed-lifetime`
 - status：订单状态（如 `CREATED` / `COMPLETED`）
 - created_at：创建时间（UTC ISO）
+- checkout_source：发起订单的来源入口
+- checkout_source_meta：来源补充信息，JSON 字符串
 
 ## subscriptions（自动续费订阅）
 
@@ -45,3 +49,5 @@
 - updated_at：更新时间（UTC ISO）
 - last_payment_at：最近一次成功扣款时间（UTC ISO）
 - next_billing_at：下一次续费时间（UTC ISO）
+- checkout_source：首次发起订阅的来源入口
+- checkout_source_meta：来源补充信息，JSON 字符串

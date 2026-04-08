@@ -39,7 +39,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const subscription = await env.DB.prepare(
-      'SELECT email, plan, feature_key FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+      'SELECT email, plan, feature_key, checkout_source, checkout_source_meta FROM subscriptions WHERE subscription_id = ? LIMIT 1'
     ).bind(subscriptionId).first();
 
     if (!subscription) {
@@ -75,7 +75,7 @@ export async function onRequestPost({ request, env }) {
         }
       }
       await env.DB.prepare(
-        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
         subscription.email,
         targetFeature,
@@ -86,7 +86,9 @@ export async function onRequestPost({ request, env }) {
         resource.id,
         'paid',
         now,
-        expiresAt
+        expiresAt,
+        subscription.checkout_source || 'unknown',
+        subscription.checkout_source_meta || null
       ).run();
     }
 

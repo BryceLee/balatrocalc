@@ -2297,6 +2297,17 @@
         }
       }
 
+      const CHECKOUT_SOURCE = "seed_library_paywall";
+
+      function getCheckoutSourceMeta() {
+        return {
+          page: window.location.pathname,
+          component: "seed-library-paywall",
+          cta: "unlock_all_seeds",
+          feature: FEATURE_KEY
+        };
+      }
+
       async function startPayment() {
         clearPaywallStatus();
         const email = normalizeEmail(paywallEmail.value);
@@ -2321,7 +2332,9 @@
           const data = await postJson(endpoint, {
             email,
             plan,
-            returnPath: window.location.pathname
+            returnPath: window.location.pathname,
+            checkoutSource: CHECKOUT_SOURCE,
+            checkoutSourceMeta: getCheckoutSourceMeta()
           });
           if (!data.approvalUrl) {
             throw new Error("Missing PayPal approval link.");

@@ -29,7 +29,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   const order = await env.DB.prepare(
-    'SELECT email, plan, feature_key FROM orders WHERE order_id = ? LIMIT 1'
+    'SELECT email, plan, feature_key, checkout_source, checkout_source_meta FROM orders WHERE order_id = ? LIMIT 1'
   ).bind(orderId).first();
 
   if (!order) {
@@ -58,7 +58,7 @@ export async function onRequestPost({ request, env }) {
 
   if (!existingPayment) {
     await env.DB.prepare(
-      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
       email,
       order?.feature_key || config.feature,
@@ -69,7 +69,9 @@ export async function onRequestPost({ request, env }) {
       orderId,
       'paid',
       nowIso(),
-      null
+      null,
+      order?.checkout_source || 'unknown',
+      order?.checkout_source_meta || null
     ).run();
   }
 
