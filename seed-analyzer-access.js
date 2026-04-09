@@ -177,6 +177,12 @@
     return `${featureLabel} ${periodLabel}`;
   }
 
+  function formatPlanPeriodLabel(plan) {
+    const parsed = parsePlan(plan);
+    if (!parsed) return plan || '';
+    return PLAN_LABELS[parsed.period] || parsed.period;
+  }
+
   function getPaidInfo() {
     const email = localStorage.getItem(STORAGE_KEYS.paidEmail);
     const data = loadPaidFeatures();
@@ -217,12 +223,15 @@
     const paid = getPaidInfo();
     const email = paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || '';
     if (quotaLibraryLink) {
-      quotaLibraryLink.classList.toggle('active', Boolean(paid.active));
+      quotaLibraryLink.textContent = paid.active
+        ? 'Includes VIP Seed Pro Library access.'
+        : 'Seed Pro also unlocks VIP Seed Pro Library.';
+      quotaLibraryLink.classList.add('active');
     }
     if (paid.active) {
       quotaRemainingEl.textContent = 'Unlimited';
       quotaTotalEl.textContent = '';
-      quotaPlanEl.textContent = paid.plan ? `Seed Pro · ${formatPlanLabel(paid.plan)}` : 'Seed Pro';
+      quotaPlanEl.textContent = paid.plan ? `Seed Pro · ${formatPlanPeriodLabel(paid.plan)}` : 'Seed Pro';
       const parsed = parsePlan(paid.plan);
       if (parsed && parsed.period === 'lifetime') {
         quotaResetEl.textContent = 'Lifetime access';
@@ -231,7 +240,7 @@
       } else {
         quotaResetEl.textContent = 'Subscription active';
       }
-      manageBtn.textContent = 'Upgrade / Extend';
+      manageBtn.textContent = 'Manage Pro';
       setUserEmail(email);
       updatePaywallMembership(paid);
       return;
@@ -242,7 +251,7 @@
     quotaTotalEl.textContent = `/${FREE_DAILY_LIMIT}`;
     quotaPlanEl.textContent = '';
     quotaResetEl.textContent = 'Resets daily at 00:00 UTC';
-    manageBtn.textContent = 'Upgrade Pro';
+    manageBtn.textContent = 'Go Pro';
     setUserEmail(email);
     updatePaywallMembership(paid);
   }
@@ -268,7 +277,7 @@
     }
     paywallMember.classList.add('active');
     paywallMemberPlan.textContent = paid.plan
-      ? `Seed Pro · ${formatPlanLabel(paid.plan)}`
+      ? `Seed Pro · ${formatPlanPeriodLabel(paid.plan)}`
       : 'Seed Pro';
     paywallMemberEmail.textContent = paid.email || '';
     const parsed = parsePlan(paid.plan);
@@ -718,8 +727,16 @@
   }
 
   function ensureQuotaBarPlacement() {
+    const quotaAnchor = document.getElementById('seedQuotaAnchor');
     const navRow = document.getElementById('seedNavRow');
     const quotaBar = document.getElementById('seedQuotaBar');
+    if (quotaAnchor && quotaBar) {
+      if (!quotaAnchor.contains(quotaBar)) {
+        quotaAnchor.appendChild(quotaBar);
+      }
+      quotaBar.classList.remove('seedQuotaBar--inline');
+      return;
+    }
     if (navRow && quotaBar) {
       const topNav = document.getElementById('topNav');
       if (!navRow.contains(quotaBar)) {
