@@ -232,13 +232,13 @@
     }
     if (paid.active) {
       quotaRemainingEl.textContent = 'Seed Pro';
-      quotaTotalEl.textContent = 'active';
-      quotaPlanEl.textContent = paid.plan ? formatPlanPeriodLabel(paid.plan) : '';
+      quotaTotalEl.textContent = '';
+      quotaPlanEl.textContent = paid.plan ? formatPlanPeriodLabel(paid.plan) : 'Active';
       const parsed = parsePlan(paid.plan);
       if (parsed && parsed.period === 'lifetime') {
         quotaResetEl.textContent = 'Lifetime access';
       } else if (paid.expiresAt) {
-        quotaResetEl.textContent = `Valid until ${formatDate(paid.expiresAt)} UTC`;
+        quotaResetEl.textContent = `Until ${formatDate(paid.expiresAt)}`;
       } else {
         quotaResetEl.textContent = 'Subscription active';
       }
@@ -249,10 +249,10 @@
     }
 
     const remaining = remainingUses();
-    quotaRemainingEl.textContent = String(remaining);
-    quotaTotalEl.textContent = remaining === 1 ? 'free run left' : 'free runs left';
+    quotaRemainingEl.textContent = `${remaining} free`;
+    quotaTotalEl.textContent = remaining === 1 ? 'run' : 'runs';
     quotaPlanEl.textContent = 'today';
-    quotaResetEl.textContent = 'Resets daily at 00:00 UTC';
+    quotaResetEl.textContent = 'Reset 00:00 UTC';
     manageBtn.textContent = 'Unlock';
     setUserEmail(email);
     updatePaywallMembership(paid);
