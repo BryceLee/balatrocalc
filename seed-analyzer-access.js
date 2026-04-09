@@ -224,14 +224,14 @@
     const email = paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || '';
     if (quotaLibraryLink) {
       quotaLibraryLink.textContent = paid.active
-        ? 'Includes VIP Seed Pro Library access.'
-        : 'Seed Pro also unlocks VIP Seed Pro Library.';
+        ? 'Shared with VIP Seed Pro Library.'
+        : 'Upgrade once to unlock analyzer + seed library.';
       quotaLibraryLink.classList.add('active');
     }
     if (paid.active) {
-      quotaRemainingEl.textContent = 'Unlimited';
-      quotaTotalEl.textContent = '';
-      quotaPlanEl.textContent = paid.plan ? `Seed Pro · ${formatPlanPeriodLabel(paid.plan)}` : 'Seed Pro';
+      quotaRemainingEl.textContent = 'Seed Pro';
+      quotaTotalEl.textContent = 'active';
+      quotaPlanEl.textContent = paid.plan ? formatPlanPeriodLabel(paid.plan) : '';
       const parsed = parsePlan(paid.plan);
       if (parsed && parsed.period === 'lifetime') {
         quotaResetEl.textContent = 'Lifetime access';
@@ -240,7 +240,7 @@
       } else {
         quotaResetEl.textContent = 'Subscription active';
       }
-      manageBtn.textContent = 'Manage Pro';
+      manageBtn.textContent = 'Manage';
       setUserEmail(email);
       updatePaywallMembership(paid);
       return;
@@ -248,10 +248,10 @@
 
     const remaining = remainingUses();
     quotaRemainingEl.textContent = String(remaining);
-    quotaTotalEl.textContent = `/${FREE_DAILY_LIMIT}`;
-    quotaPlanEl.textContent = '';
+    quotaTotalEl.textContent = remaining === 1 ? 'free run left' : 'free runs left';
+    quotaPlanEl.textContent = 'today';
     quotaResetEl.textContent = 'Resets daily at 00:00 UTC';
-    manageBtn.textContent = 'Go Pro';
+    manageBtn.textContent = 'Unlock';
     setUserEmail(email);
     updatePaywallMembership(paid);
   }

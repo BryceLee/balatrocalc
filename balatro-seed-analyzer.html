@@ -127,22 +127,35 @@
   <div id="seedAnalyzerSeo">
     <div class="contentPageWrapBelow seedAnalyzerSeoWrap">
       <div class="contentCard seedAnalyzerHeroCard">
-        <div class="seedAnalyzerHeroBadge">Planning tool</div>
-        <h2 class="contentTitle">Balatro Seed Analyzer is for route decisions, not just seed lookup.</h2>
-        <p class="contentLead">
-          If you already have a seed and want to understand what shops, key purchases, or ante pivots are worth chasing,
-          this page is the right layer. Use it when the question is <em>how should I route this seed?</em>, not just
-          <em>what does this hand score?</em>
-        </p>
-        <div class="seedAnalyzerActionRow">
-          <a class="seedAnalyzerAction seedAnalyzerAction--primary" href="/balatro-seed-analyzer?seed=CXU5C38F">Try a sample seed</a>
-          <a class="seedAnalyzerAction" href="/balatro-seeds#community-seed-library">Open seed library</a>
-          <a class="seedAnalyzerAction" href="/">Use calculator instead</a>
+        <div class="seedAnalyzerHeroLayout">
+          <div class="seedAnalyzerHeroMain">
+            <div class="seedAnalyzerHeroBadge">Planning tool</div>
+            <h2 class="contentTitle">Balatro Seed Analyzer is for route decisions, not just seed lookup.</h2>
+            <p class="contentLead">
+              If you already have a seed and want to understand what shops, key purchases, or ante pivots are worth chasing,
+              this page is the right layer. Use it when the question is <em>how should I route this seed?</em>, not just
+              <em>what does this hand score?</em>
+            </p>
+            <div class="seedAnalyzerActionRow">
+              <a class="seedAnalyzerAction seedAnalyzerAction--primary" href="/balatro-seed-analyzer?seed=CXU5C38F">Try a sample seed</a>
+              <a class="seedAnalyzerAction" href="/balatro-seeds#community-seed-library">Open seed library</a>
+              <a class="seedAnalyzerAction" href="/">Use calculator instead</a>
+            </div>
+          </div>
+          <aside class="seedAnalyzerHeroRail" aria-label="Best for">
+            <div class="seedAnalyzerHeroRailLabel">Best for</div>
+            <ul class="seedAnalyzerHeroChecklist">
+              <li>Checking whether a strong opener actually stays strong through later antes.</li>
+              <li>Comparing early shop branches before you commit to a route.</li>
+              <li>Jumping from a found seed into route planning without touching score math yet.</li>
+            </ul>
+            <div class="seedAnalyzerHeroMiniNote">One Seed Pro membership unlocks both this tool and the VIP seed library.</div>
+          </aside>
         </div>
       </div>
 
       <div class="seedAnalyzerGrid">
-        <section class="contentCard">
+        <section class="contentCard seedAnalyzerSectionCard">
           <h2 class="contentTitle">What this analyzer helps you answer</h2>
           <div class="seedAnalyzerFeatureList">
             <div class="seedAnalyzerFeature">
@@ -169,7 +182,7 @@
           </div>
         </section>
 
-        <section class="contentCard">
+        <section class="contentCard seedAnalyzerSectionCard">
           <h2 class="contentTitle">Calculator vs Seed Analyzer</h2>
           <div class="seedAnalyzerCompare">
             <div class="seedAnalyzerCompareCard">
@@ -189,74 +202,76 @@
         </section>
       </div>
 
-      <section class="contentCard">
-        <h2 class="contentTitle">How to get value from this page fast</h2>
-        <div class="seedAnalyzerTimeline">
-          <div class="seedAnalyzerTimelineItem">
-            <span class="seedAnalyzerFeatureStep">1</span>
-            <div>
-              <h3>Paste or open a seed</h3>
-              <p>Start from a community seed, a run you already know, or a seed discovered on the Balatro Seeds page.</p>
+      <div class="seedAnalyzerLowerGrid">
+        <section class="contentCard seedAnalyzerSectionCard seedAnalyzerTimelineCard">
+          <h2 class="contentTitle">How to get value from this page fast</h2>
+          <div class="seedAnalyzerTimeline">
+            <div class="seedAnalyzerTimelineItem">
+              <span class="seedAnalyzerFeatureStep">1</span>
+              <div>
+                <h3>Paste or open a seed</h3>
+                <p>Start from a community seed, a run you already know, or a seed discovered on the Balatro Seeds page.</p>
+              </div>
+            </div>
+            <div class="seedAnalyzerTimelineItem">
+              <span class="seedAnalyzerFeatureStep">2</span>
+              <div>
+                <h3>Compare the early route pressure</h3>
+                <p>Look for the first few meaningful decisions rather than trying to solve the entire run in one pass.</p>
+              </div>
+            </div>
+            <div class="seedAnalyzerTimelineItem">
+              <span class="seedAnalyzerFeatureStep">3</span>
+              <div>
+                <h3>Use calculator only when needed</h3>
+                <p>Once the route is clear, switch to the calculator for exact hand math instead of overloading the seed tool with score questions.</p>
+              </div>
             </div>
           </div>
-          <div class="seedAnalyzerTimelineItem">
-            <span class="seedAnalyzerFeatureStep">2</span>
-            <div>
-              <h3>Compare the early route pressure</h3>
-              <p>Look for the first few meaningful decisions rather than trying to solve the entire run in one pass.</p>
-            </div>
-          </div>
-          <div class="seedAnalyzerTimelineItem">
-            <span class="seedAnalyzerFeatureStep">3</span>
-            <div>
-              <h3>Use calculator only when needed</h3>
-              <p>Once the route is clear, switch to the calculator for exact hand math instead of overloading the seed tool with score questions.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="contentCard">
-        <h2 class="contentTitle">FAQ</h2>
-        <div class="faqList">
-          <article class="faqItem">
-            <button class="faqBtn" type="button" aria-expanded="true">
-              <span>What makes Seed Analyzer different from a seed list?</span>
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer faqAnswer--open">
-              <p>A seed list tells you a seed exists. Seed Analyzer is the layer that helps you decide whether the route through that seed is actually good, stable, or worth following.</p>
-            </div>
-          </article>
-          <article class="faqItem">
-            <button class="faqBtn" type="button" aria-expanded="false">
-              <span>Do I need Seed Pro to try this tool?</span>
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              <p>No. There is still a free path, but paid access removes the analysis limit and also unlocks the VIP Seed Pro Library.</p>
-            </div>
-          </article>
-          <article class="faqItem">
-            <button class="faqBtn" type="button" aria-expanded="false">
-              <span>When should I use the calculator instead?</span>
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              <p>Use the calculator when your problem is hand scoring, chips, mult, or joker order. Use Seed Analyzer when the problem is route planning for a specific seed.</p>
-            </div>
-          </article>
-          <article class="faqItem">
-            <button class="faqBtn" type="button" aria-expanded="false">
-              <span>Can I jump into this page from a seed list?</span>
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              <p>Yes. The Balatro Seeds page already links into this tool, and sample seeds can also be passed in the URL for faster entry.</p>
-            </div>
-          </article>
-        </div>
-      </section>
+        <section class="contentCard seedAnalyzerSectionCard seedAnalyzerFaqCard">
+          <h2 class="contentTitle">FAQ</h2>
+          <div class="faqList">
+            <article class="faqItem">
+              <button class="faqBtn" type="button" aria-expanded="true">
+                <span>What makes Seed Analyzer different from a seed list?</span>
+                <span class="faqIcon">+</span>
+              </button>
+              <div class="faqAnswer faqAnswer--open">
+                <p>A seed list tells you a seed exists. Seed Analyzer is the layer that helps you decide whether the route through that seed is actually good, stable, or worth following.</p>
+              </div>
+            </article>
+            <article class="faqItem">
+              <button class="faqBtn" type="button" aria-expanded="false">
+                <span>Do I need Seed Pro to try this tool?</span>
+                <span class="faqIcon">+</span>
+              </button>
+              <div class="faqAnswer">
+                <p>No. There is still a free path, but paid access removes the analysis limit and also unlocks the VIP Seed Pro Library.</p>
+              </div>
+            </article>
+            <article class="faqItem">
+              <button class="faqBtn" type="button" aria-expanded="false">
+                <span>When should I use the calculator instead?</span>
+                <span class="faqIcon">+</span>
+              </button>
+              <div class="faqAnswer">
+                <p>Use the calculator when your problem is hand scoring, chips, mult, or joker order. Use Seed Analyzer when the problem is route planning for a specific seed.</p>
+              </div>
+            </article>
+            <article class="faqItem">
+              <button class="faqBtn" type="button" aria-expanded="false">
+                <span>Can I jump into this page from a seed list?</span>
+                <span class="faqIcon">+</span>
+              </button>
+              <div class="faqAnswer">
+                <p>Yes. The Balatro Seeds page already links into this tool, and sample seeds can also be passed in the URL for faster entry.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 
@@ -473,17 +488,104 @@
     #seedAnalyzerSeo {
       position: relative;
       z-index: 1;
+      padding: 42px 0 88px;
+    }
+
+    #seedAnalyzerSeo::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: min(1180px, calc(100% - 40px));
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.45), transparent);
     }
 
     .seedAnalyzerSeoWrap {
-      max-width: 1120px;
+      max-width: 1180px;
+      display: grid;
+      gap: 26px;
     }
 
     .seedAnalyzerHeroCard {
       background:
-        radial-gradient(circle at top right, rgba(255, 215, 0, 0.12), transparent 28%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.28));
-      border-radius: 20px;
+        radial-gradient(circle at top right, rgba(255, 215, 0, 0.14), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(0, 157, 255, 0.1), transparent 22%),
+        linear-gradient(180deg, rgba(8, 24, 19, 0.92), rgba(6, 15, 12, 0.76));
+      border-radius: 24px;
+      border-color: rgba(255, 215, 0, 0.24);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+    }
+
+    .seedAnalyzerHeroLayout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .seedAnalyzerHeroMain {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .seedAnalyzerHeroRail {
+      display: grid;
+      gap: 14px;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.12));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .seedAnalyzerHeroRailLabel {
+      color: #ffe38c;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 13px;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .seedAnalyzerHeroChecklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .seedAnalyzerHeroChecklist li {
+      position: relative;
+      padding-left: 18px;
+      color: #d2dbd3;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .seedAnalyzerHeroChecklist li::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ffd700;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    .seedAnalyzerHeroMiniNote {
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 215, 0, 0.12);
+      color: rgba(210, 219, 211, 0.82);
+      font-size: 13px;
+      line-height: 1.55;
     }
 
     .seedAnalyzerHeroBadge,
@@ -499,11 +601,15 @@
       text-transform: uppercase;
     }
 
+    .seedAnalyzerHeroBadge {
+      margin-bottom: 14px;
+    }
+
     .seedAnalyzerActionRow {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 22px;
     }
 
     .seedAnalyzerAction {
@@ -517,7 +623,8 @@
       background: rgba(0, 0, 0, 0.22);
       color: #fff0bf;
       text-decoration: none;
-      transition: transform 0.18s ease, border-color 0.18s ease;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
     .seedAnalyzerAction--primary {
@@ -534,13 +641,32 @@
     .seedAnalyzerGrid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 24px;
+    }
+
+    .seedAnalyzerLowerGrid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+    }
+
+    .seedAnalyzerSectionCard {
+      margin-top: 0;
+      padding: 22px 22px 20px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(8, 24, 19, 0.72), rgba(6, 15, 12, 0.58));
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      backdrop-filter: blur(6px);
+      box-shadow:
+        0 18px 36px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
     .seedAnalyzerFeatureList,
     .seedAnalyzerTimeline {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .seedAnalyzerFeature,
@@ -548,11 +674,12 @@
     .seedAnalyzerCompareCard {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
     }
 
     .seedAnalyzerFeatureStep {
@@ -562,10 +689,11 @@
       width: 38px;
       height: 38px;
       border-radius: 10px;
-      background: rgba(255, 215, 0, 0.14);
+      background: linear-gradient(180deg, rgba(255, 215, 0, 0.16), rgba(255, 215, 0, 0.08));
       border: 1px solid rgba(255, 215, 0, 0.22);
       color: #ffd700;
       font-size: 18px;
+      box-shadow: 0 8px 18px rgba(255, 215, 0, 0.08);
     }
 
     .seedAnalyzerFeature h3,
@@ -588,22 +716,26 @@
 
     .seedAnalyzerCompare {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .seedAnalyzerCompareCard {
       grid-template-columns: 1fr;
     }
 
+    .seedAnalyzerFaqCard {
+      align-self: start;
+    }
+
     .faqList {
       display: grid;
-      gap: 10px;
+      gap: 14px;
     }
 
     .faqItem {
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1px solid rgba(255, 215, 0, 0.16);
-      background: rgba(0, 0, 0, 0.14);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.08));
       overflow: hidden;
     }
 
@@ -613,7 +745,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 15px 16px;
+      padding: 16px 18px;
       background: transparent;
       color: #fff2be;
       border: 0;
@@ -631,7 +763,7 @@
 
     .faqAnswer {
       display: none;
-      padding: 0 16px 16px;
+      padding: 0 18px 18px;
     }
 
     .faqAnswer--open {
@@ -645,6 +777,13 @@
       line-height: 1.75;
     }
 
+    @media (max-width: 1080px) {
+      .seedAnalyzerHeroLayout,
+      .seedAnalyzerLowerGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 920px) {
       .seedAnalyzerGrid {
         grid-template-columns: 1fr;
@@ -652,12 +791,29 @@
     }
 
     @media (max-width: 640px) {
+      #seedAnalyzerSeo {
+        padding: 28px 0 64px;
+      }
+
+      .seedAnalyzerSectionCard,
+      .seedAnalyzerHeroCard {
+        padding: 18px 18px 16px;
+      }
+
       .seedAnalyzerActionRow {
         flex-direction: column;
       }
 
       .seedAnalyzerAction {
         width: 100%;
+      }
+
+      .seedAnalyzerHeroChecklist li,
+      .faqAnswer p,
+      .seedAnalyzerFeature p,
+      .seedAnalyzerTimelineItem p,
+      .seedAnalyzerCompareCard p {
+        font-size: 14px;
       }
     }
   </style>
