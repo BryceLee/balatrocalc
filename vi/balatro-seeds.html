@@ -2087,6 +2087,13 @@
         localStorage.removeItem(STORAGE_KEYS.paidFeatures);
       }
 
+      function clearPaidFeature(featureKey) {
+        const data = loadPaidFeatures();
+        if (!data[featureKey]) return;
+        delete data[featureKey];
+        savePaidFeatures(data);
+      }
+
       function formatDate(iso) {
         if (!iso) return "";
         const parsed = new Date(iso);
@@ -2297,6 +2304,23 @@
         }
       }
 
+      async function refreshSubscriptionState() {
+        const cachedEmail = normalizeEmail(localStorage.getItem(STORAGE_KEYS.paidEmail) || paywallEmail?.value || "");
+        if (!validateEmail(cachedEmail)) return;
+
+        try {
+          const data = await getJson(`/api/subscription?email=${encodeURIComponent(cachedEmail)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
+          if (data.active) {
+            setPaidInfo(data.email || cachedEmail, data.plan || "seed-monthly", data.expiresAt || null);
+          } else {
+            clearPaidFeature(FEATURE_KEY);
+          }
+          renderLibrary();
+        } catch {
+          // Keep the last known local state when the network or API is unavailable.
+        }
+      }
+
       const CHECKOUT_SOURCE = "seed_library_paywall";
 
       function getCheckoutSourceMeta() {
@@ -2459,10 +2483,10 @@
             syncSharedMembershipState();
           }
         });
-        window.addEventListener("pageshow", syncSharedMembershipState);
+        window.addEventListener("pageshow", refreshSubscriptionState);
         document.addEventListener("visibilitychange", () => {
           if (!document.hidden) {
-            syncSharedMembershipState();
+            refreshSubscriptionState();
           }
         });
       }
@@ -2499,6 +2523,7 @@
         bindEvents();
         renderLibrary();
         handlePaypalReturn();
+        refreshSubscriptionState();
       }
 
       if (document.readyState === "loading") {
