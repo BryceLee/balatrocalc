@@ -78,45 +78,47 @@
 
 <body class="seed-analyzer-page">
   <canvas id="backgroundCanvas"></canvas>
-  <div id="titleBar">
-    <h1>Balatro Seed Analyzer</h1>
-    <span class="subtitle">seed routing & analysis</span>
-  </div>
-  <div id="seedNavRow">
-    <nav id="topNav">
-      <a href="/" class="nav-link">calculator</a>
-      <a href="/balatro-seeds" class="nav-link">seeds</a>
-      <a href="/blog" class="nav-link">blog</a>
-      <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
-      <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
-      <a href="/support" class="nav-link">support</a>
-    </nav>
-  </div>
-  <div id="seedQuotaAnchor">
-    <div id="seedQuotaBar">
-      <div class="seedQuotaInfo">
-        <div class="seedQuotaHeader">
-          <div class="seedQuotaTitle">Seed Analyzer Access</div>
-          <div class="seedQuotaMeta">
-            <span id="seedQuotaRemaining">3</span>
-            <span id="seedQuotaTotal">/3</span>
-            <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+  <div id="seedChrome">
+    <div id="titleBar">
+      <h1>Balatro Seed Analyzer</h1>
+      <span class="subtitle">seed routing & analysis</span>
+    </div>
+    <div id="seedQuotaAnchor">
+      <div id="seedQuotaBar">
+        <div class="seedQuotaInfo">
+          <div class="seedQuotaHeader">
+            <div class="seedQuotaTitle">Seed Analyzer Access</div>
+            <div class="seedQuotaMeta">
+              <span id="seedQuotaRemaining">3</span>
+              <span id="seedQuotaTotal">/3</span>
+              <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+            </div>
+          </div>
+          <div class="seedQuotaSummary">
+            <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+            <a id="seedQuotaLibraryLink" class="seedQuotaLibraryLink" href="/balatro-seeds#community-seed-library">
+              Seed Pro also unlocks VIP Seed Pro Library.
+            </a>
+            <div id="seedQuotaUser" class="seedQuotaUser">
+              <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
+              <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
+            </div>
           </div>
         </div>
-        <div class="seedQuotaSummary">
-          <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
-          <a id="seedQuotaLibraryLink" class="seedQuotaLibraryLink" href="/balatro-seeds#community-seed-library">
-            Seed Pro also unlocks VIP Seed Pro Library.
-          </a>
-          <div id="seedQuotaUser" class="seedQuotaUser">
-            <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
-            <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
-          </div>
+        <div class="seedQuotaActions">
+          <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Go Pro</button>
         </div>
       </div>
-      <div class="seedQuotaActions">
-        <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Go Pro</button>
-      </div>
+    </div>
+    <div id="seedNavRow">
+      <nav id="topNav">
+        <a href="/" class="nav-link">calculator</a>
+        <a href="/balatro-seeds" class="nav-link">seeds</a>
+        <a href="/blog" class="nav-link">blog</a>
+        <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
+        <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+        <a href="/support" class="nav-link">support</a>
+      </nav>
     </div>
   </div>
 
