@@ -43,6 +43,7 @@
   let paywallMemberExpires;
   let paywallUpgrade;
   let paywallManage;
+  let paywallLogout;
   let paywallSupportEmail;
   let copySeedBtn;
   let toastEl;
@@ -71,6 +72,7 @@
     paywallMemberExpires = document.getElementById('seedPaywallMemberExpires');
     paywallUpgrade = document.getElementById('seedPaywallUpgrade');
     paywallManage = document.getElementById('seedPaywallManage');
+    paywallLogout = document.getElementById('seedPaywallLogout');
     paywallSupportEmail = document.getElementById('seedPaywallSupportEmail');
     toastEl = document.getElementById('seedToast');
 
@@ -596,6 +598,13 @@
         const isSandbox = host.includes('pages.dev') || host.includes('localhost') || host.includes('127.0.0.1');
         const base = isSandbox ? 'https://www.sandbox.paypal.com' : 'https://www.paypal.com';
         window.open(`${base}/myaccount/autopay/`, '_blank', 'noopener');
+      });
+    }
+    if (paywallLogout) {
+      paywallLogout.addEventListener('click', () => {
+        clearPaidInfo();
+        paywallEmail.value = '';
+        setStatus('Logged out on this device.', false, true);
       });
     }
     if (paywallSupportEmail) {

@@ -83,34 +83,34 @@
       <h1>Balatro Seed Analyzer</h1>
       <span class="subtitle">seed routing & analysis</span>
     </div>
-    <div id="seedQuotaAnchor">
-      <div id="seedQuotaBar">
-        <div class="seedQuotaInfo">
-          <div class="seedQuotaHeader">
-            <div class="seedQuotaTitle">Seed Analyzer Access</div>
-            <div class="seedQuotaMeta">
-              <span id="seedQuotaRemaining">3</span>
-              <span id="seedQuotaTotal">/3</span>
-              <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+    <div id="seedNavRow">
+      <div id="seedQuotaAnchor">
+        <div id="seedQuotaBar">
+          <div class="seedQuotaInfo">
+            <div class="seedQuotaHeader">
+              <div class="seedQuotaTitle">Seed Analyzer Access</div>
+              <div class="seedQuotaMeta">
+                <span id="seedQuotaRemaining">3</span>
+                <span id="seedQuotaTotal">/3</span>
+                <span id="seedQuotaPlan" class="seedQuotaPlan"></span>
+              </div>
+            </div>
+            <div class="seedQuotaSummary">
+              <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+              <a id="seedQuotaLibraryLink" class="seedQuotaLibraryLink" href="/balatro-seeds#community-seed-library">
+                Seed Pro also unlocks VIP Seed Pro Library.
+              </a>
+              <div id="seedQuotaUser" class="seedQuotaUser">
+                <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
+                <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
+              </div>
             </div>
           </div>
-          <div class="seedQuotaSummary">
-            <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
-            <a id="seedQuotaLibraryLink" class="seedQuotaLibraryLink" href="/balatro-seeds#community-seed-library">
-              Seed Pro also unlocks VIP Seed Pro Library.
-            </a>
-            <div id="seedQuotaUser" class="seedQuotaUser">
-              <span id="seedQuotaEmail" class="seedQuotaEmail"></span>
-              <button id="seedQuotaLogout" class="seedQuotaLink" type="button">Log out</button>
-            </div>
+          <div class="seedQuotaActions">
+            <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Go Pro</button>
           </div>
-        </div>
-        <div class="seedQuotaActions">
-          <button id="seedQuotaManage" class="seedQuotaBtn" type="button">Go Pro</button>
         </div>
       </div>
-    </div>
-    <div id="seedNavRow">
       <nav id="topNav">
         <a href="/" class="nav-link">calculator</a>
         <a href="/balatro-seeds" class="nav-link">seeds</a>
@@ -291,6 +291,7 @@
         <div class="seedPaywallMemberActions">
           <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
           <button id="seedPaywallManage" class="seedPaywallSecondary" type="button">Manage in PayPal</button>
+          <button id="seedPaywallLogout" class="seedPaywallSecondary" type="button">Log out</button>
         </div>
       </div>
       <p>Subscribe for unlimited access to Seed Analyzer.</p>
@@ -490,7 +491,7 @@
     #seedAnalyzerSeo {
       position: relative;
       z-index: 1;
-      padding: 42px 0 88px;
+      padding: 28px 20px 88px;
     }
 
     #seedAnalyzerSeo::before {
@@ -505,9 +506,13 @@
     }
 
     .seedAnalyzerSeoWrap {
-      max-width: 1180px;
+      width: min(1020px, calc(100vw - var(--seed-blueprint-left-space) - 40px));
+      max-width: none;
+      margin-left: auto;
+      margin-right: 20px;
+      padding: 0 0 36px;
       display: grid;
-      gap: 26px;
+      gap: 22px;
     }
 
     .seedAnalyzerHeroCard {
@@ -611,7 +616,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 22px;
+      margin-top: 18px;
     }
 
     .seedAnalyzerAction {
@@ -643,18 +648,18 @@
     .seedAnalyzerGrid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
+      gap: 20px;
     }
 
     .seedAnalyzerLowerGrid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 24px;
+      gap: 20px;
     }
 
     .seedAnalyzerSectionCard {
       margin-top: 0;
-      padding: 22px 22px 20px;
+      padding: 20px 20px 18px;
       border-radius: 22px;
       background:
         linear-gradient(180deg, rgba(8, 24, 19, 0.72), rgba(6, 15, 12, 0.58));
@@ -779,6 +784,14 @@
       line-height: 1.75;
     }
 
+    @media (max-width: 1200px) {
+      .seedAnalyzerSeoWrap {
+        width: 100%;
+        margin-right: 0;
+        padding: 0 0 36px;
+      }
+    }
+
     @media (max-width: 1080px) {
       .seedAnalyzerHeroLayout,
       .seedAnalyzerLowerGrid {
@@ -794,7 +807,11 @@
 
     @media (max-width: 640px) {
       #seedAnalyzerSeo {
-        padding: 28px 0 64px;
+        padding: 18px 12px 64px;
+      }
+
+      .seedAnalyzerSeoWrap {
+        padding-bottom: 24px;
       }
 
       .seedAnalyzerSectionCard,
