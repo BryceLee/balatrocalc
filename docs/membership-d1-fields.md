@@ -7,7 +7,10 @@
 用于记录已支付或已撤销的会员记录，是订阅有效期判断的主要来源。
 
 - id：自增主键
-- email：用户邮箱（不验证，仅用于查询与跨设备）
+- email：用户输入的权限邮箱（不验证，仅用于查询与跨设备）
+- payer_email：支付平台返回的付款账户邮箱
+- payer_name：支付平台返回的付款人显示名/昵称
+- payer_id：支付平台返回的稳定付款人 ID
 - feature_key：功能标识，如 `seed`
 - plan：套餐类型，格式为 `功能-周期`，如 `seed-monthly` / `seed-yearly` / `seed-lifetime`
 - amount：金额（USD），整数（5 / 49 / 100）
@@ -26,6 +29,9 @@
 
 - id：自增主键
 - email：用户邮箱
+- payer_email：支付平台返回的付款账户邮箱
+- payer_name：支付平台返回的付款人显示名/昵称
+- payer_id：支付平台返回的稳定付款人 ID
 - feature_key：功能标识，如 `seed`
 - order_id：PayPal order id
 - plan：套餐类型，如 `seed-lifetime`
@@ -39,7 +45,10 @@
 用于月/年自动续费的订阅关系追踪。
 
 - id：自增主键
-- email：用户邮箱
+- email：用户输入的权限邮箱
+- payer_email：支付平台返回的付款账户邮箱
+- payer_name：支付平台返回的付款人显示名/昵称
+- payer_id：支付平台返回的稳定付款人 ID
 - feature_key：功能标识，如 `seed`
 - plan：套餐类型，如 `seed-monthly` / `seed-yearly`
 - provider：支付渠道，固定 `paypal`

@@ -5,7 +5,8 @@ import {
   nowIso,
   planConfig,
   deriveSubscriptionAccessExpiresAt,
-  getPaypalSubscriptionDetails
+  getPaypalSubscriptionDetails,
+  extractPaypalPayerProfile
 } from './_utils.js';
 
 function toTime(value) {
@@ -32,7 +33,8 @@ async function findActiveMembership(env, email, feature, now) {
 async function findLatestSubscription(env, email, feature) {
   return env.DB.prepare(
     `SELECT email, feature_key, plan, provider, subscription_id, status, created_at, updated_at,
-            last_payment_at, next_billing_at, checkout_source, checkout_source_meta
+            last_payment_at, next_billing_at, checkout_source, checkout_source_meta,
+            payer_email, payer_name, payer_id
      FROM subscriptions
      WHERE email = ? AND feature_key = ?
      ORDER BY updated_at DESC
@@ -71,8 +73,8 @@ async function backfillMembershipFromSubscription(env, subscription, accessExpir
 
   await env.DB.prepare(
     `INSERT INTO memberships
-      (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).bind(
     subscription.email,
     subscription.feature_key,
@@ -85,7 +87,10 @@ async function backfillMembershipFromSubscription(env, subscription, accessExpir
     lastPaymentAt,
     accessExpiresAt,
     subscription.checkout_source || 'unknown',
-    subscription.checkout_source_meta || null
+    subscription.checkout_source_meta || null,
+    subscription.payer_email || null,
+    subscription.payer_name || null,
+    subscription.payer_id || null
   ).run();
 }
 
@@ -97,6 +102,7 @@ async function reconcilePaypalSubscription(env, subscription) {
   const live = await getPaypalSubscriptionDetails(env, subscription.subscription_id);
   const liveStatus = live.status || subscription.status || 'UNKNOWN';
   const lastPaymentAt = live.billing_info?.last_payment?.time || subscription.last_payment_at || null;
+  const payer = extractPaypalPayerProfile(live);
   const accessExpiresAt = deriveSubscriptionAccessExpiresAt(subscription.plan, {
     nextBillingTime: live.billing_info?.next_billing_time || null,
     lastPaymentTime: lastPaymentAt
@@ -106,18 +112,24 @@ async function reconcilePaypalSubscription(env, subscription) {
     ...subscription,
     status: liveStatus,
     last_payment_at: lastPaymentAt,
-    next_billing_at: accessExpiresAt || subscription.next_billing_at || null
+    next_billing_at: accessExpiresAt || subscription.next_billing_at || null,
+    payer_email: payer.payerEmail || subscription.payer_email || null,
+    payer_name: payer.payerName || subscription.payer_name || null,
+    payer_id: payer.payerId || subscription.payer_id || null
   };
 
   await env.DB.prepare(
     `UPDATE subscriptions
-     SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ?
+     SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ?, payer_email = ?, payer_name = ?, payer_id = ?
      WHERE subscription_id = ?`
   ).bind(
     updatedSubscription.status,
     nowIso(),
     updatedSubscription.next_billing_at,
     updatedSubscription.last_payment_at,
+    updatedSubscription.payer_email,
+    updatedSubscription.payer_name,
+    updatedSubscription.payer_id,
     subscription.subscription_id
   ).run();
 

@@ -6,7 +6,8 @@ import {
   nowIso,
   addDaysIso,
   deriveSubscriptionAccessExpiresAt,
-  getPaypalSubscriptionDetails
+  getPaypalSubscriptionDetails,
+  extractPaypalPayerProfile
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -26,9 +27,10 @@ export async function onRequestPost({ request, env }) {
   const email = normalizeEmail(data.custom_id || data.subscriber?.email_address || '');
   const status = data.status || 'UNKNOWN';
   const now = nowIso();
+  const payer = extractPaypalPayerProfile(data);
 
   const existing = await env.DB.prepare(
-    'SELECT id, email, plan, feature_key, checkout_source, checkout_source_meta FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+    'SELECT id, email, plan, feature_key, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id FROM subscriptions WHERE subscription_id = ? LIMIT 1'
   ).bind(subscriptionId).first();
 
   const plan = existing?.plan;
@@ -50,12 +52,15 @@ export async function onRequestPost({ request, env }) {
   });
 
   await env.DB.prepare(
-    'UPDATE subscriptions SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ? WHERE subscription_id = ?'
+    'UPDATE subscriptions SET status = ?, updated_at = ?, next_billing_at = ?, last_payment_at = ?, payer_email = ?, payer_name = ?, payer_id = ? WHERE subscription_id = ?'
   ).bind(
     status,
     now,
     accessExpiresAt,
     lastPaymentAt,
+    payer.payerEmail || existing?.payer_email || null,
+    payer.payerName || existing?.payer_name || null,
+    payer.payerId || existing?.payer_id || null,
     subscriptionId
   ).run();
 
@@ -92,7 +97,7 @@ export async function onRequestPost({ request, env }) {
       }
     }
     await env.DB.prepare(
-      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
       resolvedEmail,
       targetFeature,
@@ -105,7 +110,10 @@ export async function onRequestPost({ request, env }) {
       now,
       expiresAt,
       existing.checkout_source || 'unknown',
-      existing.checkout_source_meta || null
+      existing.checkout_source_meta || null,
+      payer.payerEmail || existing?.payer_email || null,
+      payer.payerName || existing?.payer_name || null,
+      payer.payerId || existing?.payer_id || null
     ).run();
   }
 

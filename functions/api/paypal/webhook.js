@@ -4,7 +4,9 @@ import {
   planConfig,
   verifyPaypalWebhook,
   nowIso,
-  addDaysIso
+  addDaysIso,
+  getPaypalSubscriptionDetails,
+  extractPaypalPayerProfile
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -44,7 +46,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const subscription = await env.DB.prepare(
-      'SELECT email, plan, feature_key, checkout_source, checkout_source_meta FROM subscriptions WHERE subscription_id = ? LIMIT 1'
+      'SELECT email, plan, feature_key, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id FROM subscriptions WHERE subscription_id = ? LIMIT 1'
     ).bind(subscriptionId).first();
 
     if (!subscription) {
@@ -62,6 +64,25 @@ export async function onRequestPost({ request, env }) {
     }
 
     const targetFeature = subscription.feature_key || config.feature;
+    let payer = {
+      payerEmail: subscription.payer_email || null,
+      payerName: subscription.payer_name || null,
+      payerId: subscription.payer_id || null
+    };
+    try {
+      const liveSubscription = await getPaypalSubscriptionDetails(env, subscriptionId);
+      const livePayer = extractPaypalPayerProfile(liveSubscription);
+      payer = {
+        payerEmail: livePayer.payerEmail || payer.payerEmail,
+        payerName: livePayer.payerName || payer.payerName,
+        payerId: livePayer.payerId || payer.payerId
+      };
+    } catch (error) {
+      console.warn('PayPal webhook payer sync failed', {
+        subscriptionId,
+        error: error?.message || String(error)
+      });
+    }
     const paymentTime = resource.create_time || resource.update_time || now;
     let expiresAt = null;
     if (config.days === null) {
@@ -100,7 +121,7 @@ export async function onRequestPost({ request, env }) {
 
     if (!existingPayment && !existingPeriod) {
       await env.DB.prepare(
-        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
         subscription.email,
         targetFeature,
@@ -113,13 +134,16 @@ export async function onRequestPost({ request, env }) {
         paymentTime,
         expiresAt,
         subscription.checkout_source || 'unknown',
-        subscription.checkout_source_meta || null
+        subscription.checkout_source_meta || null,
+        payer.payerEmail,
+        payer.payerName,
+        payer.payerId
       ).run();
     }
 
     await env.DB.prepare(
-      'UPDATE subscriptions SET status = ?, updated_at = ?, last_payment_at = ?, next_billing_at = ? WHERE subscription_id = ?'
-    ).bind('ACTIVE', now, paymentTime, expiresAt, subscriptionId).run();
+      'UPDATE subscriptions SET status = ?, updated_at = ?, last_payment_at = ?, next_billing_at = ?, payer_email = ?, payer_name = ?, payer_id = ? WHERE subscription_id = ?'
+    ).bind('ACTIVE', now, paymentTime, expiresAt, payer.payerEmail, payer.payerName, payer.payerId, subscriptionId).run();
 
     return jsonResponse({ ok: true });
   }

@@ -112,4 +112,5 @@
 ## 备注
 - D1 建表 SQL：`docs/membership-d1.sql`
 - D1 增量迁移 SQL：`docs/membership-d1-add-checkout-source.sql`
+- D1 付款人字段迁移 SQL：`docs/membership-d1-add-payer-fields.sql`
 - D1 字段说明：`docs/membership-d1-fields.md`

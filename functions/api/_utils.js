@@ -13,6 +13,11 @@ export function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase();
 }
 
+function trimText(value) {
+  const text = String(value || '').trim();
+  return text || null;
+}
+
 const CHECKOUT_SOURCES = new Set([
   'seed_library_paywall',
   'seed_analyzer_paywall',
@@ -184,6 +189,44 @@ export async function getPaypalSubscriptionDetails(env, subscriptionId) {
     throw new Error(data?.message || 'PayPal subscription lookup failed');
   }
   return data;
+}
+
+export function buildPaypalPayerName(name) {
+  if (!name) return null;
+  if (typeof name === 'string') {
+    return trimText(name);
+  }
+  const fullName = trimText(name.full_name || name.alternate_full_name);
+  if (fullName) return fullName;
+  const combined = [trimText(name.given_name), trimText(name.surname)].filter(Boolean).join(' ');
+  return combined || null;
+}
+
+export function extractPaypalPayerProfile(payload) {
+  if (!payload || typeof payload !== 'object') {
+    return {
+      payerEmail: null,
+      payerName: null,
+      payerId: null
+    };
+  }
+
+  const payer = payload.payer || payload.subscriber || {};
+  return {
+    payerEmail: normalizeEmail(
+      payer.email_address ||
+      payload.email_address ||
+      ''
+    ) || null,
+    payerName: buildPaypalPayerName(payer.name || payload.name || null),
+    payerId: trimText(
+      payer.payer_id ||
+      payload.payer_id ||
+      payer.subscriber_id ||
+      payload.subscriber_id ||
+      ''
+    )
+  };
 }
 
 function normalizeReturnPath(value) {

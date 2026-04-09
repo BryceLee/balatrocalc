@@ -1,6 +1,9 @@
 CREATE TABLE IF NOT EXISTS memberships (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
+  payer_email TEXT,
+  payer_name TEXT,
+  payer_id TEXT,
   feature_key TEXT NOT NULL,
   plan TEXT NOT NULL,
   amount INTEGER NOT NULL,
@@ -20,6 +23,9 @@ CREATE INDEX IF NOT EXISTS idx_memberships_email_feature_created
 CREATE TABLE IF NOT EXISTS orders (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
+  payer_email TEXT,
+  payer_name TEXT,
+  payer_id TEXT,
   feature_key TEXT NOT NULL,
   order_id TEXT NOT NULL,
   plan TEXT NOT NULL,
@@ -34,6 +40,9 @@ CREATE TABLE IF NOT EXISTS orders (
 CREATE TABLE IF NOT EXISTS subscriptions (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT NOT NULL,
+  payer_email TEXT,
+  payer_name TEXT,
+  payer_id TEXT,
   feature_key TEXT NOT NULL,
   plan TEXT NOT NULL,
   provider TEXT NOT NULL,
