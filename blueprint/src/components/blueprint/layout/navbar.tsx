@@ -2,6 +2,7 @@ import {
     AppShell,
     Box,
     Button,
+    CopyButton,
     Divider,
     Group,
     InputLabel,
@@ -10,7 +11,7 @@ import {
     ScrollArea,
     SegmentedControl,
     Select,
-    Stack,
+    SimpleGrid,
     Switch,
     Text,
     Tooltip,
@@ -273,18 +274,35 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                 </Group>
             </AppShell.Section>
             <AppShell.Section my="sm">
-                <Stack gap="xs">
+                <SimpleGrid cols={2} spacing="xs" verticalSpacing="xs" className="seedBlueprintActionGrid">
                     <Button
+                        className="seedBlueprintSidebarAnalyze"
                         size="sm"
+                        fullWidth
                         onClick={handleAnalyzeClick}
                         disabled={!hasSettingsChanged}
                         color={hasSettingsChanged ? "green" : "gray"}
-
                     >
                         Analyze Seed
                     </Button>
+                    <CopyButton value={seed}>
+                        {({copied, copy}) => (
+                            <Button
+                                className="seedBlueprintSidebarAction seedBlueprintSidebarAction--copy"
+                                size="sm"
+                                fullWidth
+                                variant="default"
+                                disabled={!seed}
+                                onClick={copy}
+                            >
+                                {copied ? 'Copied Seed' : 'Copy Seed'}
+                            </Button>
+                        )}
+                    </CopyButton>
                     <Button
+                        className="seedBlueprintSidebarAction seedBlueprintSidebarAction--features"
                         size="sm"
+                        fullWidth
                         color={theme.colors.grape[9]}
                         onClick={() => {
                             useGA('view_features');
@@ -293,11 +311,19 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     >
                         Features
                     </Button>
-                    <Button size="sm" color={theme.colors.blue[9]} onClick={() => openSelectOptionModal()}>
+                    <Button
+                        className="seedBlueprintSidebarAction seedBlueprintSidebarAction--unlocks"
+                        size="sm"
+                        fullWidth
+                        color={theme.colors.blue[9]}
+                        onClick={() => openSelectOptionModal()}
+                    >
                         Modify Unlocks
                     </Button>
                     <Button
+                        className="seedBlueprintSidebarAction seedBlueprintSidebarAction--summary"
                         size="sm"
+                        fullWidth
                         color={theme.colors.cyan[9]}
                         onClick={() => {
                             openSnapshotModal();
@@ -306,10 +332,17 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     >
                         Seed Summary
                     </Button>
-                    <Button size="sm" color={theme.colors.red[9]} variant={'filled'} onClick={() => reset()}>
+                    <Button
+                        className="seedBlueprintSidebarAction seedBlueprintSidebarAction--reset"
+                        size="sm"
+                        fullWidth
+                        color={theme.colors.red[9]}
+                        variant={'filled'}
+                        onClick={() => reset()}
+                    >
                         Reset
                     </Button>
-                </Stack>
+                </SimpleGrid>
             </AppShell.Section>
         </AppShell.Navbar>
     )

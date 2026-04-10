@@ -564,7 +564,7 @@ export function Blueprint({ SeedResults, theme, setTheme }: { SeedResults: SeedR
         <AppShell
             header={{ height: { base: 52, md: 56, lg: 56 } }}
             aside={{
-                width: { base: '100%', md: 360, lg: 380 },
+                width: { base: '100%', md: 360, lg: 392 },
                 breakpoint: 'md',
                 collapsed: {
                     desktop: !outputOpened,
@@ -572,7 +572,7 @@ export function Blueprint({ SeedResults, theme, setTheme }: { SeedResults: SeedR
                 },
             }}
             navbar={{
-                width: { base: '100%', md: 344, lg: 344 },
+                width: { base: '100%', md: 392, lg: 412 },
                 breakpoint: 'sm',
                 collapsed: {
                     desktop: !(width > 1000) && !settingsOpened,

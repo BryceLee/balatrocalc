@@ -114,6 +114,43 @@ const initialState: InitialState = {
 
 }
 
+const URL_STATE_KEYS = ['seed', 'deck', 'cardsPerAnte', 'antes', 'stake', 'gameVersion'] as const;
+const URL_SYNC_IGNORE_KEYS = new Set(['selectedOptions', 'cardsPerAnte', 'showmanOwned', 'gameVersion']);
+
+function buildUrlFromParams(params: URLSearchParams) {
+    const query = params.toString();
+    return `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+}
+
+function syncImmolateStateToUrl(immolateState: InitialState['immolateState']) {
+    const params = new URLSearchParams(window.location.search);
+
+    URL_STATE_KEYS.forEach((key) => {
+        if (URL_SYNC_IGNORE_KEYS.has(key)) {
+            params.delete(key);
+            return;
+        }
+
+        const value = immolateState[key];
+        const defaultValue = initialState.immolateState[key];
+
+        if (value === '' || value == null || String(value) === String(defaultValue)) {
+            params.delete(key);
+            return;
+        }
+
+        params.set(key, String(value));
+    });
+
+    window.history.replaceState({}, '', buildUrlFromParams(params));
+}
+
+function clearImmolateStateFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    URL_STATE_KEYS.forEach((key) => params.delete(key));
+    window.history.replaceState({}, '', buildUrlFromParams(params));
+}
+
 
 // @ts-ignore
 const blueprintStorage: StateStorage = {
@@ -142,18 +179,7 @@ const blueprintStorage: StateStorage = {
     },
     setItem: (_: string, newValue: string): void => {
         const parsedValue = JSON.parse(newValue);
-        const params = new URLSearchParams(window.location.search);
-        const ignoreKeys = ['selectedOptions', 'cardsPerAnte', 'showmanOwned', 'gameVersion']; // Keys to ignore when updating URL
-        // Update URL with immolateState values
-        Object.entries(parsedValue.state.immolateState).forEach(([key, value]) => {
-            if (!ignoreKeys.includes(key)) { // Don't include selectedOptions in URL
-                params.set(key, String(value));
-            }
-        });
-
-        // Update URL without reloading the page
-        const newUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`;
-        window.history.replaceState({}, '', newUrl);
+        syncImmolateStateToUrl(parsedValue.state.immolateState);
         // updateBuysInHash(parsedValue.state.shoppingState.buys);
     },
 };
@@ -409,7 +435,17 @@ export const useCardStore = create(
                             prev.applicationState.hasSettingsChanged = true;
                             return prev;
                         }, undefined, 'Cards/ClearLockedCards'),
-                        reset: () => set(initialState, undefined, 'Global/Reset'),
+                        reset: () => {
+                            clearImmolateStateFromUrl();
+                            const viewMode = get().applicationState.viewMode;
+                            set({
+                                ...initialState,
+                                applicationState: {
+                                    ...initialState.applicationState,
+                                    viewMode
+                                }
+                            }, undefined, 'Global/Reset')
+                        },
                     })
                 )),
             {

@@ -45,11 +45,11 @@
   let paywallManage;
   let paywallLogout;
   let paywallSupportEmail;
-  let copySeedBtn;
   let toastEl;
   let toastTimer;
   let skipProgrammaticAnalyzeCountUntil = 0;
   let decorateBlueprintQueued = false;
+  let seedChromeResizeObserver;
 
   function init() {
     quotaRemainingEl = document.getElementById('seedQuotaRemaining');
@@ -91,7 +91,7 @@
     setupAnalyzeIntercept();
     handlePaypalReturn();
     ensureQuotaBarPlacement();
-    ensureCopySeedButtonPlacement();
+    setupSeedChromeOffset();
     ensureBlueprintStyleHooks();
 
     return true;
@@ -666,28 +666,25 @@
     return placeholder.includes('seed') || ariaLabel.includes('seed') || name.includes('seed') || id.includes('seed');
   }
 
-  function normalizeSeed(value) {
-    return String(value || '').trim().toUpperCase();
+  function syncSeedChromeOffset() {
+    const chrome = document.getElementById('seedChrome');
+    if (!chrome) return;
+    const offset = Math.ceil(chrome.getBoundingClientRect().height);
+    document.body.style.setProperty('--seed-top-offset', `${offset}px`);
   }
 
-  function getCurrentSeedValue() {
-    const params = new URLSearchParams(window.location.search);
-    const urlSeed = normalizeSeed(params.get('seed'));
-    if (urlSeed) return urlSeed;
-
-    const input = Array.from(document.querySelectorAll('input')).find((candidate) => isSeedInputField(candidate));
-    if (!input) return '';
-
-    return normalizeSeed(input.value);
-  }
-
-  function copySeedToClipboard() {
-    const seed = getCurrentSeedValue();
-    if (!seed) {
-      showToast('No seed available to copy.');
-      return;
+  function setupSeedChromeOffset() {
+    const chrome = document.getElementById('seedChrome');
+    if (!chrome) return;
+    syncSeedChromeOffset();
+    window.addEventListener('resize', syncSeedChromeOffset, { passive: true });
+    if (typeof ResizeObserver === 'function') {
+      seedChromeResizeObserver?.disconnect?.();
+      seedChromeResizeObserver = new ResizeObserver(() => {
+        syncSeedChromeOffset();
+      });
+      seedChromeResizeObserver.observe(chrome);
     }
-    copyTextWithFeedback(seed, 'Seed copied.', 'Unable to copy seed. Please copy manually.');
   }
 
   function attachQuotaBarToHeaderRow() {
@@ -775,64 +772,6 @@
       (label.includes('analyze') && label.includes('seed'));
   }
 
-  function findAnalyzeButton() {
-    const buttons = Array.from(document.querySelectorAll('button'));
-    return buttons.find((button) => button.id !== 'seedCopyBtn' && isAnalyzeButton(button)) || null;
-  }
-
-  function forceCopyButtonEnabledStyle(button) {
-    if (!button) return;
-    button.removeAttribute('disabled');
-    button.removeAttribute('data-disabled');
-    button.removeAttribute('aria-disabled');
-    button.removeAttribute('tabindex');
-    button.disabled = false;
-    button.style.setProperty('cursor', 'pointer');
-    button.style.setProperty('opacity', '1');
-    button.style.setProperty('--button-bg', 'var(--mantine-color-green-filled, #2f9e44)');
-    button.style.setProperty('--button-hover', 'var(--mantine-color-green-filled-hover, #2b8a3e)');
-    button.style.setProperty('--button-color', 'var(--mantine-color-white, #ffffff)');
-  }
-
-  function mountCopySeedButtonUnderAnalyze() {
-    const analyzeBtn = findAnalyzeButton();
-    if (!analyzeBtn || !analyzeBtn.parentElement) return false;
-
-    const existing = document.getElementById('seedCopyBtn');
-    if (existing) {
-      copySeedBtn = existing;
-      forceCopyButtonEnabledStyle(existing);
-      if (existing.parentElement !== analyzeBtn.parentElement || existing.previousElementSibling !== analyzeBtn) {
-        analyzeBtn.insertAdjacentElement('afterend', existing);
-      }
-      return true;
-    }
-
-    const button = analyzeBtn.cloneNode(false);
-    button.id = 'seedCopyBtn';
-    button.textContent = 'Copy Seed';
-    button.setAttribute('aria-label', 'Copy Seed');
-    forceCopyButtonEnabledStyle(button);
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      copySeedToClipboard();
-    });
-
-    analyzeBtn.insertAdjacentElement('afterend', button);
-    copySeedBtn = button;
-    return true;
-  }
-
-  function ensureCopySeedButtonPlacement() {
-    const root = document.getElementById('root') || document.body;
-    const observer = new MutationObserver(() => {
-      mountCopySeedButtonUnderAnalyze();
-    });
-    observer.observe(root, { childList: true, subtree: true });
-    mountCopySeedButtonUnderAnalyze();
-  }
-
   function normalizeText(value) {
     return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
   }
@@ -852,10 +791,12 @@
     shell.querySelector('.mantine-AppShell-header')?.classList.add('seedBlueprintHeader');
 
     const navbar = shell.querySelector('.mantine-AppShell-navbar');
+    const aside = shell.querySelector('.mantine-AppShell-aside');
     const main = shell.querySelector('.mantine-AppShell-main');
     const navbarSections = Array.from(navbar?.querySelectorAll(':scope > .mantine-AppShell-section') || []);
 
     navbar?.classList.add('seedBlueprintNavbar');
+    aside?.classList.add('seedBlueprintAside');
     main?.classList.add('seedBlueprintMain');
     navbarSections[0]?.classList.add('seedBlueprintNavbarHead');
     navbarSections[2]?.classList.add('seedBlueprintNavbarActions');
@@ -890,11 +831,6 @@
           button.classList.add('seedBlueprintSidebarAction', 'seedBlueprintSidebarAction--reset');
         }
       });
-    }
-
-    const copyButton = document.getElementById('seedCopyBtn');
-    if (copyButton) {
-      copyButton.classList.add('seedBlueprintCopyButton');
     }
 
     const introHeading = Array.from(main?.querySelectorAll('h1, h2') || []).find((heading) => {
