@@ -49,6 +49,7 @@
   let toastEl;
   let toastTimer;
   let skipProgrammaticAnalyzeCountUntil = 0;
+  let decorateBlueprintQueued = false;
 
   function init() {
     quotaRemainingEl = document.getElementById('seedQuotaRemaining');
@@ -91,6 +92,7 @@
     handlePaypalReturn();
     ensureQuotaBarPlacement();
     ensureCopySeedButtonPlacement();
+    ensureBlueprintStyleHooks();
 
     return true;
   }
@@ -829,6 +831,163 @@
     });
     observer.observe(root, { childList: true, subtree: true });
     mountCopySeedButtonUnderAnalyze();
+  }
+
+  function normalizeText(value) {
+    return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+
+  function getButtonLabel(button) {
+    return normalizeText(button?.textContent || button?.getAttribute('aria-label') || '');
+  }
+
+  function decorateBlueprintUI() {
+    const root = document.getElementById('root');
+    if (!root) return false;
+
+    const shell = root.querySelector('.mantine-AppShell-root');
+    if (!shell) return false;
+
+    shell.classList.add('seedBlueprintShell');
+    shell.querySelector('.mantine-AppShell-header')?.classList.add('seedBlueprintHeader');
+
+    const navbar = shell.querySelector('.mantine-AppShell-navbar');
+    const main = shell.querySelector('.mantine-AppShell-main');
+    const navbarSections = Array.from(navbar?.querySelectorAll(':scope > .mantine-AppShell-section') || []);
+
+    navbar?.classList.add('seedBlueprintNavbar');
+    main?.classList.add('seedBlueprintMain');
+    navbarSections[0]?.classList.add('seedBlueprintNavbarHead');
+    navbarSections[2]?.classList.add('seedBlueprintNavbarActions');
+    navbar?.querySelector('.mantine-SegmentedControl-root')?.classList.add('seedBlueprintTabs');
+    navbar?.querySelector('.mantine-ScrollArea-root[data-grow="true"]')?.classList.add('seedBlueprintControlPanel');
+
+    const themeRow = Array.from(navbar?.querySelectorAll('.mantine-Group-root') || []).find((group) => {
+      const text = normalizeText(group.textContent);
+      return text === 'theme';
+    });
+    themeRow?.classList.add('seedBlueprintThemeRow');
+
+    const actionStack = Array.from(navbar?.querySelectorAll('.mantine-Stack-root') || []).find((stack) => {
+      const text = normalizeText(stack.textContent);
+      return text.includes('features') && text.includes('modify unlocks') && text.includes('seed summary');
+    });
+
+    if (actionStack) {
+      actionStack.classList.add('seedBlueprintActionStack');
+      const actionGroup = actionStack.querySelector('.mantine-Group-root[data-grow="true"]');
+      actionGroup?.classList.add('seedBlueprintActionGroup');
+      Array.from(actionStack.querySelectorAll('button')).forEach((button) => {
+        const label = getButtonLabel(button);
+        if (label === 'analyze seed') {
+          button.classList.add('seedBlueprintSidebarAnalyze');
+        } else if (label === 'features') {
+          button.classList.add('seedBlueprintSidebarAction', 'seedBlueprintSidebarAction--features');
+        } else if (label === 'modify unlocks') {
+          button.classList.add('seedBlueprintSidebarAction', 'seedBlueprintSidebarAction--unlocks');
+        } else if (label === 'seed summary') {
+          button.classList.add('seedBlueprintSidebarAction', 'seedBlueprintSidebarAction--summary');
+        } else if (label === 'reset') {
+          button.classList.add('seedBlueprintSidebarAction', 'seedBlueprintSidebarAction--reset');
+        }
+      });
+
+      if (actionGroup && !actionGroup.dataset.seedFlattened) {
+        Array.from(actionGroup.querySelectorAll(':scope > button')).forEach((button) => {
+          actionStack.appendChild(button);
+        });
+        actionGroup.dataset.seedFlattened = 'true';
+        actionGroup.remove();
+      }
+    }
+
+    const copyButton = document.getElementById('seedCopyBtn');
+    if (copyButton) {
+      copyButton.classList.add('seedBlueprintCopyButton');
+    }
+
+    const introHeading = Array.from(main?.querySelectorAll('h1, h2') || []).find((heading) => {
+      const text = normalizeText(heading.textContent);
+      return text.includes('fully featured') && text.includes('seed-routing');
+    });
+
+    if (introHeading) {
+      main?.classList.add('seedBlueprintMain--home');
+      main?.classList.remove('seedBlueprintMain--results');
+      const introBlock = introHeading.closest('[class*="_inner_"]') || introHeading.parentElement;
+      introBlock?.classList.add('seedBlueprintIntro');
+
+      const introWrap = introBlock?.closest('[class*="_wrapper_"]');
+      introWrap?.classList.add('seedBlueprintIntroWrap');
+
+      const introControls = Array.from(introBlock?.querySelectorAll('div') || []).find((node) => {
+        return Array.from(node.querySelectorAll('button')).some((button) => getButtonLabel(button) === 'analyze seed');
+      });
+
+      introControls?.classList.add('seedBlueprintSearchShell');
+      introControls?.querySelector('.mantine-Paper-root')?.classList.add('seedBlueprintSearchCard');
+
+      const searchButton = Array.from(introControls?.querySelectorAll('button') || []).find((button) => {
+        return getButtonLabel(button) === 'analyze seed';
+      });
+      searchButton?.classList.add('seedBlueprintSearchButton');
+
+      const introSpacer = introWrap?.nextElementSibling;
+      if (introSpacer && !normalizeText(introSpacer.textContent)) {
+        introSpacer.classList.add('seedBlueprintIntroSpacer');
+      }
+    } else {
+      main?.classList.remove('seedBlueprintMain--home');
+    }
+
+    const benefitPanel = Array.from(main?.querySelectorAll('.mantine-Paper-root') || []).find((paper) => {
+      const text = normalizeText(paper.textContent);
+      return text.includes('accuracy') && text.includes('card spoilers') && text.includes('shareable routes');
+    });
+    benefitPanel?.classList.add('seedBlueprintBenefitPanel');
+
+    const resultTabs = Array.from(main?.querySelectorAll('.mantine-Tabs-root') || []).find((tabs) => {
+      const text = normalizeText(tabs.textContent);
+      return text.includes('ante 1') && text.includes('small blind') && text.includes('boss blind');
+    });
+
+    if (resultTabs) {
+      main?.classList.add('seedBlueprintMain--results');
+      const resultHeader = Array.from(main?.children || []).find((child) => {
+        return child.querySelector('.mantine-SegmentedControl-root') && child.querySelector('.mantine-InputWrapper-root');
+      });
+      resultHeader?.classList.add('seedBlueprintResultHeader');
+      resultHeader?.querySelector('.mantine-SegmentedControl-root')?.classList.add('seedBlueprintBlindTabs');
+
+      resultTabs.classList.add('seedBlueprintAnteTabs');
+      resultTabs.querySelector('.mantine-Tabs-list')?.classList.add('seedBlueprintAnteList');
+      Array.from(resultTabs.querySelectorAll('.mantine-Tabs-panel')).forEach((panel) => {
+        panel.classList.add('seedBlueprintAntePanel');
+      });
+    } else {
+      main?.classList.remove('seedBlueprintMain--results');
+    }
+
+    return true;
+  }
+
+  function scheduleBlueprintDecorate() {
+    if (decorateBlueprintQueued) return;
+    decorateBlueprintQueued = true;
+    requestAnimationFrame(() => {
+      decorateBlueprintQueued = false;
+      decorateBlueprintUI();
+    });
+  }
+
+  function ensureBlueprintStyleHooks() {
+    const root = document.getElementById('root');
+    if (!root) return;
+    scheduleBlueprintDecorate();
+    const observer = new MutationObserver(() => {
+      scheduleBlueprintDecorate();
+    });
+    observer.observe(root, { childList: true, subtree: true });
   }
 
   function setupAnalyzeIntercept() {

@@ -491,7 +491,7 @@
     #seedAnalyzerSeo {
       position: relative;
       z-index: 1;
-      padding: 28px 20px 88px;
+      padding: 16px 20px 84px;
     }
 
     #seedAnalyzerSeo::before {
@@ -506,13 +506,13 @@
     }
 
     .seedAnalyzerSeoWrap {
-      width: min(1020px, calc(100vw - var(--seed-blueprint-left-space) - 40px));
+      width: min(1120px, calc(100vw - var(--seed-blueprint-left-space) - 28px));
       max-width: none;
-      margin-left: auto;
-      margin-right: 20px;
-      padding: 0 0 36px;
+      margin-left: calc(var(--seed-blueprint-left-space) - 4px);
+      margin-right: auto;
+      padding: 0 0 28px;
       display: grid;
-      gap: 22px;
+      gap: 18px;
     }
 
     .seedAnalyzerHeroCard {
@@ -531,7 +531,7 @@
     .seedAnalyzerHeroLayout {
       display: grid;
       grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
-      gap: 22px;
+      gap: 18px;
       align-items: stretch;
     }
 
@@ -543,8 +543,8 @@
 
     .seedAnalyzerHeroRail {
       display: grid;
-      gap: 14px;
-      padding: 18px 18px 16px;
+      gap: 12px;
+      padding: 16px 16px 14px;
       border-radius: 18px;
       border: 1px solid rgba(255, 215, 0, 0.16);
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.12));
@@ -615,16 +615,16 @@
     .seedAnalyzerActionRow {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .seedAnalyzerAction {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 11px 16px;
+      min-height: 40px;
+      padding: 10px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255, 215, 0, 0.24);
       background: rgba(0, 0, 0, 0.22);
@@ -648,18 +648,18 @@
     .seedAnalyzerGrid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: 18px;
     }
 
     .seedAnalyzerLowerGrid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 20px;
+      grid-template-columns: 1fr;
+      gap: 18px;
     }
 
     .seedAnalyzerSectionCard {
       margin-top: 0;
-      padding: 20px 20px 18px;
+      padding: 18px 18px 16px;
       border-radius: 22px;
       background:
         linear-gradient(180deg, rgba(8, 24, 19, 0.72), rgba(6, 15, 12, 0.58));
@@ -673,7 +673,7 @@
     .seedAnalyzerFeatureList,
     .seedAnalyzerTimeline {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .seedAnalyzerFeature,
@@ -681,8 +681,8 @@
     .seedAnalyzerCompareCard {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 14px;
-      padding: 16px;
+      gap: 12px;
+      padding: 14px;
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
       border: 1px solid rgba(255, 255, 255, 0.07);
@@ -699,7 +699,7 @@
       background: linear-gradient(180deg, rgba(255, 215, 0, 0.16), rgba(255, 215, 0, 0.08));
       border: 1px solid rgba(255, 215, 0, 0.22);
       color: #ffd700;
-      font-size: 18px;
+      font-size: 17px;
       box-shadow: 0 8px 18px rgba(255, 215, 0, 0.08);
     }
 
@@ -708,7 +708,7 @@
     .seedAnalyzerCompareCard h3 {
       margin: 0 0 8px;
       color: #fff0bc;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: normal;
     }
 
@@ -717,8 +717,8 @@
     .seedAnalyzerCompareCard p {
       margin: 0;
       color: #c8d3cf;
-      font-size: 15px;
-      line-height: 1.75;
+      font-size: 14px;
+      line-height: 1.7;
     }
 
     .seedAnalyzerCompare {
@@ -787,6 +787,7 @@
     @media (max-width: 1200px) {
       .seedAnalyzerSeoWrap {
         width: 100%;
+        margin-left: 0;
         margin-right: 0;
         padding: 0 0 36px;
       }

@@ -1458,7 +1458,9 @@ button.resetBtn[onClick*="resetHand"]:hover {
 /* Seed analyzer layout (Blueprint embed) */
 body.seed-analyzer-page {
   --seed-top-offset: 76px;
-  --seed-blueprint-left-space: clamp(320px, 30vw, 560px);
+  --seed-blueprint-nav-width: clamp(276px, 22vw, 324px);
+  --seed-blueprint-aside-width: clamp(288px, 24vw, 352px);
+  --seed-blueprint-left-space: calc(var(--seed-blueprint-nav-width) + 48px);
   background-color: transparent;
   color: var(--mantine-color-text, #fff);
   display: block;
@@ -1477,6 +1479,9 @@ body.seed-analyzer-page #mainContainer {
   margin: 0;
   padding: 0 20px;
   display: block;
+  min-height: 0;
+  height: auto;
+  margin-top: 0;
 }
 
 body.seed-analyzer-page #seedChrome {
@@ -1531,8 +1536,12 @@ body.seed-analyzer-page #topNav {
 }
 
 body.seed-analyzer-page #root {
-  min-height: 100dvh;
+  min-height: 0;
   color: inherit;
+  --mantine-font-size-sm: 0.8rem;
+  --mantine-font-size-md: 0.92rem;
+  --mantine-radius-sm: 0.625rem;
+  --mantine-radius-md: 0.875rem;
   --mantine-color-text: #ffd700;
   --mantine-color-dimmed: #bfc7d5;
   --mantine-color-anchor: #ffd700;
@@ -1541,6 +1550,12 @@ body.seed-analyzer-page #root {
   --mantine-color-dark-6: rgba(0, 0, 0, 0.26);
   --mantine-color-dark-5: rgba(0, 0, 0, 0.22);
   --mantine-color-dark-4: rgba(255, 215, 0, 0.25);
+}
+
+body.seed-analyzer-page #root .seedBlueprintShell,
+body.seed-analyzer-page #root .mantine-AppShell-root {
+  min-height: 0 !important;
+  height: auto !important;
 }
 
 /* Offset Mantine AppShell for the fixed site header on this page. */
@@ -1579,6 +1594,353 @@ body.seed-analyzer-page input[aria-label*="Seed"],
 body.seed-analyzer-page input[name*="seed"],
 body.seed-analyzer-page input[id*="seed"] {
   font-weight: 700;
+}
+
+body.seed-analyzer-page #root .seedBlueprintNavbar {
+  padding: 12px 12px 14px !important;
+  background:
+    linear-gradient(180deg, rgba(8, 22, 18, 0.92), rgba(8, 27, 21, 0.86));
+  border-right-color: rgba(255, 215, 0, 0.16);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.03);
+}
+
+body.seed-analyzer-page #root .seedBlueprintNavbarHead,
+body.seed-analyzer-page #root .seedBlueprintNavbarActions {
+  padding-inline: 2px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintTabs {
+  margin-bottom: 8px !important;
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+body.seed-analyzer-page #root .seedBlueprintTabs .mantine-SegmentedControl-label {
+  min-height: 2.28rem;
+  font-size: 0.92rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintTabs .mantine-SegmentedControl-indicator {
+  border-radius: 10px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintThemeRow {
+  align-items: end;
+  gap: 10px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintThemeRow .mantine-InputWrapper-root {
+  flex: 1 1 auto;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel {
+  margin-block: 8px 10px !important;
+  padding-right: 2px !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-ScrollArea-viewport > div {
+  display: grid;
+  gap: 8px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-InputWrapper-root {
+  margin-bottom: 0;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-InputWrapper-label,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-InputLabel-root {
+  margin-bottom: 4px;
+  color: #dbe5dd;
+  display: block;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-Text-root[data-size="xs"],
+body.seed-analyzer-page #root .seedBlueprintControlPanel > .mantine-Text-root,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-InputLabel-root + .mantine-Text-root {
+  margin-top: -2px;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: rgba(219, 229, 221, 0.78);
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-Input-input,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-Autocomplete-input,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-NumberInput-input,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-Select-input,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-NativeSelect-input {
+  min-height: 2.08rem;
+  border-radius: 10px;
+  background: rgba(7, 18, 15, 0.74);
+  border-color: rgba(255, 215, 0, 0.16);
+  box-shadow: none;
+  font-size: 0.88rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-ButtonGroup-group {
+  margin-bottom: 6px !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-ButtonGroup-group .mantine-Button-root,
+body.seed-analyzer-page #root .seedBlueprintControlPanel .mantine-ButtonGroup-group .mantine-ButtonGroup-section {
+  min-height: 1.85rem;
+  font-size: 0.8rem;
+  padding-inline: 0.42rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintNavbar .mantine-Switch-root {
+  --switch-height: 1.82rem;
+  --switch-width: 3.45rem;
+  --switch-thumb-size: 1.16rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintActionStack {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 215, 0, 0.12);
+}
+
+body.seed-analyzer-page #root .seedBlueprintActionGroup {
+  display: contents !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintActionStack .mantine-Button-root,
+body.seed-analyzer-page #root #seedCopyBtn {
+  min-height: 2.1rem;
+  padding: 0.38rem 0.68rem;
+  border-radius: 10px;
+  box-shadow: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.15;
+  width: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSidebarAnalyze[disabled] {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.36);
+}
+
+body.seed-analyzer-page #root .seedBlueprintSidebarAnalyze:not([disabled]) {
+  background: linear-gradient(180deg, rgba(255, 215, 120, 0.22), rgba(255, 215, 120, 0.1));
+  border: 1px solid rgba(255, 215, 120, 0.32);
+  color: #fff0bf;
+}
+
+body.seed-analyzer-page #root .seedBlueprintCopyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid rgba(255, 215, 0, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff0bc;
+  font-family: inherit;
+  font-size: 0.84rem;
+  line-height: 1;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSidebarAction--features {
+  background: rgba(150, 80, 214, 0.18);
+  border: 1px solid rgba(165, 104, 226, 0.28);
+}
+
+body.seed-analyzer-page #root .seedBlueprintSidebarAction--unlocks {
+  background: rgba(49, 114, 195, 0.22);
+  border: 1px solid rgba(87, 148, 223, 0.28);
+}
+
+body.seed-analyzer-page #root .seedBlueprintSidebarAction--summary {
+  background: rgba(34, 113, 140, 0.22);
+  border: 1px solid rgba(87, 174, 206, 0.28);
+}
+
+body.seed-analyzer-page #root .seedBlueprintSidebarAction--reset {
+  background: rgba(169, 44, 44, 0.22);
+  border: 1px solid rgba(221, 77, 77, 0.28);
+}
+
+body.seed-analyzer-page #root .seedBlueprintMain {
+  background-color: transparent;
+  min-height: 0 !important;
+  height: auto !important;
+  padding-bottom: 0 !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintMain > .mantine-Container-root {
+  padding-inline: clamp(22px, 2.5vw, 34px);
+}
+
+body.seed-analyzer-page #root .seedBlueprintMain--results {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintMain .mantine-Paper-root,
+body.seed-analyzer-page #root .mantine-AppShell-aside .mantine-Paper-root,
+body.seed-analyzer-page #root .mantine-AppShell-aside .mantine-Card-root {
+  background: linear-gradient(180deg, rgba(10, 26, 20, 0.78), rgba(6, 16, 13, 0.62));
+  border-color: rgba(255, 215, 0, 0.14);
+  box-shadow: none;
+}
+
+body.seed-analyzer-page #root .seedBlueprintIntroWrap {
+  padding-top: clamp(12px, 2vw, 22px) !important;
+  padding-bottom: 2px !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintIntro {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+body.seed-analyzer-page #root .seedBlueprintIntro .mantine-Title-root {
+  max-width: 14ch;
+  margin: 0 auto 8px;
+  font-size: clamp(1.56rem, 1.75vw, 2.16rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+body.seed-analyzer-page #root .seedBlueprintIntro .mantine-Text-root {
+  max-width: 60ch;
+  margin-inline: auto;
+  font-size: 0.9rem;
+  line-height: 1.56;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSearchShell {
+  margin-top: 12px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSearchCard {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 12px 14px !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(180deg, rgba(11, 28, 21, 0.92), rgba(6, 16, 13, 0.78)) !important;
+  border: 1px solid rgba(255, 215, 0, 0.2) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSearchCard .mantine-InputWrapper-label {
+  margin-bottom: 4px;
+  color: #dce6de;
+  font-size: 0.76rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSearchCard .mantine-Autocomplete-input,
+body.seed-analyzer-page #root .seedBlueprintSearchCard .mantine-NativeSelect-input {
+  min-height: 2.18rem;
+  border-radius: 10px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSearchCard .mantine-NativeSelect-input {
+  width: 110px !important;
+}
+
+body.seed-analyzer-page #root .seedBlueprintSearchButton {
+  min-width: 110px;
+  min-height: 2.18rem;
+  border-radius: 10px;
+  box-shadow: none;
+  background: #1f6ec2;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.86rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintResultHeader {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  width: min(100%, 1080px);
+  padding: 10px 12px 6px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 215, 0, 0.16);
+  background: linear-gradient(180deg, rgba(8, 24, 19, 0.78), rgba(6, 15, 12, 0.58));
+}
+
+body.seed-analyzer-page #root .seedBlueprintBlindTabs {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+body.seed-analyzer-page #root .seedBlueprintBlindTabs .mantine-SegmentedControl-label {
+  min-height: 2.7rem;
+  font-size: 0.94rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintAnteTabs {
+  align-items: start;
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+body.seed-analyzer-page #root .seedBlueprintAnteTabs .seedBlueprintAnteList {
+  gap: 8px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+body.seed-analyzer-page #root .seedBlueprintAnteTabs .seedBlueprintAnteList .mantine-Tabs-tab {
+  min-height: 2.25rem;
+  padding: 0.45rem 0.78rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintAntePanel .mantine-Fieldset-root {
+  padding: 12px;
+  border-radius: 16px;
+  border-color: rgba(255, 215, 0, 0.14);
+}
+
+body.seed-analyzer-page #root .seedBlueprintAntePanel .mantine-Fieldset-legend {
+  color: #dbe5dd;
+  font-size: 0.82rem;
+}
+
+body.seed-analyzer-page #root .seedBlueprintAntePanel .mantine-Accordion-control {
+  padding: 12px 14px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintAntePanel .mantine-Accordion-panel {
+  padding: 0 12px 12px;
+}
+
+body.seed-analyzer-page #root .seedBlueprintIntroSpacer,
+body.seed-analyzer-page #root .seedBlueprintBenefitPanel {
+  display: none !important;
+}
+
+@media (min-width: 62em) {
+  body.seed-analyzer-page #root .seedBlueprintShell {
+    --app-shell-header-height: 0px;
+    --app-shell-header-offset: var(--seed-top-offset);
+    --app-shell-navbar-width: var(--seed-blueprint-nav-width);
+    --app-shell-navbar-offset: var(--seed-blueprint-nav-width);
+  }
+
+  body.seed-analyzer-page #root .seedBlueprintHeader {
+    display: none;
+  }
+}
+
+@media (min-width: 75em) {
+  body.seed-analyzer-page #root .seedBlueprintShell {
+    --app-shell-aside-width: var(--seed-blueprint-aside-width);
+    --app-shell-aside-offset: var(--seed-blueprint-aside-width);
+  }
 }
 
 @media (max-width: 600px) {
