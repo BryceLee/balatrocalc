@@ -90,7 +90,7 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
 
 
     return (
-        <AppShell.Navbar p="md">
+        <AppShell.Navbar p="sm">
             <UnlocksModal />
             <FeaturesModal />
             <RerollCalculatorModal
@@ -102,6 +102,7 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
             <AppShell.Section>
                 <SegmentedControl
                     fullWidth
+                    size="sm"
                     value={viewMode}
                     onChange={(value: string) => setViewMode(value)}
                     data={[
@@ -135,10 +136,11 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     ]}
                     mb="sm"
                 />
-                <Divider mb='md' />
+                <Divider mb='sm' />
 
-                <Group align={'flex-end'}>
+                <Group align={'flex-end'} gap="xs" wrap="nowrap">
                     <Select
+                        size="sm"
                         label={'Theme'}
                         value={themeName}
                         onChange={setTheme}
@@ -146,7 +148,7 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                         flex={1}
                     />
                     <Switch
-                        size={'xl'}
+                        size={'lg'}
                         checked={colorScheme.colorScheme === 'dark'}
                         thumbIcon={colorScheme.colorScheme === 'dark' ? (<IconSun size={16} color={'var(--mantine-color-teal-6)'} />) : (<IconMoon size={16} />)}
                         onChange={colorScheme.toggleColorScheme}
@@ -155,18 +157,20 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
 
 
             </AppShell.Section>
-            <AppShell.Section pr={'xs'} grow my="md" component={ScrollArea} scrollbars={'y'}>
+            <AppShell.Section pr={'xs'} grow my="sm" component={ScrollArea} scrollbars={'y'}>
                 <SeedInputAutoComplete
                     seed={seed}
                     setSeed={setSeed}
                 />
                 <NumberInput
+                    size="sm"
                     label={'Max Ante'}
                     defaultValue={8}
                     value={antes}
                     onChange={(val) => setAntes(Number(val))}
                 />
                 <NativeSelect
+                    size="sm"
                     label={'Choose Deck'}
                     value={deck}
                     onChange={(e) => setDeck(e.currentTarget.value)}
@@ -188,6 +192,7 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     <option value="Erratic Deck">Erratic Deck</option>
                 </NativeSelect>
                 <NativeSelect
+                    size="sm"
                     label={'Choose Stake'}
                     value={stake}
                     onChange={(e) => setStake(e.currentTarget.value)}
@@ -202,10 +207,11 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     <option value="Gold Stake">Gold Stake</option>
                 </NativeSelect>
                 <NativeSelect
+                    size="sm"
                     label={'Choose Version'}
                     value={version}
                     onChange={(e) => setVersion(e.currentTarget.value)}
-                    mb={'md'}
+                    mb={'sm'}
                 >
                     <option value="10106">1.0.1f</option>
                     <option value="10103">1.0.1c</option>
@@ -215,37 +221,37 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                 <Text fz={'xs'} c={'dimmed'}>
                     It is recommended to keep this number under 200.
                 </Text>
-                <Button.Group w={'100%'} mb={'lg'}>
-                    <Button variant="default" c={'blue'} onClick={() => setCardsPerAnte(50)}>50</Button>
-                    <Button variant="default" c={'red'} onClick={() => setCardsPerAnte(Math.max(cardsPerAnte - 50, 0))}>-50</Button>
+                <Button.Group w={'100%'} mb={'sm'}>
+                    <Button size="xs" variant="default" c={'blue'} onClick={() => setCardsPerAnte(50)}>50</Button>
+                    <Button size="xs" variant="default" c={'red'} onClick={() => setCardsPerAnte(Math.max(cardsPerAnte - 50, 0))}>-50</Button>
                     <Button.GroupSection flex={1} variant="default" bg="var(--mantine-color-body)" miw={80}>
                         {cardsPerAnte}
                     </Button.GroupSection>
-                    <Button variant="default" c={'green'}
+                    <Button size="xs" variant="default" c={'green'}
                         onClick={() => setCardsPerAnte(Math.min(cardsPerAnte + 50, 1000))}>+50</Button>
-                    <Button variant="default" c={'blue'} onClick={() => setCardsPerAnte(1000)}>1000</Button>
+                    <Button size="xs" variant="default" c={'blue'} onClick={() => setCardsPerAnte(1000)}>1000</Button>
                 </Button.Group>
                 <InputLabel> Cards per Misc source</InputLabel>
                 <Text fz={'xs'} c={'dimmed'}>
                     It is recommended to keep this number under 50.
                 </Text>
-                <Button.Group w={'100%'} mb={'lg'}>
-                    <Button variant="default" c={'blue'} onClick={() => setMiscMaxSource(15)}>15</Button>
-                    <Button variant="default" c={'red'} onClick={() => setMiscMaxSource(Math.max(maxMiscCardSource - 5, 0))}>-5</Button>
+                <Button.Group w={'100%'} mb={'sm'}>
+                    <Button size="xs" variant="default" c={'blue'} onClick={() => setMiscMaxSource(15)}>15</Button>
+                    <Button size="xs" variant="default" c={'red'} onClick={() => setMiscMaxSource(Math.max(maxMiscCardSource - 5, 0))}>-5</Button>
                     <Button.GroupSection flex={1} variant="default" bg="var(--mantine-color-body)" miw={80}>
                         {maxMiscCardSource}
                     </Button.GroupSection>
-                    <Button variant="default" c={'green'}
+                    <Button size="xs" variant="default" c={'green'}
                         onClick={() => setMiscMaxSource(Math.min(maxMiscCardSource + 5, 100))}>+5</Button>
-                    <Button variant="default" c={'blue'} onClick={() => setMiscMaxSource(100)}>100</Button>
+                    <Button size="xs" variant="default" c={'blue'} onClick={() => setMiscMaxSource(100)}>100</Button>
                 </Button.Group>
-                <Group justify={'space-between'}>
+                <Group justify={'space-between'} align="start" gap="xs" wrap="nowrap">
                     <Box>
                         <Text mb={0} fz={'xs'}>Show Joker Spoilers</Text>
                         <Tooltip label="Cards that give jokers, are replaced with the joker the card would give."
                             refProp="rootRef">
                             <Switch
-                                size={'xl'}
+                                size={'lg'}
                                 checked={showCardSpoilers}
                                 thumbIcon={showCardSpoilers ? (<IconJoker color={'black'} />) : (
                                     <IconPlayCard color={'black'} />)}
@@ -258,7 +264,7 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                         <Tooltip label="Long pressing a card in the shop queue, will reroll that card."
                             refProp="rootRef">
                             <Switch
-                                size={'xl'}
+                                size={'lg'}
                                 checked={useCardPeek}
                                 onChange={() => setUseCardPeek(!useCardPeek)}
                             />
@@ -266,9 +272,10 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     </Box>
                 </Group>
             </AppShell.Section>
-            <AppShell.Section my="md">
-                <Stack>
+            <AppShell.Section my="sm">
+                <Stack gap="xs">
                     <Button
+                        size="sm"
                         onClick={handleAnalyzeClick}
                         disabled={!hasSettingsChanged}
                         color={hasSettingsChanged ? "green" : "gray"}
@@ -277,6 +284,7 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                         Analyze Seed
                     </Button>
                     <Button
+                        size="sm"
                         color={theme.colors.grape[9]}
                         onClick={() => {
                             useGA('view_features');
@@ -285,24 +293,22 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                     >
                         Features
                     </Button>
-                    <Button color={theme.colors.blue[9]} onClick={() => openSelectOptionModal()}>
+                    <Button size="sm" color={theme.colors.blue[9]} onClick={() => openSelectOptionModal()}>
                         Modify Unlocks
                     </Button>
-                    <Group grow>
-                        <Button
-                            color={theme.colors.cyan[9]}
-                            onClick={() => {
-                                openSnapshotModal();
-                                useGA('view_seed_snapshot');
-                            }}
-                        >
-                            Seed Summary
-                        </Button>
-                        <Button color={theme.colors.red[9]} variant={'filled'} onClick={() => reset()}>
-                            Reset
-                        </Button>
-                    </Group>
-
+                    <Button
+                        size="sm"
+                        color={theme.colors.cyan[9]}
+                        onClick={() => {
+                            openSnapshotModal();
+                            useGA('view_seed_snapshot');
+                        }}
+                    >
+                        Seed Summary
+                    </Button>
+                    <Button size="sm" color={theme.colors.red[9]} variant={'filled'} onClick={() => reset()}>
+                        Reset
+                    </Button>
                 </Stack>
             </AppShell.Section>
         </AppShell.Navbar>

@@ -1458,8 +1458,8 @@ button.resetBtn[onClick*="resetHand"]:hover {
 /* Seed analyzer layout (Blueprint embed) */
 body.seed-analyzer-page {
   --seed-top-offset: 76px;
-  --seed-blueprint-nav-width: clamp(276px, 22vw, 324px);
-  --seed-blueprint-aside-width: clamp(288px, 24vw, 352px);
+  --seed-blueprint-nav-width: clamp(300px, 23vw, 344px);
+  --seed-blueprint-aside-width: clamp(300px, 24vw, 380px);
   --seed-blueprint-left-space: calc(var(--seed-blueprint-nav-width) + 48px);
   background-color: transparent;
   color: var(--mantine-color-text, #fff);
@@ -1925,14 +1925,8 @@ body.seed-analyzer-page #root .seedBlueprintBenefitPanel {
 
 @media (min-width: 62em) {
   body.seed-analyzer-page #root .seedBlueprintShell {
-    --app-shell-header-height: 0px;
-    --app-shell-header-offset: var(--seed-top-offset);
     --app-shell-navbar-width: var(--seed-blueprint-nav-width);
     --app-shell-navbar-offset: var(--seed-blueprint-nav-width);
-  }
-
-  body.seed-analyzer-page #root .seedBlueprintHeader {
-    display: none;
   }
 }
 

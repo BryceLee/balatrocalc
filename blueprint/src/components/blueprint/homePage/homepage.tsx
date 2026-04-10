@@ -1,5 +1,5 @@
 import {IconEye, IconGauge, IconList, IconMessage2, IconShoppingCart, IconUser} from '@tabler/icons-react';
-import {Container, Paper, SimpleGrid, Space, Stack, Text, ThemeIcon, Title} from '@mantine/core';
+import {Container, Stack, Text, ThemeIcon, Title} from '@mantine/core';
 import classes from './Homepage.module.css';
 import HeroClasses from "./Hero.module.css"
 import React from "react";
@@ -110,22 +110,9 @@ function HeroText() {
 }
 
 export function FeaturesGrid() {
-    const features = Features.map((feature, index) => <Feature {...feature} key={index}/>);
-
     return (
         <Container fluid className={classes.wrapper} px={'xl'}>
             <HeroText/>
-            <Space my={'xl'}/>
-            <Paper p={'2rem'}>
-                <SimpleGrid
-                    mt={60}
-                    cols={{base: 1, sm: 2, md: 3}}
-                    spacing={{base: 'xl', md: 50}}
-                    verticalSpacing={{base: 'xl', md: 50}}
-                >
-                    {features}
-                </SimpleGrid>
-            </Paper>
         </Container>
     );
 }

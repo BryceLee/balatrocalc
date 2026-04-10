@@ -875,8 +875,7 @@
 
     if (actionStack) {
       actionStack.classList.add('seedBlueprintActionStack');
-      const actionGroup = actionStack.querySelector('.mantine-Group-root[data-grow="true"]');
-      actionGroup?.classList.add('seedBlueprintActionGroup');
+      actionStack.querySelector('.mantine-Group-root[data-grow="true"]')?.classList.add('seedBlueprintActionGroup');
       Array.from(actionStack.querySelectorAll('button')).forEach((button) => {
         const label = getButtonLabel(button);
         if (label === 'analyze seed') {
@@ -891,14 +890,6 @@
           button.classList.add('seedBlueprintSidebarAction', 'seedBlueprintSidebarAction--reset');
         }
       });
-
-      if (actionGroup && !actionGroup.dataset.seedFlattened) {
-        Array.from(actionGroup.querySelectorAll(':scope > button')).forEach((button) => {
-          actionStack.appendChild(button);
-        });
-        actionGroup.dataset.seedFlattened = 'true';
-        actionGroup.remove();
-      }
     }
 
     const copyButton = document.getElementById('seedCopyBtn');

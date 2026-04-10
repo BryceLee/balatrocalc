@@ -23,7 +23,13 @@ import {useSetState} from "@mantine/hooks";
 import {useGA} from "../modules/useGA.ts";
 
 const registeredMiscSources = getMiscCardSources(15).map(source => source.name)
-export default function SearchSeedInput({SeedResults}: { SeedResults: SeedResultsContainer | null }) {
+export default function SearchSeedInput({
+    SeedResults,
+    compact = false
+}: {
+    SeedResults: SeedResultsContainer | null,
+    compact?: boolean
+}) {
     const searchString = useCardStore(state => state.searchState.searchTerm);
     const setSearchString = useCardStore(state => state.setSearchString);
     const goToResults = useCardStore(state => state.setSelectedSearchResult);
@@ -204,76 +210,146 @@ export default function SearchSeedInput({SeedResults}: { SeedResults: SeedResult
                     },
                 }}
             />
-            <Group align={'flex-end'}>
-                <TextInput
-                    flex={1}
-                    placeholder={'Search for cards'}
-                    onClick={()=>{
-                        useGA('search_bar_clicked')
-                        openSpotlight()
-                    }}
-                    leftSection={
-                        // <ActionIcon>
-                        <HoverCard>
-                            <HoverCardTarget>
-                                <IconSettings/>
-                            </HoverCardTarget>
-                            <HoverCardDropdown>
-                                <CheckboxGroup
-                                    label={'Search Filters'}
-                                    description={'Select which sources to include in search'}
-                                    mb={'sm'}
-                                    value={
+            {compact ? (
+                <Group gap="xs" wrap="nowrap">
+                    <HoverCard>
+                        <HoverCardTarget>
+                            <ActionIcon
+                                variant="default"
+                                size="lg"
+                                aria-label="Search filters"
+                            >
+                                <IconSettings size={18}/>
+                            </ActionIcon>
+                        </HoverCardTarget>
+                        <HoverCardDropdown>
+                            <CheckboxGroup
+                                label={'Search Filters'}
+                                description={'Select which sources to include in search'}
+                                mb={'sm'}
+                                value={
                                     ['shop', 'packs', 'misc'].filter(source => sourceFilterConfig?.[source as sources]?.enabled)
-                                    }
-                                    onChange={(e:string[]) => {
-                                        const sources = Object.keys(sourceFilterConfig) as sources[];
-                                        for ( const source of sources ) {
-                                            if(e.includes(source) && !sourceFilterConfig[source].enabled) {
-                                                updateSourceFilter(source, true);
-                                                return;
-                                            } else if (!e.includes(source) && sourceFilterConfig[source].enabled) {
-                                                updateSourceFilter(source, false);
-                                                return;
-                                            }
+                                }
+                                onChange={(e:string[]) => {
+                                    const sources = Object.keys(sourceFilterConfig) as sources[];
+                                    for ( const source of sources ) {
+                                        if(e.includes(source) && !sourceFilterConfig[source].enabled) {
+                                            updateSourceFilter(source, true);
+                                            return;
+                                        } else if (!e.includes(source) && sourceFilterConfig[source].enabled) {
+                                            updateSourceFilter(source, false);
+                                            return;
                                         }
-                                        console.log("no changes detected", e);
-                                    }}
-                                >
-                                    <Group mt={'sm'}>
-                                        <Checkbox value="shop" label='shop'/>
-                                        <Checkbox value='packs' label='packs' />
-                                        <Checkbox value='misc' label='misc' />
-                                    </Group>
-                                </CheckboxGroup>
-                                <Divider my={'md'} label={'misc sources'} />
-                                <SimpleGrid cols={{ sm: 2, md: 3}}>
-                                    {sourceFilterConfig.misc.enabled &&
-                                        Object.keys(sourceFilterConfig.misc.children || {}).map((child) => (
-                                            <Checkbox
-                                                key={child}
-                                                label={child}
-                                                value={child}
-                                                checked={sourceFilterConfig.misc.children ? sourceFilterConfig.misc.children[child]?.enabled : false}
-                                                onChange={(e) => {
-                                                    updateSourceFilter('misc', true, child, e.currentTarget.checked)
-                                                }}
-                                            />
-                                        ))
                                     }
-                                </SimpleGrid>
-                            </HoverCardDropdown>
-                        </HoverCard>
-
-                        // </ActionIcon>
-                    }
-                    rightSection={
-                        <ActionIcon onClick={handleSearch}>
-                            <IconSearch/>
-                        </ActionIcon>
-                    }
-                />
-            </Group>
+                                    console.log("no changes detected", e);
+                                }}
+                            >
+                                <Group mt={'sm'}>
+                                    <Checkbox value="shop" label='shop'/>
+                                    <Checkbox value='packs' label='packs' />
+                                    <Checkbox value='misc' label='misc' />
+                                </Group>
+                            </CheckboxGroup>
+                            <Divider my={'md'} label={'misc sources'} />
+                            <SimpleGrid cols={{ sm: 2, md: 3}}>
+                                {sourceFilterConfig.misc.enabled &&
+                                    Object.keys(sourceFilterConfig.misc.children || {}).map((child) => (
+                                        <Checkbox
+                                            key={child}
+                                            label={child}
+                                            value={child}
+                                            checked={sourceFilterConfig.misc.children ? sourceFilterConfig.misc.children[child]?.enabled : false}
+                                            onChange={(e) => {
+                                                updateSourceFilter('misc', true, child, e.currentTarget.checked)
+                                            }}
+                                        />
+                                    ))
+                                }
+                            </SimpleGrid>
+                        </HoverCardDropdown>
+                    </HoverCard>
+                    <ActionIcon
+                        variant="filled"
+                        color="blue"
+                        size="lg"
+                        aria-label="Search cards"
+                        onClick={() => {
+                            useGA('search_bar_clicked')
+                            handleSearch();
+                        }}
+                    >
+                        <IconSearch size={18}/>
+                    </ActionIcon>
+                </Group>
+            ) : (
+                <Group align={'flex-end'}>
+                    <TextInput
+                        flex={1}
+                        placeholder={'Search for cards'}
+                        onClick={()=>{
+                            useGA('search_bar_clicked')
+                            openSpotlight()
+                        }}
+                        leftSection={
+                            <HoverCard>
+                                <HoverCardTarget>
+                                    <IconSettings/>
+                                </HoverCardTarget>
+                                <HoverCardDropdown>
+                                    <CheckboxGroup
+                                        label={'Search Filters'}
+                                        description={'Select which sources to include in search'}
+                                        mb={'sm'}
+                                        value={
+                                        ['shop', 'packs', 'misc'].filter(source => sourceFilterConfig?.[source as sources]?.enabled)
+                                        }
+                                        onChange={(e:string[]) => {
+                                            const sources = Object.keys(sourceFilterConfig) as sources[];
+                                            for ( const source of sources ) {
+                                                if(e.includes(source) && !sourceFilterConfig[source].enabled) {
+                                                    updateSourceFilter(source, true);
+                                                    return;
+                                                } else if (!e.includes(source) && sourceFilterConfig[source].enabled) {
+                                                    updateSourceFilter(source, false);
+                                                    return;
+                                                }
+                                            }
+                                            console.log("no changes detected", e);
+                                        }}
+                                    >
+                                        <Group mt={'sm'}>
+                                            <Checkbox value="shop" label='shop'/>
+                                            <Checkbox value='packs' label='packs' />
+                                            <Checkbox value='misc' label='misc' />
+                                        </Group>
+                                    </CheckboxGroup>
+                                    <Divider my={'md'} label={'misc sources'} />
+                                    <SimpleGrid cols={{ sm: 2, md: 3}}>
+                                        {sourceFilterConfig.misc.enabled &&
+                                            Object.keys(sourceFilterConfig.misc.children || {}).map((child) => (
+                                                <Checkbox
+                                                    key={child}
+                                                    label={child}
+                                                    value={child}
+                                                    checked={sourceFilterConfig.misc.children ? sourceFilterConfig.misc.children[child]?.enabled : false}
+                                                    onChange={(e) => {
+                                                        updateSourceFilter('misc', true, child, e.currentTarget.checked)
+                                                    }}
+                                                />
+                                            ))
+                                        }
+                                    </SimpleGrid>
+                                </HoverCardDropdown>
+                            </HoverCard>
+                        }
+                        rightSection={
+                            <ActionIcon onClick={handleSearch}>
+                                <IconSearch/>
+                            </ActionIcon>
+                        }
+                    />
+                </Group>
+            )}
 
         </>
 
