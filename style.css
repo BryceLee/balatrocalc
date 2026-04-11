@@ -1573,6 +1573,8 @@ body.seed-analyzer-page .nav-link:hover {
 
 body.seed-analyzer-page #root {
   min-height: 0;
+  position: relative;
+  z-index: 4;
   color: inherit;
   --mantine-font-size-sm: 0.8rem;
   --mantine-font-size-md: 0.92rem;
@@ -1592,11 +1594,14 @@ body.seed-analyzer-page #root .seedBlueprintShell,
 body.seed-analyzer-page #root .mantine-AppShell-root {
   min-height: 0 !important;
   height: auto !important;
+  position: relative;
+  z-index: 4;
   --app-shell-header-offset: calc(var(--app-shell-header-height, 0rem) + var(--seed-top-offset));
 }
 
 body.seed-analyzer-page #root .seedBlueprintHeader {
   top: var(--seed-top-offset);
+  z-index: 10;
   background:
     linear-gradient(180deg, rgba(6, 17, 14, 0.94), rgba(7, 20, 16, 0.84));
   border-bottom-color: rgba(255, 215, 0, 0.16);
@@ -1631,6 +1636,7 @@ body.seed-analyzer-page #root .seedBlueprintAside {
 
 body.seed-analyzer-page #root .seedBlueprintAside {
   padding: 12px 14px !important;
+  z-index: 9;
 }
 
 body.seed-analyzer-page #root .seedBlueprintAside .mantine-Tabs-list {
@@ -1883,22 +1889,80 @@ body.seed-analyzer-page .seedBlueprintPanelDrawer {
     linear-gradient(180deg, rgba(7, 20, 16, 0.97), rgba(4, 13, 10, 0.96));
   border-left: 1px solid rgba(255, 215, 0, 0.16);
   box-shadow: -20px 0 48px rgba(0, 0, 0, 0.32);
-}
-
-body.seed-analyzer-page .seedBlueprintPanelDrawerHeader {
-  background: transparent;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.12);
-  padding-bottom: 12px;
-}
-
-body.seed-analyzer-page .seedBlueprintPanelDrawerTitle {
-  color: #ffe38c;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  z-index: 1400;
 }
 
 body.seed-analyzer-page .seedBlueprintPanelDrawerBody {
   padding-top: 14px;
+  min-height: 0;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelShell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  height: 100%;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelToolbar {
+  gap: 10px;
+  align-items: center;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelSearch {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelTabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelScroll {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelDrawer.seedBlueprintAside .mantine-Tabs-list {
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelDrawer.seedBlueprintAside .mantine-Tabs-list::-webkit-scrollbar {
+  display: none;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelDrawer.seedBlueprintAside .mantine-Tabs-tab {
+  min-height: 2.2rem;
+  padding-inline: 0.7rem;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelDrawer.seedBlueprintAside .mantine-Paper-root,
+body.seed-analyzer-page .seedBlueprintPanelDrawer.seedBlueprintAside .mantine-Card-root {
+  background: linear-gradient(180deg, rgba(10, 26, 20, 0.78), rgba(6, 16, 13, 0.62));
+  border-color: rgba(255, 215, 0, 0.14);
+  box-shadow: none;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelToolbar .mantine-Button-root {
+  min-height: 2rem;
+  padding-inline: 0.72rem;
+  border-radius: 9px;
+  font-size: 0.82rem;
+  box-shadow: none;
+}
+
+body.seed-analyzer-page .seedBlueprintPanelToolbar .mantine-ActionIcon-root {
+  border-radius: 9px;
 }
 
 body.seed-analyzer-page #root .seedBlueprintIntroWrap {
@@ -2048,13 +2112,6 @@ body.seed-analyzer-page #root .seedBlueprintBenefitPanel {
   body.seed-analyzer-page #root .seedBlueprintShell {
     --app-shell-navbar-width: var(--seed-blueprint-nav-width);
     --app-shell-navbar-offset: var(--seed-blueprint-nav-width);
-  }
-}
-
-@media (min-width: 75em) {
-  body.seed-analyzer-page #root .seedBlueprintShell {
-    --app-shell-aside-width: var(--seed-blueprint-aside-width);
-    --app-shell-aside-offset: var(--seed-blueprint-aside-width);
   }
 }
 

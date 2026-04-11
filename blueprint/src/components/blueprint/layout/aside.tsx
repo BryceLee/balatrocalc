@@ -1,11 +1,13 @@
 import {SeedResultsContainer} from "../../../modules/ImmolateWrapper/CardEngines/Cards.ts";
 import {useCardStore} from "../../../modules/state/store.ts";
 import {
-    AppShell,
+    ActionIcon,
     Badge,
     Button,
     Card,
     Center,
+    CopyButton,
+    Drawer,
     Grid,
     Group, NumberInput,
     ScrollArea,
@@ -16,11 +18,11 @@ import {
     Title,
     useMantineTheme
 } from "@mantine/core";
-import {IconCalendarEvent, IconCards, IconCheck, IconShoppingCart} from "@tabler/icons-react";
+import {IconCalendarEvent, IconCards, IconCheck, IconLink, IconShoppingCart, IconX} from "@tabler/icons-react";
 import SearchSeedInput from "../../searchInput.tsx";
 import MiscCardSourcesDisplay from "../../miscSourcesDisplay.tsx";
 import PurchaseTimeline from "../../purchaseTimeline.tsx";
-import {useMediaQuery} from "@mantine/hooks";
+import {useViewportSize} from "@mantine/hooks";
 import {useState} from "react";
 import {EVENT_UNLOCKS} from "../../../modules/const.ts";
 
@@ -177,16 +179,74 @@ export function Aside({SeedResults}: { SeedResults: SeedResultsContainer | null 
 
     const tab = useCardStore(state => state.applicationState.asideTab);
     const setTab = useCardStore(state => state.setAsideTab);
-    const media = useMediaQuery("(min-width: 600px)");
+    const { width } = useViewportSize();
+    const outputOpened = useCardStore(state => state.applicationState.asideOpen);
+    const toggleOutput = useCardStore(state => state.toggleOutput);
+    const drawerSize = width < 768 ? '100%' : width < 1200 ? 460 : 520;
+    const showCompactSearch = width <= 1180;
+    const showCompactCopy = width <= 760;
+    const copyUrl = typeof window !== 'undefined' ? new URL(window.location.href).toString() : '';
+
     return (
-        <AppShell.Aside p="md">
-            {!media && (
-                <AppShell.Section hiddenFrom={'sm'} mb="md">
-                    <SearchSeedInput SeedResults={SeedResults}/>
-                </AppShell.Section>
-            )}
-            <AppShell.Section>
-                <Tabs value={tab} onChange={(e) => setTab(`${e}`)}>
+        <Drawer
+            opened={outputOpened}
+            onClose={toggleOutput}
+            position="right"
+            size={drawerSize}
+            withCloseButton={false}
+            padding="md"
+            overlayProps={{opacity: 0.14, blur: 2}}
+            classNames={{
+                content: 'seedBlueprintPanelDrawer seedBlueprintAside',
+                body: 'seedBlueprintPanelDrawerBody',
+            }}
+            styles={{
+                body: {
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                },
+            }}
+        >
+            <div className="seedBlueprintPanelShell">
+                <Group className="seedBlueprintPanelToolbar" wrap="nowrap" align="center">
+                    <div className="seedBlueprintPanelSearch">
+                        {showCompactSearch ? (
+                            <SearchSeedInput SeedResults={SeedResults} compact />
+                        ) : (
+                            <SearchSeedInput SeedResults={SeedResults}/>
+                        )}
+                    </div>
+                    <CopyButton value={copyUrl}>
+                        {({copied, copy}) => (
+                            showCompactCopy ? (
+                                <ActionIcon
+                                    variant="filled"
+                                    color={copied ? 'teal' : 'blue'}
+                                    size="lg"
+                                    aria-label={copied ? 'Copied url' : 'Copy url'}
+                                    onClick={copy}
+                                >
+                                    {copied ? <IconCheck size={18}/> : <IconLink size={18}/>}
+                                </ActionIcon>
+                            ) : (
+                                <Button color={copied ? 'teal' : 'blue'} size="sm" onClick={copy}>
+                                    {copied ? 'Copied url' : 'Copy url'}
+                                </Button>
+                            )
+                        )}
+                    </CopyButton>
+                    <ActionIcon
+                        variant="subtle"
+                        size="lg"
+                        aria-label="Close panel"
+                        onClick={toggleOutput}
+                    >
+                        <IconX size={20}/>
+                    </ActionIcon>
+                </Group>
+
+                <Tabs value={tab} onChange={(e) => setTab(`${e}`)} className="seedBlueprintPanelTabs">
                     <Tabs.List grow mb="md">
                         <Tabs.Tab
                             value="sources"
@@ -211,35 +271,33 @@ export function Aside({SeedResults}: { SeedResults: SeedResultsContainer | null 
                             Events
                         </Tabs.Tab>
                     </Tabs.List>
+                    <ScrollArea scrollbars="y" className="seedBlueprintPanelScroll">
+                        <Tabs.Panel value="sources" maw={'100%'}>
+                            {SeedResults ? (
+                                <MiscCardSourcesDisplay
+                                    miscSources={miscSources}
+                                    bossQueue={bossesQueue}
+                                    tagQueue={tagsQueue}
+                                    voucherQueue={voucherQueue}
+                                    wheelQueue={wheelQueue}
+                                    auraQueue={auraQueue}
+                                    boosterQueue={boosterQueue}
+                                />
+                            ) : (
+                                <Center h={200}>
+                                    <Text c="dimmed">Select a seed to view card sources</Text>
+                                </Center>
+                            )}
+                        </Tabs.Panel>
+                        <Tabs.Panel value="purchases">
+                            <PurchaseTimeline buys={buys} sells={sells}/>
+                        </Tabs.Panel>
+                        <Tabs.Panel value="events">
+                            <EventsPanel/>
+                        </Tabs.Panel>
+                    </ScrollArea>
                 </Tabs>
-            </AppShell.Section>
-            <AppShell.Section component={ScrollArea} scrollbars="y">
-                <Tabs value={tab}>
-                    <Tabs.Panel value="sources" maw={'100%'}>
-                        {SeedResults ? (
-                            <MiscCardSourcesDisplay
-                                miscSources={miscSources}
-                                bossQueue={bossesQueue}
-                                tagQueue={tagsQueue}
-                                voucherQueue={voucherQueue}
-                                wheelQueue={wheelQueue}
-                                auraQueue={auraQueue}
-                                boosterQueue={boosterQueue}
-                            />
-                        ) : (
-                            <Center h={200}>
-                                <Text c="dimmed">Select a seed to view card sources</Text>
-                            </Center>
-                        )}
-                    </Tabs.Panel>
-                    <Tabs.Panel value="purchases">
-                        <PurchaseTimeline buys={buys} sells={sells}/>
-                    </Tabs.Panel>
-                    <Tabs.Panel value="events">
-                        <EventsPanel/>
-                    </Tabs.Panel>
-                </Tabs>
-            </AppShell.Section>
-        </AppShell.Aside>
+            </div>
+        </Drawer>
     )
 }

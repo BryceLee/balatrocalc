@@ -557,20 +557,10 @@ function Main({ SeedResults }: { SeedResults: SeedResultsContainer | null }) {
 export function Blueprint({ SeedResults, theme, setTheme }: { SeedResults: SeedResultsContainer | null, theme: string, setTheme: any }) {
     const { width } = useViewportSize();
     const settingsOpened = useCardStore(state => state.applicationState.settingsOpen);
-    const outputOpened = useCardStore(state => state.applicationState.asideOpen);
-
 
     return (
         <AppShell
             header={{ height: { base: 40, md: 46, lg: 46 } }}
-            aside={{
-                width: { base: '100%', md: 460, lg: 520 },
-                breakpoint: 'md',
-                collapsed: {
-                    desktop: !outputOpened,
-                    mobile: !outputOpened
-                },
-            }}
             navbar={{
                 width: { base: '100%', md: 392, lg: 412 },
                 breakpoint: 'sm',
