@@ -1,10 +1,10 @@
 import {SeedResultsContainer} from "../../../modules/ImmolateWrapper/CardEngines/Cards.ts";
 import {useViewportSize} from "@mantine/hooks";
 import {useCardStore} from "../../../modules/state/store.ts";
-import {ActionIcon, AppShell, Box, Burger, Button, Center, Container, CopyButton, Group, Title} from "@mantine/core";
+import {ActionIcon, AppShell, Burger, Button, Container, CopyButton, Group} from "@mantine/core";
 import SearchSeedInput from "../../searchInput.tsx";
 import {useGA} from "../../../modules/useGA.ts";
-import {IconCheck, IconLink} from "@tabler/icons-react";
+import {IconCheck, IconLink, IconX} from "@tabler/icons-react";
 
 
 
@@ -30,18 +30,11 @@ export default function Header({SeedResults}: {
         <AppShell.Header>
             <Container fluid h={'100%'}>
                 <Group h={'100%'} justify={'space-between'} wrap="nowrap">
-                    <Group flex={1} wrap="nowrap" gap="sm">
+                    <Group wrap="nowrap" gap="xs">
                         <Burger opened={settingsOpened} onClick={toggleSettings} hiddenFrom={'md'} size="sm"/>
-                        <Center h={'100%'}>
-                            <Group grow>
-                                <Box flex={1}>
-                                    <Title order={3}>Balatro Seed Analyzer</Title>
-                                </Box>
-                            </Group>
-                        </Center>
                     </Group>
 
-                    <Group align={'center'} wrap="nowrap" gap="xs">
+                    <Group align={'center'} wrap="nowrap" gap="xs" ml="auto">
                         {showFullSearch && <SearchSeedInput SeedResults={SeedResults}/>}
                         {showCompactSearch && <SearchSeedInput SeedResults={SeedResults} compact />}
                         {showFullCopy && (
@@ -69,16 +62,30 @@ export default function Header({SeedResults}: {
                             </CopyButton>
                         )}
                         {showPanelButton ? (
-                            <Button
-                                variant={outputOpened ? 'filled' : 'default'}
-                                size="sm"
-                                onClick={()=>{
-                                    useGA('side_panel_toggled')
-                                    toggleOutput()
-                                }}
-                            >
-                                {outputOpened ? 'Hide panel' : 'Open panel'}
-                            </Button>
+                            outputOpened ? (
+                                <ActionIcon
+                                    variant="subtle"
+                                    size="lg"
+                                    aria-label="Close panel"
+                                    onClick={() => {
+                                        useGA('side_panel_toggled')
+                                        toggleOutput()
+                                    }}
+                                >
+                                    <IconX size={20}/>
+                                </ActionIcon>
+                            ) : (
+                                <Button
+                                    variant="default"
+                                    size="sm"
+                                    onClick={()=>{
+                                        useGA('side_panel_toggled')
+                                        toggleOutput()
+                                    }}
+                                >
+                                    Open panel
+                                </Button>
+                            )
                         ) : (
                             <Burger opened={outputOpened} onClick={()=>{
                                 useGA('side_panel_toggled')

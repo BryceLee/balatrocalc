@@ -506,9 +506,10 @@
     }
 
     .seedAnalyzerSeoWrap {
-      width: min(1280px, calc(100% - 40px));
+      width: min(1080px, calc(100vw - var(--seed-blueprint-nav-width) - 72px));
       max-width: none;
-      margin: 0 auto;
+      margin-left: calc(var(--seed-blueprint-nav-width) + 32px);
+      margin-right: 24px;
       padding: 0 0 28px;
       display: grid;
       gap: 20px;

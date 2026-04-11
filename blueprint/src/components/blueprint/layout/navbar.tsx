@@ -110,27 +110,27 @@ export default function NavBar({ themeName, setTheme }: { themeName: string, set
                         {
                             value: 'blueprint',
                             label: (
-                                <Group gap="xs">
+                                <Group gap={6} wrap="nowrap">
                                     <IconLayout size={16} />
-                                    <Text>Analyzer</Text>
+                                    <Text span>Analyzer</Text>
                                 </Group>
                             )
                         },
                         {
                             value: 'simple',
                             label: (
-                                <Group gap="xs">
+                                <Group gap={6} wrap="nowrap">
                                     <IconListSearch size={16} />
-                                    <Text>Efficiency</Text>
+                                    <Text span>Efficiency</Text>
                                 </Group>
                             )
                         },
                         {
                             value: 'text',
                             label: (
-                                <Group gap="xs">
+                                <Group gap={6} wrap="nowrap">
                                     <IconFileText size={16} />
-                                    <Text>Text</Text>
+                                    <Text span>Text</Text>
                                 </Group>
                             )
                         }
