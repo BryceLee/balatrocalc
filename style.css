@@ -186,6 +186,32 @@ body {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
+.nav-link.nav-link--feedback {
+  color: #241400;
+  background:
+    linear-gradient(135deg, rgba(255, 223, 116, 0.98), rgba(255, 168, 52, 0.94));
+  border-color: rgba(255, 239, 176, 0.92);
+  text-shadow: none;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+
+.nav-link.nav-link--feedback:hover {
+  color: #120a00;
+  background:
+    linear-gradient(135deg, rgba(255, 236, 145, 1), rgba(255, 184, 68, 0.98));
+  border-color: rgba(255, 249, 210, 0.98);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.36),
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+
+.nav-link.nav-link--feedback:active {
+  transform: translateY(0);
+}
+
 .nav-link.nav-link--proper-case {
   text-transform: none;
   letter-spacing: 0.5px;
