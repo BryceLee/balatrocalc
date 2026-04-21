@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'm6x11Plus';
+  src: url('../assets/m6x11plus.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  font-size: 0.9em !important;
+  background: transparent !important;
+}
+
+html,
+body {
+  background: transparent !important;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'm6x11Plus', monospace !important;
+}
+
+body {
+  margin: 0;
+  color: #dbe7d7;
+  font-size: 1.02rem;
+}
+
+.main-content {
+  max-width: none !important;
+  padding: 20px 10px 0 !important;
+  transform: scale(var(--calculator-module-scale, 1));
+  transform-origin: top left;
+  width: calc(100% / var(--calculator-module-scale, 1)) !important;
+}
+
+.header {
+  display: none !important;
+}
+
+.panel,
+.card,
+.control-box,
+.table-wrapper {
+  background: rgba(18, 48, 42, 0.62) !important;
+  border-color: rgba(255, 215, 0, 0.16) !important;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.panel,
+.card {
+  padding: 0.4rem !important;
+}
+
+.form,
+.header,
+.list,
+.stack > * + * {
+  gap: 0.35rem !important;
+}
+
+.form {
+  grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 2.4fr) !important;
+}
+
+.log,
+.table-wrapper {
+  max-block-size: 12rem !important;
+}
+
+.panel-header,
+.card-header {
+  border-color: rgba(255, 215, 0, 0.12) !important;
+}
+
+.panel-header h1,
+.panel-header h2,
+.panel-header h3,
+legend,
+caption,
+label,
+th {
+  color: #ffd700 !important;
+}
+
+.secondary-label,
+p,
+td,
+li,
+span,
+legend {
+  color: #dbe7d7;
+}
+
+.button,
+button {
+  border-color: rgba(255, 215, 0, 0.2) !important;
+  background: rgba(66, 95, 90, 0.78) !important;
+  color: #fff0af !important;
+}
+
+.button:hover,
+button:hover {
+  border-color: rgba(255, 215, 0, 0.48) !important;
+}
+
+.text-input,
+input,
+select,
+textarea {
+  background: rgba(20, 44, 40, 0.72) !important;
+  border-color: rgba(255, 215, 0, 0.16) !important;
+  color: #f5f6e8 !important;
+}
+
+a {
+  color: #ffd700 !important;
+}
+
+.score-card [data-sc-formatted-score],
+.score-card [data-sc-score],
+.score-card .exact-score,
+.score-card .exact-score b {
+  color: #ffd700 !important;
+}

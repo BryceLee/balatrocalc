@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+	<title>Balatrolator – Balatro calculator</title>
+
+	<meta name="description" content="Figure out how best to score by comparing variations of your Balatro hand before playing it." />
+
+	<link rel="icon" href="favicon.ico" sizes="48x48">
+	<link rel="icon" href="icon.svg" sizes="any" type="image/svg+xml">
+
+	  <link rel="stylesheet" crossorigin href="./assets/index-B2whctrN.css">
+	  <link rel="stylesheet" href="./bridge.css">
+</head>
+
+<body>
+
+	<div class="visually-hidden">
+		<!-- Used for announcing new score results -->
+		<div aria-live="polite" aria-atomic="true"></div>
+	</div>
+
+	<main class="main-content">
+		<div class="stack">
+			<div class="header">
+				<div class="introduction panel">
+					<header class="panel-header">
+						<h1>Balatrolator</h1>
+					</header>
+
+					<p>Balatrolator is a score calculator for <a href="https://www.playbalatro.com/">Balatro</a>. Go, buy the game!</p>
+
+					<p>Please, <a href="https://github.com/kleinfreund/balatrolator/issues/new/choose">report any bugs you encounter</a>. Want to <a href="https://github.com/kleinfreund/balatrolator">contribute</a>?</p>
+
+					<p>Current version: <code>1.0.1o</code></p>
+
+					<p>Made with love by <a href="https://kleinfreund.de">kleinfreund</a>.</p>
+
+					<p>
+						<svg class="icon">
+							<use xlink:href="#spades-icon"></use>
+						</svg>
+						<svg class="icon">
+							<use xlink:href="#hearts-icon"></use>
+						</svg>
+						<svg class="icon">
+							<use xlink:href="#clubs-icon"></use>
+						</svg>
+						<svg class="icon">
+							<use xlink:href="#diamonds-icon"></use>
+						</svg>
+					</p>
+				</div>
+
+				<div class="saves panel">
+					<div class="stack">
+						<header class="panel-header">
+							<h2>Saves</h2>
+						</header>
+
+						<p>The current hand is auto-saved whenever the score updates. Saves are stored in the browser's local storage.</p>
+
+						<div class="table-wrapper">
+							<table>
+								<caption>Saves</caption>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Hand</th>
+										<th>Score</th>
+										<th>Time</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+
+								<tbody data-s-saves></tbody>
+							</table>
+						</div>
+
+						<form data-s-form>
+							<div class="s-save-container">
+								<label class="s-save-name control-box --flat --grow">
+									<span class="label truncate">Save name</span>
+
+									<input class="s-save-name-input text-input" name="name" type="text" required placeholder="Hand 1" autocomplete="off" data-s-name-input>
+								</label>
+
+								<button class="s-save-button button" type="submit" data-s-save-button>
+									<svg class="icon">
+										<use xlink:href="#floppy-disk-icon"></use>
+									</svg>
+
+									<span>Save</span>
+								</button>
+							</div>
+						</form>
+
+						<form class="stack" data-s-import-form>
+							<h3>Import save</h3>
+
+							<div class="s-import-container">
+								<div class="s-import control-box --flat --grow">
+									<label class="visually-hidden" for="import">Import save</label>
+
+									<input
+										class="s-import-input file-input"
+										id="import"
+										name="import"
+										type="file"
+										accept=".json,application/json"
+										required
+										aria-describedby="import-description"
+										data-s-import-input
+									>
+
+									<span class="secondary-label" id="import-description">Import any saves you previously exported in JSON format.</span>
+								</div>
+
+								<button class="s-import-button button" type="submit" data-s-import-button>
+									<svg class="icon">
+										<use xlink:href="#file-arrow-up-icon"></use>
+									</svg>
+
+									<span>Import</span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<form class="form" data-form>
+				<div class="form__hands panel">
+					<div class="stack">
+						<header class="panel-header">
+							<h2>Levels</h2>
+						</header>
+
+						<div class="stack" data-h-container></div>
+					</div>
+				</div>
+
+				<div class="form__round panel">
+					<div class="stack">
+						<header class="panel-header">
+							<h2>Round data</h2>
+						</header>
+
+						<div class="list">
+							<div class="card-stack">
+								<div class="card round-data-card">
+									<div class="r-hands control-box --flat --grow">
+										<label class="label truncate" for="hands">Hands</label>
+
+										<input class="r-hands-input text-input" id="hands" name="hands" type="number" min="0" value="0" aria-describedby="hands-description">
+
+										<span class="secondary-label" id="hands-description">Influences: Acrobat</span>
+									</div>
+								</div>
+
+								<div class="card round-data-card">
+									<div class="r-discards control-box --flat --grow">
+										<label class="label truncate" for="discards">Discards</label>
+
+										<input class="r-discards-input text-input" id="discards" name="discards" type="number" min="0" value="0" aria-describedby="discards-description">
+
+										<span class="secondary-label" id="discards-description">Influences: Banner, Mystic Summit</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="card-stack">
+								<div class="card round-data-card">
+									<div class="r-money control-box --flat --grow">
+										<label class="label truncate" for="money">Money</label>
+
+										<input class="r-money-input text-input" id="money" name="money" type="number" value="0" aria-describedby="money-description">
+
+										<span class="secondary-label" id="money-description">Influences: Bull, Bootstraps</span>
+									</div>
+								</div>
+
+								<div class="card round-data-card">
+									<div class="stack">
+										<div class="r-blind-name control-box --flat --grow">
+											<label class="label truncate" for="blindName">Blind</label>
+
+											<combo-box
+												class="r-blind-name-input"
+												id="blindName"
+												name="blindName"
+												value="Small Blind"
+												options-json="blindNamesJson"
+												button-label="Show blind options"
+												input-label="Filter blinds"
+												listbox-label="Blinds"
+												aria-describedby="blindName-description"
+											></combo-box>
+
+											<span class="secondary-label" id="blindName-description">Influences: Debuffed cards, scoring</span>
+										</div>
+
+										<label class="r-blind-is-active checkbox-control">
+											<input class="r-blind-is-active-input" name="blindIsActive" type="checkbox" value="is-active" checked>
+
+											<span class="label" aria-hidden="true">Active?</span>
+											<span class="visually-hidden">Blind active</span>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="card-stack">
+								<div class="card round-data-card">
+									<div class="r-deck control-box --flat --grow">
+										<label class="label truncate" for="deck">Deck</label>
+
+										<combo-box
+											class="r-deck-input"
+											id="deck"
+											name="deck"
+											value="Red Deck"
+											options-json="decksJson"
+											button-label="Show deck options"
+											input-label="Filter decks"
+											listbox-label="Decks"
+											aria-describedby="deck-description"
+										></combo-box>
+
+										<span class="secondary-label" id="deck-description">Influences: Scoring with Plasma Deck</span>
+									</div>
+								</div>
+
+								<div class="card round-data-card">
+									<div class="r-joker-slots control-box --flat --grow">
+										<label class="label truncate" for="jokerSlots">Joker slots</label>
+
+										<input class="r-joker-slots-input text-input" id="jokerSlots" name="jokerSlots" type="number" value="5" aria-describedby="jokerSlots-description">
+
+										<span class="secondary-label" id="jokerSlots-description">Influences: Joker Stencil</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="card round-data-card observatory-card">
+								<fieldset class="stack">
+									<legend><span class="label truncate">Observatory</span></legend>
+
+									<div class="r-observatory-input-list stack">
+										<label class="control-box --flat">
+											<span class="label truncate">Pluto</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="High Card">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Mercury</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Pair">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Uranus</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Two Pair">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Venus</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Three of a Kind">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Saturn</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Straight">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Jupiter</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Flush">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Earth</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Full House">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Mars</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Four of a Kind">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Neptune</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Straight Flush">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Planet X</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Five of a Kind">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Ceres</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Flush House">
+										</label>
+										<label class="control-box --flat">
+											<span class="label truncate">Eris</span>
+											<input class="r-observatory-input text-input" type="number" min="0" value="0" data-r-observatory-hand="Flush Five">
+										</label>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form__jokers panel">
+					<div class="stack">
+						<header class="panel-header">
+							<h2>Jokers</h2>
+
+							<button class="add-joker-button button --icon" type="button" data-j-add-button>
+								<span class="visually-hidden">Add joker</span>
+
+								<svg class="icon">
+									<use xlink:href="#plus-icon"></use>
+								</svg>
+							</button>
+						</header>
+
+						<div class="list" data-j-container data-drop-zone></div>
+					</div>
+				</div>
+
+				<div class="form__cards panel">
+					<div class="stack">
+						<header class="panel-header">
+							<h2>Hand</h2>
+
+							<button class="add-card-button button --icon" type="button" data-c-add-button>
+								<span class="visually-hidden">Add card</span>
+
+								<svg class="icon">
+									<use xlink:href="#plus-icon"></use>
+								</svg>
+							</button>
+						</header>
+
+						<div class="list" data-c-container data-drop-zone></div>
+					</div>
+				</div>
+
+				<div class="form__score panel">
+					<div class="stack">
+						<header class="panel-header">
+							<h2>Score</h2>
+
+							<button class="button" type="button" data-sc-reset-button>
+								<svg class="icon">
+									<use xlink:href="#broom-icon"></use>
+								</svg>
+
+								Reset current hand
+							</button>
+						</header>
+
+						<div class="stack">
+							<p>Hand: <b data-sc-played-hand>—</b></p>
+
+							<div class="list" data-sc-container></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form__log panel">
+					<header class="panel-header">
+						<h2>Log</h2>
+					</header>
+
+					<pre class="log" data-sc-log></pre>
+				</div>
+			</form>
+		</div>
+	</main>
+
+	<dialog id="jc-duplicate-modal" class="panel" closedby="any" popover aria-labelledby="jc-duplicate-modal-heading">
+		<div class="stack">
+			<header>
+				<div class="action-list">
+					<h2 id="jc-duplicate-modal-heading">Duplicate joker?</h2>
+
+					<button class="button --icon push-inline-start" type="button" data-modal-close-button>
+						<span class="visually-hidden">Close</span>
+
+						<svg class="icon">
+							<use xlink:href="#close-icon"></use>
+						</svg>
+					</button>
+				</div>
+			</header>
+
+			<label class="control-box">
+				<span class="label truncate">Number of copies</span>
+
+				<input class="text-input" type="number" value="1" min="1">
+			</label>
+
+			<p>The new cards will be added to the right of the one you're duplicating.</p>
+
+			<button class="button" type="button" data-j-duplicate-button>Ok</button>
+		</div>
+	</dialog>
+
+	<dialog id="pc-duplicate-modal" class="panel" closedby="any" popover aria-labelledby="pc-duplicate-modal-heading">
+		<div class="stack">
+			<header>
+				<div class="action-list">
+					<h2 id="pc-duplicate-modal-heading">Duplicate card?</h2>
+
+					<button class="button --icon push-inline-start" type="button" data-modal-close-button>
+						<span class="visually-hidden">Close</span>
+
+						<svg class="icon">
+							<use xlink:href="#close-icon"></use>
+						</svg>
+					</button>
+				</div>
+			</header>
+
+			<label class="control-box">
+				<span class="label truncate">Number of copies</span>
+
+				<input class="text-input" type="number" value="1" min="1">
+			</label>
+
+			<p>The new cards will be added to the right of the one you're duplicating.</p>
+
+			<button class="button" type="button" data-c-duplicate-button>Ok</button>
+		</div>
+	</dialog>
+
+	<template id="save-row">
+		<tr>
+			<td class="name-cell" data-s-name></td>
+			<td class="hand-cell" data-s-hand></td>
+			<td class="score-cell" data-s-score></td>
+			<td class="time-cell" data-s-time></td>
+			<td class="actions-cell">
+				<div class="action-list">
+					<button class="button" type="button" data-s-load-button>Load</button>
+
+					<button class="s-export-button button --icon" type="submit" data-s-export-button>
+						<svg class="icon">
+							<use xlink:href="#file-arrow-down-icon"></use>
+						</svg>
+
+						<span class="visually-hidden">Export</span>
+					</button>
+
+					<button class="s-delete-button button --icon" type="button" data-s-delete-button>
+						<span class="visually-hidden">Delete save</span>
+
+						<svg class="icon">
+							<use xlink:href="#trash-icon"></use>
+						</svg>
+					</button>
+				</div>
+			</td>
+		</tr>
+	</template>
+
+	<template id="score-card">
+		<div class="card score-card">
+			<div class="stack">
+				<div class="score-entry">
+					<b data-sc-formatted-score></b>
+
+					<div class="badge">Luck: <b data-sc-luck></b></div>
+				</div>
+
+				<p class="exact-score">
+					Exact: <b data-sc-score></b>
+				</p>
+			</div>
+		</div>
+	</template>
+
+	<svg style="display: none;">
+		<defs>
+			<symbol id="arrow-left-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Arrow left icon</title>
+				<line x1="216" y1="128" x2="40" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+				<polyline points="112 56 40 128 112 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+			</symbol>
+
+			<symbol id="arrow-right-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Arrow right icon</title>
+				<line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+				<polyline points="144 56 216 128 144 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+			</symbol>
+
+			<symbol id="broom-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Broom icon</title>
+				<path d="M235.5,216.81c-22.56-11-35.5-34.58-35.5-64.8V134.73a15.94,15.94,0,0,0-10.09-14.87L165,110a8,8,0,0,1-4.48-10.34l21.32-53a28,28,0,0,0-16.1-37,28.14,28.14,0,0,0-35.82,16,.61.61,0,0,0,0,.12L108.9,79a8,8,0,0,1-10.37,4.49L73.11,73.14A15.89,15.89,0,0,0,55.74,76.8C34.68,98.45,24,123.75,24,152a111.45,111.45,0,0,0,31.18,77.53A8,8,0,0,0,61,232H232a8,8,0,0,0,3.5-15.19ZM67.14,88l25.41,10.3a24,24,0,0,0,31.23-13.45l21-53c2.56-6.11,9.47-9.27,15.43-7a12,12,0,0,1,6.88,15.92L145.69,93.76a24,24,0,0,0,13.43,31.14L184,134.73V152c0,.33,0,.66,0,1L55.77,101.71A108.84,108.84,0,0,1,67.14,88Zm48,128a87.53,87.53,0,0,1-24.34-42,8,8,0,0,0-15.49,4,105.16,105.16,0,0,0,18.36,38H64.44A95.54,95.54,0,0,1,40,152a85.9,85.9,0,0,1,7.73-36.29l137.8,55.12c3,18,10.56,33.48,21.89,45.16Z"></path>
+			</symbol>
+
+			<symbol id="caret-down-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Caret down icon</title>
+				<polyline points="208 96 128 176 48 96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+			</symbol>
+
+			<symbol id="check-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Check icon</title>
+				<polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+			</symbol>
+
+			<symbol id="close-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Close icon</title>
+				<path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+			</symbol>
+
+			<symbol id="copy-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Copy icon</title>
+				<path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"></path>
+			</symbol>
+
+			<symbol id="file-arrow-down-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>File arrow down icon</title>
+				<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-61.66a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L120,164.69V120a8,8,0,0,1,16,0v44.69l10.34-10.35A8,8,0,0,1,157.66,154.34Z"></path>
+			</symbol>
+
+			<symbol id="file-arrow-up-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>File arrow up icon</title>
+				<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-42.34-77.66a8,8,0,0,1-11.32,11.32L136,139.31V184a8,8,0,0,1-16,0V139.31l-10.34,10.35a8,8,0,0,1-11.32-11.32l24-24a8,8,0,0,1,11.32,0Z"></path>
+			</symbol>
+
+			<symbol id="floppy-disk-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Floppy disk icon</title>
+				<path d="M219.31,72,184,36.69A15.86,15.86,0,0,0,172.69,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V83.31A15.86,15.86,0,0,0,219.31,72ZM168,208H88V152h80Zm40,0H184V152a16,16,0,0,0-16-16H88a16,16,0,0,0-16,16v56H48V48H172.69L208,83.31ZM160,72a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h56A8,8,0,0,1,160,72Z"></path>
+			</symbol>
+
+			<symbol id="plus-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Plus icon</title>
+				<path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+			</symbol>
+
+			<symbol id="trash-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Trash icon</title>
+				<path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
+			</symbol>
+
+			<symbol id="trash-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Trash icon</title>
+				<path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
+			</symbol>
+
+			<symbol id="clubs-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Clubs icon</title>
+				<path d="M167.83,98.79a48,48,0,1,1-23.9,71.65L160,224H96l16.07-53.56a48,48,0,1,1-23.9-71.65,48,48,0,1,1,79.66,0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+			</symbol>
+
+			<symbol id="diamonds-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Diamonds icon</title>
+				<rect x="52.13" y="52.13" width="151.73" height="151.73" rx="7.95" transform="translate(-53.02 128) rotate(-45)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+			</symbol>
+
+			<symbol id="spades-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Spades icon</title>
+				<path d="M128,24S32,72,32,136a48,48,0,0,0,79.55,36.18L96,224h64l-15.55-51.82A48,48,0,0,0,224,136C224,72,128,24,128,24Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+			</symbol>
+
+			<symbol id="hearts-icon" role="img" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+				<title>Hearts icon</title>
+				<path d="M128,224S24,168,24,102A54,54,0,0,1,78,48c22.59,0,41.94,12.31,50,32,8.06-19.69,27.41-32,50-32a54,54,0,0,1,54,54C232,168,128,224,128,224Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+			</symbol>
+		</defs>
+	</svg>
+
+	<script id="blindNamesJson" type="application/json">[
+	"Small Blind",
+	"Big Blind",
+	"The Hook",
+	"The Ox",
+	"The House",
+	"The Wall",
+	"The Wheel",
+	"The Arm",
+	"The Club",
+	"The Fish",
+	"The Psychic",
+	"The Goad",
+	"The Water",
+	"The Window",
+	"The Manacle",
+	"The Eye",
+	"The Mouth",
+	"The Plant",
+	"The Serpent",
+	"The Pillar",
+	"The Needle",
+	"The Head",
+	"The Tooth",
+	"The Flint",
+	"The Mark",
+	"Amber Acorn",
+	"Verdant Leaf",
+	"Violet Vessel",
+	"Crimson Heart",
+	"Cerulean Bell"
+]</script>
+
+	<script id="decksJson" type="application/json">[
+	"Red Deck",
+	"Blue Deck",
+	"Yellow Deck",
+	"Green Deck",
+	"Black Deck",
+	"Magic Deck",
+	"Nebula Deck",
+	"Ghost Deck",
+	"Abandoned Deck",
+	"Checkered Deck",
+	"Zodiac Deck",
+	"Painted Deck",
+	"Anaglyph Deck",
+	"Plasma Deck",
+	"Erratic Deck",
+	"Challenge Deck"
+]</script>
+
+	<script id="jokersJson" type="application/json">[
+	"8 Ball",
+	"Abstract Joker",
+	"Acrobat",
+	"Ancient Joker",
+	"Arrowhead",
+	"Astronomer",
+	"Banner",
+	"Baron",
+	"Baseball Card",
+	"Blackboard",
+	"Bloodstone",
+	"Blue Joker",
+	"Blueprint",
+	"Bootstraps",
+	"Brainstorm",
+	"Bull",
+	"Burglar",
+	"Burnt Joker",
+	"Business Card",
+	"Campfire",
+	"Canio",
+	"Card Sharp",
+	"Cartomancer",
+	"Castle",
+	"Cavendish",
+	"Ceremonial Dagger",
+	"Certificate",
+	"Chaos the Clown",
+	"Chicot",
+	"Clever Joker",
+	"Cloud 9",
+	"Constellation",
+	"Crafty Joker",
+	"Crazy Joker",
+	"Credit Card",
+	"Delayed Gratification",
+	"Devious Joker",
+	"Diet Cola",
+	"DNA",
+	"Driver's license",
+	"Droll Joker",
+	"Drunkard",
+	"Dusk",
+	"Egg",
+	"Erosion",
+	"Even Steven",
+	"Faceless Joker",
+	"Fibonacci",
+	"Flash Card",
+	"Flower Pot",
+	"Fortune Teller",
+	"Four Fingers",
+	"Gift Card",
+	"Glass Joker",
+	"Gluttonous Joker",
+	"Golden Joker",
+	"Golden Ticket",
+	"Greedy Joker",
+	"Green Joker",
+	"Gros Michel",
+	"Hack",
+	"Half Joker",
+	"Hallucination",
+	"Hanging Chad",
+	"Hiker",
+	"Hit the Road",
+	"Hologram",
+	"Ice Cream",
+	"Invisible Joker",
+	"Joker Stencil",
+	"Joker",
+	"Jolly Joker",
+	"Juggler",
+	"Loyalty Card",
+	"Luchador",
+	"Lucky Cat",
+	"Lusty Joker",
+	"Mad Joker",
+	"Madness",
+	"Mail-in Rebate",
+	"Marble Joker",
+	"Matador",
+	"Merry Andy",
+	"Midas Mask",
+	"Mime",
+	"Misprint",
+	"Mr. Bones",
+	"Mystic Summit",
+	"Obelisk",
+	"Odd Todd",
+	"Onyx Agate",
+	"Oops! All 6s",
+	"Pareidolia",
+	"Perkeo",
+	"Photograph",
+	"Popcorn",
+	"Raised Fist",
+	"Ramen",
+	"Red Card",
+	"Reserved Parking",
+	"Ride the Bus",
+	"Riff-Raff",
+	"Rocket",
+	"Rough Gem",
+	"Runner",
+	"Satellite",
+	"Scary Face",
+	"Scholar",
+	"Séance",
+	"Seeing Double",
+	"Seltzer",
+	"Shoot the Moon",
+	"Shortcut",
+	"Showman",
+	"Sixth Sense",
+	"Sly Joker",
+	"Smeared Joker",
+	"Smiley Face",
+	"Sock and Buskin",
+	"Space Joker",
+	"Spare Trousers",
+	"Splash",
+	"Square Joker",
+	"Steel Joker",
+	"Stone Joker",
+	"Stuntman",
+	"Supernova",
+	"Superposition",
+	"Swashbuckler",
+	"The Duo",
+	"The Family",
+	"The Idol",
+	"The Order",
+	"The Tribe",
+	"The Trio",
+	"Throwback",
+	"To Do List",
+	"To the Moon",
+	"Trading Card",
+	"Triboulet",
+	"Troubador",
+	"Turtle Bean",
+	"Vagabond",
+	"Vampire",
+	"Walkie Talkie",
+	"Wee Joker",
+	"Wily Joker",
+	"Wrathful Joker",
+	"Yorick",
+	"Zany Joker"
+]</script>
+
+	<script type="module">
+		const startBalatrolator = () => import('./assets/index-LKoW9FXP.js')
+
+		if (document.readyState === 'loading') {
+			window.addEventListener('DOMContentLoaded', startBalatrolator, { once: true })
+		} else {
+			startBalatrolator()
+		}
+	</script>
+
+</body>
+
+</html>

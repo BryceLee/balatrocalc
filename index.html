@@ -119,6 +119,12 @@
   </nav>
   <div id="mainContainer">
     <div id="containerLeft">
+      <div class="toggleArea modulePromptArea" style="margin-bottom: 1em">
+        <button id="openBalatrolatorModuleBtn" type="button" class="version2PromptBtn">
+          <span class="version2PromptBtn__kicker">new</span>
+          <span class="version2PromptBtn__text">Calculator not meeting your needs? Try version 2.</span>
+        </button>
+      </div>
       <div class="toggleArea" style="margin-bottom: 1em">
         <div id="toggleJoker" class="handLevel">
           <span id="toggleJokerBtn" class="lvlBtn" onclick="toggleJoker()">X</span>
@@ -468,6 +474,77 @@
     </div>
   </div>
 
+  <section id="calculatorModuleHub" class="contentPageWrapBelow calculatorModuleHub" hidden>
+    <div class="calculatorModuleHub__card">
+      <div class="calculatorModuleHub__eyebrow">calculator modules</div>
+      <div class="calculatorModuleHub__header">
+        <div>
+          <h2 class="contentTitle calculatorModuleHub__title">Switch to a different scoring workflow</h2>
+          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, or open a Balatrolator-powered version 2 module for manual round data, exact hand setup, and alternate verification.</p>
+        </div>
+      </div>
+
+      <div class="calculatorModuleHub__tabs">
+        <div class="calculatorModuleHub__tabButtons" role="tablist" aria-label="Calculator modules">
+          <button id="calculatorModuleTabClassic" class="calculatorModuleTab active" type="button" role="tab" aria-selected="true" data-module-target="classic">version 1</button>
+          <button id="calculatorModuleTabBalatrolator" class="calculatorModuleTab" type="button" role="tab" aria-selected="false" data-module-target="balatrolator">version 2</button>
+        </div>
+        <div class="calculatorModuleFontControls" aria-label="Version 2 text size controls">
+          <span class="calculatorModuleFontControls__label">text size</span>
+          <div class="calculatorModuleFontControls__actions">
+            <button id="calculatorModuleFontDecrease" class="calculatorModuleFontBtn" type="button" aria-label="Decrease version 2 text size">A-</button>
+            <button id="calculatorModuleFontReset" class="calculatorModuleFontBtn calculatorModuleFontBtn--value" type="button" aria-label="Reset version 2 text size">
+              <span id="calculatorModuleFontValue">100%</span>
+            </button>
+            <button id="calculatorModuleFontIncrease" class="calculatorModuleFontBtn" type="button" aria-label="Increase version 2 text size">A+</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="calculatorModulePanelClassic" class="calculatorModulePanel">
+        <div class="calculatorModuleClassic">
+          <div class="calculatorModuleClassic__story">
+            <h3>Classic balatrocalc</h3>
+            <p>The original module above is still the fastest way to optimize joker order and hand selection. Use it when you want a direct answer for “what should I play?” with the current balatrocalc workflow.</p>
+          </div>
+          <div class="calculatorModuleClassic__features">
+            <div class="calculatorModuleFeature">
+              <strong>Best for optimizer flow</strong>
+              <span>Fast joker order checks and hand optimization.</span>
+            </div>
+            <div class="calculatorModuleFeature">
+              <strong>Version 2 is different</strong>
+              <span>Better when you want to model detailed round state manually.</span>
+            </div>
+            <div class="calculatorModuleFeature">
+              <strong>Same homepage</strong>
+              <span>Switch below without leaving the main calculator page.</span>
+            </div>
+          </div>
+        </div>
+        <div class="calculatorModuleClassic__actions">
+          <button id="scrollToTopCalculatorBtn" type="button" class="calculatorModuleAction">Back to main calculator</button>
+          <button id="openBalatrolatorFromHubBtn" type="button" class="calculatorModuleAction calculatorModuleAction--accent">Open version 2 here</button>
+        </div>
+      </div>
+
+      <div id="calculatorModulePanelBalatrolator" class="calculatorModulePanel" hidden>
+        <div class="calculatorModulePanel__meta">
+          Powered by <a href="https://github.com/kleinfreund/balatrolator" target="_blank" rel="noreferrer">kleinfreund/balatrolator</a> and embedded locally with a balatrocalc-style shell.
+        </div>
+        <div class="calculatorModuleFrameShell">
+          <iframe
+            id="balatrolatorModuleFrame"
+            class="calculatorModuleFrame"
+            title="Balatrolator version 2 calculator"
+            data-src="/balatrolator-module/index.html"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- I18N_SEO_BLOCK_START -->
   <div id="seoContent" class="contentPageWrapBelow">
     <div class="seoTabs">
@@ -628,12 +705,14 @@
   </div>
   <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
   <script>
-    kofiWidgetOverlay.draw('imlzx', {
-      'type': 'floating-chat',
-      'floating-chat.donateButton.text': 'Support me',
-      'floating-chat.donateButton.background-color': '#00b9fe',
-      'floating-chat.donateButton.text-color': '#fff'
-    });
+    if (window.kofiWidgetOverlay && typeof window.kofiWidgetOverlay.draw === 'function') {
+      kofiWidgetOverlay.draw('imlzx', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    }
   </script>
   <script type="text/javascript" src="hoverCard.js"></script>
   <script type="text/javascript" src="cards.js"></script>
@@ -741,6 +820,272 @@
       });
       window.addEventListener('hashchange', render);
       render();
+    })();
+  </script>
+  <script>
+    (function () {
+      const hub = document.getElementById('calculatorModuleHub');
+      const promptBtn = document.getElementById('openBalatrolatorModuleBtn');
+      const topCalculatorBtn = document.getElementById('scrollToTopCalculatorBtn');
+      const openBalatrolatorBtn = document.getElementById('openBalatrolatorFromHubBtn');
+      const frame = document.getElementById('balatrolatorModuleFrame');
+      const fontDecreaseBtn = document.getElementById('calculatorModuleFontDecrease');
+      const fontResetBtn = document.getElementById('calculatorModuleFontReset');
+      const fontIncreaseBtn = document.getElementById('calculatorModuleFontIncrease');
+      const fontValue = document.getElementById('calculatorModuleFontValue');
+      const classicPanel = document.getElementById('calculatorModulePanelClassic');
+      const balatrolatorPanel = document.getElementById('calculatorModulePanelBalatrolator');
+      const tabs = Array.from(document.querySelectorAll('.calculatorModuleTab'));
+
+      if (!hub || !promptBtn || !topCalculatorBtn || !openBalatrolatorBtn || !frame || !fontDecreaseBtn || !fontResetBtn || !fontIncreaseBtn || !fontValue || !classicPanel || !balatrolatorPanel || tabs.length === 0) {
+        return;
+      }
+
+      const moduleStorageKey = 'balatrocalc.preferredCalculatorModule';
+      const moduleFontScaleStorageKey = 'balatrocalc.version2FontScale.v2';
+      const defaultModuleFontScale = 1;
+      const moduleFontScaleStep = 0.08;
+      const minModuleFontScale = 0.84;
+      const maxModuleFontScale = 1.4;
+      let frameLoaded = false;
+      let currentModuleFontScale = defaultModuleFontScale;
+      let frameContentResizeObserver = null;
+      let frameContentMutationObserver = null;
+      let frameResizeAnimationFrame = 0;
+
+      function clampModuleFontScale(value) {
+        return Math.min(maxModuleFontScale, Math.max(minModuleFontScale, value));
+      }
+
+      function updateFontControls() {
+        const relativePercent = Math.round((currentModuleFontScale / defaultModuleFontScale) * 100);
+        fontValue.textContent = `${relativePercent}%`;
+        fontDecreaseBtn.disabled = currentModuleFontScale <= minModuleFontScale + 0.001;
+        fontIncreaseBtn.disabled = currentModuleFontScale >= maxModuleFontScale - 0.001;
+      }
+
+      function applyModuleFontScale(scale) {
+        currentModuleFontScale = clampModuleFontScale(Number(scale) || defaultModuleFontScale);
+        updateFontControls();
+
+        if (!frameLoaded) {
+          return;
+        }
+
+        try {
+          const doc = frame.contentDocument || frame.contentWindow?.document;
+          const mainContent = doc?.querySelector('.main-content');
+          if (!mainContent) return;
+
+          mainContent.style.setProperty('--calculator-module-scale', String(currentModuleFontScale));
+          scheduleResizeFrame();
+        } catch (error) {
+          console.warn('calculator module font apply skipped', error);
+        }
+      }
+
+      function persistModuleFontScale() {
+        try {
+          window.localStorage.setItem(moduleFontScaleStorageKey, String(currentModuleFontScale));
+        } catch (error) {
+          console.warn('calculator module font preference save skipped', error);
+        }
+      }
+
+      function changeModuleFontScale(nextScale) {
+        applyModuleFontScale(nextScale);
+        persistModuleFontScale();
+      }
+
+      function scheduleResizeFrame() {
+        if (frameResizeAnimationFrame) {
+          window.cancelAnimationFrame(frameResizeAnimationFrame);
+        }
+
+        frameResizeAnimationFrame = window.requestAnimationFrame(() => {
+          frameResizeAnimationFrame = 0;
+          resizeFrame();
+        });
+      }
+
+      function resizeFrame() {
+        if (!frameLoaded) return;
+
+        try {
+          const doc = frame.contentDocument || frame.contentWindow?.document;
+          if (!doc) return;
+
+          const mainContent = doc.querySelector('.main-content');
+          const mainRect = mainContent?.getBoundingClientRect();
+          const mainStyle = mainContent ? doc.defaultView?.getComputedStyle(mainContent) : null;
+          const mainHeight = mainRect
+            ? mainRect.height
+              + (mainStyle ? Number.parseFloat(mainStyle.marginTop || '0') : 0)
+              + (mainStyle ? Number.parseFloat(mainStyle.marginBottom || '0') : 0)
+            : 0;
+          const fallbackHeight = Math.max(
+            doc.documentElement ? doc.documentElement.scrollHeight : 0,
+            doc.body ? doc.body.scrollHeight : 0
+          );
+          const nextHeight = mainHeight > 0 ? Math.ceil(mainHeight) : fallbackHeight;
+
+          if (nextHeight > 0) {
+            frame.style.height = `${Math.ceil(nextHeight + 2)}px`;
+          }
+        } catch (error) {
+          console.warn('balatrolator frame resize skipped', error);
+        }
+      }
+
+      function observeFrameContent() {
+        if (!frameLoaded) return;
+
+        try {
+          const doc = frame.contentDocument || frame.contentWindow?.document;
+          const mainContent = doc?.querySelector('.main-content');
+          if (!doc || !mainContent) return;
+
+          frameContentResizeObserver?.disconnect();
+          frameContentMutationObserver?.disconnect();
+
+          frameContentResizeObserver = new ResizeObserver(() => {
+            scheduleResizeFrame();
+          });
+          frameContentResizeObserver.observe(mainContent);
+          frameContentResizeObserver.observe(doc.body);
+          frameContentResizeObserver.observe(doc.documentElement);
+
+          frameContentMutationObserver = new MutationObserver(() => {
+            scheduleResizeFrame();
+          });
+          frameContentMutationObserver.observe(doc.body, {
+            subtree: true,
+            childList: true,
+            attributes: true,
+            characterData: true
+          });
+        } catch (error) {
+          console.warn('calculator module content observer skipped', error);
+        }
+      }
+
+      function ensureFrameLoaded() {
+        if (frameLoaded) {
+          resizeFrame();
+          return;
+        }
+
+        frame.src = frame.dataset.src;
+        frameLoaded = true;
+      }
+
+      frame.addEventListener('load', () => {
+        observeFrameContent();
+        applyModuleFontScale(currentModuleFontScale);
+        scheduleResizeFrame();
+        window.setTimeout(() => {
+          applyModuleFontScale(currentModuleFontScale);
+          scheduleResizeFrame();
+        }, 120);
+        window.setTimeout(() => {
+          applyModuleFontScale(currentModuleFontScale);
+          scheduleResizeFrame();
+        }, 480);
+        window.setTimeout(() => {
+          applyModuleFontScale(currentModuleFontScale);
+          scheduleResizeFrame();
+        }, 1200);
+      });
+
+      window.addEventListener('resize', scheduleResizeFrame);
+
+      function setModule(target, shouldScroll) {
+        const showBalatrolator = target === 'balatrolator';
+
+        document.body.classList.toggle('calculatorModuleModeBalatrolator', showBalatrolator);
+        hub.hidden = !showBalatrolator;
+        classicPanel.hidden = showBalatrolator;
+        balatrolatorPanel.hidden = !showBalatrolator;
+
+        tabs.forEach((tab) => {
+          const isActive = tab.dataset.moduleTarget === target;
+          tab.classList.toggle('active', isActive);
+          tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        if (showBalatrolator) {
+          ensureFrameLoaded();
+          applyModuleFontScale(currentModuleFontScale);
+          scheduleResizeFrame();
+        }
+
+        try {
+          window.localStorage.setItem(moduleStorageKey, showBalatrolator ? 'balatrolator' : 'classic');
+        } catch (error) {
+          console.warn('calculator module preference save skipped', error);
+        }
+
+        if (shouldScroll) {
+          if (showBalatrolator) {
+            hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            document.getElementById('mainContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          setModule(tab.dataset.moduleTarget, tab.dataset.moduleTarget === 'classic');
+        });
+      });
+
+      promptBtn.addEventListener('click', () => {
+        setModule('balatrolator', true);
+      });
+
+      openBalatrolatorBtn.addEventListener('click', () => {
+        setModule('balatrolator', true);
+      });
+
+      fontDecreaseBtn.addEventListener('click', () => {
+        changeModuleFontScale(currentModuleFontScale - moduleFontScaleStep);
+      });
+
+      fontResetBtn.addEventListener('click', () => {
+        changeModuleFontScale(defaultModuleFontScale);
+      });
+
+      fontIncreaseBtn.addEventListener('click', () => {
+        changeModuleFontScale(currentModuleFontScale + moduleFontScaleStep);
+      });
+
+      topCalculatorBtn.addEventListener('click', () => {
+        document.getElementById('mainContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      let initialModule = 'classic';
+
+      try {
+        const savedModule = window.localStorage.getItem(moduleStorageKey);
+        if (savedModule === 'balatrolator' || savedModule === 'classic') {
+          initialModule = savedModule;
+        }
+      } catch (error) {
+        console.warn('calculator module preference load skipped', error);
+      }
+
+      try {
+        const savedFontScale = Number(window.localStorage.getItem(moduleFontScaleStorageKey));
+        if (Number.isFinite(savedFontScale)) {
+          currentModuleFontScale = clampModuleFontScale(savedFontScale);
+        }
+      } catch (error) {
+        console.warn('calculator module font preference load skipped', error);
+      }
+
+      updateFontControls();
+      setModule(initialModule, false);
     })();
   </script>
 </body>
