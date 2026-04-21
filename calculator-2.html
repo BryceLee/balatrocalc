@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
+  <title>Calculator 2 - Balatro Play Simulator</title>
+  <meta name="description" content="Simulate Balatro joker selection, hand selection, and play flow with a game-style layout and live score output.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="calculator-2.css">
+</head>
+
+<body class="calculator2-page">
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>calculator 2</h1>
+    <span class="subtitle">balatro play simulator</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/calculator-2.html" class="nav-link nav-link--active nav-link--proper-case">calculator 2</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/blog" class="nav-link">blog</a>
+  </nav>
+
+  <main class="calc2Main">
+    <section class="calc2Shell">
+      <section class="calc2ScorePanel">
+        <div class="calc2ScorePanel__eyebrow">Current Round Estimate</div>
+        <div class="calc2ScorePanel__valueWrap">
+          <span class="chipIcon"></span>
+          <span id="scorePrimary" class="calc2ScorePanel__value">0</span>
+        </div>
+        <div class="calc2ScorePanel__meta">
+          <div class="calc2StatCard">
+            <span class="calc2StatCard__label">Hand Type</span>
+            <strong id="scoreHandName" class="calc2StatCard__value">No Play Yet</strong>
+          </div>
+          <div class="calc2StatCard">
+            <span class="calc2StatCard__label">Chips</span>
+            <strong id="scoreChipsValue" class="calc2StatCard__value">0</strong>
+          </div>
+          <div class="calc2StatCard">
+            <span class="calc2StatCard__label">Mult</span>
+            <strong id="scoreMultValue" class="calc2StatCard__value">0</strong>
+          </div>
+        </div>
+
+        <div class="calc2QuickStats">
+          <div class="calc2QuickStat">
+            <span class="calc2QuickStat__label">Jokers</span>
+            <strong id="jokerCountValue">0</strong>
+          </div>
+          <div class="calc2QuickStat">
+            <span class="calc2QuickStat__label">In Hand</span>
+            <strong id="handCountValue">0</strong>
+          </div>
+          <div class="calc2QuickStat">
+            <span class="calc2QuickStat__label">Played</span>
+            <strong id="playedCountValue">0</strong>
+          </div>
+          <div class="calc2QuickStat">
+            <span class="calc2QuickStat__label">Selected</span>
+            <strong id="selectedCountValue">0</strong>
+          </div>
+        </div>
+
+        <div class="calc2ActionStack">
+          <button id="playSelectionBtn" type="button" class="calc2PrimaryBtn">Play Selected Cards</button>
+          <button id="resetPlayBtn" type="button" class="calc2SecondaryBtn">Reset Played Cards</button>
+          <button id="clearHandBtn" type="button" class="calc2GhostBtn">Clear Hand</button>
+          <button id="clearJokersBtn" type="button" class="calc2GhostBtn">Clear Jokers</button>
+        </div>
+
+        <div class="calc2PanelNote">
+          This page follows the in-game flow. For scaling Jokers, click a Joker in the top lane and edit its current value in the inspector on the right.
+        </div>
+      </section>
+
+      <section class="calc2Table">
+        <div class="calc2Table__panel calc2Table__panel--jokers">
+          <div class="calc2PanelHeader">
+            <div>
+              <div class="calc2PanelHeader__eyebrow">Top Zone</div>
+              <h2 class="calc2PanelHeader__title">Joker Area</h2>
+            </div>
+            <button id="openJokerPickerBtn" type="button" class="calc2HeaderBtn">Add Jokers</button>
+          </div>
+          <div id="jokerLane" class="calc2Lane calc2Lane--jokers"></div>
+        </div>
+
+        <div class="calc2Table__panel calc2Table__panel--played">
+          <div class="calc2PanelHeader">
+            <div>
+              <div class="calc2PanelHeader__eyebrow">Center Zone</div>
+              <h2 class="calc2PanelHeader__title">Play Area</h2>
+            </div>
+            <div id="playHint" class="calc2HintText">Select 1 to 5 cards from the hand, then play them here.</div>
+          </div>
+          <div id="playedLane" class="calc2Lane calc2Lane--played"></div>
+        </div>
+
+        <div class="calc2Table__panel calc2Table__panel--hand">
+          <div class="calc2PanelHeader">
+            <div>
+              <div class="calc2PanelHeader__eyebrow">Bottom Zone</div>
+              <h2 class="calc2PanelHeader__title">Hand Area</h2>
+            </div>
+            <button id="openCardPickerBtn" type="button" class="calc2DeckBtn">All Cards</button>
+          </div>
+          <div id="handLane" class="calc2Lane calc2Lane--hand"></div>
+        </div>
+      </section>
+
+      <aside class="calc2Inspector">
+        <div class="calc2Inspector__eyebrow">Inspector</div>
+        <h2 class="calc2Inspector__title">Current Joker</h2>
+        <div id="jokerInspector" class="calc2Inspector__body"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="pickerOverlay" class="calc2Modal" hidden>
+    <div class="calc2Modal__scrim" data-close-modal="true"></div>
+    <div class="calc2Modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pickerTitle">
+      <div class="calc2Modal__header">
+        <div>
+          <div id="pickerEyebrow" class="calc2Modal__eyebrow">Select</div>
+          <h2 id="pickerTitle" class="calc2Modal__title">Select</h2>
+        </div>
+        <button id="pickerCloseBtn" type="button" class="calc2IconBtn" aria-label="Close">×</button>
+      </div>
+
+      <div class="calc2Modal__toolbar">
+        <input id="pickerSearchInput" class="calc2SearchInput" type="search" placeholder="Search">
+        <div id="pickerSummary" class="calc2Modal__summary">Nothing selected</div>
+      </div>
+
+      <div id="pickerGrid" class="calc2PickerGrid"></div>
+
+      <div class="calc2Modal__footer">
+        <button id="pickerCancelBtn" type="button" class="calc2GhostBtn">Cancel</button>
+        <button id="pickerConfirmBtn" type="button" class="calc2PrimaryBtn">Add Selected</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="cards.js"></script>
+  <script type="text/javascript" src="hoverCard.js"></script>
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="calculator-2.js"></script>
+</body>
+
+</html>
