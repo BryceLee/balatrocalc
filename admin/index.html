@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
-    <title>Seed Analyzer Admin</title>
+    <title>BalatroCalc 管理后台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body {
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
         background: #0f1513;
         color: #f5f5f5;
         margin: 0;
@@ -124,84 +124,84 @@
   </script>
 </head>
   <body>
-    <h1>Seed Analyzer Admin</h1>
+    <h1>BalatroCalc 管理后台</h1>
 
     <section>
-      <h2>Analytics Reports</h2>
+      <h2>行为分析报表</h2>
       <div class="toolbar">
         <div>
-          <label for="analyticsDays">Range</label>
+          <label for="analyticsDays">时间范围</label>
           <select id="analyticsDays">
-            <option value="7">Last 7 days</option>
-            <option value="30" selected>Last 30 days</option>
-            <option value="90">Last 90 days</option>
+            <option value="7">最近 7 天</option>
+            <option value="30" selected>最近 30 天</option>
+            <option value="90">最近 90 天</option>
           </select>
         </div>
         <div>
-          <label for="analyticsEmail">User Timeline Email</label>
+          <label for="analyticsEmail">用户行为时间线邮箱</label>
           <input id="analyticsEmail" type="email" placeholder="user@example.com">
         </div>
-        <button id="analyticsRefresh" type="button">Refresh Reports</button>
+        <button id="analyticsRefresh" type="button">刷新报表</button>
       </div>
-      <p id="analyticsStatus" class="status muted">Loading analytics...</p>
+      <p id="analyticsStatus" class="status muted">正在加载行为数据...</p>
 
-      <h3>Overview</h3>
+      <h3>总览</h3>
       <div id="analyticsOverview" class="admin-grid"></div>
 
-      <h3>Subscription Funnel</h3>
+      <h3>订阅转化漏斗</h3>
       <div class="scroll-table">
         <table>
           <thead>
             <tr>
-              <th>Event</th>
-              <th>Unique Users</th>
-              <th>Total Events</th>
+              <th>事件</th>
+              <th>独立用户</th>
+              <th>事件次数</th>
             </tr>
           </thead>
           <tbody id="analyticsFunnel"></tbody>
         </table>
       </div>
 
-      <h3>Dropoffs</h3>
+      <h3>流失点</h3>
       <div class="scroll-table">
         <table>
           <thead>
             <tr>
-              <th>Event</th>
-              <th>Unique Users</th>
-              <th>Total Events</th>
+              <th>事件</th>
+              <th>独立用户</th>
+              <th>事件次数</th>
             </tr>
           </thead>
           <tbody id="analyticsDropoffs"></tbody>
         </table>
       </div>
 
-      <h3>Paid Usage</h3>
+      <h3>付费用户使用情况</h3>
       <div class="scroll-table">
         <table>
           <thead>
             <tr>
-              <th>Email</th>
-              <th>Last Seen</th>
-              <th>Total Events</th>
-              <th>Paid Analyze</th>
-              <th>Seed Copied</th>
+              <th>邮箱</th>
+              <th>最近活跃</th>
+              <th>事件次数</th>
+              <th>付费分析次数</th>
+              <th>复制种子次数</th>
             </tr>
           </thead>
           <tbody id="analyticsPaidUsage"></tbody>
         </table>
       </div>
 
-      <h3>User Timeline</h3>
+      <h3>用户行为时间线</h3>
       <div class="scroll-table">
         <table>
           <thead>
             <tr>
-              <th>Time</th>
-              <th>Event</th>
-              <th>Status</th>
-              <th>Path</th>
-              <th>Properties</th>
+              <th>时间</th>
+              <th>事件</th>
+              <th>状态</th>
+              <th>页面</th>
+              <th>属性</th>
             </tr>
           </thead>
           <tbody id="analyticsTimeline"></tbody>
@@ -210,36 +210,36 @@
     </section>
 
     <section>
-      <h2>Search Memberships</h2>
-      <label for="searchEmail">Email or Payer Email</label>
+      <h2>查询会员</h2>
+      <label for="searchEmail">邮箱或付款邮箱</label>
       <input id="searchEmail" type="email" placeholder="user@example.com">
-      <button id="searchBtn" type="button">Search</button>
+      <button id="searchBtn" type="button">查询</button>
       <pre id="searchResult">[]</pre>
     </section>
 
     <section>
-      <h2>Add Manual Membership (USDT)</h2>
-      <label for="paymentEmail">Email</label>
+      <h2>手动添加会员（USDT）</h2>
+      <label for="paymentEmail">邮箱</label>
       <input id="paymentEmail" type="email" placeholder="user@example.com">
-      <label for="paymentPlan">Plan</label>
+      <label for="paymentPlan">套餐</label>
       <select id="paymentPlan">
-        <option value="seed-monthly">Seed Monthly</option>
-        <option value="seed-yearly">Seed Yearly</option>
-        <option value="seed-lifetime">Seed Lifetime</option>
+        <option value="seed-monthly">Seed 月付</option>
+        <option value="seed-yearly">Seed 年付</option>
+        <option value="seed-lifetime">Seed 终身</option>
       </select>
-      <label for="paymentAmount">Amount (USD)</label>
+      <label for="paymentAmount">金额（USD）</label>
       <input id="paymentAmount" type="number" step="0.01" value="5">
-      <label for="paymentTxn">Transaction Id</label>
+      <label for="paymentTxn">交易号</label>
       <input id="paymentTxn" type="text" placeholder="tx_123">
-      <button id="paymentBtn" type="button">Add Payment</button>
+      <button id="paymentBtn" type="button">添加付款</button>
       <div id="paymentStatus" class="status"></div>
     </section>
 
     <section>
-      <h2>Revoke Access</h2>
-      <label for="revokeEmail">Email</label>
+      <h2>撤销权限</h2>
+      <label for="revokeEmail">邮箱</label>
       <input id="revokeEmail" type="email" placeholder="user@example.com">
-      <button id="revokeBtn" type="button">Revoke All Active</button>
+      <button id="revokeBtn" type="button">撤销全部有效会员</button>
       <div id="revokeStatus" class="status"></div>
     </section>
 
