@@ -4,6 +4,7 @@
   const FREE_DAILY_LIMIT = 3;
   const STORAGE_KEYS = {
     deviceId: 'bc_device_id',
+    sessionId: 'bc_session_id',
     usage: 'bc_usage_daily',
     paidEmail: 'bc_paid_email',
     paidFeatures: 'bc_paid_features'
@@ -50,6 +51,8 @@
   let skipProgrammaticAnalyzeCountUntil = 0;
   let decorateBlueprintQueued = false;
   let seedChromeResizeObserver;
+  let paidSessionStartedTracked = false;
+  const analyticsSessionStartedAt = Date.now();
 
   function init() {
     quotaRemainingEl = document.getElementById('seedQuotaRemaining');
@@ -83,9 +86,12 @@
     if (!paywallMember || !paywallMemberPlan || !paywallMemberEmail || !paywallMemberExpires || !paywallUpgrade) return false;
 
     ensureDeviceId();
+    ensureSessionId();
     hydrateEmail();
     updateQuotaUI();
     refreshSubscriptionState();
+    trackPaidSessionStarted();
+    setupSessionHeartbeat();
     consumeSeedGeneratorRedirect();
     setupPaywallActions();
     setupAnalyzeIntercept();
@@ -104,6 +110,84 @@
       localStorage.setItem(STORAGE_KEYS.deviceId, id);
     }
     return id;
+  }
+
+  function ensureSessionId() {
+    let id = sessionStorage.getItem(STORAGE_KEYS.sessionId);
+    if (!id) {
+      id = `sess_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
+      sessionStorage.setItem(STORAGE_KEYS.sessionId, id);
+    }
+    return id;
+  }
+
+  function getAnalyticsContext() {
+    const paid = getPaidInfo();
+    const email = normalizeEmail(paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || paywallEmail?.value || '');
+    return {
+      paid,
+      email,
+      subscriptionStatus: paid.active ? 'paid' : 'free'
+    };
+  }
+
+  function track(eventName, properties = {}) {
+    try {
+      const context = getAnalyticsContext();
+      const payload = {
+        eventName,
+        anonymousId: ensureDeviceId(),
+        sessionId: ensureSessionId(),
+        email: context.email || null,
+        featureKey: FEATURE_KEY,
+        subscriptionStatus: context.subscriptionStatus,
+        path: window.location.pathname,
+        referrer: document.referrer || '',
+        properties: {
+          ...properties,
+          plan: context.paid.plan || properties.plan || null
+        }
+      };
+      const body = JSON.stringify(payload);
+      if (navigator.sendBeacon) {
+        const blob = new Blob([body], { type: 'application/json' });
+        navigator.sendBeacon('/api/events', blob);
+        return;
+      }
+      fetch('/api/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body,
+        keepalive: true
+      }).catch(() => {});
+    } catch {
+      // Analytics must never block the seed analyzer.
+    }
+  }
+
+  function trackPaidSessionStarted() {
+    const paid = getPaidInfo();
+    if (!paid.active || paidSessionStartedTracked) return;
+    paidSessionStartedTracked = true;
+    track('paid_session_started', {
+      plan: paid.plan || null,
+      expiresAt: paid.expiresAt || null
+    });
+  }
+
+  function setupSessionHeartbeat() {
+    track('session_heartbeat', {
+      elapsedMs: 0,
+      visibility: document.visibilityState || 'visible'
+    });
+    setInterval(() => {
+      track('session_heartbeat', {
+        elapsedMs: Date.now() - analyticsSessionStartedAt,
+        visibility: document.visibilityState || 'visible'
+      });
+      trackPaidSessionStarted();
+    }, 30000);
   }
 
   function hydrateEmail() {
@@ -294,12 +378,17 @@
     }
   }
 
-  function showPaywall() {
+  function showPaywall(trigger = 'unknown') {
     paywall.classList.add('active');
+    track('paywall_viewed', { trigger });
   }
 
-  function hidePaywall() {
+  function hidePaywall(reason = 'dismissed') {
+    const wasActive = paywall.classList.contains('active');
     paywall.classList.remove('active');
+    if (wasActive) {
+      track('paywall_closed', { reason });
+    }
   }
 
   function setStatus(message, isError, isSuccess = false) {
@@ -323,7 +412,7 @@
   }
 
   function closePaywallWithToast(message) {
-    hidePaywall();
+    hidePaywall('success');
     clearStatus();
     showToast(message);
   }
@@ -384,11 +473,13 @@
     if (!paid.active) {
       if (remainingUses() <= 0) {
         params.delete('seed');
+        track('free_limit_reached', { source: 'seed-generator-redirect' });
         setStatus('Daily free limit reached. Subscribe for unlimited access.', true);
-        showPaywall();
+        showPaywall('free_limit_reached');
       } else {
         recordUse();
         updateQuotaUI();
+        track('seed_analyze_allowed_free', { source: 'seed-generator-redirect' });
         skipProgrammaticAnalyzeCountUntil = Date.now() + 5000;
       }
     }
@@ -448,16 +539,21 @@
       setStatus('Enter a valid email.', true);
       return;
     }
+    track('subscription_check_started', { emailEntered: true });
     try {
       const data = await getJson(`/api/subscription?email=${encodeURIComponent(email)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
       if (!data.active) {
+        track('subscription_check_failed', { reason: 'inactive' });
         setStatus('No active subscription found.', true);
         return;
       }
       setPaidInfo(email, data.plan || `${FEATURE_KEY}-monthly`, data.expiresAt || null);
       updateQuotaUI();
+      track('subscription_check_success', { plan: data.plan || `${FEATURE_KEY}-monthly` });
+      trackPaidSessionStarted();
       closePaywallWithToast('Subscription confirmed. Access unlocked.');
     } catch (error) {
+      track('subscription_check_failed', { reason: error.message || 'request_failed' });
       setStatus(error.message || 'Subscription check failed.', true);
     }
   }
@@ -470,6 +566,7 @@
       const data = await getJson(`/api/subscription?email=${encodeURIComponent(cachedEmail)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
       if (data.active) {
         setPaidInfo(data.email || cachedEmail, data.plan || `${FEATURE_KEY}-monthly`, data.expiresAt || null);
+        trackPaidSessionStarted();
       } else {
         clearPaidFeature(FEATURE_KEY);
       }
@@ -495,6 +592,7 @@
     const endpoint = parsed.period === 'lifetime' ? '/api/paypal/create-order' : '/api/paypal/create-subscription';
     try {
       setStatus('Redirecting to PayPal...', false);
+      track('checkout_started', { plan, period: parsed.period, source: CHECKOUT_SOURCE });
       const data = await postJson(endpoint, {
         email,
         plan,
@@ -508,6 +606,7 @@
       }
       window.location.href = data.approvalUrl;
     } catch (error) {
+      track('checkout_create_failed', { plan, reason: error.message || 'request_failed' });
       setStatus(error.message || 'Failed to start PayPal checkout.', true);
     }
   }
@@ -518,6 +617,7 @@
     if (!state) return;
     showPaywall();
     if (state === 'cancel') {
+      track('payment_cancelled', { plan: params.get('plan') || null });
       setStatus('Payment canceled.', true);
       cleanupPaypalParams(params);
       return;
@@ -544,6 +644,8 @@
         if (data.active) {
           setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan, data.expiresAt || null);
           updateQuotaUI();
+          track('payment_success', { plan: data.plan || plan, period: parsed.period });
+          trackPaidSessionStarted();
           closePaywallWithToast('Subscription confirmed. Access unlocked.');
         } else {
           setStatus('Payment pending. Please retry later.', true);
@@ -555,6 +657,8 @@
         if (data.active) {
           setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan, data.expiresAt || null);
           updateQuotaUI();
+          track('payment_success', { plan: data.plan || plan, period: parsed.period });
+          trackPaidSessionStarted();
           closePaywallWithToast('Subscription confirmed. Access unlocked.');
         } else {
           setStatus('Subscription not active yet. Please retry later.', true);
@@ -579,13 +683,20 @@
   }
 
   function setupPaywallActions() {
-    manageBtn.addEventListener('click', () => showPaywall());
-    paywallClose.addEventListener('click', hidePaywall);
+    manageBtn.addEventListener('click', () => showPaywall('manage_button'));
+    paywallClose.addEventListener('click', () => hidePaywall('close_button'));
     paywall.addEventListener('click', (event) => {
-      if (event.target === paywall) hidePaywall();
+      if (event.target === paywall) hidePaywall('backdrop');
     });
     paywallPay.addEventListener('click', startPayment);
     paywallCheck.addEventListener('click', checkSubscription);
+    document.querySelectorAll('input[name="seedPlan"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        if (input.checked) {
+          track('plan_selected', { plan: input.value });
+        }
+      });
+    });
     paywallUpgrade.addEventListener('click', () => {
       clearStatus();
       const plans = document.querySelector('.seedPaywallPlans');
@@ -623,7 +734,7 @@
     quotaLogoutBtn.addEventListener('click', () => {
       clearPaidInfo();
       paywallEmail.value = '';
-      showPaywall();
+      showPaywall('quota_logout');
     });
   }
 
@@ -926,19 +1037,25 @@
       if (!event.isTrusted && Date.now() < skipProgrammaticAnalyzeCountUntil) return;
 
       const paid = getPaidInfo();
-      if (paid.active) return;
+      track('seed_analyze_started', { source: 'analyzer_button' });
+      if (paid.active) {
+        track('seed_analyze_allowed_paid', { source: 'analyzer_button' });
+        return;
+      }
 
       if (remainingUses() <= 0) {
         event.preventDefault();
         event.stopPropagation();
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+        track('free_limit_reached', { source: 'analyzer_button' });
         setStatus('Daily free limit reached. Subscribe for unlimited access.', true);
-        showPaywall();
+        showPaywall('free_limit_reached');
         return;
       }
 
       recordUse();
       updateQuotaUI();
+      track('seed_analyze_allowed_free', { source: 'analyzer_button' });
     }, true);
   }
 
