@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
+    crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <meta name="robots" content="index, follow">
+  <title>Balatro High Card Build Guide - Early Stability, Scaling, and Late Shell</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="guide-page.css">
+  <meta name="description"
+    content="Balatro high card build guide: when to pivot, how to stabilize early, what actually scales, and how to finish with a real late-game shell without forcing the wrong line.">
+  <meta property="og:title" content="Balatro High Card Build Guide">
+  <meta property="og:description" content="A practical high-card playbook: stabilize, scale, then lock a late-game shell.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-high-card-build">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro High Card Build Guide">
+  <meta name="twitter:description" content="Stability → scaling → late shell: a practical high-card playbook.">
+  <meta name="theme-color" content="#23352e">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-high-card-build">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Balatro High Card Build Guide",
+      "description": "A practical guide to high-card runs: how to stabilize early, identify real scaling, and finish with a late-game shell.",
+      "author": {
+        "@type": "Organization",
+        "name": "balatrocalc"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "balatrocalc",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://balatrocalc.com/assets/favicon.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://balatrocalc.com/balatro-high-card-build"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a high card build in Balatro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A high card build is a run that scores primarily from consistent one-card (or low-card) hands while your jokers and deck plan provide the scaling. It trades hand complexity for reliability, so you can focus on economy, scaling engines, and a clean late-game shell."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I pivot into high card?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pivot when your current line is unstable (you are missing key hand enablers), or when you already have a scaling engine that does not depend on making complex hands. The pivot is most successful when you can keep your economy healthy while transitioning."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do high card runs fail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most failures come from confusing an early stabilizer with a real scaling plan, or from over-investing in late-game pieces before the run can reliably survive the next few blinds. If nothing improves over time, the ceiling is fake."
+          }
+        }
+      ]
+    }
+  </script>
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+  <div id="titleBar">
+    <div class="titleBarBrand">balatrocalc</div>
+    <span class="subtitle">high card build guide</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/blog" class="nav-link">blog</a>
+    <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
+    <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <a href="/support" class="nav-link">support</a>
+    <a href="https://forms.gle/f5CHmQ5cb69JZYnN7" class="nav-link nav-link--feedback" target="_blank"
+      rel="noreferrer">feedback</a>
+  </nav>
+
+  <div class="guidePageWrap">
+    <section class="guideHero">
+      <div class="guideBadge">Build library</div>
+      <h1 class="guideTitle">High card is a decision to prioritize reliability</h1>
+      <p class="guideLead">
+        A strong high-card run keeps hands simple so you can spend your attention on the things that really move the
+        ceiling: economy, scaling engines, and a late-game shell that cashes in the scaling.
+      </p>
+      <div class="guideActions">
+        <a class="guideBtn guideBtn--primary" href="/balatro-builds">Builds guide</a>
+        <a class="guideBtn" href="/balatro-jokers">Joker roles</a>
+        <a class="guideBtn" href="/balatro-seeds">Browse seeds</a>
+      </div>
+    </section>
+
+    <section class="guidePanelGrid">
+      <div class="contentCard guidePanel">
+        <h2 class="contentTitle">Who this build fits</h2>
+        <ul>
+          <li><strong>You want consistency:</strong> fewer hand requirements means fewer dead rounds.</li>
+          <li><strong>Your scaling is external:</strong> the run grows from jokers, copies, or steady upgrades.</li>
+          <li><strong>You can’t force a hand:</strong> the shop is not offering the enablers your current line needs.</li>
+        </ul>
+      </div>
+      <div class="contentCard guidePanel">
+        <h2 class="contentTitle">Common misconception</h2>
+        <p>“High card” is not the scaling by itself. It is the delivery method. The run still needs a scaling engine and a late shell.</p>
+      </div>
+    </section>
+
+    <section class="contentCard">
+      <h2 class="contentTitle">Three checkpoints for a real high card line</h2>
+      <div class="guideSteps">
+        <div class="guideStep">
+          <span class="guideStepNum">1</span>
+          <div>
+            <h3>Stability (survive the next blinds)</h3>
+            <p>Pick a short-term stabilizer that makes your current score reliable. If you can’t clear the next few blinds, your late-game plan never matters.</p>
+          </div>
+        </div>
+        <div class="guideStep">
+          <span class="guideStepNum">2</span>
+          <div>
+            <h3>Scaling (something improves over time)</h3>
+            <p>Identify what gets stronger as you cycle shops and antes. If nothing grows, you will hit a wall even if you are “consistent.”</p>
+          </div>
+        </div>
+        <div class="guideStep">
+          <span class="guideStepNum">3</span>
+          <div>
+            <h3>Late shell (how you cash in)</h3>
+            <p>Decide what the final structure is: a clean high-card shell, a pivot into another archetype, or a hybrid that keeps hands simple but spikes the ceiling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contentCard">
+      <h2 class="contentTitle">Practical pivot rules</h2>
+      <ul>
+        <li><strong>Pivot early when you lack enablers:</strong> if your run depends on drawing a perfect hand each round, simplify.</li>
+        <li><strong>Don’t pivot without a plan to scale:</strong> consistency without growth is just a slower loss.</li>
+        <li><strong>Protect the economy:</strong> high-card is strongest when it lets you reroll less and buy smarter.</li>
+        <li><strong>Keep the exit open:</strong> if the shop offers a clean route into a stronger late shell, take it.</li>
+      </ul>
+    </section>
+
+    <section class="contentCard">
+      <h2 class="contentTitle">Use the calculator to sanity-check your line</h2>
+      <p>
+        If you’re unsure whether your “stable” plan actually clears the next blind, run the numbers in the
+        <a href="/" class="nav-link nav-link--inline">Balatro calculator</a>. The fastest improvement is often not a new idea — it’s dropping a weak piece for a real scaling engine.
+      </p>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+</body>
+
+</html>
+
