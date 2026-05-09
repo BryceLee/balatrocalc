@@ -1,4 +1,9 @@
 .env
 .env.*
+!.env.example
 .dev.vars
 .ga4/
+node_modules/
+
+# Local Google OAuth token helper
+scripts/get-google-token.js

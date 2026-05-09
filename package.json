@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "google:token": "node scripts/get-google-token.js",
+    "google:test": "node scripts/test-google-apis.js"
+  },
+  "dependencies": {
+    "@google-analytics/data": "^5.2.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "googleapis": "^171.4.0"
+  }
+}
