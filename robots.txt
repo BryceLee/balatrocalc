@@ -8,5 +8,8 @@ Sitemap: https://balatrocalc.com/sitemap.xml
 Disallow: /admin/
 Disallow: /blueprint/
 Disallow: /blueprint-dist/
+Disallow: /debug
 Disallow: /debug.html
+Disallow: /i18n/
+Disallow: /paywall-test
 Disallow: /paywall-test.html
