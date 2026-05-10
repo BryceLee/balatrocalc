@@ -352,7 +352,6 @@ function incrementJokerCount(inc) {
 }
 
 function setJokerCount() {
-  console.log(jokerCountHTML.innerText);
   let willBlur = false;
 
   if(jokerCountHTML.innerText.indexOf('\n') >= 0) {
@@ -381,7 +380,6 @@ function incrementCardCount(inc) {
 }
 
 function setCardCount() {
-  console.log(cardCountHTML.innerText);
   let willBlur = false;
 
   if(cardCountHTML.innerText.indexOf('\n') >= 0) {

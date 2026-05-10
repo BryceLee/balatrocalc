@@ -352,7 +352,6 @@ function incrementJokerCount(inc) {
 }
 
 function setJokerCount() {
-  console.log(jokerCountHTML.innerText);
   let willBlur = false;
 
   if (jokerCountHTML.innerText.indexOf('\n') >= 0) {
@@ -381,7 +380,6 @@ function incrementCardCount(inc) {
 }
 
 function setCardCount() {
-  console.log(cardCountHTML.innerText);
   let willBlur = false;
 
   if (cardCountHTML.innerText.indexOf('\n') >= 0) {
@@ -1252,7 +1250,6 @@ function resetHand() {
 if (window.applyJokerLocalization) {
   window.addEventListener('DOMContentLoaded', () => {
       window.applyJokerLocalization().then((changed) => {
-          console.log("Localization applied. Redrawing...");
           if (typeof redrawJokers === 'function') redrawJokers();
           if (typeof updateTooltips === 'function') updateTooltips();
           if (typeof redrawPlayfield === 'function') redrawPlayfield();
