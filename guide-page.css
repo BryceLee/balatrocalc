@@ -170,6 +170,22 @@
   overflow: hidden;
 }
 
+.guideFaqItem h3 {
+  margin: 0;
+  padding: 15px 16px 8px;
+  color: #fff2be;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.guideFaqItem > p {
+  margin: 0;
+  padding: 0 16px 16px;
+  color: #cfdbd5;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
 .guideFaqBtn {
   width: 100%;
   display: flex;
