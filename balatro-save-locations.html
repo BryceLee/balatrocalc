@@ -25,6 +25,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where are Balatro save files on Windows?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The common Windows Balatro save file location is %APPDATA%/Balatro. Open Run with Win+R, paste that path, and back up the folder before editing any .jkr file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is the Balatro save location on Steam Deck?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On Steam Deck and Proton installs, look under the Balatro compatdata folder: [steam path]/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which Balatro save files should I back up?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Back up the whole Balatro save folder when possible. If you only need one file, copy the relevant .jkr file such as profile.jkr, meta.jkr, settings.jkr, or a numbered save file before replacing it."
+        }
+      }
+    ]
+  }
+  </script>
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
   <script>
@@ -55,8 +87,9 @@
       <div class="guideBadge">Save guide</div>
       <h1 class="guideTitle">Balatro save file location by platform</h1>
       <p class="guideLead">
-        If you need to back up a run, replace a file, or open a save in the editor, the first job is finding the right folder.
-        This page keeps the common Balatro save paths in one place.
+        If you need to back up a run, replace <code>profile.jkr</code>, inspect <code>meta.jkr</code>, or open a save
+        in the editor, the first job is finding the right folder. This page keeps the common Balatro save file
+        locations for Windows, macOS, Linux, and Steam Deck in one place.
       </p>
       <div class="guideActions">
         <a class="guideBtn guideBtn--primary" href="/balatro-save-editor">Open Save Editor</a>
@@ -71,10 +104,42 @@
           <li><strong>macOS:</strong> <code>/Users/[user]/Library/Application Support/Balatro/</code></li>
           <li><strong>Linux / Steam Deck:</strong> <code>[steam path]/compatdata/2379780/pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/</code></li>
         </ul>
+        <p>
+          The folder can contain files such as <code>profile.jkr</code>, <code>meta.jkr</code>,
+          <code>settings.jkr</code>, and numbered save files. If you are using cloud sync, close Balatro before
+          replacing anything so Steam does not overwrite your backup.
+        </p>
       </div>
       <div class="contentCard guidePanel">
         <h2 class="contentTitle">Backup rule</h2>
         <p>Before you replace or edit any file, duplicate the entire Balatro save folder or at least copy the exact <code>.jkr</code> file you plan to touch. Backups are faster than recovery.</p>
+      </div>
+    </section>
+
+    <section class="contentCard">
+      <h2 class="contentTitle">Quick checks by platform</h2>
+      <div class="guideSteps">
+        <div class="guideStep">
+          <span class="guideStepNum">1</span>
+          <div>
+            <h3>Windows save folder</h3>
+            <p>Press <strong>Win + R</strong>, paste <code>%APPDATA%/Balatro</code>, and copy the folder before opening any <code>.jkr</code> file in the save editor.</p>
+          </div>
+        </div>
+        <div class="guideStep">
+          <span class="guideStepNum">2</span>
+          <div>
+            <h3>Steam Deck and Proton</h3>
+            <p>Check the Steam library path that owns Balatro, then follow <code>compatdata/2379780</code> into the Windows-style AppData folder. Editing a different prefix will not affect your live save.</p>
+          </div>
+        </div>
+        <div class="guideStep">
+          <span class="guideStepNum">3</span>
+          <div>
+            <h3>macOS Library folder</h3>
+            <p>If the Library folder is hidden, use Finder's <strong>Go to Folder</strong> command and paste <code>~/Library/Application Support/Balatro/</code>.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -102,6 +167,24 @@
             <p>You are moving between desktop, Linux, or Steam Deck and need to confirm you are editing the right compatdata path.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="contentCard">
+      <h2 class="contentTitle">FAQ</h2>
+      <div class="guideFaqList">
+        <article class="guideFaqItem">
+          <h3>Which Balatro file is my profile?</h3>
+          <p>Your profile data is usually stored in <code>profile.jkr</code>. Back it up before using a Balatro save file editor or moving unlock data between installs.</p>
+        </article>
+        <article class="guideFaqItem">
+          <h3>What is <code>meta.jkr</code> used for?</h3>
+          <p><code>meta.jkr</code> is one of the common Balatro data files players inspect when troubleshooting account-level or progression-related state. Treat it as sensitive save data and keep an untouched copy.</p>
+        </article>
+        <article class="guideFaqItem">
+          <h3>Why can I not find the Steam Deck folder?</h3>
+          <p>Steam Deck paths depend on the library where Balatro is installed. Search that library for <code>compatdata/2379780</code>, then continue into <code>pfx/drive_c/users/steamuser/AppData/Roaming/Balatro/</code>.</p>
+        </article>
       </div>
     </section>
   </div>
