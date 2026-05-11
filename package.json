@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "google:token": "node scripts/get-google-token.js",
-    "google:test": "node scripts/test-google-apis.js"
+    "google:test": "node scripts/test-google-apis.js",
+    "test:calculator3": "node tests/calculator3-model.test.mjs"
   },
   "dependencies": {
     "@google-analytics/data": "^5.2.2",

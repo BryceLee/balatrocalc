@@ -1,0 +1,507 @@
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) {
+    module.exports = factory();
+  } else {
+    root.Calculator3 = factory();
+  }
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+
+  const HAND_TYPES = [
+    { key: 'flushFive', label: 'Flush Five', baseChips: 160, baseMult: 16, levelChips: 50, levelMult: 3 },
+    { key: 'flushHouse', label: 'Flush House', baseChips: 140, baseMult: 14, levelChips: 40, levelMult: 4 },
+    { key: 'fiveOfAKind', label: 'Five of a Kind', baseChips: 120, baseMult: 12, levelChips: 35, levelMult: 3 },
+    { key: 'straightFlush', label: 'Straight Flush', baseChips: 100, baseMult: 8, levelChips: 40, levelMult: 4 },
+    { key: 'fourOfAKind', label: 'Four of a Kind', baseChips: 60, baseMult: 7, levelChips: 30, levelMult: 3 },
+    { key: 'fullHouse', label: 'Full House', baseChips: 40, baseMult: 4, levelChips: 25, levelMult: 2 },
+    { key: 'flush', label: 'Flush', baseChips: 35, baseMult: 4, levelChips: 15, levelMult: 2 },
+    { key: 'straight', label: 'Straight', baseChips: 30, baseMult: 4, levelChips: 30, levelMult: 3 },
+    { key: 'threeOfAKind', label: 'Three of a Kind', baseChips: 30, baseMult: 3, levelChips: 20, levelMult: 2 },
+    { key: 'twoPair', label: 'Two Pair', baseChips: 20, baseMult: 2, levelChips: 20, levelMult: 1 },
+    { key: 'pair', label: 'Pair', baseChips: 10, baseMult: 2, levelChips: 15, levelMult: 1 },
+    { key: 'highCard', label: 'High Card', baseChips: 5, baseMult: 1, levelChips: 10, levelMult: 1 }
+  ];
+
+  const HAND_BY_KEY = Object.fromEntries(HAND_TYPES.map((hand) => [hand.key, hand]));
+  const HAND_RANK = Object.fromEntries(HAND_TYPES.map((hand, index) => [hand.key, index]));
+
+  const RANKS = [
+    { key: '2', label: '2', value: 2, chips: 2 },
+    { key: '3', label: '3', value: 3, chips: 3 },
+    { key: '4', label: '4', value: 4, chips: 4 },
+    { key: '5', label: '5', value: 5, chips: 5 },
+    { key: '6', label: '6', value: 6, chips: 6 },
+    { key: '7', label: '7', value: 7, chips: 7 },
+    { key: '8', label: '8', value: 8, chips: 8 },
+    { key: '9', label: '9', value: 9, chips: 9 },
+    { key: '10', label: '10', value: 10, chips: 10 },
+    { key: 'J', label: 'Jack', value: 11, chips: 10 },
+    { key: 'Q', label: 'Queen', value: 12, chips: 10 },
+    { key: 'K', label: 'King', value: 13, chips: 10 },
+    { key: 'A', label: 'Ace', value: 14, chips: 11 }
+  ];
+
+  const SUITS = [
+    { key: 'hearts', label: 'Hearts' },
+    { key: 'clubs', label: 'Clubs' },
+    { key: 'diamonds', label: 'Diamonds' },
+    { key: 'spades', label: 'Spades' }
+  ];
+
+  const RANK_BY_KEY = Object.fromEntries(RANKS.map((rank) => [rank.key, rank]));
+  const SUIT_BY_KEY = Object.fromEntries(SUITS.map((suit) => [suit.key, suit]));
+  const FACE_RANKS = new Set(['J', 'Q', 'K']);
+  const FIBONACCI_RANKS = new Set(['A', '2', '3', '5', '8']);
+  const EVEN_RANKS = new Set(['2', '4', '6', '8', '10']);
+  const ODD_RANKS = new Set(['A', '3', '5', '7', '9']);
+
+  function titleCaseId(label) {
+    return String(label || '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim()
+      .replace(/\s+([a-z0-9])/g, (_, char) => char.toUpperCase());
+  }
+
+  function countCards(cards, predicate) {
+    return cards.reduce((count, card) => count + (predicate(card) ? 1 : 0), 0);
+  }
+
+  function makeAddMultJoker(id, name, mult, appliesTo) {
+    return {
+      id,
+      name,
+      mode: 'addMult',
+      explain: '+Mult',
+      apply(state) {
+        if (appliesTo && !appliesTo(state)) return null;
+        return {
+          multAdd: mult,
+          text: `${name}: +${mult} Mult`
+        };
+      }
+    };
+  }
+
+  function makeAddChipsJoker(id, name, chips, appliesTo) {
+    return {
+      id,
+      name,
+      mode: 'addChips',
+      explain: '+Chips',
+      apply(state) {
+        if (appliesTo && !appliesTo(state)) return null;
+        return {
+          chipsAdd: chips,
+          text: `${name}: +${chips} Chips`
+        };
+      }
+    };
+  }
+
+  function makeXMultJoker(id, name, xMult, appliesTo) {
+    return {
+      id,
+      name,
+      mode: 'xMult',
+      explain: 'XMult',
+      apply(state) {
+        if (appliesTo && !appliesTo(state)) return null;
+        return {
+          xMult,
+          text: `${name}: X${xMult} Mult`
+        };
+      }
+    };
+  }
+
+  const JOKER_CATALOG = {
+    joker: makeAddMultJoker('joker', 'Joker', 4),
+    jolly: makeAddMultJoker('jolly', 'Jolly Joker', 8, (state) => state.handType === 'pair'),
+    zany: makeAddMultJoker('zany', 'Zany Joker', 12, (state) => state.handType === 'threeOfAKind'),
+    mad: makeAddMultJoker('mad', 'Mad Joker', 10, (state) => state.handType === 'twoPair'),
+    crazy: makeAddMultJoker('crazy', 'Crazy Joker', 12, (state) => state.handType === 'straight'),
+    droll: makeAddMultJoker('droll', 'Droll Joker', 10, (state) => state.handType === 'flush'),
+    sly: makeAddChipsJoker('sly', 'Sly Joker', 50, (state) => state.handType === 'pair'),
+    wily: makeAddChipsJoker('wily', 'Wily Joker', 100, (state) => state.handType === 'threeOfAKind'),
+    clever: makeAddChipsJoker('clever', 'Clever Joker', 80, (state) => state.handType === 'twoPair'),
+    devious: makeAddChipsJoker('devious', 'Devious Joker', 100, (state) => state.handType === 'straight'),
+    crafty: makeAddChipsJoker('crafty', 'Crafty Joker', 80, (state) => state.handType === 'flush'),
+    half: makeAddMultJoker('half', 'Half Joker', 20, (state) => state.playedCards.length <= 3),
+    cavendish: makeXMultJoker('cavendish', 'Cavendish', 3),
+    duo: makeXMultJoker('duo', 'The Duo', 2, (state) => state.handType === 'pair'),
+    trio: makeXMultJoker('trio', 'The Trio', 3, (state) => state.handType === 'threeOfAKind'),
+    order: makeXMultJoker('order', 'The Order', 3, (state) => state.handType === 'straight'),
+    family: makeXMultJoker('family', 'The Family', 4, (state) => state.handType === 'fourOfAKind'),
+    tribe: makeXMultJoker('tribe', 'The Tribe', 2, (state) => state.handType === 'flush'),
+    greedy: perCardJoker('greedy', 'Greedy Joker', 'diamonds', 'multAdd', 3),
+    lusty: perCardJoker('lusty', 'Lusty Joker', 'hearts', 'multAdd', 3),
+    wrathful: perCardJoker('wrathful', 'Wrathful Joker', 'spades', 'multAdd', 3),
+    gluttonous: perCardJoker('gluttonous', 'Gluttonous Joker', 'clubs', 'multAdd', 3),
+    fibonacci: perRankJoker('fibonacci', 'Fibonacci', FIBONACCI_RANKS, 'multAdd', 8),
+    evenSteven: perRankJoker('evenSteven', 'Even Steven', EVEN_RANKS, 'multAdd', 4),
+    oddTodd: perRankJoker('oddTodd', 'Odd Todd', ODD_RANKS, 'chipsAdd', 31),
+    scholar: {
+      id: 'scholar',
+      name: 'Scholar',
+      mode: 'cardChipsMult',
+      explain: 'Ace Chips/Mult',
+      apply(state) {
+        const count = countCards(state.scoringCards, (card) => card.rank === 'A');
+        if (!count) return null;
+        return {
+          chipsAdd: count * 20,
+          multAdd: count * 4,
+          text: `Scholar: ${count} scoring Ace${count === 1 ? '' : 's'} add +${count * 20} Chips and +${count * 4} Mult`
+        };
+      }
+    },
+    scaryFace: perRankJoker('scaryFace', 'Scary Face', FACE_RANKS, 'chipsAdd', 30),
+    abstract: {
+      id: 'abstract',
+      name: 'Abstract Joker',
+      mode: 'jokerCountMult',
+      explain: '+3 Mult per Joker',
+      apply(state) {
+        const count = state.activeJokerCount;
+        if (!count) return null;
+        return {
+          multAdd: count * 3,
+          text: `Abstract Joker: ${count} Jokers add +${count * 3} Mult`
+        };
+      }
+    }
+  };
+
+  function perCardJoker(id, name, suit, effectKey, amount) {
+    return {
+      id,
+      name,
+      mode: effectKey,
+      explain: `${amount} per ${SUIT_BY_KEY[suit].label} scoring card`,
+      apply(state) {
+        const count = countCards(state.scoringCards, (card) => card.suit === suit);
+        if (!count) return null;
+        return {
+          [effectKey]: count * amount,
+          text: `${name}: ${count} scoring ${SUIT_BY_KEY[suit].label} card${count === 1 ? '' : 's'} add ${formatSigned(effectKey, count * amount)}`
+        };
+      }
+    };
+  }
+
+  function perRankJoker(id, name, ranks, effectKey, amount) {
+    return {
+      id,
+      name,
+      mode: effectKey,
+      explain: `${amount} per matching scoring rank`,
+      apply(state) {
+        const count = countCards(state.scoringCards, (card) => ranks.has(card.rank));
+        if (!count) return null;
+        return {
+          [effectKey]: count * amount,
+          text: `${name}: ${count} matching scoring card${count === 1 ? '' : 's'} add ${formatSigned(effectKey, count * amount)}`
+        };
+      }
+    };
+  }
+
+  function formatSigned(effectKey, value) {
+    if (effectKey === 'chipsAdd') return `+${value} Chips`;
+    if (effectKey === 'multAdd') return `+${value} Mult`;
+    return `+${value}`;
+  }
+
+  function normalizeCard(card) {
+    const rank = String(card && card.rank ? card.rank : '').toUpperCase();
+    const suit = String(card && card.suit ? card.suit : '').toLowerCase();
+    if (!RANK_BY_KEY[rank]) {
+      throw new Error(`Unknown rank: ${rank || '(empty)'}`);
+    }
+    if (!SUIT_BY_KEY[suit]) {
+      throw new Error(`Unknown suit: ${suit || '(empty)'}`);
+    }
+    return {
+      rank,
+      suit,
+      scoring: card.scoring !== false,
+      chips: RANK_BY_KEY[rank].chips
+    };
+  }
+
+  function normalizeJoker(joker) {
+    if (typeof joker === 'string') {
+      return { id: joker };
+    }
+    if (!joker || typeof joker !== 'object') {
+      return { id: '' };
+    }
+    return {
+      id: joker.id || titleCaseId(joker.name),
+      disabled: joker.disabled === true
+    };
+  }
+
+  function normalizeInput(input) {
+    const playedCards = (input.playedCards || []).map(normalizeCard);
+    const analysis = analyzePlayedCards(playedCards);
+    const handType = input.handType && HAND_BY_KEY[input.handType] ? input.handType : analysis.handType;
+    const level = Math.max(1, Math.floor(Number(input.level) || 1));
+    const jokers = (input.jokers || []).map(normalizeJoker).filter((joker) => joker.id);
+    const scoringIndexes = analysis.scoringIndexes;
+    const scoringCards = playedCards.filter((card, index) => scoringIndexes.has(index) && card.scoring !== false);
+
+    return {
+      handType,
+      level,
+      playedCards,
+      scoringCards,
+      jokers,
+      rules: {
+        plasmaDeck: input.rules && input.rules.plasmaDeck === true
+      },
+      analysis
+    };
+  }
+
+  function analyzePlayedCards(cards) {
+    const normalizedCards = cards.map((card) => RANK_BY_KEY[card.rank] ? card : normalizeCard(card));
+    if (!normalizedCards.length) {
+      return { handType: 'highCard', scoringIndexes: new Set(), reason: 'No cards selected' };
+    }
+
+    const rankGroups = groupIndexes(normalizedCards, 'rank');
+    const suitGroups = groupIndexes(normalizedCards, 'suit');
+    const counts = Array.from(rankGroups.values()).map((indexes) => indexes.length).sort((a, b) => b - a);
+    const isFlush = normalizedCards.length >= 5 && Array.from(suitGroups.values()).some((indexes) => indexes.length >= 5);
+    const straightIndexes = findStraightIndexes(normalizedCards);
+    const isStraight = straightIndexes.size >= 5;
+    const sameSuitIndexes = isFlush ? largestGroupIndexes(suitGroups) : new Set();
+
+    if (counts[0] >= 5 && isFlush) return typedAnalysis('flushFive', intersectionIndexes(largestGroupIndexes(rankGroups), sameSuitIndexes));
+    if (counts[0] >= 3 && counts[1] >= 2 && isFlush) return typedAnalysis('flushHouse', sameSuitIndexes);
+    if (counts[0] >= 5) return typedAnalysis('fiveOfAKind', largestGroupIndexes(rankGroups));
+    if (isStraight && isFlush) return typedAnalysis('straightFlush', intersectionIndexes(straightIndexes, sameSuitIndexes));
+    if (counts[0] >= 4) return typedAnalysis('fourOfAKind', largestGroupIndexes(rankGroups));
+    if (counts[0] >= 3 && counts[1] >= 2) return typedAnalysis('fullHouse', fullHouseIndexes(rankGroups));
+    if (isFlush) return typedAnalysis('flush', sameSuitIndexes);
+    if (isStraight) return typedAnalysis('straight', straightIndexes);
+    if (counts[0] >= 3) return typedAnalysis('threeOfAKind', largestGroupIndexes(rankGroups));
+
+    const pairGroups = Array.from(rankGroups.values()).filter((indexes) => indexes.length >= 2);
+    if (pairGroups.length >= 2) return typedAnalysis('twoPair', new Set(pairGroups.flat()));
+    if (pairGroups.length === 1) return typedAnalysis('pair', new Set(pairGroups[0]));
+
+    return typedAnalysis('highCard', new Set([highestCardIndex(normalizedCards)]));
+  }
+
+  function typedAnalysis(handType, scoringIndexes) {
+    return {
+      handType,
+      scoringIndexes: trimScoringIndexes(scoringIndexes, handType),
+      reason: HAND_BY_KEY[handType].label
+    };
+  }
+
+  function groupIndexes(cards, field) {
+    const groups = new Map();
+    cards.forEach((card, index) => {
+      const key = card[field];
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(index);
+    });
+    return groups;
+  }
+
+  function largestGroupIndexes(groups) {
+    let largest = [];
+    for (const indexes of groups.values()) {
+      if (indexes.length > largest.length) largest = indexes;
+    }
+    return new Set(largest);
+  }
+
+  function intersectionIndexes(a, b) {
+    const result = new Set();
+    for (const value of a) {
+      if (b.has(value)) result.add(value);
+    }
+    return result;
+  }
+
+  function fullHouseIndexes(rankGroups) {
+    const groups = Array.from(rankGroups.values()).sort((a, b) => b.length - a.length);
+    return new Set(groups.slice(0, 2).flat());
+  }
+
+  function trimScoringIndexes(indexes, handType) {
+    const maxCards = handType === 'highCard' ? 1 : 5;
+    return new Set(Array.from(indexes).slice(0, maxCards));
+  }
+
+  function highestCardIndex(cards) {
+    let bestIndex = 0;
+    cards.forEach((card, index) => {
+      if (RANK_BY_KEY[card.rank].value > RANK_BY_KEY[cards[bestIndex].rank].value) {
+        bestIndex = index;
+      }
+    });
+    return bestIndex;
+  }
+
+  function findStraightIndexes(cards) {
+    const byValue = new Map();
+    cards.forEach((card, index) => {
+      const value = RANK_BY_KEY[card.rank].value;
+      if (!byValue.has(value)) byValue.set(value, index);
+      if (value === 14 && !byValue.has(1)) byValue.set(1, index);
+    });
+
+    const values = Array.from(byValue.keys()).sort((a, b) => a - b);
+    let bestRun = [];
+    let currentRun = [];
+    values.forEach((value) => {
+      if (!currentRun.length || value === currentRun[currentRun.length - 1] + 1) {
+        currentRun.push(value);
+      } else {
+        currentRun = [value];
+      }
+      if (currentRun.length > bestRun.length) bestRun = currentRun.slice();
+    });
+
+    if (bestRun.length < 5) return new Set();
+    return new Set(bestRun.slice(-5).map((value) => byValue.get(value)));
+  }
+
+  function baseHandScore(handType, level) {
+    const hand = HAND_BY_KEY[handType] || HAND_BY_KEY.highCard;
+    const safeLevel = Math.max(1, Math.floor(Number(level) || 1));
+    return {
+      chips: hand.baseChips + hand.levelChips * (safeLevel - 1),
+      mult: hand.baseMult + hand.levelMult * (safeLevel - 1)
+    };
+  }
+
+  function score(input) {
+    const state = normalizeInput(input || {});
+    const hand = HAND_BY_KEY[state.handType] || HAND_BY_KEY.highCard;
+    const base = baseHandScore(hand.key, state.level);
+    let chips = base.chips;
+    let mult = base.mult;
+    const steps = [{
+      phase: 'hand',
+      label: `${hand.label} level ${state.level}`,
+      chips,
+      mult,
+      score: Math.floor(chips * mult)
+    }];
+
+    state.scoringCards.forEach((card) => {
+      chips += card.chips;
+      steps.push({
+        phase: 'card',
+        label: `${RANK_BY_KEY[card.rank].label} of ${SUIT_BY_KEY[card.suit].label}: +${card.chips} Chips`,
+        chips,
+        mult,
+        score: Math.floor(chips * mult)
+      });
+    });
+
+    const activeJokers = state.jokers.filter((joker) => joker.disabled !== true);
+    const jokerState = {
+      handType: state.handType,
+      playedCards: state.playedCards,
+      scoringCards: state.scoringCards,
+      activeJokerCount: activeJokers.length
+    };
+    const unsupportedJokers = [];
+
+    activeJokers.forEach((joker) => {
+      const effect = JOKER_CATALOG[joker.id];
+      if (!effect) {
+        unsupportedJokers.push(joker.id);
+        steps.push({
+          phase: 'joker',
+          label: `${joker.id}: not modeled in Calculator 3 yet`,
+          chips,
+          mult,
+          score: Math.floor(chips * mult),
+          skipped: true
+        });
+        return;
+      }
+
+      const delta = effect.apply(jokerState);
+      if (!delta) {
+        steps.push({
+          phase: 'joker',
+          label: `${effect.name}: condition not met`,
+          chips,
+          mult,
+          score: Math.floor(chips * mult),
+          skipped: true
+        });
+        return;
+      }
+
+      if (delta.chipsAdd) chips += delta.chipsAdd;
+      if (delta.multAdd) mult += delta.multAdd;
+      if (delta.xMult) mult *= delta.xMult;
+      steps.push({
+        phase: 'joker',
+        label: delta.text,
+        chips,
+        mult,
+        score: Math.floor(chips * mult)
+      });
+    });
+
+    let finalChips = chips;
+    let finalMult = mult;
+    if (state.rules.plasmaDeck) {
+      const balanced = (chips + mult) / 2;
+      finalChips = balanced;
+      finalMult = balanced;
+      steps.push({
+        phase: 'deck',
+        label: 'Plasma Deck: balance Chips and Mult',
+        chips: finalChips,
+        mult: finalMult,
+        score: Math.floor(finalChips * finalMult)
+      });
+    }
+
+    return {
+      handType: state.handType,
+      handLabel: hand.label,
+      level: state.level,
+      chips: roundForDisplay(finalChips),
+      mult: roundForDisplay(finalMult),
+      score: Math.floor(finalChips * finalMult),
+      scoringCards: state.scoringCards,
+      playedCards: state.playedCards,
+      steps,
+      unsupportedJokers,
+      warnings: unsupportedJokers.length
+        ? [`${unsupportedJokers.length} Joker effect${unsupportedJokers.length === 1 ? '' : 's'} still need engine coverage`]
+        : []
+    };
+  }
+
+  function roundForDisplay(value) {
+    return Math.round(value * 1000) / 1000;
+  }
+
+  return {
+    HAND_TYPES,
+    RANKS,
+    SUITS,
+    JOKER_CATALOG,
+    analyzePlayedCards,
+    baseHandScore,
+    normalizeInput,
+    score
+  };
+});

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <title>Calculator 3 Lab - BalatroCalc</title>
+  <meta name="description" content="BalatroCalc Calculator 3 lab for explainable hand and Joker score modeling.">
+  <link rel="canonical" href="https://balatrocalc.com/calculator-3">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="calculator3.css">
+</head>
+<body class="calculator3-page">
+  <main class="calculator3-shell">
+    <header class="calculator3-topbar">
+      <a class="calculator3-brand" href="/">
+        <img src="assets/favicon.svg" alt="" width="42" height="42">
+        <span>BalatroCalc</span>
+      </a>
+      <nav class="calculator3-nav" aria-label="Calculator navigation">
+        <a href="/">Classic</a>
+        <a href="/#calculatorModuleHub">Version 2</a>
+        <a href="/balatro-seeds">Seeds</a>
+      </nav>
+    </header>
+
+    <section class="calculator3-hero" aria-labelledby="calculator3Title">
+      <div class="calculator3-heading">
+        <div class="calculator3-kicker">Calculator 3 Lab</div>
+        <h1 id="calculator3Title">Explainable score path</h1>
+        <p>Model a played hand, order simple Joker effects, and inspect every Chips, Mult, and XMult step before this flow replaces the embedded calculator modules.</p>
+      </div>
+      <output class="calculator3-score" id="calculator3ScoreCard" aria-live="polite">
+        <span class="calculator3-score__label">Final score</span>
+        <span class="calculator3-score__value" id="calculator3Score">0</span>
+        <span class="calculator3-score__formula" id="calculator3Formula">0 Chips x 0 Mult</span>
+      </output>
+    </section>
+
+    <section class="calculator3-grid">
+      <form class="calculator3-panel" id="calculator3Form">
+        <div class="calculator3-panel__head">
+          <h2>Run state</h2>
+          <button class="calculator3-button" type="button" id="calculator3ExampleBtn">Load sample</button>
+        </div>
+        <div class="calculator3-panel__body">
+          <div class="calculator3-field">
+            <label for="calculator3Hand">Hand</label>
+            <select id="calculator3Hand" name="handType"></select>
+          </div>
+
+          <div class="calculator3-field">
+            <label for="calculator3Level">Level</label>
+            <input id="calculator3Level" name="level" type="number" min="1" max="999" step="1" value="1">
+          </div>
+
+          <div class="calculator3-card-grid">
+            <div class="calculator3-card-grid__label">Played cards</div>
+            <div id="calculator3Cards"></div>
+          </div>
+
+          <div class="calculator3-field">
+            <label for="calculator3JokerSelect">Add Joker</label>
+            <div class="calculator3-joker-row">
+              <select id="calculator3JokerSelect"></select>
+              <button class="calculator3-button" type="button" id="calculator3AddJokerBtn">Add</button>
+            </div>
+          </div>
+
+          <div class="calculator3-joker-list" id="calculator3Jokers" aria-label="Selected Jokers"></div>
+
+          <div class="calculator3-actions">
+            <button class="calculator3-button" type="button" id="calculator3InferBtn">Infer hand</button>
+            <button class="calculator3-button" type="reset">Reset</button>
+          </div>
+        </div>
+      </form>
+
+      <section class="calculator3-panel" aria-labelledby="calculator3BreakdownTitle">
+        <div class="calculator3-panel__head">
+          <h2 id="calculator3BreakdownTitle">Breakdown</h2>
+          <span id="calculator3HandLabel" class="calculator3-kicker">High Card</span>
+        </div>
+        <div class="calculator3-panel__body">
+          <div class="calculator3-steps" id="calculator3Steps"></div>
+          <div class="calculator3-warning" id="calculator3Warnings" hidden></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="calculator3-model.js"></script>
+  <script>
+    (function () {
+      const form = document.getElementById('calculator3Form');
+      const handSelect = document.getElementById('calculator3Hand');
+      const levelInput = document.getElementById('calculator3Level');
+      const cardsRoot = document.getElementById('calculator3Cards');
+      const jokerSelect = document.getElementById('calculator3JokerSelect');
+      const jokersRoot = document.getElementById('calculator3Jokers');
+      const addJokerBtn = document.getElementById('calculator3AddJokerBtn');
+      const inferBtn = document.getElementById('calculator3InferBtn');
+      const exampleBtn = document.getElementById('calculator3ExampleBtn');
+      const scoreEl = document.getElementById('calculator3Score');
+      const formulaEl = document.getElementById('calculator3Formula');
+      const stepsEl = document.getElementById('calculator3Steps');
+      const handLabelEl = document.getElementById('calculator3HandLabel');
+      const warningsEl = document.getElementById('calculator3Warnings');
+      const selectedJokers = ['joker', 'cavendish'];
+
+      function option(value, label) {
+        const node = document.createElement('option');
+        node.value = value;
+        node.textContent = label;
+        return node;
+      }
+
+      function fillSelects() {
+        Calculator3.HAND_TYPES.forEach((hand) => {
+          handSelect.append(option(hand.key, hand.label));
+        });
+
+        Object.values(Calculator3.JOKER_CATALOG)
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .forEach((joker) => {
+            jokerSelect.append(option(joker.id, joker.name));
+          });
+
+        for (let i = 0; i < 5; i += 1) {
+          const row = document.createElement('div');
+          row.className = 'calculator3-card';
+          const rankSelect = document.createElement('select');
+          const suitSelect = document.createElement('select');
+          rankSelect.name = `rank-${i}`;
+          suitSelect.name = `suit-${i}`;
+          rankSelect.setAttribute('aria-label', `Card ${i + 1} rank`);
+          suitSelect.setAttribute('aria-label', `Card ${i + 1} suit`);
+          Calculator3.RANKS.forEach((rank) => rankSelect.append(option(rank.key, rank.label)));
+          Calculator3.SUITS.forEach((suit) => suitSelect.append(option(suit.key, suit.label)));
+          row.append(rankSelect, suitSelect);
+          cardsRoot.append(row);
+        }
+      }
+
+      function renderSelectedJokers() {
+        jokersRoot.replaceChildren();
+        selectedJokers.forEach((jokerId, index) => {
+          const row = document.createElement('div');
+          row.className = 'calculator3-joker-row';
+          const select = document.createElement('select');
+          select.setAttribute('aria-label', `Joker ${index + 1}`);
+          Object.values(Calculator3.JOKER_CATALOG)
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .forEach((joker) => select.append(option(joker.id, joker.name)));
+          select.value = jokerId;
+          select.addEventListener('change', () => {
+            selectedJokers[index] = select.value;
+            render();
+          });
+
+          const remove = document.createElement('button');
+          remove.className = 'calculator3-button calculator3-button--danger';
+          remove.type = 'button';
+          remove.textContent = 'X';
+          remove.setAttribute('aria-label', `Remove Joker ${index + 1}`);
+          remove.addEventListener('click', () => {
+            selectedJokers.splice(index, 1);
+            renderSelectedJokers();
+            render();
+          });
+
+          row.append(select, remove);
+          jokersRoot.append(row);
+        });
+      }
+
+      function readCards() {
+        const cards = [];
+        for (let i = 0; i < 5; i += 1) {
+          cards.push({
+            rank: form.elements[`rank-${i}`].value,
+            suit: form.elements[`suit-${i}`].value
+          });
+        }
+        return cards;
+      }
+
+      function render() {
+        const result = Calculator3.score({
+          handType: handSelect.value,
+          level: levelInput.value,
+          playedCards: readCards(),
+          jokers: selectedJokers
+        });
+
+        scoreEl.textContent = result.score.toLocaleString('en-US');
+        formulaEl.textContent = `${result.chips} Chips x ${result.mult} Mult`;
+        handLabelEl.textContent = result.handLabel;
+
+        stepsEl.replaceChildren();
+        result.steps.forEach((step) => {
+          const row = document.createElement('div');
+          row.className = 'calculator3-step';
+          const label = document.createElement('div');
+          label.className = 'calculator3-step__label';
+          label.textContent = step.label;
+          const meta = document.createElement('div');
+          meta.className = 'calculator3-step__meta';
+          meta.textContent = `${step.chips} x ${step.mult}`;
+          row.append(label, meta);
+          stepsEl.append(row);
+        });
+
+        if (result.warnings.length) {
+          warningsEl.hidden = false;
+          warningsEl.textContent = result.warnings.join(' ');
+        } else {
+          warningsEl.hidden = true;
+          warningsEl.textContent = '';
+        }
+      }
+
+      function loadSample() {
+        handSelect.value = 'pair';
+        levelInput.value = '2';
+        const sampleCards = [
+          ['A', 'hearts'],
+          ['A', 'diamonds'],
+          ['8', 'spades'],
+          ['5', 'hearts'],
+          ['3', 'clubs']
+        ];
+        sampleCards.forEach(([rank, suit], index) => {
+          form.elements[`rank-${index}`].value = rank;
+          form.elements[`suit-${index}`].value = suit;
+        });
+        selectedJokers.splice(0, selectedJokers.length, 'jolly', 'fibonacci', 'cavendish');
+        renderSelectedJokers();
+        render();
+      }
+
+      fillSelects();
+      renderSelectedJokers();
+      loadSample();
+
+      form.addEventListener('input', render);
+      form.addEventListener('reset', () => {
+        window.setTimeout(() => {
+          selectedJokers.splice(0, selectedJokers.length, 'joker', 'cavendish');
+          renderSelectedJokers();
+          render();
+        }, 0);
+      });
+      addJokerBtn.addEventListener('click', () => {
+        selectedJokers.push(jokerSelect.value);
+        renderSelectedJokers();
+        render();
+      });
+      inferBtn.addEventListener('click', () => {
+        handSelect.value = Calculator3.analyzePlayedCards(readCards()).handType;
+        render();
+      });
+      exampleBtn.addEventListener('click', loadSample);
+    })();
+  </script>
+</body>
+</html>
