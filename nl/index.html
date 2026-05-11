@@ -10,6 +10,7 @@
   <title>Balatro Calculator - Nederlands</title>
     <base href="../">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="calculator3.css">
   <meta name="description" content="Localized calculator access while the translated guide is still being prepared.">
   <meta name="keywords"
     content="Balatro calculator,joker,wiki, chips, score, seeds, tool, card, mods, balatulator, balatrolator,balatro 攻略">
@@ -50,6 +51,7 @@
         "Hand Score Calculator",
         "Joker Order Optimizer",
         "Score Breakdown",
+        "Explainable Score Path Lab",
         "Hand Solver"
       ]
     }
@@ -131,6 +133,10 @@
         <button id="openBalatrolatorModuleBtn" type="button" class="version2PromptBtn">
           <span class="version2PromptBtn__kicker">new</span>
           <span class="version2PromptBtn__text">Calculator not meeting your needs? Try version 2.</span>
+        </button>
+        <button id="openCalculator3ModuleBtn" type="button" class="version2PromptBtn version2PromptBtn--calculator3">
+          <span class="version2PromptBtn__kicker">lab</span>
+          <span class="version2PromptBtn__text">Preview calculator 3 Joker explanations.</span>
         </button>
       </div>
       <div class="toggleArea" style="margin-bottom: 1em">
@@ -488,7 +494,7 @@
       <div class="calculatorModuleHub__header">
         <div>
           <h2 class="contentTitle calculatorModuleHub__title">Switch to a different scoring workflow</h2>
-          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, or open a Balatrolator-powered version 2 module for manual round data, exact hand setup, and alternate verification.</p>
+          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, open a Balatrolator-powered version 2 module for manual round data, or try the Calculator 3 lab for a step-by-step score path.</p>
         </div>
       </div>
 
@@ -496,6 +502,7 @@
         <div class="calculatorModuleHub__tabButtons" role="tablist" aria-label="Calculator modules">
           <button id="calculatorModuleTabClassic" class="calculatorModuleTab active" type="button" role="tab" aria-selected="true" data-module-target="classic">version 1</button>
           <button id="calculatorModuleTabBalatrolator" class="calculatorModuleTab" type="button" role="tab" aria-selected="false" data-module-target="balatrolator">version 2</button>
+          <button id="calculatorModuleTabCalculator3" class="calculatorModuleTab" type="button" role="tab" aria-selected="false" data-module-target="calculator3">version 3 lab</button>
         </div>
         <div class="calculatorModuleFontControls" aria-label="Version 2 text size controls">
           <span class="calculatorModuleFontControls__label">text size</span>
@@ -533,6 +540,7 @@
         <div class="calculatorModuleClassic__actions">
           <button id="scrollToTopCalculatorBtn" type="button" class="calculatorModuleAction">Back to main calculator</button>
           <button id="openBalatrolatorFromHubBtn" type="button" class="calculatorModuleAction calculatorModuleAction--accent">Open version 2 here</button>
+          <button id="openCalculator3FromHubBtn" type="button" class="calculatorModuleAction calculatorModuleAction--accent">Open version 3 lab</button>
         </div>
       </div>
 
@@ -548,6 +556,50 @@
             data-src="/balatrolator-module/index.html"
             loading="lazy"
           ></iframe>
+        </div>
+      </div>
+
+      <div id="calculatorModulePanelCalculator3" class="calculatorModulePanel" hidden>
+        <div class="calculator3Shell">
+          <div class="calculator3Intro">
+            <div>
+              <h3>Calculator 3 Joker model</h3>
+              <p>First vertical slice for a self-owned calculator: normalize every Joker into effect type, timing, required inputs, and an explainable left-to-right step list before replacing the scoring engine.</p>
+            </div>
+            <div class="calculator3Stats" aria-label="Calculator 3 catalog stats">
+              <div>
+                <strong id="calculator3CatalogTotal">0</strong>
+                <span>Jokers mapped</span>
+              </div>
+              <div>
+                <strong id="calculator3ScoreEffects">0</strong>
+                <span>engine exact</span>
+              </div>
+              <div>
+                <strong id="calculator3StatefulEffects">0</strong>
+                <span>needs inputs</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calculator3Workbench">
+            <div class="calculator3Catalog">
+              <div class="calculator3Controls">
+                <input id="calculator3Search" class="calculator3Search" type="search" placeholder="Search Joker, effect, or condition" autocomplete="off">
+                <select id="calculator3EffectFilter" class="calculator3EffectFilter" aria-label="Filter Joker effect type"></select>
+              </div>
+              <div id="calculator3CatalogList" class="calculator3CatalogList" aria-label="Calculator 3 Joker catalog"></div>
+            </div>
+
+            <div class="calculator3Explain">
+              <div class="calculator3Explain__header">
+                <span>Pair scenario preview</span>
+                <strong id="calculator3ScorePreview">10 x 2 = 20</strong>
+              </div>
+              <div id="calculator3SelectionList" class="calculator3SelectionList" aria-label="Selected Jokers"></div>
+              <ol id="calculator3ExplainList" class="calculator3ExplainList"></ol>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -593,6 +645,8 @@
   <script type="text/javascript" src="breakdown.js"></script>
   <script type="text/javascript" src="manageWorkers.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="calculator3-model.js"></script>
+  <script type="text/javascript" src="calculator3.js"></script>
   <script type="text/javascript" src="hand-url.js"></script>
 
   <!-- Balatro Background Shader -->
@@ -700,8 +754,10 @@
     (function () {
       const hub = document.getElementById('calculatorModuleHub');
       const promptBtn = document.getElementById('openBalatrolatorModuleBtn');
+      const calculator3PromptBtn = document.getElementById('openCalculator3ModuleBtn');
       const topCalculatorBtn = document.getElementById('scrollToTopCalculatorBtn');
       const openBalatrolatorBtn = document.getElementById('openBalatrolatorFromHubBtn');
+      const openCalculator3Btn = document.getElementById('openCalculator3FromHubBtn');
       const frame = document.getElementById('balatrolatorModuleFrame');
       const fontDecreaseBtn = document.getElementById('calculatorModuleFontDecrease');
       const fontResetBtn = document.getElementById('calculatorModuleFontReset');
@@ -709,9 +765,10 @@
       const fontValue = document.getElementById('calculatorModuleFontValue');
       const classicPanel = document.getElementById('calculatorModulePanelClassic');
       const balatrolatorPanel = document.getElementById('calculatorModulePanelBalatrolator');
+      const calculator3Panel = document.getElementById('calculatorModulePanelCalculator3');
       const tabs = Array.from(document.querySelectorAll('.calculatorModuleTab'));
 
-      if (!hub || !promptBtn || !topCalculatorBtn || !openBalatrolatorBtn || !frame || !fontDecreaseBtn || !fontResetBtn || !fontIncreaseBtn || !fontValue || !classicPanel || !balatrolatorPanel || tabs.length === 0) {
+      if (!hub || !promptBtn || !calculator3PromptBtn || !topCalculatorBtn || !openBalatrolatorBtn || !openCalculator3Btn || !frame || !fontDecreaseBtn || !fontResetBtn || !fontIncreaseBtn || !fontValue || !classicPanel || !balatrolatorPanel || !calculator3Panel || tabs.length === 0) {
         return;
       }
 
@@ -894,11 +951,14 @@
 
       function setModule(target, shouldScroll) {
         const showBalatrolator = target === 'balatrolator';
+        const showCalculator3 = target === 'calculator3';
 
         document.body.classList.toggle('calculatorModuleModeBalatrolator', showBalatrolator);
-        hub.hidden = !showBalatrolator;
-        classicPanel.hidden = showBalatrolator;
+        hub.hidden = target === 'classic';
+        classicPanel.hidden = showBalatrolator || showCalculator3;
         balatrolatorPanel.hidden = !showBalatrolator;
+        calculator3Panel.hidden = !showCalculator3;
+        fontDecreaseBtn.closest('.calculatorModuleFontControls').hidden = !showBalatrolator;
 
         tabs.forEach((tab) => {
           const isActive = tab.dataset.moduleTarget === target;
@@ -912,10 +972,10 @@
           scheduleResizeFrame();
         }
 
-        setModulePreference(moduleStorageKey, showBalatrolator ? 'balatrolator' : 'classic');
+        setModulePreference(moduleStorageKey, showBalatrolator ? 'balatrolator' : showCalculator3 ? 'calculator3' : 'classic');
 
         if (shouldScroll) {
-          if (showBalatrolator) {
+          if (showBalatrolator || showCalculator3) {
             hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
           } else {
             document.getElementById('mainContainer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -937,6 +997,14 @@
         setModule('balatrolator', true);
       });
 
+      calculator3PromptBtn.addEventListener('click', () => {
+        setModule('calculator3', true);
+      });
+
+      openCalculator3Btn.addEventListener('click', () => {
+        setModule('calculator3', true);
+      });
+
       fontDecreaseBtn.addEventListener('click', () => {
         changeModuleFontScale(currentModuleFontScale - moduleFontScaleStep);
       });
@@ -956,7 +1024,7 @@
       let initialModule = 'classic';
 
       const savedModule = getModulePreference(moduleStorageKey);
-      if (savedModule === 'balatrolator' || savedModule === 'classic') {
+      if (savedModule === 'balatrolator' || savedModule === 'calculator3' || savedModule === 'classic') {
         initialModule = savedModule;
       }
 
