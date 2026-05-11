@@ -741,6 +741,29 @@
       let frameContentResizeObserver = null;
       let frameContentMutationObserver = null;
       let frameResizeAnimationFrame = 0;
+      const modulePreferenceFallback = new Map();
+
+      function getModulePreference(key) {
+        try {
+          const value = window.localStorage.getItem(key);
+          if (value !== null) {
+            modulePreferenceFallback.set(key, value);
+            return value;
+          }
+        } catch (error) {
+          console.warn('calculator module preference load skipped', error);
+        }
+        return modulePreferenceFallback.get(key) || '';
+      }
+
+      function setModulePreference(key, value) {
+        modulePreferenceFallback.set(key, String(value));
+        try {
+          window.localStorage.setItem(key, String(value));
+        } catch (error) {
+          console.warn('calculator module preference save skipped', error);
+        }
+      }
 
       function clampModuleFontScale(value) {
         return Math.min(maxModuleFontScale, Math.max(minModuleFontScale, value));
@@ -774,11 +797,7 @@
       }
 
       function persistModuleFontScale() {
-        try {
-          window.localStorage.setItem(moduleFontScaleStorageKey, String(currentModuleFontScale));
-        } catch (error) {
-          console.warn('calculator module font preference save skipped', error);
-        }
+        setModulePreference(moduleFontScaleStorageKey, currentModuleFontScale);
       }
 
       function changeModuleFontScale(nextScale) {
@@ -908,11 +927,7 @@
           scheduleResizeFrame();
         }
 
-        try {
-          window.localStorage.setItem(moduleStorageKey, showBalatrolator ? 'balatrolator' : 'classic');
-        } catch (error) {
-          console.warn('calculator module preference save skipped', error);
-        }
+        setModulePreference(moduleStorageKey, showBalatrolator ? 'balatrolator' : 'classic');
 
         if (shouldScroll) {
           if (showBalatrolator) {
@@ -955,22 +970,15 @@
 
       let initialModule = 'classic';
 
-      try {
-        const savedModule = window.localStorage.getItem(moduleStorageKey);
-        if (savedModule === 'balatrolator' || savedModule === 'classic') {
-          initialModule = savedModule;
-        }
-      } catch (error) {
-        console.warn('calculator module preference load skipped', error);
+      const savedModule = getModulePreference(moduleStorageKey);
+      if (savedModule === 'balatrolator' || savedModule === 'classic') {
+        initialModule = savedModule;
       }
 
-      try {
-        const savedFontScale = Number(window.localStorage.getItem(moduleFontScaleStorageKey));
-        if (Number.isFinite(savedFontScale)) {
-          currentModuleFontScale = clampModuleFontScale(savedFontScale);
-        }
-      } catch (error) {
-        console.warn('calculator module font preference load skipped', error);
+      const savedFontScaleValue = getModulePreference(moduleFontScaleStorageKey);
+      const savedFontScale = Number(savedFontScaleValue);
+      if (savedFontScaleValue !== '' && Number.isFinite(savedFontScale)) {
+        currentModuleFontScale = clampModuleFontScale(savedFontScale);
       }
 
       updateFontControls();
