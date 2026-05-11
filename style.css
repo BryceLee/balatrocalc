@@ -512,7 +512,8 @@ a:hover {
 }
 
 .modulePromptArea {
-  display: block;
+  display: grid;
+  gap: 10px;
 }
 
 .version2PromptBtn {
@@ -564,6 +565,24 @@ a:hover {
 
 .version2PromptBtn__text {
   line-height: 1.25;
+}
+
+.modulePromptArea .version2PromptBtn {
+  width: 100%;
+}
+
+.version2PromptBtn--calculator3 {
+  border-color: rgba(136, 209, 187, 0.36);
+  background: rgba(14, 42, 42, 0.66);
+}
+
+.version2PromptBtn--calculator3 .version2PromptBtn__kicker {
+  color: #88d1bb;
+}
+
+.version2PromptBtn--calculator3:hover {
+  border-color: rgba(136, 209, 187, 0.62);
+  background: rgba(19, 56, 55, 0.78);
 }
 
 .calculatorModuleHub {
@@ -812,6 +831,7 @@ body.calculatorModuleModeBalatrolator .calculatorModuleFrameShell {
   color: #f5f5e0;
   background: rgba(58, 80, 85, 0.58);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .calculatorModuleAction:hover {

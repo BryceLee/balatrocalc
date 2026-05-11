@@ -76,10 +76,19 @@ This slice covers hand bases, rank chips, hand inference, and deterministic Joke
 
 The model intentionally reports unsupported IDs such as `blueprint` instead of estimating them.
 
+## Homepage Coverage Workbench
+
+The homepage module hub now has a Calculator 3 lab tab that turns the local `cards.js` Joker table into a coverage workbench:
+
+- `Engine exact`: Joker names that match `calculator3-model.js` and use the tested Calculator 3 scoring path.
+- `Heuristic math`: descriptions with parseable `+Chips`, `+Mult`, or `XMult` math, useful for migration triage but not yet trusted as engine output.
+- `Needs inputs`: copy, retrigger, random, run-history, economy, deck-shaping, or dynamic state effects that need explicit product inputs before they should affect score.
+
+This is intentionally both a migration tool and a product surface. Users can search all 150 local Jokers, pick up to five, and see whether each selected effect is already exact, only heuristic, or waiting on state design.
+
 ## Next Iteration
 
-1. Add a real homepage entry after the current dirty `index.html` module-preference work is resolved.
-2. Extend the model with seals, steel-in-hand, gold/lucky expected-value controls, and retrigger phases.
+1. Extend the exact engine with high-confidence static Jokers that the coverage workbench already classifies as heuristic math.
+2. Add user-facing state controls for common dynamic scoring inputs: remaining discards, final hand, hand already played this round, deck card counts, and dollars.
 3. Add copy/copyable state serialization so examples can move between classic, version 2, and Calculator 3.
-4. Add a Joker coverage table generated from `JOKER_CATALOG` and compare it against the 150 local Joker definitions in `cards.js`.
-5. Decide how Calculator 3 coexists with Worker optimization: manual explainable score path first, optimizer migration later.
+4. Decide how Calculator 3 coexists with Worker optimization: manual explainable score path first, optimizer migration later.
