@@ -507,15 +507,19 @@
       <a href="/ru/terms/">terms</a>
     </div>
   </div>
-  <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
   <script>
-    kofiWidgetOverlay.draw('imlzx', {
-      'type': 'floating-chat',
-      'floating-chat.donateButton.text': 'Support me',
-      'floating-chat.donateButton.background-color': '#00b9fe',
-      'floating-chat.donateButton.text-color': '#fff'
-    });
+    window.drawKofiWidget = function () {
+      if (window.kofiWidgetOverlay && typeof window.kofiWidgetOverlay.draw === 'function') {
+        window.kofiWidgetOverlay.draw('imlzx', {
+          'type': 'floating-chat',
+          'floating-chat.donateButton.text': 'Support me',
+          'floating-chat.donateButton.background-color': '#00b9fe',
+          'floating-chat.donateButton.text-color': '#fff'
+        });
+      }
+    };
   </script>
+  <script async src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js' onload='window.drawKofiWidget && window.drawKofiWidget()'></script>
   <script type="text/javascript" src="hoverCard.js"></script>
   <script type="text/javascript" src="cards.js"></script>
   <script type="text/javascript" src="breakdown.js"></script>
