@@ -709,21 +709,48 @@
       paidFeatures: 'bc_paid_features'
     };
     const bcAnalyticsSessionStartedAt = Date.now();
+    const bcAnalyticsVolatileStorage = new Map();
+
+    function getSeedAnalyticsStorageValue(type, key) {
+      const fallbackKey = `${type}:${key}`;
+      try {
+        const storage = type === 'session' ? window.sessionStorage : window.localStorage;
+        const value = storage.getItem(key);
+        if (value !== null) {
+          bcAnalyticsVolatileStorage.set(fallbackKey, value);
+          return value;
+        }
+      } catch {
+        // Fall back to a tab-local value when browser storage is blocked.
+      }
+      return bcAnalyticsVolatileStorage.get(fallbackKey) || '';
+    }
+
+    function setSeedAnalyticsStorageValue(type, key, value) {
+      const fallbackKey = `${type}:${key}`;
+      bcAnalyticsVolatileStorage.set(fallbackKey, String(value));
+      try {
+        const storage = type === 'session' ? window.sessionStorage : window.localStorage;
+        storage.setItem(key, String(value));
+      } catch {
+        // Analytics identity should remain usable even without persistence.
+      }
+    }
 
     function ensureSeedAnalyticsDeviceId() {
-      let id = localStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.deviceId);
+      let id = getSeedAnalyticsStorageValue('local', BC_ANALYTICS_STORAGE_KEYS.deviceId);
       if (!id) {
         id = `dev_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
-        localStorage.setItem(BC_ANALYTICS_STORAGE_KEYS.deviceId, id);
+        setSeedAnalyticsStorageValue('local', BC_ANALYTICS_STORAGE_KEYS.deviceId, id);
       }
       return id;
     }
 
     function ensureSeedAnalyticsSessionId() {
-      let id = sessionStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.sessionId);
+      let id = getSeedAnalyticsStorageValue('session', BC_ANALYTICS_STORAGE_KEYS.sessionId);
       if (!id) {
         id = `sess_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
-        sessionStorage.setItem(BC_ANALYTICS_STORAGE_KEYS.sessionId, id);
+        setSeedAnalyticsStorageValue('session', BC_ANALYTICS_STORAGE_KEYS.sessionId, id);
       }
       return id;
     }
@@ -733,10 +760,10 @@
     }
 
     function getSeedAnalyticsPaidInfo() {
-      const email = normalizeSeedAnalyticsEmail(localStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.paidEmail) || '');
+      const email = normalizeSeedAnalyticsEmail(getSeedAnalyticsStorageValue('local', BC_ANALYTICS_STORAGE_KEYS.paidEmail));
       let paidFeatures = {};
       try {
-        paidFeatures = JSON.parse(localStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.paidFeatures) || '{}') || {};
+        paidFeatures = JSON.parse(getSeedAnalyticsStorageValue('local', BC_ANALYTICS_STORAGE_KEYS.paidFeatures) || '{}') || {};
       } catch {
         paidFeatures = {};
       }
