@@ -1,7 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const SITE_ORIGIN = 'https://balatrocalc.com';
+const execFileAsync = promisify(execFile);
 const IGNORE_HTML_PATHS = ['i18n/seo/'];
 const SITEMAP_EXCLUDE_PATHS = new Set([
   'apk.html',
@@ -364,26 +367,34 @@ async function collectLocalizedIndexCodes(languages) {
   return localizedCodes;
 }
 
-function shouldIncludeInSitemap(relPath, localizedIndexCodes) {
+function extractCanonicalUrl(html) {
+  return html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1] || '';
+}
+
+function isNoindex(html) {
+  return /<meta\s+name="robots"\s+content="[^"]*\bnoindex\b[^"]*"/i.test(html);
+}
+
+function sitemapLocFromHtml(relPath, html) {
+  const canonical = extractCanonicalUrl(html);
+  if (canonical.startsWith(`${SITE_ORIGIN}/`) || canonical === SITE_ORIGIN) return canonical;
+  if (canonical.startsWith('/')) return `${SITE_ORIGIN}${canonical}`;
+  return `${SITE_ORIGIN}${htmlPathToUrlPath(relPath)}`;
+}
+
+function shouldIncludeInSitemap(relPath, html) {
   if (SITEMAP_EXCLUDE_PATHS.has(relPath)) return false;
+  if (isNoindex(html)) return false;
+  return true;
+}
 
-  const parts = relPath.split('/');
-  const first = parts[0];
-  const hasLangPrefix =
-    parts.length > 1 &&
-    first !== 'about' &&
-    first !== 'admin' &&
-    first !== 'blog' &&
-    first !== 'privacy-policy' &&
-    first !== 'terms';
-
-  if (!hasLangPrefix) return true;
-
-  if (parts.length === 2 && parts[1] === 'index.html') {
-    return localizedIndexCodes.has(first);
+async function gitLastmod(relPath, fallbackDate) {
+  try {
+    const { stdout } = await execFileAsync('git', ['log', '-1', '--format=%cs', '--', relPath]);
+    return stdout.trim() || fallbackDate;
+  } catch {
+    return fallbackDate;
   }
-
-  return false;
 }
 
 async function localizeIndex({ baseHtml, languages, lang, localizedIndexCodes }) {
@@ -491,17 +502,29 @@ async function localizeLegal({ baseHtml, languages, lang, pagePath }) {
   return html;
 }
 
-async function buildSitemapXmlFromFiles(localizedIndexCodes) {
-  const lastmod = todayISO();
+async function buildSitemapXmlFromFiles() {
+  const fallbackLastmod = todayISO();
   const htmlFiles = await collectHtmlFiles('.');
-  const urlPaths = htmlFiles
-    .filter((relPath) => shouldIncludeInSitemap(relPath, localizedIndexCodes))
-    .map(htmlPathToUrlPath);
-  const uniquePaths = Array.from(new Set(urlPaths)).sort();
-  const urls = uniquePaths.map((pathname) => {
+  const urlEntries = new Map();
+
+  for (const relPath of htmlFiles) {
+    const html = await readText(relPath);
+    if (!shouldIncludeInSitemap(relPath, html)) continue;
+
+    const loc = sitemapLocFromHtml(relPath, html);
+    if (!loc.startsWith(`${SITE_ORIGIN}/`) && loc !== SITE_ORIGIN) continue;
+
+    const lastmod = await gitLastmod(relPath, fallbackLastmod);
+    const existing = urlEntries.get(loc);
+    if (!existing || lastmod > existing.lastmod) {
+      urlEntries.set(loc, { loc, lastmod });
+    }
+  }
+
+  const urls = Array.from(urlEntries.values()).sort((a, b) => a.loc.localeCompare(b.loc)).map(({ loc, lastmod }) => {
     return `
   <url>
-    <loc>${SITE_ORIGIN}${pathname}</loc>
+    <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
   </url>`.trim();
   });
@@ -541,7 +564,7 @@ async function main() {
     outputs.push([path.join(lang.code, 'terms', 'index.html'), localizedTerms]);
   }
 
-  const sitemap = await buildSitemapXmlFromFiles(localizedIndexCodes);
+  const sitemap = await buildSitemapXmlFromFiles();
   outputs.push(['sitemap.xml', sitemap]);
 
   if (!write) {

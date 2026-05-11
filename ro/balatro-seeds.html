@@ -701,6 +701,91 @@
 
 
   <script>
+    const BC_ANALYTICS_FEATURE_KEY = 'seed';
+    const BC_ANALYTICS_STORAGE_KEYS = {
+      deviceId: 'bc_device_id',
+      sessionId: 'bc_session_id',
+      paidEmail: 'bc_paid_email',
+      paidFeatures: 'bc_paid_features'
+    };
+    const bcAnalyticsSessionStartedAt = Date.now();
+
+    function ensureSeedAnalyticsDeviceId() {
+      let id = localStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.deviceId);
+      if (!id) {
+        id = `dev_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
+        localStorage.setItem(BC_ANALYTICS_STORAGE_KEYS.deviceId, id);
+      }
+      return id;
+    }
+
+    function ensureSeedAnalyticsSessionId() {
+      let id = sessionStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.sessionId);
+      if (!id) {
+        id = `sess_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
+        sessionStorage.setItem(BC_ANALYTICS_STORAGE_KEYS.sessionId, id);
+      }
+      return id;
+    }
+
+    function normalizeSeedAnalyticsEmail(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function getSeedAnalyticsPaidInfo() {
+      const email = normalizeSeedAnalyticsEmail(localStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.paidEmail) || '');
+      let paidFeatures = {};
+      try {
+        paidFeatures = JSON.parse(localStorage.getItem(BC_ANALYTICS_STORAGE_KEYS.paidFeatures) || '{}') || {};
+      } catch {
+        paidFeatures = {};
+      }
+      const entry = paidFeatures[BC_ANALYTICS_FEATURE_KEY];
+      if (!entry || !entry.plan) return { active: false, email };
+      const parts = String(entry.plan).split('-');
+      if (parts[0] !== BC_ANALYTICS_FEATURE_KEY) return { active: false, email };
+      if (parts[1] === 'lifetime') {
+        return { active: true, email, plan: entry.plan, expiresAt: null };
+      }
+      const active = entry.expiresAt && new Date(entry.expiresAt).getTime() > Date.now();
+      return { active: Boolean(active), email, plan: entry.plan, expiresAt: entry.expiresAt || null };
+    }
+
+    function trackSeedAnalytics(eventName, properties = {}) {
+      try {
+        const paid = getSeedAnalyticsPaidInfo();
+        const payload = {
+          eventName,
+          anonymousId: ensureSeedAnalyticsDeviceId(),
+          sessionId: ensureSeedAnalyticsSessionId(),
+          email: paid.email || null,
+          featureKey: BC_ANALYTICS_FEATURE_KEY,
+          subscriptionStatus: paid.active ? 'paid' : 'free',
+          path: window.location.pathname,
+          referrer: document.referrer || '',
+          properties: {
+            ...properties,
+            plan: paid.plan || properties.plan || null
+          }
+        };
+        const body = JSON.stringify(payload);
+        if (navigator.sendBeacon) {
+          const blob = new Blob([body], { type: 'application/json' });
+          navigator.sendBeacon('/api/events', blob);
+          return;
+        }
+        fetch('/api/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body,
+          keepalive: true
+        }).catch(() => {});
+      } catch {
+        // Analytics must never block seed library interactions.
+      }
+    }
+
     function generateSeed() {
       // Based on Balatro's seed generation weighting:
       // 30% digits (1-9), 55% letters A-N, 15% letters P-Z (exclude 'O')
@@ -728,6 +813,10 @@
 
     function copySeed(text, btn) {
       navigator.clipboard.writeText(text).then(() => {
+        trackSeedAnalytics('seed_copied', {
+          source: btn?.closest?.('.seed-library-item') ? 'community-seed-library' : 'seed-generator',
+          seedLength: String(text || '').trim().length
+        });
         const originalText = btn.innerText;
         btn.innerText = 'Copied!';
         setTimeout(() => {
@@ -741,6 +830,10 @@
     function analyzeSeed(seed, source = 'seed-list') {
       const normalizedSeed = (seed || '').trim();
       if (!normalizedSeed) return;
+      trackSeedAnalytics('seed_library_analyze_clicked', {
+        source,
+        seedLength: normalizedSeed.length
+      });
       const analyzerUrl = new URL('/balatro-seed-analyzer', window.location.origin);
       analyzerUrl.searchParams.set('seed', normalizedSeed);
       analyzerUrl.searchParams.set('source', source);
@@ -2019,6 +2112,8 @@
       let paywallLogout;
       let toastEl;
       let toastTimer;
+      let paidSessionStartedTracked = false;
+      let premiumLibraryUnlockTracked = false;
 
       function escapeHtml(value) {
         return String(value || "")
@@ -2144,14 +2239,50 @@
         return data;
       }
 
-      function openPaywall() {
-        paywall.classList.add("active");
-        paywall.setAttribute("aria-hidden", "false");
+      function track(eventName, properties = {}) {
+        trackSeedAnalytics(eventName, properties);
       }
 
-      function closePaywall() {
+      function trackPaidSessionStarted() {
+        const paid = getPaidInfo();
+        if (!paid.active || paidSessionStartedTracked) return;
+        paidSessionStartedTracked = true;
+        track("paid_session_started", {
+          plan: paid.plan || null,
+          expiresAt: paid.expiresAt || null,
+          surface: "seed-library"
+        });
+      }
+
+      function setupSessionHeartbeat() {
+        track("session_heartbeat", {
+          elapsedMs: 0,
+          visibility: document.visibilityState || "visible",
+          surface: "seed-library"
+        });
+        setInterval(() => {
+          track("session_heartbeat", {
+            elapsedMs: Date.now() - bcAnalyticsSessionStartedAt,
+            visibility: document.visibilityState || "visible",
+            surface: "seed-library"
+          });
+          trackPaidSessionStarted();
+        }, 30000);
+      }
+
+      function openPaywall(trigger = "unknown") {
+        paywall.classList.add("active");
+        paywall.setAttribute("aria-hidden", "false");
+        track("paywall_viewed", { trigger, surface: "seed-library" });
+      }
+
+      function closePaywall(reason = "dismissed") {
+        const wasActive = paywall.classList.contains("active");
         paywall.classList.remove("active");
         paywall.setAttribute("aria-hidden", "true");
+        if (wasActive) {
+          track("paywall_closed", { reason, surface: "seed-library" });
+        }
       }
 
       function setPaywallStatus(message, type) {
@@ -2208,6 +2339,14 @@
             : `Seed Pro lifetime access${paid.email ? ` · ${paid.email}` : ""}`;
           unlockBtn.textContent = "Manage Seed Pro";
           lockedZone.classList.remove("is-locked");
+          if (!premiumLibraryUnlockTracked) {
+            premiumLibraryUnlockTracked = true;
+            track("premium_library_unlocked", {
+              totalSeeds: dedupedSeeds.length,
+              plan: paid.plan || null
+            });
+            trackPaidSessionStarted();
+          }
         } else {
           accessTitle.textContent = `Free preview: ${FREE_VISIBLE_COUNT} / ${dedupedSeeds.length} seeds visible`;
           accessMeta.textContent = `Unlock the other ${lockedCount} cards with the same membership used by Balatro Seed Analyzer.`;
@@ -2296,17 +2435,21 @@
         }
 
         try {
+          track("subscription_check_started", { surface: "seed-library", emailEntered: true });
           const data = await getJson(`/api/subscription?email=${encodeURIComponent(email)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
           if (!data.active) {
+            track("subscription_check_failed", { surface: "seed-library", reason: "inactive" });
             setPaywallStatus("No active Seed Pro subscription found.", "error");
             return;
           }
           setPaidInfo(data.email || email, data.plan || "seed-monthly", data.expiresAt || null);
           renderLibrary();
+          track("subscription_check_success", { surface: "seed-library", plan: data.plan || "seed-monthly" });
           setPaywallStatus("Seed Pro unlocked for this device.", "success");
           showToast("Subscription confirmed. Full library unlocked.");
-          setTimeout(closePaywall, 500);
+          setTimeout(() => closePaywall("success"), 500);
         } catch (error) {
+          track("subscription_check_failed", { surface: "seed-library", reason: error.message || "request_failed" });
           setPaywallStatus(error.message || "Subscription check failed.", "error");
         }
       }
@@ -2319,6 +2462,7 @@
           const data = await getJson(`/api/subscription?email=${encodeURIComponent(cachedEmail)}&feature=${encodeURIComponent(FEATURE_KEY)}`);
           if (data.active) {
             setPaidInfo(data.email || cachedEmail, data.plan || "seed-monthly", data.expiresAt || null);
+            trackPaidSessionStarted();
           } else {
             clearPaidFeature(FEATURE_KEY);
           }
@@ -2360,6 +2504,7 @@
 
         try {
           setPaywallStatus("Redirecting to PayPal...", "");
+          track("checkout_started", { surface: "seed-library", plan, period: parsed.period, source: CHECKOUT_SOURCE });
           const data = await postJson(endpoint, {
             email,
             plan,
@@ -2372,6 +2517,7 @@
           }
           window.location.href = data.approvalUrl;
         } catch (error) {
+          track("checkout_create_failed", { surface: "seed-library", plan, reason: error.message || "request_failed" });
           setPaywallStatus(error.message || "Failed to start PayPal checkout.", "error");
         }
       }
@@ -2393,6 +2539,7 @@
 
         openPaywall();
         if (paypalState === "cancel") {
+          track("payment_cancelled", { surface: "seed-library", plan: params.get("plan") || null });
           setPaywallStatus("Payment canceled.", "error");
           cleanupPaypalParams(params);
           return;
@@ -2430,9 +2577,11 @@
 
           setPaidInfo(data.email || normalizeEmail(paywallEmail.value), data.plan || plan, data.expiresAt || null);
           renderLibrary();
+          track("payment_success", { surface: "seed-library", plan: data.plan || plan, period: parsed.period });
+          trackPaidSessionStarted();
           setPaywallStatus("Seed Pro unlocked.", "success");
           showToast("Payment confirmed. Full library unlocked.");
-          setTimeout(closePaywall, 500);
+          setTimeout(() => closePaywall("success"), 500);
         } catch (error) {
           setPaywallStatus(error.message || "PayPal verification failed.", "error");
         } finally {
@@ -2457,21 +2606,28 @@
       }
 
       function bindEvents() {
-        unlockBtn.addEventListener("click", openPaywall);
-        overlayUnlockBtn.addEventListener("click", openPaywall);
+        unlockBtn.addEventListener("click", () => openPaywall("unlock_button"));
+        overlayUnlockBtn.addEventListener("click", () => openPaywall("locked_overlay"));
         overlayCheckBtn.addEventListener("click", () => {
-          openPaywall();
+          openPaywall("check_subscription_overlay");
           setPaywallStatus("Enter your purchase email to unlock Seed Pro.", "");
           paywallEmail.focus();
         });
-        document.getElementById("seedLibraryPaywallClose").addEventListener("click", closePaywall);
+        document.getElementById("seedLibraryPaywallClose").addEventListener("click", () => closePaywall("close_button"));
         paywall.addEventListener("click", (event) => {
           if (event.target === paywall) {
-            closePaywall();
+            closePaywall("backdrop");
           }
         });
         document.getElementById("seedLibraryPaywallPay").addEventListener("click", startPayment);
         document.getElementById("seedLibraryPaywallCheck").addEventListener("click", checkSubscription);
+        document.querySelectorAll('input[name="seedLibraryPlan"]').forEach((input) => {
+          input.addEventListener("change", () => {
+            if (input.checked) {
+              track("plan_selected", { surface: "seed-library", plan: input.value });
+            }
+          });
+        });
         paywallUpgrade.addEventListener("click", () => {
           clearPaywallStatus();
           document.querySelector(".seed-library-paywall-plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2528,6 +2684,7 @@
         }
 
         bindEvents();
+        setupSessionHeartbeat();
         renderLibrary();
         handlePaypalReturn();
         refreshSubscriptionState();
