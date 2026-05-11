@@ -547,7 +547,23 @@ function toggleCardModifier(name) {
 const cardsDiv = document.getElementById('cards');
 const jcardsDiv = document.getElementById('jokers');
 
-let highContrast = window.localStorage.hc === '1';
+function getHighContrastPreference() {
+  try {
+    return window.localStorage.getItem('hc') === '1';
+  } catch {
+    return false;
+  }
+}
+
+function setHighContrastPreference(value) {
+  try {
+    window.localStorage.setItem('hc', value ? '1' : '0');
+  } catch {
+    // Keep the calculator usable when browser storage is blocked.
+  }
+}
+
+let highContrast = getHighContrastPreference();
 if (highContrast) {
   highContrastDiv.innerText = 'X';
 }
@@ -578,7 +594,7 @@ function redrawCards() {
 
 function toggleContrast() {
   highContrast = !highContrast;
-  window.localStorage.setItem('hc', highContrast ? 1 : 0);
+  setHighContrastPreference(highContrast);
   if (highContrast) {
     highContrastDiv.innerText = 'X';
   }
