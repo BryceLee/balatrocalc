@@ -22,6 +22,10 @@
     source: 'source',
     token: 'sourceToken'
   };
+  const storageFallback = {
+    local: new Map(),
+    session: new Map()
+  };
 
   let quotaRemainingEl;
   let quotaTotalEl;
@@ -53,6 +57,53 @@
   let seedChromeResizeObserver;
   let paidSessionStartedTracked = false;
   const analyticsSessionStartedAt = Date.now();
+
+  function getStorageArea(type) {
+    try {
+      return type === 'session' ? window.sessionStorage : window.localStorage;
+    } catch {
+      return null;
+    }
+  }
+
+  function readStored(type, key) {
+    const storage = getStorageArea(type);
+    if (storage) {
+      try {
+        const value = storage.getItem(key);
+        if (value !== null) return value;
+      } catch {
+        // Fall back to memory below.
+      }
+    }
+    return storageFallback[type].get(key) || null;
+  }
+
+  function writeStored(type, key, value) {
+    const storage = getStorageArea(type);
+    if (storage) {
+      try {
+        storage.setItem(key, value);
+        storageFallback[type].delete(key);
+        return;
+      } catch {
+        // Fall back to memory below.
+      }
+    }
+    storageFallback[type].set(key, value);
+  }
+
+  function removeStored(type, key) {
+    const storage = getStorageArea(type);
+    if (storage) {
+      try {
+        storage.removeItem(key);
+      } catch {
+        // Still clear the memory fallback.
+      }
+    }
+    storageFallback[type].delete(key);
+  }
 
   function init() {
     quotaRemainingEl = document.getElementById('seedQuotaRemaining');
@@ -104,26 +155,26 @@
   }
 
   function ensureDeviceId() {
-    let id = localStorage.getItem(STORAGE_KEYS.deviceId);
+    let id = readStored('local', STORAGE_KEYS.deviceId);
     if (!id) {
       id = `dev_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
-      localStorage.setItem(STORAGE_KEYS.deviceId, id);
+      writeStored('local', STORAGE_KEYS.deviceId, id);
     }
     return id;
   }
 
   function ensureSessionId() {
-    let id = sessionStorage.getItem(STORAGE_KEYS.sessionId);
+    let id = readStored('session', STORAGE_KEYS.sessionId);
     if (!id) {
       id = `sess_${Math.random().toString(36).slice(2)}_${Date.now().toString(36)}`;
-      sessionStorage.setItem(STORAGE_KEYS.sessionId, id);
+      writeStored('session', STORAGE_KEYS.sessionId, id);
     }
     return id;
   }
 
   function getAnalyticsContext() {
     const paid = getPaidInfo();
-    const email = normalizeEmail(paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || paywallEmail?.value || '');
+    const email = normalizeEmail(paid.email || readStored('local', STORAGE_KEYS.paidEmail) || paywallEmail?.value || '');
     return {
       paid,
       email,
@@ -191,7 +242,7 @@
   }
 
   function hydrateEmail() {
-    const email = localStorage.getItem(STORAGE_KEYS.paidEmail);
+    const email = readStored('local', STORAGE_KEYS.paidEmail);
     if (email) paywallEmail.value = email;
   }
 
@@ -200,7 +251,7 @@
   }
 
   function loadUsage() {
-    const raw = localStorage.getItem(STORAGE_KEYS.usage);
+    const raw = readStored('local', STORAGE_KEYS.usage);
     if (!raw) return {};
     try {
       return JSON.parse(raw) || {};
@@ -210,7 +261,7 @@
   }
 
   function saveUsage(data) {
-    localStorage.setItem(STORAGE_KEYS.usage, JSON.stringify(data));
+    writeStored('local', STORAGE_KEYS.usage, JSON.stringify(data));
   }
 
   function getUsageEntry(data) {
@@ -236,7 +287,7 @@
   }
 
   function loadPaidFeatures() {
-    const raw = localStorage.getItem(STORAGE_KEYS.paidFeatures);
+    const raw = readStored('local', STORAGE_KEYS.paidFeatures);
     if (!raw) return {};
     try {
       return JSON.parse(raw) || {};
@@ -246,7 +297,7 @@
   }
 
   function savePaidFeatures(data) {
-    localStorage.setItem(STORAGE_KEYS.paidFeatures, JSON.stringify(data));
+    writeStored('local', STORAGE_KEYS.paidFeatures, JSON.stringify(data));
   }
 
   function parsePlan(plan) {
@@ -272,7 +323,7 @@
   }
 
   function getPaidInfo() {
-    const email = localStorage.getItem(STORAGE_KEYS.paidEmail);
+    const email = readStored('local', STORAGE_KEYS.paidEmail);
     const data = loadPaidFeatures();
     const entry = data[FEATURE_KEY];
     if (!entry || !entry.plan) return { active: false };
@@ -291,7 +342,7 @@
   }
 
   function setPaidInfo(email, plan, expiresAt) {
-    localStorage.setItem(STORAGE_KEYS.paidEmail, email);
+    writeStored('local', STORAGE_KEYS.paidEmail, email);
     const data = loadPaidFeatures();
     data[FEATURE_KEY] = {
       plan,
@@ -309,7 +360,7 @@
 
   function updateQuotaUI() {
     const paid = getPaidInfo();
-    const email = paid.email || localStorage.getItem(STORAGE_KEYS.paidEmail) || '';
+    const email = paid.email || readStored('local', STORAGE_KEYS.paidEmail) || '';
     if (quotaLibraryLink) {
       quotaLibraryLink.textContent = paid.active
         ? 'Shared with VIP Seed Pro Library.'
@@ -418,8 +469,8 @@
   }
 
   function clearPaidInfo() {
-    localStorage.removeItem(STORAGE_KEYS.paidEmail);
-    localStorage.removeItem(STORAGE_KEYS.paidFeatures);
+    removeStored('local', STORAGE_KEYS.paidEmail);
+    removeStored('local', STORAGE_KEYS.paidFeatures);
     updateQuotaUI();
   }
 
@@ -456,9 +507,9 @@
     const sourceHandleKey = `bc_source_seed_${getTodayKey()}_${sourceToken}`;
     let alreadyHandled = false;
     try {
-      alreadyHandled = sessionStorage.getItem(sourceHandleKey) === '1';
+      alreadyHandled = readStored('session', sourceHandleKey) === '1';
       if (!alreadyHandled) {
-        sessionStorage.setItem(sourceHandleKey, '1');
+        writeStored('session', sourceHandleKey, '1');
       }
     } catch {
       // Ignore storage restrictions and continue without dedupe fallback.
@@ -559,7 +610,7 @@
   }
 
   async function refreshSubscriptionState() {
-    const cachedEmail = normalizeEmail(localStorage.getItem(STORAGE_KEYS.paidEmail) || paywallEmail?.value || '');
+    const cachedEmail = normalizeEmail(readStored('local', STORAGE_KEYS.paidEmail) || paywallEmail?.value || '');
     if (!validateEmail(cachedEmail)) return;
 
     try {
