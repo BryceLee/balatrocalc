@@ -37,12 +37,12 @@ async function main() {
 
     const ga4Rows = await getGA4Report({
         startDate: '7daysAgo',
-        endDate: 'yesterday',
+        endDate: 'today',
         dimensions: ['date'],
         metrics: ['activeUsers', 'sessions', 'screenPageViews'],
     });
 
-    console.log('GA4 last complete 7 days:');
+    console.log('GA4 last 7 days:');
     console.table(ga4Rows);
 }
 
