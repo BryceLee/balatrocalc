@@ -2,16 +2,33 @@
 class BalatroBG {
     constructor() {
         this.canvas = document.getElementById('backgroundCanvas');
-        this.gl = this.canvas.getContext('webgl') || this.canvas.getContext('experimental-webgl');
+        if (!this.canvas) {
+            return;
+        }
+
+        const contextOptions = {
+            alpha: false,
+            antialias: false,
+            depth: false,
+            stencil: false,
+            preserveDrawingBuffer: false,
+            powerPreference: 'low-power'
+        };
+
+        this.gl = this.canvas.getContext('webgl', contextOptions) || this.canvas.getContext('experimental-webgl', contextOptions);
         
         if (!this.gl) {
-            console.error('WebGL not supported, using fallback background');
+            console.warn('WebGL not supported, using fallback background');
             this.useFallback();
             return;
         }
         
         this.time = 0;
         this.spin_time = 0;
+        this.animationFrameId = null;
+        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        this.handleVisibilityChange = this.updateAnimationState.bind(this);
+        this.handleMotionPreferenceChange = this.updateAnimationState.bind(this);
         
         // Balatro 绿色扑克桌背景
         this.colours = {
@@ -23,13 +40,24 @@ class BalatroBG {
         this.contrast = 2.5; // 原版对比度
         this.spin_amount = 0.1; // 原版旋转量
         
-        this.initShader();
+        if (!this.initShader()) {
+            this.useFallback();
+            return;
+        }
         this.initBuffers();
         this.resize();
+        this.render(0);
         this.startRender();
         
         // Handle resize
         window.addEventListener('resize', () => this.resize());
+        document.addEventListener('visibilitychange', this.handleVisibilityChange);
+
+        if (typeof this.prefersReducedMotion.addEventListener === 'function') {
+            this.prefersReducedMotion.addEventListener('change', this.handleMotionPreferenceChange);
+        } else if (typeof this.prefersReducedMotion.addListener === 'function') {
+            this.prefersReducedMotion.addListener(this.handleMotionPreferenceChange);
+        }
     }
     
     initShader() {
@@ -43,6 +71,10 @@ class BalatroBG {
             this.createShader(this.gl.VERTEX_SHADER, vertexShaderSource),
             this.createShader(this.gl.FRAGMENT_SHADER, fragmentShaderSource)
         );
+
+        if (!this.program) {
+            return false;
+        }
         
         // Get attribute and uniform locations
         this.locations = {
@@ -61,6 +93,8 @@ class BalatroBG {
                 resolution: this.gl.getUniformLocation(this.program, 'u_resolution')
             }
         };
+
+        return true;
     }
     
     createShader(type, source) {
@@ -69,7 +103,7 @@ class BalatroBG {
         this.gl.compileShader(shader);
         
         if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
-            console.error('Shader compile error:', this.gl.getShaderInfoLog(shader));
+            console.warn('Shader compile error:', this.gl.getShaderInfoLog(shader));
             this.gl.deleteShader(shader);
             return null;
         }
@@ -78,13 +112,18 @@ class BalatroBG {
     }
     
     createProgram(vertexShader, fragmentShader) {
+        if (!vertexShader || !fragmentShader) {
+            return null;
+        }
+
         const program = this.gl.createProgram();
         this.gl.attachShader(program, vertexShader);
         this.gl.attachShader(program, fragmentShader);
         this.gl.linkProgram(program);
         
         if (!this.gl.getProgramParameter(program, this.gl.LINK_STATUS)) {
-            console.error('Program link error:', this.gl.getProgramInfoLog(program));
+            console.warn('Program link error:', this.gl.getProgramInfoLog(program));
+            this.gl.deleteProgram(program);
             return null;
         }
         
@@ -122,6 +161,10 @@ class BalatroBG {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
         this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+
+        if (this.shouldRenderStatic()) {
+            this.render(0);
+        }
     }
     
     render(currentTime) {
@@ -158,11 +201,38 @@ class BalatroBG {
     }
     
     startRender() {
+        if (this.animationFrameId !== null || this.shouldRenderStatic()) {
+            return;
+        }
+
         const renderLoop = (time) => {
             this.render(time);
-            requestAnimationFrame(renderLoop);
+            this.animationFrameId = requestAnimationFrame(renderLoop);
         };
-        requestAnimationFrame(renderLoop);
+        this.animationFrameId = requestAnimationFrame(renderLoop);
+    }
+
+    stopRender() {
+        if (this.animationFrameId === null) {
+            return;
+        }
+
+        cancelAnimationFrame(this.animationFrameId);
+        this.animationFrameId = null;
+    }
+
+    shouldRenderStatic() {
+        return document.hidden || this.prefersReducedMotion.matches;
+    }
+
+    updateAnimationState() {
+        if (this.shouldRenderStatic()) {
+            this.stopRender();
+            this.render(0);
+            return;
+        }
+
+        this.startRender();
     }
     
     useFallback() {
