@@ -1,4 +1,14 @@
-const THREADS = navigator.hardwareConcurrency;
+const MAX_WORKER_THREADS = 4;
+
+function getWorkerThreadCount() {
+  const hardwareThreadCount = Number(globalThis.navigator?.hardwareConcurrency);
+  if (!Number.isFinite(hardwareThreadCount) || hardwareThreadCount < 1) {
+    return 1;
+  }
+  return Math.min(Math.floor(hardwareThreadCount), MAX_WORKER_THREADS);
+}
+
+const THREADS = getWorkerThreadCount();
 
 const threads = [];
 
