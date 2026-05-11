@@ -5,6 +5,10 @@ function card(rank, suit = 'hearts') {
   return { rank, suit };
 }
 
+function modCard(rank, suit, enhancement = 'none', edition = 'none') {
+  return { rank, suit, enhancement, edition };
+}
+
 const pairAnalysis = Calculator3.analyzePlayedCards([
   card('A', 'hearts'),
   card('A', 'spades'),
@@ -67,5 +71,32 @@ const unsupported = Calculator3.score({
 });
 assert.deepEqual(unsupported.unsupportedJokers, ['blueprint']);
 assert.equal(unsupported.warnings.length, 1);
+
+const enhancedScore = Calculator3.score({
+  handType: 'pair',
+  playedCards: [
+    modCard('A', 'hearts', 'mult'),
+    modCard('A', 'diamonds', 'none', 'foil'),
+    modCard('8', 'spades', 'glass')
+  ],
+  jokers: []
+});
+assert.equal(enhancedScore.chips, 82);
+assert.equal(enhancedScore.mult, 6);
+assert.equal(enhancedScore.score, 492);
+assert.ok(enhancedScore.steps.some((step) => step.phase === 'enhancement' && step.label.includes('Mult Card')));
+assert.ok(enhancedScore.steps.some((step) => step.phase === 'edition' && step.label.includes('Foil')));
+
+const stoneScore = Calculator3.score({
+  playedCards: [
+    modCard('K', 'spades', 'stone'),
+    modCard('A', 'hearts')
+  ],
+  jokers: []
+});
+assert.equal(stoneScore.handType, 'highCard');
+assert.equal(stoneScore.chips, 66);
+assert.equal(stoneScore.mult, 1);
+assert.ok(stoneScore.steps.some((step) => step.label.includes('Stone Card')));
 
 console.log('calculator3-model tests passed');

@@ -134,11 +134,19 @@
           const suitSelect = document.createElement('select');
           rankSelect.name = `rank-${i}`;
           suitSelect.name = `suit-${i}`;
+          const enhancementSelect = document.createElement('select');
+          const editionSelect = document.createElement('select');
+          enhancementSelect.name = `enhancement-${i}`;
+          editionSelect.name = `edition-${i}`;
           rankSelect.setAttribute('aria-label', `Card ${i + 1} rank`);
           suitSelect.setAttribute('aria-label', `Card ${i + 1} suit`);
+          enhancementSelect.setAttribute('aria-label', `Card ${i + 1} enhancement`);
+          editionSelect.setAttribute('aria-label', `Card ${i + 1} edition`);
           Calculator3.RANKS.forEach((rank) => rankSelect.append(option(rank.key, rank.label)));
           Calculator3.SUITS.forEach((suit) => suitSelect.append(option(suit.key, suit.label)));
-          row.append(rankSelect, suitSelect);
+          Calculator3.ENHANCEMENTS.forEach((enhancement) => enhancementSelect.append(option(enhancement.key, enhancement.label)));
+          Calculator3.EDITIONS.forEach((edition) => editionSelect.append(option(edition.key, edition.label)));
+          row.append(rankSelect, suitSelect, enhancementSelect, editionSelect);
           cardsRoot.append(row);
         }
       }
@@ -180,7 +188,9 @@
         for (let i = 0; i < 5; i += 1) {
           cards.push({
             rank: form.elements[`rank-${i}`].value,
-            suit: form.elements[`suit-${i}`].value
+            suit: form.elements[`suit-${i}`].value,
+            enhancement: form.elements[`enhancement-${i}`].value,
+            edition: form.elements[`edition-${i}`].value
           });
         }
         return cards;
@@ -225,15 +235,17 @@
         handSelect.value = 'pair';
         levelInput.value = '2';
         const sampleCards = [
-          ['A', 'hearts'],
-          ['A', 'diamonds'],
-          ['8', 'spades'],
-          ['5', 'hearts'],
-          ['3', 'clubs']
+          ['A', 'hearts', 'mult', 'none'],
+          ['A', 'diamonds', 'none', 'foil'],
+          ['8', 'spades', 'glass', 'none'],
+          ['5', 'hearts', 'none', 'none'],
+          ['3', 'clubs', 'none', 'none']
         ];
-        sampleCards.forEach(([rank, suit], index) => {
+        sampleCards.forEach(([rank, suit, enhancement, edition], index) => {
           form.elements[`rank-${index}`].value = rank;
           form.elements[`suit-${index}`].value = suit;
+          form.elements[`enhancement-${index}`].value = enhancement;
+          form.elements[`edition-${index}`].value = edition;
         });
         selectedJokers.splice(0, selectedJokers.length, 'jolly', 'fibonacci', 'cavendish');
         renderSelectedJokers();

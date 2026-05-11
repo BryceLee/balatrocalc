@@ -54,6 +54,21 @@
   const FIBONACCI_RANKS = new Set(['A', '2', '3', '5', '8']);
   const EVEN_RANKS = new Set(['2', '4', '6', '8', '10']);
   const ODD_RANKS = new Set(['A', '3', '5', '7', '9']);
+  const ENHANCEMENTS = [
+    { key: 'none', label: 'Base' },
+    { key: 'bonus', label: 'Bonus Card', chipsAdd: 30 },
+    { key: 'mult', label: 'Mult Card', multAdd: 4 },
+    { key: 'glass', label: 'Glass Card', xMult: 2 },
+    { key: 'stone', label: 'Stone Card', stoneChips: 50, suppressRankChips: true }
+  ];
+  const EDITIONS = [
+    { key: 'none', label: 'No Edition' },
+    { key: 'foil', label: 'Foil', chipsAdd: 50 },
+    { key: 'holographic', label: 'Holographic', multAdd: 10 },
+    { key: 'polychrome', label: 'Polychrome', xMult: 1.5 }
+  ];
+  const ENHANCEMENT_BY_KEY = Object.fromEntries(ENHANCEMENTS.map((enhancement) => [enhancement.key, enhancement]));
+  const EDITION_BY_KEY = Object.fromEntries(EDITIONS.map((edition) => [edition.key, edition]));
 
   function titleCaseId(label) {
     return String(label || '')
@@ -226,6 +241,8 @@
     return {
       rank,
       suit,
+      enhancement: ENHANCEMENT_BY_KEY[String(card.enhancement || 'none').toLowerCase()] ? String(card.enhancement || 'none').toLowerCase() : 'none',
+      edition: EDITION_BY_KEY[String(card.edition || 'none').toLowerCase()] ? String(card.edition || 'none').toLowerCase() : 'none',
       scoring: card.scoring !== false,
       chips: RANK_BY_KEY[rank].chips
     };
@@ -272,35 +289,46 @@
       return { handType: 'highCard', scoringIndexes: new Set(), reason: 'No cards selected' };
     }
 
-    const rankGroups = groupIndexes(normalizedCards, 'rank');
-    const suitGroups = groupIndexes(normalizedCards, 'suit');
+    const stoneIndexes = normalizedCards
+      .map((card, index) => (card.enhancement === 'stone' ? index : -1))
+      .filter((index) => index >= 0);
+    const handCards = normalizedCards
+      .map((card, index) => ({ ...card, sourceIndex: index }))
+      .filter((card) => card.enhancement !== 'stone');
+
+    if (!handCards.length) {
+      return typedAnalysis('highCard', new Set(), stoneIndexes);
+    }
+
+    const rankGroups = groupIndexes(handCards, 'rank');
+    const suitGroups = groupIndexes(handCards, 'suit');
     const counts = Array.from(rankGroups.values()).map((indexes) => indexes.length).sort((a, b) => b - a);
-    const isFlush = normalizedCards.length >= 5 && Array.from(suitGroups.values()).some((indexes) => indexes.length >= 5);
-    const straightIndexes = findStraightIndexes(normalizedCards);
+    const isFlush = handCards.length >= 5 && Array.from(suitGroups.values()).some((indexes) => indexes.length >= 5);
+    const straightIndexes = findStraightIndexes(handCards);
     const isStraight = straightIndexes.size >= 5;
     const sameSuitIndexes = isFlush ? largestGroupIndexes(suitGroups) : new Set();
 
-    if (counts[0] >= 5 && isFlush) return typedAnalysis('flushFive', intersectionIndexes(largestGroupIndexes(rankGroups), sameSuitIndexes));
-    if (counts[0] >= 3 && counts[1] >= 2 && isFlush) return typedAnalysis('flushHouse', sameSuitIndexes);
-    if (counts[0] >= 5) return typedAnalysis('fiveOfAKind', largestGroupIndexes(rankGroups));
-    if (isStraight && isFlush) return typedAnalysis('straightFlush', intersectionIndexes(straightIndexes, sameSuitIndexes));
-    if (counts[0] >= 4) return typedAnalysis('fourOfAKind', largestGroupIndexes(rankGroups));
-    if (counts[0] >= 3 && counts[1] >= 2) return typedAnalysis('fullHouse', fullHouseIndexes(rankGroups));
-    if (isFlush) return typedAnalysis('flush', sameSuitIndexes);
-    if (isStraight) return typedAnalysis('straight', straightIndexes);
-    if (counts[0] >= 3) return typedAnalysis('threeOfAKind', largestGroupIndexes(rankGroups));
+    if (counts[0] >= 5 && isFlush) return typedAnalysis('flushFive', intersectionIndexes(largestGroupIndexes(rankGroups), sameSuitIndexes), stoneIndexes);
+    if (counts[0] >= 3 && counts[1] >= 2 && isFlush) return typedAnalysis('flushHouse', sameSuitIndexes, stoneIndexes);
+    if (counts[0] >= 5) return typedAnalysis('fiveOfAKind', largestGroupIndexes(rankGroups), stoneIndexes);
+    if (isStraight && isFlush) return typedAnalysis('straightFlush', intersectionIndexes(straightIndexes, sameSuitIndexes), stoneIndexes);
+    if (counts[0] >= 4) return typedAnalysis('fourOfAKind', largestGroupIndexes(rankGroups), stoneIndexes);
+    if (counts[0] >= 3 && counts[1] >= 2) return typedAnalysis('fullHouse', fullHouseIndexes(rankGroups), stoneIndexes);
+    if (isFlush) return typedAnalysis('flush', sameSuitIndexes, stoneIndexes);
+    if (isStraight) return typedAnalysis('straight', straightIndexes, stoneIndexes);
+    if (counts[0] >= 3) return typedAnalysis('threeOfAKind', largestGroupIndexes(rankGroups), stoneIndexes);
 
     const pairGroups = Array.from(rankGroups.values()).filter((indexes) => indexes.length >= 2);
-    if (pairGroups.length >= 2) return typedAnalysis('twoPair', new Set(pairGroups.flat()));
-    if (pairGroups.length === 1) return typedAnalysis('pair', new Set(pairGroups[0]));
+    if (pairGroups.length >= 2) return typedAnalysis('twoPair', new Set(pairGroups.flat()), stoneIndexes);
+    if (pairGroups.length === 1) return typedAnalysis('pair', new Set(pairGroups[0]), stoneIndexes);
 
-    return typedAnalysis('highCard', new Set([highestCardIndex(normalizedCards)]));
+    return typedAnalysis('highCard', new Set([highestCardIndex(handCards)]), stoneIndexes);
   }
 
-  function typedAnalysis(handType, scoringIndexes) {
+  function typedAnalysis(handType, scoringIndexes, extraScoringIndexes = []) {
     return {
       handType,
-      scoringIndexes: trimScoringIndexes(scoringIndexes, handType),
+      scoringIndexes: new Set([...trimScoringIndexes(scoringIndexes, handType), ...extraScoringIndexes]),
       reason: HAND_BY_KEY[handType].label
     };
   }
@@ -310,7 +338,7 @@
     cards.forEach((card, index) => {
       const key = card[field];
       if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(index);
+      groups.get(key).push(card.sourceIndex ?? index);
     });
     return groups;
   }
@@ -348,15 +376,16 @@
         bestIndex = index;
       }
     });
-    return bestIndex;
+    return cards[bestIndex].sourceIndex ?? bestIndex;
   }
 
   function findStraightIndexes(cards) {
     const byValue = new Map();
     cards.forEach((card, index) => {
       const value = RANK_BY_KEY[card.rank].value;
-      if (!byValue.has(value)) byValue.set(value, index);
-      if (value === 14 && !byValue.has(1)) byValue.set(1, index);
+      const sourceIndex = card.sourceIndex ?? index;
+      if (!byValue.has(value)) byValue.set(value, sourceIndex);
+      if (value === 14 && !byValue.has(1)) byValue.set(1, sourceIndex);
     });
 
     const values = Array.from(byValue.keys()).sort((a, b) => a - b);
@@ -399,14 +428,46 @@
     }];
 
     state.scoringCards.forEach((card) => {
-      chips += card.chips;
-      steps.push({
-        phase: 'card',
-        label: `${RANK_BY_KEY[card.rank].label} of ${SUIT_BY_KEY[card.suit].label}: +${card.chips} Chips`,
-        chips,
-        mult,
-        score: Math.floor(chips * mult)
-      });
+      const cardName = formatCardName(card);
+      if (card.enhancement !== 'stone') {
+        chips += card.chips;
+        steps.push({
+          phase: 'card',
+          label: `${cardName}: +${card.chips} Chips`,
+          chips,
+          mult,
+          score: Math.floor(chips * mult)
+        });
+      }
+
+      const enhancement = ENHANCEMENT_BY_KEY[card.enhancement];
+      if (enhancement && card.enhancement !== 'none') {
+        if (enhancement.stoneChips) chips += enhancement.stoneChips;
+        if (enhancement.chipsAdd) chips += enhancement.chipsAdd;
+        if (enhancement.multAdd) mult += enhancement.multAdd;
+        if (enhancement.xMult) mult *= enhancement.xMult;
+        steps.push({
+          phase: 'enhancement',
+          label: formatCardModifierLabel(cardName, enhancement),
+          chips,
+          mult,
+          score: Math.floor(chips * mult)
+        });
+      }
+
+      const edition = EDITION_BY_KEY[card.edition];
+      if (edition && card.edition !== 'none') {
+        if (edition.chipsAdd) chips += edition.chipsAdd;
+        if (edition.multAdd) mult += edition.multAdd;
+        if (edition.xMult) mult *= edition.xMult;
+        steps.push({
+          phase: 'edition',
+          label: formatCardModifierLabel(cardName, edition),
+          chips,
+          mult,
+          score: Math.floor(chips * mult)
+        });
+      }
     });
 
     const activeJokers = state.jokers.filter((joker) => joker.disabled !== true);
@@ -494,10 +555,25 @@
     return Math.round(value * 1000) / 1000;
   }
 
+  function formatCardName(card) {
+    if (card.enhancement === 'stone') return 'Stone Card';
+    return `${RANK_BY_KEY[card.rank].label} of ${SUIT_BY_KEY[card.suit].label}`;
+  }
+
+  function formatCardModifierLabel(cardName, modifier) {
+    if (modifier.stoneChips) return `${cardName}: ${modifier.label} adds +${modifier.stoneChips} Chips`;
+    if (modifier.chipsAdd) return `${cardName}: ${modifier.label} adds +${modifier.chipsAdd} Chips`;
+    if (modifier.multAdd) return `${cardName}: ${modifier.label} adds +${modifier.multAdd} Mult`;
+    if (modifier.xMult) return `${cardName}: ${modifier.label} applies X${modifier.xMult} Mult`;
+    return `${cardName}: ${modifier.label}`;
+  }
+
   return {
     HAND_TYPES,
     RANKS,
     SUITS,
+    ENHANCEMENTS,
+    EDITIONS,
     JOKER_CATALOG,
     analyzePlayedCards,
     baseHandScore,

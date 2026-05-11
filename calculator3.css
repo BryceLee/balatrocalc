@@ -184,7 +184,7 @@ body.calculator3-page {
 
 .calculator3-card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.8fr 1fr 1.15fr 1.15fr;
   gap: 8px;
 }
 
@@ -290,9 +290,12 @@ body.calculator3-page {
     display: grid;
   }
 
-  .calculator3-card,
   .calculator3-joker-row {
     grid-template-columns: 1fr;
+  }
+
+  .calculator3-card {
+    grid-template-columns: 1fr 1fr;
   }
 
   .calculator3-button--danger {
