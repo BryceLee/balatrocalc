@@ -122,6 +122,7 @@
     joker: 'Jokers left to right',
     deck: 'Deck scoring',
   };
+  const IMPACT_PHASE_ORDER = Object.keys(PHASE_LABELS);
   const HAND_TYPE_OPTIONS = [
     { key: 'highCard', label: 'High Card' },
     { key: 'pair', label: 'Pair' },
@@ -448,6 +449,95 @@
     };
   }
 
+  function roundImpactValue(value) {
+    return Math.round((Number(value) || 0) * 1000) / 1000;
+  }
+
+  function buildImpactSummary(result) {
+    const steps = result && Array.isArray(result.steps) ? result.steps : [];
+    if (!steps.length) {
+      return {
+        finalScore: 0,
+        baseScore: 0,
+        scoreDeltaFromBase: 0,
+        phaseSummaries: [],
+        topContributors: [],
+      };
+    }
+
+    const phaseMap = new Map();
+    const contributors = [];
+    let previous = { chips: 0, mult: 0, score: 0 };
+
+    steps.forEach((step) => {
+      const phase = step.phase || 'unknown';
+      if (!phaseMap.has(phase)) {
+        phaseMap.set(phase, {
+          key: phase,
+          label: PHASE_LABELS[phase] || phase,
+          chipsDelta: 0,
+          multDelta: 0,
+          scoreDelta: 0,
+          eventCount: 0,
+          appliedCount: 0,
+          skippedCount: 0,
+        });
+      }
+
+      const summary = phaseMap.get(phase);
+      const chipsDelta = roundImpactValue(step.chips - previous.chips);
+      const multDelta = roundImpactValue(step.mult - previous.mult);
+      const scoreDelta = Math.floor(Number(step.score) || 0) - Math.floor(Number(previous.score) || 0);
+      summary.chipsDelta = roundImpactValue(summary.chipsDelta + chipsDelta);
+      summary.multDelta = roundImpactValue(summary.multDelta + multDelta);
+      summary.scoreDelta += scoreDelta;
+      summary.eventCount += 1;
+
+      if (step.skipped === true) {
+        summary.skippedCount += 1;
+      } else {
+        summary.appliedCount += 1;
+        if (scoreDelta !== 0 || chipsDelta !== 0 || multDelta !== 0) {
+          contributors.push({
+            phase,
+            phaseLabel: PHASE_LABELS[phase] || phase,
+            label: step.label,
+            chipsDelta,
+            multDelta,
+            scoreDelta,
+            afterScore: Math.floor(Number(step.score) || 0),
+          });
+        }
+      }
+
+      previous = {
+        chips: Number(step.chips) || 0,
+        mult: Number(step.mult) || 0,
+        score: Math.floor(Number(step.score) || 0),
+      };
+    });
+
+    const firstStep = steps[0];
+    const finalStep = steps[steps.length - 1];
+    const phaseSummaries = Array.from(phaseMap.values())
+      .filter((summary) => summary.appliedCount > 0 || summary.skippedCount > 0)
+      .sort((a, b) => {
+        const aOrder = IMPACT_PHASE_ORDER.indexOf(a.key);
+        const bOrder = IMPACT_PHASE_ORDER.indexOf(b.key);
+        return (aOrder === -1 ? 999 : aOrder) - (bOrder === -1 ? 999 : bOrder);
+      });
+
+    return {
+      finalScore: Math.floor(Number(finalStep.score) || 0),
+      baseScore: Math.floor(Number(firstStep.score) || 0),
+      scoreDeltaFromBase: Math.floor(Number(finalStep.score) || 0) - Math.floor(Number(firstStep.score) || 0),
+      phaseSummaries,
+      topContributors: contributors
+        .sort((a, b) => Math.abs(b.scoreDelta) - Math.abs(a.scoreDelta))
+        .slice(0, 4),
+    };
+  }
+
   function explainSelection(jokers, scenario) {
     const scenarioHandKey = scenario && scenario.handTypeKey
       ? scenario.handTypeKey
@@ -520,6 +610,13 @@
       engineCoverage: {
         exact: jokers.filter((joker) => joker.engineId).length,
         total: jokers.length,
+      },
+      impactSummary: {
+        finalScore: Math.round(score.chips * score.mult),
+        baseScore: Math.round(base.chips * base.mult),
+        scoreDeltaFromBase: Math.round(score.chips * score.mult) - Math.round(base.chips * base.mult),
+        phaseSummaries: [],
+        topContributors: [],
       },
     };
   }
@@ -617,6 +714,7 @@
         exact: jokers.filter((joker) => joker.engineId).length,
         total: jokers.length,
       },
+      impactSummary: buildImpactSummary(result),
       engineResult: result,
     };
   }
@@ -630,6 +728,42 @@
 
   function formatNumber(value) {
     return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(value);
+  }
+
+  function formatSignedNumber(value) {
+    const number = Number(value) || 0;
+    if (number === 0) return '0';
+    return `${number > 0 ? '+' : '-'}${formatNumber(Math.abs(number))}`;
+  }
+
+  function renderImpactSummary(summary) {
+    if (!summary || !Array.isArray(summary.phaseSummaries)) return '';
+
+    const activePhases = summary.phaseSummaries
+      .filter((phase) => phase.scoreDelta !== 0 || phase.chipsDelta !== 0 || phase.multDelta !== 0)
+      .slice(0, 6);
+    const topContributors = (summary.topContributors || []).slice(0, 3);
+
+    if (!activePhases.length && !topContributors.length) return '';
+
+    const phaseRows = activePhases.map((phase) => `<li>
+      <span>${escapeHtml(phase.label)}</span>
+      <strong>${escapeHtml(formatSignedNumber(phase.scoreDelta))}</strong>
+      <em>${escapeHtml(formatSignedNumber(phase.chipsDelta))} Chips / ${escapeHtml(formatSignedNumber(phase.multDelta))} Mult</em>
+    </li>`).join('');
+    const contributorRows = topContributors.map((item) => `<li>
+      <span>${escapeHtml(item.label)}</span>
+      <strong>${escapeHtml(formatSignedNumber(item.scoreDelta))}</strong>
+    </li>`).join('');
+
+    return `<div class="calculator3ImpactSummary__head">
+      <strong>Score impact</strong>
+      <span>${escapeHtml(formatSignedNumber(summary.scoreDeltaFromBase))} after base hand</span>
+    </div>
+    <div class="calculator3ImpactSummary__grid">
+      <ol>${phaseRows}</ol>
+      <ol>${contributorRows}</ol>
+    </div>`;
   }
 
   function initCalculator3Panel(doc) {
@@ -646,6 +780,7 @@
     const catalogList = documentRef.getElementById('calculator3CatalogList');
     const selectionList = documentRef.getElementById('calculator3SelectionList');
     const stateControls = documentRef.getElementById('calculator3StateControls');
+    const impactSummary = documentRef.getElementById('calculator3ImpactSummary');
     const explainList = documentRef.getElementById('calculator3ExplainList');
     const scorePreview = documentRef.getElementById('calculator3ScorePreview');
     const scoreOutcome = documentRef.getElementById('calculator3ScoreOutcome');
@@ -888,6 +1023,10 @@
         scoreOutcome.innerHTML = `<strong>${escapeHtml(outcome.summary)}</strong>
           <span>Ante ${outcome.ante} target ${formatNumber(outcome.target)} / ${formatNumber(outcome.ratio)}x required</span>`;
       }
+      if (impactSummary) {
+        impactSummary.innerHTML = renderImpactSummary(explanation.impactSummary);
+        impactSummary.hidden = !impactSummary.innerHTML;
+      }
     }
 
     function sync() {
@@ -1085,6 +1224,7 @@
     buildCoverageSummary,
     calculateBlindTarget,
     buildScoreOutcome,
+    buildImpactSummary,
     explainSelection,
     inferEffectKind,
     inferTiming,

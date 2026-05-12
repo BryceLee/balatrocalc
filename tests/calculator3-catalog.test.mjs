@@ -151,6 +151,16 @@ assert.equal(runtimeExplanation.score.chips, 148);
 assert.equal(runtimeExplanation.score.mult, 18);
 assert.equal(runtimeExplanation.scorePreview, 2664);
 assert.ok(runtimeExplanation.steps.some((step) => step.note.includes('Bootstraps')));
+assert.equal(runtimeExplanation.impactSummary.scoreDeltaFromBase, 2644);
+assert.deepEqual(
+  runtimeExplanation.impactSummary.phaseSummaries.map((phase) => [phase.key, phase.scoreDelta]),
+  [['hand', 20], ['card', 44], ['joker', 2600]]
+);
+assert.deepEqual(
+  runtimeExplanation.impactSummary.topContributors.slice(0, 2).map((item) => item.scoreDelta),
+  [888, 888]
+);
+assert.ok(runtimeExplanation.impactSummary.topContributors.some((item) => item.label.includes('Blue Joker')));
 
 const copyRetriggerExplanation = Calculator3Panel.explainSelection([
   byName.get('Hanging Chad'),
@@ -232,6 +242,7 @@ assert.deepEqual(
   }
 );
 assert.equal(Calculator3Panel.buildScoreOutcome(140, 1, 'small').summary, 'Needs 160 more');
+assert.equal(Calculator3Panel.buildImpactSummary({ steps: [] }).finalScore, 0);
 
 const bossBlindExplanation = Calculator3Panel.explainSelection([
   byName.get('Smiley Face'),
