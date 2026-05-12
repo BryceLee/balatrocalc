@@ -161,6 +161,18 @@ assert.deepEqual(
   [888, 888]
 );
 assert.ok(runtimeExplanation.impactSummary.topContributors.some((item) => item.label.includes('Blue Joker')));
+assert.equal(runtimeExplanation.jokerContribution.length, 5);
+assert.deepEqual(
+  runtimeExplanation.jokerContribution.map((row) => [row.name, row.scoreWithout, row.scoreDelta]),
+  [
+    ['Blue Joker', 1224, 1440],
+    ['Bull', 2016, 648],
+    ['Bootstraps', 1776, 888],
+    ['Supernova', 2072, 592],
+    ['Red Card', 1776, 888],
+  ]
+);
+assert.ok(runtimeExplanation.jokerContribution.every((row) => row.note === 'current score gained'));
 
 const copyRetriggerExplanation = Calculator3Panel.explainSelection([
   byName.get('Hanging Chad'),

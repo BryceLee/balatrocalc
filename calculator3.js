@@ -538,6 +538,57 @@
     };
   }
 
+  function buildEngineInput(jokers, scenario) {
+    return {
+      handType: scenario.handTypeKey || undefined,
+      level: scenario.level,
+      playedCards: scenario.playedCards,
+      heldCards: scenario.heldCards,
+      remainingDiscards: scenario.remainingDiscards,
+      remainingDeckCards: scenario.remainingDeckCards,
+      dollars: scenario.dollars,
+      currentHandTimesPlayed: scenario.currentHandTimesPlayed,
+      finalHand: scenario.finalHand,
+      rules: scenario.rules,
+      jokerValues: scenario.jokerValues,
+      jokers: jokers.map((joker) => ({
+        id: joker.engineId || joker.id,
+        name: joker.name,
+        rarity: joker.rarity,
+      })),
+    };
+  }
+
+  function buildJokerContributionComparison(jokers, scenario, scoreEngine, baselineResult) {
+    if (!scoreEngine || typeof scoreEngine.score !== 'function' || !baselineResult) return [];
+
+    return jokers.map((joker, index) => {
+      if (!joker.engineId) {
+        return {
+          name: joker.name,
+          modelStatus: joker.modelStatus,
+          scoreWithout: null,
+          scoreDelta: null,
+          note: summarizeStatefulJoker(joker),
+        };
+      }
+
+      const withoutJoker = jokers.filter((_, jokerIndex) => jokerIndex !== index);
+      const withoutResult = scoreEngine.score(buildEngineInput(withoutJoker, scenario));
+      const scoreDelta = Math.floor(Number(baselineResult.score) || 0) - Math.floor(Number(withoutResult.score) || 0);
+
+      return {
+        name: joker.name,
+        modelStatus: joker.modelStatus,
+        scoreWithout: withoutResult.score,
+        scoreDelta,
+        chipsWithout: withoutResult.chips,
+        multWithout: withoutResult.mult,
+        note: scoreDelta >= 0 ? 'current score gained' : 'current score lower',
+      };
+    });
+  }
+
   function explainSelection(jokers, scenario) {
     const scenarioHandKey = scenario && scenario.handTypeKey
       ? scenario.handTypeKey
@@ -618,30 +669,12 @@
         phaseSummaries: [],
         topContributors: [],
       },
+      jokerContribution: [],
     };
   }
 
   function explainSelectionWithEngine(jokers, scenario, scoreEngine) {
-    const engineJokers = jokers
-      .map((joker) => ({
-        id: joker.engineId || joker.id,
-        name: joker.name,
-        rarity: joker.rarity,
-      }));
-    const result = scoreEngine.score({
-      handType: scenario.handTypeKey || undefined,
-      level: scenario.level,
-      playedCards: scenario.playedCards,
-      heldCards: scenario.heldCards,
-      remainingDiscards: scenario.remainingDiscards,
-      remainingDeckCards: scenario.remainingDeckCards,
-      dollars: scenario.dollars,
-      currentHandTimesPlayed: scenario.currentHandTimesPlayed,
-      finalHand: scenario.finalHand,
-      rules: scenario.rules,
-      jokerValues: scenario.jokerValues,
-      jokers: engineJokers,
-    });
+    const result = scoreEngine.score(buildEngineInput(jokers, scenario));
     const engineSteps = result.steps.filter((step) => ['rule', 'copy', 'retrigger', 'joker'].includes(step.phase));
     const stepToExplainItem = (step) => ({
       label: step.label,
@@ -715,6 +748,7 @@
         total: jokers.length,
       },
       impactSummary: buildImpactSummary(result),
+      jokerContribution: buildJokerContributionComparison(jokers, scenario, scoreEngine, result),
       engineResult: result,
     };
   }
@@ -766,6 +800,35 @@
     </div>`;
   }
 
+  function renderJokerContribution(rows) {
+    if (!Array.isArray(rows) || !rows.length) return '';
+
+    const rankedRows = rows
+      .slice()
+      .sort((a, b) => Math.abs(Number(b.scoreDelta) || 0) - Math.abs(Number(a.scoreDelta) || 0));
+    const rowHtml = rankedRows.map((row) => {
+      if (row.scoreWithout === null || row.scoreDelta === null) {
+        return `<li class="calculator3Contribution__row calculator3Contribution__row--pending">
+          <span>${escapeHtml(row.name)}</span>
+          <strong>Needs model</strong>
+          <em>${escapeHtml(row.note || 'exact comparison pending')}</em>
+        </li>`;
+      }
+
+      return `<li class="calculator3Contribution__row">
+        <span>${escapeHtml(row.name)}</span>
+        <strong>${escapeHtml(formatSignedNumber(row.scoreDelta))}</strong>
+        <em>Without it: ${escapeHtml(formatNumber(row.chipsWithout))} x ${escapeHtml(formatNumber(row.multWithout))} = ${escapeHtml(formatNumber(row.scoreWithout))}</em>
+      </li>`;
+    }).join('');
+
+    return `<div class="calculator3Contribution__head">
+      <strong>Joker what-if</strong>
+      <span>Score lost or gained if removed</span>
+    </div>
+    <ol>${rowHtml}</ol>`;
+  }
+
   function initCalculator3Panel(doc) {
     const documentRef = doc || root.document;
     if (!documentRef) return null;
@@ -781,6 +844,7 @@
     const selectionList = documentRef.getElementById('calculator3SelectionList');
     const stateControls = documentRef.getElementById('calculator3StateControls');
     const impactSummary = documentRef.getElementById('calculator3ImpactSummary');
+    const contributionPanel = documentRef.getElementById('calculator3ContributionPanel');
     const explainList = documentRef.getElementById('calculator3ExplainList');
     const scorePreview = documentRef.getElementById('calculator3ScorePreview');
     const scoreOutcome = documentRef.getElementById('calculator3ScoreOutcome');
@@ -1026,6 +1090,10 @@
       if (impactSummary) {
         impactSummary.innerHTML = renderImpactSummary(explanation.impactSummary);
         impactSummary.hidden = !impactSummary.innerHTML;
+      }
+      if (contributionPanel) {
+        contributionPanel.innerHTML = renderJokerContribution(explanation.jokerContribution);
+        contributionPanel.hidden = !contributionPanel.innerHTML;
       }
     }
 
