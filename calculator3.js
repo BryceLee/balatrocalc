@@ -102,6 +102,12 @@
     { key: 'verdantLeaf', label: 'Verdant Leaf - all cards debuffed' },
     { key: 'flint', label: 'The Flint - base hand halved' },
   ];
+  const BLIND_BASE_CHIPS = [300, 800, 2000, 5000, 11000, 20000, 35000, 50000];
+  const BLIND_TYPES = [
+    { key: 'small', label: 'Small Blind', multiplier: 1 },
+    { key: 'big', label: 'Big Blind', multiplier: 1.5 },
+    { key: 'boss', label: 'Boss Blind', multiplier: 2 },
+  ];
   const PHASE_LABELS = {
     hand: 'Base hand',
     rule: 'Rule modifiers',
@@ -410,6 +416,38 @@
     return score;
   }
 
+  function getBlindBaseChips(ante) {
+    return BLIND_BASE_CHIPS[normalizeBlindAnte(ante) - 1];
+  }
+
+  function normalizeBlindAnte(ante) {
+    return Math.min(BLIND_BASE_CHIPS.length, Math.max(1, Math.floor(Number(ante) || 1)));
+  }
+
+  function calculateBlindTarget(ante, blindType) {
+    const type = BLIND_TYPES.find((entry) => entry.key === blindType) || BLIND_TYPES[0];
+    return Math.floor(getBlindBaseChips(ante) * type.multiplier);
+  }
+
+  function buildScoreOutcome(score, ante, blindType) {
+    const target = calculateBlindTarget(ante, blindType);
+    const safeScore = Math.max(0, Math.floor(Number(score) || 0));
+    const margin = safeScore - target;
+    const clears = margin >= 0;
+    return {
+      ante: normalizeBlindAnte(ante),
+      blindType: (BLIND_TYPES.find((entry) => entry.key === blindType) || BLIND_TYPES[0]).key,
+      target,
+      score: safeScore,
+      margin,
+      clears,
+      ratio: target > 0 ? safeScore / target : 0,
+      summary: clears
+        ? `Clears by ${formatNumber(margin)}`
+        : `Needs ${formatNumber(Math.abs(margin))} more`,
+    };
+  }
+
   function explainSelection(jokers, scenario) {
     const scenarioHandKey = scenario && scenario.handTypeKey
       ? scenario.handTypeKey
@@ -610,6 +648,7 @@
     const stateControls = documentRef.getElementById('calculator3StateControls');
     const explainList = documentRef.getElementById('calculator3ExplainList');
     const scorePreview = documentRef.getElementById('calculator3ScorePreview');
+    const scoreOutcome = documentRef.getElementById('calculator3ScoreOutcome');
     const scoreContext = panel.querySelector('.calculator3Explain__header span');
     const totalCount = documentRef.getElementById('calculator3CatalogTotal');
     const scoreCount = documentRef.getElementById('calculator3ScoreEffects');
@@ -633,6 +672,8 @@
     let currentHandTimesPlayed = 4;
     let finalHand = false;
     let plasmaDeck = false;
+    let blindAnte = 2;
+    let blindType = 'boss';
     let bossBlind = 'plant';
     const jokerValues = { ...RUNTIME_VALUE_DEFAULTS };
 
@@ -693,6 +734,16 @@
         <label class="calculator3StateField">
           <span>Hand level</span>
           <input id="calculator3HandLevel" type="number" min="1" max="99" step="1" value="${handLevel}" inputmode="numeric">
+        </label>
+        <label class="calculator3StateField">
+          <span>Ante</span>
+          <input id="calculator3BlindAnte" type="number" min="1" max="8" step="1" value="${blindAnte}" inputmode="numeric">
+        </label>
+        <label class="calculator3StateField">
+          <span>Blind size</span>
+          <select id="calculator3BlindType" aria-label="Blind size">
+            ${BLIND_TYPES.map((blind) => `<option value="${blind.key}" ${blindType === blind.key ? 'selected' : ''}>${blind.label}</option>`).join('')}
+          </select>
         </label>
       </div>
       <div class="calculator3StateCardGroup">
@@ -831,6 +882,12 @@
           : `${explanation.scenario.handType} preview`;
       }
       scorePreview.textContent = `${formatNumber(explanation.score.chips)} x ${formatNumber(explanation.score.mult)} = ${formatNumber(explanation.scorePreview)}`;
+      if (scoreOutcome) {
+        const outcome = buildScoreOutcome(explanation.scorePreview, blindAnte, blindType);
+        scoreOutcome.className = `calculator3Outcome ${outcome.clears ? 'calculator3Outcome--clear' : 'calculator3Outcome--short'}`;
+        scoreOutcome.innerHTML = `<strong>${escapeHtml(outcome.summary)}</strong>
+          <span>Ante ${outcome.ante} target ${formatNumber(outcome.target)} / ${formatNumber(outcome.ratio)}x required</span>`;
+      }
     }
 
     function sync() {
@@ -885,6 +942,10 @@
           handLevel = Math.max(1, Math.floor(Number(target.value) || 1));
           renderSelection();
         }
+        if (target.id === 'calculator3BlindAnte') {
+          blindAnte = normalizeBlindAnte(target.value);
+          renderSelection();
+        }
         if (target.dataset && target.dataset.jokerValue) {
           jokerValues[target.dataset.jokerValue] = Math.floor(Number(target.value) || 0);
           renderSelection();
@@ -905,6 +966,11 @@
         }
         if (target.id === 'calculator3PlasmaDeck') {
           plasmaDeck = target.checked === true;
+          renderSelection();
+          return;
+        }
+        if (target.id === 'calculator3BlindType') {
+          blindType = target.value;
           renderSelection();
           return;
         }
@@ -1017,6 +1083,8 @@
   return {
     buildJokerCatalog,
     buildCoverageSummary,
+    calculateBlindTarget,
+    buildScoreOutcome,
     explainSelection,
     inferEffectKind,
     inferTiming,

@@ -8,6 +8,7 @@ The first product slice is an explainable score path:
 
 - Model the played hand as structured cards, hand type, level, deck rules, and ordered Jokers.
 - Return a step list that shows exactly when rank Chips, card enhancements, editions, Chips, Mult, and XMult changed.
+- Compare the final score against the current Ante and Blind target, so users can see whether the modeled hand actually clears the round.
 - Keep unsupported Joker effects explicit, so future coverage work has a visible backlog instead of silent wrong math.
 
 ## Current Evidence
@@ -91,4 +92,5 @@ This is intentionally both a migration tool and a product surface. Users can sea
 1. Extend the exact engine with high-confidence static Jokers that the coverage workbench already classifies as heuristic math.
 2. Add user-facing state controls for common dynamic scoring inputs: remaining discards, final hand, hand already played this round, deck card counts, and dollars.
 3. Add copy/copyable state serialization so examples can move between classic, version 2, and Calculator 3.
-4. Decide how Calculator 3 coexists with Worker optimization: manual explainable score path first, optimizer migration later.
+4. Expand blind target modeling beyond the common Ante 1-8 Small/Big/Boss multipliers when higher-ante scaling is needed for Endless runs.
+5. Decide how Calculator 3 coexists with Worker optimization: manual explainable score path first, optimizer migration later.

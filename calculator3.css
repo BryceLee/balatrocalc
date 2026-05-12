@@ -464,6 +464,47 @@ body.calculator3-page {
   text-align: right;
 }
 
+.calculator3Outcome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 46px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 215, 0, 0.16);
+  border-radius: 8px;
+  background: rgba(3, 9, 10, 0.44);
+}
+
+.calculator3Outcome strong {
+  color: #f4f0d8;
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.calculator3Outcome span {
+  color: #a9cbbd;
+  font-size: 14px;
+  text-align: right;
+}
+
+.calculator3Outcome--clear {
+  border-color: rgba(131, 211, 180, 0.35);
+}
+
+.calculator3Outcome--clear strong {
+  color: #91e2c1;
+}
+
+.calculator3Outcome--short {
+  border-color: rgba(255, 176, 141, 0.42);
+}
+
+.calculator3Outcome--short strong {
+  color: #ffb08d;
+}
+
 .calculator3StateControls {
   display: grid;
   gap: 10px;
@@ -566,7 +607,7 @@ body.calculator3-page {
 }
 
 .calculator3StateNumbers.calculator3StateNumbers--hand {
-  grid-template-columns: minmax(0, 2fr) minmax(96px, 1fr);
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(96px, 1fr));
 }
 
 .calculator3SelectionList {
@@ -701,8 +742,15 @@ body.calculator3-page {
   .calculator3StateNumbers.calculator3StateNumbers--hand,
   .calculator3StateJokerValues,
   .calculator3StateCards,
+  .calculator3Outcome,
   .calculator3ExplainPhase li {
+    display: grid;
     grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .calculator3Outcome span {
+    text-align: left;
   }
 
   .calculator3-card {

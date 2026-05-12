@@ -214,6 +214,25 @@ assert.equal(plasmaExplanation.score.mult, 19);
 assert.equal(plasmaExplanation.scorePreview, 361);
 assert.ok(plasmaExplanation.phaseGroups.some((group) => group.key === 'deck' && group.steps.some((step) => step.label.includes('Plasma Deck'))));
 
+assert.equal(Calculator3Panel.calculateBlindTarget(1, 'small'), 300);
+assert.equal(Calculator3Panel.calculateBlindTarget(2, 'big'), 1200);
+assert.equal(Calculator3Panel.calculateBlindTarget(8, 'boss'), 100000);
+assert.equal(Calculator3Panel.calculateBlindTarget(12, 'boss'), 100000);
+assert.deepEqual(
+  Calculator3Panel.buildScoreOutcome(9594, 2, 'boss'),
+  {
+    ante: 2,
+    blindType: 'boss',
+    target: 1600,
+    score: 9594,
+    margin: 7994,
+    clears: true,
+    ratio: 5.99625,
+    summary: 'Clears by 7,994',
+  }
+);
+assert.equal(Calculator3Panel.buildScoreOutcome(140, 1, 'small').summary, 'Needs 160 more');
+
 const bossBlindExplanation = Calculator3Panel.explainSelection([
   byName.get('Smiley Face'),
   byName.get('Baron'),
