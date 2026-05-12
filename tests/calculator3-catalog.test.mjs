@@ -195,6 +195,16 @@ assert.equal(copyRetriggerExplanation.score.mult, 104);
 assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.key === 'copy'));
 assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.key === 'retrigger'));
 assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.steps.some((step) => step.label.includes('Blueprint copies Sock and Buskin'))));
+assert.equal(copyRetriggerExplanation.jokerOrderComparison.length, 4);
+assert.deepEqual(
+  copyRetriggerExplanation.jokerOrderComparison.map((row) => [row.index, row.pairName, row.scoreAfterSwap, row.scoreDelta, row.note]),
+  [
+    [0, 'Hanging Chad / Blueprint', 15120, 5760, 'swap improves score'],
+    [1, 'Blueprint / Sock and Buskin', 37940, 28580, 'swap improves score'],
+    [2, 'Sock and Buskin / Photograph', 37940, 28580, 'swap improves score'],
+    [3, 'Photograph / Smiley Face', 120960, 111600, 'swap improves score'],
+  ]
+);
 
 const ruleModifierExplanation = Calculator3Panel.explainSelection([
   byName.get('Four Fingers'),

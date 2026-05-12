@@ -589,6 +589,45 @@
     });
   }
 
+  function buildJokerOrderComparison(jokers, scenario, scoreEngine, baselineResult) {
+    if (!scoreEngine || typeof scoreEngine.score !== 'function' || !baselineResult || jokers.length < 2) return [];
+
+    return jokers.slice(0, -1).map((joker, index) => {
+      const nextJoker = jokers[index + 1];
+      const pairName = `${joker.name} / ${nextJoker.name}`;
+
+      if (!joker.engineId || !nextJoker.engineId) {
+        return {
+          index,
+          pairName,
+          scoreAfterSwap: null,
+          scoreDelta: null,
+          note: 'needs exact models before order advice',
+        };
+      }
+
+      const swappedJokers = jokers.slice();
+      swappedJokers[index] = nextJoker;
+      swappedJokers[index + 1] = joker;
+      const swappedResult = scoreEngine.score(buildEngineInput(swappedJokers, scenario));
+      const scoreDelta = Math.floor(Number(swappedResult.score) || 0) - Math.floor(Number(baselineResult.score) || 0);
+
+      return {
+        index,
+        pairName,
+        scoreAfterSwap: swappedResult.score,
+        scoreDelta,
+        chipsAfterSwap: swappedResult.chips,
+        multAfterSwap: swappedResult.mult,
+        note: scoreDelta > 0
+          ? 'swap improves score'
+          : scoreDelta < 0
+            ? 'current order is stronger'
+            : 'same score after swap',
+      };
+    });
+  }
+
   function explainSelection(jokers, scenario) {
     const scenarioHandKey = scenario && scenario.handTypeKey
       ? scenario.handTypeKey
@@ -670,6 +709,7 @@
         topContributors: [],
       },
       jokerContribution: [],
+      jokerOrderComparison: [],
     };
   }
 
@@ -749,6 +789,7 @@
       },
       impactSummary: buildImpactSummary(result),
       jokerContribution: buildJokerContributionComparison(jokers, scenario, scoreEngine, result),
+      jokerOrderComparison: buildJokerOrderComparison(jokers, scenario, scoreEngine, result),
       engineResult: result,
     };
   }
@@ -829,6 +870,36 @@
     <ol>${rowHtml}</ol>`;
   }
 
+  function renderJokerOrderComparison(rows) {
+    if (!Array.isArray(rows) || !rows.length) return '';
+
+    const actionableRows = rows
+      .slice()
+      .sort((a, b) => Math.abs(Number(b.scoreDelta) || 0) - Math.abs(Number(a.scoreDelta) || 0));
+    const rowHtml = actionableRows.map((row) => {
+      if (row.scoreAfterSwap === null || row.scoreDelta === null) {
+        return `<li class="calculator3Order__row calculator3Order__row--pending">
+          <span>${escapeHtml(row.pairName)}</span>
+          <strong>Needs model</strong>
+          <em>${escapeHtml(row.note || 'order comparison pending')}</em>
+        </li>`;
+      }
+
+      return `<li class="calculator3Order__row">
+        <span>${escapeHtml(row.pairName)}</span>
+        <strong>${escapeHtml(formatSignedNumber(row.scoreDelta))}</strong>
+        <em>Swapped: ${escapeHtml(formatNumber(row.chipsAfterSwap))} x ${escapeHtml(formatNumber(row.multAfterSwap))} = ${escapeHtml(formatNumber(row.scoreAfterSwap))}</em>
+        <button type="button" data-swap-jokers="${row.index}">Swap</button>
+      </li>`;
+    }).join('');
+
+    return `<div class="calculator3Order__head">
+      <strong>Joker order check</strong>
+      <span>Adjacent swaps compared with exact scoring</span>
+    </div>
+    <ol>${rowHtml}</ol>`;
+  }
+
   function initCalculator3Panel(doc) {
     const documentRef = doc || root.document;
     if (!documentRef) return null;
@@ -845,6 +916,7 @@
     const stateControls = documentRef.getElementById('calculator3StateControls');
     const impactSummary = documentRef.getElementById('calculator3ImpactSummary');
     const contributionPanel = documentRef.getElementById('calculator3ContributionPanel');
+    const orderPanel = documentRef.getElementById('calculator3OrderPanel');
     const explainList = documentRef.getElementById('calculator3ExplainList');
     const scorePreview = documentRef.getElementById('calculator3ScorePreview');
     const scoreOutcome = documentRef.getElementById('calculator3ScoreOutcome');
@@ -1095,6 +1167,10 @@
         contributionPanel.innerHTML = renderJokerContribution(explanation.jokerContribution);
         contributionPanel.hidden = !contributionPanel.innerHTML;
       }
+      if (orderPanel) {
+        orderPanel.innerHTML = renderJokerOrderComparison(explanation.jokerOrderComparison);
+        orderPanel.hidden = !orderPanel.innerHTML;
+      }
     }
 
     function sync() {
@@ -1125,6 +1201,21 @@
       selected = selected.filter((joker) => joker.id !== button.dataset.selectedJokerId);
       sync();
     });
+
+    if (orderPanel) {
+      orderPanel.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-swap-jokers]');
+        if (!button) return;
+        const index = Number(button.dataset.swapJokers);
+        if (!Number.isInteger(index) || index < 0 || index >= selected.length - 1) return;
+        const nextSelected = selected.slice();
+        const current = nextSelected[index];
+        nextSelected[index] = nextSelected[index + 1];
+        nextSelected[index + 1] = current;
+        selected = nextSelected;
+        sync();
+      });
+    }
 
     if (stateControls) {
       stateControls.addEventListener('input', (event) => {
