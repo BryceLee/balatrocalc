@@ -46,10 +46,10 @@
   };
   const DEFAULT_PLAYED_CARDS = [
     { rank: 'K', suit: 'hearts', enhancement: 'mult' },
-    { rank: 'K', suit: 'spades', edition: 'foil', seal: 'red' },
-    { rank: 'Q', suit: 'clubs' },
-    { rank: '5', suit: 'diamonds', enhancement: 'wild' },
-    { rank: '3', suit: 'hearts' },
+    { rank: 'J', suit: 'diamonds', edition: 'foil', seal: 'red' },
+    { rank: '9', suit: 'hearts' },
+    { rank: '7', suit: 'diamonds' },
+    { rank: '2', suit: 'spades' },
   ];
   const DEFAULT_HELD_CARDS = [
     { rank: 'K', suit: 'spades' },
@@ -94,6 +94,7 @@
   ];
   const PHASE_LABELS = {
     hand: 'Base hand',
+    rule: 'Rule modifiers',
     copy: 'Copy targets',
     retrigger: 'Retrigger plan',
     card: 'Scoring cards',
@@ -103,7 +104,7 @@
     held: 'Held card effects',
     seal: 'Seals',
     joker: 'Jokers left to right',
-    deck: 'Deck rule',
+    deck: 'Deck scoring',
   };
   const HAND_TYPE_OPTIONS = [
     { key: 'highCard', label: 'High Card' },
@@ -417,6 +418,7 @@
       dollars: 18,
       currentHandTimesPlayed: 4,
       finalHand: false,
+      rules: {},
       jokerValues: {},
       ...scenario,
     };
@@ -491,17 +493,18 @@
       dollars: scenario.dollars,
       currentHandTimesPlayed: scenario.currentHandTimesPlayed,
       finalHand: scenario.finalHand,
+      rules: scenario.rules,
       jokerValues: scenario.jokerValues,
       jokers: engineJokers,
     });
-    const engineSteps = result.steps.filter((step) => ['copy', 'retrigger', 'joker'].includes(step.phase));
+    const engineSteps = result.steps.filter((step) => ['rule', 'copy', 'retrigger', 'joker'].includes(step.phase));
     const stepToExplainItem = (step) => ({
       label: step.label,
       detail: `${formatNumber(step.chips)} x ${formatNumber(step.mult)} = ${formatNumber(step.score)}`,
       applies: step.skipped !== true,
-      modelStatus: step.phase === 'joker' ? 'exact' : '',
+      modelStatus: ['rule', 'joker'].includes(step.phase) ? 'exact' : '',
     });
-    const phaseGroups = ['hand', 'copy', 'retrigger', 'card', 'status', 'enhancement', 'edition', 'held', 'seal', 'joker', 'deck']
+    const phaseGroups = ['hand', 'rule', 'copy', 'retrigger', 'card', 'status', 'enhancement', 'edition', 'held', 'seal', 'joker', 'deck']
       .map((phase) => ({
         key: phase,
         label: PHASE_LABELS[phase] || phase,
@@ -606,7 +609,7 @@
       return null;
     }
 
-    const selectedNames = ['Hanging Chad', 'Blueprint', 'Sock and Buskin', 'Photograph', 'Smiley Face'];
+    const selectedNames = ['Four Fingers', 'Shortcut', 'Smeared Joker', 'Photograph', 'Smiley Face'];
     let selected = selectedNames
       .map((name) => catalog.find((joker) => joker.name === name))
       .filter(Boolean);
@@ -619,6 +622,7 @@
     let dollars = 18;
     let currentHandTimesPlayed = 4;
     let finalHand = false;
+    let plasmaDeck = false;
     const jokerValues = { ...RUNTIME_VALUE_DEFAULTS };
 
     totalCount.textContent = String(coverage.total);
@@ -705,6 +709,10 @@
           <span>Final hand</span>
           <input id="calculator3FinalHand" type="checkbox" ${finalHand ? 'checked' : ''}>
         </label>
+        <label class="calculator3StateField calculator3StateField--toggle">
+          <span>Plasma Deck</span>
+          <input id="calculator3PlasmaDeck" type="checkbox" ${plasmaDeck ? 'checked' : ''}>
+        </label>
       </div>
       ${runtimeRows ? `<div class="calculator3StateJokerValues">${runtimeRows}</div>` : ''}
       <div class="calculator3StateCardGroup">
@@ -774,6 +782,9 @@
         dollars,
         currentHandTimesPlayed,
         finalHand,
+        rules: {
+          plasmaDeck,
+        },
         jokerValues,
         scoreEngine: root.Calculator3,
       });
@@ -871,6 +882,11 @@
         }
         if (target.id === 'calculator3FinalHand') {
           finalHand = target.checked === true;
+          renderSelection();
+          return;
+        }
+        if (target.id === 'calculator3PlasmaDeck') {
+          plasmaDeck = target.checked === true;
           renderSelection();
           return;
         }

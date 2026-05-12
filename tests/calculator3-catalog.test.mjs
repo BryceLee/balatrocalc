@@ -42,9 +42,9 @@ const byName = new Map(catalog.map((joker) => [joker.name, joker]));
 
 assert.equal(catalog.length, 150);
 assert.equal(coverage.total, 150);
-assert.equal(coverage.exact, 62);
+assert.equal(coverage.exact, 65);
 assert.equal(coverage.heuristic, 1);
-assert.equal(coverage.stateful, 87);
+assert.equal(coverage.stateful, 84);
 
 assert.equal(byName.get('Joker').modelStatus, 'exact');
 assert.equal(byName.get('The Duo').engineId, 'duo');
@@ -83,6 +83,9 @@ assert.equal(byName.get('Brainstorm').modelStatus, 'exact');
 assert.equal(byName.get('Hanging Chad').modelStatus, 'exact');
 assert.equal(byName.get('Sock and Buskin').modelStatus, 'exact');
 assert.equal(byName.get('Dusk').modelStatus, 'exact');
+assert.equal(byName.get('Four Fingers').modelStatus, 'exact');
+assert.equal(byName.get('Shortcut').modelStatus, 'exact');
+assert.equal(byName.get('Smeared Joker').modelStatus, 'exact');
 assert.equal(byName.get('Card Sharp').modelStatus, 'stateful');
 assert.equal(byName.get('Gros Michel').operation.type, 'addMult');
 
@@ -170,6 +173,46 @@ assert.equal(copyRetriggerExplanation.score.mult, 104);
 assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.key === 'copy'));
 assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.key === 'retrigger'));
 assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.steps.some((step) => step.label.includes('Blueprint copies Sock and Buskin'))));
+
+const ruleModifierExplanation = Calculator3Panel.explainSelection([
+  byName.get('Four Fingers'),
+  byName.get('Shortcut'),
+  byName.get('Smeared Joker'),
+  byName.get('Photograph'),
+  byName.get('Smiley Face'),
+], {
+  scoreEngine: Calculator3,
+  playedCards: [
+    { rank: 'K', suit: 'hearts', enhancement: 'mult' },
+    { rank: 'J', suit: 'diamonds', edition: 'foil', seal: 'red' },
+    { rank: '9', suit: 'hearts' },
+    { rank: '7', suit: 'diamonds' },
+    { rank: '2', suit: 'spades' },
+  ],
+});
+assert.equal(ruleModifierExplanation.engineCoverage.exact, 5);
+assert.equal(ruleModifierExplanation.engineResult.handType, 'straightFlush');
+assert.equal(ruleModifierExplanation.engineResult.scoringCards.length, 4);
+assert.equal(ruleModifierExplanation.score.chips, 246);
+assert.equal(ruleModifierExplanation.score.mult, 39);
+assert.equal(ruleModifierExplanation.scorePreview, 9594);
+assert.ok(ruleModifierExplanation.phaseGroups.some((group) => group.key === 'rule' && group.steps.some((step) => step.label.includes('Four Fingers'))));
+assert.ok(ruleModifierExplanation.phaseGroups.some((group) => group.key === 'seal'));
+
+const plasmaExplanation = Calculator3Panel.explainSelection([
+  byName.get('Joker'),
+], {
+  scoreEngine: Calculator3,
+  playedCards: [
+    { rank: 'A', suit: 'hearts' },
+    { rank: 'A', suit: 'spades' },
+  ],
+  rules: { plasmaDeck: true },
+});
+assert.equal(plasmaExplanation.score.chips, 19);
+assert.equal(plasmaExplanation.score.mult, 19);
+assert.equal(plasmaExplanation.scorePreview, 361);
+assert.ok(plasmaExplanation.phaseGroups.some((group) => group.key === 'deck' && group.steps.some((step) => step.label.includes('Plasma Deck'))));
 
 const leveledStraightExplanation = Calculator3Panel.explainSelection([
   byName.get('Crazy Joker'),

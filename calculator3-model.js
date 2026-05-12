@@ -233,7 +233,7 @@
       mode: 'xMult',
       explain: 'X2 Mult with scoring Club plus another suit',
       apply(state) {
-        const suits = suitsRepresented(state.scoringCards);
+        const suits = suitsRepresented(state.scoringCards, state.rules);
         if (!suits.has('clubs') || suits.size < 2) return null;
         return {
           xMult: 2,
@@ -247,7 +247,7 @@
       mode: 'xMult',
       explain: 'X3 Mult with all four suits',
       apply(state) {
-        const suits = suitsRepresented(state.scoringCards);
+        const suits = suitsRepresented(state.scoringCards, state.rules);
         if (!['diamonds', 'clubs', 'hearts', 'spades'].every((suit) => suits.has(suit))) return null;
         return {
           xMult: 3,
@@ -359,7 +359,7 @@
       explain: 'X3 Mult when all held cards are black suits',
       apply(state) {
         const activeHeldCards = state.heldCards.filter((card) => !card.debuffed);
-        if (!activeHeldCards.length || activeHeldCards.some((card) => !cardMatchesAnySuit(card, BLACK_SUITS))) return null;
+        if (!activeHeldCards.length || activeHeldCards.some((card) => !cardMatchesAnySuit(card, BLACK_SUITS, state.rules))) return null;
         return {
           xMult: 3,
           text: 'Blackboard: all held cards are Spades or Clubs, applies X3 Mult'
@@ -514,6 +514,24 @@
         };
       }
     },
+    fourFingers: {
+      id: 'fourFingers',
+      name: 'Four Fingers',
+      mode: 'ruleModifier',
+      explain: 'Flushes and Straights may use 4 cards'
+    },
+    shortcut: {
+      id: 'shortcut',
+      name: 'Shortcut',
+      mode: 'ruleModifier',
+      explain: 'Straights may skip one rank between cards'
+    },
+    smearedJoker: {
+      id: 'smearedJoker',
+      name: 'Smeared Joker',
+      mode: 'ruleModifier',
+      explain: 'Hearts/Diamonds and Spades/Clubs count together'
+    },
     blueprint: {
       id: 'blueprint',
       name: 'Blueprint',
@@ -535,7 +553,7 @@
       mode: effectKey,
       explain: `${amount} per ${SUIT_BY_KEY[suit].label} scoring card`,
       apply(state) {
-        const count = countScoringTriggers(state, (card) => !card.debuffed && cardMatchesSuit(card, suit));
+        const count = countScoringTriggers(state, (card) => !card.debuffed && cardMatchesSuit(card, suit, state.rules));
         if (!count) return null;
         return {
           [effectKey]: count * amount,
@@ -679,10 +697,11 @@
   function normalizeInput(input) {
     const playedCards = (input.playedCards || []).map(normalizeCard);
     const heldCards = (input.heldCards || []).map(normalizeCard);
-    const analysis = analyzePlayedCards(playedCards);
-    const handType = input.handType && HAND_BY_KEY[input.handType] ? input.handType : analysis.handType;
     const level = Math.max(1, Math.floor(Number(input.level) || 1));
     const jokers = (input.jokers || []).map(normalizeJoker).filter((joker) => joker.id);
+    const rules = normalizeRules(input.rules, jokers);
+    const analysis = analyzePlayedCards(playedCards, rules);
+    const handType = input.handType && HAND_BY_KEY[input.handType] ? input.handType : analysis.handType;
     const scoringIndexes = analysis.scoringIndexes;
     const scoringCards = playedCards.filter((card, index) => scoringIndexes.has(index) && card.scoring !== false);
 
@@ -699,10 +718,21 @@
       currentHandTimesPlayed: normalizeNonNegativeInteger(input.currentHandTimesPlayed),
       finalHand: input.finalHand === true || input.finalHand === 'true',
       jokerValues: normalizeJokerValues(input.jokerValues),
-      rules: {
-        plasmaDeck: input.rules && input.rules.plasmaDeck === true
-      },
+      rules,
       analysis
+    };
+  }
+
+  function normalizeRules(rules, jokers) {
+    const inputRules = rules || {};
+    const activeJokerIds = new Set((jokers || [])
+      .filter((joker) => joker.disabled !== true)
+      .map((joker) => joker.id));
+    return {
+      plasmaDeck: inputRules.plasmaDeck === true || inputRules.plasmaDeck === 'true',
+      fourFingers: inputRules.fourFingers === true || inputRules.fourFingers === 'true' || activeJokerIds.has('fourFingers'),
+      shortcut: inputRules.shortcut === true || inputRules.shortcut === 'true' || activeJokerIds.has('shortcut'),
+      smearedJoker: inputRules.smearedJoker === true || inputRules.smearedJoker === 'true' || activeJokerIds.has('smearedJoker')
     };
   }
 
@@ -733,35 +763,39 @@
     return card && card.debuffed !== true && card.enhancement === enhancementKey;
   }
 
-  function cardMatchesSuit(card, suit) {
+  function cardMatchesSuit(card, suit, rules = {}) {
     if (!card) return false;
-    return card.suit === suit || hasEnhancement(card, 'wild');
+    if (card.suit === suit || hasEnhancement(card, 'wild')) return true;
+    return rules.smearedJoker === true && suitFamily(card.suit) === suitFamily(suit);
   }
 
-  function cardMatchesAnySuit(card, suits) {
+  function cardMatchesAnySuit(card, suits, rules = {}) {
     if (!card) return false;
     if (hasEnhancement(card, 'wild')) return true;
+    if (rules.smearedJoker === true) {
+      return suitAliases(card.suit, rules).some((suit) => suits.has(suit));
+    }
     return suits.has(card.suit);
   }
 
-  function suitsRepresented(cards) {
+  function suitsRepresented(cards, rules = {}) {
     const suits = new Set();
     cards.filter((card) => !card.debuffed).forEach((card) => {
       if (hasEnhancement(card, 'wild')) {
         SUITS.forEach((suit) => suits.add(suit.key));
       } else {
-        suits.add(card.suit);
+        suitAliases(card.suit, rules).forEach((suit) => suits.add(suit));
       }
     });
     return suits;
   }
 
-  function groupSuitIndexes(cards) {
+  function groupSuitIndexes(cards, rules = {}) {
     const groups = new Map(SUITS.map((suit) => [suit.key, []]));
     cards.forEach((card, index) => {
       const sourceIndex = card.sourceIndex ?? index;
       SUITS.forEach((suit) => {
-        if (cardMatchesSuit(card, suit.key)) {
+        if (cardMatchesSuit(card, suit.key, rules)) {
           groups.get(suit.key).push(sourceIndex);
         }
       });
@@ -769,7 +803,20 @@
     return groups;
   }
 
-  function analyzePlayedCards(cards) {
+  function suitFamily(suit) {
+    if (suit === 'hearts' || suit === 'diamonds') return 'red';
+    if (suit === 'spades' || suit === 'clubs') return 'black';
+    return suit;
+  }
+
+  function suitAliases(suit, rules = {}) {
+    if (rules.smearedJoker !== true) return [suit];
+    if (suit === 'hearts' || suit === 'diamonds') return ['hearts', 'diamonds'];
+    if (suit === 'spades' || suit === 'clubs') return ['spades', 'clubs'];
+    return [suit];
+  }
+
+  function analyzePlayedCards(cards, rules = {}) {
     const normalizedCards = cards.map((card) => RANK_BY_KEY[card.rank] ? card : normalizeCard(card));
     if (!normalizedCards.length) {
       return { handType: 'highCard', scoringIndexes: new Set(), reason: 'No cards selected' };
@@ -787,17 +834,19 @@
     }
 
     const rankGroups = groupIndexes(handCards, 'rank');
-    const suitGroups = groupSuitIndexes(handCards);
+    const suitGroups = groupSuitIndexes(handCards, rules);
     const counts = Array.from(rankGroups.values()).map((indexes) => indexes.length).sort((a, b) => b - a);
-    const isFlush = handCards.length >= 5 && Array.from(suitGroups.values()).some((indexes) => indexes.length >= 5);
-    const straightIndexes = findStraightIndexes(handCards);
-    const isStraight = straightIndexes.size >= 5;
+    const requiredShapeCards = rules.fourFingers === true ? 4 : 5;
+    const isFlush = handCards.length >= requiredShapeCards && Array.from(suitGroups.values()).some((indexes) => indexes.length >= requiredShapeCards);
+    const straightIndexes = findStraightIndexes(handCards, rules);
+    const isStraight = straightIndexes.size >= requiredShapeCards;
     const sameSuitIndexes = isFlush ? largestGroupIndexes(suitGroups) : new Set();
+    const straightFlushIndexes = intersectionIndexes(straightIndexes, sameSuitIndexes);
 
     if (counts[0] >= 5 && isFlush) return typedAnalysis('flushFive', intersectionIndexes(largestGroupIndexes(rankGroups), sameSuitIndexes), stoneIndexes);
     if (counts[0] >= 3 && counts[1] >= 2 && isFlush) return typedAnalysis('flushHouse', sameSuitIndexes, stoneIndexes);
     if (counts[0] >= 5) return typedAnalysis('fiveOfAKind', largestGroupIndexes(rankGroups), stoneIndexes);
-    if (isStraight && isFlush) return typedAnalysis('straightFlush', intersectionIndexes(straightIndexes, sameSuitIndexes), stoneIndexes);
+    if (isStraight && isFlush && straightFlushIndexes.size >= requiredShapeCards) return typedAnalysis('straightFlush', straightFlushIndexes, stoneIndexes);
     if (counts[0] >= 4) return typedAnalysis('fourOfAKind', largestGroupIndexes(rankGroups), stoneIndexes);
     if (counts[0] >= 3 && counts[1] >= 2) return typedAnalysis('fullHouse', fullHouseIndexes(rankGroups), stoneIndexes);
     if (isFlush) return typedAnalysis('flush', sameSuitIndexes, stoneIndexes);
@@ -865,7 +914,7 @@
     return cards[bestIndex].sourceIndex ?? bestIndex;
   }
 
-  function findStraightIndexes(cards) {
+  function findStraightIndexes(cards, rules = {}) {
     const byValue = new Map();
     cards.forEach((card, index) => {
       const value = RANK_BY_KEY[card.rank].value;
@@ -875,10 +924,12 @@
     });
 
     const values = Array.from(byValue.keys()).sort((a, b) => a - b);
+    const requiredLength = rules.fourFingers === true ? 4 : 5;
+    const maxGap = rules.shortcut === true ? 2 : 1;
     let bestRun = [];
     let currentRun = [];
     values.forEach((value) => {
-      if (!currentRun.length || value === currentRun[currentRun.length - 1] + 1) {
+      if (!currentRun.length || (value > currentRun[currentRun.length - 1] && value - currentRun[currentRun.length - 1] <= maxGap)) {
         currentRun.push(value);
       } else {
         currentRun = [value];
@@ -886,8 +937,8 @@
       if (currentRun.length > bestRun.length) bestRun = currentRun.slice();
     });
 
-    if (bestRun.length < 5) return new Set();
-    return new Set(bestRun.slice(-5).map((value) => byValue.get(value)));
+    if (bestRun.length < requiredLength) return new Set();
+    return new Set(bestRun.slice(-Math.min(bestRun.length, 5)).map((value) => byValue.get(value)));
   }
 
   function baseHandScore(handType, level) {
@@ -991,6 +1042,7 @@
       currentHandTimesPlayed: state.currentHandTimesPlayed,
       finalHand: state.finalHand,
       jokerValues: state.jokerValues,
+      rules: state.rules,
       activeJokers,
       activeJokerCount: activeJokers.length
     };
@@ -1016,6 +1068,16 @@
       steps.push({
         phase: 'retrigger',
         label: rule.text,
+        chips,
+        mult,
+        score: Math.floor(chips * mult)
+      });
+    });
+
+    buildRuleSteps(state.rules, activeJokers).forEach((step) => {
+      steps.push({
+        phase: 'rule',
+        label: step,
         chips,
         mult,
         score: Math.floor(chips * mult)
@@ -1162,6 +1224,9 @@
         }
         return;
       }
+      if (effect.mode === 'ruleModifier') {
+        return;
+      }
 
       const delta = effect.apply(jokerState);
       if (!delta) {
@@ -1229,6 +1294,21 @@
 
   function roundForDisplay(value) {
     return Math.round(value * 1000) / 1000;
+  }
+
+  function buildRuleSteps(rules, activeJokers) {
+    const activeIds = new Set(activeJokers.map((joker) => joker.id));
+    const steps = [];
+    if (rules.fourFingers && activeIds.has('fourFingers')) {
+      steps.push('Four Fingers: Flushes and Straights may be detected with 4 cards');
+    }
+    if (rules.shortcut && activeIds.has('shortcut')) {
+      steps.push('Shortcut: Straight detection allows one-rank gaps');
+    }
+    if (rules.smearedJoker && activeIds.has('smearedJoker')) {
+      steps.push('Smeared Joker: red suits count together and black suits count together');
+    }
+    return steps;
   }
 
   function formatCardName(card) {

@@ -32,6 +32,16 @@ const straightFlushAnalysis = Calculator3.analyzePlayedCards([
 ]);
 assert.equal(straightFlushAnalysis.handType, 'straightFlush');
 
+const ruleModifierAnalysis = Calculator3.analyzePlayedCards([
+  card('K', 'hearts'),
+  card('J', 'diamonds'),
+  card('9', 'hearts'),
+  card('7', 'diamonds'),
+  card('2', 'spades')
+], { fourFingers: true, shortcut: true, smearedJoker: true });
+assert.equal(ruleModifierAnalysis.handType, 'straightFlush');
+assert.equal(ruleModifierAnalysis.scoringIndexes.size, 4);
+
 const jollyScore = Calculator3.score({
   handType: 'pair',
   level: 1,
@@ -190,6 +200,40 @@ assert.equal(xMultConditionScore.handType, 'straight');
 assert.equal(xMultConditionScore.chips, 79);
 assert.equal(xMultConditionScore.mult, 192);
 assert.equal(xMultConditionScore.score, 15168);
+
+const handRuleScore = Calculator3.score({
+  playedCards: [
+    stateCard('K', 'hearts', { enhancement: 'mult' }),
+    stateCard('J', 'diamonds', { edition: 'foil', seal: 'red' }),
+    card('9', 'hearts'),
+    card('7', 'diamonds'),
+    card('2', 'spades')
+  ],
+  jokers: ['fourFingers', 'shortcut', 'smearedJoker', 'photograph', 'smileyFace']
+});
+assert.equal(handRuleScore.handType, 'straightFlush');
+assert.equal(handRuleScore.scoringCards.length, 4);
+assert.equal(handRuleScore.chips, 246);
+assert.equal(handRuleScore.mult, 39);
+assert.equal(handRuleScore.score, 9594);
+assert.ok(handRuleScore.steps.some((step) => step.phase === 'rule' && step.label.includes('Four Fingers')));
+assert.ok(handRuleScore.steps.some((step) => step.phase === 'rule' && step.label.includes('Shortcut')));
+assert.ok(handRuleScore.steps.some((step) => step.phase === 'rule' && step.label.includes('Smeared Joker')));
+assert.ok(handRuleScore.steps.some((step) => step.label.includes('Red Seal retriggers')));
+
+const plasmaScore = Calculator3.score({
+  playedCards: [
+    card('A', 'hearts'),
+    card('A', 'spades')
+  ],
+  jokers: ['joker'],
+  rules: { plasmaDeck: true }
+});
+assert.equal(plasmaScore.handType, 'pair');
+assert.equal(plasmaScore.chips, 19);
+assert.equal(plasmaScore.mult, 19);
+assert.equal(plasmaScore.score, 361);
+assert.ok(plasmaScore.steps.some((step) => step.phase === 'deck' && step.label.includes('Plasma Deck')));
 
 const heldCardStateScore = Calculator3.score({
   playedCards: [
