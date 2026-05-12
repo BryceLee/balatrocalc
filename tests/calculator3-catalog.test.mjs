@@ -42,9 +42,9 @@ const byName = new Map(catalog.map((joker) => [joker.name, joker]));
 
 assert.equal(catalog.length, 150);
 assert.equal(coverage.total, 150);
-assert.equal(coverage.exact, 57);
+assert.equal(coverage.exact, 62);
 assert.equal(coverage.heuristic, 1);
-assert.equal(coverage.stateful, 92);
+assert.equal(coverage.stateful, 87);
 
 assert.equal(byName.get('Joker').modelStatus, 'exact');
 assert.equal(byName.get('The Duo').engineId, 'duo');
@@ -78,7 +78,11 @@ assert.equal(byName.get('Bull').modelStatus, 'exact');
 assert.equal(byName.get('Flash Card').modelStatus, 'exact');
 assert.equal(byName.get('Bootstraps').modelStatus, 'exact');
 assert.equal(byName.get('Blueprint').effectKind, 'copy');
-assert.equal(byName.get('Blueprint').modelStatus, 'stateful');
+assert.equal(byName.get('Blueprint').modelStatus, 'exact');
+assert.equal(byName.get('Brainstorm').modelStatus, 'exact');
+assert.equal(byName.get('Hanging Chad').modelStatus, 'exact');
+assert.equal(byName.get('Sock and Buskin').modelStatus, 'exact');
+assert.equal(byName.get('Dusk').modelStatus, 'exact');
 assert.equal(byName.get('Card Sharp').modelStatus, 'stateful');
 assert.equal(byName.get('Gros Michel').operation.type, 'addMult');
 
@@ -144,6 +148,28 @@ assert.equal(runtimeExplanation.score.chips, 148);
 assert.equal(runtimeExplanation.score.mult, 18);
 assert.equal(runtimeExplanation.scorePreview, 2664);
 assert.ok(runtimeExplanation.steps.some((step) => step.note.includes('Bootstraps')));
+
+const copyRetriggerExplanation = Calculator3Panel.explainSelection([
+  byName.get('Hanging Chad'),
+  byName.get('Blueprint'),
+  byName.get('Sock and Buskin'),
+  byName.get('Photograph'),
+  byName.get('Smiley Face'),
+], {
+  scoreEngine: Calculator3,
+  handTypeKey: 'pair',
+  playedCards: [
+    { rank: 'K', suit: 'hearts' },
+    { rank: 'K', suit: 'spades' },
+    { rank: 'Q', suit: 'clubs' },
+  ],
+});
+assert.equal(copyRetriggerExplanation.engineCoverage.exact, 5);
+assert.equal(copyRetriggerExplanation.score.chips, 90);
+assert.equal(copyRetriggerExplanation.score.mult, 104);
+assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.key === 'copy'));
+assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.key === 'retrigger'));
+assert.ok(copyRetriggerExplanation.phaseGroups.some((group) => group.steps.some((step) => step.label.includes('Blueprint copies Sock and Buskin'))));
 
 const leveledStraightExplanation = Calculator3Panel.explainSelection([
   byName.get('Crazy Joker'),

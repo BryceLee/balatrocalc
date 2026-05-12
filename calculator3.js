@@ -45,9 +45,9 @@
     utility: 90,
   };
   const DEFAULT_PLAYED_CARDS = [
-    { rank: 'A', suit: 'hearts', enhancement: 'mult' },
-    { rank: 'A', suit: 'spades', edition: 'foil', seal: 'red' },
-    { rank: '8', suit: 'clubs', enhancement: 'stone' },
+    { rank: 'K', suit: 'hearts', enhancement: 'mult' },
+    { rank: 'K', suit: 'spades', edition: 'foil', seal: 'red' },
+    { rank: 'Q', suit: 'clubs' },
     { rank: '5', suit: 'diamonds', enhancement: 'wild' },
     { rank: '3', suit: 'hearts' },
   ];
@@ -94,6 +94,8 @@
   ];
   const PHASE_LABELS = {
     hand: 'Base hand',
+    copy: 'Copy targets',
+    retrigger: 'Retrigger plan',
     card: 'Scoring cards',
     status: 'Card status',
     enhancement: 'Card enhancements',
@@ -414,6 +416,7 @@
       remainingDeckCards: 40,
       dollars: 18,
       currentHandTimesPlayed: 4,
+      finalHand: false,
       jokerValues: {},
       ...scenario,
     };
@@ -472,10 +475,9 @@
   }
 
   function explainSelectionWithEngine(jokers, scenario, scoreEngine) {
-    const exactJokers = jokers
-      .filter((joker) => joker.engineId)
+    const engineJokers = jokers
       .map((joker) => ({
-        id: joker.engineId,
+        id: joker.engineId || joker.id,
         name: joker.name,
         rarity: joker.rarity,
       }));
@@ -488,17 +490,18 @@
       remainingDeckCards: scenario.remainingDeckCards,
       dollars: scenario.dollars,
       currentHandTimesPlayed: scenario.currentHandTimesPlayed,
+      finalHand: scenario.finalHand,
       jokerValues: scenario.jokerValues,
-      jokers: exactJokers,
+      jokers: engineJokers,
     });
-    const engineSteps = result.steps.filter((step) => step.phase === 'joker');
+    const engineSteps = result.steps.filter((step) => ['copy', 'retrigger', 'joker'].includes(step.phase));
     const stepToExplainItem = (step) => ({
       label: step.label,
       detail: `${formatNumber(step.chips)} x ${formatNumber(step.mult)} = ${formatNumber(step.score)}`,
       applies: step.skipped !== true,
       modelStatus: step.phase === 'joker' ? 'exact' : '',
     });
-    const phaseGroups = ['hand', 'card', 'status', 'enhancement', 'edition', 'held', 'seal', 'joker', 'deck']
+    const phaseGroups = ['hand', 'copy', 'retrigger', 'card', 'status', 'enhancement', 'edition', 'held', 'seal', 'joker', 'deck']
       .map((phase) => ({
         key: phase,
         label: PHASE_LABELS[phase] || phase,
@@ -507,10 +510,10 @@
           .map(stepToExplainItem),
       }))
       .filter((group) => group.steps.length);
-    let engineStepIndex = 0;
     let previous = result.steps[0]
       ? { chips: result.steps[0].chips, mult: result.steps[0].mult }
       : { chips: scenario.chips, mult: scenario.mult };
+    const usedEngineSteps = new Set();
     const steps = jokers.map((joker, index) => {
       if (!joker.engineId) {
         return {
@@ -526,12 +529,14 @@
         };
       }
 
-      const engineStep = engineSteps[engineStepIndex++] || {
+      const engineStep = engineSteps.find((step, stepIndex) => !usedEngineSteps.has(stepIndex) && step.label.includes(joker.name)) || {
         label: `${joker.name}: no engine step returned`,
         chips: previous.chips,
         mult: previous.mult,
         skipped: true,
       };
+      const matchedIndex = engineSteps.indexOf(engineStep);
+      if (matchedIndex >= 0) usedEngineSteps.add(matchedIndex);
       const before = previous;
       const after = { chips: engineStep.chips, mult: engineStep.mult };
       previous = after;
@@ -558,7 +563,7 @@
       steps,
       phaseGroups,
       engineCoverage: {
-        exact: exactJokers.length,
+        exact: jokers.filter((joker) => joker.engineId).length,
         total: jokers.length,
       },
       engineResult: result,
@@ -601,7 +606,7 @@
       return null;
     }
 
-    const selectedNames = ['Blue Joker', 'Bull', 'Bootstraps', 'Supernova', 'Red Card'];
+    const selectedNames = ['Hanging Chad', 'Blueprint', 'Sock and Buskin', 'Photograph', 'Smiley Face'];
     let selected = selectedNames
       .map((name) => catalog.find((joker) => joker.name === name))
       .filter(Boolean);
@@ -613,6 +618,7 @@
     let remainingDeckCards = 40;
     let dollars = 18;
     let currentHandTimesPlayed = 4;
+    let finalHand = false;
     const jokerValues = { ...RUNTIME_VALUE_DEFAULTS };
 
     totalCount.textContent = String(coverage.total);
@@ -695,6 +701,10 @@
           <span>Remaining discards</span>
           <input id="calculator3RemainingDiscards" type="number" min="0" max="9" step="1" value="${remainingDiscards}" inputmode="numeric">
         </label>
+        <label class="calculator3StateField calculator3StateField--toggle">
+          <span>Final hand</span>
+          <input id="calculator3FinalHand" type="checkbox" ${finalHand ? 'checked' : ''}>
+        </label>
       </div>
       ${runtimeRows ? `<div class="calculator3StateJokerValues">${runtimeRows}</div>` : ''}
       <div class="calculator3StateCardGroup">
@@ -763,6 +773,7 @@
         remainingDeckCards,
         dollars,
         currentHandTimesPlayed,
+        finalHand,
         jokerValues,
         scoreEngine: root.Calculator3,
       });
@@ -855,6 +866,11 @@
         const target = event.target;
         if (target.id === 'calculator3HandType') {
           handTypeKey = target.value;
+          renderSelection();
+          return;
+        }
+        if (target.id === 'calculator3FinalHand') {
+          finalHand = target.checked === true;
           renderSelection();
           return;
         }

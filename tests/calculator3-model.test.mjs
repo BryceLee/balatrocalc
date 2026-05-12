@@ -73,8 +73,52 @@ const unsupported = Calculator3.score({
   playedCards: [card('K')],
   jokers: ['blueprint']
 });
-assert.deepEqual(unsupported.unsupportedJokers, ['blueprint']);
-assert.equal(unsupported.warnings.length, 1);
+assert.deepEqual(unsupported.unsupportedJokers, []);
+assert.equal(unsupported.warnings.length, 0);
+assert.ok(unsupported.steps.some((step) => step.label.includes('Blueprint: no compatible target')));
+
+const copyRetriggerScore = Calculator3.score({
+  handType: 'pair',
+  playedCards: [
+    card('K', 'hearts'),
+    card('K', 'spades'),
+    card('Q', 'clubs')
+  ],
+  jokers: ['hangingChad', 'blueprint', 'sockAndBuskin', 'photograph', 'smileyFace']
+});
+assert.equal(copyRetriggerScore.chips, 90);
+assert.equal(copyRetriggerScore.mult, 104);
+assert.equal(copyRetriggerScore.score, 9360);
+assert.ok(copyRetriggerScore.steps.some((step) => step.phase === 'copy' && step.label.includes('Blueprint copies Sock and Buskin')));
+assert.ok(copyRetriggerScore.steps.some((step) => step.phase === 'retrigger' && step.label.includes('Hanging Chad')));
+assert.ok(copyRetriggerScore.steps.some((step) => step.label.includes('Photograph')));
+assert.ok(copyRetriggerScore.steps.some((step) => step.label.includes('Smiley Face: 8 matching')));
+
+const brainstormRetriggerScore = Calculator3.score({
+  handType: 'pair',
+  playedCards: [
+    card('K', 'hearts'),
+    card('K', 'spades'),
+    card('Q', 'clubs')
+  ],
+  jokers: ['sockAndBuskin', 'brainstorm', 'smileyFace']
+});
+assert.equal(brainstormRetriggerScore.chips, 70);
+assert.equal(brainstormRetriggerScore.mult, 32);
+assert.ok(brainstormRetriggerScore.steps.some((step) => step.label.includes('Brainstorm copies Sock and Buskin')));
+
+const duskFinalHandScore = Calculator3.score({
+  handType: 'pair',
+  playedCards: [
+    card('K', 'hearts'),
+    card('K', 'spades')
+  ],
+  jokers: ['dusk', 'smileyFace'],
+  finalHand: true
+});
+assert.equal(duskFinalHandScore.chips, 50);
+assert.equal(duskFinalHandScore.mult, 22);
+assert.ok(duskFinalHandScore.steps.some((step) => step.phase === 'retrigger' && step.label.includes('Dusk')));
 
 const enhancedScore = Calculator3.score({
   handType: 'pair',

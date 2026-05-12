@@ -57,6 +57,7 @@
   const WALKIE_TALKIE_RANKS = new Set(['10', '4']);
   const TRIBOULET_RANKS = new Set(['K', 'Q']);
   const BLACK_SUITS = new Set(['spades', 'clubs']);
+  const COPY_JOKER_IDS = new Set(['blueprint', 'brainstorm']);
   const ENHANCEMENTS = [
     { key: 'none', label: 'Base' },
     { key: 'bonus', label: 'Bonus Card', chipsAdd: 30 },
@@ -262,10 +263,79 @@
       apply(state) {
         const firstFaceCard = state.playedCards.find((card) => FACE_RANKS.has(card.rank) && !card.debuffed);
         if (!firstFaceCard || !state.scoringCards.includes(firstFaceCard)) return null;
+        const triggerCount = countScoringTriggers(state, (card) => card === firstFaceCard);
+        if (!triggerCount) return null;
         return {
-          xMult: 2,
-          text: `Photograph: first played face card (${formatCardName(firstFaceCard)}) applies X2 Mult`
+          xMult: 2 ** triggerCount,
+          text: `Photograph: first played face card (${formatCardName(firstFaceCard)}) triggers ${triggerCount} time${triggerCount === 1 ? '' : 's'} for X${2 ** triggerCount} Mult`
         };
+      }
+    },
+    hangingChad: {
+      id: 'hangingChad',
+      name: 'Hanging Chad',
+      mode: 'cardRetrigger',
+      explain: 'Retrigger first scoring card 2 additional times',
+      retriggerRule(state, sourceName) {
+        const firstScoringCard = state.playedCards.find((card) => state.scoringCards.includes(card) && !card.debuffed);
+        if (!firstScoringCard) return null;
+        return {
+          sourceName,
+          sourceId: 'hangingChad',
+          times: 2,
+          appliesTo(card) {
+            return card === firstScoringCard;
+          },
+          text: `${sourceName}: ${formatCardName(firstScoringCard)} retriggers 2 additional times`
+        };
+      },
+      apply() {
+        return null;
+      }
+    },
+    sockAndBuskin: {
+      id: 'sockAndBuskin',
+      name: 'Sock and Buskin',
+      mode: 'cardRetrigger',
+      explain: 'Retrigger all scoring face cards',
+      retriggerRule(state, sourceName) {
+        const count = countCards(state.scoringCards, (card) => FACE_RANKS.has(card.rank) && !card.debuffed);
+        if (!count) return null;
+        return {
+          sourceName,
+          sourceId: 'sockAndBuskin',
+          times: 1,
+          appliesTo(card) {
+            return FACE_RANKS.has(card.rank) && !card.debuffed;
+          },
+          text: `${sourceName}: ${count} scoring face card${count === 1 ? '' : 's'} retrigger`
+        };
+      },
+      apply() {
+        return null;
+      }
+    },
+    dusk: {
+      id: 'dusk',
+      name: 'Dusk',
+      mode: 'cardRetrigger',
+      explain: 'Retrigger all scoring cards on final hand',
+      retriggerRule(state, sourceName) {
+        if (state.finalHand !== true) return null;
+        const count = countCards(state.scoringCards, (card) => !card.debuffed);
+        if (!count) return null;
+        return {
+          sourceName,
+          sourceId: 'dusk',
+          times: 1,
+          appliesTo(card) {
+            return state.scoringCards.includes(card) && !card.debuffed;
+          },
+          text: `${sourceName}: final hand retriggers ${count} scoring card${count === 1 ? '' : 's'}`
+        };
+      },
+      apply() {
+        return null;
       }
     },
     shootTheMoon: {
@@ -392,7 +462,7 @@
       mode: 'xMult',
       explain: 'X2 per scoring King or Queen',
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => TRIBOULET_RANKS.has(card.rank) && !card.debuffed);
+        const count = countScoringTriggers(state, (card) => TRIBOULET_RANKS.has(card.rank) && !card.debuffed);
         if (!count) return null;
         return {
           xMult: 2 ** count,
@@ -443,6 +513,18 @@
           text: `Bootstraps: $${state.dollars} creates ${stacks} $5 stack${stacks === 1 ? '' : 's'}, adds +${multAdd} Mult`
         };
       }
+    },
+    blueprint: {
+      id: 'blueprint',
+      name: 'Blueprint',
+      mode: 'copy',
+      explain: 'Copy Joker to the right'
+    },
+    brainstorm: {
+      id: 'brainstorm',
+      name: 'Brainstorm',
+      mode: 'copy',
+      explain: 'Copy leftmost Joker'
     }
   };
 
@@ -453,7 +535,7 @@
       mode: effectKey,
       explain: `${amount} per ${SUIT_BY_KEY[suit].label} scoring card`,
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => !card.debuffed && cardMatchesSuit(card, suit));
+        const count = countScoringTriggers(state, (card) => !card.debuffed && cardMatchesSuit(card, suit));
         if (!count) return null;
         return {
           [effectKey]: count * amount,
@@ -470,7 +552,7 @@
       mode: effectKey,
       explain: `${formatAmountForExplain(effectKey, amount)} per matching scoring rank`,
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => !card.debuffed && ranks.has(card.rank));
+        const count = countScoringTriggers(state, (card) => !card.debuffed && ranks.has(card.rank));
         if (!count) return null;
         if (effectKey === 'chipsAddMultAdd') {
           return {
@@ -531,6 +613,13 @@
 
   function hasJokerValue(state, id) {
     return Boolean(state && state.jokerValues && Number.isFinite(state.jokerValues[id]));
+  }
+
+  function countScoringTriggers(state, predicate) {
+    return (state.scoringTriggers || state.scoringCards || []).reduce((count, entry) => {
+      const card = entry.card || entry;
+      return count + (predicate(card) ? 1 : 0);
+    }, 0);
   }
 
   function formatAmountForExplain(effectKey, amount) {
@@ -608,6 +697,7 @@
       remainingDeckCards: normalizeNonNegativeInteger(input.remainingDeckCards),
       dollars: normalizeNonNegativeInteger(input.dollars),
       currentHandTimesPlayed: normalizeNonNegativeInteger(input.currentHandTimesPlayed),
+      finalHand: input.finalHand === true || input.finalHand === 'true',
       jokerValues: normalizeJokerValues(input.jokerValues),
       rules: {
         plasmaDeck: input.rules && input.rules.plasmaDeck === true
@@ -809,6 +899,71 @@
     };
   }
 
+  function resolveJokerSlots(activeJokers) {
+    return activeJokers.map((joker, index) => {
+      const effect = JOKER_CATALOG[joker.id];
+      if (!effect) {
+        return { joker, effect: null, copiedFrom: null, copyError: '' };
+      }
+      if (effect.mode !== 'copy') {
+        return { joker, effect, copiedFrom: null, copyError: '' };
+      }
+
+      const targetIndex = joker.id === 'blueprint' ? index + 1 : 0;
+      const targetJoker = activeJokers[targetIndex];
+      if (!targetJoker || targetJoker === joker) {
+        return { joker, effect: null, copiedFrom: null, copyError: `${effect.name}: no compatible target in this Joker layout` };
+      }
+
+      const targetEffect = JOKER_CATALOG[targetJoker.id];
+      if (!targetEffect) {
+        return { joker, effect: null, copiedFrom: targetJoker, copyError: `${effect.name}: target Joker is not modeled yet` };
+      }
+      if (COPY_JOKER_IDS.has(targetJoker.id) || targetEffect.mode === 'copy') {
+        return { joker, effect: null, copiedFrom: targetJoker, copyError: `${effect.name}: copying another copy Joker is not modeled` };
+      }
+
+      return { joker, effect: targetEffect, copiedFrom: targetJoker, copyError: '' };
+    });
+  }
+
+  function displayJokerName(joker) {
+    const effect = JOKER_CATALOG[joker.id];
+    return effect ? effect.name : joker.name || joker.id;
+  }
+
+  function formatCopySource(slot) {
+    if (!slot.copiedFrom) return displayJokerName(slot.joker);
+    return `${displayJokerName(slot.joker)} copies ${displayJokerName(slot.copiedFrom)}`;
+  }
+
+  function buildRetriggerRules(jokerState, resolvedJokers) {
+    const rules = [];
+    resolvedJokers.forEach((slot) => {
+      if (!slot.effect || typeof slot.effect.retriggerRule !== 'function') return;
+      const rule = slot.effect.retriggerRule(jokerState, formatCopySource(slot));
+      if (rule) rules.push(rule);
+    });
+    return rules;
+  }
+
+  function buildScoringTriggers(scoringCards, retriggerRules) {
+    const triggers = [];
+    scoringCards.forEach((card) => {
+      triggers.push({ card, source: 'base', repeatIndex: 0 });
+      if (card.seal === 'red' && !card.debuffed) {
+        triggers.push({ card, source: 'redSeal', repeatIndex: 1 });
+      }
+      retriggerRules.forEach((rule) => {
+        if (!rule.appliesTo(card)) return;
+        for (let index = 0; index < rule.times; index += 1) {
+          triggers.push({ card, source: rule.sourceId, sourceName: rule.sourceName, repeatIndex: index + 1 });
+        }
+      });
+    });
+    return triggers;
+  }
+
   function score(input) {
     const state = normalizeInput(input || {});
     const hand = HAND_BY_KEY[state.handType] || HAND_BY_KEY.highCard;
@@ -823,7 +978,52 @@
       score: Math.floor(chips * mult)
     }];
 
-    state.scoringCards.forEach((card) => {
+    const activeJokers = state.jokers.filter((joker) => joker.disabled !== true);
+    const jokerState = {
+      handType: state.handType,
+      playedCards: state.playedCards,
+      scoringCards: state.scoringCards,
+      scoringTriggers: state.scoringCards,
+      heldCards: state.heldCards,
+      remainingDiscards: state.remainingDiscards,
+      remainingDeckCards: state.remainingDeckCards,
+      dollars: state.dollars,
+      currentHandTimesPlayed: state.currentHandTimesPlayed,
+      finalHand: state.finalHand,
+      jokerValues: state.jokerValues,
+      activeJokers,
+      activeJokerCount: activeJokers.length
+    };
+    const resolvedJokers = resolveJokerSlots(activeJokers);
+    const retriggerRules = buildRetriggerRules(jokerState, resolvedJokers);
+    const retriggerSourceNames = new Set(retriggerRules.map((rule) => rule.sourceName));
+    const scoringTriggers = buildScoringTriggers(state.scoringCards, retriggerRules);
+    jokerState.scoringTriggers = scoringTriggers;
+
+    resolvedJokers.forEach((slot) => {
+      if (!slot.copiedFrom && !slot.copyError) return;
+      steps.push({
+        phase: 'copy',
+        label: slot.copyError || `${displayJokerName(slot.joker)} copies ${displayJokerName(slot.copiedFrom)}`,
+        chips,
+        mult,
+        score: Math.floor(chips * mult),
+        skipped: Boolean(slot.copyError)
+      });
+    });
+
+    retriggerRules.forEach((rule) => {
+      steps.push({
+        phase: 'retrigger',
+        label: rule.text,
+        chips,
+        mult,
+        score: Math.floor(chips * mult)
+      });
+    });
+
+    scoringTriggers.forEach((trigger) => {
+      const card = trigger.card;
       const cardName = formatCardName(card);
       if (card.debuffed) {
         steps.push({
@@ -837,60 +1037,61 @@
         return;
       }
 
-      const repetitions = card.seal === 'red' ? 2 : 1;
-      for (let repeatIndex = 0; repeatIndex < repetitions; repeatIndex += 1) {
-        const retriggerLabel = repeatIndex > 0 ? ' (Red Seal retrigger)' : '';
-        if (repeatIndex > 0) {
+      const retriggerLabel = trigger.source === 'redSeal'
+        ? ' (Red Seal retrigger)'
+        : trigger.source === 'base'
+          ? ''
+          : ` (${trigger.sourceName} retrigger)`;
+      if (trigger.source === 'redSeal') {
+        steps.push({
+          phase: 'seal',
+          label: `${cardName}: Red Seal retriggers this scoring card`,
+          chips,
+          mult,
+          score: Math.floor(chips * mult)
+        });
+      }
+
+      if (!hasEnhancement(card, 'stone')) {
+        chips += card.chips;
+        steps.push({
+          phase: 'card',
+          label: `${cardName}${retriggerLabel}: +${card.chips} Chips`,
+          chips,
+          mult,
+          score: Math.floor(chips * mult)
+        });
+      }
+
+      const enhancement = ENHANCEMENT_BY_KEY[card.enhancement];
+      if (enhancement && card.enhancement !== 'none') {
+        if (enhancement.stoneChips) chips += enhancement.stoneChips;
+        if (enhancement.chipsAdd) chips += enhancement.chipsAdd;
+        if (enhancement.multAdd) mult += enhancement.multAdd;
+        if (enhancement.xMult) mult *= enhancement.xMult;
+        if (enhancement.stoneChips || enhancement.chipsAdd || enhancement.multAdd || enhancement.xMult || enhancement.wild) {
           steps.push({
-            phase: 'seal',
-            label: `${cardName}: Red Seal retriggers this scoring card`,
+            phase: 'enhancement',
+            label: formatCardModifierLabel(cardName, enhancement, retriggerLabel),
             chips,
             mult,
             score: Math.floor(chips * mult)
           });
         }
+      }
 
-        if (!hasEnhancement(card, 'stone')) {
-          chips += card.chips;
-          steps.push({
-            phase: 'card',
-            label: `${cardName}${retriggerLabel}: +${card.chips} Chips`,
-            chips,
-            mult,
-            score: Math.floor(chips * mult)
-          });
-        }
-
-        const enhancement = ENHANCEMENT_BY_KEY[card.enhancement];
-        if (enhancement && card.enhancement !== 'none') {
-          if (enhancement.stoneChips) chips += enhancement.stoneChips;
-          if (enhancement.chipsAdd) chips += enhancement.chipsAdd;
-          if (enhancement.multAdd) mult += enhancement.multAdd;
-          if (enhancement.xMult) mult *= enhancement.xMult;
-          if (enhancement.stoneChips || enhancement.chipsAdd || enhancement.multAdd || enhancement.xMult || enhancement.wild) {
-            steps.push({
-              phase: 'enhancement',
-              label: formatCardModifierLabel(cardName, enhancement, retriggerLabel),
-              chips,
-              mult,
-              score: Math.floor(chips * mult)
-            });
-          }
-        }
-
-        const edition = EDITION_BY_KEY[card.edition];
-        if (edition && card.edition !== 'none') {
-          if (edition.chipsAdd) chips += edition.chipsAdd;
-          if (edition.multAdd) mult += edition.multAdd;
-          if (edition.xMult) mult *= edition.xMult;
-          steps.push({
-            phase: 'edition',
-            label: formatCardModifierLabel(cardName, edition, retriggerLabel),
-            chips,
-            mult,
-            score: Math.floor(chips * mult)
-          });
-        }
+      const edition = EDITION_BY_KEY[card.edition];
+      if (edition && card.edition !== 'none') {
+        if (edition.chipsAdd) chips += edition.chipsAdd;
+        if (edition.multAdd) mult += edition.multAdd;
+        if (edition.xMult) mult *= edition.xMult;
+        steps.push({
+          phase: 'edition',
+          label: formatCardModifierLabel(cardName, edition, retriggerLabel),
+          chips,
+          mult,
+          score: Math.floor(chips * mult)
+        });
       }
     });
 
@@ -932,34 +1133,33 @@
       }
     });
 
-    const activeJokers = state.jokers.filter((joker) => joker.disabled !== true);
-    const jokerState = {
-      handType: state.handType,
-      playedCards: state.playedCards,
-      scoringCards: state.scoringCards,
-      heldCards: state.heldCards,
-      remainingDiscards: state.remainingDiscards,
-      remainingDeckCards: state.remainingDeckCards,
-      dollars: state.dollars,
-      currentHandTimesPlayed: state.currentHandTimesPlayed,
-      jokerValues: state.jokerValues,
-      activeJokers,
-      activeJokerCount: activeJokers.length
-    };
     const unsupportedJokers = [];
 
-    activeJokers.forEach((joker) => {
-      const effect = JOKER_CATALOG[joker.id];
+    resolvedJokers.forEach((slot) => {
+      const { joker, effect } = slot;
       if (!effect) {
-        unsupportedJokers.push(joker.id);
+        if (!slot.copyError) unsupportedJokers.push(joker.id);
         steps.push({
           phase: 'joker',
-          label: `${joker.id}: not modeled in Calculator 3 yet`,
+          label: slot.copyError || `${joker.id}: not modeled in Calculator 3 yet`,
           chips,
           mult,
           score: Math.floor(chips * mult),
           skipped: true
         });
+        return;
+      }
+      if (effect.mode === 'cardRetrigger') {
+        if (!retriggerSourceNames.has(formatCopySource(slot))) {
+          steps.push({
+            phase: 'joker',
+            label: `${formatCopySource(slot)}: condition not met`,
+            chips,
+            mult,
+            score: Math.floor(chips * mult),
+            skipped: true
+          });
+        }
         return;
       }
 
@@ -981,7 +1181,7 @@
       if (delta.xMult) mult *= delta.xMult;
       steps.push({
         phase: 'joker',
-        label: delta.text,
+        label: slot.copiedFrom ? `${formatCopySource(slot)}: ${delta.text}` : delta.text,
         chips,
         mult,
         score: Math.floor(chips * mult)
@@ -1017,6 +1217,7 @@
       remainingDeckCards: state.remainingDeckCards,
       dollars: state.dollars,
       currentHandTimesPlayed: state.currentHandTimesPlayed,
+      finalHand: state.finalHand,
       jokerValues: state.jokerValues,
       steps,
       unsupportedJokers,
