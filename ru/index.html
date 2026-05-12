@@ -51,7 +51,6 @@
         "Hand Score Calculator",
         "Joker Order Optimizer",
         "Score Breakdown",
-        "Explainable Score Path Lab",
         "Hand Solver"
       ]
     }
@@ -494,7 +493,7 @@
       <div class="calculatorModuleHub__header">
         <div>
           <h2 class="contentTitle calculatorModuleHub__title">Switch to a different scoring workflow</h2>
-          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, open a Balatrolator-powered version 2 module for manual round data, or try the Calculator 3 lab for a step-by-step score path.</p>
+          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, or open a Balatrolator-powered version 2 module for manual round data and alternate verification.</p>
         </div>
       </div>
 
@@ -1034,7 +1033,7 @@
       let initialModule = 'classic';
 
       const savedModule = getModulePreference(moduleStorageKey);
-      if (savedModule === 'balatrolator' || savedModule === 'calculator3' || savedModule === 'classic') {
+      if (savedModule === 'balatrolator' || savedModule === 'classic') {
         initialModule = savedModule;
       }
 

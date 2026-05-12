@@ -415,6 +415,32 @@ a:hover {
   backdrop-filter: blur(2px);
 }
 
+.sideAdSlot {
+  position: absolute;
+  top: 98px;
+  left: calc(100% + 28px);
+  z-index: 30;
+  width: 300px;
+  height: 250px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.16);
+  border-radius: 8px;
+  backdrop-filter: blur(1px);
+}
+
+.sideAdSlot[hidden] {
+  display: none;
+}
+
+.sideAdSlot iframe {
+  display: block;
+  width: 300px;
+  height: 250px;
+  border: 0;
+  overflow: hidden;
+}
+
 #footer {
   width: 100%;
   text-align: center;
@@ -469,6 +495,7 @@ a:hover {
 }
 
 .contentPageWrapBelow {
+  position: relative;
   max-width: 980px;
   margin: 0 auto;
   padding: 24px 18px 36px;
@@ -583,6 +610,13 @@ a:hover {
 .version2PromptBtn--calculator3:hover {
   border-color: rgba(136, 209, 187, 0.62);
   background: rgba(19, 56, 55, 0.78);
+}
+
+/* Temporary launch gate: keep Calculator 3 code testable without exposing public entry points. */
+.version2PromptBtn--calculator3,
+#calculatorModuleTabCalculator3,
+#openCalculator3FromHubBtn {
+  display: none !important;
 }
 
 .calculatorModuleHub {
@@ -1039,6 +1073,12 @@ html {
 @media (max-width: 600px) {
   .handLevel {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 1379px), (max-height: 619px) {
+  .sideAdSlot {
+    display: none;
   }
 }
 

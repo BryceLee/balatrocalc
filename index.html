@@ -50,7 +50,6 @@
         "Hand Score Calculator",
         "Joker Order Optimizer",
         "Score Breakdown",
-        "Explainable Score Path Lab",
         "Hand Solver"
       ]
     }
@@ -493,7 +492,7 @@
       <div class="calculatorModuleHub__header">
         <div>
           <h2 class="contentTitle calculatorModuleHub__title">Switch to a different scoring workflow</h2>
-          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, open a Balatrolator-powered version 2 module for manual round data, or try the Calculator 3 lab for a step-by-step score path.</p>
+          <p class="contentLead calculatorModuleHub__lead">Keep using the classic optimizer above, or open a Balatrolator-powered version 2 module for manual round data and alternate verification.</p>
         </div>
       </div>
 
@@ -611,6 +610,7 @@
 
   <!-- I18N_SEO_BLOCK_START -->
   <div id="seoContent" class="contentPageWrapBelow">
+    <aside id="sideAdSlot" class="sideAdSlot" aria-label="Advertisement" hidden></aside>
     <div class="seoTabs">
       <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
       <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
@@ -638,13 +638,6 @@
           <h3 style="color: #ffd700; margin-top: 0;">Balatro Score Calculator</h3>
           <p style="color: #bfc7d5; font-size: 15px; line-height: 1.6;">Get detailed score breakdowns showing exactly
             how chips × mult is calculated with your cards and jokers.</p>
-        </div>
-
-        <div
-          style="padding: 16px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid rgba(255,215,0,0.2);">
-          <h3 style="color: #ffd700; margin-top: 0;">Explainable Balatro Score Path</h3>
-          <p style="color: #bfc7d5; font-size: 15px; line-height: 1.6;">Need to audit every Chips, Mult, and XMult step?
-            Open the Calculator 3 lab in the modules above for a manual hand model with visible scoring phases.</p>
         </div>
 
         <div
@@ -867,6 +860,104 @@
   <script type="text/javascript" src="balatro-background.js"></script>
 
   <script type="text/javascript" src="languageHandler.js"></script>
+  <script>
+    (function () {
+      const AD_SLOT_ID = 'sideAdSlot';
+      const AD_FRAME_SRC = '/adsterra-300x250.html';
+      const PAID_EMAIL_KEY = 'bc_paid_email';
+      const PAID_FEATURES_KEY = 'bc_paid_features';
+      const DESKTOP_MEDIA_QUERY = '(min-width: 1380px) and (min-height: 620px)';
+      const volatileStorage = new Map();
+
+      function getStoredValue(key) {
+        try {
+          const value = window.localStorage.getItem(key);
+          if (value !== null) {
+            volatileStorage.set(key, value);
+            return value;
+          }
+        } catch {
+          // Keep ad gating non-blocking when localStorage is unavailable.
+        }
+        return volatileStorage.get(key) || '';
+      }
+
+      function hasActiveSeedProMembership() {
+        let paidFeatures = {};
+        try {
+          paidFeatures = JSON.parse(getStoredValue(PAID_FEATURES_KEY) || '{}') || {};
+        } catch {
+          paidFeatures = {};
+        }
+
+        const entry = paidFeatures.seed;
+        if (!entry || !entry.plan || !getStoredValue(PAID_EMAIL_KEY)) {
+          return false;
+        }
+
+        const parts = String(entry.plan).split('-');
+        if (parts[0] !== 'seed') {
+          return false;
+        }
+
+        if (parts[1] === 'lifetime') {
+          return true;
+        }
+
+        if (!entry.expiresAt) {
+          return false;
+        }
+
+        const expiresAt = new Date(entry.expiresAt).getTime();
+        return Number.isFinite(expiresAt) && expiresAt > Date.now();
+      }
+
+      function shouldShowSideAd() {
+        return window.matchMedia(DESKTOP_MEDIA_QUERY).matches && !hasActiveSeedProMembership();
+      }
+
+      function removeSideAd(slot) {
+        if (!slot) return;
+        slot.hidden = true;
+        slot.innerHTML = '';
+      }
+
+      function renderSideAd() {
+        const slot = document.getElementById(AD_SLOT_ID);
+        if (!slot) return;
+
+        if (!shouldShowSideAd()) {
+          removeSideAd(slot);
+          return;
+        }
+
+        if (slot.querySelector('iframe')) {
+          slot.hidden = false;
+          return;
+        }
+
+        const frame = document.createElement('iframe');
+        frame.title = 'Advertisement';
+        frame.width = '300';
+        frame.height = '250';
+        frame.loading = 'lazy';
+        frame.referrerPolicy = 'no-referrer-when-downgrade';
+        frame.sandbox = 'allow-scripts';
+        frame.src = AD_FRAME_SRC;
+
+        slot.appendChild(frame);
+        slot.hidden = false;
+      }
+
+      window.addEventListener('DOMContentLoaded', renderSideAd);
+      window.addEventListener('resize', renderSideAd);
+      window.addEventListener('storage', function (event) {
+        if (event.key === PAID_EMAIL_KEY || event.key === PAID_FEATURES_KEY) {
+          renderSideAd();
+        }
+      });
+    })();
+  </script>
   <script>
     (function () {
       const howBtn = document.getElementById('seoTabHow');
@@ -1171,7 +1262,7 @@
       let initialModule = 'classic';
 
       const savedModule = getModulePreference(moduleStorageKey);
-      if (savedModule === 'balatrolator' || savedModule === 'calculator3' || savedModule === 'classic') {
+      if (savedModule === 'balatrolator' || savedModule === 'classic') {
         initialModule = savedModule;
       }
 
