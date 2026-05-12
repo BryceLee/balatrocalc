@@ -527,7 +527,7 @@ body.calculator3-page {
 
 .calculator3StateCards {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 8px;
 }
 
@@ -572,7 +572,7 @@ body.calculator3-page {
   list-style: none;
 }
 
-.calculator3ExplainList li {
+.calculator3ExplainList > li {
   display: grid;
   gap: 5px;
   padding: 12px;
@@ -581,17 +581,53 @@ body.calculator3-page {
   background: rgba(255, 255, 255, 0.035);
 }
 
-.calculator3ExplainList strong {
+.calculator3ExplainList > li > strong {
   color: #ffe28a;
   font-weight: normal;
 }
 
-.calculator3ExplainList span {
+.calculator3ExplainPhase ol {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.calculator3ExplainPhase li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 10px;
+  min-width: 0;
+}
+
+.calculator3ExplainPhase li span {
+  min-width: 0;
+  color: #f4f0d8;
+}
+
+.calculator3ExplainPhase li em {
+  color: #d1d8cd;
+  font-size: 14px;
+  text-align: right;
+}
+
+.calculator3ExplainPhase li small {
+  grid-column: 1 / -1;
+  color: #91e2c1;
+  font-size: 13px;
+}
+
+.calculator3ExplainStep--skipped {
+  opacity: 0.72;
+}
+
+.calculator3ExplainList > li > span {
   color: #d1d8cd;
   line-height: 1.35;
 }
 
-.calculator3ExplainList em {
+.calculator3ExplainList > li > em {
   color: #91e2c1;
   font-style: normal;
   font-size: 14px;
@@ -637,7 +673,8 @@ body.calculator3-page {
   .calculator3StateNumbers,
   .calculator3StateNumbers.calculator3StateNumbers--hand,
   .calculator3StateJokerValues,
-  .calculator3StateCards {
+  .calculator3StateCards,
+  .calculator3ExplainPhase li {
     grid-template-columns: 1fr;
   }
 

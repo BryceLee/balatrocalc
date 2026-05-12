@@ -165,6 +165,25 @@ assert.equal(leveledStraightExplanation.score.mult, 22);
 assert.equal(leveledStraightExplanation.scorePreview, 3102);
 assert.ok(leveledStraightExplanation.steps[0].applies);
 
+const modifierExplanation = Calculator3Panel.explainSelection([], {
+  scoreEngine: Calculator3,
+  handTypeKey: 'pair',
+  playedCards: [
+    { rank: 'A', suit: 'hearts', enhancement: 'mult' },
+    { rank: 'A', suit: 'spades', edition: 'foil' },
+    { rank: '8', suit: 'clubs', enhancement: 'stone' },
+  ],
+});
+assert.equal(modifierExplanation.score.chips, 132);
+assert.equal(modifierExplanation.score.mult, 6);
+assert.equal(modifierExplanation.scorePreview, 792);
+assert.deepEqual(
+  modifierExplanation.phaseGroups.map((group) => group.key),
+  ['hand', 'card', 'enhancement', 'edition']
+);
+assert.ok(modifierExplanation.phaseGroups.some((group) => group.label === 'Card enhancements'));
+assert.ok(modifierExplanation.phaseGroups.some((group) => group.steps.some((step) => step.label.includes('Foil'))));
+
 assert.equal(
   Calculator3Panel.escapeHtml('<b>Joker & Chips</b>'),
   '&lt;b&gt;Joker &amp; Chips&lt;/b&gt;'

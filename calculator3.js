@@ -45,9 +45,9 @@
     utility: 90,
   };
   const DEFAULT_PLAYED_CARDS = [
-    { rank: 'A', suit: 'hearts' },
-    { rank: 'A', suit: 'spades' },
-    { rank: '8', suit: 'clubs' },
+    { rank: 'A', suit: 'hearts', enhancement: 'mult' },
+    { rank: 'A', suit: 'spades', edition: 'foil' },
+    { rank: '8', suit: 'clubs', enhancement: 'stone' },
     { rank: '5', suit: 'diamonds' },
     { rank: '3', suit: 'hearts' },
   ];
@@ -63,6 +63,27 @@
     { key: 'hearts', label: 'Hearts' },
     { key: 'diamonds', label: 'Diamonds' },
   ];
+  const PLAYED_ENHANCEMENT_OPTIONS = [
+    { key: 'none', label: 'Base' },
+    { key: 'bonus', label: 'Bonus +30 Chips' },
+    { key: 'mult', label: 'Mult +4 Mult' },
+    { key: 'glass', label: 'Glass X2 Mult' },
+    { key: 'stone', label: 'Stone +50 Chips' },
+  ];
+  const PLAYED_EDITION_OPTIONS = [
+    { key: 'none', label: 'No edition' },
+    { key: 'foil', label: 'Foil +50 Chips' },
+    { key: 'holographic', label: 'Holographic +10 Mult' },
+    { key: 'polychrome', label: 'Polychrome X1.5 Mult' },
+  ];
+  const PHASE_LABELS = {
+    hand: 'Base hand',
+    card: 'Scoring cards',
+    enhancement: 'Card enhancements',
+    edition: 'Card editions',
+    joker: 'Jokers left to right',
+    deck: 'Deck rule',
+  };
   const HAND_TYPE_OPTIONS = [
     { key: 'highCard', label: 'High Card' },
     { key: 'pair', label: 'Pair' },
@@ -414,6 +435,16 @@
       score,
       scorePreview: Math.round(score.chips * score.mult),
       steps,
+      phaseGroups: [{
+        key: 'joker',
+        label: PHASE_LABELS.joker,
+        steps: steps.map((step) => ({
+          label: `${step.index}. ${step.name}`,
+          detail: `${step.applies ? 'applies' : 'skipped'} at ${step.timing}; ${step.note}; ${formatNumber(step.before.chips)} x ${formatNumber(step.before.mult)} -> ${formatNumber(step.after.chips)} x ${formatNumber(step.after.mult)}`,
+          modelStatus: step.modelStatus,
+          applies: step.applies,
+        })),
+      }],
       engineCoverage: {
         exact: jokers.filter((joker) => joker.engineId).length,
         total: jokers.length,
@@ -442,6 +473,21 @@
       jokers: exactJokers,
     });
     const engineSteps = result.steps.filter((step) => step.phase === 'joker');
+    const stepToExplainItem = (step) => ({
+      label: step.label,
+      detail: `${formatNumber(step.chips)} x ${formatNumber(step.mult)} = ${formatNumber(step.score)}`,
+      applies: step.skipped !== true,
+      modelStatus: step.phase === 'joker' ? 'exact' : '',
+    });
+    const phaseGroups = ['hand', 'card', 'enhancement', 'edition', 'joker', 'deck']
+      .map((phase) => ({
+        key: phase,
+        label: PHASE_LABELS[phase] || phase,
+        steps: result.steps
+          .filter((step) => step.phase === phase)
+          .map(stepToExplainItem),
+      }))
+      .filter((group) => group.steps.length);
     let engineStepIndex = 0;
     let previous = result.steps[0]
       ? { chips: result.steps[0].chips, mult: result.steps[0].mult }
@@ -491,6 +537,7 @@
       },
       scorePreview: result.score,
       steps,
+      phaseGroups,
       engineCoverage: {
         exact: exactJokers.length,
         total: jokers.length,
@@ -640,7 +687,15 @@
     function renderCardRows(cards, kind, label) {
       return Array.from({ length: 5 }, (_, index) => {
         const card = cards[index] || {};
-        return `<label class="calculator3StateCard">
+        const modifierControls = kind === 'played'
+          ? `<select data-played-enhancement="${index}" aria-label="${label} card ${index + 1} enhancement">
+              ${PLAYED_ENHANCEMENT_OPTIONS.map((enhancement) => `<option value="${enhancement.key}" ${(card.enhancement || 'none') === enhancement.key ? 'selected' : ''}>${enhancement.label}</option>`).join('')}
+            </select>
+            <select data-played-edition="${index}" aria-label="${label} card ${index + 1} edition">
+              ${PLAYED_EDITION_OPTIONS.map((edition) => `<option value="${edition.key}" ${(card.edition || 'none') === edition.key ? 'selected' : ''}>${edition.label}</option>`).join('')}
+            </select>`
+          : '';
+        return `<label class="calculator3StateCard calculator3StateCard--${kind}">
           <span>${label} ${index + 1}</span>
           <select data-${kind}-rank="${index}" aria-label="${label} card ${index + 1} rank">
             <option value="">Empty</option>
@@ -649,6 +704,7 @@
           <select data-${kind}-suit="${index}" aria-label="${label} card ${index + 1} suit">
             ${SUIT_OPTIONS.map((suit) => `<option value="${suit.key}" ${card.suit === suit.key ? 'selected' : ''}>${suit.label}</option>`).join('')}
           </select>
+          ${modifierControls}
         </label>`;
       }).join('');
     }
@@ -659,6 +715,15 @@
 
     function activePlayedCards() {
       return playedCards.filter((card) => card && card.rank);
+    }
+
+    function buildCard(current, updates) {
+      return {
+        rank: updates.rank ?? current?.rank,
+        suit: updates.suit ?? current?.suit ?? 'spades',
+        enhancement: updates.enhancement ?? current?.enhancement ?? 'none',
+        edition: updates.edition ?? current?.edition ?? 'none',
+      };
     }
 
     function renderSelection() {
@@ -682,10 +747,15 @@
         </button>`).join('')
         : '<span class="calculator3EmptyState">Select up to five Jokers from the catalog.</span>';
 
-      explainList.innerHTML = explanation.steps.map((step) => `<li>
-        <strong>${step.index}. ${escapeHtml(step.name)}</strong>
-        <span>${step.applies ? 'applies' : 'skipped'} at ${escapeHtml(step.timing)}; ${escapeHtml(step.note)}; ${formatNumber(step.before.chips)} x ${formatNumber(step.before.mult)} -> ${formatNumber(step.after.chips)} x ${formatNumber(step.after.mult)}</span>
-        <em>${MODELED_STATUS_LABELS[step.modelStatus] || 'Recorded'}</em>
+      explainList.innerHTML = (explanation.phaseGroups || []).map((group) => `<li class="calculator3ExplainPhase calculator3ExplainPhase--${escapeHtml(group.key)}">
+        <strong>${escapeHtml(group.label)}</strong>
+        <ol>
+          ${group.steps.map((step) => `<li class="${step.applies ? '' : 'calculator3ExplainStep--skipped'}">
+            <span>${escapeHtml(step.label)}</span>
+            <em>${escapeHtml(step.detail)}</em>
+            ${step.modelStatus ? `<small>${MODELED_STATUS_LABELS[step.modelStatus] || 'Engine exact'}</small>` : ''}
+          </li>`).join('')}
+        </ol>
       </li>`).join('');
 
       if (scoreContext) {
@@ -764,40 +834,42 @@
         }
         const playedRankIndex = target.dataset ? target.dataset.playedRank : undefined;
         const playedSuitIndex = target.dataset ? target.dataset.playedSuit : undefined;
+        const playedEnhancementIndex = target.dataset ? target.dataset.playedEnhancement : undefined;
+        const playedEditionIndex = target.dataset ? target.dataset.playedEdition : undefined;
         const rankIndex = target.dataset ? target.dataset.heldRank : undefined;
         const suitIndex = target.dataset ? target.dataset.heldSuit : undefined;
         if (playedRankIndex !== undefined) {
           playedCards[Number(playedRankIndex)] = target.value
-            ? {
-              rank: target.value,
-              suit: playedCards[Number(playedRankIndex)]?.suit || 'spades',
-            }
+            ? buildCard(playedCards[Number(playedRankIndex)], { rank: target.value })
             : null;
         }
         if (playedSuitIndex !== undefined) {
           const current = playedCards[Number(playedSuitIndex)];
           if (current && current.rank) {
-            playedCards[Number(playedSuitIndex)] = {
-              rank: current.rank,
-              suit: target.value,
-            };
+            playedCards[Number(playedSuitIndex)] = buildCard(current, { suit: target.value });
+          }
+        }
+        if (playedEnhancementIndex !== undefined) {
+          const current = playedCards[Number(playedEnhancementIndex)];
+          if (current && current.rank) {
+            playedCards[Number(playedEnhancementIndex)] = buildCard(current, { enhancement: target.value });
+          }
+        }
+        if (playedEditionIndex !== undefined) {
+          const current = playedCards[Number(playedEditionIndex)];
+          if (current && current.rank) {
+            playedCards[Number(playedEditionIndex)] = buildCard(current, { edition: target.value });
           }
         }
         if (rankIndex !== undefined) {
           heldCards[Number(rankIndex)] = target.value
-            ? {
-              rank: target.value,
-              suit: heldCards[Number(rankIndex)]?.suit || 'spades',
-            }
+            ? buildCard(heldCards[Number(rankIndex)], { rank: target.value })
             : null;
         }
         if (suitIndex !== undefined) {
           const current = heldCards[Number(suitIndex)];
           if (current && current.rank) {
-            heldCards[Number(suitIndex)] = {
-              rank: current.rank,
-              suit: target.value,
-            };
+            heldCards[Number(suitIndex)] = buildCard(current, { suit: target.value });
           }
         }
         renderStateControls();
