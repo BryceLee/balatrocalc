@@ -708,6 +708,74 @@ body.calculator3-page {
   white-space: nowrap;
 }
 
+.calculator3Order__plan {
+  display: grid;
+  gap: 8px;
+  padding: 10px 11px;
+  border: 1px solid rgba(145, 226, 193, 0.28);
+  border-radius: 8px;
+  background: rgba(20, 58, 49, 0.35);
+}
+
+.calculator3Order__planHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.calculator3Order__planHead div,
+.calculator3Order__plan li {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.calculator3Order__plan strong {
+  color: #91e2c1;
+  font-weight: normal;
+}
+
+.calculator3Order__plan span {
+  color: #f4f0d8;
+  line-height: 1.25;
+}
+
+.calculator3Order__plan em {
+  overflow: hidden;
+  color: #a9cbbd;
+  font-size: 13px;
+  font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calculator3Order__plan button {
+  min-height: 34px;
+  border: 1px solid rgba(145, 226, 193, 0.42);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #eaf8f0;
+  background: rgba(44, 103, 82, 0.62);
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.calculator3Order__plan ol {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.calculator3Order__plan li {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding-top: 7px;
+  border-top: 1px solid rgba(145, 226, 193, 0.12);
+}
+
 .calculator3StateControls {
   display: grid;
   gap: 10px;
@@ -948,13 +1016,14 @@ body.calculator3-page {
   .calculator3ImpactSummary__head,
   .calculator3ImpactSummary__grid,
   .calculator3ImpactSummary__grid li,
-  .calculator3Contribution__head,
-  .calculator3Contribution__row,
-  .calculator3Order__head,
-  .calculator3Order__recommendation,
-  .calculator3Order__row,
-  .calculator3Outcome,
-  .calculator3ExplainPhase li {
+	  .calculator3Contribution__head,
+	  .calculator3Contribution__row,
+	  .calculator3Order__head,
+	  .calculator3Order__planHead,
+	  .calculator3Order__recommendation,
+	  .calculator3Order__row,
+	  .calculator3Outcome,
+	  .calculator3ExplainPhase li {
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;

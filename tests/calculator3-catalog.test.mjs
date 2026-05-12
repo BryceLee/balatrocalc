@@ -220,6 +220,20 @@ assert.deepEqual(
   }
 );
 assert.equal(copyRetriggerExplanation.jokerOrderRecommendation.summary, 'Move Photograph / Smiley Face for +111,600 score');
+assert.deepEqual(
+  copyRetriggerExplanation.jokerOrderPlan.moves.map((move) => [move.step, move.index, move.pairName, move.scoreAfterSwap, move.scoreDelta]),
+  [
+    [1, 3, 'Photograph / Smiley Face', 120960, 111600],
+    [2, 0, 'Hanging Chad / Blueprint', 241920, 120960],
+  ]
+);
+assert.deepEqual(
+  copyRetriggerExplanation.jokerOrderPlan.finalOrderNames,
+  ['Blueprint', 'Hanging Chad', 'Sock and Buskin', 'Smiley Face', 'Photograph']
+);
+assert.equal(copyRetriggerExplanation.jokerOrderPlan.finalScore, 241920);
+assert.equal(copyRetriggerExplanation.jokerOrderPlan.totalScoreDelta, 232560);
+assert.equal(copyRetriggerExplanation.jokerOrderPlan.summary, '2 swaps to +232,560 score');
 
 const ruleModifierExplanation = Calculator3Panel.explainSelection([
   byName.get('Four Fingers'),

@@ -648,6 +648,59 @@
     };
   }
 
+  function buildJokerOrderPlan(jokers, scenario, scoreEngine, baselineResult) {
+    if (!scoreEngine || typeof scoreEngine.score !== 'function' || !baselineResult || jokers.length < 2) return null;
+    if (jokers.some((joker) => !joker.engineId)) return null;
+
+    const maxSteps = Math.max(1, Math.min(120, jokers.length * jokers.length * jokers.length));
+    const moves = [];
+    let plannedJokers = jokers.slice();
+    let currentResult = baselineResult;
+
+    for (let stepIndex = 0; stepIndex < maxSteps; stepIndex += 1) {
+      const rows = buildJokerOrderComparison(plannedJokers, scenario, scoreEngine, currentResult);
+      const nextMove = buildJokerOrderRecommendation(rows);
+      if (!nextMove) break;
+
+      const beforeScore = Math.floor(Number(currentResult.score) || 0);
+      const nextJokers = plannedJokers.slice();
+      const currentJoker = nextJokers[nextMove.index];
+      nextJokers[nextMove.index] = nextJokers[nextMove.index + 1];
+      nextJokers[nextMove.index + 1] = currentJoker;
+
+      moves.push({
+        step: moves.length + 1,
+        index: nextMove.index,
+        pairName: nextMove.pairName,
+        scoreBefore: beforeScore,
+        scoreAfterSwap: nextMove.scoreAfterSwap,
+        scoreDelta: nextMove.scoreDelta,
+        chipsAfterSwap: nextMove.chipsAfterSwap,
+        multAfterSwap: nextMove.multAfterSwap,
+        orderAfter: nextJokers.map((joker) => joker.name),
+      });
+
+      plannedJokers = nextJokers;
+      currentResult = scoreEngine.score(buildEngineInput(plannedJokers, scenario));
+    }
+
+    if (!moves.length) return null;
+
+    const startScore = Math.floor(Number(baselineResult.score) || 0);
+    const finalScore = Math.floor(Number(currentResult.score) || 0);
+
+    return {
+      moves,
+      finalOrder: plannedJokers,
+      finalOrderNames: plannedJokers.map((joker) => joker.name),
+      finalScore: currentResult.score,
+      finalChips: currentResult.chips,
+      finalMult: currentResult.mult,
+      totalScoreDelta: finalScore - startScore,
+      summary: `${moves.length} swaps to ${formatSignedNumber(finalScore - startScore)} score`,
+    };
+  }
+
   function explainSelection(jokers, scenario) {
     const scenarioHandKey = scenario && scenario.handTypeKey
       ? scenario.handTypeKey
@@ -814,6 +867,7 @@
       jokerContribution: buildJokerContributionComparison(jokers, scenario, scoreEngine, result),
       jokerOrderComparison,
       jokerOrderRecommendation: buildJokerOrderRecommendation(jokerOrderComparison),
+      jokerOrderPlan: buildJokerOrderPlan(jokers, scenario, scoreEngine, result),
       engineResult: result,
     };
   }
@@ -894,7 +948,29 @@
     <ol>${rowHtml}</ol>`;
   }
 
-  function renderJokerOrderComparison(rows, recommendation) {
+  function renderJokerOrderPlan(plan) {
+    if (!plan || !Array.isArray(plan.moves) || !plan.moves.length) return '';
+
+    const moveRows = plan.moves.map((move) => `<li>
+      <span>${escapeHtml(`Step ${move.step}: ${move.pairName}`)}</span>
+      <strong>${escapeHtml(formatSignedNumber(move.scoreDelta))}</strong>
+      <em>${escapeHtml(formatNumber(move.chipsAfterSwap))} x ${escapeHtml(formatNumber(move.multAfterSwap))} = ${escapeHtml(formatNumber(move.scoreAfterSwap))}</em>
+    </li>`).join('');
+
+    return `<div class="calculator3Order__plan">
+      <div class="calculator3Order__planHead">
+        <div>
+          <strong>Order plan</strong>
+          <span>${escapeHtml(plan.summary)}</span>
+          <em>${escapeHtml(plan.finalOrderNames.join(' -> '))}</em>
+        </div>
+        <button type="button" data-apply-joker-order-plan="true">Apply plan</button>
+      </div>
+      <ol>${moveRows}</ol>
+    </div>`;
+  }
+
+  function renderJokerOrderComparison(rows, recommendation, plan) {
     if (!Array.isArray(rows) || !rows.length) return '';
 
     const recommendationHtml = recommendation ? `<div class="calculator3Order__recommendation">
@@ -929,6 +1005,7 @@
       <strong>Joker order check</strong>
       <span>Adjacent swaps compared with exact scoring</span>
     </div>
+    ${renderJokerOrderPlan(plan)}
     ${recommendationHtml}
     <ol>${rowHtml}</ol>`;
   }
@@ -980,6 +1057,7 @@
     let blindType = 'boss';
     let bossBlind = 'plant';
     const jokerValues = { ...RUNTIME_VALUE_DEFAULTS };
+    let latestOrderPlan = null;
 
     totalCount.textContent = String(coverage.total);
     scoreCount.textContent = String(coverage.exact);
@@ -1201,7 +1279,8 @@
         contributionPanel.hidden = !contributionPanel.innerHTML;
       }
       if (orderPanel) {
-        orderPanel.innerHTML = renderJokerOrderComparison(explanation.jokerOrderComparison, explanation.jokerOrderRecommendation);
+        latestOrderPlan = explanation.jokerOrderPlan;
+        orderPanel.innerHTML = renderJokerOrderComparison(explanation.jokerOrderComparison, explanation.jokerOrderRecommendation, latestOrderPlan);
         orderPanel.hidden = !orderPanel.innerHTML;
       }
     }
@@ -1237,6 +1316,13 @@
 
     if (orderPanel) {
       orderPanel.addEventListener('click', (event) => {
+        const planButton = event.target.closest('[data-apply-joker-order-plan]');
+        if (planButton && latestOrderPlan && Array.isArray(latestOrderPlan.finalOrder)) {
+          selected = latestOrderPlan.finalOrder.slice();
+          sync();
+          return;
+        }
+
         const button = event.target.closest('[data-swap-jokers]');
         if (!button) return;
         const index = Number(button.dataset.swapJokers);
