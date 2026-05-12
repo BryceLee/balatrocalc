@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="robots" content="index, follow">
+  <title>Balatro High Card Build - Consistent Route, Scaling, and Seed Practice</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Balatro high card build guide focused on consistent clears, scaling checkpoints, and when to use calculator, seeds, and seed analyzer during a run.">
+  <meta name="keywords"
+    content="balatro high card build, high card build balatro, balatro high card guide, balatro build tips">
+  <meta property="og:title" content="Balatro High Card Build - Consistent Route and Scaling">
+  <meta property="og:description"
+    content="Play high card with a practical framework: survive early blinds, lock scaling, and close with a stable late shell.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://balatrocalc.com/blog/balatro-high-card-build">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro High Card Build Guide">
+  <meta name="twitter:description" content="A practical high card route from Ante 1 consistency to late-game scaling.">
+  <meta name="theme-color" content="#2b3b34">
+  <link rel="canonical" href="https://balatrocalc.com/blog/balatro-high-card-build">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes a high card build consistent in Balatro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A consistent high card build uses simple hand requirements and shifts power into repeatable joker value, economy discipline, and clear scaling checkpoints."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I pivot into high card?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pivot when your current hand-dependent line is unstable or too expensive to maintain, and when you can still keep enough score growth to clear the next antes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do seeds help high card practice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seeds let you replay similar openings so you can compare reroll discipline, joker timing, and blind planning with fewer random variables."
+          }
+        }
+      ]
+    }
+  </script>
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>Balatro High Card Build</h1>
+    <span class="subtitle">consistent route · practical scaling</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/balatro-seed-analyzer" class="nav-link">analyzer</a>
+    <a href="/blog" class="nav-link nav-link--active">blog</a>
+    <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+  </nav>
+
+  <main id="mainContainer">
+    <div class="contentPageWrap">
+      <article class="contentCard">
+        <h1 class="contentTitle">Balatro High Card Build Guide: Reliability First, Then Ceiling</h1>
+        <p class="contentLead">
+          High card is not "low ambition". It is a decision to reduce hand complexity so your run can invest in the
+          parts that win long games: clean economy, scaling engines, and stable boss blind execution.
+        </p>
+
+        <h2 class="contentTitle">1. The high card decision framework</h2>
+        <ul>
+          <li><strong>Stability:</strong> can you clear the next two blinds without gambling on rare draws?</li>
+          <li><strong>Scaling:</strong> does at least one score source improve over multiple shops?</li>
+          <li><strong>Shell:</strong> do you know what your late-game structure looks like by mid run?</li>
+        </ul>
+        <p>
+          If one checkpoint is missing, treat high card as temporary stabilization, not your final identity.
+        </p>
+
+        <h2 class="contentTitle">2. Early ante priorities (Ante 1-2)</h2>
+        <ul>
+          <li>Buy immediate consistency before speculative upgrades.</li>
+          <li>Avoid reroll chains without a specific target.</li>
+          <li>Keep flexible money lines so you can respond to boss pressure.</li>
+        </ul>
+        <p>
+          Use the <a href="/">Balatro Calculator</a> whenever you are unsure whether a shop purchase actually changes
+          your blind clear threshold.
+        </p>
+
+        <h2 class="contentTitle">3. Mid-game conversion (Ante 3-5)</h2>
+        <p>
+          Most high card failures happen here. Players stay "consistent" but forget to upgrade their ceiling.
+        </p>
+        <ul>
+          <li>Replace dead value with scaling pieces as soon as survival is stable.</li>
+          <li>Draft joker roles: base value, scaling, utility, and one flex slot.</li>
+          <li>Use <a href="/balatro-jokers">Jokers</a> and <a href="/balatro-builds">Builds</a> pages as role references, not copy-paste templates.</li>
+        </ul>
+
+        <h2 class="contentTitle">4. Late shell and blind adaptation</h2>
+        <ul>
+          <li>Protect action economy before entering high-pressure boss blinds.</li>
+          <li>Prefer reliable triggers over high-variance dream lines.</li>
+          <li>If your shell cannot grow further, pivot earlier instead of forcing Ante 6+.</li>
+        </ul>
+
+        <h2 class="contentTitle">5. Practice loop with seeds and analyzer</h2>
+        <p>
+          To improve quickly, replay controlled starts and compare decisions instead of only chasing random highrolls.
+        </p>
+        <ul>
+          <li>Browse repeatable routes on <a href="/balatro-seeds">Balatro Seeds</a>.</li>
+          <li>Pre-check path risk with <a href="/balatro-seed-analyzer">Seed Analyzer</a>.</li>
+          <li>Track deck constraints using the <a href="/blog/balatro-deck">Deck Guide</a>.</li>
+        </ul>
+
+        <h2 class="contentTitle">FAQ</h2>
+        <h3 class="contentTitle">Is high card only for beginners?</h3>
+        <p>
+          No. It is a strategic simplification used by both new and experienced players when consistency and economy
+          control are more valuable than complex hand forcing.
+        </p>
+
+        <h3 class="contentTitle">Should I force high card every run?</h3>
+        <p>
+          No. High card is strongest when it matches your shop signals and current joker trajectory. Forcing it into an
+          incompatible run lowers your ceiling.
+        </p>
+
+        <h3 class="contentTitle">Which support tools matter most while learning this line?</h3>
+        <p>
+          Start with <a href="/">Calculator</a> for score breakpoints, then use <a href="/balatro-seeds">Seeds</a>
+          and <a href="/balatro-seed-analyzer">Seed Analyzer</a> for repeatable practice. If you are mod-testing,
+          pair with <a href="/balatro-mod-manager">Mod Manager</a>; for profile experiments, use
+          <a href="/balatro-save-editor">Save Editor</a> carefully.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+</body>
+
+</html>
