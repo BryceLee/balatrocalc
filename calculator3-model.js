@@ -56,6 +56,7 @@
   const ODD_RANKS = new Set(['A', '3', '5', '7', '9']);
   const WALKIE_TALKIE_RANKS = new Set(['10', '4']);
   const TRIBOULET_RANKS = new Set(['K', 'Q']);
+  const BLACK_SUITS = new Set(['spades', 'clubs']);
   const ENHANCEMENTS = [
     { key: 'none', label: 'Base' },
     { key: 'bonus', label: 'Bonus Card', chipsAdd: 30 },
@@ -146,6 +147,20 @@
     devious: makeAddChipsJoker('devious', 'Devious Joker', 100, (state) => state.handType === 'straight'),
     crafty: makeAddChipsJoker('crafty', 'Crafty Joker', 80, (state) => state.handType === 'flush'),
     half: makeAddMultJoker('half', 'Half Joker', 20, (state) => state.playedCards.length <= 3),
+    banner: {
+      id: 'banner',
+      name: 'Banner',
+      mode: 'addChips',
+      explain: '+30 Chips per remaining discard',
+      apply(state) {
+        if (!Number.isFinite(state.remainingDiscards) || state.remainingDiscards <= 0) return null;
+        return {
+          chipsAdd: state.remainingDiscards * 30,
+          text: `Banner: ${state.remainingDiscards} remaining discard${state.remainingDiscards === 1 ? '' : 's'} add +${state.remainingDiscards * 30} Chips`
+        };
+      }
+    },
+    mysticSummit: makeAddMultJoker('mysticSummit', 'Mystic Summit', 15, (state) => state.remainingDiscards === 0),
     cavendish: makeXMultJoker('cavendish', 'Cavendish', 3),
     duo: makeXMultJoker('duo', 'The Duo', 2, (state) => state.handType === 'pair'),
     trio: makeXMultJoker('trio', 'The Trio', 3, (state) => state.handType === 'threeOfAKind'),
@@ -175,6 +190,25 @@
           chipsAdd: count * 20,
           multAdd: count * 4,
           text: `Scholar: ${count} scoring Ace${count === 1 ? '' : 's'} add +${count * 20} Chips and +${count * 4} Mult`
+        };
+      }
+    },
+    raisedFist: {
+      id: 'raisedFist',
+      name: 'Raised Fist',
+      mode: 'heldCardMult',
+      explain: 'Double lowest held card rank',
+      apply(state) {
+        const heldCards = state.heldCards.filter((card) => card.enhancement !== 'stone');
+        if (!heldCards.length) return null;
+        const lowest = heldCards.reduce((best, card) => {
+          if (RANK_BY_KEY[card.rank].chips < RANK_BY_KEY[best.rank].chips) return card;
+          return best;
+        }, heldCards[0]);
+        const multAdd = RANK_BY_KEY[lowest.rank].chips * 2;
+        return {
+          multAdd,
+          text: `Raised Fist: lowest held card (${formatCardName(lowest)}) adds +${multAdd} Mult`
         };
       }
     },
@@ -219,6 +253,61 @@
         return {
           xMult: 2,
           text: `Photograph: first played face card (${formatCardName(firstFaceCard)}) applies X2 Mult`
+        };
+      }
+    },
+    shootTheMoon: {
+      id: 'shootTheMoon',
+      name: 'Shoot the Moon',
+      mode: 'heldCardMult',
+      explain: '+13 Mult per held Queen',
+      apply(state) {
+        const count = countCards(state.heldCards, (card) => card.rank === 'Q');
+        if (!count) return null;
+        return {
+          multAdd: count * 13,
+          text: `Shoot the Moon: ${count} held Queen${count === 1 ? '' : 's'} add +${count * 13} Mult`
+        };
+      }
+    },
+    blackboard: {
+      id: 'blackboard',
+      name: 'Blackboard',
+      mode: 'xMult',
+      explain: 'X3 Mult when all held cards are black suits',
+      apply(state) {
+        if (!state.heldCards.length || state.heldCards.some((card) => !BLACK_SUITS.has(card.suit))) return null;
+        return {
+          xMult: 3,
+          text: 'Blackboard: all held cards are Spades or Clubs, applies X3 Mult'
+        };
+      }
+    },
+    baron: {
+      id: 'baron',
+      name: 'Baron',
+      mode: 'heldCardXMult',
+      explain: 'X1.5 Mult per held King',
+      apply(state) {
+        const count = countCards(state.heldCards, (card) => card.rank === 'K');
+        if (!count) return null;
+        return {
+          xMult: 1.5 ** count,
+          text: `Baron: ${count} held King${count === 1 ? '' : 's'} apply X${roundForDisplay(1.5 ** count)} Mult`
+        };
+      }
+    },
+    baseballCard: {
+      id: 'baseballCard',
+      name: 'Baseball Card',
+      mode: 'jokerRarityXMult',
+      explain: 'X1.5 Mult per Uncommon Joker',
+      apply(state) {
+        const count = state.activeJokers.filter((joker) => joker.id !== 'baseballCard' && joker.rarity === 'uncommon').length;
+        if (!count) return null;
+        return {
+          xMult: 1.5 ** count,
+          text: `Baseball Card: ${count} Uncommon Joker${count === 1 ? '' : 's'} apply X${roundForDisplay(1.5 ** count)} Mult`
         };
       }
     },
@@ -332,12 +421,21 @@
     }
     return {
       id: joker.id || titleCaseId(joker.name),
-      disabled: joker.disabled === true
+      disabled: joker.disabled === true,
+      rarity: normalizeRarity(joker.rarity)
     };
+  }
+
+  function normalizeRarity(value) {
+    return String(value || '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z]/g, '');
   }
 
   function normalizeInput(input) {
     const playedCards = (input.playedCards || []).map(normalizeCard);
+    const heldCards = (input.heldCards || []).map(normalizeCard);
     const analysis = analyzePlayedCards(playedCards);
     const handType = input.handType && HAND_BY_KEY[input.handType] ? input.handType : analysis.handType;
     const level = Math.max(1, Math.floor(Number(input.level) || 1));
@@ -350,12 +448,21 @@
       level,
       playedCards,
       scoringCards,
+      heldCards,
       jokers,
+      remainingDiscards: normalizeNonNegativeInteger(input.remainingDiscards),
       rules: {
         plasmaDeck: input.rules && input.rules.plasmaDeck === true
       },
       analysis
     };
+  }
+
+  function normalizeNonNegativeInteger(value) {
+    if (value === null || value === undefined || value === '') return null;
+    const number = Math.floor(Number(value));
+    if (!Number.isFinite(number)) return null;
+    return Math.max(0, number);
   }
 
   function analyzePlayedCards(cards) {
@@ -550,6 +657,9 @@
       handType: state.handType,
       playedCards: state.playedCards,
       scoringCards: state.scoringCards,
+      heldCards: state.heldCards,
+      remainingDiscards: state.remainingDiscards,
+      activeJokers,
       activeJokerCount: activeJokers.length
     };
     const unsupportedJokers = [];
@@ -618,6 +728,8 @@
       score: Math.floor(finalChips * finalMult),
       scoringCards: state.scoringCards,
       playedCards: state.playedCards,
+      heldCards: state.heldCards,
+      remainingDiscards: state.remainingDiscards,
       steps,
       unsupportedJokers,
       warnings: unsupportedJokers.length

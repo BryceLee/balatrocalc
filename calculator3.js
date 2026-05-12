@@ -44,6 +44,25 @@
     defense: 80,
     utility: 90,
   };
+  const DEFAULT_PLAYED_CARDS = [
+    { rank: 'A', suit: 'hearts' },
+    { rank: 'A', suit: 'spades' },
+    { rank: '8', suit: 'clubs' },
+    { rank: '5', suit: 'diamonds' },
+    { rank: '3', suit: 'hearts' },
+  ];
+  const DEFAULT_HELD_CARDS = [
+    { rank: 'K', suit: 'spades' },
+    { rank: 'Q', suit: 'clubs' },
+    { rank: '2', suit: 'clubs' },
+  ];
+  const RANK_OPTIONS = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
+  const SUIT_OPTIONS = [
+    { key: 'spades', label: 'Spades' },
+    { key: 'clubs', label: 'Clubs' },
+    { key: 'hearts', label: 'Hearts' },
+    { key: 'diamonds', label: 'Diamonds' },
+  ];
 
   function readSourceData(source) {
     const data = source || {};
@@ -300,8 +319,17 @@
       chips: 10,
       mult: 2,
       cardsPlayed: 5,
+      playedCards: DEFAULT_PLAYED_CARDS,
+      heldCards: DEFAULT_HELD_CARDS,
+      remainingDiscards: 0,
       ...scenario,
     };
+    const scoreEngine = base.scoreEngine || root.Calculator3;
+
+    if (scoreEngine && typeof scoreEngine.score === 'function') {
+      return explainSelectionWithEngine(jokers, base, scoreEngine);
+    }
+
     let score = { chips: base.chips, mult: base.mult };
     const steps = [];
 
@@ -340,6 +368,78 @@
     };
   }
 
+  function explainSelectionWithEngine(jokers, scenario, scoreEngine) {
+    const exactJokers = jokers
+      .filter((joker) => joker.engineId)
+      .map((joker) => ({
+        id: joker.engineId,
+        name: joker.name,
+        rarity: joker.rarity,
+      }));
+    const result = scoreEngine.score({
+      playedCards: scenario.playedCards,
+      heldCards: scenario.heldCards,
+      remainingDiscards: scenario.remainingDiscards,
+      jokers: exactJokers,
+    });
+    const engineSteps = result.steps.filter((step) => step.phase === 'joker');
+    let engineStepIndex = 0;
+    let previous = result.steps[0]
+      ? { chips: result.steps[0].chips, mult: result.steps[0].mult }
+      : { chips: scenario.chips, mult: scenario.mult };
+    const steps = jokers.map((joker, index) => {
+      if (!joker.engineId) {
+        return {
+          index: index + 1,
+          name: joker.name,
+          effectKind: joker.effectKind,
+          timing: joker.timing,
+          applies: false,
+          before: previous,
+          after: previous,
+          note: summarizeStatefulJoker(joker),
+          modelStatus: joker.modelStatus,
+        };
+      }
+
+      const engineStep = engineSteps[engineStepIndex++] || {
+        label: `${joker.name}: no engine step returned`,
+        chips: previous.chips,
+        mult: previous.mult,
+        skipped: true,
+      };
+      const before = previous;
+      const after = { chips: engineStep.chips, mult: engineStep.mult };
+      previous = after;
+      return {
+        index: index + 1,
+        name: joker.name,
+        effectKind: joker.effectKind,
+        timing: joker.timing,
+        applies: engineStep.skipped !== true,
+        before,
+        after,
+        note: engineStep.label,
+        modelStatus: joker.modelStatus,
+      };
+    });
+
+    return {
+      scenario,
+      score: {
+        chips: result.chips,
+        mult: result.mult,
+      },
+      scorePreview: result.score,
+      steps,
+      engineCoverage: {
+        exact: exactJokers.length,
+        total: jokers.length,
+      },
+      engineResult: result,
+    };
+  }
+
   function summarizeStatefulJoker(joker) {
     if (joker.effectKind === 'copy') return 'copy target needs neighbor resolution';
     if (joker.condition.needsRandomMode) return 'random/probability branch needs odds mode';
@@ -364,6 +464,7 @@
     const effectFilter = documentRef.getElementById('calculator3EffectFilter');
     const catalogList = documentRef.getElementById('calculator3CatalogList');
     const selectionList = documentRef.getElementById('calculator3SelectionList');
+    const stateControls = documentRef.getElementById('calculator3StateControls');
     const explainList = documentRef.getElementById('calculator3ExplainList');
     const scorePreview = documentRef.getElementById('calculator3ScorePreview');
     const totalCount = documentRef.getElementById('calculator3CatalogTotal');
@@ -374,10 +475,12 @@
       return null;
     }
 
-    const selectedNames = ['Joker', 'The Duo', 'Blueprint', 'Card Sharp'];
+    const selectedNames = ['Baron', 'Shoot the Moon', 'Blackboard', 'Raised Fist', 'Baseball Card'];
     let selected = selectedNames
       .map((name) => catalog.find((joker) => joker.name === name))
       .filter(Boolean);
+    let heldCards = Array.from({ length: 5 }, (_, index) => DEFAULT_HELD_CARDS[index] || null);
+    let remainingDiscards = 0;
 
     totalCount.textContent = String(coverage.total);
     scoreCount.textContent = String(coverage.exact);
@@ -409,8 +512,47 @@
       }).join('');
     }
 
+    function renderStateControls() {
+      if (!stateControls) return;
+      const heldRows = Array.from({ length: 5 }, (_, index) => {
+        const card = heldCards[index] || {};
+        return `<label class="calculator3StateCard">
+          <span>Held ${index + 1}</span>
+          <select data-held-rank="${index}" aria-label="Held card ${index + 1} rank">
+            <option value="">Empty</option>
+            ${RANK_OPTIONS.map((rank) => `<option value="${rank}" ${card.rank === rank ? 'selected' : ''}>${rank}</option>`).join('')}
+          </select>
+          <select data-held-suit="${index}" aria-label="Held card ${index + 1} suit">
+            ${SUIT_OPTIONS.map((suit) => `<option value="${suit.key}" ${card.suit === suit.key ? 'selected' : ''}>${suit.label}</option>`).join('')}
+          </select>
+        </label>`;
+      }).join('');
+
+      stateControls.innerHTML = `<div class="calculator3StateControls__head">
+        <strong>State inputs</strong>
+        <span>Exact held-card and discard Jokers use these values.</span>
+      </div>
+      <label class="calculator3StateField">
+        <span>Remaining discards</span>
+        <input id="calculator3RemainingDiscards" type="number" min="0" max="9" step="1" value="${remainingDiscards}" inputmode="numeric">
+      </label>
+      <div class="calculator3StateCards">${heldRows}</div>`;
+    }
+
+    function activeHeldCards() {
+      return heldCards.filter((card) => card && card.rank);
+    }
+
     function renderSelection() {
-      const explanation = explainSelection(selected, { handType: 'Pair', chips: 10, mult: 2 });
+      const explanation = explainSelection(selected, {
+        handType: 'Pair',
+        chips: 10,
+        mult: 2,
+        playedCards: DEFAULT_PLAYED_CARDS,
+        heldCards: activeHeldCards(),
+        remainingDiscards,
+        scoreEngine: root.Calculator3,
+      });
 
       selectionList.innerHTML = selected.length
         ? selected.map((joker) => `<button class="calculator3SelectedJoker" type="button" data-selected-joker-id="${joker.id}">
@@ -429,6 +571,7 @@
 
     function sync() {
       renderCatalog();
+      renderStateControls();
       renderSelection();
     }
 
@@ -454,6 +597,41 @@
       selected = selected.filter((joker) => joker.id !== button.dataset.selectedJokerId);
       sync();
     });
+
+    if (stateControls) {
+      stateControls.addEventListener('input', (event) => {
+        const target = event.target;
+        if (target.id === 'calculator3RemainingDiscards') {
+          remainingDiscards = Math.max(0, Math.floor(Number(target.value) || 0));
+          renderSelection();
+        }
+      });
+
+      stateControls.addEventListener('change', (event) => {
+        const target = event.target;
+        const rankIndex = target.dataset ? target.dataset.heldRank : undefined;
+        const suitIndex = target.dataset ? target.dataset.heldSuit : undefined;
+        if (rankIndex !== undefined) {
+          heldCards[Number(rankIndex)] = target.value
+            ? {
+              rank: target.value,
+              suit: heldCards[Number(rankIndex)]?.suit || 'spades',
+            }
+            : null;
+        }
+        if (suitIndex !== undefined) {
+          const current = heldCards[Number(suitIndex)];
+          if (current && current.rank) {
+            heldCards[Number(suitIndex)] = {
+              rank: current.rank,
+              suit: target.value,
+            };
+          }
+        }
+        renderStateControls();
+        renderSelection();
+      });
+    }
 
     searchInput.addEventListener('input', renderCatalog);
     effectFilter.addEventListener('change', renderCatalog);

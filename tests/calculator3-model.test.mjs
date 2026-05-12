@@ -143,4 +143,49 @@ assert.equal(xMultConditionScore.chips, 79);
 assert.equal(xMultConditionScore.mult, 192);
 assert.equal(xMultConditionScore.score, 15168);
 
+const heldCardStateScore = Calculator3.score({
+  playedCards: [
+    card('A', 'hearts'),
+    card('A', 'spades'),
+    card('8', 'clubs'),
+    card('5', 'diamonds'),
+    card('3', 'hearts')
+  ],
+  heldCards: [
+    card('K', 'spades'),
+    card('Q', 'clubs'),
+    card('2', 'clubs')
+  ],
+  jokers: [
+    'raisedFist',
+    'shootTheMoon',
+    'blackboard',
+    'baron',
+    { id: 'baseballCard', rarity: 'Rare' },
+    { id: 'mysticSummit', rarity: 'Common' },
+    { id: 'banner', rarity: 'Common' },
+    { id: 'onyxAgate', rarity: 'Uncommon' }
+  ],
+  remainingDiscards: 0
+});
+assert.equal(heldCardStateScore.handType, 'pair');
+assert.equal(heldCardStateScore.chips, 32);
+assert.equal(heldCardStateScore.mult, 143.25);
+assert.equal(heldCardStateScore.score, 4584);
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Raised Fist')));
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Shoot the Moon')));
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Blackboard')));
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Baron')));
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Baseball Card')));
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Mystic Summit')));
+assert.ok(heldCardStateScore.steps.some((step) => step.label.includes('Banner: condition not met')));
+
+const bannerScore = Calculator3.score({
+  playedCards: [card('K', 'hearts')],
+  jokers: ['banner'],
+  remainingDiscards: 3
+});
+assert.equal(bannerScore.chips, 105);
+assert.equal(bannerScore.mult, 1);
+
 console.log('calculator3-model tests passed');
