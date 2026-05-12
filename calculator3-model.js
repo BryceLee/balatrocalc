@@ -61,6 +61,10 @@
     { key: 'none', label: 'Base' },
     { key: 'bonus', label: 'Bonus Card', chipsAdd: 30 },
     { key: 'mult', label: 'Mult Card', multAdd: 4 },
+    { key: 'wild', label: 'Wild Card', wild: true },
+    { key: 'steel', label: 'Steel Card', heldXMult: 1.5 },
+    { key: 'gold', label: 'Gold Card', economyOnly: true },
+    { key: 'lucky', label: 'Lucky Card', randomOnly: true },
     { key: 'glass', label: 'Glass Card', xMult: 2 },
     { key: 'stone', label: 'Stone Card', stoneChips: 50, suppressRankChips: true }
   ];
@@ -70,8 +74,16 @@
     { key: 'holographic', label: 'Holographic', multAdd: 10 },
     { key: 'polychrome', label: 'Polychrome', xMult: 1.5 }
   ];
+  const SEALS = [
+    { key: 'none', label: 'No Seal' },
+    { key: 'red', label: 'Red Seal', retriggers: 1 },
+    { key: 'blue', label: 'Blue Seal', heldPlanetOnly: true },
+    { key: 'gold', label: 'Gold Seal', economyOnly: true },
+    { key: 'purple', label: 'Purple Seal', discardOnly: true }
+  ];
   const ENHANCEMENT_BY_KEY = Object.fromEntries(ENHANCEMENTS.map((enhancement) => [enhancement.key, enhancement]));
   const EDITION_BY_KEY = Object.fromEntries(EDITIONS.map((edition) => [edition.key, edition]));
+  const SEAL_BY_KEY = Object.fromEntries(SEALS.map((seal) => [seal.key, seal]));
 
   function titleCaseId(label) {
     return String(label || '')
@@ -184,7 +196,7 @@
       mode: 'cardChipsMult',
       explain: 'Ace Chips/Mult',
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => card.rank === 'A');
+        const count = countCards(state.scoringCards, (card) => card.rank === 'A' && !card.debuffed);
         if (!count) return null;
         return {
           chipsAdd: count * 20,
@@ -199,7 +211,7 @@
       mode: 'heldCardMult',
       explain: 'Double lowest held card rank',
       apply(state) {
-        const heldCards = state.heldCards.filter((card) => card.enhancement !== 'stone');
+        const heldCards = state.heldCards.filter((card) => !card.debuffed && !hasEnhancement(card, 'stone'));
         if (!heldCards.length) return null;
         const lowest = heldCards.reduce((best, card) => {
           if (RANK_BY_KEY[card.rank].chips < RANK_BY_KEY[best.rank].chips) return card;
@@ -220,7 +232,7 @@
       mode: 'xMult',
       explain: 'X2 Mult with scoring Club plus another suit',
       apply(state) {
-        const suits = new Set(state.scoringCards.map((card) => card.suit));
+        const suits = suitsRepresented(state.scoringCards);
         if (!suits.has('clubs') || suits.size < 2) return null;
         return {
           xMult: 2,
@@ -234,7 +246,7 @@
       mode: 'xMult',
       explain: 'X3 Mult with all four suits',
       apply(state) {
-        const suits = new Set(state.scoringCards.map((card) => card.suit));
+        const suits = suitsRepresented(state.scoringCards);
         if (!['diamonds', 'clubs', 'hearts', 'spades'].every((suit) => suits.has(suit))) return null;
         return {
           xMult: 3,
@@ -248,7 +260,7 @@
       mode: 'xMult',
       explain: 'X2 first played scoring face card',
       apply(state) {
-        const firstFaceCard = state.playedCards.find((card) => FACE_RANKS.has(card.rank));
+        const firstFaceCard = state.playedCards.find((card) => FACE_RANKS.has(card.rank) && !card.debuffed);
         if (!firstFaceCard || !state.scoringCards.includes(firstFaceCard)) return null;
         return {
           xMult: 2,
@@ -262,7 +274,7 @@
       mode: 'heldCardMult',
       explain: '+13 Mult per held Queen',
       apply(state) {
-        const count = countCards(state.heldCards, (card) => card.rank === 'Q');
+        const count = countCards(state.heldCards, (card) => card.rank === 'Q' && !card.debuffed);
         if (!count) return null;
         return {
           multAdd: count * 13,
@@ -276,7 +288,8 @@
       mode: 'xMult',
       explain: 'X3 Mult when all held cards are black suits',
       apply(state) {
-        if (!state.heldCards.length || state.heldCards.some((card) => !BLACK_SUITS.has(card.suit))) return null;
+        const activeHeldCards = state.heldCards.filter((card) => !card.debuffed);
+        if (!activeHeldCards.length || activeHeldCards.some((card) => !cardMatchesAnySuit(card, BLACK_SUITS))) return null;
         return {
           xMult: 3,
           text: 'Blackboard: all held cards are Spades or Clubs, applies X3 Mult'
@@ -289,7 +302,7 @@
       mode: 'heldCardXMult',
       explain: 'X1.5 Mult per held King',
       apply(state) {
-        const count = countCards(state.heldCards, (card) => card.rank === 'K');
+        const count = countCards(state.heldCards, (card) => card.rank === 'K' && !card.debuffed);
         if (!count) return null;
         return {
           xMult: 1.5 ** count,
@@ -379,7 +392,7 @@
       mode: 'xMult',
       explain: 'X2 per scoring King or Queen',
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => TRIBOULET_RANKS.has(card.rank));
+        const count = countCards(state.scoringCards, (card) => TRIBOULET_RANKS.has(card.rank) && !card.debuffed);
         if (!count) return null;
         return {
           xMult: 2 ** count,
@@ -440,7 +453,7 @@
       mode: effectKey,
       explain: `${amount} per ${SUIT_BY_KEY[suit].label} scoring card`,
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => card.suit === suit);
+        const count = countCards(state.scoringCards, (card) => !card.debuffed && cardMatchesSuit(card, suit));
         if (!count) return null;
         return {
           [effectKey]: count * amount,
@@ -457,7 +470,7 @@
       mode: effectKey,
       explain: `${formatAmountForExplain(effectKey, amount)} per matching scoring rank`,
       apply(state) {
-        const count = countCards(state.scoringCards, (card) => ranks.has(card.rank));
+        const count = countCards(state.scoringCards, (card) => !card.debuffed && ranks.has(card.rank));
         if (!count) return null;
         if (effectKey === 'chipsAddMultAdd') {
           return {
@@ -546,6 +559,8 @@
       suit,
       enhancement: ENHANCEMENT_BY_KEY[String(card.enhancement || 'none').toLowerCase()] ? String(card.enhancement || 'none').toLowerCase() : 'none',
       edition: EDITION_BY_KEY[String(card.edition || 'none').toLowerCase()] ? String(card.edition || 'none').toLowerCase() : 'none',
+      seal: SEAL_BY_KEY[String(card.seal || 'none').toLowerCase()] ? String(card.seal || 'none').toLowerCase() : 'none',
+      debuffed: card.debuffed === true || card.debuffed === 'true',
       scoring: card.scoring !== false,
       chips: RANK_BY_KEY[rank].chips
     };
@@ -624,6 +639,46 @@
     return normalized;
   }
 
+  function hasEnhancement(card, enhancementKey) {
+    return card && card.debuffed !== true && card.enhancement === enhancementKey;
+  }
+
+  function cardMatchesSuit(card, suit) {
+    if (!card) return false;
+    return card.suit === suit || hasEnhancement(card, 'wild');
+  }
+
+  function cardMatchesAnySuit(card, suits) {
+    if (!card) return false;
+    if (hasEnhancement(card, 'wild')) return true;
+    return suits.has(card.suit);
+  }
+
+  function suitsRepresented(cards) {
+    const suits = new Set();
+    cards.filter((card) => !card.debuffed).forEach((card) => {
+      if (hasEnhancement(card, 'wild')) {
+        SUITS.forEach((suit) => suits.add(suit.key));
+      } else {
+        suits.add(card.suit);
+      }
+    });
+    return suits;
+  }
+
+  function groupSuitIndexes(cards) {
+    const groups = new Map(SUITS.map((suit) => [suit.key, []]));
+    cards.forEach((card, index) => {
+      const sourceIndex = card.sourceIndex ?? index;
+      SUITS.forEach((suit) => {
+        if (cardMatchesSuit(card, suit.key)) {
+          groups.get(suit.key).push(sourceIndex);
+        }
+      });
+    });
+    return groups;
+  }
+
   function analyzePlayedCards(cards) {
     const normalizedCards = cards.map((card) => RANK_BY_KEY[card.rank] ? card : normalizeCard(card));
     if (!normalizedCards.length) {
@@ -631,18 +686,18 @@
     }
 
     const stoneIndexes = normalizedCards
-      .map((card, index) => (card.enhancement === 'stone' ? index : -1))
+      .map((card, index) => (hasEnhancement(card, 'stone') ? index : -1))
       .filter((index) => index >= 0);
     const handCards = normalizedCards
       .map((card, index) => ({ ...card, sourceIndex: index }))
-      .filter((card) => card.enhancement !== 'stone');
+      .filter((card) => !hasEnhancement(card, 'stone'));
 
     if (!handCards.length) {
       return typedAnalysis('highCard', new Set(), stoneIndexes);
     }
 
     const rankGroups = groupIndexes(handCards, 'rank');
-    const suitGroups = groupIndexes(handCards, 'suit');
+    const suitGroups = groupSuitIndexes(handCards);
     const counts = Array.from(rankGroups.values()).map((indexes) => indexes.length).sort((a, b) => b - a);
     const isFlush = handCards.length >= 5 && Array.from(suitGroups.values()).some((indexes) => indexes.length >= 5);
     const straightIndexes = findStraightIndexes(handCards);
@@ -770,40 +825,106 @@
 
     state.scoringCards.forEach((card) => {
       const cardName = formatCardName(card);
-      if (card.enhancement !== 'stone') {
-        chips += card.chips;
+      if (card.debuffed) {
         steps.push({
-          phase: 'card',
-          label: `${cardName}: +${card.chips} Chips`,
+          phase: 'status',
+          label: `${cardName}: Debuffed card scores no Chips and disables card abilities`,
           chips,
           mult,
-          score: Math.floor(chips * mult)
+          score: Math.floor(chips * mult),
+          skipped: true
         });
+        return;
+      }
+
+      const repetitions = card.seal === 'red' ? 2 : 1;
+      for (let repeatIndex = 0; repeatIndex < repetitions; repeatIndex += 1) {
+        const retriggerLabel = repeatIndex > 0 ? ' (Red Seal retrigger)' : '';
+        if (repeatIndex > 0) {
+          steps.push({
+            phase: 'seal',
+            label: `${cardName}: Red Seal retriggers this scoring card`,
+            chips,
+            mult,
+            score: Math.floor(chips * mult)
+          });
+        }
+
+        if (!hasEnhancement(card, 'stone')) {
+          chips += card.chips;
+          steps.push({
+            phase: 'card',
+            label: `${cardName}${retriggerLabel}: +${card.chips} Chips`,
+            chips,
+            mult,
+            score: Math.floor(chips * mult)
+          });
+        }
+
+        const enhancement = ENHANCEMENT_BY_KEY[card.enhancement];
+        if (enhancement && card.enhancement !== 'none') {
+          if (enhancement.stoneChips) chips += enhancement.stoneChips;
+          if (enhancement.chipsAdd) chips += enhancement.chipsAdd;
+          if (enhancement.multAdd) mult += enhancement.multAdd;
+          if (enhancement.xMult) mult *= enhancement.xMult;
+          if (enhancement.stoneChips || enhancement.chipsAdd || enhancement.multAdd || enhancement.xMult || enhancement.wild) {
+            steps.push({
+              phase: 'enhancement',
+              label: formatCardModifierLabel(cardName, enhancement, retriggerLabel),
+              chips,
+              mult,
+              score: Math.floor(chips * mult)
+            });
+          }
+        }
+
+        const edition = EDITION_BY_KEY[card.edition];
+        if (edition && card.edition !== 'none') {
+          if (edition.chipsAdd) chips += edition.chipsAdd;
+          if (edition.multAdd) mult += edition.multAdd;
+          if (edition.xMult) mult *= edition.xMult;
+          steps.push({
+            phase: 'edition',
+            label: formatCardModifierLabel(cardName, edition, retriggerLabel),
+            chips,
+            mult,
+            score: Math.floor(chips * mult)
+          });
+        }
+      }
+    });
+
+    state.heldCards.forEach((card) => {
+      const cardName = formatCardName(card);
+      if (card.debuffed) {
+        steps.push({
+          phase: 'status',
+          label: `${cardName}: Debuffed held card abilities are disabled`,
+          chips,
+          mult,
+          score: Math.floor(chips * mult),
+          skipped: true
+        });
+        return;
       }
 
       const enhancement = ENHANCEMENT_BY_KEY[card.enhancement];
-      if (enhancement && card.enhancement !== 'none') {
-        if (enhancement.stoneChips) chips += enhancement.stoneChips;
-        if (enhancement.chipsAdd) chips += enhancement.chipsAdd;
-        if (enhancement.multAdd) mult += enhancement.multAdd;
-        if (enhancement.xMult) mult *= enhancement.xMult;
+      if (!enhancement || !enhancement.heldXMult) return;
+      const repetitions = card.seal === 'red' ? 2 : 1;
+      for (let repeatIndex = 0; repeatIndex < repetitions; repeatIndex += 1) {
+        if (repeatIndex > 0) {
+          steps.push({
+            phase: 'seal',
+            label: `${cardName}: Red Seal retriggers held card ability`,
+            chips,
+            mult,
+            score: Math.floor(chips * mult)
+          });
+        }
+        mult *= enhancement.heldXMult;
         steps.push({
-          phase: 'enhancement',
-          label: formatCardModifierLabel(cardName, enhancement),
-          chips,
-          mult,
-          score: Math.floor(chips * mult)
-        });
-      }
-
-      const edition = EDITION_BY_KEY[card.edition];
-      if (edition && card.edition !== 'none') {
-        if (edition.chipsAdd) chips += edition.chipsAdd;
-        if (edition.multAdd) mult += edition.multAdd;
-        if (edition.xMult) mult *= edition.xMult;
-        steps.push({
-          phase: 'edition',
-          label: formatCardModifierLabel(cardName, edition),
+          phase: 'held',
+          label: `${cardName}: ${enhancement.label} applies X${enhancement.heldXMult} Mult${repeatIndex > 0 ? ' again' : ''}`,
           chips,
           mult,
           score: Math.floor(chips * mult)
@@ -910,16 +1031,17 @@
   }
 
   function formatCardName(card) {
-    if (card.enhancement === 'stone') return 'Stone Card';
+    if (hasEnhancement(card, 'stone')) return 'Stone Card';
     return `${RANK_BY_KEY[card.rank].label} of ${SUIT_BY_KEY[card.suit].label}`;
   }
 
-  function formatCardModifierLabel(cardName, modifier) {
-    if (modifier.stoneChips) return `${cardName}: ${modifier.label} adds +${modifier.stoneChips} Chips`;
-    if (modifier.chipsAdd) return `${cardName}: ${modifier.label} adds +${modifier.chipsAdd} Chips`;
-    if (modifier.multAdd) return `${cardName}: ${modifier.label} adds +${modifier.multAdd} Mult`;
-    if (modifier.xMult) return `${cardName}: ${modifier.label} applies X${modifier.xMult} Mult`;
-    return `${cardName}: ${modifier.label}`;
+  function formatCardModifierLabel(cardName, modifier, suffix = '') {
+    if (modifier.stoneChips) return `${cardName}${suffix}: ${modifier.label} adds +${modifier.stoneChips} Chips`;
+    if (modifier.chipsAdd) return `${cardName}${suffix}: ${modifier.label} adds +${modifier.chipsAdd} Chips`;
+    if (modifier.multAdd) return `${cardName}${suffix}: ${modifier.label} adds +${modifier.multAdd} Mult`;
+    if (modifier.xMult) return `${cardName}${suffix}: ${modifier.label} applies X${modifier.xMult} Mult`;
+    if (modifier.wild) return `${cardName}${suffix}: ${modifier.label} can count as any suit`;
+    return `${cardName}${suffix}: ${modifier.label}`;
   }
 
   return {
@@ -928,6 +1050,7 @@
     SUITS,
     ENHANCEMENTS,
     EDITIONS,
+    SEALS,
     JOKER_CATALOG,
     analyzePlayedCards,
     baseHandScore,

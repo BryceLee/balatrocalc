@@ -46,13 +46,18 @@
   };
   const DEFAULT_PLAYED_CARDS = [
     { rank: 'A', suit: 'hearts', enhancement: 'mult' },
-    { rank: 'A', suit: 'spades', edition: 'foil' },
+    { rank: 'A', suit: 'spades', edition: 'foil', seal: 'red' },
     { rank: '8', suit: 'clubs', enhancement: 'stone' },
-    { rank: '5', suit: 'diamonds' },
+    { rank: '5', suit: 'diamonds', enhancement: 'wild' },
     { rank: '3', suit: 'hearts' },
   ];
   const DEFAULT_HELD_CARDS = [
     { rank: 'K', suit: 'spades' },
+    { rank: 'Q', suit: 'clubs' },
+    { rank: '2', suit: 'clubs' },
+  ];
+  const DEFAULT_WORKBENCH_HELD_CARDS = [
+    { rank: 'K', suit: 'spades', enhancement: 'steel', seal: 'red' },
     { rank: 'Q', suit: 'clubs' },
     { rank: '2', suit: 'clubs' },
   ];
@@ -67,6 +72,10 @@
     { key: 'none', label: 'Base' },
     { key: 'bonus', label: 'Bonus +30 Chips' },
     { key: 'mult', label: 'Mult +4 Mult' },
+    { key: 'wild', label: 'Wild any suit' },
+    { key: 'steel', label: 'Steel held X1.5' },
+    { key: 'gold', label: 'Gold end-round $' },
+    { key: 'lucky', label: 'Lucky random' },
     { key: 'glass', label: 'Glass X2 Mult' },
     { key: 'stone', label: 'Stone +50 Chips' },
   ];
@@ -76,11 +85,21 @@
     { key: 'holographic', label: 'Holographic +10 Mult' },
     { key: 'polychrome', label: 'Polychrome X1.5 Mult' },
   ];
+  const SEAL_OPTIONS = [
+    { key: 'none', label: 'No seal' },
+    { key: 'red', label: 'Red retrigger' },
+    { key: 'blue', label: 'Blue held planet' },
+    { key: 'gold', label: 'Gold played $' },
+    { key: 'purple', label: 'Purple discard' },
+  ];
   const PHASE_LABELS = {
     hand: 'Base hand',
     card: 'Scoring cards',
+    status: 'Card status',
     enhancement: 'Card enhancements',
     edition: 'Card editions',
+    held: 'Held card effects',
+    seal: 'Seals',
     joker: 'Jokers left to right',
     deck: 'Deck rule',
   };
@@ -479,7 +498,7 @@
       applies: step.skipped !== true,
       modelStatus: step.phase === 'joker' ? 'exact' : '',
     });
-    const phaseGroups = ['hand', 'card', 'enhancement', 'edition', 'joker', 'deck']
+    const phaseGroups = ['hand', 'card', 'status', 'enhancement', 'edition', 'held', 'seal', 'joker', 'deck']
       .map((phase) => ({
         key: phase,
         label: PHASE_LABELS[phase] || phase,
@@ -587,7 +606,7 @@
       .map((name) => catalog.find((joker) => joker.name === name))
       .filter(Boolean);
     let playedCards = Array.from({ length: 5 }, (_, index) => DEFAULT_PLAYED_CARDS[index] || null);
-    let heldCards = Array.from({ length: 5 }, (_, index) => DEFAULT_HELD_CARDS[index] || null);
+    let heldCards = Array.from({ length: 5 }, (_, index) => DEFAULT_WORKBENCH_HELD_CARDS[index] || null);
     let handTypeKey = '';
     let handLevel = 1;
     let remainingDiscards = 0;
@@ -687,14 +706,19 @@
     function renderCardRows(cards, kind, label) {
       return Array.from({ length: 5 }, (_, index) => {
         const card = cards[index] || {};
-        const modifierControls = kind === 'played'
-          ? `<select data-played-enhancement="${index}" aria-label="${label} card ${index + 1} enhancement">
-              ${PLAYED_ENHANCEMENT_OPTIONS.map((enhancement) => `<option value="${enhancement.key}" ${(card.enhancement || 'none') === enhancement.key ? 'selected' : ''}>${enhancement.label}</option>`).join('')}
-            </select>
-            <select data-played-edition="${index}" aria-label="${label} card ${index + 1} edition">
-              ${PLAYED_EDITION_OPTIONS.map((edition) => `<option value="${edition.key}" ${(card.edition || 'none') === edition.key ? 'selected' : ''}>${edition.label}</option>`).join('')}
-            </select>`
-          : '';
+        const modifierControls = `<select data-${kind}-enhancement="${index}" aria-label="${label} card ${index + 1} enhancement">
+          ${PLAYED_ENHANCEMENT_OPTIONS.map((enhancement) => `<option value="${enhancement.key}" ${(card.enhancement || 'none') === enhancement.key ? 'selected' : ''}>${enhancement.label}</option>`).join('')}
+        </select>
+        ${kind === 'played' ? `<select data-played-edition="${index}" aria-label="${label} card ${index + 1} edition">
+          ${PLAYED_EDITION_OPTIONS.map((edition) => `<option value="${edition.key}" ${(card.edition || 'none') === edition.key ? 'selected' : ''}>${edition.label}</option>`).join('')}
+        </select>` : ''}
+        <select data-${kind}-seal="${index}" aria-label="${label} card ${index + 1} seal">
+          ${SEAL_OPTIONS.map((seal) => `<option value="${seal.key}" ${(card.seal || 'none') === seal.key ? 'selected' : ''}>${seal.label}</option>`).join('')}
+        </select>
+        <label class="calculator3StateToggle">
+          <input type="checkbox" data-${kind}-debuffed="${index}" ${card.debuffed ? 'checked' : ''}>
+          <span>Debuffed</span>
+        </label>`;
         return `<label class="calculator3StateCard calculator3StateCard--${kind}">
           <span>${label} ${index + 1}</span>
           <select data-${kind}-rank="${index}" aria-label="${label} card ${index + 1} rank">
@@ -723,6 +747,8 @@
         suit: updates.suit ?? current?.suit ?? 'spades',
         enhancement: updates.enhancement ?? current?.enhancement ?? 'none',
         edition: updates.edition ?? current?.edition ?? 'none',
+        seal: updates.seal ?? current?.seal ?? 'none',
+        debuffed: updates.debuffed ?? current?.debuffed ?? false,
       };
     }
 
@@ -836,8 +862,13 @@
         const playedSuitIndex = target.dataset ? target.dataset.playedSuit : undefined;
         const playedEnhancementIndex = target.dataset ? target.dataset.playedEnhancement : undefined;
         const playedEditionIndex = target.dataset ? target.dataset.playedEdition : undefined;
+        const playedSealIndex = target.dataset ? target.dataset.playedSeal : undefined;
+        const playedDebuffedIndex = target.dataset ? target.dataset.playedDebuffed : undefined;
         const rankIndex = target.dataset ? target.dataset.heldRank : undefined;
         const suitIndex = target.dataset ? target.dataset.heldSuit : undefined;
+        const heldEnhancementIndex = target.dataset ? target.dataset.heldEnhancement : undefined;
+        const heldSealIndex = target.dataset ? target.dataset.heldSeal : undefined;
+        const heldDebuffedIndex = target.dataset ? target.dataset.heldDebuffed : undefined;
         if (playedRankIndex !== undefined) {
           playedCards[Number(playedRankIndex)] = target.value
             ? buildCard(playedCards[Number(playedRankIndex)], { rank: target.value })
@@ -861,6 +892,18 @@
             playedCards[Number(playedEditionIndex)] = buildCard(current, { edition: target.value });
           }
         }
+        if (playedSealIndex !== undefined) {
+          const current = playedCards[Number(playedSealIndex)];
+          if (current && current.rank) {
+            playedCards[Number(playedSealIndex)] = buildCard(current, { seal: target.value });
+          }
+        }
+        if (playedDebuffedIndex !== undefined) {
+          const current = playedCards[Number(playedDebuffedIndex)];
+          if (current && current.rank) {
+            playedCards[Number(playedDebuffedIndex)] = buildCard(current, { debuffed: target.checked === true });
+          }
+        }
         if (rankIndex !== undefined) {
           heldCards[Number(rankIndex)] = target.value
             ? buildCard(heldCards[Number(rankIndex)], { rank: target.value })
@@ -870,6 +913,24 @@
           const current = heldCards[Number(suitIndex)];
           if (current && current.rank) {
             heldCards[Number(suitIndex)] = buildCard(current, { suit: target.value });
+          }
+        }
+        if (heldEnhancementIndex !== undefined) {
+          const current = heldCards[Number(heldEnhancementIndex)];
+          if (current && current.rank) {
+            heldCards[Number(heldEnhancementIndex)] = buildCard(current, { enhancement: target.value });
+          }
+        }
+        if (heldSealIndex !== undefined) {
+          const current = heldCards[Number(heldSealIndex)];
+          if (current && current.rank) {
+            heldCards[Number(heldSealIndex)] = buildCard(current, { seal: target.value });
+          }
+        }
+        if (heldDebuffedIndex !== undefined) {
+          const current = heldCards[Number(heldDebuffedIndex)];
+          if (current && current.rank) {
+            heldCards[Number(heldDebuffedIndex)] = buildCard(current, { debuffed: target.checked === true });
           }
         }
         renderStateControls();

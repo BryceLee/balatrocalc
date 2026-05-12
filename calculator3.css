@@ -501,6 +501,23 @@ body.calculator3-page {
   min-width: 0;
 }
 
+.calculator3StateToggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 7px 8px;
+  border: 1px solid rgba(255, 215, 0, 0.16);
+  border-radius: 8px;
+  background: rgba(3, 9, 10, 0.4);
+}
+
+.calculator3StateToggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: #83d3b4;
+}
+
 .calculator3StateField input,
 .calculator3StateField select,
 .calculator3StateCard select {

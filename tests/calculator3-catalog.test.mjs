@@ -184,6 +184,25 @@ assert.deepEqual(
 assert.ok(modifierExplanation.phaseGroups.some((group) => group.label === 'Card enhancements'));
 assert.ok(modifierExplanation.phaseGroups.some((group) => group.steps.some((step) => step.label.includes('Foil'))));
 
+const stateMatrixExplanation = Calculator3Panel.explainSelection([], {
+  scoreEngine: Calculator3,
+  handTypeKey: 'highCard',
+  playedCards: [
+    { rank: 'A', suit: 'spades', enhancement: 'mult', seal: 'red' },
+  ],
+  heldCards: [
+    { rank: 'K', suit: 'hearts', enhancement: 'steel', seal: 'red' },
+  ],
+});
+assert.equal(stateMatrixExplanation.score.chips, 27);
+assert.equal(stateMatrixExplanation.score.mult, 20.25);
+assert.deepEqual(
+  stateMatrixExplanation.phaseGroups.map((group) => group.key),
+  ['hand', 'card', 'enhancement', 'held', 'seal']
+);
+assert.ok(stateMatrixExplanation.phaseGroups.some((group) => group.label === 'Held card effects'));
+assert.ok(stateMatrixExplanation.phaseGroups.some((group) => group.label === 'Seals'));
+
 assert.equal(
   Calculator3Panel.escapeHtml('<b>Joker & Chips</b>'),
   '&lt;b&gt;Joker &amp; Chips&lt;/b&gt;'

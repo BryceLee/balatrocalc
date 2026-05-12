@@ -9,6 +9,10 @@ function modCard(rank, suit, enhancement = 'none', edition = 'none') {
   return { rank, suit, enhancement, edition };
 }
 
+function stateCard(rank, suit, state = {}) {
+  return { rank, suit, ...state };
+}
+
 const pairAnalysis = Calculator3.analyzePlayedCards([
   card('A', 'hearts'),
   card('A', 'spades'),
@@ -239,5 +243,46 @@ const unreadyLoyaltyScore = Calculator3.score({
 });
 assert.equal(unreadyLoyaltyScore.mult, 1);
 assert.ok(unreadyLoyaltyScore.steps.some((step) => step.label.includes('condition not met')));
+
+const wildFlushAnalysis = Calculator3.analyzePlayedCards([
+  stateCard('A', 'spades'),
+  stateCard('K', 'spades'),
+  stateCard('Q', 'spades'),
+  stateCard('J', 'spades'),
+  stateCard('2', 'hearts', { enhancement: 'wild' })
+]);
+assert.equal(wildFlushAnalysis.handType, 'flush');
+
+const redSealAndHeldSteelScore = Calculator3.score({
+  handType: 'highCard',
+  playedCards: [
+    stateCard('A', 'spades', { enhancement: 'mult', seal: 'red' })
+  ],
+  heldCards: [
+    stateCard('K', 'hearts', { enhancement: 'steel', seal: 'red' })
+  ],
+  jokers: []
+});
+assert.equal(redSealAndHeldSteelScore.chips, 27);
+assert.equal(redSealAndHeldSteelScore.mult, 20.25);
+assert.equal(redSealAndHeldSteelScore.score, 546);
+assert.ok(redSealAndHeldSteelScore.steps.some((step) => step.phase === 'seal' && step.label.includes('Red Seal retriggers this scoring card')));
+assert.ok(redSealAndHeldSteelScore.steps.some((step) => step.phase === 'held' && step.label.includes('Steel Card')));
+
+const debuffedCardScore = Calculator3.score({
+  handType: 'highCard',
+  playedCards: [
+    stateCard('A', 'spades', { enhancement: 'mult', seal: 'red', debuffed: true })
+  ],
+  heldCards: [
+    stateCard('K', 'spades', { debuffed: true })
+  ],
+  jokers: ['baron', 'arrowhead']
+});
+assert.equal(debuffedCardScore.chips, 5);
+assert.equal(debuffedCardScore.mult, 1);
+assert.ok(debuffedCardScore.steps.some((step) => step.phase === 'status' && step.label.includes('Debuffed card')));
+assert.ok(debuffedCardScore.steps.some((step) => step.label.includes('Baron: condition not met')));
+assert.ok(debuffedCardScore.steps.some((step) => step.label.includes('Arrowhead: condition not met')));
 
 console.log('calculator3-model tests passed');
