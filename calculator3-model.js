@@ -82,9 +82,20 @@
     { key: 'gold', label: 'Gold Seal', economyOnly: true },
     { key: 'purple', label: 'Purple Seal', discardOnly: true }
   ];
+  const BOSS_BLINDS = [
+    { key: 'none', label: 'No Boss Blind' },
+    { key: 'club', label: 'The Club', debuffsSuit: 'clubs' },
+    { key: 'goad', label: 'The Goad', debuffsSuit: 'spades' },
+    { key: 'head', label: 'The Head', debuffsSuit: 'hearts' },
+    { key: 'window', label: 'The Window', debuffsSuit: 'diamonds' },
+    { key: 'plant', label: 'The Plant', debuffsFaces: true },
+    { key: 'verdantLeaf', label: 'Verdant Leaf', debuffsAll: true },
+    { key: 'flint', label: 'The Flint', halvesBase: true }
+  ];
   const ENHANCEMENT_BY_KEY = Object.fromEntries(ENHANCEMENTS.map((enhancement) => [enhancement.key, enhancement]));
   const EDITION_BY_KEY = Object.fromEntries(EDITIONS.map((edition) => [edition.key, edition]));
   const SEAL_BY_KEY = Object.fromEntries(SEALS.map((seal) => [seal.key, seal]));
+  const BOSS_BLIND_BY_KEY = Object.fromEntries(BOSS_BLINDS.map((blind) => [blind.key, blind]));
 
   function titleCaseId(label) {
     return String(label || '')
@@ -668,6 +679,7 @@
       edition: EDITION_BY_KEY[String(card.edition || 'none').toLowerCase()] ? String(card.edition || 'none').toLowerCase() : 'none',
       seal: SEAL_BY_KEY[String(card.seal || 'none').toLowerCase()] ? String(card.seal || 'none').toLowerCase() : 'none',
       debuffed: card.debuffed === true || card.debuffed === 'true',
+      debuffReason: card.debuffReason || ((card.debuffed === true || card.debuffed === 'true') ? 'Debuffed card' : ''),
       scoring: card.scoring !== false,
       chips: RANK_BY_KEY[rank].chips
     };
@@ -695,11 +707,11 @@
   }
 
   function normalizeInput(input) {
-    const playedCards = (input.playedCards || []).map(normalizeCard);
-    const heldCards = (input.heldCards || []).map(normalizeCard);
     const level = Math.max(1, Math.floor(Number(input.level) || 1));
     const jokers = (input.jokers || []).map(normalizeJoker).filter((joker) => joker.id);
     const rules = normalizeRules(input.rules, jokers);
+    const playedCards = applyRuleDebuffs((input.playedCards || []).map(normalizeCard), rules);
+    const heldCards = applyRuleDebuffs((input.heldCards || []).map(normalizeCard), rules);
     const analysis = analyzePlayedCards(playedCards, rules);
     const handType = input.handType && HAND_BY_KEY[input.handType] ? input.handType : analysis.handType;
     const scoringIndexes = analysis.scoringIndexes;
@@ -728,12 +740,59 @@
     const activeJokerIds = new Set((jokers || [])
       .filter((joker) => joker.disabled !== true)
       .map((joker) => joker.id));
+    const bossBlind = normalizeBossBlind(inputRules.bossBlind);
     return {
       plasmaDeck: inputRules.plasmaDeck === true || inputRules.plasmaDeck === 'true',
       fourFingers: inputRules.fourFingers === true || inputRules.fourFingers === 'true' || activeJokerIds.has('fourFingers'),
       shortcut: inputRules.shortcut === true || inputRules.shortcut === 'true' || activeJokerIds.has('shortcut'),
-      smearedJoker: inputRules.smearedJoker === true || inputRules.smearedJoker === 'true' || activeJokerIds.has('smearedJoker')
+      smearedJoker: inputRules.smearedJoker === true || inputRules.smearedJoker === 'true' || activeJokerIds.has('smearedJoker'),
+      bossBlind
     };
+  }
+
+  function normalizeBossBlind(value) {
+    const key = String(value || 'none')
+      .trim()
+      .replace(/([a-z])([A-Z])/g, '$1-$2')
+      .toLowerCase()
+      .replace(/^the\s+/, '')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim()
+      .replace(/\s+([a-z0-9])/g, (_, char) => char.toUpperCase());
+    if (BOSS_BLIND_BY_KEY[key]) return key;
+    if (key === 'verdantLeaf') return 'verdantLeaf';
+    return 'none';
+  }
+
+  function applyRuleDebuffs(cards, rules) {
+    const bossBlind = BOSS_BLIND_BY_KEY[rules.bossBlind];
+    if (!bossBlind || bossBlind.key === 'none' || bossBlind.halvesBase) return cards;
+    return cards.map((card) => {
+      const reason = bossDebuffReason(card, bossBlind, rules);
+      if (!reason) return card;
+      return {
+        ...card,
+        debuffed: true,
+        debuffReason: card.debuffReason || reason
+      };
+    });
+  }
+
+  function bossDebuffReason(card, bossBlind, rules) {
+    if (!card) return '';
+    if (card.debuffed && card.debuffReason) return '';
+    if (bossBlind.debuffsAll) return `${bossBlind.label} debuffs all cards`;
+    if (bossBlind.debuffsFaces && FACE_RANKS.has(card.rank) && !hasEnhancement(card, 'stone')) {
+      return `${bossBlind.label} debuffs face cards`;
+    }
+    if (bossBlind.debuffsSuit && !hasEnhancement(card, 'stone') && cardMatchesSuit(card, bossBlind.debuffsSuit, rules)) {
+      const suitLabel = SUIT_BY_KEY[bossBlind.debuffsSuit].label;
+      if (rules.smearedJoker && card.suit !== bossBlind.debuffsSuit && !hasEnhancement(card, 'wild')) {
+        return `${bossBlind.label} debuffs ${suitLabel}-alias suits`;
+      }
+      return `${bossBlind.label} debuffs ${suitLabel}`;
+    }
+    return '';
   }
 
   function normalizeNonNegativeInteger(value) {
@@ -1029,6 +1088,19 @@
       score: Math.floor(chips * mult)
     }];
 
+    const bossBlind = BOSS_BLIND_BY_KEY[state.rules.bossBlind];
+    if (bossBlind && bossBlind.halvesBase) {
+      chips /= 2;
+      mult /= 2;
+      steps.push({
+        phase: 'rule',
+        label: `${bossBlind.label}: base Chips and Mult are halved`,
+        chips,
+        mult,
+        score: Math.floor(chips * mult)
+      });
+    }
+
     const activeJokers = state.jokers.filter((joker) => joker.disabled !== true);
     const jokerState = {
       handType: state.handType,
@@ -1090,7 +1162,7 @@
       if (card.debuffed) {
         steps.push({
           phase: 'status',
-          label: `${cardName}: Debuffed card scores no Chips and disables card abilities`,
+          label: `${cardName}: ${card.debuffReason || 'Debuffed card'}; scores no Chips and disables card abilities`,
           chips,
           mult,
           score: Math.floor(chips * mult),
@@ -1162,7 +1234,7 @@
       if (card.debuffed) {
         steps.push({
           phase: 'status',
-          label: `${cardName}: Debuffed held card abilities are disabled`,
+          label: `${cardName}: ${card.debuffReason || 'Debuffed held card'}; abilities are disabled`,
           chips,
           mult,
           score: Math.floor(chips * mult),
@@ -1308,6 +1380,16 @@
     if (rules.smearedJoker && activeIds.has('smearedJoker')) {
       steps.push('Smeared Joker: red suits count together and black suits count together');
     }
+    const bossBlind = BOSS_BLIND_BY_KEY[rules.bossBlind];
+    if (bossBlind && bossBlind.debuffsSuit) {
+      steps.push(`${bossBlind.label}: debuffs ${SUIT_BY_KEY[bossBlind.debuffsSuit].label} cards${rules.smearedJoker ? ' using current suit aliases' : ''}`);
+    }
+    if (bossBlind && bossBlind.debuffsFaces) {
+      steps.push(`${bossBlind.label}: debuffs face cards`);
+    }
+    if (bossBlind && bossBlind.debuffsAll) {
+      steps.push(`${bossBlind.label}: debuffs all cards until a Joker is sold`);
+    }
     return steps;
   }
 
@@ -1332,6 +1414,7 @@
     ENHANCEMENTS,
     EDITIONS,
     SEALS,
+    BOSS_BLINDS,
     JOKER_CATALOG,
     analyzePlayedCards,
     baseHandScore,

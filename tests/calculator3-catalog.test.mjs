@@ -214,6 +214,30 @@ assert.equal(plasmaExplanation.score.mult, 19);
 assert.equal(plasmaExplanation.scorePreview, 361);
 assert.ok(plasmaExplanation.phaseGroups.some((group) => group.key === 'deck' && group.steps.some((step) => step.label.includes('Plasma Deck'))));
 
+const bossBlindExplanation = Calculator3Panel.explainSelection([
+  byName.get('Smiley Face'),
+  byName.get('Baron'),
+], {
+  scoreEngine: Calculator3,
+  playedCards: [
+    { rank: 'K', suit: 'clubs' },
+    { rank: 'K', suit: 'spades' },
+    { rank: '8', suit: 'clubs' },
+    { rank: '5', suit: 'diamonds' },
+    { rank: '3', suit: 'hearts' },
+  ],
+  heldCards: [
+    { rank: 'Q', suit: 'clubs' },
+  ],
+  rules: { bossBlind: 'club' },
+});
+assert.equal(bossBlindExplanation.engineResult.handType, 'pair');
+assert.equal(bossBlindExplanation.score.chips, 20);
+assert.equal(bossBlindExplanation.score.mult, 7);
+assert.equal(bossBlindExplanation.scorePreview, 140);
+assert.ok(bossBlindExplanation.phaseGroups.some((group) => group.key === 'rule' && group.steps.some((step) => step.label.includes('The Club'))));
+assert.ok(bossBlindExplanation.phaseGroups.some((group) => group.key === 'status' && group.steps.some((step) => step.label.includes('King of Clubs'))));
+
 const leveledStraightExplanation = Calculator3Panel.explainSelection([
   byName.get('Crazy Joker'),
 ], {

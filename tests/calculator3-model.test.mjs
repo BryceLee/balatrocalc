@@ -235,6 +235,42 @@ assert.equal(plasmaScore.mult, 19);
 assert.equal(plasmaScore.score, 361);
 assert.ok(plasmaScore.steps.some((step) => step.phase === 'deck' && step.label.includes('Plasma Deck')));
 
+const flintScore = Calculator3.score({
+  playedCards: [
+    card('A', 'hearts'),
+    card('A', 'spades')
+  ],
+  jokers: ['jolly'],
+  rules: { bossBlind: 'flint' }
+});
+assert.equal(flintScore.handType, 'pair');
+assert.equal(flintScore.chips, 27);
+assert.equal(flintScore.mult, 9);
+assert.equal(flintScore.score, 243);
+assert.ok(flintScore.steps.some((step) => step.phase === 'rule' && step.label.includes('The Flint')));
+
+const bossDebuffScore = Calculator3.score({
+  playedCards: [
+    card('K', 'clubs'),
+    card('K', 'spades'),
+    card('8', 'clubs'),
+    card('5', 'diamonds'),
+    card('3', 'hearts')
+  ],
+  heldCards: [
+    card('Q', 'clubs')
+  ],
+  jokers: ['smileyFace', 'baron'],
+  rules: { bossBlind: 'club' }
+});
+assert.equal(bossDebuffScore.handType, 'pair');
+assert.equal(bossDebuffScore.chips, 20);
+assert.equal(bossDebuffScore.mult, 7);
+assert.equal(bossDebuffScore.score, 140);
+assert.ok(bossDebuffScore.steps.some((step) => step.phase === 'rule' && step.label.includes('The Club')));
+assert.ok(bossDebuffScore.steps.some((step) => step.phase === 'status' && step.label.includes('King of Clubs')));
+assert.ok(bossDebuffScore.steps.some((step) => step.phase === 'status' && step.label.includes('Queen of Clubs')));
+
 const heldCardStateScore = Calculator3.score({
   playedCards: [
     card('A', 'hearts'),

@@ -92,6 +92,16 @@
     { key: 'gold', label: 'Gold played $' },
     { key: 'purple', label: 'Purple discard' },
   ];
+  const BOSS_BLIND_OPTIONS = [
+    { key: 'none', label: 'No Boss Blind' },
+    { key: 'club', label: 'The Club - Clubs debuffed' },
+    { key: 'goad', label: 'The Goad - Spades debuffed' },
+    { key: 'head', label: 'The Head - Hearts debuffed' },
+    { key: 'window', label: 'The Window - Diamonds debuffed' },
+    { key: 'plant', label: 'The Plant - face cards debuffed' },
+    { key: 'verdantLeaf', label: 'Verdant Leaf - all cards debuffed' },
+    { key: 'flint', label: 'The Flint - base hand halved' },
+  ];
   const PHASE_LABELS = {
     hand: 'Base hand',
     rule: 'Rule modifiers',
@@ -623,6 +633,7 @@
     let currentHandTimesPlayed = 4;
     let finalHand = false;
     let plasmaDeck = false;
+    let bossBlind = 'plant';
     const jokerValues = { ...RUNTIME_VALUE_DEFAULTS };
 
     totalCount.textContent = String(coverage.total);
@@ -713,6 +724,12 @@
           <span>Plasma Deck</span>
           <input id="calculator3PlasmaDeck" type="checkbox" ${plasmaDeck ? 'checked' : ''}>
         </label>
+        <label class="calculator3StateField">
+          <span>Boss Blind</span>
+          <select id="calculator3BossBlind" aria-label="Boss Blind rule">
+            ${BOSS_BLIND_OPTIONS.map((blind) => `<option value="${blind.key}" ${bossBlind === blind.key ? 'selected' : ''}>${blind.label}</option>`).join('')}
+          </select>
+        </label>
       </div>
       ${runtimeRows ? `<div class="calculator3StateJokerValues">${runtimeRows}</div>` : ''}
       <div class="calculator3StateCardGroup">
@@ -784,6 +801,7 @@
         finalHand,
         rules: {
           plasmaDeck,
+          bossBlind,
         },
         jokerValues,
         scoreEngine: root.Calculator3,
@@ -887,6 +905,11 @@
         }
         if (target.id === 'calculator3PlasmaDeck') {
           plasmaDeck = target.checked === true;
+          renderSelection();
+          return;
+        }
+        if (target.id === 'calculator3BossBlind') {
+          bossBlind = target.value;
           renderSelection();
           return;
         }
