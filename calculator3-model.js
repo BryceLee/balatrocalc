@@ -311,6 +311,68 @@
         };
       }
     },
+    loyaltyCard: {
+      id: 'loyaltyCard',
+      name: 'Loyalty Card',
+      mode: 'xMult',
+      explain: 'X4 Mult when loyalty counter is ready',
+      apply(state) {
+        if (!hasJokerValue(state, 'loyaltyCard')) return null;
+        const remaining = getJokerValue(state, 'loyaltyCard');
+        if (remaining !== 0) return null;
+        return {
+          xMult: 4,
+          text: 'Loyalty Card: counter is ready, applies X4 Mult'
+        };
+      }
+    },
+    supernova: {
+      id: 'supernova',
+      name: 'Supernova',
+      mode: 'runtimeMult',
+      explain: '+Mult equal to this poker hand play count',
+      apply(state) {
+        if (!state.currentHandTimesPlayed) return null;
+        return {
+          multAdd: state.currentHandTimesPlayed,
+          text: `Supernova: this poker hand has been played ${state.currentHandTimesPlayed} time${state.currentHandTimesPlayed === 1 ? '' : 's'}, adds +${state.currentHandTimesPlayed} Mult`
+        };
+      }
+    },
+    fortuneTeller: makeRuntimeMultJoker('fortuneTeller', 'Fortune Teller', 'Tarot card used', 'Tarot cards used', 1),
+    rideTheBus: makeRuntimeMultJoker('rideTheBus', 'Ride the Bus', 'consecutive no-face hand', 'consecutive no-face hands', 1),
+    runner: makeRuntimeChipsJoker('runner', 'Runner', 'Straight played', 'Straights played', 15),
+    blueJoker: {
+      id: 'blueJoker',
+      name: 'Blue Joker',
+      mode: 'deckChips',
+      explain: '+2 Chips per remaining deck card',
+      apply(state) {
+        if (!Number.isFinite(state.remainingDeckCards) || state.remainingDeckCards <= 0) return null;
+        const chipsAdd = state.remainingDeckCards * 2;
+        return {
+          chipsAdd,
+          text: `Blue Joker: ${state.remainingDeckCards} remaining deck card${state.remainingDeckCards === 1 ? '' : 's'} add +${chipsAdd} Chips`
+        };
+      }
+    },
+    greenJoker: {
+      id: 'greenJoker',
+      name: 'Green Joker',
+      mode: 'runtimeMult',
+      explain: 'Current +Mult from hands and discards',
+      apply(state) {
+        const multAdd = getJokerValue(state, 'greenJoker');
+        if (!multAdd) return null;
+        return {
+          multAdd,
+          text: `Green Joker: current runtime value adds ${formatSigned('multAdd', multAdd)}`
+        };
+      }
+    },
+    redCard: makeRuntimeMultJoker('redCard', 'Red Card', 'skipped Booster Pack', 'skipped Booster Packs', 3),
+    squareJoker: makeRuntimeChipsJoker('squareJoker', 'Square Joker', 'four-card hand played', 'four-card hands played', 4),
+    erosion: makeRuntimeMultJoker('erosion', 'Erosion', 'card below 52 in full deck', 'cards below 52 in full deck', 4),
     triboulet: {
       id: 'triboulet',
       name: 'Triboulet',
@@ -336,6 +398,36 @@
         return {
           multAdd: count * 3,
           text: `Abstract Joker: ${count} Jokers add +${count * 3} Mult`
+        };
+      }
+    },
+    bull: {
+      id: 'bull',
+      name: 'Bull',
+      mode: 'moneyChips',
+      explain: '+2 Chips per dollar',
+      apply(state) {
+        if (!Number.isFinite(state.dollars) || state.dollars <= 0) return null;
+        const chipsAdd = state.dollars * 2;
+        return {
+          chipsAdd,
+          text: `Bull: $${state.dollars} add +${chipsAdd} Chips`
+        };
+      }
+    },
+    flashCard: makeRuntimeMultJoker('flashCard', 'Flash Card', 'shop reroll', 'shop rerolls', 2),
+    bootstraps: {
+      id: 'bootstraps',
+      name: 'Bootstraps',
+      mode: 'moneyMult',
+      explain: '+2 Mult per $5',
+      apply(state) {
+        if (!Number.isFinite(state.dollars) || state.dollars < 5) return null;
+        const stacks = Math.floor(state.dollars / 5);
+        const multAdd = stacks * 2;
+        return {
+          multAdd,
+          text: `Bootstraps: $${state.dollars} creates ${stacks} $5 stack${stacks === 1 ? '' : 's'}, adds +${multAdd} Mult`
         };
       }
     }
@@ -382,15 +474,62 @@
     };
   }
 
+  function makeRuntimeMultJoker(id, name, unitSingular, unitPlural, amount) {
+    return {
+      id,
+      name,
+      mode: 'runtimeMult',
+      explain: `+${amount} Mult per ${unitSingular}`,
+      apply(state) {
+        const count = getJokerValue(state, id);
+        if (!count) return null;
+        const multAdd = count * amount;
+        return {
+          multAdd,
+          text: `${name}: ${count} ${count === 1 ? unitSingular : unitPlural} add +${multAdd} Mult`
+        };
+      }
+    };
+  }
+
+  function makeRuntimeChipsJoker(id, name, unitSingular, unitPlural, amount) {
+    return {
+      id,
+      name,
+      mode: 'runtimeChips',
+      explain: `+${amount} Chips per ${unitSingular}`,
+      apply(state) {
+        const count = getJokerValue(state, id);
+        if (!count) return null;
+        const chipsAdd = count * amount;
+        return {
+          chipsAdd,
+          text: `${name}: ${count} ${count === 1 ? unitSingular : unitPlural} add +${chipsAdd} Chips`
+        };
+      }
+    };
+  }
+
+  function getJokerValue(state, id) {
+    if (!state || !state.jokerValues) return 0;
+    const value = state.jokerValues[id];
+    return Number.isFinite(value) ? value : 0;
+  }
+
+  function hasJokerValue(state, id) {
+    return Boolean(state && state.jokerValues && Number.isFinite(state.jokerValues[id]));
+  }
+
   function formatAmountForExplain(effectKey, amount) {
     if (effectKey === 'chipsAddMultAdd') return `${amount.chipsAdd} Chips and ${amount.multAdd} Mult`;
     return String(amount);
   }
 
   function formatSigned(effectKey, value) {
-    if (effectKey === 'chipsAdd') return `+${value} Chips`;
-    if (effectKey === 'multAdd') return `+${value} Mult`;
-    return `+${value}`;
+    const prefix = value >= 0 ? '+' : '';
+    if (effectKey === 'chipsAdd') return `${prefix}${value} Chips`;
+    if (effectKey === 'multAdd') return `${prefix}${value} Mult`;
+    return `${prefix}${value}`;
   }
 
   function normalizeCard(card) {
@@ -451,6 +590,10 @@
       heldCards,
       jokers,
       remainingDiscards: normalizeNonNegativeInteger(input.remainingDiscards),
+      remainingDeckCards: normalizeNonNegativeInteger(input.remainingDeckCards),
+      dollars: normalizeNonNegativeInteger(input.dollars),
+      currentHandTimesPlayed: normalizeNonNegativeInteger(input.currentHandTimesPlayed),
+      jokerValues: normalizeJokerValues(input.jokerValues),
       rules: {
         plasmaDeck: input.rules && input.rules.plasmaDeck === true
       },
@@ -463,6 +606,22 @@
     const number = Math.floor(Number(value));
     if (!Number.isFinite(number)) return null;
     return Math.max(0, number);
+  }
+
+  function normalizeSignedInteger(value) {
+    if (value === null || value === undefined || value === '') return null;
+    const number = Math.floor(Number(value));
+    if (!Number.isFinite(number)) return null;
+    return number;
+  }
+
+  function normalizeJokerValues(values) {
+    const normalized = {};
+    Object.entries(values || {}).forEach(([id, value]) => {
+      const number = normalizeSignedInteger(value);
+      if (number !== null) normalized[id] = number;
+    });
+    return normalized;
   }
 
   function analyzePlayedCards(cards) {
@@ -659,6 +818,10 @@
       scoringCards: state.scoringCards,
       heldCards: state.heldCards,
       remainingDiscards: state.remainingDiscards,
+      remainingDeckCards: state.remainingDeckCards,
+      dollars: state.dollars,
+      currentHandTimesPlayed: state.currentHandTimesPlayed,
+      jokerValues: state.jokerValues,
       activeJokers,
       activeJokerCount: activeJokers.length
     };
@@ -730,6 +893,10 @@
       playedCards: state.playedCards,
       heldCards: state.heldCards,
       remainingDiscards: state.remainingDiscards,
+      remainingDeckCards: state.remainingDeckCards,
+      dollars: state.dollars,
+      currentHandTimesPlayed: state.currentHandTimesPlayed,
+      jokerValues: state.jokerValues,
       steps,
       unsupportedJokers,
       warnings: unsupportedJokers.length

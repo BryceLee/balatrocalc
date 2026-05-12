@@ -519,6 +519,13 @@ body.calculator3-page {
   gap: 8px;
 }
 
+.calculator3StateNumbers,
+.calculator3StateJokerValues {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
 .calculator3SelectionList {
   display: flex;
   flex-wrap: wrap;
@@ -611,6 +618,8 @@ body.calculator3-page {
 
   .calculator3Controls,
   .calculator3Stats,
+  .calculator3StateNumbers,
+  .calculator3StateJokerValues,
   .calculator3StateCards {
     grid-template-columns: 1fr;
   }

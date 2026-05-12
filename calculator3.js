@@ -63,6 +63,28 @@
     { key: 'hearts', label: 'Hearts' },
     { key: 'diamonds', label: 'Diamonds' },
   ];
+  const RUNTIME_VALUE_LABELS = {
+    loyaltyCard: 'Loyalty remaining',
+    fortuneTeller: 'Tarots used',
+    rideTheBus: 'No-face streak',
+    runner: 'Straights played',
+    greenJoker: 'Green Joker Mult',
+    redCard: 'Skipped packs',
+    squareJoker: '4-card hands',
+    erosion: 'Cards below 52',
+    flashCard: 'Shop rerolls',
+  };
+  const RUNTIME_VALUE_DEFAULTS = {
+    loyaltyCard: 0,
+    fortuneTeller: 6,
+    rideTheBus: 5,
+    runner: 3,
+    greenJoker: 4,
+    redCard: 2,
+    squareJoker: 3,
+    erosion: 4,
+    flashCard: 3,
+  };
 
   function readSourceData(source) {
     const data = source || {};
@@ -322,6 +344,10 @@
       playedCards: DEFAULT_PLAYED_CARDS,
       heldCards: DEFAULT_HELD_CARDS,
       remainingDiscards: 0,
+      remainingDeckCards: 40,
+      dollars: 18,
+      currentHandTimesPlayed: 4,
+      jokerValues: {},
       ...scenario,
     };
     const scoreEngine = base.scoreEngine || root.Calculator3;
@@ -380,6 +406,10 @@
       playedCards: scenario.playedCards,
       heldCards: scenario.heldCards,
       remainingDiscards: scenario.remainingDiscards,
+      remainingDeckCards: scenario.remainingDeckCards,
+      dollars: scenario.dollars,
+      currentHandTimesPlayed: scenario.currentHandTimesPlayed,
+      jokerValues: scenario.jokerValues,
       jokers: exactJokers,
     });
     const engineSteps = result.steps.filter((step) => step.phase === 'joker');
@@ -475,12 +505,16 @@
       return null;
     }
 
-    const selectedNames = ['Baron', 'Shoot the Moon', 'Blackboard', 'Raised Fist', 'Baseball Card'];
+    const selectedNames = ['Blue Joker', 'Bull', 'Bootstraps', 'Supernova', 'Red Card'];
     let selected = selectedNames
       .map((name) => catalog.find((joker) => joker.name === name))
       .filter(Boolean);
     let heldCards = Array.from({ length: 5 }, (_, index) => DEFAULT_HELD_CARDS[index] || null);
     let remainingDiscards = 0;
+    let remainingDeckCards = 40;
+    let dollars = 18;
+    let currentHandTimesPlayed = 4;
+    const jokerValues = { ...RUNTIME_VALUE_DEFAULTS };
 
     totalCount.textContent = String(coverage.total);
     scoreCount.textContent = String(coverage.exact);
@@ -514,6 +548,13 @@
 
     function renderStateControls() {
       if (!stateControls) return;
+      const runtimeRows = selected
+        .filter((joker) => joker.engineId && RUNTIME_VALUE_LABELS[joker.engineId])
+        .map((joker) => `<label class="calculator3StateField">
+          <span>${escapeHtml(RUNTIME_VALUE_LABELS[joker.engineId])}</span>
+          <input type="number" step="1" value="${Number(jokerValues[joker.engineId] || 0)}" inputmode="numeric" data-joker-value="${escapeHtml(joker.engineId)}">
+        </label>`)
+        .join('');
       const heldRows = Array.from({ length: 5 }, (_, index) => {
         const card = heldCards[index] || {};
         return `<label class="calculator3StateCard">
@@ -530,12 +571,27 @@
 
       stateControls.innerHTML = `<div class="calculator3StateControls__head">
         <strong>State inputs</strong>
-        <span>Exact held-card and discard Jokers use these values.</span>
+        <span>Exact economy, deck, growth, held-card, and discard Jokers use these values.</span>
       </div>
-      <label class="calculator3StateField">
-        <span>Remaining discards</span>
-        <input id="calculator3RemainingDiscards" type="number" min="0" max="9" step="1" value="${remainingDiscards}" inputmode="numeric">
-      </label>
+      <div class="calculator3StateNumbers">
+        <label class="calculator3StateField">
+          <span>Dollars</span>
+          <input id="calculator3Dollars" type="number" min="0" max="999" step="1" value="${dollars}" inputmode="numeric">
+        </label>
+        <label class="calculator3StateField">
+          <span>Deck cards left</span>
+          <input id="calculator3RemainingDeckCards" type="number" min="0" max="104" step="1" value="${remainingDeckCards}" inputmode="numeric">
+        </label>
+        <label class="calculator3StateField">
+          <span>This hand played</span>
+          <input id="calculator3CurrentHandTimesPlayed" type="number" min="0" max="999" step="1" value="${currentHandTimesPlayed}" inputmode="numeric">
+        </label>
+        <label class="calculator3StateField">
+          <span>Remaining discards</span>
+          <input id="calculator3RemainingDiscards" type="number" min="0" max="9" step="1" value="${remainingDiscards}" inputmode="numeric">
+        </label>
+      </div>
+      ${runtimeRows ? `<div class="calculator3StateJokerValues">${runtimeRows}</div>` : ''}
       <div class="calculator3StateCards">${heldRows}</div>`;
     }
 
@@ -551,6 +607,10 @@
         playedCards: DEFAULT_PLAYED_CARDS,
         heldCards: activeHeldCards(),
         remainingDiscards,
+        remainingDeckCards,
+        dollars,
+        currentHandTimesPlayed,
+        jokerValues,
         scoreEngine: root.Calculator3,
       });
 
@@ -603,6 +663,22 @@
         const target = event.target;
         if (target.id === 'calculator3RemainingDiscards') {
           remainingDiscards = Math.max(0, Math.floor(Number(target.value) || 0));
+          renderSelection();
+        }
+        if (target.id === 'calculator3RemainingDeckCards') {
+          remainingDeckCards = Math.max(0, Math.floor(Number(target.value) || 0));
+          renderSelection();
+        }
+        if (target.id === 'calculator3Dollars') {
+          dollars = Math.max(0, Math.floor(Number(target.value) || 0));
+          renderSelection();
+        }
+        if (target.id === 'calculator3CurrentHandTimesPlayed') {
+          currentHandTimesPlayed = Math.max(0, Math.floor(Number(target.value) || 0));
+          renderSelection();
+        }
+        if (target.dataset && target.dataset.jokerValue) {
+          jokerValues[target.dataset.jokerValue] = Math.floor(Number(target.value) || 0);
           renderSelection();
         }
       });

@@ -42,9 +42,9 @@ const byName = new Map(catalog.map((joker) => [joker.name, joker]));
 
 assert.equal(catalog.length, 150);
 assert.equal(coverage.total, 150);
-assert.equal(coverage.exact, 44);
+assert.equal(coverage.exact, 57);
 assert.equal(coverage.heuristic, 1);
-assert.equal(coverage.stateful, 105);
+assert.equal(coverage.stateful, 92);
 
 assert.equal(byName.get('Joker').modelStatus, 'exact');
 assert.equal(byName.get('The Duo').engineId, 'duo');
@@ -64,6 +64,19 @@ assert.equal(byName.get('Blackboard').modelStatus, 'exact');
 assert.equal(byName.get('Baron').modelStatus, 'exact');
 assert.equal(byName.get('Baseball Card').modelStatus, 'exact');
 assert.equal(byName.get('Triboulet').modelStatus, 'exact');
+assert.equal(byName.get('Loyalty Card').modelStatus, 'exact');
+assert.equal(byName.get('Supernova').modelStatus, 'exact');
+assert.equal(byName.get('Fortune Teller').modelStatus, 'exact');
+assert.equal(byName.get('Ride the Bus').modelStatus, 'exact');
+assert.equal(byName.get('Runner').modelStatus, 'exact');
+assert.equal(byName.get('Blue Joker').modelStatus, 'exact');
+assert.equal(byName.get('Green Joker').modelStatus, 'exact');
+assert.equal(byName.get('Red Card').modelStatus, 'exact');
+assert.equal(byName.get('Square Joker').modelStatus, 'exact');
+assert.equal(byName.get('Erosion').modelStatus, 'exact');
+assert.equal(byName.get('Bull').modelStatus, 'exact');
+assert.equal(byName.get('Flash Card').modelStatus, 'exact');
+assert.equal(byName.get('Bootstraps').modelStatus, 'exact');
 assert.equal(byName.get('Blueprint').effectKind, 'copy');
 assert.equal(byName.get('Blueprint').modelStatus, 'stateful');
 assert.equal(byName.get('Card Sharp').modelStatus, 'stateful');
@@ -103,6 +116,34 @@ assert.equal(engineExplanation.engineCoverage.exact, 5);
 assert.equal(engineExplanation.steps.length, 5);
 assert.ok(engineExplanation.scorePreview > 1000);
 assert.ok(engineExplanation.steps.some((step) => step.note.includes('Baron')));
+
+const runtimeExplanation = Calculator3Panel.explainSelection([
+  byName.get('Blue Joker'),
+  byName.get('Bull'),
+  byName.get('Bootstraps'),
+  byName.get('Supernova'),
+  byName.get('Red Card'),
+], {
+  scoreEngine: Calculator3,
+  playedCards: [
+    { rank: 'A', suit: 'hearts' },
+    { rank: 'A', suit: 'spades' },
+    { rank: '8', suit: 'clubs' },
+    { rank: '5', suit: 'diamonds' },
+    { rank: '3', suit: 'hearts' },
+  ],
+  remainingDeckCards: 40,
+  dollars: 18,
+  currentHandTimesPlayed: 4,
+  jokerValues: {
+    redCard: 2,
+  },
+});
+assert.equal(runtimeExplanation.engineCoverage.exact, 5);
+assert.equal(runtimeExplanation.score.chips, 148);
+assert.equal(runtimeExplanation.score.mult, 18);
+assert.equal(runtimeExplanation.scorePreview, 2664);
+assert.ok(runtimeExplanation.steps.some((step) => step.note.includes('Bootstraps')));
 
 assert.equal(
   Calculator3Panel.escapeHtml('<b>Joker & Chips</b>'),

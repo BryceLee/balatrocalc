@@ -188,4 +188,56 @@ const bannerScore = Calculator3.score({
 assert.equal(bannerScore.chips, 105);
 assert.equal(bannerScore.mult, 1);
 
+const runtimeStateScore = Calculator3.score({
+  playedCards: [
+    card('A', 'hearts'),
+    card('A', 'spades'),
+    card('8', 'clubs'),
+    card('5', 'diamonds'),
+    card('3', 'hearts')
+  ],
+  jokers: [
+    'blueJoker',
+    'bull',
+    'bootstraps',
+    'supernova',
+    'redCard',
+    'fortuneTeller',
+    'rideTheBus',
+    'runner',
+    'squareJoker',
+    'erosion',
+    'flashCard',
+    'greenJoker',
+    'loyaltyCard'
+  ],
+  remainingDeckCards: 40,
+  dollars: 18,
+  currentHandTimesPlayed: 4,
+  jokerValues: {
+    redCard: 2,
+    fortuneTeller: 6,
+    rideTheBus: 5,
+    runner: 3,
+    squareJoker: 3,
+    erosion: 4,
+    flashCard: 3,
+    greenJoker: -2,
+    loyaltyCard: 0
+  }
+});
+assert.equal(runtimeStateScore.chips, 205);
+assert.equal(runtimeStateScore.mult, 196);
+assert.equal(runtimeStateScore.score, 40180);
+assert.ok(runtimeStateScore.steps.some((step) => step.label.includes('Blue Joker')));
+assert.ok(runtimeStateScore.steps.some((step) => step.label.includes('Bootstraps')));
+assert.ok(runtimeStateScore.steps.some((step) => step.label.includes('Loyalty Card')));
+
+const unreadyLoyaltyScore = Calculator3.score({
+  playedCards: [card('K', 'hearts')],
+  jokers: ['loyaltyCard']
+});
+assert.equal(unreadyLoyaltyScore.mult, 1);
+assert.ok(unreadyLoyaltyScore.steps.some((step) => step.label.includes('condition not met')));
+
 console.log('calculator3-model tests passed');
