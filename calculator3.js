@@ -628,6 +628,26 @@
     });
   }
 
+  function buildJokerOrderRecommendation(rows) {
+    if (!Array.isArray(rows) || !rows.length) return null;
+
+    const bestSwap = rows
+      .filter((row) => row.scoreAfterSwap !== null && row.scoreDelta > 0)
+      .sort((a, b) => b.scoreDelta - a.scoreDelta)[0];
+
+    if (!bestSwap) return null;
+
+    return {
+      index: bestSwap.index,
+      pairName: bestSwap.pairName,
+      scoreAfterSwap: bestSwap.scoreAfterSwap,
+      scoreDelta: bestSwap.scoreDelta,
+      chipsAfterSwap: bestSwap.chipsAfterSwap,
+      multAfterSwap: bestSwap.multAfterSwap,
+      summary: `Move ${bestSwap.pairName} for ${formatSignedNumber(bestSwap.scoreDelta)} score`,
+    };
+  }
+
   function explainSelection(jokers, scenario) {
     const scenarioHandKey = scenario && scenario.handTypeKey
       ? scenario.handTypeKey
@@ -710,6 +730,7 @@
       },
       jokerContribution: [],
       jokerOrderComparison: [],
+      jokerOrderRecommendation: null,
     };
   }
 
@@ -774,6 +795,8 @@
       };
     });
 
+    const jokerOrderComparison = buildJokerOrderComparison(jokers, scenario, scoreEngine, result);
+
     return {
       scenario,
       score: {
@@ -789,7 +812,8 @@
       },
       impactSummary: buildImpactSummary(result),
       jokerContribution: buildJokerContributionComparison(jokers, scenario, scoreEngine, result),
-      jokerOrderComparison: buildJokerOrderComparison(jokers, scenario, scoreEngine, result),
+      jokerOrderComparison,
+      jokerOrderRecommendation: buildJokerOrderRecommendation(jokerOrderComparison),
       engineResult: result,
     };
   }
@@ -870,9 +894,17 @@
     <ol>${rowHtml}</ol>`;
   }
 
-  function renderJokerOrderComparison(rows) {
+  function renderJokerOrderComparison(rows, recommendation) {
     if (!Array.isArray(rows) || !rows.length) return '';
 
+    const recommendationHtml = recommendation ? `<div class="calculator3Order__recommendation">
+      <div>
+        <strong>Best next move</strong>
+        <span>${escapeHtml(recommendation.summary)}</span>
+        <em>${escapeHtml(formatNumber(recommendation.chipsAfterSwap))} x ${escapeHtml(formatNumber(recommendation.multAfterSwap))} = ${escapeHtml(formatNumber(recommendation.scoreAfterSwap))}</em>
+      </div>
+      <button type="button" data-swap-jokers="${recommendation.index}">Apply best swap</button>
+    </div>` : '';
     const actionableRows = rows
       .slice()
       .sort((a, b) => Math.abs(Number(b.scoreDelta) || 0) - Math.abs(Number(a.scoreDelta) || 0));
@@ -897,6 +929,7 @@
       <strong>Joker order check</strong>
       <span>Adjacent swaps compared with exact scoring</span>
     </div>
+    ${recommendationHtml}
     <ol>${rowHtml}</ol>`;
   }
 
@@ -1168,7 +1201,7 @@
         contributionPanel.hidden = !contributionPanel.innerHTML;
       }
       if (orderPanel) {
-        orderPanel.innerHTML = renderJokerOrderComparison(explanation.jokerOrderComparison);
+        orderPanel.innerHTML = renderJokerOrderComparison(explanation.jokerOrderComparison, explanation.jokerOrderRecommendation);
         orderPanel.hidden = !orderPanel.innerHTML;
       }
     }

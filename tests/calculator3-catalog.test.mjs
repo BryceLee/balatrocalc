@@ -205,6 +205,21 @@ assert.deepEqual(
     [3, 'Photograph / Smiley Face', 120960, 111600, 'swap improves score'],
   ]
 );
+assert.deepEqual(
+  {
+    index: copyRetriggerExplanation.jokerOrderRecommendation.index,
+    pairName: copyRetriggerExplanation.jokerOrderRecommendation.pairName,
+    scoreAfterSwap: copyRetriggerExplanation.jokerOrderRecommendation.scoreAfterSwap,
+    scoreDelta: copyRetriggerExplanation.jokerOrderRecommendation.scoreDelta,
+  },
+  {
+    index: 3,
+    pairName: 'Photograph / Smiley Face',
+    scoreAfterSwap: 120960,
+    scoreDelta: 111600,
+  }
+);
+assert.equal(copyRetriggerExplanation.jokerOrderRecommendation.summary, 'Move Photograph / Smiley Face for +111,600 score');
 
 const ruleModifierExplanation = Calculator3Panel.explainSelection([
   byName.get('Four Fingers'),

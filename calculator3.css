@@ -649,6 +649,40 @@ body.calculator3-page {
   color: #d5a1ff;
 }
 
+.calculator3Order__recommendation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 11px;
+  border: 1px solid rgba(255, 213, 106, 0.34);
+  border-radius: 8px;
+  background: rgba(69, 51, 19, 0.42);
+}
+
+.calculator3Order__recommendation div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.calculator3Order__recommendation strong {
+  color: #ffe28a;
+  font-weight: normal;
+}
+
+.calculator3Order__recommendation span {
+  min-width: 0;
+  color: #f4f0d8;
+  line-height: 1.25;
+}
+
+.calculator3Order__recommendation em {
+  color: #91e2c1;
+  font-size: 13px;
+  font-style: normal;
+}
+
 .calculator3Order__row button {
   grid-column: 1 / -1;
   justify-self: end;
@@ -660,6 +694,18 @@ body.calculator3-page {
   background: rgba(44, 103, 82, 0.5);
   font: inherit;
   cursor: pointer;
+}
+
+.calculator3Order__recommendation button {
+  min-height: 34px;
+  border: 1px solid rgba(255, 213, 106, 0.45);
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #1c1607;
+  background: #ffd56a;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .calculator3StateControls {
@@ -905,6 +951,7 @@ body.calculator3-page {
   .calculator3Contribution__head,
   .calculator3Contribution__row,
   .calculator3Order__head,
+  .calculator3Order__recommendation,
   .calculator3Order__row,
   .calculator3Outcome,
   .calculator3ExplainPhase li {
