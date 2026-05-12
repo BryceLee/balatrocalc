@@ -63,6 +63,20 @@
     { key: 'hearts', label: 'Hearts' },
     { key: 'diamonds', label: 'Diamonds' },
   ];
+  const HAND_TYPE_OPTIONS = [
+    { key: 'highCard', label: 'High Card' },
+    { key: 'pair', label: 'Pair' },
+    { key: 'twoPair', label: 'Two Pair' },
+    { key: 'threeOfAKind', label: 'Three of a Kind' },
+    { key: 'straight', label: 'Straight' },
+    { key: 'flush', label: 'Flush' },
+    { key: 'fullHouse', label: 'Full House' },
+    { key: 'fourOfAKind', label: 'Four of a Kind' },
+    { key: 'straightFlush', label: 'Straight Flush' },
+    { key: 'fiveOfAKind', label: 'Five of a Kind' },
+    { key: 'flushHouse', label: 'Flush House' },
+    { key: 'flushFive', label: 'Flush Five' },
+  ];
   const RUNTIME_VALUE_LABELS = {
     loyaltyCard: 'Loyalty remaining',
     fortuneTeller: 'Tarots used',
@@ -218,6 +232,14 @@
       .trim();
   }
 
+  function handKeyToLabel(key) {
+    return HAND_TYPE_OPTIONS.find((hand) => hand.key === key)?.label || 'High Card';
+  }
+
+  function handLabelToKey(label) {
+    return HAND_TYPE_OPTIONS.find((hand) => hand.label === label)?.key || '';
+  }
+
   function buildEngineLookup(engineCatalog) {
     const lookup = new Map();
 
@@ -336,8 +358,13 @@
   }
 
   function explainSelection(jokers, scenario) {
+    const scenarioHandKey = scenario && scenario.handTypeKey
+      ? scenario.handTypeKey
+      : handLabelToKey(scenario && scenario.handType);
     const base = {
       handType: 'Pair',
+      handTypeKey: scenarioHandKey,
+      level: 1,
       chips: 10,
       mult: 2,
       cardsPlayed: 5,
@@ -403,6 +430,8 @@
         rarity: joker.rarity,
       }));
     const result = scoreEngine.score({
+      handType: scenario.handTypeKey || undefined,
+      level: scenario.level,
       playedCards: scenario.playedCards,
       heldCards: scenario.heldCards,
       remainingDiscards: scenario.remainingDiscards,
@@ -497,6 +526,7 @@
     const stateControls = documentRef.getElementById('calculator3StateControls');
     const explainList = documentRef.getElementById('calculator3ExplainList');
     const scorePreview = documentRef.getElementById('calculator3ScorePreview');
+    const scoreContext = panel.querySelector('.calculator3Explain__header span');
     const totalCount = documentRef.getElementById('calculator3CatalogTotal');
     const scoreCount = documentRef.getElementById('calculator3ScoreEffects');
     const stateCount = documentRef.getElementById('calculator3StatefulEffects');
@@ -509,7 +539,10 @@
     let selected = selectedNames
       .map((name) => catalog.find((joker) => joker.name === name))
       .filter(Boolean);
+    let playedCards = Array.from({ length: 5 }, (_, index) => DEFAULT_PLAYED_CARDS[index] || null);
     let heldCards = Array.from({ length: 5 }, (_, index) => DEFAULT_HELD_CARDS[index] || null);
+    let handTypeKey = '';
+    let handLevel = 1;
     let remainingDiscards = 0;
     let remainingDeckCards = 40;
     let dollars = 18;
@@ -555,23 +588,29 @@
           <input type="number" step="1" value="${Number(jokerValues[joker.engineId] || 0)}" inputmode="numeric" data-joker-value="${escapeHtml(joker.engineId)}">
         </label>`)
         .join('');
-      const heldRows = Array.from({ length: 5 }, (_, index) => {
-        const card = heldCards[index] || {};
-        return `<label class="calculator3StateCard">
-          <span>Held ${index + 1}</span>
-          <select data-held-rank="${index}" aria-label="Held card ${index + 1} rank">
-            <option value="">Empty</option>
-            ${RANK_OPTIONS.map((rank) => `<option value="${rank}" ${card.rank === rank ? 'selected' : ''}>${rank}</option>`).join('')}
-          </select>
-          <select data-held-suit="${index}" aria-label="Held card ${index + 1} suit">
-            ${SUIT_OPTIONS.map((suit) => `<option value="${suit.key}" ${card.suit === suit.key ? 'selected' : ''}>${suit.label}</option>`).join('')}
-          </select>
-        </label>`;
-      }).join('');
+      const playedRows = renderCardRows(playedCards, 'played', 'Played');
+      const heldRows = renderCardRows(heldCards, 'held', 'Held');
 
       stateControls.innerHTML = `<div class="calculator3StateControls__head">
         <strong>State inputs</strong>
-        <span>Exact economy, deck, growth, held-card, and discard Jokers use these values.</span>
+        <span>Exact hand, economy, deck, growth, held-card, and discard Jokers use these values.</span>
+      </div>
+      <div class="calculator3StateNumbers calculator3StateNumbers--hand">
+        <label class="calculator3StateField">
+          <span>Hand type</span>
+          <select id="calculator3HandType" aria-label="Hand type override">
+            <option value="">Auto detect</option>
+            ${HAND_TYPE_OPTIONS.map((hand) => `<option value="${hand.key}" ${handTypeKey === hand.key ? 'selected' : ''}>${hand.label}</option>`).join('')}
+          </select>
+        </label>
+        <label class="calculator3StateField">
+          <span>Hand level</span>
+          <input id="calculator3HandLevel" type="number" min="1" max="99" step="1" value="${handLevel}" inputmode="numeric">
+        </label>
+      </div>
+      <div class="calculator3StateCardGroup">
+        <strong>Played cards</strong>
+        <div class="calculator3StateCards">${playedRows}</div>
       </div>
       <div class="calculator3StateNumbers">
         <label class="calculator3StateField">
@@ -592,19 +631,42 @@
         </label>
       </div>
       ${runtimeRows ? `<div class="calculator3StateJokerValues">${runtimeRows}</div>` : ''}
-      <div class="calculator3StateCards">${heldRows}</div>`;
+      <div class="calculator3StateCardGroup">
+        <strong>Held cards</strong>
+        <div class="calculator3StateCards">${heldRows}</div>
+      </div>`;
+    }
+
+    function renderCardRows(cards, kind, label) {
+      return Array.from({ length: 5 }, (_, index) => {
+        const card = cards[index] || {};
+        return `<label class="calculator3StateCard">
+          <span>${label} ${index + 1}</span>
+          <select data-${kind}-rank="${index}" aria-label="${label} card ${index + 1} rank">
+            <option value="">Empty</option>
+            ${RANK_OPTIONS.map((rank) => `<option value="${rank}" ${card.rank === rank ? 'selected' : ''}>${rank}</option>`).join('')}
+          </select>
+          <select data-${kind}-suit="${index}" aria-label="${label} card ${index + 1} suit">
+            ${SUIT_OPTIONS.map((suit) => `<option value="${suit.key}" ${card.suit === suit.key ? 'selected' : ''}>${suit.label}</option>`).join('')}
+          </select>
+        </label>`;
+      }).join('');
     }
 
     function activeHeldCards() {
       return heldCards.filter((card) => card && card.rank);
     }
 
+    function activePlayedCards() {
+      return playedCards.filter((card) => card && card.rank);
+    }
+
     function renderSelection() {
       const explanation = explainSelection(selected, {
-        handType: 'Pair',
-        chips: 10,
-        mult: 2,
-        playedCards: DEFAULT_PLAYED_CARDS,
+        handType: handKeyToLabel(handTypeKey || 'pair'),
+        handTypeKey,
+        level: handLevel,
+        playedCards: activePlayedCards(),
         heldCards: activeHeldCards(),
         remainingDiscards,
         remainingDeckCards,
@@ -626,6 +688,12 @@
         <em>${MODELED_STATUS_LABELS[step.modelStatus] || 'Recorded'}</em>
       </li>`).join('');
 
+      if (scoreContext) {
+        const result = explanation.engineResult;
+        scoreContext.textContent = result
+          ? `${result.handLabel} Lv.${result.level} (${result.scoringCards.length} scoring cards)`
+          : `${explanation.scenario.handType} preview`;
+      }
       scorePreview.textContent = `${formatNumber(explanation.score.chips)} x ${formatNumber(explanation.score.mult)} = ${formatNumber(explanation.scorePreview)}`;
     }
 
@@ -677,6 +745,10 @@
           currentHandTimesPlayed = Math.max(0, Math.floor(Number(target.value) || 0));
           renderSelection();
         }
+        if (target.id === 'calculator3HandLevel') {
+          handLevel = Math.max(1, Math.floor(Number(target.value) || 1));
+          renderSelection();
+        }
         if (target.dataset && target.dataset.jokerValue) {
           jokerValues[target.dataset.jokerValue] = Math.floor(Number(target.value) || 0);
           renderSelection();
@@ -685,8 +757,32 @@
 
       stateControls.addEventListener('change', (event) => {
         const target = event.target;
+        if (target.id === 'calculator3HandType') {
+          handTypeKey = target.value;
+          renderSelection();
+          return;
+        }
+        const playedRankIndex = target.dataset ? target.dataset.playedRank : undefined;
+        const playedSuitIndex = target.dataset ? target.dataset.playedSuit : undefined;
         const rankIndex = target.dataset ? target.dataset.heldRank : undefined;
         const suitIndex = target.dataset ? target.dataset.heldSuit : undefined;
+        if (playedRankIndex !== undefined) {
+          playedCards[Number(playedRankIndex)] = target.value
+            ? {
+              rank: target.value,
+              suit: playedCards[Number(playedRankIndex)]?.suit || 'spades',
+            }
+            : null;
+        }
+        if (playedSuitIndex !== undefined) {
+          const current = playedCards[Number(playedSuitIndex)];
+          if (current && current.rank) {
+            playedCards[Number(playedSuitIndex)] = {
+              rank: current.rank,
+              suit: target.value,
+            };
+          }
+        }
         if (rankIndex !== undefined) {
           heldCards[Number(rankIndex)] = target.value
             ? {

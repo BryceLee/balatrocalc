@@ -145,6 +145,26 @@ assert.equal(runtimeExplanation.score.mult, 18);
 assert.equal(runtimeExplanation.scorePreview, 2664);
 assert.ok(runtimeExplanation.steps.some((step) => step.note.includes('Bootstraps')));
 
+const leveledStraightExplanation = Calculator3Panel.explainSelection([
+  byName.get('Crazy Joker'),
+], {
+  scoreEngine: Calculator3,
+  level: 3,
+  playedCards: [
+    { rank: 'A', suit: 'hearts' },
+    { rank: 'K', suit: 'spades' },
+    { rank: 'Q', suit: 'clubs' },
+    { rank: 'J', suit: 'diamonds' },
+    { rank: '10', suit: 'hearts' },
+  ],
+});
+assert.equal(leveledStraightExplanation.engineResult.handType, 'straight');
+assert.equal(leveledStraightExplanation.engineResult.level, 3);
+assert.equal(leveledStraightExplanation.score.chips, 141);
+assert.equal(leveledStraightExplanation.score.mult, 22);
+assert.equal(leveledStraightExplanation.scorePreview, 3102);
+assert.ok(leveledStraightExplanation.steps[0].applies);
+
 assert.equal(
   Calculator3Panel.escapeHtml('<b>Joker & Chips</b>'),
   '&lt;b&gt;Joker &amp; Chips&lt;/b&gt;'
