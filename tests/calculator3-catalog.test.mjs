@@ -42,12 +42,21 @@ const byName = new Map(catalog.map((joker) => [joker.name, joker]));
 
 assert.equal(catalog.length, 150);
 assert.equal(coverage.total, 150);
-assert.ok(coverage.exact >= 25);
-assert.ok(coverage.heuristic >= 10);
+assert.ok(coverage.exact >= 37);
+assert.ok(coverage.heuristic >= 5);
 assert.ok(coverage.stateful >= 60);
 
 assert.equal(byName.get('Joker').modelStatus, 'exact');
 assert.equal(byName.get('The Duo').engineId, 'duo');
+assert.equal(byName.get('Walkie Talkie').engineId, 'walkieTalkie');
+assert.equal(byName.get('Arrowhead').modelStatus, 'exact');
+assert.equal(byName.get('Onyx Agate').modelStatus, 'exact');
+assert.equal(byName.get('Smiley Face').modelStatus, 'exact');
+assert.equal(byName.get('Stuntman').modelStatus, 'exact');
+assert.equal(byName.get('Seeing Double').modelStatus, 'exact');
+assert.equal(byName.get('Flower Pot').modelStatus, 'exact');
+assert.equal(byName.get('Photograph').modelStatus, 'exact');
+assert.equal(byName.get('Triboulet').modelStatus, 'exact');
 assert.equal(byName.get('Blueprint').effectKind, 'copy');
 assert.equal(byName.get('Blueprint').modelStatus, 'stateful');
 assert.equal(byName.get('Card Sharp').modelStatus, 'stateful');

@@ -54,6 +54,8 @@
   const FIBONACCI_RANKS = new Set(['A', '2', '3', '5', '8']);
   const EVEN_RANKS = new Set(['2', '4', '6', '8', '10']);
   const ODD_RANKS = new Set(['A', '3', '5', '7', '9']);
+  const WALKIE_TALKIE_RANKS = new Set(['10', '4']);
+  const TRIBOULET_RANKS = new Set(['K', 'Q']);
   const ENHANCEMENTS = [
     { key: 'none', label: 'Base' },
     { key: 'bonus', label: 'Bonus Card', chipsAdd: 30 },
@@ -154,9 +156,13 @@
     lusty: perCardJoker('lusty', 'Lusty Joker', 'hearts', 'multAdd', 3),
     wrathful: perCardJoker('wrathful', 'Wrathful Joker', 'spades', 'multAdd', 3),
     gluttonous: perCardJoker('gluttonous', 'Gluttonous Joker', 'clubs', 'multAdd', 3),
+    arrowhead: perCardJoker('arrowhead', 'Arrowhead', 'spades', 'chipsAdd', 50),
+    onyxAgate: perCardJoker('onyxAgate', 'Onyx Agate', 'clubs', 'multAdd', 7),
     fibonacci: perRankJoker('fibonacci', 'Fibonacci', FIBONACCI_RANKS, 'multAdd', 8),
     evenSteven: perRankJoker('evenSteven', 'Even Steven', EVEN_RANKS, 'multAdd', 4),
     oddTodd: perRankJoker('oddTodd', 'Odd Todd', ODD_RANKS, 'chipsAdd', 31),
+    smileyFace: perRankJoker('smileyFace', 'Smiley Face', FACE_RANKS, 'multAdd', 5),
+    walkieTalkie: perRankJoker('walkieTalkie', 'Walkie Talkie', WALKIE_TALKIE_RANKS, 'chipsAddMultAdd', { chipsAdd: 10, multAdd: 4 }),
     scholar: {
       id: 'scholar',
       name: 'Scholar',
@@ -173,6 +179,63 @@
       }
     },
     scaryFace: perRankJoker('scaryFace', 'Scary Face', FACE_RANKS, 'chipsAdd', 30),
+    stuntman: makeAddChipsJoker('stuntman', 'Stuntman', 250),
+    seeingDouble: {
+      id: 'seeingDouble',
+      name: 'Seeing Double',
+      mode: 'xMult',
+      explain: 'X2 Mult with scoring Club plus another suit',
+      apply(state) {
+        const suits = new Set(state.scoringCards.map((card) => card.suit));
+        if (!suits.has('clubs') || suits.size < 2) return null;
+        return {
+          xMult: 2,
+          text: 'Seeing Double: scoring Club plus another suit applies X2 Mult'
+        };
+      }
+    },
+    flowerPot: {
+      id: 'flowerPot',
+      name: 'Flower Pot',
+      mode: 'xMult',
+      explain: 'X3 Mult with all four suits',
+      apply(state) {
+        const suits = new Set(state.scoringCards.map((card) => card.suit));
+        if (!['diamonds', 'clubs', 'hearts', 'spades'].every((suit) => suits.has(suit))) return null;
+        return {
+          xMult: 3,
+          text: 'Flower Pot: scoring hand contains all four suits, applies X3 Mult'
+        };
+      }
+    },
+    photograph: {
+      id: 'photograph',
+      name: 'Photograph',
+      mode: 'xMult',
+      explain: 'X2 first played scoring face card',
+      apply(state) {
+        const firstFaceCard = state.playedCards.find((card) => FACE_RANKS.has(card.rank));
+        if (!firstFaceCard || !state.scoringCards.includes(firstFaceCard)) return null;
+        return {
+          xMult: 2,
+          text: `Photograph: first played face card (${formatCardName(firstFaceCard)}) applies X2 Mult`
+        };
+      }
+    },
+    triboulet: {
+      id: 'triboulet',
+      name: 'Triboulet',
+      mode: 'xMult',
+      explain: 'X2 per scoring King or Queen',
+      apply(state) {
+        const count = countCards(state.scoringCards, (card) => TRIBOULET_RANKS.has(card.rank));
+        if (!count) return null;
+        return {
+          xMult: 2 ** count,
+          text: `Triboulet: ${count} scoring King/Queen card${count === 1 ? '' : 's'} apply X${2 ** count} Mult`
+        };
+      }
+    },
     abstract: {
       id: 'abstract',
       name: 'Abstract Joker',
@@ -211,16 +274,28 @@
       id,
       name,
       mode: effectKey,
-      explain: `${amount} per matching scoring rank`,
+      explain: `${formatAmountForExplain(effectKey, amount)} per matching scoring rank`,
       apply(state) {
         const count = countCards(state.scoringCards, (card) => ranks.has(card.rank));
         if (!count) return null;
+        if (effectKey === 'chipsAddMultAdd') {
+          return {
+            chipsAdd: count * amount.chipsAdd,
+            multAdd: count * amount.multAdd,
+            text: `${name}: ${count} matching scoring card${count === 1 ? '' : 's'} add +${count * amount.chipsAdd} Chips and +${count * amount.multAdd} Mult`
+          };
+        }
         return {
           [effectKey]: count * amount,
           text: `${name}: ${count} matching scoring card${count === 1 ? '' : 's'} add ${formatSigned(effectKey, count * amount)}`
         };
       }
     };
+  }
+
+  function formatAmountForExplain(effectKey, amount) {
+    if (effectKey === 'chipsAddMultAdd') return `${amount.chipsAdd} Chips and ${amount.multAdd} Mult`;
+    return String(amount);
   }
 
   function formatSigned(effectKey, value) {

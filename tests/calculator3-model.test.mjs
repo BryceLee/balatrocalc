@@ -99,4 +99,48 @@ assert.equal(stoneScore.chips, 66);
 assert.equal(stoneScore.mult, 1);
 assert.ok(stoneScore.steps.some((step) => step.label.includes('Stone Card')));
 
+const walkieTalkieScore = Calculator3.score({
+  playedCards: [
+    card('10', 'hearts'),
+    card('10', 'clubs'),
+    card('4', 'diamonds'),
+    card('4', 'spades'),
+    card('7', 'hearts')
+  ],
+  jokers: ['walkieTalkie']
+});
+assert.equal(walkieTalkieScore.handType, 'twoPair');
+assert.equal(walkieTalkieScore.chips, 88);
+assert.equal(walkieTalkieScore.mult, 18);
+assert.ok(walkieTalkieScore.steps.some((step) => step.label.includes('Walkie Talkie')));
+
+const suitAndFaceScore = Calculator3.score({
+  playedCards: [
+    card('K', 'spades'),
+    card('Q', 'spades'),
+    card('J', 'spades'),
+    card('9', 'spades'),
+    card('2', 'spades')
+  ],
+  jokers: ['arrowhead', 'smileyFace', 'stuntman']
+});
+assert.equal(suitAndFaceScore.handType, 'flush');
+assert.equal(suitAndFaceScore.chips, 576);
+assert.equal(suitAndFaceScore.mult, 19);
+
+const xMultConditionScore = Calculator3.score({
+  playedCards: [
+    card('K', 'clubs'),
+    card('Q', 'hearts'),
+    card('J', 'diamonds'),
+    card('10', 'spades'),
+    card('9', 'clubs')
+  ],
+  jokers: ['photograph', 'seeingDouble', 'flowerPot', 'triboulet']
+});
+assert.equal(xMultConditionScore.handType, 'straight');
+assert.equal(xMultConditionScore.chips, 79);
+assert.equal(xMultConditionScore.mult, 192);
+assert.equal(xMultConditionScore.score, 15168);
+
 console.log('calculator3-model tests passed');
