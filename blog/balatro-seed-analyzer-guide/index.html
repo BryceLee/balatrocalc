@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Seed Analyzer Guide - Route Seeds Before You Play</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Balatro Seed Analyzer guide for routing seeds, comparing early shops, planning antes, and deciding when to use calculator, seeds, jokers, and builds pages.">
+  <meta name="keywords"
+    content="balatro seed analyzer guide, balatro seed analyzer, balatro seed routing, balatro seed analysis, balatro seed calculator">
+  <meta property="og:title" content="Balatro Seed Analyzer Guide - Route Seeds Before You Play">
+  <meta property="og:description"
+    content="Learn when to use Seed Analyzer, how to read a seed route, and where BalatroCalc tools fit into the planning loop.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://balatrocalc.com/blog/balatro-seed-analyzer-guide">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Seed Analyzer Guide">
+  <meta name="twitter:description" content="A practical route-planning guide for Balatro seeds and BalatroCalc tools.">
+  <meta name="theme-color" content="#2b3b34">
+  <link rel="canonical" href="https://balatrocalc.com/blog/balatro-seed-analyzer-guide">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Balatro Seed Analyzer Guide: Route Seeds Before You Play",
+          "description": "A practical guide to using Balatro Seed Analyzer for route planning, shop comparison, and ante decisions.",
+          "mainEntityOfPage": "https://balatrocalc.com/blog/balatro-seed-analyzer-guide",
+          "author": {
+            "@type": "Organization",
+            "name": "BalatroCalc"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "BalatroCalc",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://balatrocalc.com/assets/favicon.png"
+            }
+          },
+          "datePublished": "2026-05-13",
+          "dateModified": "2026-05-13"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Balatro Seed Analyzer best for?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Balatro Seed Analyzer is best for route planning: checking seed-specific shop pressure, ante decisions, and whether an opening remains playable later."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When should I use the calculator instead of Seed Analyzer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Use the calculator when the question is score math, joker order, chips, mult, or a known hand state. Use Seed Analyzer when the question is how to route a specific seed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How should I practice with a seed route?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Replay the same seed with one decision changed at a time, then compare early shops, scaling timing, boss blind pressure, and whether your build still has a late-game plan."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Blog",
+              "item": "https://balatrocalc.com/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Balatro Seed Analyzer Guide",
+              "item": "https://balatrocalc.com/blog/balatro-seed-analyzer-guide"
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>Balatro Seed Analyzer Guide</h1>
+    <span class="subtitle">seed routing · shop planning · ante decisions</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/balatro-seed-analyzer" class="nav-link">analyzer</a>
+    <a href="/blog" class="nav-link nav-link--active">blog</a>
+    <a href="/balatro-jokers" class="nav-link">jokers</a>
+    <a href="/balatro-builds" class="nav-link">builds</a>
+  </nav>
+
+  <main id="mainContainer">
+    <div class="contentPageWrap">
+      <article class="contentCard">
+        <h1 class="contentTitle">Balatro Seed Analyzer Guide: Route the Seed Before You Commit</h1>
+        <p class="contentLead">
+          Seed Analyzer is the planning layer between a seed list and an actual run. Use it when you want to know
+          whether a seed has a stable route, which early shops matter, and when a promising opener stops being worth
+          the time.
+        </p>
+
+        <h2 class="contentTitle">1. Use Seed Analyzer for route questions</h2>
+        <p>
+          A seed can look strong because the first shop is exciting, but Balatro runs are won by sequences. The useful
+          question is not only "is this seed good?" but "what route makes this seed good?"
+        </p>
+        <ul>
+          <li>Open <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a> when you already have a seed to inspect.</li>
+          <li>Start from <a href="/balatro-seeds">Balatro Seeds</a> when you need a seed list or practice target.</li>
+          <li>Switch to the <a href="/">Balatro Calculator</a> when the problem becomes score math or joker order.</li>
+        </ul>
+
+        <h2 class="contentTitle">2. Read the first antes as a decision tree</h2>
+        <p>
+          The strongest seed review starts small. Look at the first few meaningful decisions before trying to solve the
+          whole run. Early route pressure usually comes from money, shop timing, skip value, and whether your first
+          scoring plan stays flexible.
+        </p>
+        <ul>
+          <li>Mark the first shop that changes your plan.</li>
+          <li>Compare one conservative path against one greedy path.</li>
+          <li>Check whether the route still has scaling by the middle antes.</li>
+        </ul>
+
+        <h2 class="contentTitle">3. Separate seed routing from score calculation</h2>
+        <p>
+          Seed routing and score calculation answer different questions. Mixing them too early creates noisy decisions.
+          First decide the route: what to buy, when to hold money, and when a pivot is needed. Then calculate exact
+          hand outcomes when a blind or boss actually depends on it.
+        </p>
+        <ul>
+          <li>Use analyzer for seed-specific shop and ante planning.</li>
+          <li>Use calculator for hand score, chip/mult balance, and joker order checks.</li>
+          <li>Use <a href="/balatro-jokers">Jokers</a> and <a href="/balatro-builds">Builds</a> as role references while routing.</li>
+        </ul>
+
+        <h2 class="contentTitle">4. Practice loop for better seed decisions</h2>
+        <p>
+          Replaying the same seed is valuable only when you isolate decisions. Change one variable, then compare the
+          result. If you change the deck, reroll plan, and joker priority all at once, you lose the lesson.
+        </p>
+        <ol>
+          <li>Pick one seed from the seed library or a run you already know.</li>
+          <li>Analyze the early shops and choose a baseline route.</li>
+          <li>Replay with one changed decision: a different first buy, skip, or reroll budget.</li>
+          <li>Use the calculator only for blind breakpoints that decide the route.</li>
+          <li>Record whether the route improves stability, scaling, or boss coverage.</li>
+        </ol>
+
+        <h2 class="contentTitle">5. Good routes have a late-game answer</h2>
+        <p>
+          A seed is not automatically strong because it gives early power. Before committing, ask what the route becomes
+          after the opener. A real route should have a clear path into scaling, enough economy to adapt, and a backup
+          answer for boss blinds.
+        </p>
+        <ul>
+          <li>For deck-specific constraints, review the <a href="/blog/balatro-deck">Balatro Deck Guide</a>.</li>
+          <li>For high-card practice routes, pair this workflow with the <a href="/blog/balatro-high-card-build">High Card Build Guide</a>.</li>
+          <li>For experimental profiles, keep changes separate from real progress with the <a href="/balatro-save-editor">Save Editor</a>.</li>
+        </ul>
+
+        <h2 class="contentTitle">FAQ</h2>
+        <h3 class="contentTitle">Is Seed Analyzer the same as a seed list?</h3>
+        <p>
+          No. A seed list helps you find a seed. Seed Analyzer helps you decide how to route that seed and whether the
+          route remains worth playing after the opener.
+        </p>
+
+        <h3 class="contentTitle">Should every seed be analyzed before play?</h3>
+        <p>
+          No. Use analysis when you are practicing, comparing routes, or chasing a known seed. For casual runs, it is
+          often better to play naturally and use the calculator only for important score checks.
+        </p>
+
+        <h3 class="contentTitle">What is the fastest BalatroCalc workflow?</h3>
+        <p>
+          Start with <a href="/balatro-seeds">Seeds</a>, inspect the route in
+          <a href="/balatro-seed-analyzer">Seed Analyzer</a>, then move to the
+          <a href="/">Calculator</a> for exact score decisions inside the route.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+</body>
+
+</html>
