@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Plasma Deck Guide - Chips, Mult, and Blind Planning</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description"
+    content="Balatro Plasma Deck guide for balancing Chips and Mult, surviving doubled blinds, choosing jokers, and checking score breakpoints with BalatroCalc tools.">
+  <meta name="keywords"
+    content="balatro plasma deck, plasma deck balatro, balatro plasma deck guide, balatro deck tips, balatro chips mult">
+  <meta property="og:title" content="Balatro Plasma Deck Guide">
+  <meta property="og:description"
+    content="Plan Plasma Deck runs around balanced Chips and Mult, doubled blind pressure, joker roles, and calculator checks.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://balatrocalc.com/blog/balatro-plasma-deck-guide">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Plasma Deck Guide">
+  <meta name="twitter:description" content="How to play Plasma Deck without overbuilding only Chips or only Mult.">
+  <meta name="theme-color" content="#2b3b34">
+  <link rel="canonical" href="https://balatrocalc.com/blog/balatro-plasma-deck-guide">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Balatro Plasma Deck Guide: Chips, Mult, and Blind Planning",
+          "description": "A practical guide to Plasma Deck scoring, doubled blind pressure, joker role choices, and BalatroCalc score checks.",
+          "mainEntityOfPage": "https://balatrocalc.com/blog/balatro-plasma-deck-guide",
+          "author": {
+            "@type": "Organization",
+            "name": "BalatroCalc"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "BalatroCalc",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://balatrocalc.com/assets/favicon.png"
+            }
+          },
+          "datePublished": "2026-05-28",
+          "dateModified": "2026-05-28"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What does Plasma Deck do in Balatro?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Plasma Deck balances Chips and Mult when calculating score, but it also doubles the base blind size. The deck rewards balanced scaling and punishes weak early scoring."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Should Plasma Deck prioritize Chips or Mult?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Plasma Deck usually wants both sides to grow. A run with only huge Chips or only huge Mult can underperform compared with a route that keeps the two scoring factors closer together."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How can BalatroCalc help Plasma Deck runs?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Use the calculator to check blind breakpoints, Seed Analyzer to compare route pressure, and Jokers or Builds pages to choose roles that keep Chips and Mult balanced."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Blog",
+              "item": "https://balatrocalc.com/blog"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Balatro Plasma Deck Guide",
+              "item": "https://balatrocalc.com/blog/balatro-plasma-deck-guide"
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
+</head>
+
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <h1>Balatro Plasma Deck Guide</h1>
+    <span class="subtitle">chips and mult balance · doubled blinds · score checks</span>
+  </div>
+
+  <nav id="topNav">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/balatro-seed-analyzer" class="nav-link">analyzer</a>
+    <a href="/blog" class="nav-link nav-link--active">blog</a>
+    <a href="/balatro-jokers" class="nav-link">jokers</a>
+    <a href="/balatro-builds" class="nav-link">builds</a>
+  </nav>
+
+  <main id="mainContainer">
+    <div class="contentPageWrap">
+      <article class="contentCard">
+        <h1 class="contentTitle">Balatro Plasma Deck Guide: How to Balance Chips and Mult</h1>
+        <p class="contentLead">
+          Plasma Deck changes the way a run should be judged. It balances Chips and Mult during scoring, then asks you
+          to survive doubled blind sizes. That makes Plasma less about chasing one extreme number and more about keeping
+          both sides of the score engine productive.
+        </p>
+
+        <h2 class="contentTitle">1. Start from the deck rule</h2>
+        <p>
+          Plasma Deck's upside is that it smooths out your final scoring factors. Its cost is pressure: the base blind
+          size is doubled, so early weak hands, thin economy, and slow jokers become dangerous faster than they do on
+          simpler decks.
+        </p>
+        <ul>
+          <li>Pure Chips without Mult can waste the balancing effect.</li>
+          <li>Pure Mult without enough Chips can also fall short of the next blind.</li>
+          <li>Early shop choices should solve the next blind before chasing luxury scaling.</li>
+          <li>Use score checks before spending money on speculative pivots.</li>
+        </ul>
+
+        <h2 class="contentTitle">2. Draft joker roles in pairs</h2>
+        <p>
+          Plasma runs are easier to plan when each joker slot has a role. A strong run usually wants one stable Chips
+          source, one stable Mult or xMult source, one economy or consistency piece, and flexible room for scaling or
+          retrigger value.
+        </p>
+        <ul>
+          <li>Pair a Chips engine with repeatable Mult instead of stacking only one side.</li>
+          <li>Protect economy early so doubled blinds do not force desperate rerolls.</li>
+          <li>Use <a href="/balatro-jokers">Balatro Jokers</a> as a role reference when the shop offers several playable cards.</li>
+          <li>Use <a href="/balatro-builds">Balatro Builds</a> to compare whether your route is becoming pair, flush, high card, or another pattern.</li>
+        </ul>
+
+        <h2 class="contentTitle">3. Check blind breakpoints with the calculator</h2>
+        <p>
+          Plasma Deck decisions often look close because the deck changes the relationship between Chips and Mult. When
+          a shop decision affects the next blind, open the <a href="/">Balatro Calculator</a> and test the current hand
+          shape before you buy.
+        </p>
+        <ul>
+          <li>Compare current score against the next small, big, or boss blind.</li>
+          <li>Test whether one Chips purchase or one Mult purchase changes the result more.</li>
+          <li>Check boss blind pressure before selling a consistency joker.</li>
+          <li>Do not assume a high Mult number is enough if Chips stayed behind.</li>
+        </ul>
+
+        <h2 class="contentTitle">4. Use seeds for controlled practice</h2>
+        <p>
+          Plasma Deck gets easier when you can replay similar openings and compare the route. Use <a href="/balatro-seeds">Balatro Seeds</a>
+          for practice candidates, then use <a href="/balatro-seed-analyzer">Seed Analyzer</a> when you want to inspect
+          route pressure before committing time to a long run.
+        </p>
+        <ul>
+          <li>Repeat one seed and change only the early shop decision.</li>
+          <li>Track whether Chips, Mult, or economy was the first failure point.</li>
+          <li>Use the <a href="/blog/balatro-seed-analyzer-guide">Seed Analyzer Guide</a> when routing becomes the main question.</li>
+          <li>Return to the calculator when the question becomes exact score math.</li>
+        </ul>
+
+        <h2 class="contentTitle">5. Common Plasma Deck mistakes</h2>
+        <p>
+          Most failed Plasma runs are not caused by the deck being weak. They come from playing the deck like a normal
+          route and forgetting that doubled blind pressure changes the value of tempo.
+        </p>
+        <ul>
+          <li>Buying long-term value when the next blind still needs immediate scoring.</li>
+          <li>Rerolling too hard for one perfect joker instead of taking a balanced pair.</li>
+          <li>Keeping a flashy Mult card while the hand's Chips remain too low.</li>
+          <li>Ignoring boss blind effects until after money has already been spent.</li>
+        </ul>
+
+        <h2 class="contentTitle">Related guides</h2>
+        <p>
+          Pair this page with the <a href="/blog/balatro-deck">Balatro Deck Guide</a> for all deck effects, the
+          <a href="/blog/balatro-high-card-build">High Card Build Guide</a> for consistency-first routing, and the
+          <a href="/blog/balatro-blank-voucher-guide">Blank Voucher Guide</a> when a voucher competes with survival
+          money during a Plasma run.
+        </p>
+
+        <h2 class="contentTitle">FAQ</h2>
+        <h3 class="contentTitle">What does Plasma Deck do in Balatro?</h3>
+        <p>
+          Plasma Deck balances Chips and Mult when calculating score, but it also doubles the base blind size. The deck
+          rewards balanced scaling and punishes weak early scoring.
+        </p>
+
+        <h3 class="contentTitle">Should Plasma Deck prioritize Chips or Mult?</h3>
+        <p>
+          Usually both. If one side is far behind, the balancing effect has less useful power. A steady Chips source
+          plus reliable Mult is often safer than chasing one extreme number.
+        </p>
+
+        <h3 class="contentTitle">How can BalatroCalc help Plasma Deck runs?</h3>
+        <p>
+          Use the calculator to check blind breakpoints, Seed Analyzer to compare route pressure, and Jokers or Builds
+          pages to choose roles that keep Chips and Mult balanced.
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <script type="text/javascript" src="balatro-background.js"></script>
+  <script type="text/javascript" src="languageHandler.js"></script>
+</body>
+
+</html>
