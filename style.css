@@ -1852,6 +1852,61 @@ button.resetBtn[onClick*="resetHand"]:hover {
   background: linear-gradient(135deg, #f66159 0%, #e53935 100%) !important;
 }
 
+.handActions {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin: 4px auto 12px;
+}
+
+.handActions__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.handActions__buttons .resetBtn {
+  margin: 6px;
+}
+
+.jokerQuizPromo {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  max-width: min(560px, calc(100% - 32px));
+  color: #fff3a6;
+  font-size: 18px;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: #ffd700;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.jokerQuizPromo:hover,
+.jokerQuizPromo:focus-visible {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
+.jokerQuizPromo__kicker {
+  color: #ffffff;
+}
+
+.jokerQuizPromo__linkText {
+  color: #ffd700;
+}
+
+.jokerQuizPromo:hover .jokerQuizPromo__linkText,
+.jokerQuizPromo:focus-visible .jokerQuizPromo__linkText {
+  color: #fff7bf;
+}
+
 /* Seed analyzer layout (Blueprint embed) */
 body.seed-analyzer-page {
   --seed-top-offset: 92px;
