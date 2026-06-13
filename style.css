@@ -50,19 +50,35 @@ DYN_UI = {
   font-display: swap;
 }
 
+:root {
+  --readable-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --pixel-font: 'm6x11Plus', monospace;
+}
+
 /* 字体加载失败时的后备样式 */
 body.font-loading {
-  font-family: monospace, 'Courier New', Courier;
+  font-family: var(--readable-font);
 }
 
 body {
   background-color: transparent;
   color: #fff;
-  font-family: 'm6x11Plus';
+  font-family: var(--readable-font);
+  line-height: 1.5;
   margin: 0;
   padding-top: 20px;
   overflow-x: hidden;
   min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--readable-font);
 }
 
 #backgroundCanvas {
@@ -81,7 +97,7 @@ body {
   left: 20px;
   z-index: 1000;
   color: #fff;
-  font-family: 'm6x11Plus', monospace, 'Courier New', Courier;
+  font-family: var(--pixel-font), 'Courier New', Courier;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   pointer-events: none;
 }
@@ -126,7 +142,7 @@ body {
   border: 1px solid rgba(255, 215, 0, 0.3);
   border-radius: 6px;
   padding: 8px 12px;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 12px;
   text-transform: lowercase;
   cursor: pointer;
@@ -151,13 +167,14 @@ body {
 
 .nav-link {
   color: #ffd700;
-  font-family: 'm6x11Plus', monospace;
-  font-size: 16px;
-  font-weight: bold;
+  font-family: var(--readable-font);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
   text-decoration: none;
   text-transform: lowercase;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0;
+  text-shadow: none;
   transition: all 0.2s ease;
   padding: 8px 12px;
   border-radius: 6px;
@@ -171,7 +188,7 @@ body {
   background: rgba(255, 215, 0, 0.2);
   border-color: rgba(255, 215, 0, 0.8);
   transform: translateY(-1px);
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+  text-shadow: none;
 }
 
 .nav-link:active {
@@ -214,7 +231,7 @@ body {
 
 .nav-link.nav-link--proper-case {
   text-transform: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
 }
 
 /* 移动端导航响应式 */
@@ -261,7 +278,7 @@ body {
   display: none;
   width: min(420px, calc(100% - 24px));
   z-index: 2000;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   pointer-events: auto;
 }
 
@@ -426,7 +443,7 @@ a:hover {
   padding: 0.5em;
   font-size: 14px;
   color: #bfc7d5;
-  font-family: 'm6x11Plus';
+  font-family: var(--readable-font);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 0.5em;
@@ -445,7 +462,7 @@ a:hover {
 
 #footerLinks a {
   color: #ffd700;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
@@ -488,11 +505,11 @@ a:hover {
   border: 2px solid rgba(255, 215, 0, 0.6);
   border-radius: 14px;
   padding: 10px 18px;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 18px;
   font-weight: bold;
   text-transform: lowercase;
-  letter-spacing: 1px;
+  letter-spacing: 0;
   cursor: pointer;
   color: #ffd700;
   background: rgba(58, 80, 85, 0.55);
@@ -530,7 +547,7 @@ a:hover {
     linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 146, 46, 0.12)),
     rgba(6, 18, 18, 0.72);
   color: #fff5bf;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 18px;
   text-align: left;
   cursor: pointer;
@@ -561,7 +578,7 @@ a:hover {
   color: #ffd700;
   font-size: 16px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0;
 }
 
 .version2PromptBtn__text {
@@ -688,7 +705,7 @@ body.calculatorModuleModeBalatrolator .calculatorModuleFrameShell {
   border: 1px solid rgba(255, 215, 0, 0.22);
   border-radius: 14px;
   padding: 10px 16px;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 18px;
   color: #d7dccf;
   background: rgba(18, 30, 30, 0.5);
@@ -741,7 +758,7 @@ body.calculatorModuleModeBalatrolator .calculatorModuleFrameShell {
   border-radius: 12px;
   background: rgba(31, 53, 50, 0.7);
   color: #fff2a3;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 18px;
   cursor: pointer;
   transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
@@ -834,7 +851,7 @@ body.calculatorModuleModeBalatrolator .calculatorModuleFrameShell {
   border: 1px solid rgba(255, 215, 0, 0.18);
   border-radius: 14px;
   padding: 12px 18px;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 18px;
   color: #f5f5e0;
   background: rgba(58, 80, 85, 0.58);
@@ -897,8 +914,8 @@ body.calculatorModuleModeBalatrolator .calculatorModuleFrameShell {
   font-size: 26px;
   font-weight: normal;
   color: #ffd700;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0;
+  text-shadow: none;
 }
 
 .contentLead {
@@ -1127,8 +1144,8 @@ html {
   border-radius: 10px;
   border: 1px solid rgba(255, 215, 0, 0.12);
   background: linear-gradient(180deg, rgba(38, 42, 48, 0.98), rgba(16, 19, 24, 0.98));
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
-  letter-spacing: 1px;
+  text-shadow: none;
+  letter-spacing: 0;
   user-select: none;
   cursor: pointer;
   transition:
@@ -1152,7 +1169,7 @@ html {
   color: #1c1300;
   border-color: rgba(255, 215, 0, 0.96);
   background: linear-gradient(180deg, rgba(255, 244, 170, 0.98), rgba(255, 201, 46, 0.96));
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  text-shadow: none;
   box-shadow:
     0 10px 18px rgba(255, 196, 0, 0.28),
     inset 0 0 0 1px rgba(255, 240, 170, 0.55);
@@ -1594,7 +1611,7 @@ html {
   margin-right: auto;
   text-align: center;
   box-shadow: 0 0.1em 0 #474c8f;
-  text-shadow: #474c8f -1px 2px;
+  text-shadow: none;
   width: fit-content;
 
 	background-color: #757cdc;
@@ -1807,7 +1824,7 @@ input {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
@@ -1885,7 +1902,7 @@ button.resetBtn[onClick*="resetHand"]:hover {
   text-decoration-color: #ffd700;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+  text-shadow: none;
 }
 
 .jokerQuizPromo:hover,
@@ -1916,7 +1933,7 @@ body.seed-analyzer-page {
   background-color: transparent;
   color: var(--mantine-color-text, #fff);
   display: block;
-  font-family: var(--mantine-font-family, 'm6x11Plus', monospace);
+  font-family: var(--mantine-font-family, var(--readable-font));
   font-size: var(--mantine-font-size-md, 1rem);
   line-height: var(--mantine-line-height, 1.55);
   margin: 0;
@@ -2884,7 +2901,7 @@ body.seed-analyzer-page .seedPaywallMember.active {
 
 body.seed-analyzer-page .seedPaywallMemberBadge {
   color: #ffd700;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 16px;
   min-width: 72px;
 }
@@ -2963,7 +2980,7 @@ body.seed-analyzer-page .seedPaywallPrimary {
   color: #ffd700;
   padding: 12px 16px;
   border-radius: 12px;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 18px;
   cursor: pointer;
 }
@@ -2978,7 +2995,7 @@ body.seed-analyzer-page .seedPaywallSecondary {
   color: #ffd700;
   padding: 8px 12px;
   border-radius: 999px;
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   font-size: 14px;
   cursor: pointer;
   white-space: nowrap;
@@ -3123,7 +3140,7 @@ body.save-editor-page #mainContainer {
 .save-editor-title {
   margin: 0 0 12px;
   font-size: clamp(36px, 6vw, 58px);
-  letter-spacing: 1px;
+  letter-spacing: 0;
   color: #ffffff;
   text-shadow:
     0 6px 24px rgba(0, 0, 0, 0.6),
@@ -3162,7 +3179,7 @@ body.save-editor-page #mainContainer {
     linear-gradient(180deg, rgba(0, 157, 255, 0.95), rgba(0, 112, 214, 0.98));
   color: #ffffff;
   font-size: clamp(22px, 4vw, 30px);
-  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: none;
   cursor: pointer;
   transition: transform 0.15s ease, filter 0.2s ease, box-shadow 0.2s ease;
   box-shadow:
@@ -3220,7 +3237,7 @@ body.save-editor-page #mainContainer {
 .save-editor-btn,
 .save-editor-input,
 .save-editor-textarea {
-  font-family: 'm6x11Plus', monospace;
+  font-family: var(--readable-font);
   border-radius: 12px;
   border: 1px solid rgba(255, 215, 0, 0.45);
   background: rgba(0, 0, 0, 0.55);
