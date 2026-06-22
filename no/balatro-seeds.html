@@ -468,6 +468,27 @@
             </div>
           </div>
 
+          <div class="seed-library-member-tools is-hidden" id="seedLibraryMemberTools" aria-hidden="true">
+            <div class="seed-library-section-label">Member Seed Browser</div>
+            <div class="seed-library-tabs" id="seedLibraryTrackTabs"></div>
+            <div class="seed-library-filters">
+              <label>
+                <span>Deck</span>
+                <select id="seedLibraryDeckFilter"></select>
+              </label>
+              <label>
+                <span>Signal</span>
+                <select id="seedLibrarySignalFilter"></select>
+              </label>
+              <label>
+                <span>Verification</span>
+                <select id="seedLibraryVerificationFilter"></select>
+              </label>
+              <button class="seed-library-plain-btn seed-library-clear-btn" id="seedLibraryClearFilters" type="button">Reset</button>
+            </div>
+            <div class="seed-library-result-meta" id="seedLibraryResultMeta"></div>
+          </div>
+
           <div class="seed-library-preview">
             <div class="seed-library-section-label">Preview Seeds</div>
             <div class="seed-library-list" id="seedLibraryPreviewList"></div>
@@ -5391,6 +5412,13 @@
         yearly: "Yearly",
         lifetime: "Lifetime"
       };
+      const MEMBER_TRACKS = [
+        {
+          id: "featured",
+          label: "Featured",
+          badge: "Best picks"
+        }
+      ];
       const SEED_TRACKS = [
         {
           id: "legendary",
@@ -5418,7 +5446,15 @@
           badge: "Stable clear"
         }
       ];
+      MEMBER_TRACKS.push(...SEED_TRACKS);
       const SEED_TRACKS_BY_ID = new Map(SEED_TRACKS.map((track) => [track.id, track]));
+      const MEMBER_TRACKS_BY_ID = new Map(MEMBER_TRACKS.map((track) => [track.id, track]));
+      const memberFilters = {
+        track: "featured",
+        deck: "all",
+        signal: "all",
+        verification: "all"
+      };
 
       function getSourceDomain(source) {
         try {
@@ -5530,6 +5566,13 @@
       let lockedList;
       let lockedZone;
       let trackGrid;
+      let memberTools;
+      let memberTrackTabs;
+      let memberDeckFilter;
+      let memberSignalFilter;
+      let memberVerificationFilter;
+      let memberClearFilters;
+      let memberResultMeta;
       let accessTitle;
       let accessMeta;
       let unlockBtn;
@@ -5839,6 +5882,121 @@
         });
       }
 
+      function getSeedSignals(item) {
+        const signals = [];
+        const seen = new Set();
+
+        function push(value) {
+          const normalized = String(value || "").trim();
+          if (!normalized) return;
+          const key = normalized.toLowerCase();
+          if (seen.has(key)) return;
+          seen.add(key);
+          signals.push(normalized);
+        }
+
+        (Array.isArray(item.keyCards) ? item.keyCards : []).forEach(push);
+        (Array.isArray(item.tags) ? item.tags : []).forEach(push);
+        return signals;
+      }
+
+      function getFeaturedSeeds() {
+        return dedupedSeeds
+          .filter((item) => ["legendary", "copy", "economy"].includes(getSeedTrack(item)))
+          .slice(0, 12);
+      }
+
+      function getMemberBaseSeeds() {
+        if (memberFilters.track === "featured") return getFeaturedSeeds();
+        return dedupedSeeds.filter((item) => getSeedTrack(item) === memberFilters.track);
+      }
+
+      function getMemberFilteredSeeds() {
+        return getMemberBaseSeeds().filter((item) => {
+          if (memberFilters.deck !== "all" && String(item.deck || "Any deck") !== memberFilters.deck) return false;
+          if (memberFilters.verification !== "all" && String(item.verification || "Curated") !== memberFilters.verification) return false;
+          if (memberFilters.signal !== "all" && !getSeedSignals(item).includes(memberFilters.signal)) return false;
+          return true;
+        });
+      }
+
+      function renderMemberTabs() {
+        if (!memberTrackTabs) return;
+        const counts = new Map(MEMBER_TRACKS.map((track) => [track.id, 0]));
+        counts.set("featured", getFeaturedSeeds().length);
+        dedupedSeeds.forEach((item) => {
+          const trackId = getSeedTrack(item);
+          counts.set(trackId, (counts.get(trackId) || 0) + 1);
+        });
+        memberTrackTabs.innerHTML = MEMBER_TRACKS.map((track) => {
+          const selected = memberFilters.track === track.id;
+          const count = counts.get(track.id) || 0;
+          return `
+            <button class="seed-library-tab${selected ? " active" : ""}" type="button" data-member-track="${escapeHtml(track.id)}" aria-pressed="${selected ? "true" : "false"}">
+              <span>${escapeHtml(track.label)}</span>
+              <strong>${count}</strong>
+            </button>
+          `;
+        }).join("");
+      }
+
+      function renderSelectOptions(select, values, current, allLabel) {
+        if (!select) return;
+        select.innerHTML = [
+          `<option value="all">${escapeHtml(allLabel)}</option>`,
+          ...values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`)
+        ].join("");
+        select.value = values.includes(current) ? current : "all";
+      }
+
+      function updateMemberFilters() {
+        const baseSeeds = getMemberBaseSeeds();
+        const decks = Array.from(new Set(baseSeeds.map((item) => String(item.deck || "Any deck")).filter(Boolean))).sort();
+        const signals = Array.from(new Set(baseSeeds.flatMap(getSeedSignals))).sort();
+        const verifications = Array.from(new Set(baseSeeds.map((item) => String(item.verification || "Curated")).filter(Boolean))).sort();
+
+        if (!decks.includes(memberFilters.deck)) memberFilters.deck = "all";
+        if (!signals.includes(memberFilters.signal)) memberFilters.signal = "all";
+        if (!verifications.includes(memberFilters.verification)) memberFilters.verification = "all";
+
+        renderSelectOptions(memberDeckFilter, decks, memberFilters.deck, "All decks");
+        renderSelectOptions(memberSignalFilter, signals, memberFilters.signal, "All signals");
+        renderSelectOptions(memberVerificationFilter, verifications, memberFilters.verification, "All verification");
+      }
+
+      function renderLockedSummary() {
+        const counts = new Map(SEED_TRACKS.map((track) => [track.id, 0]));
+        dedupedSeeds.slice(FREE_VISIBLE_COUNT).forEach((item) => {
+          const trackId = getSeedTrack(item);
+          counts.set(trackId, (counts.get(trackId) || 0) + 1);
+        });
+
+        lockedList.innerHTML = SEED_TRACKS.map((track) => `
+          <article class="seed-library-summary-card">
+            <span>${escapeHtml(track.badge)}</span>
+            <strong>${escapeHtml(track.label)}</strong>
+            <p>${counts.get(track.id) || 0} locked seeds</p>
+          </article>
+        `).join("");
+      }
+
+      function renderMemberBrowser() {
+        if (!memberTools || !lockedList) return;
+        renderMemberTabs();
+        updateMemberFilters();
+        const filteredSeeds = getMemberFilteredSeeds();
+        const activeTrack = MEMBER_TRACKS_BY_ID.get(memberFilters.track);
+        const filterParts = [
+          memberFilters.deck !== "all" ? memberFilters.deck : "",
+          memberFilters.signal !== "all" ? memberFilters.signal : "",
+          memberFilters.verification !== "all" ? memberFilters.verification : ""
+        ].filter(Boolean);
+        memberResultMeta.textContent = `${filteredSeeds.length} ${activeTrack ? activeTrack.label : "seeds"}${filterParts.length ? ` · ${filterParts.join(" · ")}` : ""}`;
+        lockedList.innerHTML = filteredSeeds.length
+          ? filteredSeeds.map(renderCard).join("")
+          : `<div class="seed-library-empty">No seeds match these member filters.</div>`;
+      }
+
       function syncSharedMembershipState() {
         const paid = getPaidInfo();
         const cachedEmail = getStoredValue(STORAGE_KEYS.paidEmail);
@@ -5907,8 +6065,20 @@
 
       function renderLibrary() {
         updateTrackGrid();
-        previewList.innerHTML = dedupedSeeds.slice(0, FREE_VISIBLE_COUNT).map(renderCard).join("");
-        lockedList.innerHTML = dedupedSeeds.slice(FREE_VISIBLE_COUNT).map(renderCard).join("");
+        const paid = getPaidInfo();
+        const previewZone = document.querySelector(".seed-library-preview");
+        previewZone?.classList.toggle("is-hidden", paid.active);
+        memberTools?.classList.toggle("is-hidden", !paid.active);
+        memberTools?.setAttribute("aria-hidden", paid.active ? "false" : "true");
+
+        if (paid.active) {
+          previewList.innerHTML = "";
+          renderMemberBrowser();
+        } else {
+          previewList.innerHTML = dedupedSeeds.slice(0, FREE_VISIBLE_COUNT).map(renderCard).join("");
+          renderLockedSummary();
+        }
+
         syncSharedMembershipState();
       }
 
@@ -6114,6 +6284,38 @@
             }
           });
         });
+        memberTrackTabs?.addEventListener("click", (event) => {
+          const target = event.target;
+          const button = target?.closest ? target.closest("[data-member-track]") : null;
+          if (!button) return;
+          const trackId = button.getAttribute("data-member-track");
+          if (!MEMBER_TRACKS_BY_ID.has(trackId)) return;
+          memberFilters.track = trackId;
+          memberFilters.deck = "all";
+          memberFilters.signal = "all";
+          memberFilters.verification = "all";
+          renderLibrary();
+          track("member_seed_track_selected", { surface: "seed-library", track: trackId });
+        });
+        memberDeckFilter?.addEventListener("change", () => {
+          memberFilters.deck = memberDeckFilter.value || "all";
+          renderLibrary();
+        });
+        memberSignalFilter?.addEventListener("change", () => {
+          memberFilters.signal = memberSignalFilter.value || "all";
+          renderLibrary();
+        });
+        memberVerificationFilter?.addEventListener("change", () => {
+          memberFilters.verification = memberVerificationFilter.value || "all";
+          renderLibrary();
+        });
+        memberClearFilters?.addEventListener("click", () => {
+          memberFilters.track = "featured";
+          memberFilters.deck = "all";
+          memberFilters.signal = "all";
+          memberFilters.verification = "all";
+          renderLibrary();
+        });
         paywallUpgrade.addEventListener("click", () => {
           clearPaywallStatus();
           document.querySelector(".seed-library-paywall-plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -6129,7 +6331,7 @@
         document.getElementById("seedLibrarySupportEmail").addEventListener("click", copySupportEmail);
         window.addEventListener("storage", (event) => {
           if (!event.key || event.key === STORAGE_KEYS.paidEmail || event.key === STORAGE_KEYS.paidFeatures) {
-            syncSharedMembershipState();
+            renderLibrary();
           }
         });
         window.addEventListener("pageshow", refreshSubscriptionState);
@@ -6145,6 +6347,13 @@
         previewList = document.getElementById("seedLibraryPreviewList");
         lockedList = document.getElementById("seedLibraryLockedList");
         lockedZone = document.getElementById("seedLibraryLockedZone");
+        memberTools = document.getElementById("seedLibraryMemberTools");
+        memberTrackTabs = document.getElementById("seedLibraryTrackTabs");
+        memberDeckFilter = document.getElementById("seedLibraryDeckFilter");
+        memberSignalFilter = document.getElementById("seedLibrarySignalFilter");
+        memberVerificationFilter = document.getElementById("seedLibraryVerificationFilter");
+        memberClearFilters = document.getElementById("seedLibraryClearFilters");
+        memberResultMeta = document.getElementById("seedLibraryResultMeta");
         accessTitle = document.getElementById("seedLibraryAccessTitle");
         accessMeta = document.getElementById("seedLibraryAccessMeta");
         unlockBtn = document.getElementById("seedLibraryUnlockBtn");
@@ -6960,6 +7169,10 @@
       justify-content: center;
     }
 
+    .seed-library .is-hidden {
+      display: none !important;
+    }
+
     .seed-library-section-label {
       margin-bottom: 10px;
       color: #ffe37a;
@@ -6971,6 +7184,90 @@
 
     .seed-library-section-label--muted {
       color: rgba(255, 227, 122, 0.72);
+    }
+
+    .seed-library-member-tools {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(142, 199, 255, 0.2);
+      background: linear-gradient(135deg, rgba(142, 199, 255, 0.08), rgba(0, 0, 0, 0.22));
+    }
+
+    .seed-library-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .seed-library-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      background: rgba(0, 0, 0, 0.24);
+      color: #ffd700;
+      border-radius: 999px;
+      padding: 8px 11px;
+      font-family: 'm6x11Plus', monospace;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .seed-library-tab.active {
+      border-color: rgba(142, 199, 255, 0.65);
+      background: rgba(142, 199, 255, 0.16);
+      color: #eef6ff;
+    }
+
+    .seed-library-tab strong {
+      color: #8ec7ff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .seed-library-filters {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .seed-library-filters label {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .seed-library-filters label span {
+      color: rgba(214, 221, 233, 0.7);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+
+    .seed-library-filters select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgba(255, 215, 0, 0.24);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.36);
+      color: #fff6c9;
+      padding: 9px 10px;
+      font-size: 13px;
+    }
+
+    .seed-library-clear-btn {
+      border-radius: 8px;
+      padding: 9px 12px;
+      white-space: nowrap;
+    }
+
+    .seed-library-result-meta {
+      color: #bfc7d5;
+      font-size: 12px;
+      line-height: 1.4;
     }
 
     .seed-library-preview,
@@ -6994,6 +7291,43 @@
       gap: 10px;
       min-height: 220px;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .seed-library-summary-card,
+    .seed-library-empty {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      background: rgba(0, 0, 0, 0.28);
+    }
+
+    .seed-library-summary-card {
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .seed-library-summary-card span {
+      color: #8ec7ff;
+      font-size: 11px;
+      letter-spacing: 0.25px;
+      text-transform: uppercase;
+    }
+
+    .seed-library-summary-card strong {
+      color: #fff4b0;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .seed-library-summary-card p,
+    .seed-library-empty {
+      margin: 0;
+      color: #bfc7d5;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .seed-library-item-head {
@@ -7122,8 +7456,6 @@
     }
 
     .seed-library-locked-zone.is-locked .seed-library-list {
-      filter: blur(10px);
-      opacity: 0.48;
       pointer-events: none;
       user-select: none;
     }
@@ -7471,6 +7803,10 @@
       .seed-library-upgrade-btn {
         min-width: 0;
         width: 100%;
+      }
+
+      .seed-library-filters {
+        grid-template-columns: 1fr;
       }
 
       .seed-library-lock-panel {
