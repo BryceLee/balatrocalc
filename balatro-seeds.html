@@ -685,7 +685,7 @@
         Unlock the full VIP seed library. Seed Pro is shared with
         <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>.
       </p>
-      <p class="seed-library-paywall-note">Monthly and yearly plans auto-renew. Cancel anytime.</p>
+      <p class="seed-library-paywall-note">Monthly and yearly plans auto-renew. Cancel anytime. To cancel your subscription, <a href="https://www.paypal.com/myaccount/autopay/" target="_blank" rel="noopener" data-paypal-manage-link>cancel it in PayPal</a>.</p>
       <p class="seed-library-paywall-support">
         If you cannot pay or run into issues, contact
         <button id="seedLibrarySupportEmail" class="seed-library-paywall-support-link" type="button" data-email="support@balatrocalc.com">
@@ -6245,11 +6245,15 @@
         }
       }
 
-      function openPayPalManage() {
+      function getPayPalManageUrl() {
         const host = window.location.hostname;
         const isSandbox = host.includes("pages.dev") || host.includes("localhost") || host.includes("127.0.0.1");
         const base = isSandbox ? "https://www.sandbox.paypal.com" : "https://www.paypal.com";
-        window.open(`${base}/myaccount/autopay/`, "_blank", "noopener");
+        return `${base}/myaccount/autopay/`;
+      }
+
+      function openPayPalManage() {
+        window.open(getPayPalManageUrl(), "_blank", "noopener");
       }
 
       function copySupportEmail() {
@@ -6320,6 +6324,9 @@
           clearPaywallStatus();
           document.querySelector(".seed-library-paywall-plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
           setPaywallStatus("Choose a plan to upgrade or extend Seed Pro.", "");
+        });
+        document.querySelectorAll("[data-paypal-manage-link]").forEach((link) => {
+          link.setAttribute("href", getPayPalManageUrl());
         });
         paywallManage.addEventListener("click", openPayPalManage);
         paywallLogout.addEventListener("click", () => {

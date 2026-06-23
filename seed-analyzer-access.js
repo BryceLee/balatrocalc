@@ -15,6 +15,7 @@
     lifetime: 'Lifetime'
   };
   const CHECKOUT_SOURCE = 'seed_analyzer_paywall';
+  const PAYPAL_MANAGE_PATH = '/myaccount/autopay/';
   const FEATURE_LABELS = {
     seed: 'Seed'
   };
@@ -758,12 +759,12 @@
     });
     if (paywallManage) {
       paywallManage.addEventListener('click', () => {
-        const host = window.location.hostname;
-        const isSandbox = host.includes('pages.dev') || host.includes('localhost') || host.includes('127.0.0.1');
-        const base = isSandbox ? 'https://www.sandbox.paypal.com' : 'https://www.paypal.com';
-        window.open(`${base}/myaccount/autopay/`, '_blank', 'noopener');
+        window.open(getPayPalManageUrl(), '_blank', 'noopener');
       });
     }
+    document.querySelectorAll('[data-paypal-manage-link]').forEach((link) => {
+      link.setAttribute('href', getPayPalManageUrl());
+    });
     if (paywallLogout) {
       paywallLogout.addEventListener('click', () => {
         clearPaidInfo();
@@ -787,6 +788,13 @@
       paywallEmail.value = '';
       showPaywall('quota_logout');
     });
+  }
+
+  function getPayPalManageUrl() {
+    const host = window.location.hostname;
+    const isSandbox = host.includes('pages.dev') || host.includes('localhost') || host.includes('127.0.0.1');
+    const base = isSandbox ? 'https://www.sandbox.paypal.com' : 'https://www.paypal.com';
+    return `${base}${PAYPAL_MANAGE_PATH}`;
   }
 
   function copyTextWithFeedback(text, successMessage, failMessage) {
