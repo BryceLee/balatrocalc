@@ -34,6 +34,11 @@ function getAllowedAdminEmails(env) {
 
 export async function onRequest({ request, next, env }) {
   const url = new URL(request.url);
+  if (url.hostname === 'www.balatrocalc.com' && (request.method === 'GET' || request.method === 'HEAD')) {
+    url.hostname = 'balatrocalc.com';
+    return Response.redirect(url.toString(), 301);
+  }
+
   const path = url.pathname;
   if (!path.startsWith('/admin') && !path.startsWith('/api/admin')) {
     return next();
