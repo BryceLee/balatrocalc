@@ -6,7 +6,8 @@ import {
   planConfig,
   deriveSubscriptionAccessExpiresAt,
   getPaypalSubscriptionDetails,
-  extractPaypalPayerProfile
+  extractPaypalPayerProfile,
+  buildPaypalSubscriptionPeriodTxnId
 } from './_utils.js';
 
 function toTime(value) {
@@ -69,7 +70,7 @@ async function backfillMembershipFromSubscription(env, subscription, accessExpir
 
   if (existingPeriod) return;
 
-  const txnId = `paypal_sync_${subscription.subscription_id}_${lastPaymentAt.replace(/[^0-9A-Za-z]/g, '')}`;
+  const txnId = buildPaypalSubscriptionPeriodTxnId(subscription.subscription_id, lastPaymentAt);
 
   await env.DB.prepare(
     `INSERT INTO memberships

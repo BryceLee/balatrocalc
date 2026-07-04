@@ -95,6 +95,79 @@ export function deriveSubscriptionAccessExpiresAt(plan, { nextBillingTime = null
   return maxIso(nextBillingTime, paidThroughFromLastPayment);
 }
 
+export function buildPaypalSubscriptionPeriodTxnId(subscriptionId, paidAt) {
+  const safeSubscriptionId = String(subscriptionId || '').trim();
+  const safePaidAt = String(paidAt || '').replace(/[^0-9A-Za-z]/g, '');
+  if (!safeSubscriptionId || !safePaidAt) return null;
+  return `paypal_period_${safeSubscriptionId}_${safePaidAt}`;
+}
+
+export async function findActivePaidAccess(env, email, feature, now = nowIso(), options = {}) {
+  const planClause = Array.isArray(options.plans) && options.plans.length
+    ? `AND plan IN (${options.plans.map(() => '?').join(', ')})`
+    : '';
+  const planBindings = Array.isArray(options.plans) && options.plans.length ? options.plans : [];
+
+  const membership = await env.DB.prepare(
+    `SELECT plan, expires_at
+     FROM memberships
+     WHERE email = ?
+       AND feature_key = ?
+       AND status = ?
+       ${planClause}
+       AND (expires_at IS NULL OR expires_at > ?)
+     ORDER BY CASE WHEN expires_at IS NULL THEN 1 ELSE 0 END DESC,
+              expires_at DESC,
+              created_at DESC
+     LIMIT 1`
+  ).bind(email, feature, 'paid', ...planBindings, now).first();
+
+  if (membership) {
+    return {
+      active: true,
+      source: 'membership',
+      email,
+      feature,
+      plan: membership.plan,
+      expiresAt: membership.expires_at || null
+    };
+  }
+
+  if (options.membershipsOnly) return null;
+
+  const subscription = await env.DB.prepare(
+    `SELECT plan, last_payment_at, next_billing_at
+     FROM subscriptions
+     WHERE email = ?
+       AND feature_key = ?
+       AND status = ?
+       ${planClause}
+       AND (next_billing_at IS NULL OR next_billing_at > ?)
+     ORDER BY CASE WHEN next_billing_at IS NULL THEN 0 ELSE 1 END DESC,
+              next_billing_at DESC,
+              updated_at DESC
+     LIMIT 1`
+  ).bind(email, feature, 'ACTIVE', ...planBindings, now).first();
+
+  if (!subscription) return null;
+
+  const expiresAt = deriveSubscriptionAccessExpiresAt(subscription.plan, {
+    nextBillingTime: subscription.next_billing_at,
+    lastPaymentTime: subscription.last_payment_at
+  });
+
+  if (expiresAt && expiresAt <= now) return null;
+
+  return {
+    active: true,
+    source: 'subscription',
+    email,
+    feature,
+    plan: subscription.plan,
+    expiresAt: expiresAt || null
+  };
+}
+
 export function normalizeCheckoutSource(value) {
   const normalized = String(value || '').trim().toLowerCase();
   if (!normalized) return 'unknown';

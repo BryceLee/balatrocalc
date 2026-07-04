@@ -7,7 +7,8 @@ import {
   getPaypalAccessToken,
   paypalApiBase,
   getReturnUrls,
-  nowIso
+  nowIso,
+  findActivePaidAccess
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -22,6 +23,18 @@ export async function onRequestPost({ request, env }) {
   if (!config) return errorResponse('Invalid plan');
   if (config.period !== 'monthly' && config.period !== 'yearly') {
     return errorResponse('Invalid subscription plan');
+  }
+
+  const activeAccess = await findActivePaidAccess(env, email, config.feature);
+  if (activeAccess) {
+    const suffix = activeAccess.expiresAt
+      ? ` until ${activeAccess.expiresAt}`
+      : '';
+    return errorResponse(
+      `This email already has active Seed Pro access${suffix}. Use Check subscription instead of starting another PayPal subscription.`,
+      409,
+      activeAccess
+    );
   }
 
   const planIdKey = `PAYPAL_PLAN_${config.feature.toUpperCase()}_${config.period.toUpperCase()}`;
@@ -64,7 +77,7 @@ export async function onRequestPost({ request, env }) {
 
   const now = nowIso();
   await env.DB.prepare(
-    'INSERT INTO subscriptions (email, feature_key, plan, provider, subscription_id, status, created_at, updated_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT OR IGNORE INTO subscriptions (email, feature_key, plan, provider, subscription_id, status, created_at, updated_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
   ).bind(
     email,
     config.feature,

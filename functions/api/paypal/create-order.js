@@ -7,7 +7,8 @@ import {
   getPaypalAccessToken,
   paypalApiBase,
   getReturnUrls,
-  nowIso
+  nowIso,
+  findActivePaidAccess
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -22,6 +23,18 @@ export async function onRequestPost({ request, env }) {
   if (!config) return errorResponse('Invalid plan');
   if (config.period !== 'lifetime') {
     return errorResponse('Plan not supported for one-time order');
+  }
+
+  const activeLifetime = await findActivePaidAccess(env, email, config.feature, nowIso(), {
+    plans: [plan],
+    membershipsOnly: true
+  });
+  if (activeLifetime) {
+    return errorResponse(
+      'This email already has lifetime Seed Pro access. Use Check subscription instead of starting another PayPal order.',
+      409,
+      activeLifetime
+    );
   }
 
   const { checkoutSource, checkoutSourceMeta } = getCheckoutContext(body);
@@ -63,7 +76,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   await env.DB.prepare(
-    'INSERT INTO orders (email, feature_key, order_id, plan, status, created_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    'INSERT OR IGNORE INTO orders (email, feature_key, order_id, plan, status, created_at, checkout_source, checkout_source_meta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
   ).bind(
     email,
     config.feature,

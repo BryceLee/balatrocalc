@@ -6,7 +6,8 @@ import {
   nowIso,
   addDaysIso,
   getPaypalSubscriptionDetails,
-  extractPaypalPayerProfile
+  extractPaypalPayerProfile,
+  buildPaypalSubscriptionPeriodTxnId
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -104,7 +105,13 @@ export async function onRequestPost({ request, env }) {
 
     const existingPayment = await env.DB.prepare(
       'SELECT id FROM memberships WHERE txn_id = ? LIMIT 1'
-    ).bind(resource.id).first();
+    ).bind(buildPaypalSubscriptionPeriodTxnId(subscriptionId, paymentTime) || resource.id).first();
+
+    const existingProviderPayment = resource.id
+      ? await env.DB.prepare(
+        'SELECT id FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
+      ).bind(resource.id, 'paypal').first()
+      : null;
 
     const existingPeriod = expiresAt
       ? await env.DB.prepare(
@@ -119,9 +126,9 @@ export async function onRequestPost({ request, env }) {
       ).bind(subscription.email, targetFeature, 'paid', subscription.plan, expiresAt).first()
       : null;
 
-    if (!existingPayment && !existingPeriod) {
+    if (!existingPayment && !existingProviderPayment && !existingPeriod) {
       await env.DB.prepare(
-        'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+        'INSERT OR IGNORE INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
       ).bind(
         subscription.email,
         targetFeature,
@@ -129,7 +136,7 @@ export async function onRequestPost({ request, env }) {
         config.amount,
         'USD',
         'paypal',
-        resource.id,
+        buildPaypalSubscriptionPeriodTxnId(subscriptionId, paymentTime) || resource.id,
         'paid',
         paymentTime,
         expiresAt,

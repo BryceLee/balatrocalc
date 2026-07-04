@@ -7,7 +7,8 @@ import {
   addDaysIso,
   deriveSubscriptionAccessExpiresAt,
   getPaypalSubscriptionDetails,
-  extractPaypalPayerProfile
+  extractPaypalPayerProfile,
+  buildPaypalSubscriptionPeriodTxnId
 } from '../_utils.js';
 
 export async function onRequestPost({ request, env }) {
@@ -76,28 +77,33 @@ export async function onRequestPost({ request, env }) {
   const targetFeature = featureKey || config.feature;
   const existingPayment = await env.DB.prepare(
     'SELECT id, expires_at FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
+  ).bind(
+    buildPaypalSubscriptionPeriodTxnId(subscriptionId, lastPaymentAt || accessExpiresAt || now) || subscriptionId,
+    'paypal'
+  ).first();
+
+  const existingLegacyPayment = await env.DB.prepare(
+    'SELECT id, expires_at FROM memberships WHERE txn_id = ? AND provider = ? LIMIT 1'
   ).bind(subscriptionId, 'paypal').first();
 
-  let expiresAt = existingPayment?.expires_at || accessExpiresAt || null;
-  if (!existingPayment) {
-    if (config.days === null) {
-      expiresAt = null;
-    } else {
-      const lifetime = await env.DB.prepare(
-        'SELECT id FROM memberships WHERE email = ? AND feature_key = ? AND status = ? AND expires_at IS NULL LIMIT 1'
-      ).bind(resolvedEmail, targetFeature, 'paid').first();
-      if (lifetime) {
-        expiresAt = null;
-      } else {
-        const latest = await env.DB.prepare(
-          'SELECT MAX(expires_at) AS expires_at FROM memberships WHERE email = ? AND feature_key = ? AND status = ? AND expires_at IS NOT NULL'
-        ).bind(resolvedEmail, targetFeature, 'paid').first();
-        const baseTime = latest?.expires_at && latest.expires_at > now ? latest.expires_at : now;
-        expiresAt = addDaysIso(config.days, baseTime);
-      }
-    }
+  let expiresAt = existingPayment?.expires_at || existingLegacyPayment?.expires_at || accessExpiresAt || addDaysIso(config.days, lastPaymentAt || now);
+  const periodTxnId = buildPaypalSubscriptionPeriodTxnId(subscriptionId, lastPaymentAt || expiresAt || now) || subscriptionId;
+  const existingPeriod = expiresAt
+    ? await env.DB.prepare(
+      `SELECT id, expires_at
+       FROM memberships
+       WHERE email = ?
+         AND feature_key = ?
+         AND status = ?
+         AND plan = ?
+         AND expires_at = ?
+       LIMIT 1`
+    ).bind(resolvedEmail, targetFeature, 'paid', plan, expiresAt).first()
+    : null;
+
+  if (!existingPayment && !existingLegacyPayment && !existingPeriod) {
     await env.DB.prepare(
-      'INSERT INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+      'INSERT OR IGNORE INTO memberships (email, feature_key, plan, amount, currency, provider, txn_id, status, created_at, expires_at, checkout_source, checkout_source_meta, payer_email, payer_name, payer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(
       resolvedEmail,
       targetFeature,
@@ -105,9 +111,9 @@ export async function onRequestPost({ request, env }) {
       config.amount,
       'USD',
       'paypal',
-      subscriptionId,
+      periodTxnId,
       'paid',
-      now,
+      lastPaymentAt || now,
       expiresAt,
       existing.checkout_source || 'unknown',
       existing.checkout_source_meta || null,
