@@ -45,6 +45,16 @@ function permutations(inputArr) {
   return permute(inputArr);
 }
 
+function compareBigScore(a, b) {
+  if (a[1] !== b[1]) {
+    return a[1] < b[1] ? -1 : 1;
+  }
+  if (a[0] !== b[0]) {
+    return a[0] < b[0] ? -1 : 1;
+  }
+  return 0;
+}
+
 let taskID;
 let workerID;
 let thisHand;
@@ -186,7 +196,7 @@ function run(jokers = [[]]) {
                 else if(thisScore[1] === bestScore[1] && thisScore[0] === bestScore[0] && sameScore === bestSameScore) {
                   const bhs = thisHand.simulateBestHand();
 
-                  if(bhs < bestHighScore) {
+                  if(compareBigScore(bhs, bestHighScore) < 0) {
                     bestScore = thisScore;
                     bestHighScore = bhs;
                     bestSameScore = sameScore;
@@ -219,7 +229,7 @@ function run(jokers = [[]]) {
                 else if(thisScore[1] === bestScore[1] && thisScore[0] === bestScore[0] && sameScore === bestSameScore) {
                   const bhs = thisHand.simulateBestHand();
 
-                  if(bhs > bestHighScore) {
+                  if(compareBigScore(bhs, bestHighScore) > 0) {
                     bestScore = thisScore;
                     bestHighScore = bhs;
                     bestSameScore = sameScore;
@@ -256,7 +266,7 @@ function run(jokers = [[]]) {
             else if(thisScore[1] === bestScore[1] && thisScore[0] === bestScore[0]) {
               const bhs = thisHand.simulateBestHand();
 
-              if(bhs < bestHighScore) {
+              if(compareBigScore(bhs, bestHighScore) < 0) {
                 bestScore = thisScore;
                 bestHighScore = bhs;
                 bestJokers = jokers[j];
@@ -279,7 +289,7 @@ function run(jokers = [[]]) {
             else if(thisScore[1] === bestScore[1] && thisScore[0] === bestScore[0]) {
               const bhs = thisHand.simulateBestHand();
 
-              if(bhs > bestHighScore) {
+              if(compareBigScore(bhs, bestHighScore) > 0) {
                 bestScore = thisScore;
                 bestHighScore = bhs;
                 bestJokers = jokers[j];

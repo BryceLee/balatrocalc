@@ -1,9 +1,11 @@
 {
   "private": true,
   "scripts": {
+    "test": "npm run test:worker && npm run test:paypal",
     "google:token": "node scripts/get-google-token.js",
     "google:test": "node scripts/test-google-apis.js",
-    "test:calculator3": "node tests/calculator3-model.test.mjs && node tests/calculator3-catalog.test.mjs"
+    "test:worker": "node tests/worker-score.test.mjs",
+    "test:paypal": "node --experimental-vm-modules tests/paypal-capture.test.mjs"
   },
   "dependencies": {
     "@google-analytics/data": "^5.2.2",
