@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
+    crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Hand Levels Chart: Chips, Mult &amp; Scaling</title>
+  <meta name="description"
+    content="See every Balatro hand level, base Chips, Mult, Planet card, and per-level scaling. Compare regular and secret poker hands at any level.">
+  <meta name="keywords"
+    content="balatro hand levels, balatro hand levels chart, balatro hand level scaling, balatro secret hands, balatro planet cards">
+  <meta property="og:title" content="Balatro Hand Levels Chart">
+  <meta property="og:description"
+    content="Look up Chips, Mult, Planet cards, and level scaling for every regular and secret Balatro poker hand.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-hand-levels">
+  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Balatro Hand Levels Chart">
+  <meta name="twitter:description" content="Every Balatro hand level, Planet card, Chips, Mult, and scaling value in one chart.">
+  <meta name="theme-color" content="#172326">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-hand-levels">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css?v=20260809-nav">
+  <link rel="stylesheet" href="hand-levels.css?v=20260809-nav">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Balatro Hand Levels Chart",
+      "url": "https://balatrocalc.com/balatro-hand-levels",
+      "description": "An interactive reference chart for every Balatro poker hand's base Chips, Mult, Planet card, and per-level scaling.",
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Balatro Calculator",
+          "item": "https://balatrocalc.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Balatro Hand Levels",
+          "item": "https://balatrocalc.com/balatro-hand-levels"
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are hand levels in Balatro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each poker hand type has its own level. Increasing that level raises the hand's base Chips and base Mult without changing how the hand is detected."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a maximum hand level in Balatro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The game source does not define an upper hand-level cap. Level 15 is a common chart range, not a maximum."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Black Hole upgrade secret hands?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Black Hole upgrades all 12 hand entries, including Five of a Kind, Flush House, and Flush Five before they become visible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Balatro hand scales best with levels?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Among regular hands, Straight has especially strong practical scaling at plus 30 Chips and plus 3 Mult per level. The best hand to level still depends on which hand your deck can play consistently."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
+</head>
+
+<body class="hand-levels-page">
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <div class="titleBarBrand">balatrocalc</div>
+    <span class="subtitle">hand level observatory</span>
+  </div>
+
+  <nav id="topNav" aria-label="Primary navigation">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-hand-levels" class="nav-link nav-link--active">hand levels</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/blog" class="nav-link">blog</a>
+    <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
+    <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <a href="/support" class="nav-link">support</a>
+    <a href="https://forms.gle/f5CHmQ5cb69JZYnN7" class="nav-link nav-link--feedback" target="_blank" rel="noreferrer">feedback</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()" aria-label="Language">
+        <!-- I18N_LANG_OPTIONS_START -->
+        <option value="en" selected>EN</option>
+        <option value="cn">中文(简体)</option>
+        <option value="tw">中文(繁體)</option>
+        <option value="ja">日本語</option>
+        <option value="ko">한국어</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="it">Italiano</option>
+        <option value="pt-br">Português (BR)</option>
+        <option value="pt-pt">Português (PT)</option>
+        <option value="ru">Русский</option>
+        <option value="uk">Українська</option>
+        <option value="pl">Polski</option>
+        <option value="nl">Nederlands</option>
+        <option value="sv">Svenska</option>
+        <option value="no">Norsk</option>
+        <option value="da">Dansk</option>
+        <option value="fi">Suomi</option>
+        <option value="tr">Türkçe</option>
+        <option value="ar">العربية</option>
+        <option value="he">עברית</option>
+        <option value="hi">हिन्दी</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="th">ไทย</option>
+        <option value="ms">Bahasa Melayu</option>
+        <option value="tl">Filipino</option>
+        <option value="ro">Română</option>
+        <option value="hu">Magyar</option>
+        <option value="cs">Čeština</option>
+        <option value="el">Ελληνικά</option>
+        <!-- I18N_LANG_OPTIONS_END -->
+      </select>
+    </div>
+  </nav>
+
+  <main class="hand-levels-shell">
+    <header class="hand-levels-hero">
+      <div>
+        <p class="hand-levels-kicker">Source-checked poker hand data</p>
+        <h1 class="hand-levels-title">Balatro Hand Levels Chart</h1>
+        <p class="hand-levels-lead">
+          Every poker hand has its own level. Raising it adds a fixed amount of <strong>base Chips</strong> and
+          <strong>base Mult</strong>—independently from every other hand. Pick a level to compare all 12 regular and
+          secret hands.
+        </p>
+        <div class="source-stamp">Verified against Balatro game source 1.0.1o</div>
+      </div>
+
+      <div class="hand-levels-orbit" aria-hidden="true">
+        <div class="orbit-ring"></div>
+        <div class="orbit-readout">
+          <small id="currentLevelLabel">Level 1</small>
+          <span id="leaderName">Flush Five</span>
+          <strong id="leaderScore">160 Chips × 16 Mult</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="hand-levels-panel" aria-labelledby="interactive-chart-heading">
+      <div class="hand-levels-controls">
+        <div>
+          <label class="level-control-label" for="handLevelInput">Choose a hand level</label>
+          <div class="level-input-group">
+            <button class="level-step" id="handLevelDown" type="button" aria-label="Decrease level">−</button>
+            <input id="handLevelInput" type="number" min="1" step="1" inputmode="numeric" value="1"
+              aria-describedby="level-input-note">
+            <button class="level-step" id="handLevelUp" type="button" aria-label="Increase level">+</button>
+          </div>
+          <div class="level-presets" aria-label="Level presets">
+            <button class="level-preset is-active" type="button" data-level-preset="1" aria-pressed="true">L1</button>
+            <button class="level-preset" type="button" data-level-preset="5" aria-pressed="false">L5</button>
+            <button class="level-preset" type="button" data-level-preset="10" aria-pressed="false">L10</button>
+            <button class="level-preset" type="button" data-level-preset="15" aria-pressed="false">L15</button>
+            <button class="level-preset" type="button" data-level-preset="25" aria-pressed="false">L25</button>
+            <button class="level-preset" type="button" data-level-preset="50" aria-pressed="false">L50</button>
+          </div>
+          <span id="level-input-note" hidden>Enter any whole-number level of 1 or higher.</span>
+        </div>
+
+        <div class="hand-level-secondary-controls">
+          <div>
+            <span class="hand-control-label">Show hands</span>
+            <div class="hand-filter-group">
+              <button class="hand-filter-button is-active" type="button" data-hand-filter="all" aria-pressed="true">All 12</button>
+              <button class="hand-filter-button" type="button" data-hand-filter="regular" aria-pressed="false">Regular 9</button>
+              <button class="hand-filter-button" type="button" data-hand-filter="secret" aria-pressed="false">Secret 3</button>
+            </div>
+          </div>
+          <div>
+            <label class="hand-control-label" for="handLevelSort">Sort chart</label>
+            <select class="hand-sort-select" id="handLevelSort">
+              <option value="game">Game order</option>
+              <option value="score">Score at selected level</option>
+              <option value="base">Level 1 base score</option>
+              <option value="chips">Chips growth</option>
+              <option value="mult">Mult growth</option>
+            </select>
+          </div>
+          <button class="copy-level-link" id="copyHandLevelLink" type="button">Copy this chart link</button>
+        </div>
+      </div>
+
+      <div class="hand-table-meta">
+        <div>
+          <p class="hand-section-kicker" id="interactive-chart-heading">Interactive chart</p>
+          <span id="handLevelResultCount" aria-live="polite">Showing 12 hands at Level 1.</span>
+        </div>
+        <span><strong>Blue</strong> = Chips · <strong>Red</strong> = Mult</span>
+      </div>
+
+      <div class="hand-levels-table-wrap">
+        <table class="hand-levels-table">
+          <thead>
+            <tr>
+              <th scope="col">Poker hand</th>
+              <th scope="col">Planet</th>
+              <th scope="col">Chips</th>
+              <th scope="col">Mult</th>
+              <th scope="col">Base score</th>
+              <th scope="col">Per level</th>
+            </tr>
+          </thead>
+          <tbody id="handLevelRows">
+            <tr data-hand-row data-order="1" data-hand-name="Flush Five" data-secret="true" data-base-chips="160" data-base-mult="16" data-chips-growth="50" data-mult-growth="3">
+              <td class="hand-name-cell"><strong>Flush Five <span class="secret-tag">secret</span></strong><small>Five cards, same rank and suit</small></td>
+              <td class="planet-name">Eris</td><td class="chip-value" data-current-chips>160</td><td class="mult-value" data-current-mult>16</td><td class="score-value" data-current-score>2,560</td><td class="growth-value"><span class="growth-chip">+50</span> / <span class="growth-mult">+3</span></td>
+            </tr>
+            <tr data-hand-row data-order="2" data-hand-name="Flush House" data-secret="true" data-base-chips="140" data-base-mult="14" data-chips-growth="40" data-mult-growth="4">
+              <td class="hand-name-cell"><strong>Flush House <span class="secret-tag">secret</span></strong><small>Full House, all one suit</small></td>
+              <td class="planet-name">Ceres</td><td class="chip-value" data-current-chips>140</td><td class="mult-value" data-current-mult>14</td><td class="score-value" data-current-score>1,960</td><td class="growth-value"><span class="growth-chip">+40</span> / <span class="growth-mult">+4</span></td>
+            </tr>
+            <tr data-hand-row data-order="3" data-hand-name="Five of a Kind" data-secret="true" data-base-chips="120" data-base-mult="12" data-chips-growth="35" data-mult-growth="3">
+              <td class="hand-name-cell"><strong>Five of a Kind <span class="secret-tag">secret</span></strong><small>Five cards of one rank</small></td>
+              <td class="planet-name">Planet X</td><td class="chip-value" data-current-chips>120</td><td class="mult-value" data-current-mult>12</td><td class="score-value" data-current-score>1,440</td><td class="growth-value"><span class="growth-chip">+35</span> / <span class="growth-mult">+3</span></td>
+            </tr>
+            <tr data-hand-row data-order="4" data-hand-name="Straight Flush" data-secret="false" data-base-chips="100" data-base-mult="8" data-chips-growth="40" data-mult-growth="4">
+              <td class="hand-name-cell"><strong>Straight Flush</strong><small>Straight, all one suit</small></td>
+              <td class="planet-name">Neptune</td><td class="chip-value" data-current-chips>100</td><td class="mult-value" data-current-mult>8</td><td class="score-value" data-current-score>800</td><td class="growth-value"><span class="growth-chip">+40</span> / <span class="growth-mult">+4</span></td>
+            </tr>
+            <tr data-hand-row data-order="5" data-hand-name="Four of a Kind" data-secret="false" data-base-chips="60" data-base-mult="7" data-chips-growth="30" data-mult-growth="3">
+              <td class="hand-name-cell"><strong>Four of a Kind</strong><small>Four cards of one rank</small></td>
+              <td class="planet-name">Mars</td><td class="chip-value" data-current-chips>60</td><td class="mult-value" data-current-mult>7</td><td class="score-value" data-current-score>420</td><td class="growth-value"><span class="growth-chip">+30</span> / <span class="growth-mult">+3</span></td>
+            </tr>
+            <tr data-hand-row data-order="6" data-hand-name="Full House" data-secret="false" data-base-chips="40" data-base-mult="4" data-chips-growth="25" data-mult-growth="2">
+              <td class="hand-name-cell"><strong>Full House</strong><small>Three of a Kind plus Pair</small></td>
+              <td class="planet-name">Earth</td><td class="chip-value" data-current-chips>40</td><td class="mult-value" data-current-mult>4</td><td class="score-value" data-current-score>160</td><td class="growth-value"><span class="growth-chip">+25</span> / <span class="growth-mult">+2</span></td>
+            </tr>
+            <tr data-hand-row data-order="7" data-hand-name="Flush" data-secret="false" data-base-chips="35" data-base-mult="4" data-chips-growth="15" data-mult-growth="2">
+              <td class="hand-name-cell"><strong>Flush</strong><small>Five cards of one suit</small></td>
+              <td class="planet-name">Jupiter</td><td class="chip-value" data-current-chips>35</td><td class="mult-value" data-current-mult>4</td><td class="score-value" data-current-score>140</td><td class="growth-value"><span class="growth-chip">+15</span> / <span class="growth-mult">+2</span></td>
+            </tr>
+            <tr data-hand-row data-order="8" data-hand-name="Straight" data-secret="false" data-base-chips="30" data-base-mult="4" data-chips-growth="30" data-mult-growth="3">
+              <td class="hand-name-cell"><strong>Straight</strong><small>Five consecutive ranks</small></td>
+              <td class="planet-name">Saturn</td><td class="chip-value" data-current-chips>30</td><td class="mult-value" data-current-mult>4</td><td class="score-value" data-current-score>120</td><td class="growth-value"><span class="growth-chip">+30</span> / <span class="growth-mult">+3</span></td>
+            </tr>
+            <tr data-hand-row data-order="9" data-hand-name="Three of a Kind" data-secret="false" data-base-chips="30" data-base-mult="3" data-chips-growth="20" data-mult-growth="2">
+              <td class="hand-name-cell"><strong>Three of a Kind</strong><small>Three cards of one rank</small></td>
+              <td class="planet-name">Venus</td><td class="chip-value" data-current-chips>30</td><td class="mult-value" data-current-mult>3</td><td class="score-value" data-current-score>90</td><td class="growth-value"><span class="growth-chip">+20</span> / <span class="growth-mult">+2</span></td>
+            </tr>
+            <tr data-hand-row data-order="10" data-hand-name="Two Pair" data-secret="false" data-base-chips="20" data-base-mult="2" data-chips-growth="20" data-mult-growth="1">
+              <td class="hand-name-cell"><strong>Two Pair</strong><small>Two different Pairs</small></td>
+              <td class="planet-name">Uranus</td><td class="chip-value" data-current-chips>20</td><td class="mult-value" data-current-mult>2</td><td class="score-value" data-current-score>40</td><td class="growth-value"><span class="growth-chip">+20</span> / <span class="growth-mult">+1</span></td>
+            </tr>
+            <tr data-hand-row data-order="11" data-hand-name="Pair" data-secret="false" data-base-chips="10" data-base-mult="2" data-chips-growth="15" data-mult-growth="1">
+              <td class="hand-name-cell"><strong>Pair</strong><small>Two cards of one rank</small></td>
+              <td class="planet-name">Mercury</td><td class="chip-value" data-current-chips>10</td><td class="mult-value" data-current-mult>2</td><td class="score-value" data-current-score>20</td><td class="growth-value"><span class="growth-chip">+15</span> / <span class="growth-mult">+1</span></td>
+            </tr>
+            <tr data-hand-row data-order="12" data-hand-name="High Card" data-secret="false" data-base-chips="5" data-base-mult="1" data-chips-growth="10" data-mult-growth="1">
+              <td class="hand-name-cell"><strong>High Card</strong><small>Highest scoring card</small></td>
+              <td class="planet-name">Pluto</td><td class="chip-value" data-current-chips>5</td><td class="mult-value" data-current-mult>1</td><td class="score-value" data-current-score>5</td><td class="growth-value"><span class="growth-chip">+10</span> / <span class="growth-mult">+1</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hand-levels-note">
+        <strong>Base score</strong> is the chart's Chips × Mult only. Your played card ranks, enhancements, editions,
+        Jokers, vouchers, and other effects are added during actual scoring. Use the
+        <a href="/">Balatro Calculator</a> for a complete hand score.
+      </p>
+    </section>
+
+    <section class="hand-levels-sequences" aria-labelledby="level-1-15-heading">
+      <p class="hand-section-kicker">Static reference</p>
+      <h2 id="level-1-15-heading">Balatro hand levels 1–15</h2>
+      <p>Open any hand to see every base Chips × Mult value from Level 1 through Level 15. Level 15 is a useful chart range, not a game maximum.</p>
+
+      <div class="level-sequence-list">
+        <details class="level-sequence level-sequence--secret"><summary><span>Flush Five</span><small>Eris · 50 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 160 × 16</span><span><b>L2</b> 210 × 19</span><span><b>L3</b> 260 × 22</span><span><b>L4</b> 310 × 25</span><span><b>L5</b> 360 × 28</span><span><b>L6</b> 410 × 31</span><span><b>L7</b> 460 × 34</span><span><b>L8</b> 510 × 37</span><span><b>L9</b> 560 × 40</span><span><b>L10</b> 610 × 43</span><span><b>L11</b> 660 × 46</span><span><b>L12</b> 710 × 49</span><span><b>L13</b> 760 × 52</span><span><b>L14</b> 810 × 55</span><span><b>L15</b> 860 × 58</span></p></details>
+        <details class="level-sequence level-sequence--secret"><summary><span>Flush House</span><small>Ceres · 40 Chips / 4 Mult per level</small></summary><p><span><b>L1</b> 140 × 14</span><span><b>L2</b> 180 × 18</span><span><b>L3</b> 220 × 22</span><span><b>L4</b> 260 × 26</span><span><b>L5</b> 300 × 30</span><span><b>L6</b> 340 × 34</span><span><b>L7</b> 380 × 38</span><span><b>L8</b> 420 × 42</span><span><b>L9</b> 460 × 46</span><span><b>L10</b> 500 × 50</span><span><b>L11</b> 540 × 54</span><span><b>L12</b> 580 × 58</span><span><b>L13</b> 620 × 62</span><span><b>L14</b> 660 × 66</span><span><b>L15</b> 700 × 70</span></p></details>
+        <details class="level-sequence level-sequence--secret"><summary><span>Five of a Kind</span><small>Planet X · 35 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 120 × 12</span><span><b>L2</b> 155 × 15</span><span><b>L3</b> 190 × 18</span><span><b>L4</b> 225 × 21</span><span><b>L5</b> 260 × 24</span><span><b>L6</b> 295 × 27</span><span><b>L7</b> 330 × 30</span><span><b>L8</b> 365 × 33</span><span><b>L9</b> 400 × 36</span><span><b>L10</b> 435 × 39</span><span><b>L11</b> 470 × 42</span><span><b>L12</b> 505 × 45</span><span><b>L13</b> 540 × 48</span><span><b>L14</b> 575 × 51</span><span><b>L15</b> 610 × 54</span></p></details>
+        <details class="level-sequence"><summary><span>Straight Flush</span><small>Neptune · 40 Chips / 4 Mult per level</small></summary><p><span><b>L1</b> 100 × 8</span><span><b>L2</b> 140 × 12</span><span><b>L3</b> 180 × 16</span><span><b>L4</b> 220 × 20</span><span><b>L5</b> 260 × 24</span><span><b>L6</b> 300 × 28</span><span><b>L7</b> 340 × 32</span><span><b>L8</b> 380 × 36</span><span><b>L9</b> 420 × 40</span><span><b>L10</b> 460 × 44</span><span><b>L11</b> 500 × 48</span><span><b>L12</b> 540 × 52</span><span><b>L13</b> 580 × 56</span><span><b>L14</b> 620 × 60</span><span><b>L15</b> 660 × 64</span></p></details>
+        <details class="level-sequence"><summary><span>Four of a Kind</span><small>Mars · 30 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 60 × 7</span><span><b>L2</b> 90 × 10</span><span><b>L3</b> 120 × 13</span><span><b>L4</b> 150 × 16</span><span><b>L5</b> 180 × 19</span><span><b>L6</b> 210 × 22</span><span><b>L7</b> 240 × 25</span><span><b>L8</b> 270 × 28</span><span><b>L9</b> 300 × 31</span><span><b>L10</b> 330 × 34</span><span><b>L11</b> 360 × 37</span><span><b>L12</b> 390 × 40</span><span><b>L13</b> 420 × 43</span><span><b>L14</b> 450 × 46</span><span><b>L15</b> 480 × 49</span></p></details>
+        <details class="level-sequence"><summary><span>Full House</span><small>Earth · 25 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 40 × 4</span><span><b>L2</b> 65 × 6</span><span><b>L3</b> 90 × 8</span><span><b>L4</b> 115 × 10</span><span><b>L5</b> 140 × 12</span><span><b>L6</b> 165 × 14</span><span><b>L7</b> 190 × 16</span><span><b>L8</b> 215 × 18</span><span><b>L9</b> 240 × 20</span><span><b>L10</b> 265 × 22</span><span><b>L11</b> 290 × 24</span><span><b>L12</b> 315 × 26</span><span><b>L13</b> 340 × 28</span><span><b>L14</b> 365 × 30</span><span><b>L15</b> 390 × 32</span></p></details>
+        <details class="level-sequence"><summary><span>Flush</span><small>Jupiter · 15 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 35 × 4</span><span><b>L2</b> 50 × 6</span><span><b>L3</b> 65 × 8</span><span><b>L4</b> 80 × 10</span><span><b>L5</b> 95 × 12</span><span><b>L6</b> 110 × 14</span><span><b>L7</b> 125 × 16</span><span><b>L8</b> 140 × 18</span><span><b>L9</b> 155 × 20</span><span><b>L10</b> 170 × 22</span><span><b>L11</b> 185 × 24</span><span><b>L12</b> 200 × 26</span><span><b>L13</b> 215 × 28</span><span><b>L14</b> 230 × 30</span><span><b>L15</b> 245 × 32</span></p></details>
+        <details class="level-sequence"><summary><span>Straight</span><small>Saturn · 30 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 30 × 4</span><span><b>L2</b> 60 × 7</span><span><b>L3</b> 90 × 10</span><span><b>L4</b> 120 × 13</span><span><b>L5</b> 150 × 16</span><span><b>L6</b> 180 × 19</span><span><b>L7</b> 210 × 22</span><span><b>L8</b> 240 × 25</span><span><b>L9</b> 270 × 28</span><span><b>L10</b> 300 × 31</span><span><b>L11</b> 330 × 34</span><span><b>L12</b> 360 × 37</span><span><b>L13</b> 390 × 40</span><span><b>L14</b> 420 × 43</span><span><b>L15</b> 450 × 46</span></p></details>
+        <details class="level-sequence"><summary><span>Three of a Kind</span><small>Venus · 20 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 30 × 3</span><span><b>L2</b> 50 × 5</span><span><b>L3</b> 70 × 7</span><span><b>L4</b> 90 × 9</span><span><b>L5</b> 110 × 11</span><span><b>L6</b> 130 × 13</span><span><b>L7</b> 150 × 15</span><span><b>L8</b> 170 × 17</span><span><b>L9</b> 190 × 19</span><span><b>L10</b> 210 × 21</span><span><b>L11</b> 230 × 23</span><span><b>L12</b> 250 × 25</span><span><b>L13</b> 270 × 27</span><span><b>L14</b> 290 × 29</span><span><b>L15</b> 310 × 31</span></p></details>
+        <details class="level-sequence"><summary><span>Two Pair</span><small>Uranus · 20 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 20 × 2</span><span><b>L2</b> 40 × 3</span><span><b>L3</b> 60 × 4</span><span><b>L4</b> 80 × 5</span><span><b>L5</b> 100 × 6</span><span><b>L6</b> 120 × 7</span><span><b>L7</b> 140 × 8</span><span><b>L8</b> 160 × 9</span><span><b>L9</b> 180 × 10</span><span><b>L10</b> 200 × 11</span><span><b>L11</b> 220 × 12</span><span><b>L12</b> 240 × 13</span><span><b>L13</b> 260 × 14</span><span><b>L14</b> 280 × 15</span><span><b>L15</b> 300 × 16</span></p></details>
+        <details class="level-sequence"><summary><span>Pair</span><small>Mercury · 15 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 10 × 2</span><span><b>L2</b> 25 × 3</span><span><b>L3</b> 40 × 4</span><span><b>L4</b> 55 × 5</span><span><b>L5</b> 70 × 6</span><span><b>L6</b> 85 × 7</span><span><b>L7</b> 100 × 8</span><span><b>L8</b> 115 × 9</span><span><b>L9</b> 130 × 10</span><span><b>L10</b> 145 × 11</span><span><b>L11</b> 160 × 12</span><span><b>L12</b> 175 × 13</span><span><b>L13</b> 190 × 14</span><span><b>L14</b> 205 × 15</span><span><b>L15</b> 220 × 16</span></p></details>
+        <details class="level-sequence"><summary><span>High Card</span><small>Pluto · 10 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 5 × 1</span><span><b>L2</b> 15 × 2</span><span><b>L3</b> 25 × 3</span><span><b>L4</b> 35 × 4</span><span><b>L5</b> 45 × 5</span><span><b>L6</b> 55 × 6</span><span><b>L7</b> 65 × 7</span><span><b>L8</b> 75 × 8</span><span><b>L9</b> 85 × 9</span><span><b>L10</b> 95 × 10</span><span><b>L11</b> 105 × 11</span><span><b>L12</b> 115 × 12</span><span><b>L13</b> 125 × 13</span><span><b>L14</b> 135 × 14</span><span><b>L15</b> 145 × 15</span></p></details>
+      </div>
+    </section>
+
+    <section class="hand-levels-copy" aria-labelledby="scaling-heading">
+      <p class="hand-section-kicker">How scaling works</p>
+      <h2 id="scaling-heading">Hand levels use a linear formula</h2>
+      <p>
+        Every Planet upgrade adds the same fixed Chips and Mult for that hand. Chips and Mult each grow linearly,
+        while their product accelerates because both sides of the score are increasing.
+      </p>
+      <div class="formula-board" aria-label="Hand level formulas">
+        <div class="formula-line">Chips(L) = Base Chips + (L − 1) × Chips per Level</div>
+        <div class="formula-line">Mult(L) = Base Mult + (L − 1) × Mult per Level</div>
+      </div>
+      <div class="hand-info-grid">
+        <article class="hand-info-card">
+          <h3>Example: Level 10 Straight</h3>
+          <p>30 + 9 × 30 = <strong class="chip-value">300 Chips</strong><br>4 + 9 × 3 = <strong class="mult-value">31 Mult</strong></p>
+        </article>
+        <article class="hand-info-card">
+          <h3>Hand level is not hand rank</h3>
+          <p>Level changes scoring values. It does not change which cards count as a Straight, Flush, Pair, or another poker hand.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="hand-levels-copy" aria-labelledby="upgrade-heading">
+      <p class="hand-section-kicker">Level-up sources</p>
+      <h2 id="upgrade-heading">How to increase hand levels</h2>
+      <div class="upgrade-grid">
+        <article class="upgrade-card"><strong>Planet cards <b>+1</b></strong><p>Each Planet upgrades one matching poker hand. Saturn upgrades Straight; Jupiter upgrades Flush; Pluto upgrades High Card.</p></article>
+        <article class="upgrade-card"><strong>Black Hole <b>all hands +1</b></strong><p>The Spectral card loops through every hand, including the three secret hands before they are visible.</p></article>
+        <article class="upgrade-card"><strong>Orbital Tag <b>+3</b></strong><p>Skipping a Blind with an Orbital Tag upgrades the hand named on that tag by three levels.</p></article>
+        <article class="upgrade-card"><strong>Space Joker <b>chance +1</b></strong><p>Each played poker hand has the displayed probability to gain one level.</p></article>
+        <article class="upgrade-card"><strong>Burnt Joker <b>+1 per round</b></strong><p>Upgrades the poker hand represented by the first cards you discard each round.</p></article>
+        <article class="upgrade-card"><strong>The Arm <b>−1</b></strong><p>This Boss Blind lowers the played hand by one level, but its normal effect does not reduce a hand below Level 1.</p></article>
+      </div>
+      <p class="secret-callout">
+        <strong>Secret Planet rule:</strong> Planet X, Ceres, and Eris are soft-locked. First play Five of a Kind,
+        Flush House, or Flush Five respectively; its Planet can then enter the normal Planet pool.
+      </p>
+    </section>
+
+    <section class="hand-levels-copy" aria-labelledby="best-hand-heading">
+      <p class="hand-section-kicker">Practical comparison</p>
+      <h2 id="best-hand-heading">Which hand is best to level?</h2>
+      <p>
+        There is no universal answer. Intrinsic scaling matters, but consistency decides whether you can cash it in.
+        Among common hands, <strong>Straight</strong> has notably stronger level growth than Flush: Saturn adds
+        +30 Chips and +3 Mult, while Jupiter adds +15 Chips and +2 Mult.
+      </p>
+      <div class="hand-info-grid">
+        <article class="hand-info-card"><h3>Level 10 Straight</h3><p><span class="chip-value">300 Chips</span> × <span class="mult-value">31 Mult</span> = 9,300 base score</p></article>
+        <article class="hand-info-card"><h3>Level 10 Flush</h3><p><span class="chip-value">170 Chips</span> × <span class="mult-value">22 Mult</span> = 3,740 base score</p></article>
+      </div>
+      <p>
+        High Card and Pair can still dominate when Jokers, Steel Cards, retriggers, or held-card effects provide most
+        of the score. Use this chart to compare intrinsic hand growth—not as a standalone tier list.
+      </p>
+    </section>
+
+    <section class="hand-levels-copy" aria-labelledby="faq-heading">
+      <p class="hand-section-kicker">Source answers</p>
+      <h2 id="faq-heading">Balatro hand level FAQ</h2>
+      <div class="faq-grid">
+        <article class="faq-card"><h3>Is Level 15 the maximum?</h3><p>No. The source applies level changes without an upper cap. Level 15 is simply a useful range for compact charts.</p></article>
+        <article class="faq-card"><h3>Do secret hands start at Level 1?</h3><p>Yes. All 12 entries exist at Level 1 when a run starts, although Five of a Kind, Flush House, and Flush Five begin hidden.</p></article>
+        <article class="faq-card"><h3>Does Black Hole level hidden hands?</h3><p>Yes. It upgrades every hand entry, not only the hands currently visible in Run Info.</p></article>
+        <article class="faq-card"><h3>Does Observatory raise hand levels?</h3><p>No. Observatory gives X1.5 Mult when a held Planet matches the played hand; it does not alter that hand's level.</p></article>
+      </div>
+    </section>
+
+    <section class="hand-levels-copy" aria-labelledby="next-step-heading">
+      <p class="hand-section-kicker">Continue planning</p>
+      <h2 id="next-step-heading">Turn the chart into a real run</h2>
+      <div class="related-hand-links">
+        <a class="related-hand-link" href="/"><strong>Score the full hand</strong><p>Add cards, editions, enhancements, and Jokers in the Balatro Calculator.</p></a>
+        <a class="related-hand-link" href="/balatro-builds"><strong>Choose a scaling path</strong><p>Match hand consistency with an opener, scaling engine, and late-game shell.</p></a>
+        <a class="related-hand-link" href="/blog/balatro-high-card-build"><strong>Study High Card</strong><p>See why low intrinsic hand scaling can still support a reliable winning build.</p></a>
+      </div>
+    </section>
+  </main>
+
+  <script src="balatro-background.js"></script>
+  <script src="hand-levels.js"></script>
+  <script src="languageHandler.js"></script>
+</body>
+
+</html>

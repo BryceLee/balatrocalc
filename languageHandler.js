@@ -75,6 +75,8 @@
       '/balatro-jokers.html',
       '/balatro-builds',
       '/balatro-builds.html',
+      '/balatro-hand-levels',
+      '/balatro-hand-levels.html',
     ]);
     const effectiveRestPath = (lang !== 'en' && rootOnlyPages.has(restPath)) ? '/' : restPath;
     const prefix = lang === 'en' ? '' : `/${lang}`;

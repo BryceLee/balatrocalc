@@ -7,7 +7,7 @@
     crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-1275876891096923">
   <title>Balatro Calculator - Hand Score Calculator, Joker Optimizer & Solver</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260809-nav">
   <meta name="description"
     content="Free Balatro calculator to calculate hand scores, optimize joker order, and solve poker hands. Includes hand calculator, score calculator, and joker optimizer tools.">
   <meta name="keywords"
@@ -70,7 +70,7 @@
     plausible.init();
   </script>
 </head>
-<body>
+<body class="home-page">
 
   <canvas id="backgroundCanvas"></canvas>
   <div id="titleBar">
@@ -78,7 +78,8 @@
     <span class="subtitle">balatro calculator</span>
   </div>
   <nav id="topNav">
-    <a href="/" class="nav-link">calculator</a>
+    <a href="/" class="nav-link nav-link--active">calculator</a>
+    <a href="/balatro-hand-levels" class="nav-link">hand levels</a>
     <a href="/balatro-seeds" class="nav-link">seeds</a>
     <a href="/blog" class="nav-link">blog</a>
     <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
@@ -623,6 +624,12 @@
       </div>
 
       <p style="margin-top: 24px; text-align: center; color: #bfc7d5;">
+        Comparing Planet upgrades? Open the <a href="/balatro-hand-levels"
+          style="color: #ffd700; text-decoration: underline;">Balatro hand levels chart</a> for every hand's
+        base Chips, Mult, and per-level scaling.
+      </p>
+
+      <p style="margin-top: 12px; text-align: center; color: #bfc7d5;">
         Looking for specific joker combinations? Try our <a href="/balatro-seeds"
           style="color: #ffd700; text-decoration: underline;">Balatro seed generator</a> to find seeds with Blueprint,
         DNA, and other powerful jokers.
@@ -713,6 +720,7 @@
     <!-- <a href='https://www.github.com/EFHIII/balatro-calculator'>view code on GitHub</a> -->
     <div id="footerLinks">
       <a href="/#how-it-works">how it works</a>
+      <a href="/balatro-hand-levels">hand levels</a>
       <a href="/#guide">guide</a>
       <a href="/about/">about</a>
       <a href="/privacy-policy/">privacy</a>

@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "test": "npm run test:worker && npm run test:paypal",
+    "test": "npm run test:worker && npm run test:paypal && npm run test:hand-levels",
     "google:token": "node scripts/get-google-token.js",
     "google:test": "node scripts/test-google-apis.js",
     "test:worker": "node tests/worker-score.test.mjs",
-    "test:paypal": "node --experimental-vm-modules tests/paypal-capture.test.mjs"
+    "test:paypal": "node --experimental-vm-modules tests/paypal-capture.test.mjs",
+    "test:hand-levels": "node tests/hand-levels-page.test.mjs"
   },
   "dependencies": {
     "@google-analytics/data": "^5.2.2",

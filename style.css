@@ -238,6 +238,73 @@ textarea {
   letter-spacing: 0;
 }
 
+/* Keep the primary tabs aligned on the calculator and reference pages as the
+   navigation grows. The title owns the left rail; tabs wrap inside the right
+   rail until the layout switches to a stacked mobile header. */
+@media (min-width: 801px) and (max-width: 1180px) {
+  body.home-page #topNav,
+  body.hand-levels-page #topNav {
+    max-width: calc(100vw - 240px);
+    gap: 8px;
+  }
+
+  body.home-page .nav-link,
+  body.hand-levels-page .nav-link {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  body.home-page .language-switcher select,
+  body.hand-levels-page .language-switcher select {
+    width: 100px;
+    max-width: 100px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  body.home-page #mainContainer {
+    margin-top: 105px;
+  }
+
+  body.hand-levels-page .hand-levels-shell {
+    padding-top: 132px;
+  }
+}
+
+@media (max-width: 800px) {
+  body.home-page #topNav,
+  body.hand-levels-page #topNav {
+    top: 64px;
+    left: 10px;
+    right: 10px;
+    max-width: none;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  body.home-page .nav-link,
+  body.hand-levels-page .nav-link {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+
+  body.home-page .language-switcher select,
+  body.hand-levels-page .language-switcher select {
+    width: 80px;
+    max-width: 80px;
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+
+  body.home-page #mainContainer {
+    margin-top: 125px;
+  }
+
+  body.hand-levels-page .hand-levels-shell {
+    padding-top: 140px;
+  }
+}
+
 /* 移动端导航响应式 */
 @media (max-width: 600px) {
   #topNav {
