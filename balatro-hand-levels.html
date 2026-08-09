@@ -26,7 +26,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="style.css?v=20260809-nav">
+  <link rel="stylesheet" href="style.css?v=20260809-site-nav-3">
   <link rel="stylesheet" href="hand-levels.css?v=20260809-nav">
 
   <script type="application/ld+json">
@@ -212,7 +212,9 @@
             <button class="level-preset" type="button" data-level-preset="25" aria-pressed="false">L25</button>
             <button class="level-preset" type="button" data-level-preset="50" aria-pressed="false">L50</button>
           </div>
-          <span id="level-input-note" hidden>Enter any whole-number level of 1 or higher.</span>
+          <p class="level-cap-note" id="level-input-note">
+            <strong>No level cap in the game source.</strong> L50 is a shortcut, not the maximum; enter any whole-number level of 1 or higher.
+          </p>
         </div>
 
         <div class="hand-level-secondary-controls">
@@ -400,7 +402,7 @@
       <p class="hand-section-kicker">Source answers</p>
       <h2 id="faq-heading">Balatro hand level FAQ</h2>
       <div class="faq-grid">
-        <article class="faq-card"><h3>Is Level 15 the maximum?</h3><p>No. The source applies level changes without an upper cap. Level 15 is simply a useful range for compact charts.</p></article>
+        <article class="faq-card"><h3>Is Level 50 the maximum?</h3><p>No. The source applies level changes without an upper cap. L15 and L50 are only convenient chart presets.</p></article>
         <article class="faq-card"><h3>Do secret hands start at Level 1?</h3><p>Yes. All 12 entries exist at Level 1 when a run starts, although Five of a Kind, Flush House, and Flush Five begin hidden.</p></article>
         <article class="faq-card"><h3>Does Black Hole level hidden hands?</h3><p>Yes. It upgrades every hand entry, not only the hands currently visible in Run Info.</p></article>
         <article class="faq-card"><h3>Does Observatory raise hand levels?</h3><p>No. Observatory gives X1.5 Mult when a held Planet matches the played hand; it does not alter that hand's level.</p></article>

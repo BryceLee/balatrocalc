@@ -301,6 +301,18 @@ body.hand-levels-page {
   margin-top: 10px;
 }
 
+.level-cap-note {
+  max-width: 520px;
+  margin: 11px 0 0;
+  color: var(--hand-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.level-cap-note strong {
+  color: var(--hand-gold-soft);
+}
+
 .level-preset,
 .hand-filter-button,
 .copy-level-link {

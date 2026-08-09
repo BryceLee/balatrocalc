@@ -13,6 +13,27 @@ const languageHandler = fs.readFileSync(path.join(root, 'languageHandler.js'), '
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const redirects = fs.readFileSync(path.join(root, '_redirects'), 'utf8');
 
+const ignoredHtmlDirectories = new Set([
+  '.git',
+  'admin',
+  'blueprint',
+  'blueprint-dist',
+  'node_modules'
+]);
+
+function collectHtmlFiles(directory) {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.isDirectory()) {
+      if (ignoredHtmlDirectories.has(entry.name)) return [];
+      return collectHtmlFiles(path.join(directory, entry.name));
+    }
+
+    return entry.isFile() && entry.name.endsWith('.html')
+      ? [path.join(directory, entry.name)]
+      : [];
+  });
+}
+
 const expectedHands = [
   ['Flush Five', 160, 16, 50, 3, true],
   ['Flush House', 140, 14, 40, 4, true],
@@ -56,6 +77,8 @@ for (const sequence of levelSequences) {
 
 assert.match(html, /<link rel="canonical" href="https:\/\/balatrocalc\.com\/balatro-hand-levels">/);
 assert.match(html, /Verified against Balatro game source 1\.0\.1o/);
+assert.match(html, /No level cap in the game source\./);
+assert.doesNotMatch(html, /id="handLevelInput"[^>]*\bmax=/);
 assert.match(sitemap, /<loc>https:\/\/balatrocalc\.com\/balatro-hand-levels<\/loc>/);
 assert.match(redirects, /\/balatro-hand-levels\.html \/balatro-hand-levels 301/);
 assert.match(languageHandler, /'\/balatro-hand-levels'/);
@@ -66,6 +89,30 @@ function navDestinations(documentHtml) {
   assert.ok(nav, 'top navigation should exist');
   return [...nav[1].matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
     .map((match) => [match[1], match[2].trim()]);
+}
+
+const htmlFilesWithTopNav = collectHtmlFiles(root)
+  .map((filePath) => [filePath, fs.readFileSync(filePath, 'utf8')])
+  .filter(([, documentHtml]) => /<nav[^>]+id="topNav"/i.test(documentHtml));
+
+assert.ok(htmlFilesWithTopNav.length > 100, 'site navigation coverage should include localized pages');
+for (const [filePath, documentHtml] of htmlFilesWithTopNav) {
+  const relativePath = path.relative(root, filePath);
+  const destinations = navDestinations(documentHtml);
+  const handLevelTabs = destinations.filter(([href]) => href === '/balatro-hand-levels');
+  assert.equal(
+    handLevelTabs.length,
+    1,
+    `${relativePath} should expose exactly one Hand Levels tab`
+  );
+
+  const calculatorIndex = destinations.findIndex(([, label]) => label === 'calculator');
+  const handLevelsIndex = destinations.findIndex(([href]) => href === '/balatro-hand-levels');
+  assert.equal(
+    handLevelsIndex,
+    calculatorIndex + 1,
+    `${relativePath} should place Hand Levels after calculator`
+  );
 }
 
 assert.deepEqual(
