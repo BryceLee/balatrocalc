@@ -17,8 +17,10 @@
     content="Look up Chips, Mult, Planet cards, and level scaling for every regular and secret Balatro poker hand.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://balatrocalc.com/balatro-hand-levels">
-  <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://balatrocalc.com/assets/balatro-hand-level-scaling-chart.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Balatro Hand Levels Chart">
   <meta name="twitter:description" content="Every Balatro hand level, Planet card, Chips, Mult, and scaling value in one chart.">
   <meta name="theme-color" content="#172326">
@@ -27,7 +29,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="style.css?v=20260809-site-nav-3">
-  <link rel="stylesheet" href="hand-levels.css?v=20260809-nav">
+  <link rel="stylesheet" href="hand-levels.css?v=20260810-scaling">
 
   <script type="application/ld+json">
     {
@@ -84,7 +86,7 @@
           "name": "Is there a maximum hand level in Balatro?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The game source does not define an upper hand-level cap. Level 15 is a common chart range, not a maximum."
+            "text": "The game source does not define an upper hand-level cap. Level 15 and Level 50 are convenient chart presets, not maximums."
           }
         },
         {
@@ -193,6 +195,15 @@
         </div>
       </div>
     </header>
+
+    <aside class="hand-levels-answer" aria-label="Balatro hand levels quick answer">
+      <div>
+        <span class="answer-label">Quick answer</span>
+        <strong>Every poker hand starts at Level 1 and levels independently.</strong>
+      </div>
+      <p>Each upgrade adds that hand's fixed Chips and Mult values. The source has <strong>no upper level cap</strong>—Level 50 is not the maximum.</p>
+      <a href="#scaling-heading">See the scaling formula ↓</a>
+    </aside>
 
     <section class="hand-levels-panel" aria-labelledby="interactive-chart-heading">
       <div class="hand-levels-controls">
@@ -324,25 +335,41 @@
       <h2 id="level-1-15-heading">Balatro hand levels 1–15</h2>
       <p>Open any hand to see every base Chips × Mult value from Level 1 through Level 15. Level 15 is a useful chart range, not a game maximum.</p>
 
+      <nav class="hand-level-jumps" aria-label="Jump to a poker hand level chart">
+        <a href="#flush-five-levels">Flush Five</a><a href="#flush-house-levels">Flush House</a><a href="#five-of-a-kind-levels">Five of a Kind</a><a href="#straight-flush-levels">Straight Flush</a><a href="#four-of-a-kind-levels">Four of a Kind</a><a href="#full-house-levels">Full House</a><a href="#flush-levels">Flush</a><a href="#straight-levels">Straight</a><a href="#three-of-a-kind-levels">Three of a Kind</a><a href="#two-pair-levels">Two Pair</a><a href="#pair-levels">Pair</a><a href="#high-card-levels">High Card</a>
+      </nav>
+
       <div class="level-sequence-list">
-        <details class="level-sequence level-sequence--secret"><summary><span>Flush Five</span><small>Eris · 50 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 160 × 16</span><span><b>L2</b> 210 × 19</span><span><b>L3</b> 260 × 22</span><span><b>L4</b> 310 × 25</span><span><b>L5</b> 360 × 28</span><span><b>L6</b> 410 × 31</span><span><b>L7</b> 460 × 34</span><span><b>L8</b> 510 × 37</span><span><b>L9</b> 560 × 40</span><span><b>L10</b> 610 × 43</span><span><b>L11</b> 660 × 46</span><span><b>L12</b> 710 × 49</span><span><b>L13</b> 760 × 52</span><span><b>L14</b> 810 × 55</span><span><b>L15</b> 860 × 58</span></p></details>
-        <details class="level-sequence level-sequence--secret"><summary><span>Flush House</span><small>Ceres · 40 Chips / 4 Mult per level</small></summary><p><span><b>L1</b> 140 × 14</span><span><b>L2</b> 180 × 18</span><span><b>L3</b> 220 × 22</span><span><b>L4</b> 260 × 26</span><span><b>L5</b> 300 × 30</span><span><b>L6</b> 340 × 34</span><span><b>L7</b> 380 × 38</span><span><b>L8</b> 420 × 42</span><span><b>L9</b> 460 × 46</span><span><b>L10</b> 500 × 50</span><span><b>L11</b> 540 × 54</span><span><b>L12</b> 580 × 58</span><span><b>L13</b> 620 × 62</span><span><b>L14</b> 660 × 66</span><span><b>L15</b> 700 × 70</span></p></details>
-        <details class="level-sequence level-sequence--secret"><summary><span>Five of a Kind</span><small>Planet X · 35 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 120 × 12</span><span><b>L2</b> 155 × 15</span><span><b>L3</b> 190 × 18</span><span><b>L4</b> 225 × 21</span><span><b>L5</b> 260 × 24</span><span><b>L6</b> 295 × 27</span><span><b>L7</b> 330 × 30</span><span><b>L8</b> 365 × 33</span><span><b>L9</b> 400 × 36</span><span><b>L10</b> 435 × 39</span><span><b>L11</b> 470 × 42</span><span><b>L12</b> 505 × 45</span><span><b>L13</b> 540 × 48</span><span><b>L14</b> 575 × 51</span><span><b>L15</b> 610 × 54</span></p></details>
-        <details class="level-sequence"><summary><span>Straight Flush</span><small>Neptune · 40 Chips / 4 Mult per level</small></summary><p><span><b>L1</b> 100 × 8</span><span><b>L2</b> 140 × 12</span><span><b>L3</b> 180 × 16</span><span><b>L4</b> 220 × 20</span><span><b>L5</b> 260 × 24</span><span><b>L6</b> 300 × 28</span><span><b>L7</b> 340 × 32</span><span><b>L8</b> 380 × 36</span><span><b>L9</b> 420 × 40</span><span><b>L10</b> 460 × 44</span><span><b>L11</b> 500 × 48</span><span><b>L12</b> 540 × 52</span><span><b>L13</b> 580 × 56</span><span><b>L14</b> 620 × 60</span><span><b>L15</b> 660 × 64</span></p></details>
-        <details class="level-sequence"><summary><span>Four of a Kind</span><small>Mars · 30 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 60 × 7</span><span><b>L2</b> 90 × 10</span><span><b>L3</b> 120 × 13</span><span><b>L4</b> 150 × 16</span><span><b>L5</b> 180 × 19</span><span><b>L6</b> 210 × 22</span><span><b>L7</b> 240 × 25</span><span><b>L8</b> 270 × 28</span><span><b>L9</b> 300 × 31</span><span><b>L10</b> 330 × 34</span><span><b>L11</b> 360 × 37</span><span><b>L12</b> 390 × 40</span><span><b>L13</b> 420 × 43</span><span><b>L14</b> 450 × 46</span><span><b>L15</b> 480 × 49</span></p></details>
-        <details class="level-sequence"><summary><span>Full House</span><small>Earth · 25 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 40 × 4</span><span><b>L2</b> 65 × 6</span><span><b>L3</b> 90 × 8</span><span><b>L4</b> 115 × 10</span><span><b>L5</b> 140 × 12</span><span><b>L6</b> 165 × 14</span><span><b>L7</b> 190 × 16</span><span><b>L8</b> 215 × 18</span><span><b>L9</b> 240 × 20</span><span><b>L10</b> 265 × 22</span><span><b>L11</b> 290 × 24</span><span><b>L12</b> 315 × 26</span><span><b>L13</b> 340 × 28</span><span><b>L14</b> 365 × 30</span><span><b>L15</b> 390 × 32</span></p></details>
-        <details class="level-sequence"><summary><span>Flush</span><small>Jupiter · 15 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 35 × 4</span><span><b>L2</b> 50 × 6</span><span><b>L3</b> 65 × 8</span><span><b>L4</b> 80 × 10</span><span><b>L5</b> 95 × 12</span><span><b>L6</b> 110 × 14</span><span><b>L7</b> 125 × 16</span><span><b>L8</b> 140 × 18</span><span><b>L9</b> 155 × 20</span><span><b>L10</b> 170 × 22</span><span><b>L11</b> 185 × 24</span><span><b>L12</b> 200 × 26</span><span><b>L13</b> 215 × 28</span><span><b>L14</b> 230 × 30</span><span><b>L15</b> 245 × 32</span></p></details>
-        <details class="level-sequence"><summary><span>Straight</span><small>Saturn · 30 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 30 × 4</span><span><b>L2</b> 60 × 7</span><span><b>L3</b> 90 × 10</span><span><b>L4</b> 120 × 13</span><span><b>L5</b> 150 × 16</span><span><b>L6</b> 180 × 19</span><span><b>L7</b> 210 × 22</span><span><b>L8</b> 240 × 25</span><span><b>L9</b> 270 × 28</span><span><b>L10</b> 300 × 31</span><span><b>L11</b> 330 × 34</span><span><b>L12</b> 360 × 37</span><span><b>L13</b> 390 × 40</span><span><b>L14</b> 420 × 43</span><span><b>L15</b> 450 × 46</span></p></details>
-        <details class="level-sequence"><summary><span>Three of a Kind</span><small>Venus · 20 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 30 × 3</span><span><b>L2</b> 50 × 5</span><span><b>L3</b> 70 × 7</span><span><b>L4</b> 90 × 9</span><span><b>L5</b> 110 × 11</span><span><b>L6</b> 130 × 13</span><span><b>L7</b> 150 × 15</span><span><b>L8</b> 170 × 17</span><span><b>L9</b> 190 × 19</span><span><b>L10</b> 210 × 21</span><span><b>L11</b> 230 × 23</span><span><b>L12</b> 250 × 25</span><span><b>L13</b> 270 × 27</span><span><b>L14</b> 290 × 29</span><span><b>L15</b> 310 × 31</span></p></details>
-        <details class="level-sequence"><summary><span>Two Pair</span><small>Uranus · 20 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 20 × 2</span><span><b>L2</b> 40 × 3</span><span><b>L3</b> 60 × 4</span><span><b>L4</b> 80 × 5</span><span><b>L5</b> 100 × 6</span><span><b>L6</b> 120 × 7</span><span><b>L7</b> 140 × 8</span><span><b>L8</b> 160 × 9</span><span><b>L9</b> 180 × 10</span><span><b>L10</b> 200 × 11</span><span><b>L11</b> 220 × 12</span><span><b>L12</b> 240 × 13</span><span><b>L13</b> 260 × 14</span><span><b>L14</b> 280 × 15</span><span><b>L15</b> 300 × 16</span></p></details>
-        <details class="level-sequence"><summary><span>Pair</span><small>Mercury · 15 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 10 × 2</span><span><b>L2</b> 25 × 3</span><span><b>L3</b> 40 × 4</span><span><b>L4</b> 55 × 5</span><span><b>L5</b> 70 × 6</span><span><b>L6</b> 85 × 7</span><span><b>L7</b> 100 × 8</span><span><b>L8</b> 115 × 9</span><span><b>L9</b> 130 × 10</span><span><b>L10</b> 145 × 11</span><span><b>L11</b> 160 × 12</span><span><b>L12</b> 175 × 13</span><span><b>L13</b> 190 × 14</span><span><b>L14</b> 205 × 15</span><span><b>L15</b> 220 × 16</span></p></details>
-        <details class="level-sequence"><summary><span>High Card</span><small>Pluto · 10 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 5 × 1</span><span><b>L2</b> 15 × 2</span><span><b>L3</b> 25 × 3</span><span><b>L4</b> 35 × 4</span><span><b>L5</b> 45 × 5</span><span><b>L6</b> 55 × 6</span><span><b>L7</b> 65 × 7</span><span><b>L8</b> 75 × 8</span><span><b>L9</b> 85 × 9</span><span><b>L10</b> 95 × 10</span><span><b>L11</b> 105 × 11</span><span><b>L12</b> 115 × 12</span><span><b>L13</b> 125 × 13</span><span><b>L14</b> 135 × 14</span><span><b>L15</b> 145 × 15</span></p></details>
+        <details class="level-sequence level-sequence--secret" id="flush-five-levels">
+        <summary><span>Flush Five</span><small>Eris · 50 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 160 × 16</span><span><b>L2</b> 210 × 19</span><span><b>L3</b> 260 × 22</span><span><b>L4</b> 310 × 25</span><span><b>L5</b> 360 × 28</span><span><b>L6</b> 410 × 31</span><span><b>L7</b> 460 × 34</span><span><b>L8</b> 510 × 37</span><span><b>L9</b> 560 × 40</span><span><b>L10</b> 610 × 43</span><span><b>L11</b> 660 × 46</span><span><b>L12</b> 710 × 49</span><span><b>L13</b> 760 × 52</span><span><b>L14</b> 810 × 55</span><span><b>L15</b> 860 × 58</span></p></details>
+        <details class="level-sequence level-sequence--secret" id="flush-house-levels">
+        <summary><span>Flush House</span><small>Ceres · 40 Chips / 4 Mult per level</small></summary><p><span><b>L1</b> 140 × 14</span><span><b>L2</b> 180 × 18</span><span><b>L3</b> 220 × 22</span><span><b>L4</b> 260 × 26</span><span><b>L5</b> 300 × 30</span><span><b>L6</b> 340 × 34</span><span><b>L7</b> 380 × 38</span><span><b>L8</b> 420 × 42</span><span><b>L9</b> 460 × 46</span><span><b>L10</b> 500 × 50</span><span><b>L11</b> 540 × 54</span><span><b>L12</b> 580 × 58</span><span><b>L13</b> 620 × 62</span><span><b>L14</b> 660 × 66</span><span><b>L15</b> 700 × 70</span></p></details>
+        <details class="level-sequence level-sequence--secret" id="five-of-a-kind-levels">
+        <summary><span>Five of a Kind</span><small>Planet X · 35 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 120 × 12</span><span><b>L2</b> 155 × 15</span><span><b>L3</b> 190 × 18</span><span><b>L4</b> 225 × 21</span><span><b>L5</b> 260 × 24</span><span><b>L6</b> 295 × 27</span><span><b>L7</b> 330 × 30</span><span><b>L8</b> 365 × 33</span><span><b>L9</b> 400 × 36</span><span><b>L10</b> 435 × 39</span><span><b>L11</b> 470 × 42</span><span><b>L12</b> 505 × 45</span><span><b>L13</b> 540 × 48</span><span><b>L14</b> 575 × 51</span><span><b>L15</b> 610 × 54</span></p></details>
+        <details class="level-sequence" id="straight-flush-levels">
+        <summary><span>Straight Flush</span><small>Neptune · 40 Chips / 4 Mult per level</small></summary><p><span><b>L1</b> 100 × 8</span><span><b>L2</b> 140 × 12</span><span><b>L3</b> 180 × 16</span><span><b>L4</b> 220 × 20</span><span><b>L5</b> 260 × 24</span><span><b>L6</b> 300 × 28</span><span><b>L7</b> 340 × 32</span><span><b>L8</b> 380 × 36</span><span><b>L9</b> 420 × 40</span><span><b>L10</b> 460 × 44</span><span><b>L11</b> 500 × 48</span><span><b>L12</b> 540 × 52</span><span><b>L13</b> 580 × 56</span><span><b>L14</b> 620 × 60</span><span><b>L15</b> 660 × 64</span></p></details>
+        <details class="level-sequence" id="four-of-a-kind-levels">
+        <summary><span>Four of a Kind</span><small>Mars · 30 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 60 × 7</span><span><b>L2</b> 90 × 10</span><span><b>L3</b> 120 × 13</span><span><b>L4</b> 150 × 16</span><span><b>L5</b> 180 × 19</span><span><b>L6</b> 210 × 22</span><span><b>L7</b> 240 × 25</span><span><b>L8</b> 270 × 28</span><span><b>L9</b> 300 × 31</span><span><b>L10</b> 330 × 34</span><span><b>L11</b> 360 × 37</span><span><b>L12</b> 390 × 40</span><span><b>L13</b> 420 × 43</span><span><b>L14</b> 450 × 46</span><span><b>L15</b> 480 × 49</span></p></details>
+        <details class="level-sequence" id="full-house-levels">
+        <summary><span>Full House</span><small>Earth · 25 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 40 × 4</span><span><b>L2</b> 65 × 6</span><span><b>L3</b> 90 × 8</span><span><b>L4</b> 115 × 10</span><span><b>L5</b> 140 × 12</span><span><b>L6</b> 165 × 14</span><span><b>L7</b> 190 × 16</span><span><b>L8</b> 215 × 18</span><span><b>L9</b> 240 × 20</span><span><b>L10</b> 265 × 22</span><span><b>L11</b> 290 × 24</span><span><b>L12</b> 315 × 26</span><span><b>L13</b> 340 × 28</span><span><b>L14</b> 365 × 30</span><span><b>L15</b> 390 × 32</span></p></details>
+        <details class="level-sequence" id="flush-levels">
+        <summary><span>Flush</span><small>Jupiter · 15 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 35 × 4</span><span><b>L2</b> 50 × 6</span><span><b>L3</b> 65 × 8</span><span><b>L4</b> 80 × 10</span><span><b>L5</b> 95 × 12</span><span><b>L6</b> 110 × 14</span><span><b>L7</b> 125 × 16</span><span><b>L8</b> 140 × 18</span><span><b>L9</b> 155 × 20</span><span><b>L10</b> 170 × 22</span><span><b>L11</b> 185 × 24</span><span><b>L12</b> 200 × 26</span><span><b>L13</b> 215 × 28</span><span><b>L14</b> 230 × 30</span><span><b>L15</b> 245 × 32</span></p></details>
+        <details class="level-sequence" id="straight-levels">
+        <summary><span>Straight</span><small>Saturn · 30 Chips / 3 Mult per level</small></summary><p><span><b>L1</b> 30 × 4</span><span><b>L2</b> 60 × 7</span><span><b>L3</b> 90 × 10</span><span><b>L4</b> 120 × 13</span><span><b>L5</b> 150 × 16</span><span><b>L6</b> 180 × 19</span><span><b>L7</b> 210 × 22</span><span><b>L8</b> 240 × 25</span><span><b>L9</b> 270 × 28</span><span><b>L10</b> 300 × 31</span><span><b>L11</b> 330 × 34</span><span><b>L12</b> 360 × 37</span><span><b>L13</b> 390 × 40</span><span><b>L14</b> 420 × 43</span><span><b>L15</b> 450 × 46</span></p></details>
+        <details class="level-sequence" id="three-of-a-kind-levels">
+        <summary><span>Three of a Kind</span><small>Venus · 20 Chips / 2 Mult per level</small></summary><p><span><b>L1</b> 30 × 3</span><span><b>L2</b> 50 × 5</span><span><b>L3</b> 70 × 7</span><span><b>L4</b> 90 × 9</span><span><b>L5</b> 110 × 11</span><span><b>L6</b> 130 × 13</span><span><b>L7</b> 150 × 15</span><span><b>L8</b> 170 × 17</span><span><b>L9</b> 190 × 19</span><span><b>L10</b> 210 × 21</span><span><b>L11</b> 230 × 23</span><span><b>L12</b> 250 × 25</span><span><b>L13</b> 270 × 27</span><span><b>L14</b> 290 × 29</span><span><b>L15</b> 310 × 31</span></p></details>
+        <details class="level-sequence" id="two-pair-levels">
+        <summary><span>Two Pair</span><small>Uranus · 20 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 20 × 2</span><span><b>L2</b> 40 × 3</span><span><b>L3</b> 60 × 4</span><span><b>L4</b> 80 × 5</span><span><b>L5</b> 100 × 6</span><span><b>L6</b> 120 × 7</span><span><b>L7</b> 140 × 8</span><span><b>L8</b> 160 × 9</span><span><b>L9</b> 180 × 10</span><span><b>L10</b> 200 × 11</span><span><b>L11</b> 220 × 12</span><span><b>L12</b> 240 × 13</span><span><b>L13</b> 260 × 14</span><span><b>L14</b> 280 × 15</span><span><b>L15</b> 300 × 16</span></p></details>
+        <details class="level-sequence" id="pair-levels">
+        <summary><span>Pair</span><small>Mercury · 15 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 10 × 2</span><span><b>L2</b> 25 × 3</span><span><b>L3</b> 40 × 4</span><span><b>L4</b> 55 × 5</span><span><b>L5</b> 70 × 6</span><span><b>L6</b> 85 × 7</span><span><b>L7</b> 100 × 8</span><span><b>L8</b> 115 × 9</span><span><b>L9</b> 130 × 10</span><span><b>L10</b> 145 × 11</span><span><b>L11</b> 160 × 12</span><span><b>L12</b> 175 × 13</span><span><b>L13</b> 190 × 14</span><span><b>L14</b> 205 × 15</span><span><b>L15</b> 220 × 16</span></p></details>
+        <details class="level-sequence" id="high-card-levels">
+        <summary><span>High Card</span><small>Pluto · 10 Chips / 1 Mult per level</small></summary><p><span><b>L1</b> 5 × 1</span><span><b>L2</b> 15 × 2</span><span><b>L3</b> 25 × 3</span><span><b>L4</b> 35 × 4</span><span><b>L5</b> 45 × 5</span><span><b>L6</b> 55 × 6</span><span><b>L7</b> 65 × 7</span><span><b>L8</b> 75 × 8</span><span><b>L9</b> 85 × 9</span><span><b>L10</b> 95 × 10</span><span><b>L11</b> 105 × 11</span><span><b>L12</b> 115 × 12</span><span><b>L13</b> 125 × 13</span><span><b>L14</b> 135 × 14</span><span><b>L15</b> 145 × 15</span></p></details>
       </div>
     </section>
 
     <section class="hand-levels-copy" aria-labelledby="scaling-heading">
       <p class="hand-section-kicker">How scaling works</p>
-      <h2 id="scaling-heading">Hand levels use a linear formula</h2>
+      <h2 id="scaling-heading">Balatro Hand Level Scaling Formula</h2>
       <p>
         Every Planet upgrade adds the same fixed Chips and Mult for that hand. Chips and Mult each grow linearly,
         while their product accelerates because both sides of the score are increasing.
@@ -351,6 +378,14 @@
         <div class="formula-line">Chips(L) = Base Chips + (L − 1) × Chips per Level</div>
         <div class="formula-line">Mult(L) = Base Mult + (L − 1) × Mult per Level</div>
       </div>
+      <figure class="scaling-chart">
+        <img src="assets/balatro-hand-level-scaling-chart.svg"
+          alt="Balatro hand level scaling chart comparing Chips and Mult gained per level for all 12 poker hands"
+          width="1200" height="630" loading="lazy">
+        <figcaption>
+          Each point shows one hand's fixed gain per level. Flush Five gains the most Chips; Straight Flush and Flush House share the highest Mult gain.
+        </figcaption>
+      </figure>
       <div class="hand-info-grid">
         <article class="hand-info-card">
           <h3>Example: Level 10 Straight</h3>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Balatro hand level scaling chart</title>
+  <desc id="desc">A scatter chart of the fixed Chips and Mult gained per level by all 12 Balatro poker hands.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#26383a"/>
+      <stop offset="1" stop-color="#090f11"/>
+    </linearGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#d8ebe5" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#grid)"/>
+  <path d="M0 6H1200" stroke="#f4ca52" stroke-width="12"/>
+
+  <text x="62" y="64" fill="#f4ca52" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="3">BALATROCALC · SOURCE-CHECKED</text>
+  <text x="62" y="110" fill="#fff7d7" font-family="Arial, sans-serif" font-size="42" font-weight="700">Hand Level Scaling</text>
+  <text x="62" y="140" fill="#adbfbd" font-family="Arial, sans-serif" font-size="19">Fixed gains applied every time a poker hand gains one level</text>
+
+  <rect x="766" y="46" width="374" height="88" rx="12" fill="#070c0d" fill-opacity=".58" stroke="#f4ca52" stroke-opacity=".28"/>
+  <text x="790" y="80" fill="#72c9ff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">CHIPS(L) = BASE + (L−1) × Δ</text>
+  <text x="790" y="111" fill="#ff817a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">MULT(L)  = BASE + (L−1) × Δ</text>
+
+  <g stroke="#d8ebe5" stroke-opacity=".12" stroke-width="1">
+    <path d="M180 170H1122M180 280H1122M180 390H1122M180 500H1122"/>
+    <path d="M220 160V520M330 160V520M440 160V520M550 160V520M660 160V520M770 160V520M880 160V520M990 160V520M1100 160V520"/>
+  </g>
+  <path d="M180 155V520H1125" fill="none" stroke="#d8ebe5" stroke-opacity=".4" stroke-width="2"/>
+
+  <g fill="#ff817a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" text-anchor="end">
+    <text x="158" y="176">+4</text><text x="158" y="286">+3</text><text x="158" y="396">+2</text><text x="158" y="506">+1</text>
+  </g>
+  <text x="42" y="356" fill="#ff817a" font-family="Arial, sans-serif" font-size="17" font-weight="700" transform="rotate(-90 42 356)">MULT PER LEVEL</text>
+
+  <g fill="#72c9ff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" text-anchor="middle">
+    <text x="220" y="548">+10</text><text x="330" y="548">+15</text><text x="440" y="548">+20</text><text x="550" y="548">+25</text><text x="660" y="548">+30</text><text x="770" y="548">+35</text><text x="880" y="548">+40</text><text x="990" y="548">+45</text><text x="1100" y="548">+50</text>
+  </g>
+  <text x="650" y="587" fill="#72c9ff" font-family="Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle">CHIPS PER LEVEL</text>
+
+  <g font-family="Arial, sans-serif" font-size="14" font-weight="700">
+    <g><circle cx="220" cy="500" r="8" fill="#72c9ff" filter="url(#glow)"/><text x="220" y="483" fill="#eef6f3" text-anchor="middle">High Card</text></g>
+    <g><circle cx="330" cy="500" r="8" fill="#72c9ff" filter="url(#glow)"/><text x="330" y="483" fill="#eef6f3" text-anchor="middle">Pair</text></g>
+    <g><circle cx="440" cy="500" r="8" fill="#72c9ff" filter="url(#glow)"/><text x="440" y="483" fill="#eef6f3" text-anchor="middle">Two Pair</text></g>
+    <g><circle cx="330" cy="390" r="8" fill="#f4ca52" filter="url(#glow)"/><text x="330" y="373" fill="#eef6f3" text-anchor="middle">Flush</text></g>
+    <g><circle cx="440" cy="390" r="8" fill="#f4ca52" filter="url(#glow)"/><text x="440" y="373" fill="#eef6f3" text-anchor="middle">Three of a Kind</text></g>
+    <g><circle cx="550" cy="390" r="8" fill="#f4ca52" filter="url(#glow)"/><text x="550" y="373" fill="#eef6f3" text-anchor="middle">Full House</text></g>
+    <g><circle cx="652" cy="280" r="8" fill="#f4ca52" filter="url(#glow)"/><circle cx="668" cy="280" r="8" fill="#f4ca52" filter="url(#glow)"/><text x="660" y="257" fill="#eef6f3" text-anchor="middle">Straight · Four of a Kind</text></g>
+    <g><circle cx="770" cy="280" r="8" fill="#c797ff" filter="url(#glow)"/><text x="770" y="257" fill="#e9d5ff" text-anchor="middle">Five of a Kind</text></g>
+    <g><circle cx="872" cy="170" r="8" fill="#f4ca52" filter="url(#glow)"/><circle cx="888" cy="170" r="8" fill="#c797ff" filter="url(#glow)"/><text x="880" y="199" fill="#eef6f3" text-anchor="middle">Straight Flush · Flush House</text></g>
+    <g><circle cx="1100" cy="280" r="10" fill="#c797ff" filter="url(#glow)"/><text x="1089" y="257" fill="#e9d5ff" text-anchor="end">Flush Five</text></g>
+  </g>
+
+  <g font-family="Arial, sans-serif" font-size="14">
+    <circle cx="62" cy="586" r="6" fill="#f4ca52"/><text x="76" y="591" fill="#adbfbd">regular hand</text>
+    <circle cx="190" cy="586" r="6" fill="#c797ff"/><text x="204" y="591" fill="#adbfbd">secret hand</text>
+  </g>
+</svg>

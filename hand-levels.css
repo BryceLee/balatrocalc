@@ -214,6 +214,65 @@ body.hand-levels-page {
   line-height: 1.35;
 }
 
+.hand-levels-answer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  margin-top: 14px;
+  padding: 17px 20px;
+  border: 1px solid rgba(244, 202, 82, 0.26);
+  border-radius: 6px 14px 6px 14px;
+  background:
+    linear-gradient(90deg, rgba(244, 202, 82, 0.1), transparent 48%),
+    rgba(9, 15, 17, 0.88);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+.hand-levels-answer div,
+.hand-levels-answer strong,
+.answer-label {
+  display: block;
+}
+
+.answer-label {
+  margin-bottom: 5px;
+  color: var(--hand-gold);
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.hand-levels-answer strong {
+  color: #fff7d7;
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.hand-levels-answer p {
+  margin: 0;
+  color: var(--hand-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.hand-levels-answer p strong {
+  display: inline;
+  color: var(--hand-gold-soft);
+  font-size: inherit;
+}
+
+.hand-levels-answer a {
+  padding: 9px 11px;
+  color: var(--hand-gold-soft);
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid rgba(244, 202, 82, 0.25);
+  border-radius: 6px;
+}
+
 .hand-levels-panel,
 .hand-levels-copy,
 .hand-levels-sequences {
@@ -509,6 +568,7 @@ body.hand-levels-page {
 
 .hand-levels-copy h2,
 .hand-levels-sequences h2 {
+  scroll-margin-top: 116px;
   margin: 0 0 12px;
   color: #fff0b7;
   font-size: clamp(27px, 4vw, 38px);
@@ -555,6 +615,27 @@ body.hand-levels-page {
   border-left-color: var(--hand-mult);
   background: rgba(255, 111, 104, 0.07);
   color: #ffe0de;
+}
+
+.scaling-chart {
+  margin: 24px 0;
+}
+
+.scaling-chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(244, 202, 82, 0.22);
+  border-radius: 12px;
+  background: #10191b;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+}
+
+.scaling-chart figcaption {
+  margin-top: 9px;
+  color: var(--hand-muted);
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 .hand-info-grid,
@@ -619,7 +700,30 @@ body.hand-levels-page {
   margin-top: 20px;
 }
 
+.hand-level-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 18px;
+}
+
+.hand-level-jumps a {
+  padding: 7px 9px;
+  border: 1px solid rgba(203, 224, 219, 0.13);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.15);
+  color: #c8d8d5;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.hand-level-jumps a:hover {
+  border-color: rgba(244, 202, 82, 0.42);
+  color: var(--hand-gold-soft);
+}
+
 .level-sequence {
+  scroll-margin-top: 116px;
   border: 1px solid rgba(203, 224, 219, 0.12);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.14);
@@ -738,6 +842,15 @@ body.hand-levels-page {
     grid-template-columns: 1fr;
   }
 
+  .hand-levels-answer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hand-levels-answer a {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
   .related-hand-links {
     grid-template-columns: 1fr;
   }
@@ -761,6 +874,22 @@ body.hand-levels-page {
   .hand-levels-copy,
   .hand-levels-sequences {
     padding: 18px 14px;
+  }
+
+  .hand-levels-answer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .hand-levels-answer a {
+    grid-column: auto;
+  }
+
+  .hand-levels-copy h2,
+  .hand-levels-sequences h2,
+  .level-sequence {
+    scroll-margin-top: 152px;
   }
 
   .hand-table-meta {

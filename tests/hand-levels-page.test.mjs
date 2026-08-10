@@ -9,6 +9,8 @@ const root = path.resolve(testDir, '..');
 const html = fs.readFileSync(path.join(root, 'balatro-hand-levels.html'), 'utf8');
 const homeHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const script = fs.readFileSync(path.join(root, 'hand-levels.js'), 'utf8');
+const scalingChartSvg = fs.readFileSync(path.join(root, 'assets', 'balatro-hand-level-scaling-chart.svg'), 'utf8');
+const scalingChartPng = fs.statSync(path.join(root, 'assets', 'balatro-hand-level-scaling-chart.png'));
 const languageHandler = fs.readFileSync(path.join(root, 'languageHandler.js'), 'utf8');
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
 const redirects = fs.readFileSync(path.join(root, '_redirects'), 'utf8');
@@ -75,9 +77,23 @@ for (const sequence of levelSequences) {
   assert.equal((sequence[1].match(/<b>L\d+<\/b>/g) || []).length, 15, 'every sequence should contain 15 levels');
 }
 
+const handAnchorIds = [...html.matchAll(/<details class="level-sequence[^>]*\sid="([^"]+)"/g)].map((match) => match[1]);
+assert.equal(handAnchorIds.length, 12, 'every hand sequence should expose a direct anchor');
+assert.equal(new Set(handAnchorIds).size, 12, 'hand sequence anchors should be unique');
+for (const id of handAnchorIds) {
+  assert.match(html, new RegExp(`href="#${id}"`), `${id} should have a jump link`);
+}
+
 assert.match(html, /<link rel="canonical" href="https:\/\/balatrocalc\.com\/balatro-hand-levels">/);
 assert.match(html, /Verified against Balatro game source 1\.0\.1o/);
 assert.match(html, /No level cap in the game source\./);
+assert.match(html, /<h2 id="scaling-heading">Balatro Hand Level Scaling Formula<\/h2>/);
+assert.match(html, /<img src="assets\/balatro-hand-level-scaling-chart\.svg"/);
+assert.match(html, /Level 15 and Level 50 are convenient chart presets, not maximums\./);
+assert.match(html, /L15 and L50 are only convenient chart presets\./);
+assert.match(scalingChartSvg, /<title id="title">Balatro hand level scaling chart<\/title>/);
+assert.ok(scalingChartPng.size > 100_000, 'social preview PNG should be a real rendered chart');
+assert.match(html, /<meta property="og:image" content="https:\/\/balatrocalc\.com\/assets\/balatro-hand-level-scaling-chart\.png">/);
 assert.doesNotMatch(html, /id="handLevelInput"[^>]*\bmax=/);
 assert.match(sitemap, /<loc>https:\/\/balatrocalc\.com\/balatro-hand-levels<\/loc>/);
 assert.match(redirects, /\/balatro-hand-levels\.html \/balatro-hand-levels 301/);
