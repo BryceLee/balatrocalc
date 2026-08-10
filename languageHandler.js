@@ -77,6 +77,8 @@
       '/balatro-builds.html',
       '/balatro-hand-levels',
       '/balatro-hand-levels.html',
+      '/balatro-max-hand-size',
+      '/balatro-max-hand-size.html',
     ]);
     const effectiveRestPath = (lang !== 'en' && rootOnlyPages.has(restPath)) ? '/' : restPath;
     const prefix = lang === 'en' ? '' : `/${lang}`;

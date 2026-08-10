@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-1275876891096923">
+  <meta name="robots" content="index, follow">
+  <title>Balatro Max Hand Size: Default, Maximum &amp; Every Increase</title>
+  <meta name="description" content="Balatro starts with 8 cards in hand and has no fixed source-code maximum. See every hand-size modifier and build your exact current hand size.">
+  <meta name="keywords" content="balatro max hand size, balatro maximum hand size, balatro increase hand size, balatro hand size joker, balatro hand size calculator">
+  <meta property="og:title" content="Balatro Max Hand Size: Complete Source-Checked Guide">
+  <meta property="og:description" content="Default 8, no fixed code cap. Combine decks, Jokers, vouchers, Tags, Spectral cards, and Boss Blinds in the interactive builder.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-max-hand-size">
+  <meta property="og:image" content="https://balatrocalc.com/assets/balatro-max-hand-size-guide.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Balatro Max Hand Size">
+  <meta name="twitter:description" content="Every hand-size increase, decrease, duration, and tradeoff—with a live builder.">
+  <meta name="theme-color" content="#122325">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-max-hand-size">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css?v=20260809-site-nav-3">
+  <link rel="stylesheet" href="max-hand-size.css?v=20260810-source-lab">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Balatro Hand Size Builder",
+      "url": "https://balatrocalc.com/balatro-max-hand-size",
+      "description": "A source-checked Balatro hand-size guide and interactive modifier builder.",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Balatro Calculator", "item": "https://balatrocalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Balatro Max Hand Size", "item": "https://balatrocalc.com/balatro-max-hand-size" }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the default hand size in Balatro?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The normal starting hand size is 8 cards. Painted Deck starts at 10 because its deck effect adds 2 hand size." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the maximum hand size in Balatro?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Balatro's source does not define a fixed upper hand-size cap. The practical maximum changes with the deck, vouchers, Jokers, temporary Tags, copies, and the state of the run." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you increase hand size in Balatro?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use Painted Deck, Juggler, Troubadour, Turtle Bean, Paint Brush, Palette, or the temporary Juggle Tag. Their effects stack when the run allows them to coexist." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is hand size the same as hands per round?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Hand size is how many cards you hold after drawing. Hands per round is how many poker hands you may play before losing the Blind." }
+        }
+      ]
+    }
+  </script>
+
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+    plausible.init();
+  </script>
+</head>
+
+<body class="max-hand-size-page">
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div id="titleBar">
+    <div class="titleBarBrand">balatrocalc</div>
+    <span class="subtitle">draw capacity laboratory</span>
+  </div>
+
+  <nav id="topNav" aria-label="Primary navigation">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-hand-levels" class="nav-link">hand levels</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/blog" class="nav-link">blog</a>
+    <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
+    <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
+    <a href="/support" class="nav-link">support</a>
+    <a href="https://forms.gle/f5CHmQ5cb69JZYnN7" class="nav-link nav-link--feedback" target="_blank" rel="noreferrer">feedback</a>
+    <div class="language-switcher">
+      <select id="langSelect" onchange="switchLanguage()" aria-label="Language">
+        <!-- I18N_LANG_OPTIONS_START -->
+        <option value="en" selected>EN</option><option value="cn">中文(简体)</option><option value="tw">中文(繁體)</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt-br">Português (BR)</option><option value="pt-pt">Português (PT)</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="pl">Polski</option><option value="nl">Nederlands</option><option value="sv">Svenska</option><option value="no">Norsk</option><option value="da">Dansk</option><option value="fi">Suomi</option><option value="tr">Türkçe</option><option value="ar">العربية</option><option value="he">עברית</option><option value="hi">हिन्दी</option><option value="id">Bahasa Indonesia</option><option value="vi">Tiếng Việt</option><option value="th">ไทย</option><option value="ms">Bahasa Melayu</option><option value="tl">Filipino</option><option value="ro">Română</option><option value="hu">Magyar</option><option value="cs">Čeština</option><option value="el">Ελληνικά</option>
+        <!-- I18N_LANG_OPTIONS_END -->
+      </select>
+    </div>
+  </nav>
+
+  <main class="hand-size-shell">
+    <header class="hand-size-hero">
+      <div class="hand-size-hero-copy">
+        <p class="hand-size-kicker">Source lab / draw mechanics</p>
+        <h1>Balatro Max Hand Size</h1>
+        <p class="hand-size-lead">
+          Balatro's default hand size is <strong>8 cards</strong>. Painted Deck starts at 10. The game source applies hand-size changes without a fixed upper cap, so there is <strong>no single hard maximum</strong>—your actual limit depends on the run.
+        </p>
+        <div class="source-stamp">Verified against Balatro game source 1.0.1o</div>
+        <a class="hero-builder-link" href="#hand-size-builder">Build your current hand size ↓</a>
+      </div>
+
+      <div class="draw-rig" aria-label="Default hand size is 8 cards">
+        <div class="rig-dial">
+          <span>default draw capacity</span>
+          <strong>8</strong>
+          <small>cards in hand</small>
+        </div>
+        <div class="rig-cards" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <p><b>Painted Deck:</b> 8 + 2 = 10</p>
+      </div>
+    </header>
+
+    <section class="answer-console" aria-label="Balatro maximum hand size answer">
+      <div><span>DEFAULT</span><strong>8</strong><small>normal decks</small></div>
+      <div><span>PAINTED</span><strong>10</strong><small>before other effects</small></div>
+      <div><span>CODE CAP</span><strong>NONE</strong><small>practical total varies</small></div>
+      <p><strong>Hand size</strong> means cards held after drawing. It is not the number of hands you can play per round.</p>
+    </section>
+
+    <section class="builder-panel" id="hand-size-builder" aria-labelledby="builder-heading">
+      <div class="section-heading">
+        <p class="hand-size-kicker">Interactive run builder</p>
+        <h2 id="builder-heading">Calculate your current hand size</h2>
+        <p>Combine only the effects active in your run. Copy counters are included because duplicate Jokers can exist; this is a state builder, not a claim that every combination is easy to obtain.</p>
+      </div>
+
+      <div class="builder-grid">
+        <form class="modifier-console" id="handSizeForm">
+          <fieldset>
+            <legend>Starting deck</legend>
+            <label class="deck-select-label" for="handSizeDeck">Base hand size</label>
+            <select id="handSizeDeck">
+              <option value="8">Normal deck · 8 cards</option>
+              <option value="10">Painted Deck · 10 cards</option>
+            </select>
+            <p class="control-note">Painted Deck adds +2 hand size but removes 1 Joker slot.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend>Permanent run upgrades</legend>
+            <label class="toggle-control"><input type="checkbox" id="paintBrush" data-flat-modifier="1"><span><b>Paint Brush</b><small>Voucher · +1</small></span><em>+1</em></label>
+            <label class="toggle-control"><input type="checkbox" id="palette" data-flat-modifier="1"><span><b>Palette</b><small>Upgrade Voucher · requires Paint Brush</small></span><em>+1</em></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Jokers and current bonus</legend>
+            <label class="counter-control" for="jugglerCopies"><span><b>Juggler copies</b><small>+1 each</small></span><input id="jugglerCopies" type="number" min="0" max="20" step="1" value="0" data-per-copy="1"></label>
+            <label class="counter-control" for="troubadourCopies"><span><b>Troubadour copies</b><small>+2 each · −1 hand/round each</small></span><input id="troubadourCopies" type="number" min="0" max="20" step="1" value="0" data-per-copy="2"></label>
+            <label class="counter-control" for="turtleBeanBonus"><span><b>Turtle Bean bonus</b><small>Starts +5, decays by 1 each round</small></span><select id="turtleBeanBonus"><option value="0">not owned / eaten</option><option value="5">+5 now</option><option value="4">+4 now</option><option value="3">+3 now</option><option value="2">+2 now</option><option value="1">+1 now</option></select></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Temporary and negative effects</legend>
+            <label class="toggle-control"><input type="checkbox" id="juggleTag" data-flat-modifier="3"><span><b>Juggle Tag</b><small>Next round only</small></span><em>+3</em></label>
+            <label class="toggle-control toggle-control--negative"><input type="checkbox" id="manacle" data-flat-modifier="-1"><span><b>The Manacle</b><small>Current Boss Blind</small></span><em>−1</em></label>
+            <label class="counter-control counter-control--negative" for="merryAndyCopies"><span><b>Merry Andy copies</b><small>−1 each</small></span><input id="merryAndyCopies" type="number" min="0" max="20" step="1" value="0" data-per-copy="-1"></label>
+            <label class="counter-control counter-control--negative" for="stuntmanCopies"><span><b>Stuntman copies</b><small>−2 each</small></span><input id="stuntmanCopies" type="number" min="0" max="20" step="1" value="0" data-per-copy="-2"></label>
+            <label class="counter-control counter-control--negative" for="ouijaUses"><span><b>Ouija uses</b><small>−1 per use</small></span><input id="ouijaUses" type="number" min="0" max="50" step="1" value="0" data-per-copy="-1"></label>
+            <label class="counter-control counter-control--negative" for="ectoplasmUses"><span><b>Ectoplasm uses</b><small>Penalties grow −1, −2, −3…</small></span><input id="ectoplasmUses" type="number" min="0" max="50" step="1" value="0"></label>
+          </fieldset>
+        </form>
+
+        <aside class="hand-size-readout" aria-live="polite">
+          <p class="readout-label">CURRENT HAND SIZE</p>
+          <strong id="maxHandSizeValue">8</strong>
+          <span>cards</span>
+          <div class="capacity-track"><i id="capacityTrackFill"></i></div>
+          <p id="handSizeEquation">8 base = 8</p>
+          <ul id="handSizeBreakdown"><li>Normal deck <b>8</b></li></ul>
+          <p class="floor-note" id="handSizeFloorNote" hidden>The source floors the effective card limit at 0.</p>
+          <button id="resetHandSize" type="button">Reset builder</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="guide-panel" aria-labelledby="increase-heading">
+      <div class="section-heading section-heading--split">
+        <div>
+          <p class="hand-size-kicker">Complete modifier index</p>
+          <h2 id="increase-heading">Every way to change hand size</h2>
+        </div>
+        <div class="method-filters" aria-label="Filter hand size methods">
+          <button class="method-filter is-active" type="button" data-method-filter="all" aria-pressed="true">All 12</button>
+          <button class="method-filter" type="button" data-method-filter="increase" aria-pressed="false">Increases 7</button>
+          <button class="method-filter" type="button" data-method-filter="decrease" aria-pressed="false">Decreases 5</button>
+        </div>
+      </div>
+
+      <div class="methods-table-wrap">
+        <table class="methods-table">
+          <thead><tr><th scope="col">Method</th><th scope="col">Change</th><th scope="col">Duration</th><th scope="col">Condition / tradeoff</th></tr></thead>
+          <tbody id="handSizeMethodRows">
+            <tr data-method-row data-method-type="increase"><td><strong>Painted Deck</strong><small>Deck</small></td><td class="delta-positive">+2</td><td>Entire run</td><td>Starts at 10; −1 Joker slot.</td></tr>
+            <tr data-method-row data-method-type="increase"><td><strong>Juggler</strong><small>Common Joker</small></td><td class="delta-positive">+1</td><td>While owned</td><td>Each copy applies its own hand-size effect.</td></tr>
+            <tr data-method-row data-method-type="increase"><td><strong>Troubadour</strong><small>Uncommon Joker</small></td><td class="delta-positive">+2</td><td>While owned</td><td>Also gives −1 hand played per round.</td></tr>
+            <tr data-method-row data-method-type="increase"><td><strong>Turtle Bean</strong><small>Uncommon Joker</small></td><td class="delta-positive">+5 → 0</td><td>Decays</td><td>Loses 1 hand size at the end of each round, then is eaten.</td></tr>
+            <tr data-method-row data-method-type="increase"><td><strong>Paint Brush</strong><small>Voucher</small></td><td class="delta-positive">+1</td><td>Entire run</td><td>Permanent after redemption.</td></tr>
+            <tr data-method-row data-method-type="increase"><td><strong>Palette</strong><small>Upgrade Voucher</small></td><td class="delta-positive">+1</td><td>Entire run</td><td>Requires Paint Brush; both bonuses remain active.</td></tr>
+            <tr data-method-row data-method-type="increase"><td><strong>Juggle Tag</strong><small>Tag</small></td><td class="delta-positive">+3</td><td>Next round</td><td>Applied at round start and removed at round end.</td></tr>
+            <tr data-method-row data-method-type="decrease"><td><strong>Merry Andy</strong><small>Uncommon Joker</small></td><td class="delta-negative">−1</td><td>While owned</td><td>In exchange, gives +3 discards per round.</td></tr>
+            <tr data-method-row data-method-type="decrease"><td><strong>Stuntman</strong><small>Rare Joker</small></td><td class="delta-negative">−2</td><td>While owned</td><td>In exchange, gives +250 Chips.</td></tr>
+            <tr data-method-row data-method-type="decrease"><td><strong>Ouija</strong><small>Spectral card</small></td><td class="delta-negative">−1</td><td>Entire run</td><td>Each use changes all cards in hand to one random rank.</td></tr>
+            <tr data-method-row data-method-type="decrease"><td><strong>Ectoplasm</strong><small>Spectral card</small></td><td class="delta-negative">−1, −2, −3…</td><td>Entire run</td><td>The nth use removes n hand size while adding Negative to a Joker.</td></tr>
+            <tr data-method-row data-method-type="decrease"><td><strong>The Manacle</strong><small>Boss Blind</small></td><td class="delta-negative">−1</td><td>Current Blind</td><td>Restored when the Blind is disabled or ends.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note" id="methodResultCount" aria-live="polite">Showing all 12 hand-size methods.</p>
+    </section>
+
+    <section class="guide-panel source-panel" aria-labelledby="maximum-heading">
+      <div class="section-heading">
+        <p class="hand-size-kicker">The actual maximum</p>
+        <h2 id="maximum-heading">There is no fixed hand-size cap in the source</h2>
+        <p>The hand area's size-change function adds the modifier and keeps the result at 0 or higher. It does not clamp the result to a maximum value.</p>
+      </div>
+      <div class="source-formula"><span>effective hand size</span><strong>max(0, current size + modifier)</strong><small>No upper clamp follows this calculation.</small></div>
+      <div class="source-facts">
+        <article><span>01</span><h3>“Maximum” is run-dependent</h3><p>Deck choice, both hand-size vouchers, active Jokers, Joker copies, Turtle Bean's remaining bonus, and Juggle Tag can all change the number.</p></article>
+        <article><span>02</span><h3>Zero is the real floor</h3><p>Ouija, repeated Ectoplasm uses, negative hand-size Jokers, and The Manacle can push the raw total down, but the effective card limit is floored at 0.</p></article>
+        <article><span>03</span><h3>Challenges are separate</h3><p>Challenge configurations can set different starting parameters. This guide covers the normal playable methods you can acquire or encounter during a run.</p></article>
+      </div>
+      <details class="source-notes"><summary>Source files checked</summary><p><code>functions/misc_functions.lua</code> (default 8), <code>cardarea.lua</code> (size function), <code>game.lua</code> (effect values), <code>back.lua</code>, <code>card.lua</code>, <code>tag.lua</code>, <code>blind.lua</code>, and <code>state_events.lua</code> (application and removal).</p></details>
+    </section>
+
+    <section class="guide-panel" aria-labelledby="strategy-heading">
+      <div class="section-heading">
+        <p class="hand-size-kicker">Practical decision</p>
+        <h2 id="strategy-heading">Is increasing hand size worth it?</h2>
+      </div>
+      <div class="strategy-grid">
+        <article class="strategy-card strategy-card--good"><span>TAKE IT WHEN</span><h3>Your hand needs selection depth</h3><p>More held cards improve the chance of finding Straights, Flushes, multi-card setups, discard targets, and cards you want to keep for held-in-hand effects.</p></article>
+        <article class="strategy-card strategy-card--warn"><span>CHECK THE COST</span><h3>The tradeoff attacks your engine</h3><p>Painted Deck loses a Joker slot, Troubadour loses a hand per round, and Turtle Bean decays. Extra cards are valuable only if they solve a real consistency problem.</p></article>
+      </div>
+      <p class="strategy-bottom-line"><strong>Bottom line:</strong> optimize for the hand size your build needs, not a record. A reliable +1 or +2 can be decisive; stacking beyond that has diminishing value unless held-card effects or demanding five-card hands convert the extra capacity into score.</p>
+    </section>
+
+    <section class="guide-panel" aria-labelledby="faq-heading">
+      <div class="section-heading"><p class="hand-size-kicker">Quick reference</p><h2 id="faq-heading">Balatro hand size FAQ</h2></div>
+      <div class="faq-grid">
+        <article><h3>What is the default hand size?</h3><p>8 cards for normal decks. Painted Deck adds 2, so it begins with 10.</p></article>
+        <article><h3>What is the maximum hand size?</h3><p>There is no fixed upper cap in the source. The practical result depends on the effects and copies present in a specific run.</p></article>
+        <article><h3>Do hand-size effects stack?</h3><p>Yes, when the effects coexist. Vouchers, deck effects, Jokers, and a temporary Juggle Tag all feed the same hand card limit.</p></article>
+        <article><h3>Is hand size the same as hands per round?</h3><p>No. Hand size controls cards held after drawing; hands per round controls how many poker hands you may play.</p></article>
+        <article><h3>Why does Ectoplasm get harsher?</h3><p>The first use costs 1 hand size, then the stored penalty increases. The second costs 2, the third costs 3, and so on.</p></article>
+        <article><h3>Does The Manacle permanently reduce it?</h3><p>No. Its −1 is tied to that active Boss Blind and is restored when the Blind is disabled or finished.</p></article>
+      </div>
+    </section>
+
+    <section class="guide-panel related-panel" aria-labelledby="related-heading">
+      <div class="section-heading"><p class="hand-size-kicker">Keep planning</p><h2 id="related-heading">Use the extra cards</h2></div>
+      <div class="related-links">
+        <a href="/balatro-hand-levels"><strong>Hand Levels Chart</strong><span>Compare Chips, Mult, Planets, and exact level scaling.</span></a>
+        <a href="/"><strong>Balatro Calculator</strong><span>Score the cards and Jokers your larger hand supports.</span></a>
+        <a href="/balatro-jokers"><strong>Jokers Guide</strong><span>Balance consistency, economy, Chips, Mult, and xMult.</span></a>
+      </div>
+    </section>
+  </main>
+
+  <script src="balatro-background.js"></script>
+  <script src="max-hand-size.js?v=20260810-source-lab"></script>
+  <script src="languageHandler.js"></script>
+</body>
+
+</html>
