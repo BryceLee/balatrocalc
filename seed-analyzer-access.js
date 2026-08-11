@@ -23,6 +23,15 @@
     source: 'source',
     token: 'sourceToken'
   };
+  const SEED_PAGE_ANALYSIS_SOURCES = new Set([
+    'seed-generator',
+    'popular-seeds',
+    'recommended-seeds',
+    'featured-joker',
+    'seed-spotlight',
+    'community-seed-library',
+    'seed-list'
+  ]);
   const storageFallback = {
     local: new Map(),
     session: new Map()
@@ -144,7 +153,7 @@
     refreshSubscriptionState();
     trackPaidSessionStarted();
     setupSessionHeartbeat();
-    consumeSeedGeneratorRedirect();
+    consumeSeedPageRedirect();
     setupPaywallActions();
     setupAnalyzeIntercept();
     handlePaypalReturn();
@@ -489,7 +498,7 @@
     window.history.replaceState({}, '', nextUrl);
   }
 
-  function consumeSeedGeneratorRedirect() {
+  function consumeSeedPageRedirect() {
     const params = new URLSearchParams(window.location.search);
     const source = params.get(SOURCE_PARAMS.source);
     const sourceToken = params.get(SOURCE_PARAMS.token);
@@ -499,13 +508,13 @@
     params.delete(SOURCE_PARAMS.source);
     params.delete(SOURCE_PARAMS.token);
 
-    const isGeneratorSource = source === 'seed-generator' && Boolean(sourceToken);
-    if (!isGeneratorSource) {
+    const isSeedPageSource = SEED_PAGE_ANALYSIS_SOURCES.has(source) && Boolean(sourceToken);
+    if (!isSeedPageSource) {
       replaceUrlWithParams(params);
       return;
     }
 
-    const sourceHandleKey = `bc_source_seed_${getTodayKey()}_${sourceToken}`;
+    const sourceHandleKey = `bc_source_seed_${getTodayKey()}_${source}_${sourceToken}`;
     let alreadyHandled = false;
     try {
       alreadyHandled = readStored('session', sourceHandleKey) === '1';
@@ -525,13 +534,13 @@
     if (!paid.active) {
       if (remainingUses() <= 0) {
         params.delete('seed');
-        track('free_limit_reached', { source: 'seed-generator-redirect' });
+        track('free_limit_reached', { source: `${source}-redirect` });
         setStatus('Daily free limit reached. Subscribe for unlimited access.', true);
         showPaywall('free_limit_reached');
       } else {
         recordUse();
         updateQuotaUI();
-        track('seed_analyze_allowed_free', { source: 'seed-generator-redirect' });
+        track('seed_analyze_allowed_free', { source: `${source}-redirect` });
         skipProgrammaticAnalyzeCountUntil = Date.now() + 5000;
       }
     }
