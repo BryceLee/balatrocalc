@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+[data-ai-preview-nav][hidden] {
+  display: none !important;
+}
+
 html, body {
   margin: 0;
   padding: 0;

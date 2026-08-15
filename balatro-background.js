@@ -398,4 +398,10 @@ function setupOrientationNotice() {
 document.addEventListener('DOMContentLoaded', () => {
     new BalatroBG();
     setupOrientationNotice();
+    if (document.querySelector('[data-ai-preview-nav]')) {
+        const previewNav = document.createElement('script');
+        previewNav.src = '/ai-preview-nav.js?v=20260815-private-preview';
+        previewNav.defer = true;
+        document.head.appendChild(previewNav);
+    }
 });

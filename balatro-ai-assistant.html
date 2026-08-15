@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Balatro AI Joker Advisor — Ask About Jokers and Builds</title>
+  <meta name="description" content="Ask a Balatro AI advisor about Jokers, builds, scoring order, economy, and strategy. Pay only for the Credits you use—no subscription or automatic renewal.">
+  <link rel="canonical" href="https://balatrocalc.com/balatro-ai-assistant">
+  <meta property="og:title" content="Balatro AI Joker Advisor">
+  <meta property="og:description" content="Ask about Balatro Jokers and builds with transparent, token-based Credits and no subscription.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://balatrocalc.com/balatro-ai-assistant">
+  <meta name="theme-color" content="#263d36">
+  <link rel="stylesheet" href="style.css?v=20260815-ai-advisor">
+  <link rel="stylesheet" href="ai-assistant.css?v=20260815-ai-advisor">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script async src="https://accounts.google.com/gsi/client" onload="window.initBalatroGoogleSignIn && window.initBalatroGoogleSignIn()"></script>
+  <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init();
+  </script>
+</head>
+
+<body class="aiAdvisorPage">
+  <canvas id="backgroundCanvas"></canvas>
+  <div id="titleBar">
+    <div class="titleBarBrand">balatrocalc</div>
+    <span class="subtitle">joker advisor</span>
+  </div>
+
+  <nav id="topNav" aria-label="Primary navigation">
+    <a href="/" class="nav-link">calculator</a>
+    <a href="/balatro-hand-levels" class="nav-link">hand levels</a>
+    <a href="/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/balatro-ai-assistant" class="nav-link nav-link--active nav-link--proper-case" data-ai-preview-nav hidden>AI Advisor</a>
+    <a href="/blog" class="nav-link">blog</a>
+    <a href="/support" class="nav-link">support</a>
+  </nav>
+
+  <main class="aiShell">
+    <section class="aiHero" aria-labelledby="aiPageTitle">
+      <div class="aiHeroCopy">
+        <div class="aiEyebrow"><span class="aiEyebrowDot"></span> BALATRO STRATEGY TERMINAL</div>
+        <h1 id="aiPageTitle">Ask the Joker<br><span>before you sell it.</span></h1>
+        <p>Get a second opinion on Joker roles, build direction, scoring order, economy, and shop decisions. Exact scores still belong in the calculator.</p>
+        <div class="aiHeroLinks">
+          <a href="/" class="aiTextLink">Open score calculator →</a>
+          <a href="/balatro-jokers" class="aiTextLink">Browse Joker guide →</a>
+        </div>
+      </div>
+      <div class="aiHeroCard" aria-hidden="true">
+        <div class="aiCardEdition">ADVISOR</div>
+        <div class="aiCardFace">
+          <div class="aiJokerHat">♢</div>
+          <div class="aiOracleEye"></div>
+          <div class="aiSignalLines"><i></i><i></i><i></i></div>
+        </div>
+        <div class="aiCardCaption">KNOW WHEN TO PIVOT</div>
+      </div>
+    </section>
+
+    <section class="aiWorkspace">
+      <div class="aiChatPanel">
+        <header class="aiPanelHeader">
+          <div>
+            <span class="aiPanelKicker">LIVE TABLE</span>
+            <h2>Joker Advisor</h2>
+          </div>
+          <div class="aiBalancePill" id="aiBalancePill" aria-live="polite">
+            <span>CREDITS</span>
+            <strong id="aiBalance">—</strong>
+          </div>
+        </header>
+
+        <div class="aiLoginGate" id="aiLoginGate">
+          <div class="aiLoginSeal">G</div>
+          <h3>Sign in to start your table</h3>
+          <p>Your Google account keeps purchased Credits and billing history attached to you. No password is stored by this site.</p>
+          <div id="googleSignInButton" class="aiGoogleButton"></div>
+          <p class="aiGateFinePrint">Signing in creates a separate AI wallet. Seed Pro access and AI Credits are independent.</p>
+        </div>
+
+        <div class="aiChat" id="aiChat" hidden>
+          <div class="aiMessages" id="aiMessages" aria-live="polite">
+            <article class="aiMessage aiMessage--assistant">
+              <div class="aiMessageRole">JOKER ADVISOR</div>
+              <p>Show me your Jokers, describe the Ante and your main hand, or ask why a build is stalling. I’ll help you find the missing role.</p>
+              <div class="aiPromptChips" aria-label="Example questions">
+                <button type="button" data-prompt="I have Blueprint, Photograph, and Hanging Chad. What order should I use and why?">Blueprint order</button>
+                <button type="button" data-prompt="How do I know whether my build needs Chips, +Mult, or XMult?">Missing role</button>
+                <button type="button" data-prompt="When should I pivot away from a Flush build?">When to pivot</button>
+              </div>
+            </article>
+          </div>
+
+          <form class="aiComposer" id="aiComposer">
+            <label for="aiQuestion">Your Balatro question</label>
+            <textarea id="aiQuestion" maxlength="2000" rows="3" placeholder="Example: I’m on Ante 6 with Constellation and Blueprint…"></textarea>
+            <div class="aiComposerFooter">
+              <span id="aiComposerHint">Cost depends on model, input/output tokens, and conversation length.</span>
+              <button type="submit" class="aiSendButton" id="aiSendButton">
+                <span>Ask advisor</span><b>↗</b>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <aside class="aiAccountRail">
+        <section class="aiAccountCard">
+          <div class="aiAccountSignedOut" id="aiAccountSignedOut">
+            <span class="aiRailLabel">YOUR WALLET</span>
+            <h2>Sign in to see your Credits</h2>
+            <p>One wallet per Google account. Purchases never renew automatically.</p>
+          </div>
+          <div class="aiAccountSignedIn" id="aiAccountSignedIn" hidden>
+            <div class="aiUserRow">
+              <img id="aiUserPicture" alt="" referrerpolicy="no-referrer">
+              <div>
+                <strong id="aiUserName">Player</strong>
+                <span id="aiUserEmail"></span>
+              </div>
+              <button type="button" id="aiLogout" class="aiIconButton">Log out</button>
+            </div>
+            <div class="aiWalletTotal">
+              <span>AVAILABLE BALANCE</span>
+              <strong><b id="aiWalletBalance">0.0</b> Credits</strong>
+              <small>10 Credits = $1 of AI balance</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="aiPurchaseCard" id="aiPurchaseCard">
+          <div class="aiRailLabel">ONE-TIME TOP UP</div>
+          <h2>Choose your stack</h2>
+          <p class="aiPurchaseIntro">No subscription. No automatic renewal. All payments are processed by PayPal.</p>
+          <div class="aiPackList">
+            <button type="button" class="aiPack" data-package="starter" disabled>
+              <span class="aiPackCoins"><i></i><i></i><i></i></span>
+              <span class="aiPackCopy"><strong>30 Credits</strong><small>Start a few conversations</small></span>
+              <span class="aiPackPrice">$3.50</span>
+            </button>
+            <button type="button" class="aiPack aiPack--best" data-package="refill" disabled>
+              <span class="aiBestFlag">BEST VALUE</span>
+              <span class="aiPackCoins"><i></i><i></i><i></i><i></i></span>
+              <span class="aiPackCopy"><strong>100 Credits</strong><small>For longer build sessions</small></span>
+              <span class="aiPackPrice">$10.90</span>
+            </button>
+          </div>
+          <div class="aiPurchaseStatus" id="aiPurchaseStatus" aria-live="polite"></div>
+        </section>
+
+        <details class="aiLedgerCard" id="aiLedgerCard">
+          <summary><span>Usage & receipts</span><b>＋</b></summary>
+          <div class="aiLedger" id="aiLedger">
+            <p>Sign in to view recent activity.</p>
+          </div>
+        </details>
+      </aside>
+    </section>
+
+    <section class="aiTrustStrip" aria-label="Billing details">
+      <div><strong>PAY AS YOU GO</strong><span>Only manual Credit purchases</span></div>
+      <div><strong>TOKEN BASED</strong><span>Longer context and answers may cost more</span></div>
+      <div><strong>VISIBLE RECEIPTS</strong><span>Every answer shows the actual deduction</span></div>
+      <div><strong>FAILED ANSWER?</strong><span>No Credits charged when billing fails</span></div>
+    </section>
+
+    <section class="aiDisclosure">
+      <h2>How AI Credits work</h2>
+      <p>AI responses have a real token cost, so Credits are separate from every existing BalatroCalc membership, including Seed Pro. Usage is calculated from the selected model, input and output tokens, and conversation context. The exact deduction appears after each answer and in your usage history.</p>
+      <p>AI can make mistakes. Use the deterministic <a href="/">calculator</a> for exact scores and confirm version-specific mechanics before making a critical run decision.</p>
+    </section>
+  </main>
+
+  <footer class="aiFooter">
+    <span>balatrocalc AI</span>
+    <nav><a href="/privacy-policy/">privacy</a><a href="/terms/">terms</a><a href="/support">support</a></nav>
+  </footer>
+
+  <script src="balatro-background.js"></script>
+  <script src="ai-assistant.js?v=20260815-ai-advisor"></script>
+</body>
+
+</html>
