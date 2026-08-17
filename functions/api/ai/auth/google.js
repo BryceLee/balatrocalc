@@ -22,7 +22,7 @@ export async function onRequestPost({ request, env }) {
     return errorResponse('Google sign-in could not be verified', 401);
   }
   if (!isAiEmailAllowed(env, profile.email)) {
-    return errorResponse('AI Advisor is currently in a private Seed Pro preview', 403);
+    return errorResponse('AI Advisor is not available for this account', 403);
   }
 
   const now = nowIso();

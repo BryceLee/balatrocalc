@@ -254,6 +254,10 @@
 .aiPackPrice { color:var(--ai-gold); font-size:21px; }
 .aiPurchaseStatus { min-height:18px; margin-top:10px; color:#9fb0a9; font-size:12px; }
 .aiPurchaseStatus.is-error { color:#ff918c; }
+.aiPurchaseConsent { display:grid; grid-template-columns:18px 1fr; gap:9px; align-items:start; margin-top:15px; color:#c6d0ca; font-size:12px; line-height:1.45; cursor:pointer; }
+.aiPurchaseConsent input { width:16px; height:16px; margin:1px 0 0; accent-color:var(--ai-gold); }
+.aiPurchaseConsent a { color:var(--ai-gold); text-underline-offset:2px; }
+.aiPurchaseProvider { margin:8px 0 0; color:#82938b; font-size:11px; line-height:1.45; }
 
 .aiLedgerCard { overflow:hidden; }
 .aiLedgerCard summary { display:flex; justify-content:space-between; align-items:center; padding:17px 19px; color:var(--ai-cream); cursor:pointer; list-style:none; }

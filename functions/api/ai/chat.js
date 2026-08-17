@@ -10,6 +10,7 @@ import {
   requireAiSession,
   sha256Hex
 } from './_shared.js';
+import { jokerGroundingForMessages } from './_joker-grounding.js';
 
 const MAX_MESSAGE_CHARS = 2_000;
 const MAX_HISTORY_MESSAGES = 10;
@@ -220,6 +221,9 @@ export async function onRequestPost({ request, env }) {
   let providerResponse;
   let payload;
   try {
+    const jokerGrounding = jokerGroundingForMessages(messages);
+    const systemMessages = [{ role: 'system', content: aiSystemPrompt() }];
+    if (jokerGrounding) systemMessages.push({ role: 'system', content: jokerGrounding });
     providerResponse = await fetch('https://api.302.ai/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -229,7 +233,7 @@ export async function onRequestPost({ request, env }) {
       },
       body: JSON.stringify({
         model,
-        messages: [{ role: 'system', content: aiSystemPrompt() }, ...messages],
+        messages: [...systemMessages, ...messages],
         temperature: 0.25,
         max_tokens: MAX_OUTPUT_TOKENS
       }),

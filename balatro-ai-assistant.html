@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
   <title>Balatro AI Joker Advisor — Ask About Jokers and Builds</title>
   <meta name="description" content="Ask a Balatro AI advisor about Jokers, builds, scoring order, economy, and strategy. Pay only for the Credits you use—no subscription or automatic renewal.">
   <link rel="canonical" href="https://balatrocalc.com/balatro-ai-assistant">
@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://balatrocalc.com/balatro-ai-assistant">
   <meta name="theme-color" content="#263d36">
   <link rel="stylesheet" href="style.css?v=20260815-ai-advisor">
-  <link rel="stylesheet" href="ai-assistant.css?v=20260815-ai-advisor">
+  <link rel="stylesheet" href="ai-assistant.css?v=20260817-public">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script async src="https://accounts.google.com/gsi/client" onload="window.initBalatroGoogleSignIn && window.initBalatroGoogleSignIn()"></script>
   <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
@@ -35,7 +35,7 @@
     <a href="/" class="nav-link">calculator</a>
     <a href="/balatro-hand-levels" class="nav-link">hand levels</a>
     <a href="/balatro-seeds" class="nav-link">seeds</a>
-    <a href="/balatro-ai-assistant" class="nav-link nav-link--active nav-link--proper-case" data-ai-preview-nav hidden>AI Advisor</a>
+    <a href="/balatro-ai-assistant" class="nav-link nav-link--active nav-link--proper-case">AI Advisor</a>
     <a href="/blog" class="nav-link">blog</a>
     <a href="/support" class="nav-link">support</a>
   </nav>
@@ -136,7 +136,7 @@
         <section class="aiPurchaseCard" id="aiPurchaseCard">
           <div class="aiRailLabel">ONE-TIME TOP UP</div>
           <h2>Choose your stack</h2>
-          <p class="aiPurchaseIntro">No subscription. No automatic renewal. All payments are processed by PayPal.</p>
+          <p class="aiPurchaseIntro"><strong>No subscription and no automatic renewal.</strong> AI Credit purchases are non-refundable. We recommend trying the smaller 30-Credit pack first.</p>
           <div class="aiPackList">
             <button type="button" class="aiPack" data-package="starter" disabled>
               <span class="aiPackCoins"><i></i><i></i><i></i></span>
@@ -150,6 +150,11 @@
               <span class="aiPackPrice">$10.90</span>
             </button>
           </div>
+          <label class="aiPurchaseConsent">
+            <input type="checkbox" id="aiPurchaseConsent">
+            <span>I understand this is a one-time, non-refundable digital Credit purchase. I have read the <a href="/terms/" target="_blank" rel="noopener">AI Credit terms</a>.</span>
+          </label>
+          <p class="aiPurchaseProvider">Payments are securely processed by PayPal. Statutory rights and payment corrections required by law still apply.</p>
           <div class="aiPurchaseStatus" id="aiPurchaseStatus" aria-live="polite"></div>
         </section>
 
@@ -172,6 +177,7 @@
     <section class="aiDisclosure">
       <h2>How AI Credits work</h2>
       <p>AI responses have a real token cost, so Credits are separate from every existing BalatroCalc membership, including Seed Pro. Usage is calculated from the selected model, input and output tokens, and conversation context. The exact deduction appears after each answer and in your usage history.</p>
+      <p>AI Credit packages are one-time digital purchases and are non-refundable after purchase, except where applicable law requires otherwise or a verified duplicate or incorrect charge must be corrected. Start with the 30-Credit package if you want to test the service before buying more.</p>
       <p>AI can make mistakes. Use the deterministic <a href="/">calculator</a> for exact scores and confirm version-specific mechanics before making a critical run decision.</p>
     </section>
   </main>
@@ -182,7 +188,7 @@
   </footer>
 
   <script src="balatro-background.js"></script>
-  <script src="ai-assistant.js?v=20260815-ai-advisor"></script>
+  <script src="ai-assistant.js?v=20260817-public"></script>
 </body>
 
 </html>

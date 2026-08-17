@@ -5,7 +5,7 @@ import {
   paypalApiBase,
   nowIso
 } from '../../_utils.js';
-import { assertSameOrigin, packageConfig, requireAiSession } from '../_shared.js';
+import { AI_TERMS_VERSION, assertSameOrigin, packageConfig, requireAiSession } from '../_shared.js';
 
 export async function onRequestPost({ request, env }) {
   if (!assertSameOrigin(request)) return errorResponse('Invalid request origin', 403);
@@ -14,6 +14,9 @@ export async function onRequestPost({ request, env }) {
   const body = await request.json().catch(() => null);
   const config = packageConfig(body?.packageId);
   if (!config) return errorResponse('Invalid credit package');
+  if (body?.acceptedTerms !== true) {
+    return errorResponse('Please confirm the AI Credit purchase terms before continuing');
+  }
 
   const token = await getPaypalAccessToken(env);
   const origin = new URL(request.url).origin;
@@ -73,6 +76,12 @@ export async function onRequestPost({ request, env }) {
     now,
     now
   ).run();
+
+  await env.DB.prepare(
+    `INSERT OR REPLACE INTO ai_purchase_consents
+      (order_id, user_id, terms_version, accepted_at)
+     VALUES (?, ?, ?, ?)`
+  ).bind(payload.id, session.user_id, AI_TERMS_VERSION, now).run();
 
   return jsonResponse({ approvalUrl, orderId: payload.id });
 }

@@ -137,6 +137,17 @@
         detail: `${Number(usage.inputTokens || 0).toLocaleString()} in · ${Number(usage.outputTokens || 0).toLocaleString()} out`
       });
     }
+    for (const adjustment of state.account.adjustments || []) {
+      const restored = Number(adjustment.credits || 0) > 0;
+      entries.push({
+        date: adjustment.createdAt,
+        title: restored ? 'Payment hold released' : 'Payment reversed or disputed',
+        value: `${restored ? '+' : '−'}${formatCredits(Math.abs(adjustment.credits))} cr`,
+        detail: adjustment.amount === null
+          ? String(adjustment.kind || 'Payment adjustment').replaceAll('_', ' ')
+          : `$${Number(adjustment.amount).toFixed(2)} · ${String(adjustment.kind || 'adjustment').replaceAll('_', ' ')}`
+      });
+    }
     entries.sort((a, b) => new Date(b.date) - new Date(a.date));
     if (!entries.length) {
       const empty = document.createElement('p');
@@ -164,7 +175,10 @@
     elements.accountSignedIn.hidden = !signedIn;
     elements.balance.textContent = signedIn ? formatCredits(state.account.availableBalance) : '—';
     elements.walletBalance.textContent = signedIn ? formatCredits(state.account.availableBalance) : '0.0';
-    for (const button of document.querySelectorAll('.aiPack')) button.disabled = !signedIn || state.buying;
+    const purchaseConfirmed = Boolean(elements.purchaseConsent?.checked);
+    for (const button of document.querySelectorAll('.aiPack')) {
+      button.disabled = !signedIn || state.buying || !purchaseConfirmed;
+    }
     if (signedIn) {
       elements.userName.textContent = state.user.name || 'Balatro player';
       elements.userEmail.textContent = state.user.email || '';
@@ -239,7 +253,7 @@
       const payload = await api('/api/ai/paypal/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packageId })
+        body: JSON.stringify({ packageId, acceptedTerms: elements.purchaseConsent.checked })
       });
       track('AI Checkout Started', { package: packageId });
       window.location.assign(payload.approvalUrl);
@@ -366,10 +380,12 @@
       googleButton: byId('googleSignInButton'),
       purchaseCard: byId('aiPurchaseCard'),
       purchaseStatus: byId('aiPurchaseStatus'),
+      purchaseConsent: byId('aiPurchaseConsent'),
       ledger: byId('aiLedger')
     });
     elements.composer.addEventListener('submit', sendQuestion);
     elements.logout.addEventListener('click', logout);
+    elements.purchaseConsent.addEventListener('change', render);
     for (const pack of document.querySelectorAll('.aiPack')) pack.addEventListener('click', () => buyCredits(pack.dataset.package));
     for (const prompt of document.querySelectorAll('[data-prompt]')) prompt.addEventListener('click', () => {
       elements.question.value = prompt.dataset.prompt;

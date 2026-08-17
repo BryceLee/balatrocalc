@@ -59,15 +59,17 @@ Optionally add a random secret used only to hash rate-limit IP data:
 AI_IP_HASH_SALT=<random secret>
 ```
 
-Private preview access defaults to the test account below:
+The public release allows every verified Google account by default. A stale
+preview allowlist does not override public mode. To run a future private
+preview, set both variables below:
 
 ```text
+AI_ACCESS_MODE=private
 AI_ALLOWED_EMAILS=bryceleezx@gmail.com
 ```
 
-Use a comma-separated list to add preview testers. Set the production variable
-to `*` only when the feature is ready for public release. The Google-authenticated
-email is checked again on every protected AI request.
+Leave `AI_ACCESS_MODE` unset (or set it to `public`) in production. The
+Google-authenticated email is checked again on every protected AI request.
 
 ## 4. PayPal
 
@@ -79,6 +81,21 @@ The AI checkout only accepts these server-defined packages:
 
 PayPal amounts, account ownership, capture state, and package IDs are rechecked
 on the server before an idempotent wallet credit is written.
+
+Before checkout, the customer must confirm the current AI Credit terms. The
+accepted terms version is recorded with the PayPal order. AI Credit purchases
+are final and non-refundable except for non-excludable statutory rights and
+verified payment corrections. Apply `docs/ai-assistant-payment-risk-d1.sql` to
+existing databases so PayPal refunds, reversals, and dispute holds remove the
+related Credits idempotently.
+
+The PayPal application webhook must subscribe to these events in addition to
+the membership events already used by the site:
+
+- `PAYMENT.CAPTURE.REFUNDED`
+- `PAYMENT.CAPTURE.REVERSED`
+- `CUSTOMER.DISPUTE.CREATED`
+- `CUSTOMER.DISPUTE.RESOLVED`
 
 ## 5. Billing behavior
 

@@ -9,6 +9,7 @@ import {
   extractPaypalPayerProfile,
   buildPaypalSubscriptionPeriodTxnId
 } from '../_utils.js';
+import { handleAiPaymentRiskEvent } from '../ai/_payment-risk.js';
 
 export async function onRequestPost({ request, env }) {
   const body = await request.json().catch(() => null);
@@ -29,6 +30,10 @@ export async function onRequestPost({ request, env }) {
   const eventType = body.event_type || '';
   const resource = body.resource || {};
   const now = nowIso();
+
+  if (await handleAiPaymentRiskEvent(env, body, now)) {
+    return jsonResponse({ ok: true });
+  }
 
   if (eventType.startsWith('BILLING.SUBSCRIPTION.')) {
     const subscriptionId = resource.id;
