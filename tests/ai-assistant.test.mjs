@@ -6,6 +6,7 @@ const sharedSource = readFileSync(new URL('../functions/api/ai/_shared.js', impo
 const chatSource = readFileSync(new URL('../functions/api/ai/chat.js', import.meta.url), 'utf8');
 const jokerKnowledgeSource = readFileSync(new URL('../functions/api/ai/_joker-knowledge.generated.js', import.meta.url), 'utf8');
 const jokerGroundingSource = readFileSync(new URL('../functions/api/ai/_joker-grounding.js', import.meta.url), 'utf8');
+const conversationsSource = readFileSync(new URL('../functions/api/ai/_conversations.js', import.meta.url), 'utf8');
 
 const context = vm.createContext({
   Response,
@@ -54,11 +55,16 @@ await jokerGrounding.link((specifier) => {
 });
 await jokerGrounding.evaluate();
 
+const conversations = new vm.SourceTextModule(conversationsSource, { context });
+await conversations.link(() => { throw new Error('Unexpected conversations import'); });
+await conversations.evaluate();
+
 const chat = new vm.SourceTextModule(chatSource, { context });
 await chat.link((specifier) => {
   if (specifier === '../_utils.js') return utils;
   if (specifier === './_shared.js') return shared;
   if (specifier === './_joker-grounding.js') return jokerGrounding;
+  if (specifier === './_conversations.js') return conversations;
   throw new Error(`Unexpected module: ${specifier}`);
 });
 await chat.evaluate();
@@ -112,15 +118,21 @@ assert.match(page, /<meta name="robots" content="index, follow">/);
 assert.match(page, /non-refundable/i);
 assert.match(page, /smaller 30-Credit pack first/i);
 assert.match(page, /id="aiPurchaseConsent"/);
+assert.match(page, /id="aiHistoryPanel"/);
+assert.match(page, /Your saved conversations/);
 assert.match(client, /\/api\/ai\/auth\/google/);
 assert.match(client, /\/api\/ai\/chat/);
+assert.match(client, /\/api\/ai\/conversations/);
 assert.match(client, /acceptedTerms/);
+assert.doesNotMatch(client, /sessionStorage/);
 assert.doesNotMatch(`${page}\n${client}`, /client_secret/i);
 assert.doesNotMatch(`${page}\n${client}`, /AI302_API_KEY/);
 assert.match(schema, /CREATE TABLE IF NOT EXISTS ai_wallets/);
 assert.match(schema, /CREATE UNIQUE INDEX IF NOT EXISTS idx_ai_usage_user_client_request/);
 assert.match(schema, /CREATE TABLE IF NOT EXISTS ai_purchase_consents/);
 assert.match(schema, /CREATE TABLE IF NOT EXISTS ai_payment_adjustments/);
+assert.match(schema, /CREATE TABLE IF NOT EXISTS ai_conversations/);
+assert.match(schema, /CREATE TABLE IF NOT EXISTS ai_messages/);
 assert.match(setup, /encrypted Cloudflare Pages secret/);
 assert.doesNotMatch(background, /ai-preview-nav\.js/);
 

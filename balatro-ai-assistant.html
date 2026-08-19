@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://balatrocalc.com/balatro-ai-assistant">
   <meta name="theme-color" content="#263d36">
   <link rel="stylesheet" href="style.css?v=20260815-ai-advisor">
-  <link rel="stylesheet" href="ai-assistant.css?v=20260817-public">
+  <link rel="stylesheet" href="ai-assistant.css?v=20260819-history">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script async src="https://accounts.google.com/gsi/client" onload="window.initBalatroGoogleSignIn && window.initBalatroGoogleSignIn()"></script>
   <script async src="https://plausible.io/js/pa-5I-hPovMBFFFKFKnPjJ_4.js"></script>
@@ -78,12 +78,32 @@
         <div class="aiLoginGate" id="aiLoginGate">
           <div class="aiLoginSeal">G</div>
           <h3>Sign in to start your table</h3>
-          <p>Your Google account keeps purchased Credits and billing history attached to you. No password is stored by this site.</p>
+          <p>Your Google account keeps purchased Credits, billing history, and saved conversations attached to you. No password is stored by this site.</p>
           <div id="googleSignInButton" class="aiGoogleButton"></div>
           <p class="aiGateFinePrint">Signing in creates a separate AI wallet. Seed Pro access and AI Credits are independent.</p>
         </div>
 
         <div class="aiChat" id="aiChat" hidden>
+          <div class="aiConversationDock">
+            <div class="aiConversationIdentity">
+              <span><i></i> SAVED TABLE</span>
+              <strong id="aiConversationTitle">New conversation</strong>
+            </div>
+            <div class="aiConversationActions">
+              <button type="button" id="aiNewConversation" class="aiConversationButton"><b>＋</b> New</button>
+              <button type="button" id="aiToggleHistory" class="aiConversationButton" aria-expanded="false" aria-controls="aiHistoryPanel"><b>▤</b> History <span id="aiHistoryCount">0</span></button>
+            </div>
+          </div>
+
+          <section class="aiHistoryPanel" id="aiHistoryPanel" aria-label="Saved conversations" hidden>
+            <header>
+              <div><span>TABLE ARCHIVE</span><strong>Your saved conversations</strong></div>
+              <button type="button" id="aiCloseHistory" aria-label="Close conversation history">×</button>
+            </header>
+            <div class="aiHistoryList" id="aiHistoryList"></div>
+            <p class="aiHistoryNotice">Chats are saved to your Google account. Delete any table you no longer want stored.</p>
+          </section>
+
           <div class="aiMessages" id="aiMessages" aria-live="polite">
             <article class="aiMessage aiMessage--assistant">
               <div class="aiMessageRole">JOKER ADVISOR</div>
@@ -177,6 +197,7 @@
     <section class="aiDisclosure">
       <h2>How AI Credits work</h2>
       <p>AI responses have a real token cost, so Credits are separate from every existing BalatroCalc membership, including Seed Pro. Usage is calculated from the selected model, input and output tokens, and conversation context. The exact deduction appears after each answer and in your usage history.</p>
+      <p>Successful conversations are saved to your Google account so you can return to paid answers later. You can start a new conversation or permanently delete saved conversations from the History panel.</p>
       <p>AI Credit packages are one-time digital purchases and are non-refundable after purchase, except where applicable law requires otherwise or a verified duplicate or incorrect charge must be corrected. Start with the 30-Credit package if you want to test the service before buying more.</p>
       <p>AI can make mistakes. Use the deterministic <a href="/">calculator</a> for exact scores and confirm version-specific mechanics before making a critical run decision.</p>
     </section>
@@ -188,7 +209,7 @@
   </footer>
 
   <script src="balatro-background.js"></script>
-  <script src="ai-assistant.js?v=20260817-public"></script>
+  <script src="ai-assistant.js?v=20260819-history"></script>
 </body>
 
 </html>

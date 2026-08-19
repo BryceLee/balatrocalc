@@ -2,14 +2,16 @@
   'use strict';
 
   const GOOGLE_CLIENT_ID = '286347292359-g93pq2e1d7msio01rgt01ojed37es37v.apps.googleusercontent.com';
-  const STORAGE_KEY = 'balatro_ai_chat_history_v1';
   const state = {
     user: null,
     account: null,
     sending: false,
     buying: false,
     googleInitialized: false,
-    history: loadHistory()
+    conversations: [],
+    currentConversationId: null,
+    historyOpen: false,
+    loadingConversation: false
   };
 
   const elements = {};
@@ -31,17 +33,6 @@
       throw error;
     }
     return payload;
-  }
-
-  function loadHistory() {
-    try {
-      const parsed = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
-      return Array.isArray(parsed) ? parsed.slice(-10) : [];
-    } catch { return []; }
-  }
-
-  function saveHistory() {
-    try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state.history.slice(-10))); } catch { /* ignore */ }
   }
 
   function formatCredits(value) {
@@ -71,7 +62,7 @@
       const line = document.createElement('div');
       line.className = 'aiBillingLine';
       const charged = document.createElement('strong');
-      charged.textContent = billing.status === 'billed'
+      charged.textContent = billing.status === 'billed' || Number(billing.billedCredits || 0) > 0
         ? `${formatCredits(billing.billedCredits)} Credits charged`
         : billing.note || 'No Credits charged';
       line.append(charged);
@@ -85,16 +76,48 @@
     return article;
   }
 
-  function addMessage(role, content, billing, persist = true) {
+  function addMessage(role, content, billing) {
     const node = messageElement(role, content, billing);
     elements.messages.append(node);
     elements.messages.scrollTop = elements.messages.scrollHeight;
-    if (persist) {
-      state.history.push({ role, content });
-      state.history = state.history.slice(-10);
-      saveHistory();
-    }
     return node;
+  }
+
+  function addWelcomeMessage() {
+    const article = document.createElement('article');
+    article.className = 'aiMessage aiMessage--assistant';
+    const role = document.createElement('div');
+    role.className = 'aiMessageRole';
+    role.textContent = 'JOKER ADVISOR';
+    const copy = document.createElement('p');
+    copy.textContent = 'Show me your Jokers, describe the Ante and your main hand, or ask why a build is stalling. I’ll help you find the missing role.';
+    const chips = document.createElement('div');
+    chips.className = 'aiPromptChips';
+    chips.setAttribute('aria-label', 'Example questions');
+    const examples = [
+      ['Blueprint order', 'I have Blueprint, Photograph, and Hanging Chad. What order should I use and why?'],
+      ['Missing role', 'How do I know whether my build needs Chips, +Mult, or XMult?'],
+      ['When to pivot', 'When should I pivot away from a Flush build?']
+    ];
+    for (const [label, prompt] of examples) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = label;
+      button.addEventListener('click', () => {
+        elements.question.value = prompt;
+        elements.question.focus();
+      });
+      chips.append(button);
+    }
+    article.append(role, copy, chips);
+    elements.messages.append(article);
+  }
+
+  function resetConversationView() {
+    elements.messages.replaceChildren();
+    addWelcomeMessage();
+    elements.conversationTitle.textContent = 'New conversation';
+    elements.composerHint.textContent = 'Cost depends on model, input/output tokens, and conversation length.';
   }
 
   function addLoadingMessage() {
@@ -110,6 +133,127 @@
     elements.messages.append(article);
     elements.messages.scrollTop = elements.messages.scrollHeight;
     return article;
+  }
+
+  function renderConversationHistory() {
+    elements.historyList.replaceChildren();
+    elements.historyCount.textContent = String(state.conversations.length);
+    elements.historyPanel.hidden = !state.historyOpen;
+    elements.toggleHistory.setAttribute('aria-expanded', String(state.historyOpen));
+    if (!state.conversations.length) {
+      const empty = document.createElement('p');
+      empty.className = 'aiHistoryEmpty';
+      empty.textContent = 'No saved tables yet. Your first successful answer will appear here.';
+      elements.historyList.append(empty);
+      return;
+    }
+    state.conversations.forEach((conversation, index) => {
+      const item = document.createElement('div');
+      item.className = 'aiHistoryItem';
+      if (conversation.id === state.currentConversationId) item.classList.add('is-active');
+      const open = document.createElement('button');
+      open.type = 'button';
+      open.className = 'aiHistoryOpen';
+      open.setAttribute('aria-label', `Open ${conversation.title}`);
+      const marker = document.createElement('span');
+      marker.className = 'aiHistoryIndex';
+      marker.textContent = String(index + 1).padStart(2, '0');
+      const copy = document.createElement('span');
+      copy.className = 'aiHistoryCopy';
+      const title = document.createElement('strong');
+      title.textContent = conversation.title;
+      const meta = document.createElement('small');
+      meta.textContent = `${conversation.messageCount} messages · ${formatDate(conversation.updatedAt)}`;
+      copy.append(title, meta);
+      const arrow = document.createElement('span');
+      arrow.className = 'aiHistoryMeta';
+      arrow.textContent = conversation.id === state.currentConversationId ? 'OPEN' : '↗';
+      open.append(marker, copy, arrow);
+      open.addEventListener('click', () => openConversation(conversation.id));
+
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'aiHistoryDelete';
+      remove.textContent = '×';
+      remove.title = 'Delete conversation';
+      remove.setAttribute('aria-label', `Delete ${conversation.title}`);
+      remove.addEventListener('click', () => deleteConversation(conversation));
+      item.append(open, remove);
+      elements.historyList.append(item);
+    });
+  }
+
+  function setHistoryOpen(open) {
+    state.historyOpen = Boolean(open);
+    renderConversationHistory();
+  }
+
+  async function refreshConversations(openLatest = false) {
+    if (!state.user) return;
+    try {
+      const payload = await api('/api/ai/conversations');
+      state.conversations = Array.isArray(payload.conversations) ? payload.conversations : [];
+      renderConversationHistory();
+      if (openLatest && state.conversations.length) {
+        await openConversation(state.conversations[0].id, false);
+      } else if (openLatest) {
+        startNewConversation();
+      }
+    } catch (error) {
+      console.warn(error);
+      elements.composerHint.textContent = 'Saved conversations could not be loaded. Try refreshing the page.';
+    }
+  }
+
+  async function openConversation(conversationId, closeHistory = true) {
+    if (state.loadingConversation || state.sending) return;
+    state.loadingConversation = true;
+    elements.messages.setAttribute('aria-busy', 'true');
+    try {
+      const payload = await api(`/api/ai/conversations/${encodeURIComponent(conversationId)}`);
+      const conversation = payload.conversation;
+      state.currentConversationId = conversation.id;
+      elements.conversationTitle.textContent = conversation.title;
+      elements.messages.replaceChildren();
+      for (const message of conversation.messages || []) {
+        addMessage(message.role, message.content, message.billing);
+      }
+      if (!(conversation.messages || []).length) addWelcomeMessage();
+      renderConversationHistory();
+      if (closeHistory) setHistoryOpen(false);
+      track('AI Conversation Opened');
+    } catch (error) {
+      elements.composerHint.textContent = error.message;
+    } finally {
+      state.loadingConversation = false;
+      elements.messages.removeAttribute('aria-busy');
+    }
+  }
+
+  function startNewConversation() {
+    if (state.sending) return;
+    state.currentConversationId = null;
+    resetConversationView();
+    setHistoryOpen(false);
+    renderConversationHistory();
+    elements.question.focus();
+    track('AI Conversation Started');
+  }
+
+  async function deleteConversation(conversation) {
+    if (!window.confirm(`Permanently delete “${conversation.title}”? This cannot be undone.`)) return;
+    try {
+      await api(`/api/ai/conversations/${encodeURIComponent(conversation.id)}`, { method: 'DELETE' });
+      state.conversations = state.conversations.filter((entry) => entry.id !== conversation.id);
+      if (state.currentConversationId === conversation.id) {
+        state.currentConversationId = null;
+        resetConversationView();
+      }
+      renderConversationHistory();
+      track('AI Conversation Deleted');
+    } catch (error) {
+      elements.composerHint.textContent = error.message;
+    }
   }
 
   function renderLedger() {
@@ -186,6 +330,7 @@
       elements.userPicture.alt = state.user.name ? `${state.user.name} profile` : 'Google profile';
     }
     renderLedger();
+    renderConversationHistory();
   }
 
   async function refreshAccount() {
@@ -199,7 +344,8 @@
       state.account = null;
     }
     render();
-    if (!state.user) window.initBalatroGoogleSignIn();
+    if (state.user) await refreshConversations(true);
+    else window.initBalatroGoogleSignIn();
   }
 
   async function handleGoogleCredential(response) {
@@ -216,6 +362,7 @@
       elements.purchaseStatus.textContent = '';
       render();
       track('AI Sign In');
+      await refreshConversations(true);
       await handlePaypalReturn();
     } catch (error) {
       elements.purchaseStatus.textContent = error.message;
@@ -315,7 +462,6 @@
       return;
     }
 
-    const historyForRequest = state.history.slice(-8);
     addMessage('user', question);
     elements.question.value = '';
     state.sending = true;
@@ -327,22 +473,35 @@
       const payload = await api('/api/ai/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: question, history: historyForRequest, clientRequestId })
+        body: JSON.stringify({
+          message: question,
+          conversationId: state.currentConversationId,
+          clientRequestId
+        })
       });
       loading.remove();
       addMessage('assistant', payload.answer, payload.billing);
+      if (payload.conversation) {
+        state.currentConversationId = payload.conversation.id;
+        elements.conversationTitle.textContent = payload.conversation.title;
+        await refreshConversations(false);
+      }
       if (typeof payload.balance === 'number') {
         state.account.availableBalance = payload.balance;
         state.account.balance = payload.balance;
       }
-      elements.composerHint.textContent = payload.billing?.status === 'billed'
-        ? `${formatCredits(payload.billing.billedCredits)} Credits deducted for this answer.`
-        : payload.billing?.note || 'No Credits deducted.';
+      if (!payload.historySaved) {
+        elements.composerHint.textContent = 'Answer delivered, but chat history could not be saved. Billing is still recorded.';
+      } else {
+        elements.composerHint.textContent = payload.billing?.status === 'billed'
+          ? `${formatCredits(payload.billing.billedCredits)} Credits deducted · conversation saved.`
+          : `${payload.billing?.note || 'No Credits deducted.'} Conversation saved.`;
+      }
       track('AI Question Answered', { billed: payload.billing?.status === 'billed' });
       render();
     } catch (error) {
       loading.remove();
-      addMessage('assistant', error.message || 'The advisor is unavailable right now.', { status: 'error', note: 'No Credits charged.' }, false);
+      addMessage('assistant', error.message || 'The advisor is unavailable right now.', { status: 'error', note: 'No Credits charged.' });
       elements.composerHint.textContent = error.payload?.needsTopup ? 'Add Credits to continue.' : 'No Credits charged. Try again in a moment.';
       if (error.payload?.needsTopup) elements.purchaseCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } finally {
@@ -355,8 +514,8 @@
     try { await api('/api/ai/auth/logout', { method: 'POST' }); } catch { /* clear UI anyway */ }
     state.user = null;
     state.account = null;
-    state.history = [];
-    saveHistory();
+    state.conversations = [];
+    state.currentConversationId = null;
     location.reload();
   }
 
@@ -381,17 +540,26 @@
       purchaseCard: byId('aiPurchaseCard'),
       purchaseStatus: byId('aiPurchaseStatus'),
       purchaseConsent: byId('aiPurchaseConsent'),
-      ledger: byId('aiLedger')
+      ledger: byId('aiLedger'),
+      conversationTitle: byId('aiConversationTitle'),
+      newConversation: byId('aiNewConversation'),
+      toggleHistory: byId('aiToggleHistory'),
+      historyCount: byId('aiHistoryCount'),
+      historyPanel: byId('aiHistoryPanel'),
+      historyList: byId('aiHistoryList'),
+      closeHistory: byId('aiCloseHistory')
     });
     elements.composer.addEventListener('submit', sendQuestion);
     elements.logout.addEventListener('click', logout);
+    elements.newConversation.addEventListener('click', startNewConversation);
+    elements.toggleHistory.addEventListener('click', () => setHistoryOpen(!state.historyOpen));
+    elements.closeHistory.addEventListener('click', () => setHistoryOpen(false));
     elements.purchaseConsent.addEventListener('change', render);
     for (const pack of document.querySelectorAll('.aiPack')) pack.addEventListener('click', () => buyCredits(pack.dataset.package));
     for (const prompt of document.querySelectorAll('[data-prompt]')) prompt.addEventListener('click', () => {
       elements.question.value = prompt.dataset.prompt;
       elements.question.focus();
     });
-    for (const entry of state.history) addMessage(entry.role, entry.content, null, false);
     refreshAccount().then(handlePaypalReturn);
     window.initBalatroGoogleSignIn();
   }

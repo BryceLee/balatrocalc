@@ -11,32 +11,23 @@ import {
   sha256Hex
 } from './_shared.js';
 import { jokerGroundingForMessages } from './_joker-grounding.js';
+import {
+  contextForConversation,
+  normalizeConversationId,
+  persistConversationExchange
+} from './_conversations.js';
 
 const MAX_MESSAGE_CHARS = 2_000;
-const MAX_HISTORY_MESSAGES = 10;
-const MAX_CONTEXT_CHARS = 12_000;
 const MAX_OUTPUT_TOKENS = 700;
 
 function delay(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-function cleanMessages(body) {
+function cleanQuestion(body) {
   const question = String(body?.message || '').trim();
   if (!question || question.length > MAX_MESSAGE_CHARS) return null;
-  const history = Array.isArray(body?.history) ? body.history.slice(-MAX_HISTORY_MESSAGES) : [];
-  const messages = [];
-  let totalChars = question.length;
-  for (const entry of history) {
-    const role = entry?.role === 'assistant' ? 'assistant' : entry?.role === 'user' ? 'user' : null;
-    const content = String(entry?.content || '').trim();
-    if (!role || !content || content.length > MAX_MESSAGE_CHARS) continue;
-    totalChars += content.length;
-    if (totalChars > MAX_CONTEXT_CHARS) break;
-    messages.push({ role, content });
-  }
-  messages.push({ role: 'user', content: question });
-  return messages;
+  return question;
 }
 
 export function exactCreditsNanosForCost(costUsd) {
@@ -186,6 +177,15 @@ async function updateLedger(env, userId, clientRequestId, fields) {
   ).run();
 }
 
+async function saveConversationAnswer(env, details) {
+  try {
+    return await persistConversationExchange(env, details);
+  } catch (error) {
+    console.error('AI conversation persistence failed', error?.message || String(error));
+    return null;
+  }
+}
+
 export async function onRequestPost({ request, env }) {
   if (!assertSameOrigin(request)) return errorResponse('Invalid request origin', 403);
   const { session, response } = await requireAiSession(env, request);
@@ -193,10 +193,23 @@ export async function onRequestPost({ request, env }) {
   if (!env.AI302_API_KEY) return errorResponse('AI service is not configured yet', 503);
 
   const body = await request.json().catch(() => null);
-  const messages = cleanMessages(body);
+  const question = cleanQuestion(body);
   const clientRequestId = String(body?.clientRequestId || '').trim();
-  if (!messages) return errorResponse(`Message must be between 1 and ${MAX_MESSAGE_CHARS} characters`);
+  if (!question) return errorResponse(`Message must be between 1 and ${MAX_MESSAGE_CHARS} characters`);
   if (!/^[0-9a-f-]{20,64}$/i.test(clientRequestId)) return errorResponse('Invalid request identifier');
+
+  const rawConversationId = String(body?.conversationId || '').trim();
+  const conversationId = rawConversationId ? normalizeConversationId(rawConversationId) : null;
+  if (rawConversationId && !conversationId) return errorResponse('Invalid conversation identifier');
+  let conversation = null;
+  let history = [];
+  if (conversationId) {
+    const context = await contextForConversation(env, session.user_id, conversationId, question);
+    if (!context.conversation) return errorResponse('Conversation not found', 404);
+    conversation = context.conversation;
+    history = context.messages;
+  }
+  const messages = [...history, { role: 'user', content: question }];
 
   const rateLimitResponse = await enforceRateLimit(env, session, request);
   if (rateLimitResponse) return rateLimitResponse;
@@ -263,17 +276,40 @@ export async function onRequestPost({ request, env }) {
     await releaseCredits(env, session.user_id, reserveMicros);
     await updateLedger(env, session.user_id, clientRequestId, {
       providerRequestId,
-      model,
+      model: String(payload?.model || model),
+      inputTokens: Number(payload?.usage?.prompt_tokens || 0),
+      outputTokens: Number(payload?.usage?.completion_tokens || 0),
       status: 'cost_unavailable'
+    });
+    const billing = {
+      billedCredits: 0,
+      exactCredits: 0,
+      inputTokens: Number(payload?.usage?.prompt_tokens || 0),
+      outputTokens: Number(payload?.usage?.completion_tokens || 0),
+      model: String(payload?.model || model),
+      status: 'unavailable',
+      note: 'Billing details were unavailable, so this answer was not charged.'
+    };
+    const savedConversation = await saveConversationAnswer(env, {
+      userId: session.user_id,
+      conversationId: conversation?.id,
+      conversationTitle: conversation?.title,
+      question,
+      answer,
+      clientRequestId,
+      providerRequestId,
+      model: billing.model,
+      inputTokens: billing.inputTokens,
+      outputTokens: billing.outputTokens,
+      billedCreditsMicros: 0,
+      billingStatus: billing.status,
+      createdAt: nowIso()
     });
     return jsonResponse({
       answer,
-      billing: {
-        billedCredits: 0,
-        exactCredits: 0,
-        status: 'unavailable',
-        note: 'Billing details were unavailable, so this answer was not charged.'
-      }
+      billing,
+      conversation: savedConversation,
+      historySaved: Boolean(savedConversation)
     });
   }
 
@@ -290,14 +326,35 @@ export async function onRequestPost({ request, env }) {
       exactCreditsNanos,
       status: 'settlement_failed'
     });
+    const billing = {
+      billedCredits: 0,
+      exactCredits: exactCreditsNanos / 1_000_000_000,
+      inputTokens: costRecord.inputTokens,
+      outputTokens: costRecord.outputTokens,
+      model: costRecord.model || model,
+      status: 'waived',
+      note: 'This answer was not charged because billing could not be completed.'
+    };
+    const savedConversation = await saveConversationAnswer(env, {
+      userId: session.user_id,
+      conversationId: conversation?.id,
+      conversationTitle: conversation?.title,
+      question,
+      answer,
+      clientRequestId,
+      providerRequestId,
+      model: billing.model,
+      inputTokens: billing.inputTokens,
+      outputTokens: billing.outputTokens,
+      billedCreditsMicros: 0,
+      billingStatus: billing.status,
+      createdAt: nowIso()
+    });
     return jsonResponse({
       answer,
-      billing: {
-        billedCredits: 0,
-        exactCredits: exactCreditsNanos / 1_000_000_000,
-        status: 'waived',
-        note: 'This answer was not charged because billing could not be completed.'
-      }
+      billing,
+      conversation: savedConversation,
+      historySaved: Boolean(savedConversation)
     });
   }
 
@@ -312,19 +369,38 @@ export async function onRequestPost({ request, env }) {
     status: settlement.partiallyWaived ? 'partially_waived' : 'billed'
   });
 
+  const billing = {
+    billedCredits: settlement.debitMicros / 1_000_000,
+    exactCredits: exactCreditsNanos / 1_000_000_000,
+    inputTokens: costRecord.inputTokens,
+    outputTokens: costRecord.outputTokens,
+    model: costRecord.model || model,
+    status: settlement.partiallyWaived ? 'partially_waived' : 'billed',
+    note: settlement.partiallyWaived
+      ? 'Your remaining balance was used. The unpaid remainder for this answer was waived.'
+      : undefined
+  };
+  const savedConversation = await saveConversationAnswer(env, {
+    userId: session.user_id,
+    conversationId: conversation?.id,
+    conversationTitle: conversation?.title,
+    question,
+    answer,
+    clientRequestId,
+    providerRequestId,
+    model: billing.model,
+    inputTokens: billing.inputTokens,
+    outputTokens: billing.outputTokens,
+    billedCreditsMicros: settlement.debitMicros,
+    billingStatus: billing.status,
+    createdAt: nowIso()
+  });
+
   return jsonResponse({
     answer,
     balance: settlement.balanceMicros / 1_000_000,
-    billing: {
-      billedCredits: settlement.debitMicros / 1_000_000,
-      exactCredits: exactCreditsNanos / 1_000_000_000,
-      inputTokens: costRecord.inputTokens,
-      outputTokens: costRecord.outputTokens,
-      model: costRecord.model || model,
-      status: settlement.partiallyWaived ? 'partially_waived' : 'billed',
-      note: settlement.partiallyWaived
-        ? 'Your remaining balance was used. The unpaid remainder for this answer was waived.'
-        : undefined
-    }
+    billing,
+    conversation: savedConversation,
+    historySaved: Boolean(savedConversation)
   });
 }

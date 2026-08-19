@@ -9,6 +9,11 @@ separate prepaid wallet and do not change Seed Pro membership.
 Apply `docs/ai-assistant-d1.sql` to the same D1 database bound to Pages as
 `DB`. Apply it to preview first, then production.
 
+For an existing installation, apply `docs/ai-conversations-d1.sql` before
+deploying the saved-conversation release. Successful question/answer pairs are
+then stored under the verified Google user. Conversation text is separate from
+the immutable billing ledger and users can delete conversations from the UI.
+
 ## 2. Configure Google sign-in
 
 The browser only receives the public OAuth Client ID. The downloaded Google

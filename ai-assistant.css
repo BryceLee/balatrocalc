@@ -165,7 +165,7 @@
   box-shadow: 0 22px 55px rgba(0,0,0,0.25), inset 0 1px rgba(255,255,255,0.035);
 }
 
-.aiChatPanel { min-height: 650px; border-radius: 24px; overflow: hidden; }
+.aiChatPanel { position:relative; min-height:650px; border-radius:24px; overflow:hidden; }
 .aiPanelHeader {
   display: flex;
   justify-content: space-between;
@@ -197,6 +197,36 @@
 .aiGateFinePrint { font-size:13px !important; color:#899b94 !important; }
 
 .aiChat { display:flex; min-height:590px; flex-direction:column; }
+.aiConversationDock { position:relative; z-index:3; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:11px 16px; border-bottom:1px solid var(--ai-line); background:linear-gradient(90deg,rgba(7,17,14,.96),rgba(20,39,32,.92)); }
+.aiConversationIdentity { min-width:0; display:grid; gap:2px; }
+.aiConversationIdentity span { display:flex; align-items:center; gap:6px; color:#7f958b; font-size:9px; letter-spacing:1.2px; }
+.aiConversationIdentity span i { width:6px; height:6px; border-radius:50%; background:var(--ai-green); box-shadow:0 0 8px rgba(85,212,161,.8); }
+.aiConversationIdentity strong { max-width:440px; overflow:hidden; color:#e8e0bd; font-size:14px; font-weight:400; text-overflow:ellipsis; white-space:nowrap; }
+.aiConversationActions { display:flex; gap:7px; flex:none; }
+.aiConversationButton { display:flex; align-items:center; gap:6px; min-height:34px; padding:7px 9px; border:1px solid rgba(242,199,92,.18); border-radius:8px; color:#c8b978; background:rgba(242,199,92,.045); cursor:pointer; font-size:11px; letter-spacing:.3px; }
+.aiConversationButton:hover { border-color:rgba(242,199,92,.48); color:#fff0af; background:rgba(242,199,92,.1); }
+.aiConversationButton b { color:var(--ai-gold); font-size:15px; font-weight:400; line-height:1; }
+.aiConversationButton span { display:grid; place-items:center; min-width:18px; height:18px; padding:0 4px; border-radius:5px; color:#102019; background:#7c9b8c; font-size:9px; }
+.aiHistoryPanel { position:absolute; z-index:8; top:145px; left:18px; right:18px; max-height:470px; overflow:hidden; border:1px solid rgba(242,199,92,.28); border-radius:16px; background:rgba(8,18,15,.985); box-shadow:0 28px 70px rgba(0,0,0,.62),inset 0 1px rgba(255,255,255,.04); }
+.aiHistoryPanel[hidden] { display:none; }
+.aiHistoryPanel header { display:flex; justify-content:space-between; align-items:center; padding:15px 16px; border-bottom:1px solid var(--ai-line); background:linear-gradient(90deg,rgba(242,199,92,.08),transparent); }
+.aiHistoryPanel header div { display:grid; gap:2px; }
+.aiHistoryPanel header span { color:var(--ai-gold); font-size:9px; letter-spacing:1.3px; }
+.aiHistoryPanel header strong { color:var(--ai-cream); font-size:17px; font-weight:400; }
+.aiHistoryPanel header button { width:30px; height:30px; border:1px solid rgba(255,255,255,.1); border-radius:8px; color:#9fb0a9; background:rgba(255,255,255,.03); cursor:pointer; font-size:20px; }
+.aiHistoryList { max-height:350px; overflow-y:auto; padding:8px; }
+.aiHistoryEmpty { padding:28px 18px; color:#82958c; text-align:center; font-size:13px; }
+.aiHistoryItem { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; align-items:center; border-bottom:1px solid rgba(255,255,255,.055); }
+.aiHistoryItem:last-child { border-bottom:0; }
+.aiHistoryOpen { min-width:0; display:grid; grid-template-columns:26px minmax(0,1fr) auto; gap:9px; align-items:center; padding:11px 9px; border:0; color:inherit; background:transparent; text-align:left; cursor:pointer; }
+.aiHistoryOpen:hover,.aiHistoryItem.is-active .aiHistoryOpen { background:rgba(85,212,161,.055); }
+.aiHistoryIndex { display:grid; place-items:center; width:26px; height:30px; border:1px solid rgba(85,212,161,.2); border-radius:6px; color:#79cba7; background:rgba(85,212,161,.06); font-size:10px; }
+.aiHistoryCopy { min-width:0; display:grid; gap:3px; }
+.aiHistoryCopy strong { overflow:hidden; color:#dce7e1; font-size:13px; font-weight:400; text-overflow:ellipsis; white-space:nowrap; }
+.aiHistoryCopy small,.aiHistoryMeta { color:#72877d; font-size:10px; }
+.aiHistoryDelete { width:30px; height:30px; border:0; border-radius:7px; color:#806b69; background:transparent; cursor:pointer; font-size:15px; }
+.aiHistoryDelete:hover { color:#ff928c; background:rgba(255,98,91,.08); }
+.aiHistoryNotice { margin:0; padding:10px 16px 12px; border-top:1px solid var(--ai-line); color:#71857c; font-size:10px; line-height:1.45; }
 .aiMessages { flex:1; max-height:650px; overflow-y:auto; padding:22px; scroll-behavior:smooth; }
 .aiMessage { max-width:88%; margin:0 0 18px; padding:16px 18px; border-radius:16px; border:1px solid rgba(255,255,255,0.08); animation:aiMessageIn .22s ease-out both; }
 @keyframes aiMessageIn { from { opacity:0; transform:translateY(8px); } }
@@ -309,6 +339,11 @@
   .aiWorkspace { gap:12px; }
   .aiChatPanel { border-radius:18px; }
   .aiPanelHeader { padding:16px; }
+  .aiConversationDock { align-items:flex-start; padding:10px 12px; }
+  .aiConversationIdentity strong { max-width:46vw; }
+  .aiConversationButton { padding:7px; }
+  .aiConversationButton span { display:none; }
+  .aiHistoryPanel { top:132px; left:8px; right:8px; max-height:68vh; }
   .aiMessages { padding:14px; }
   .aiMessage { max-width:96%; }
   .aiComposerFooter { align-items:stretch; flex-direction:column; }
