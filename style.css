@@ -524,6 +524,104 @@ a:hover {
   backdrop-filter: blur(2px);
 }
 
+.ambientRecommendation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: calc(100% - 36px);
+  max-width: 944px;
+  margin: 12px auto 32px;
+  padding: 24px;
+  color: #e5f0ec;
+  background: #223633;
+  border: 1px solid #668f81;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 #152522;
+  font-family: var(--ui-font);
+}
+
+.ambientRecommendationIcon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  color: #a3d9c3;
+}
+
+.ambientRecommendationCopy {
+  flex: 1;
+  min-width: 0;
+}
+
+.ambientRecommendation h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: normal;
+  line-height: 1.15;
+}
+
+.ambientRecommendation p {
+  margin: 0 0 10px;
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.ambientRecommendation small {
+  color: #b3c9c0;
+  font-size: 16px;
+}
+
+.ambientRecommendationLink {
+  flex-shrink: 0;
+  padding: 12px 0;
+  color: #b5efcf;
+  font-size: 20px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ambientRecommendationLink:hover {
+  color: #fff;
+}
+
+.ambientRecommendationLink:focus-visible {
+  outline: 2px solid #b5efcf;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+.ambientRecommendationSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .ambientRecommendation {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .ambientRecommendationIcon {
+    display: none;
+  }
+
+  .ambientRecommendationCopy {
+    flex-basis: 100%;
+  }
+
+  .ambientRecommendationLink {
+    padding: 8px 0;
+  }
+}
+
 #footer {
   width: 100%;
   text-align: center;
