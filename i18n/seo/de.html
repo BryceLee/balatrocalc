@@ -1,17 +1,26 @@
 <div id="seoContent" class="contentPageWrapBelow">
-  <div class="seoTabs">
-    <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
-    <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
-  </div>
-
-  <div id="how-it-works" class="contentCard">
-    <h2 class="contentTitle">Wie das Scoring funktioniert (Chips × Mult)</h2>
-    <p class="contentLead">Der Endscore ist immer <code>Score = Chips × Mult</code>. Die Reihenfolge (Jokers links → rechts) kann den Score stark verändern.</p>
-  </div>
-
-  <div id="guide" class="contentCard" style="display:none;">
-    <h2 class="contentTitle">Guide: Jokers, Chips, Hands</h2>
-    <p class="contentLead">Früh eine Main-Hand wählen, Chips-Quellen sichern, dann Mult/XMult, danach Stabilität (Economy/Deck-Shaping).</p>
-  </div>
+<div class="seoTabs"><button id="seoTabHow" class="seoTabBtn active" type="button">Berechnung</button><button id="seoTabGuide" class="seoTabBtn" type="button">Spielplan</button></div>
+<div id="how-it-works" class="contentCard">
+<h2 class="contentTitle">Balatro-Rechner: einen Spielstand nachvollziehbar prüfen</h2>
+<p>Dieser Rechner hilft dir, eine konkrete Hand zu bewerten und die Reihenfolge deiner Joker zu vergleichen. Trage zuerst den Zustand aus deinem Spiel ein: Handtyp, Handlevel, ausgespielte Karten, verbleibende Handkarten und Joker. Ein hoher angezeigter Wert beschreibt genau diese Eingaben. Er garantiert nicht, dass du die nötigen Karten im nächsten Blind ziehen wirst. Beginne deshalb mit einer tatsächlich verfügbaren Hand und prüfe erst danach mögliche Verbesserungen.</p>
+<h3>Chips, Mult und XMult unterscheiden</h3>
+<p>Bei einem normalen Deck ergibt sich der Endwert aus Chips mal Mult, nachdem die relevanten Effekte abgearbeitet wurden. Chips bezeichnen die erste Rechengröße, Mult die zweite. Ein Bonus auf Mult addiert einen Betrag; XMult multipliziert den Wert, der zum Zeitpunkt des Effekts bereits vorhanden ist. Verwechsle diese beiden Arten nicht. Die Beschreibung eines Jokers und der einzelne Schritt in der Aufschlüsselung zeigen, welcher Vorgang gemeint ist.</p>
+<p>Nehmen wir als reines Rechenbeispiel 100 Chips und 20 Mult nach allen bisherigen Effekten. Ohne weitere Änderung entstehen 2.000 Punkte. Ein abschließender Bonus von 50 Chips führt zu 150 × 20 = 3.000 Punkten. Ein Bonus von 10 Mult führt ebenfalls zu 100 × 30 = 3.000 Punkten. Diese Zahlen sind bewusst vorgegebene Zwischenwerte und keine Behauptung über den Grundwert eines bestimmten Handtyps.</p>
+<h3>Warum die Reihenfolge den Unterschied macht</h3>
+<p>Bei 20 Mult ergeben zuerst +10 Mult und danach ×2 insgesamt 60 Mult. In umgekehrter Reihenfolge ergeben ×2 und anschließend +10 nur 50 Mult. Mit 100 Chips sind das 6.000 gegenüber 5.000 Punkten. Vergleiche im Rechner beide Anordnungen und lies die einzelnen Schritte. Kopiereffekte, Kartenboni und Effekte auf gehaltene Karten können in unterschiedlichen Phasen wirken; eine einfache Regel wie „alle Multiplikatoren nach rechts“ erklärt deshalb nicht jede Kombination.</p>
+<h3>Handlevel und wirklich zählende Karten</h3>
+<p>Kontrolliere den erkannten Handtyp und das aktuelle Level. Planetenkarten verändern die Grundwerte, bevor weitere Boni hinzukommen. Nicht jede ausgespielte Karte zählt automatisch zum erkannten Handtyp. Prüfe daher, welche Karten tatsächlich punkten und welche nur mitgespielt wurden. Die <a href="/balatro-hand-levels" hreflang="en">englische Handlevel-Tabelle</a> hilft beim Nachschlagen der Grundwerte. Für den endgültigen Vergleich müssen zusätzlich die konkreten Karten und Joker im Rechner stehen.</p>
+<p>Halte ausgespielte und zurückbehaltene Karten getrennt. Eine relevante Karte auf der Hand kann einen Effekt auslösen, obwohl sie nicht selbst ausgespielt wird. Umgekehrt beschreibt der Rechner einen anderen Zustand, wenn du eine ausgespielte Karte fälschlich als gehalten einträgst. Notiere außerdem Verstärkung, Edition und Siegel. Bei einem Unterschied zum Spiel ist ein vollständiger Zustand hilfreicher als ein einzelnes Bildschirmfoto des Endwerts.</p>
+<h3>Plasma Deck gesondert berechnen</h3>
+<p>Plasma Deck verändert den letzten Rechenschritt. Für die hier verwendeten gewöhnlichen ganzzahligen Beispiele werden Chips und Mult addiert, halbiert, abgerundet und anschließend als gleicher Wert miteinander multipliziert. Bei 100 Chips und 20 Mult entstehen deshalb 60 × 60 = 3.600 Punkte. Vor dem Ausgleich müssen Chips und Mult nicht ähnlich groß sein. Entscheidend ist die Summe nach den vorherigen Effekten. Aktiviere die passende Deckoption und vergleiche mit dem im Spiel angezeigten Blindziel.</p>
+<h3>Einen Fehler systematisch eingrenzen</h3>
+<p>Ändere bei einem unerwarteten Ergebnis jeweils nur eine Eingabe. Vergleiche zunächst Handtyp und Level, dann Karten, gehaltene Karten, Jokerreihenfolge und veränderliche Jokerwerte. Suche den ersten abweichenden Schritt, nicht nur die Differenz am Ende. Ein Boss-Effekt oder eine Modifikation kann die Vergleichbarkeit einschränken. Wenn der Rechner die betreffende Regel nicht abbildet, halte diese Einschränkung fest, statt das Ergebnis als vollständige Simulation zu behandeln.</p>
+<h3>Von der richtigen Rechnung zur brauchbaren Entscheidung</h3>
+<p>Eine rechnerisch starke Hand ist nur dann ein guter Plan, wenn du sie rechtzeitig spielen kannst. Notiere verbleibende Hände und Abwürfe sowie das noch fehlende Blindziel. Stelle deiner besten Hand auch einen gewöhnlichen und einen schlechten Zug gegenüber. Ein Joker, der nur beim perfekten Zug hilft, kann weniger zuverlässig sein als ein kleinerer Bonus, der ständig aktiv ist. Der Rechner liefert die Punkte; die Erreichbarkeit des Zustands musst du gesondert bewerten.</p>
+<h3>Ein Kaufvergleich für den nächsten Blind</h3>
+<p>Angenommen, dir fehlen noch 6.000 Punkte und du hast zwei Hände übrig. Eine zuverlässig erreichbare Hand mit 3.200 Punkten kann unter diesen Annahmen ausreichen. Verkaufst du einen sofort wirksamen Joker für einen später wachsenden Joker und sinkt dieselbe Hand auf 2.600 Punkte, reichen zwei solche Hände nicht mehr. Das langfristige Potenzial verbessert den aktuellen Blind nicht automatisch. Prüfe deshalb die Situation nach dem Verkauf und vor dem Kauf eines neuen Bausteins.</p>
+<h3>Reproduzierbare Rückfragen stellen</h3>
+<p>Für einen Fehlerbericht notiere Spielversion, Deck, Einsatzstufe, Boss, Handlevel, Karten, Jokerreihenfolge und die erwartete sowie angezeigte Punktzahl. Erkläre, ob dein Vergleichswert im Spiel beobachtet oder von dir selbst berechnet wurde. Über <a href="/contact/" hreflang="en">Contact</a> erreichst du den Betreiber. Schicke keine Passwörter oder Zahlungsdaten. Eine kleine reproduzierbare Kombination ist meist hilfreicher als ein komplettes Speicherarchiv.</p>
+<p>Weitere Beispiele findest du im <a href="/blog/balatro-score-troubleshooting" hreflang="en">englischen Leitfaden zur Fehlersuche</a>. Nutze ihn, wenn Grundwerte stimmen, aber ein bestimmter Auslöser weiterhin unklar bleibt. Wiederhole einen Vergleich mit unveränderten Eingaben, bevor du daraus eine allgemeine Regel für alle Builds ableitest. Unterschiedliche Spielversionen, Mods und aktive Bossregeln können trotz ähnlicher Karten zu unterschiedlichen Ergebnissen führen.</p>
 </div>
-
+<div id="guide" class="contentCard" style="display:none;"><h2 class="contentTitle">Ein kurzer Spielplan</h2><p>Sichere zuerst genügend Punkte für den nächsten Blind. Suche danach wiederholbares Wachstum und verbessere den Zugriff auf deine bevorzugte Hand. Kaufe nicht mehrere fehlende Bausteine gedanklich dazu. Vergleiche echte Angebote, behalte einen zuverlässigen Übergang und prüfe vor jedem Boss erneut, welche Effekte funktionieren.</p></div></div>

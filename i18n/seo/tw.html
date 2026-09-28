@@ -1,38 +1,15 @@
 <div id="seoContent" class="contentPageWrapBelow">
-  <div class="seoTabs">
-    <button id="seoTabHow" class="seoTabBtn active" type="button">how it works</button>
-    <button id="seoTabGuide" class="seoTabBtn" type="button">guide</button>
-  </div>
-
-  <div id="how-it-works" class="contentCard">
-    <h2 class="contentTitle">Balatro 計分原理：Chips / Mult / Joker 順序</h2>
-    <p class="contentLead">Balatro 最終得分可寫成：<code>Score = Chips × Mult</code>。真正容易踩坑的是：很多效果會在不同階段依序改變「目前的 Chips / 目前的 Mult」，尤其是 Joker，因此 Joker 的擺放順序改變，分數可能差很多。</p>
-
-    <h2>三個核心概念</h2>
-    <ul>
-      <li><strong>Chips（籌碼）</strong>：類似底分，通常是加法疊加（+Chips）。</li>
-      <li><strong>Mult（倍率）</strong>：常見為 +Mult 的加法倍率。</li>
-      <li><strong>XMult</strong>：對 Mult 的乘法修正（×Mult），常常決定上限。</li>
-    </ul>
-
-    <h2>常見結算順序（心智模型）</h2>
-    <ol>
-      <li>確定牌型與等級 → 取得基礎 Chips 與基礎 Mult。</li>
-      <li>逐張結算計分牌（強化/版本可能加 Chips 或加 Mult / XMult）。</li>
-      <li>結算 Joker（通常由左到右）。</li>
-      <li>計算 <code>Chips × Mult</code>。</li>
-    </ol>
-  </div>
-
-  <div id="guide" class="contentCard" style="display:none;">
-    <h2 class="contentTitle">Balatro 玩法指南：Joker / Chips / 牌型（術語）</h2>
-    <p class="contentLead">入門建議：先選主打牌型，再補 Chips 與 Mult/XMult 來源，最後用經濟與工具提升穩定度。</p>
-    <h2>新手三條建議</h2>
-    <ol>
-      <li>越早確定主打牌型越好。</li>
-      <li>Chips 與 Mult 要平衡。</li>
-      <li>遇到 XMult/複製類 Joker，注意順序（左→右）。</li>
-    </ol>
-  </div>
-</div>
-
+<div class="seoTabs"><button id="seoTabHow" class="seoTabBtn active" type="button">計分原理</button><button id="seoTabGuide" class="seoTabBtn" type="button">實戰檢查</button></div>
+<div id="how-it-works" class="contentCard"><h2 class="contentTitle">Balatro 計分：先還原狀態，再比較選擇</h2>
+<p>這個計算器用來比較一組具體手牌與 Joker 配置。開始前，請先輸入牌型等級、打出的牌、留在手上的牌，以及 Joker 的位置與目前數值。計算結果回答的是「這個狀態能得多少分」，不代表下一手一定抽得到，也不保證商店會出現你想要的牌。先重現遊戲中真正可用的狀態，再逐項比較購買或排序變化，結果才有決策價值。</p>
+<h3>Chips、Mult 與 XMult 分別做什麼？</h3><p>一般牌組在相關效果結算後，以 Chips（籌碼）乘上 Mult（倍率）得到分數。增加 Chips 與增加 Mult 都可能提高得分，但 XMult 是把觸發當下的 Mult 再乘上一個數字。它不是把所有效果結束後的總分任意翻倍。請看清楚卡牌描述的加號與乘號，也要在 Breakdown 中確認效果實際出現的階段。</p>
+<p>以下是假設所有前置效果已結算的算術範例，不代表某個牌型的基礎值：100 Chips 與 20 Mult 得到 2,000 分。最後增加 50 Chips，變成 150 × 20＝3,000 分；最後增加 10 Mult，則是 100 × 30＝3,000 分。兩個選擇在這個例子相同，但價格、觸發條件及後續成長仍可能不同。</p>
+<h3>用數字看懂 Joker 順序</h3><p>從 20 Mult 開始，先 +10 再 ×2，結果是 60 Mult；先 ×2 再 +10，則只有 50 Mult。若 Chips 固定為 100，分數就是 6,000 與 5,000。請在計算器中只交換這兩個效果的順序，再查看中間步驟。複製、重新觸發及卡牌計分階段的能力不一定遵守同一個簡化排序口訣，因此不能只記「乘法一律放最右邊」。</p>
+<h3>牌型、等級與計分牌不能省略</h3><p>確認遊戲實際辨識的牌型，以及星球升級後的牌型等級。打出五張牌，不代表五張牌都會為該牌型計分；沒有計分的牌也可能涉及其他條件。請把牌的點數、花色、強化、版本與封蠟分別記錄。需要核對基礎 Chips 與 Mult 時，可查看<a href="/balatro-hand-levels" hreflang="en">英文牌型等級表</a>，再回到計算器加入實際效果。</p>
+<h3>留手效果與重新觸發</h3><p>有些效果取決於留在手中的卡牌。若只輸入打出的牌，就可能漏掉得分來源；把已打出的牌誤放到留手區，也會模擬另一個狀態。重新觸發通常是再次執行符合條件的效果，而不是直接乘上最終總分。可以先移除該觸發來源比較一次，再恢復它，逐步確認哪些牌符合條件、哪些效果被重複執行。</p>
+<h3>Plasma Deck 要改用平衡後的計算</h3><p>Plasma Deck 在最後平衡 Chips 與 Mult。對這裡使用的一般整數範例，可先將兩者相加、除以二並向下取整，再把該值平方。100 Chips 加 20 Mult 的總和是 120，平衡後為 60 與 60，得到 3,600 分。200 Chips 加 20 Mult 則得到 110²＝12,100 分。平衡前兩邊不需要接近；在其他條件相同時，應比較最終總和增加多少。</p>
+<p>牌組同時提高盲注壓力，因此分數較高不等於一定能過關。請以遊戲當下顯示的目標作比較，別把已反映牌組效果的目標再乘二。若計算器使用一般牌組，而遊戲是 Plasma Deck，即使卡牌完全相同，也是在比較兩套不同規則。</p>
+<h3>先看下一關，再談完整流派</h3><p>早期商店優先解決目前無法穩定過盲注的原因。中期確認哪個部分會持續成長；後期再檢查普通抽牌與較差抽牌能否應付 Boss。不要為了預想中的完整組合，先賣掉唯一可靠的即時得分來源。舉例說，還差 6,000 分、剩兩手時，穩定的 3,200 分可能足夠；換牌後每手只剩 2,600 分，兩手合計 5,200，就沒有解決當前問題。</p>
+<h3>分數不一致時，一次只改一項</h3><p>先記下遊戲版本、牌組、賭注等級、Boss 效果、牌型等級、卡牌與 Joker 數值，再找出 Breakdown 第一個不同的步驟。不要同時交換數張牌又修改等級，否則即使結果碰巧一致，也不知道原因。若某個 Mod 或 Boss 條件無法在工具中表達，請記錄這個限制，不要把缺少條件的結果當成完整模擬。</p>
+<h3>如何提交能重現的問題</h3><p>透過<a href="/contact/" hreflang="en">聯絡頁（英文）</a>提供最小可重現配置、預期值、工具結果，以及第一個不同的步驟。註明預期值是遊戲實際顯示，還是自行估算；截圖若包含個人資訊，請先遮蔽。一般計分問題不需要提供帳號密碼、付款資訊或整份存檔。更完整的步驟可參考<a href="/blog/balatro-score-troubleshooting" hreflang="en">英文算分排錯指南</a>。</p>
+</div><div id="guide" class="contentCard" style="display:none;"><h2 class="contentTitle">每次購買前的檢查</h2><p>確認下一關還差多少分、剩餘手數與棄牌數，再用常見抽牌比較購買前後。把最高可能分數與穩定可達分數分開記錄。先建立能存活的配置，再逐步補足成長、經濟與抽牌一致性，不必在第一間商店強行決定最終流派。</p></div></div>

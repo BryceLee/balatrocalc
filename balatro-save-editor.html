@@ -3,8 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
-    crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-1275876891096923">
   <meta name="robots" content="index, follow">
   <title>Balatro Save Editor - Open, Edit, and Download .jkr Save Files</title>
@@ -245,6 +243,18 @@
         </div>
       </section>
 
+<section class="contentCard"><h2 class="contentTitle">A controlled edit: backup, change one value, verify</h2>
+<h3>1. Identify the active copy</h3>
+<p>Close Balatro before copying a save. Locate the profile you were actually using, and copy the entire relevant save folder to a separate backup directory. Give the backup a descriptive name containing the date and profile. Keep this copy outside the active folder so an accidental overwrite is easier to spot. If several installations or Steam accounts exist, use the recent modification time as a clue and verify the profile in game before making changes.</p>
+<h3>2. Inspect before changing anything</h3>
+<p>Open a duplicate file in this editor and inspect the visible structure. A successful parse means the editor can read that representation; it does not prove every value is valid for your game version. Start with a setting whose meaning you understand and whose original value you can write down. Do not change identifiers, nested tables, or unfamiliar mod fields simply because they appear editable.</p>
+<h3>3. Preserve the value type</h3>
+<p>Keep numbers as numbers and booleans as true or false when using JSON. A quoted number is a string and may not be accepted where the game expects a numeric value. JSON syntax also requires quoted keys and valid commas. Normal mode is preferable for a small targeted change; JSON and Raw modes expose more structure and make broad accidental edits easier. Save a note containing the original value, the replacement, and the reason.</p>
+<h3>4. Download, reopen, and test</h3>
+<p>Download to a separate location, then reopen that downloaded file in the editor. Check that the intended change survived and that nearby fields still look correct. Reopening is a format check, not a game compatibility guarantee. With the game still closed, copy the edited file to the intended location. Launch the matching game version and profile, test the specific change, then exit normally. Keep the backup until you have confirmed normal play.</p></section><section class="contentCard"><h2 class="contentTitle">Recovery when a file fails or an edit disappears</h2>
+<p>If the editor cannot parse a file, preserve it unchanged. Confirm that it is a Balatro .jkr file rather than an archive, renamed download, or another game's save. A mod may add structures this editor cannot round-trip. Avoid trying random text replacements in a compressed file. Restore the known working copy and repeat with the same game and mod versions that created it.</p>
+<p>If the edit disappears, check whether you edited another profile or whether the game was still running when the file was replaced. Cloud synchronization can also introduce another version. Compare timestamps and retain both copies before resolving a sync conflict. Do not choose a cloud or local version solely because its timestamp is newer; identify which one contains your expected progress.</p>
+<p>To report a problem, send the browser, operating system, game version, mod list, file category, and exact error message through <a href="/contact/">Contact</a>. Describe the smallest action that reproduces it. Do not send passwords, payment details, or your whole save archive by default. The editor reads the selected file in your browser; support correspondence is a separate action that you choose to take.</p></section>
       <section class="contentCard">
         <h2 class="contentTitle">FAQ</h2>
         <div class="faqList">
@@ -560,6 +570,10 @@
       }
     }
   </style>
+<footer class="siteTrustFooter" lang="en" aria-label="Site information">
+  <nav aria-label="Site information links"><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a></nav>
+  <p>BalatroCalc is an unofficial fan tool, not affiliated with or endorsed by LocalThunk or Playstack. Balatro and related game assets belong to their respective rights holders.</p>
+</footer>
 </body>
 
 </html>

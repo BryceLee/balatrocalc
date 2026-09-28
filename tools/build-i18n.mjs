@@ -324,6 +324,11 @@ async function loadSeoBlock(code, fallbackSeoBlock) {
 }
 
 function setMetaRobots(html, content) {
+  // Unfinished translations must not inherit ad delivery from the English template.
+  // Keep the account meta tag available for ownership verification.
+  if (content.includes('noindex')) {
+    html = html.replace(/\s*<script\b[^>]*src=["']https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^"']*["'][^>]*>\s*<\/script>/gi, '');
+  }
   const meta = `<meta name="robots" content="${content}">`;
   if (/<meta name="robots" content="[^"]*">/i.test(html)) {
     return html.replace(/<meta name="robots" content="[^"]*">/i, meta);
@@ -578,6 +583,7 @@ async function main() {
     await fs.writeFile(outPath, content, 'utf8');
   }
 
+  await import('./sync-trust-footer.mjs');
   console.log(`Wrote ${outputs.length} files.`);
 }
 

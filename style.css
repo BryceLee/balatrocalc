@@ -3646,3 +3646,22 @@ body.save-editor-page #mainContainer {
     padding: 16px 14px 18px;
   }
 }
+
+/* Static trust navigation and article tables. */
+.siteTrustFooter {
+  position: relative;
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 24px 20px;
+  text-align: center;
+  color: #d1dbd5;
+  border-top: 1px solid rgba(255, 255, 255, .18);
+}
+.siteTrustFooter nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 24px; }
+.siteTrustFooter a { color: #ffe38c; }
+.siteTrustFooter a:focus-visible { outline: 2px solid #ffe38c; outline-offset: 4px; }
+.siteTrustFooter p, .siteTrustNotice { font-size: 14px; line-height: 1.6; max-width: 850px; margin: 18px auto; }
+.auditTableWrap { overflow-x: auto; margin: 20px 0; }
+.auditTable { width: 100%; border-collapse: collapse; line-height: 1.6; }
+.auditTable caption { text-align: left; margin-bottom: 10px; }
+.auditTable th, .auditTable td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,.2); }
