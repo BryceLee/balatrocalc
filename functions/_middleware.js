@@ -32,14 +32,26 @@ function getAllowedAdminEmails(env) {
   );
 }
 
-export async function onRequest({ request, next, env }) {
+export async function onRequest({ request, next, env, data }) {
   const url = new URL(request.url);
   if (url.hostname === 'www.balatrocalc.com' && (request.method === 'GET' || request.method === 'HEAD')) {
     url.hostname = 'balatrocalc.com';
     return Response.redirect(url.toString(), 301);
   }
 
-  const path = url.pathname;
+  // Pages serves decoded asset paths. Authenticate the same normalized path,
+  // otherwise /%61dmin/... can expose a protected static admin page.
+  let path = url.pathname;
+  try {
+    for (let depth = 0; depth < 4; depth++) {
+      const decoded = decodeURIComponent(path);
+      if (decoded === path) break;
+      path = decoded;
+    }
+    path = new URL(path.replace(/\\/g, '/').replace(/\/+/g, '/'), url.origin).pathname;
+  } catch {
+    return new Response('Invalid path', { status: 400, headers: { 'Cache-Control': 'private, no-store' } });
+  }
   if (!path.startsWith('/admin') && !path.startsWith('/api/admin')) {
     return next();
   }
@@ -52,9 +64,15 @@ export async function onRequest({ request, next, env }) {
   if (!expectedPass || !requestedEmail || auth?.pass !== expectedPass || !allowedEmails.has(requestedEmail)) {
     return new Response('Unauthorized', {
       status: 401,
-      headers: { 'WWW-Authenticate': 'Basic realm="Admin"' }
+      headers: { 'WWW-Authenticate': 'Basic realm="Admin"', 'Cache-Control': 'private, no-store' }
     });
   }
 
-  return next();
+  if (data) data.adminEmail = requestedEmail;
+  const response = await next();
+  const headers = new Headers(response.headers);
+  headers.set('Cache-Control', 'private, no-store');
+  headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+  headers.set('Referrer-Policy', 'no-referrer');
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }

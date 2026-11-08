@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>AI Video · BalatroCalc 管理员工作室</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/ai-video/studio.css">
+  <script src="/admin/ai-video/studio.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a href="/admin/">← 管理后台</a><span class="brand">BALATRO<span>CALC</span></span><span class="badge">ADMIN ONLY</span></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">THE JOKER STUDIO / 01</p><h1>AI <span>Video</span><span class="suit" aria-hidden="true">♠</span></h1><p class="lede">你的照片。你的小丑。你的舞台。</p></div><p class="intro-note">管理员内测<br><span>基础流程已开放调试，生成效果持续调整。</span></p></div>
+    <div id="setup" class="notice" role="status">正在检查工作室配置…</div>
+    <div class="studio-grid">
+      <form id="studioForm" class="panel controls">
+        <div class="panel-heading"><h2><span>01</span> 制作你的视频</h2><span class="tiny">PRIVATE SESSION</span></div>
+        <label class="upload" id="uploadZone" for="photo"><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><span id="uploadText"><strong>＋ 放入你的照片</strong><span>点击选择，或拖放照片到这里</span><small>JPG / PNG / WebP · 最大 10 MB<br>单人、正脸清晰，建议半身或全身照</small></span><img id="photoPreview" alt="待生成的个人照片" hidden><span id="replacePhoto" hidden>点击更换照片</span></label>
+        <p id="photoStatus" class="helper" aria-live="polite">照片只用于本次生成，结果仅管理员可访问。</p>
+        <fieldset><legend>演出场景</legend><div class="scene-options"><label class="scene"><input type="radio" name="scene" value="dance" checked><span><b aria-hidden="true">♦</b><strong>小丑舞步</strong><small>节奏、舞步、复古舞台</small></span></label><label class="scene"><input type="radio" name="scene" value="rap"><span><b aria-hidden="true">♣</b><strong>小丑说唱</strong><small>麦克风、手势、嘻哈节拍</small></span></label></div></fieldset>
+        <div class="settings"><label>画面比例<select id="aspectRatio"><option value="9:16">9:16 · 竖屏</option><option value="16:9">16:9 · 横屏</option></select></label><label>视频时长<select id="duration"><option value="6">6 秒</option><option value="10">10 秒</option></select></label><label>清晰度<select id="resolution"><option value="480P">480p</option><option value="720P">720p</option></select></label></div>
+        <label class="direction-label" for="direction">补充描述 <span>可选</span></label><textarea id="direction" maxlength="600" rows="3" placeholder="例如：红蓝小丑服装，在绿色牌桌舞台上跟着节拍摇摆…"></textarea>
+        <label class="consent"><input type="checkbox" id="consent"><span>我有权使用这张照片，同意将它发送给 AI 生成服务，并将照片和结果保存在私有存储中。</span></label>
+        <button class="generate" id="generate" type="submit" disabled>生成视频 <span aria-hidden="true">↗</span></button>
+        <p class="helper">提交会产生生成服务费用；内测每天最多 5 次。生成效果与人像还原程度待验证。</p>
+        <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <section class="panel output" aria-labelledby="outputHeading"><div class="panel-heading"><h2 id="outputHeading"><span>02</span> 你的舞台</h2><span id="outputBadge" class="tiny">WAITING FOR A JOKER</span></div><div id="emptyStage" class="empty-stage"><div class="joker-card" aria-hidden="true"><span>J<br>♠</span><div class="joker-sprite"></div><span>♠<br>J</span></div><h3>下一张王牌，是你。</h3><p>上传照片并选择演出场景。<br>视频完成后，会在这里亮相。</p><div class="stage-label">PHOTO → JOKER → SHOWTIME</div></div><div id="jobStage" hidden><div class="video-frame" id="videoFrame"><video id="resultVideo" controls playsinline preload="none" hidden></video><div id="jobProgress" class="job-progress"><span class="progress-suit" aria-hidden="true">♠</span><h3 id="progressTitle"></h3><p id="progressDescription"></p></div></div><div class="job-info"><span id="jobSettings"></span><code id="jobId"></code></div><p id="jobError" class="job-error" role="status"></p><div class="result-actions"><button id="refreshJob" type="button">刷新进度</button><a id="downloadVideo" class="download" hidden>下载 MP4 ↓</a></div><details id="recovery" hidden><summary>核实异常提交</summary><p class="helper">先在 302.AI 后台核对该时段的请求。若已创建任务，填写任务 ID 继续查询；若确认未创建，勾选后解除锁定。此操作不会发起生成。</p><label for="providerId">服务商任务 ID</label><input id="providerId" type="text" maxlength="100" autocomplete="off"><button id="attachTask" type="button">关联已有任务</button><label class="consent"><input id="confirmNoTask" type="checkbox"><span>我已核对服务商后台，确认未创建任务</span></label><button id="releaseTask" type="button" disabled>标记为未创建并解除锁定</button></details></div></section>
+    </div>
+    <section class="panel history"><div class="panel-heading"><h2><span>03</span> 视频记录</h2><button id="refreshHistory" type="button">刷新记录 ↻</button></div><p id="historyStatus" class="helper" role="status">正在加载记录…</p><div id="historyList" class="history-list"></div></section>
+    <footer>AI VIDEO LAB · BALATROCALC <span>仅管理员可见 · 照片与视频不公开展示</span></footer>
+  </main>
+</body>
+</html>

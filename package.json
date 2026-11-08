@@ -1,7 +1,10 @@
 {
   "private": true,
   "scripts": {
-    "test": "npm run test:worker && npm run test:version2 && npm run test:paypal && npm run test:ai && npm run test:ai-conversations && npm run test:ai-paypal-risk && npm run test:hand-levels && npm run test:max-hand-size && npm run test:seed-analyzer-access",
+    "test:ai-video": "node --experimental-sqlite --experimental-vm-modules --test tests/ai-video.test.mjs",
+    "video:dev": "CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false wrangler pages dev . --ip 127.0.0.1 --port 8791 --compatibility-date 2026-10-08 --d1 DB --r2 AI_VIDEO_BUCKET --binding ADMIN_ALLOWED_EMAILS=admin@example.test --binding ADMIN_PASS=local-preview-only --binding AI_VIDEO_ENABLED=false",
+    "video:db:local": "wrangler d1 execute DB --config wrangler.video-local.jsonc --local --file docs/ai-video-d1.sql",
+    "test": "npm run test:worker && npm run test:version2 && npm run test:paypal && npm run test:ai && npm run test:ai-conversations && npm run test:ai-paypal-risk && npm run test:ai-video && npm run test:hand-levels && npm run test:max-hand-size && npm run test:seed-analyzer-access",
     "google:token": "node scripts/get-google-token.js",
     "google:test": "node scripts/test-google-apis.js",
     "test:worker": "node tests/worker-score.test.mjs",
@@ -19,5 +22,8 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "googleapis": "^171.4.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.147.0"
   }
 }

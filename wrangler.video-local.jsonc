@@ -1,0 +1,13 @@
+// Local D1 initialization ONLY. Pages dev uses CLI bindings (see video:dev).
+// Production Pages remains configured in its dashboard.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "balatrocalc-video-local",
+  "compatibility_date": "2026-10-08",
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "balatrocalc-video-local",
+    "database_id": "local-DB",
+    "preview_database_id": "local-DB"
+  }]
+}
