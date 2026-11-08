@@ -26,7 +26,9 @@ class BalatroBG {
         this.time = 0;
         this.spin_time = 0;
         this.animationFrameId = null;
-        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        // Keep touch-device input free of a continuously running decorative
+        // shader. Render the same background once, and again after resizing.
+        this.prefersStaticBackground = window.matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)');
         this.handleVisibilityChange = this.updateAnimationState.bind(this);
         this.handleMotionPreferenceChange = this.updateAnimationState.bind(this);
         
@@ -53,10 +55,10 @@ class BalatroBG {
         window.addEventListener('resize', () => this.resize());
         document.addEventListener('visibilitychange', this.handleVisibilityChange);
 
-        if (typeof this.prefersReducedMotion.addEventListener === 'function') {
-            this.prefersReducedMotion.addEventListener('change', this.handleMotionPreferenceChange);
-        } else if (typeof this.prefersReducedMotion.addListener === 'function') {
-            this.prefersReducedMotion.addListener(this.handleMotionPreferenceChange);
+        if (typeof this.prefersStaticBackground.addEventListener === 'function') {
+            this.prefersStaticBackground.addEventListener('change', this.handleMotionPreferenceChange);
+        } else if (typeof this.prefersStaticBackground.addListener === 'function') {
+            this.prefersStaticBackground.addListener(this.handleMotionPreferenceChange);
         }
     }
     
@@ -222,7 +224,7 @@ class BalatroBG {
     }
 
     shouldRenderStatic() {
-        return document.hidden || this.prefersReducedMotion.matches;
+        return document.hidden || this.prefersStaticBackground.matches;
     }
 
     updateAnimationState() {

@@ -642,19 +642,33 @@ function jokerString(i, j, modifiers) {
   return `${jmodifierClass}" style="mask-position:  -${71 * j}px -${95 * i}px; background: ${jmodifierPostString}${jmodifierString}url(assets/Jokers.png) -${71 * j}px -${95 * i}px"`;
 }
 
+// Reuse rendered catalog entries while typing. Localized text, counters and
+// editions are part of the key so changing any of them refreshes the preview.
+const jokerCatalogCache = [];
 function jredrawCards() {
   let txt = '<div>';
   let count = 0;
+  const query = searchVal.toLowerCase();
+  const editionKey = JSON.stringify(jmodifiers);
   for (let i = 0; i < 16; i++) {
     if (i === 9) { i++; }
     for (let j = 0; j < 10; j++) {
       const title = (jokerTexts.length > i && jokerTexts[i].length > j) ? jokerTexts[i][j][0] : 'WIP';
-      const description = (jokerTexts.length > i && jokerTexts[i].length > j) ? renderJokerDescription(i, j, { jokerValue }) : 'WIP';
-      if (title.toLowerCase().indexOf(searchVal.toLowerCase()) >= 0 || description.replace(/\<[^\>]+\>/g, '').toLowerCase().indexOf(searchVal.toLowerCase()) >= 0) {
-        txt += `<div class='tooltip'><div class="jokerCard${jokerString(i, j, jmodifiers)} onclick="addJoker(${i}, ${j})" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div><span class='tooltiptext'>` +
+      const template = jokerTexts[i]?.[j]?.[1];
+      const index = i * 10 + j;
+      let entry = jokerCatalogCache[index];
+      if (!entry || entry.title !== title || entry.template !== template || entry.value !== jokerValue || entry.editionKey !== editionKey) {
+        const description = template ? renderJokerDescription(i, j, { jokerValue }) : 'WIP';
+        const html = `<div class='tooltip'><div class="jokerCard${jokerString(i, j, jmodifiers)} onclick="addJoker(${i}, ${j})" onmousemove = 'hoverCard(event)' onmouseout = 'noHoverCard(event)'></div><span class='tooltiptext'>` +
           `<div class='title'>${title}</div><br style="display: none">` +
           `<div class='desc'><span class='descContent'>${description}</span></span>` +
           `</div></div>`;
+        entry = { title, template, value: jokerValue, editionKey, html,
+          searchText: `${title}\n${description.replace(/\<[^\>]+\>/g, '')}`.toLowerCase() };
+        jokerCatalogCache[index] = entry;
+      }
+      if (entry.searchText.includes(query)) {
+        txt += entry.html;
         count++;
         if (count >= 10) {
           count = 0;

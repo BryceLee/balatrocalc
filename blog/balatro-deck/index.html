@@ -2,13 +2,14 @@
 <html lang="en" dir="ltr">
 
 <head>
+  <link rel="preload" href="/assets/m6x11plus.ttf" as="font" type="font/ttf" crossorigin>
   <meta charset="utf-8">
   <base href="/">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
     crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-1275876891096923">
   <title>Balatro Deck Guide - All 15 Decks + Plasma Deck Tips</title>
-  <link rel="stylesheet" href="style.css?v=20260809-site-nav-3">
+  <link rel="stylesheet" href="style.css?v=20261108-gsc-1">
   <meta name="description"
     content="Balatro deck guide covering all 15 decks plus practical Plasma Deck tips, scoring logic, and build links.">
   <meta name="keywords"
@@ -17,13 +18,13 @@
   <meta property="og:title" content="Balatro Deck Guide - All 15 Decks + Plasma Deck Tips">
   <meta property="og:description" content="View all 15 Balatro decks, then learn when and how to play Plasma Deck.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://balatrocalc.com/blog/balatro-deck">
+  <meta property="og:url" content="https://balatrocalc.com/blog/balatro-deck/">
   <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Balatro Deck Guide - All 15 Decks + Plasma Deck Tips">
   <meta name="twitter:description" content="All Balatro decks in one table, with a focused Plasma Deck strategy section.">
   <meta name="theme-color" content="#2b3b34">
-  <link rel="canonical" href="https://balatrocalc.com/blog/balatro-deck">
+  <link rel="canonical" href="https://balatrocalc.com/blog/balatro-deck/">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -48,7 +49,7 @@
     <a href="/balatro-hand-levels" class="nav-link">hand levels</a>
     <a href="/balatro-seeds" class="nav-link">seeds</a>
     <a href="/balatro-seed-analyzer" class="nav-link">analyzer</a>
-    <a href="/blog/balatro-deck" class="nav-link nav-link--active">decks</a>
+    <a href="/blog/balatro-deck/" class="nav-link nav-link--active">decks</a>
     <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
     <div class="language-switcher">
       <select id="langSelect" onchange="switchLanguage()">
@@ -93,7 +94,7 @@
           <li><a href="/">Calculator</a> for Chips/Mult balance checks and boss blind planning.</li>
           <li><a href="/balatro-seeds">Seeds</a> to practice repeating Plasma openers.</li>
           <li><a href="/balatro-seed-analyzer">Seed Analyzer</a> to inspect route decisions before long runs.</li>
-          <li><a href="/blog/balatro-plasma-deck-guide">Plasma Deck Guide</a> for a focused Chips, Mult, and doubled-blind checklist.</li>
+          <li><a href="/blog/balatro-plasma-deck-guide/">Plasma Deck Guide</a> for a focused Chips, Mult, and doubled-blind checklist.</li>
           <li><a href="/balatro-jokers">Jokers Guide</a> and <a href="/balatro-builds">Builds</a> for combo drafting ideas.</li>
         </ul>
 
@@ -114,11 +115,11 @@
       "@graph": [
         {
           "@type": "Article",
-          "@id": "https://balatrocalc.com/blog/balatro-deck#article",
+          "@id": "https://balatrocalc.com/blog/balatro-deck/#article",
           "headline": "Balatro Deck Guide - All 15 Decks + Plasma Deck Tips",
           "description": "Balatro deck guide covering all 15 decks plus practical Plasma Deck tips, scoring logic, and build links.",
-          "url": "https://balatrocalc.com/blog/balatro-deck",
-          "mainEntityOfPage": "https://balatrocalc.com/blog/balatro-deck",
+          "url": "https://balatrocalc.com/blog/balatro-deck/",
+          "mainEntityOfPage": "https://balatrocalc.com/blog/balatro-deck/",
           "inLanguage": "en",
           "dateModified": "2026-05-14",
           "publisher": {
@@ -134,25 +135,25 @@
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://balatrocalc.com/blog/balatro-deck#breadcrumb",
+          "@id": "https://balatrocalc.com/blog/balatro-deck/#breadcrumb",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "name": "Balatro Guides",
-              "item": "https://balatrocalc.com/blog"
+              "item": "https://balatrocalc.com/blog/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Balatro Deck Guide",
-              "item": "https://balatrocalc.com/blog/balatro-deck"
+              "item": "https://balatrocalc.com/blog/balatro-deck/"
             }
           ]
         },
         {
           "@type": "FAQPage",
-          "@id": "https://balatrocalc.com/blog/balatro-deck#faq",
+          "@id": "https://balatrocalc.com/blog/balatro-deck/#faq",
           "mainEntity": [
             {
               "@type": "Question",
@@ -328,7 +329,7 @@
     function switchLanguage() {
       const select = document.getElementById('langSelect');
       if (!select) return;
-      window.location.href = select.value === 'cn' ? '/cn/blog/balatro-deck' : '/blog/balatro-deck';
+      window.location.href = select.value === 'cn' ? '/cn/blog/balatro-deck/' : '/blog/balatro-deck/';
     }
 
     renderTable();

@@ -1,27 +1,27 @@
-https://www.balatrocalc.com/* https://balatrocalc.com/:splat 301
+# The www host redirect is handled by functions/_middleware.js.
 
 /index.html / 301
 
-/blog/balatro-deck.html /blog/balatro-deck 301
-/cn/blog/balatro-deck.html /cn/blog/balatro-deck 301
-/blog/balatro-code-dbd.html /blog/balatro-code-dbd 301
-/blog/balatro-gameplay.html /blog/balatro-gameplay 301
+/blog/balatro-deck.html /blog/balatro-deck/ 301
+/cn/blog/balatro-deck.html /cn/blog/balatro-deck/ 301
+/blog/balatro-code-dbd.html /blog/balatro-code-dbd/ 301
+/blog/balatro-gameplay.html /blog/balatro-gameplay/ 301
 
-/balatro-deck /blog/balatro-deck 301
-/balatro-deck/ /blog/balatro-deck 301
-/balatro-deck.html /blog/balatro-deck 301
+/balatro-deck /blog/balatro-deck/ 301
+/balatro-deck/ /blog/balatro-deck/ 301
+/balatro-deck.html /blog/balatro-deck/ 301
 
-/cn/balatro-deck /cn/blog/balatro-deck 301
-/cn/balatro-deck/ /cn/blog/balatro-deck 301
-/cn/balatro-deck.html /cn/blog/balatro-deck 301
+/cn/balatro-deck /cn/blog/balatro-deck/ 301
+/cn/balatro-deck/ /cn/blog/balatro-deck/ 301
+/cn/balatro-deck.html /cn/blog/balatro-deck/ 301
 
-/balatro-code-dbd /blog/balatro-code-dbd 301
-/balatro-code-dbd/ /blog/balatro-code-dbd 301
-/balatro-code-dbd.html /blog/balatro-code-dbd 301
+/balatro-code-dbd /blog/balatro-code-dbd/ 301
+/balatro-code-dbd/ /blog/balatro-code-dbd/ 301
+/balatro-code-dbd.html /blog/balatro-code-dbd/ 301
 
-/balatro-gameplay /blog/balatro-gameplay 301
-/balatro-gameplay/ /blog/balatro-gameplay 301
-/balatro-gameplay.html /blog/balatro-gameplay 301
+/balatro-gameplay /blog/balatro-gameplay/ 301
+/balatro-gameplay/ /blog/balatro-gameplay/ 301
+/balatro-gameplay.html /blog/balatro-gameplay/ 301
 
 /balatro-high-card-build.html /balatro-high-card-build 301
 /balatro-hand-levels.html /balatro-hand-levels 301
@@ -29,3 +29,6 @@ https://www.balatrocalc.com/* https://balatrocalc.com/:splat 301
 /balatro-ai-assistant.html /balatro-ai-assistant 301
 /calculator-3 / 301
 /calculator-3.html / 301
+
+/da/seed-2F4TYFD8 /seed-2F4TYFD8 301
+/da/seed-2F4TYFD8.html /seed-2F4TYFD8 301

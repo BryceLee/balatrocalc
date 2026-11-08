@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr"><head><meta charset="utf-8">
+<html lang="en" dir="ltr"><head>
+  <link rel="preload" href="/assets/m6x11plus.ttf" as="font" type="font/ttf" crossorigin><meta charset="utf-8">
 <title>Balatro Score Troubleshooting — BalatroCalc</title><meta name="description" content="Reproduce a Balatro score mismatch with worked arithmetic, hand checks, trigger order, held cards, deck effects, and a support checklist.">
-<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://balatrocalc.com/blog/balatro-score-troubleshooting">
-<link rel="stylesheet" href="/style.css?v=20260928-trust"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://balatrocalc.com/blog/balatro-score-troubleshooting/">
+<link rel="stylesheet" href="/style.css?v=20261108-gsc-1"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head><body><canvas id="backgroundCanvas"></canvas><div id="titleBar"><div class="titleBarBrand">balatrocalc</div><span class="subtitle">Balatro Score Troubleshooting</span></div>
-<nav id="topNav" aria-label="Main navigation"><a class="nav-link" href="/">calculator</a><a class="nav-link" href="/blog">guides</a><a class="nav-link" href="/about/">about</a><a class="nav-link" href="/contact/">contact</a></nav>
+<nav id="topNav" aria-label="Main navigation"><a href="/" class="nav-link">calculator</a><a href="/balatro-hand-levels" class="nav-link">hand levels</a><a class="nav-link" href="/blog/">guides</a><a class="nav-link" href="/about/">about</a><a class="nav-link" href="/contact/">contact</a></nav>
 <main id="mainContainer"><div class="contentPageWrap"><article class="contentCard"><h1 class="contentTitle">Why Does My Balatro Score Differ? A Reproducible Checklist</h1>
 <p class="contentLead">A score mismatch is easiest to solve when you compare two copies of the same state. Before replacing a Joker or reporting a bug, write down the exact hand you played and find the first scoring step that differs. This guide separates arithmetic, missing inputs, order effects, and unsupported conditions so a surprising total becomes a specific question you can test.</p>
 <h2>1. Capture the state before changing anything</h2>
@@ -20,7 +21,7 @@
 <p>Held cards can matter even though you did not play them. A hand with a relevant held-card effect differs from one containing only the scoring cards. Conversely, entering a card as held when it was actually played describes a different state. Compare the two groups explicitly. Do not rely on a screenshot that hides the remaining hand below another window.</p>
 <p>Likewise, a retrigger is another execution of the applicable effect, not an arbitrary multiplier on the entire final score. To isolate it, first compare a state without that retrigger and then restore the trigger source. Check which cards qualify and whether a debuff prevents an effect. This often explains why a remembered highlight video cannot be reproduced with a superficially similar hand.</p>
 <h2>5. Treat deck and boss rules as inputs</h2>
-<p>Plasma Deck changes the final calculation. For the ordinary integer example of 100 Chips and 20 Mult, it balances to 60 and 60, then scores 3,600. The normal-deck result of 2,000 is not the appropriate comparison. See the <a href="/blog/balatro-plasma-deck-guide">Plasma guide</a> for larger purchase comparisons and rounding assumptions. Check that the Plasma option matches the deck used in your game.</p>
+<p>Plasma Deck changes the final calculation. For the ordinary integer example of 100 Chips and 20 Mult, it balances to 60 and 60, then scores 3,600. The normal-deck result of 2,000 is not the appropriate comparison. See the <a href="/blog/balatro-plasma-deck-guide/">Plasma guide</a> for larger purchase comparisons and rounding assumptions. Check that the Plasma option matches the deck used in your game.</p>
 <p>Boss conditions can change which cards work, which hand is legal, or which Joker contributes. Review the active rule before calling an optimization result wrong. If the calculator cannot represent the relevant rule or your modded effect, write that limitation down. An unrepresented condition makes the comparison incomplete; it does not establish the correct in-game result by itself.</p>
 <h2>6. Compare one change at a time</h2>
 <p>Start with the simplest hand that still reproduces the mismatch. Remove one irrelevant Joker or enhancement, recompute, and note whether the discrepancy remains. If removing an effect makes the results agree, restore it and inspect its trigger conditions. Keep a short log of original value, changed value, and score. Randomly changing five inputs can make the totals match while hiding the actual cause.</p>

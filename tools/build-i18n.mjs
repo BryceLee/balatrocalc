@@ -395,6 +395,12 @@ function shouldIncludeInSitemap(relPath, html) {
 
 async function gitLastmod(relPath, fallbackDate) {
   try {
+    // A sitemap generated before committing must describe the changed content.
+    try {
+      await execFileAsync('git', ['diff', '--quiet', 'HEAD', '--', relPath]);
+    } catch {
+      return fallbackDate;
+    }
     const { stdout } = await execFileAsync('git', ['log', '-1', '--format=%cs', '--', relPath]);
     return stdout.trim() || fallbackDate;
   } catch {
@@ -507,13 +513,14 @@ async function localizeLegal({ baseHtml, languages, lang, pagePath }) {
   return html;
 }
 
-async function buildSitemapXmlFromFiles() {
+async function buildSitemapXmlFromFiles(pendingOutputs = []) {
   const fallbackLastmod = todayISO();
   const htmlFiles = await collectHtmlFiles('.');
   const urlEntries = new Map();
+  const pending = new Map(pendingOutputs);
 
   for (const relPath of htmlFiles) {
-    const html = await readText(relPath);
+    const html = pending.get(relPath) ?? await readText(relPath);
     if (!shouldIncludeInSitemap(relPath, html)) continue;
 
     const loc = sitemapLocFromHtml(relPath, html);
@@ -543,6 +550,12 @@ ${urls.join('\n')}
 
 async function main() {
   const write = process.argv.includes('--write');
+  if (process.argv.includes('--sitemap-only')) {
+    const sitemap = await buildSitemapXmlFromFiles();
+    if (write) await fs.writeFile('sitemap.xml', sitemap, 'utf8');
+    else console.log(sitemap);
+    return;
+  }
   const languages = JSON.parse(await readText(path.join('i18n', 'languages.json')));
   const localizedIndexCodes = await collectLocalizedIndexCodes(languages);
 
@@ -569,7 +582,7 @@ async function main() {
     outputs.push([path.join(lang.code, 'terms', 'index.html'), localizedTerms]);
   }
 
-  const sitemap = await buildSitemapXmlFromFiles();
+  const sitemap = await buildSitemapXmlFromFiles(outputs);
   outputs.push(['sitemap.xml', sitemap]);
 
   if (!write) {
