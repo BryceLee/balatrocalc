@@ -108,6 +108,30 @@
       .scroll-table {
         overflow-x: auto;
       }
+      .bar-cell {
+        min-width: 140px;
+      }
+      .bar {
+        height: 10px;
+        border-radius: 3px;
+        background: #3f8f63;
+      }
+      .bar.alt {
+        background: #f3b958;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+      .tag {
+        display: inline-block;
+        padding: 0 0.4rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        background: #3a2f12;
+        color: #f3b958;
+      }
       @media (max-width: 720px) {
         body {
           padding: 1rem;
@@ -133,8 +157,93 @@
       <a href="/admin/ai-video/" style="color:#f3b958">进入 AI Video 工作室 →</a>
     </section>
 
+    <section id="behavior">
+      <h2>全站用户行为</h2>
+      <div class="toolbar">
+        <div>
+          <label for="behaviorGranularity">统计粒度</label>
+          <select id="behaviorGranularity">
+            <option value="day" selected>按天（最近 30 天）</option>
+            <option value="month">按月（最近 12 个月）</option>
+            <option value="quarter">按季度（最近 8 个季度）</option>
+            <option value="year">按年（最近 3 年）</option>
+          </select>
+        </div>
+        <p class="muted">用户 = 设备匿名 ID（同一浏览器算一人）。时间为 UTC。数据从埋点上线那天开始累积；更早的流量请看 Plausible。</p>
+        <button id="behaviorRefresh" type="button">刷新</button>
+      </div>
+      <p id="behaviorStatus" class="status muted">正在加载...</p>
+      <div id="behaviorSummary" class="admin-grid"></div>
+
+      <h3>用户趋势</h3>
+      <div class="scroll-table">
+        <table>
+          <thead><tr><th>周期</th><th>用户</th><th class="bar-cell"></th><th>新用户</th><th>会话</th><th>浏览量</th><th>付费用户</th></tr></thead>
+          <tbody id="behaviorTrend"></tbody>
+        </table>
+      </div>
+
+      <h3>功能使用（找收费点看这里）</h3>
+      <p class="muted">回访率 = 在本周期内 ≥2 天打开该功能的用户占比。用户多 + 回访率高 + 停留久 + 有下载/编辑动作 = 最适合做付费增值的功能。</p>
+      <div class="scroll-table">
+        <table>
+          <thead><tr><th>功能</th><th>用户</th><th>浏览量</th><th>回访用户</th><th>回访率</th><th>平均停留</th><th>停留&gt;1分钟</th><th>平均滚动</th><th>付费用户</th></tr></thead>
+          <tbody id="behaviorFeatures"></tbody>
+        </table>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>用户行为（下载 / 编辑 / 上传 / 外链）</h3>
+          <div class="scroll-table">
+            <table>
+              <thead><tr><th>行为</th><th>用户</th><th>次数</th></tr></thead>
+              <tbody id="behaviorActions"></tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h3>回访天数分布</h3>
+          <div class="scroll-table">
+            <table>
+              <thead><tr><th>活跃天数</th><th>用户</th><th class="bar-cell"></th></tr></thead>
+              <tbody id="behaviorFrequency"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <h3>功能 × 行为</h3>
+      <div class="scroll-table">
+        <table>
+          <thead><tr><th>功能</th><th>行为</th><th>用户</th><th>次数</th></tr></thead>
+          <tbody id="behaviorActionsByFeature"></tbody>
+        </table>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3>流量来源</h3>
+          <table><thead><tr><th>来源</th><th>会话</th><th>用户</th></tr></thead><tbody id="behaviorSources"></tbody></table>
+        </div>
+        <div>
+          <h3>落地页</h3>
+          <table><thead><tr><th>页面</th><th>会话</th><th>用户</th></tr></thead><tbody id="behaviorLanding"></tbody></table>
+        </div>
+        <div>
+          <h3>国家 / 地区</h3>
+          <table><thead><tr><th>国家</th><th>用户</th></tr></thead><tbody id="behaviorCountries"></tbody></table>
+        </div>
+        <div>
+          <h3>设备 / 语言</h3>
+          <table><thead><tr><th>设备</th><th>用户</th></tr></thead><tbody id="behaviorDevices"></tbody></table>
+          <table><thead><tr><th>站点语言</th><th>用户</th></tr></thead><tbody id="behaviorLanguages"></tbody></table>
+        </div>
+      </div>
+    </section>
+
     <section>
-      <h2>行为分析报表</h2>
+      <h2>种子订阅分析</h2>
       <div class="toolbar">
         <div>
           <label for="analyticsDays">时间范围</label>
@@ -251,5 +360,6 @@
     </section>
 
     <script src="admin.js"></script>
+    <script src="behavior.js"></script>
   </body>
 </html>

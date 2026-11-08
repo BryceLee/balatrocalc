@@ -716,6 +716,7 @@ function addJoker(i, j, sell = false) {
   }
 
   jokerLimitDiv.innerText = Object.keys(playfieldJokers).length;
+  if (window.bcAnalytics) window.bcAnalytics.action('calc_joker_added');
 
   if (Object.keys(playfieldJokers).length >= 8 && optimizeJokers) {
     toggleJoker();
@@ -753,6 +754,7 @@ function addCard(i, j) {
   }
 
   handLimitDiv.innerText = Object.keys(playfieldCards).length;
+  if (window.bcAnalytics) window.bcAnalytics.action('calc_card_added');
 
   if (Object.keys(playfieldCards).length >= 9 && optimizeJokers) {
     toggleCard();

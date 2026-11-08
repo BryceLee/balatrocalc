@@ -47,6 +47,7 @@
 
   function track(name, props) {
     if (typeof window.plausible === 'function') window.plausible(name, { props: props || {} });
+    if (window.bcAnalytics) window.bcAnalytics.track(String(name).toLowerCase().replace(/\s+/g, '_'), props || {});
   }
 
   function messageElement(role, content, billing) {

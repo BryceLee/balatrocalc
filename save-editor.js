@@ -22,7 +22,12 @@
     fileData: null,
     editorMode: 'normal',
     openState: new Map(),
+    editCount: 0,
   };
+
+  function trackEvent(name, props) {
+    try { if (window.bcAnalytics) window.bcAnalytics.track(name, props); } catch (e) { /* ignore */ }
+  }
 
   const returnPrefix = /^\s*return\s+/;
   const stringKeys = /\["(.*?)"\]=/g;
@@ -550,6 +555,7 @@
     state.openState.clear();
 
     if (!state.fileType) {
+      trackEvent('save_file_failed', { reason: 'unknown_type' });
       controls.hidden = true;
       setStatus(`Unknown file type '${file.name}'. It must include settings, meta, profile, or save.`, 'error');
       return;
@@ -561,11 +567,14 @@
       const buffer = new Uint8Array(await file.arrayBuffer());
       const json = await processFile(buffer);
       state.fileData = json;
+      state.editCount = 0;
+      trackEvent('save_file_loaded', { file_type: state.fileType, size_kb: Math.round(file.size / 1024) });
       controls.hidden = false;
       setStatus('');
       renderMode();
     } catch (err) {
       controls.hidden = true;
+      trackEvent('save_file_failed', { reason: 'parse_error', file_type: state.fileType });
       const message = err && err.message ? err.message : 'There was an error parsing the file.';
       setStatus(message, 'error');
       // eslint-disable-next-line no-console
@@ -590,6 +599,7 @@
       link.download = state.file.name;
       link.click();
       URL.revokeObjectURL(url);
+      trackEvent('save_downloaded', { file_type: state.fileType, mode: state.editorMode, edits: state.editCount });
       setStatus('');
     } catch (err) {
       const message = err && err.message ? err.message : 'Failed to build the download.';
@@ -598,6 +608,12 @@
       console.error(err);
     }
   }
+
+  // One event per loaded file when the visitor first edits a value; later edits only bump the counter.
+  panelEl.addEventListener('change', () => {
+    state.editCount += 1;
+    if (state.editCount === 1) trackEvent('save_edited', { file_type: state.fileType, mode: state.editorMode });
+  });
 
   modeSelect.addEventListener('change', () => {
     state.editorMode = modeSelect.value;

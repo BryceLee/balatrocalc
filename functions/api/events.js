@@ -19,8 +19,49 @@ const ALLOWED_EVENTS = new Set([
   'subscription_check_failed',
   'premium_library_unlocked',
   'seed_copied',
-  'seed_library_analyze_clicked'
+  'seed_library_analyze_clicked',
+  // Sitewide behavior events (bc-analytics.js)
+  'page_view',
+  'page_engagement',
+  'outbound_click',
+  'file_download',
+  'file_upload',
+  'text_copied',
+  'ui_click',
+  'calc_joker_added',
+  'calc_card_added',
+  'save_file_loaded',
+  'save_file_failed',
+  'save_edited',
+  'save_downloaded',
+  'ai_conversation_opened',
+  'ai_conversation_started',
+  'ai_conversation_deleted',
+  'ai_sign_in',
+  'ai_checkout_started',
+  'ai_credits_purchased',
+  'ai_question_answered'
 ]);
+
+const LANG_PREFIXES = new Set(['ar', 'cn', 'cs', 'da', 'de', 'el', 'es', 'fi', 'fr', 'he', 'hi', 'hu', 'id', 'it',
+  'ja', 'ko', 'ms', 'nl', 'no', 'pl', 'pt-br', 'pt-pt', 'ro', 'ru', 'sv', 'th', 'tl', 'tr', 'tw', 'uk', 'vi']);
+const INFO_PAGES = new Set(['about', 'contact', 'privacy-policy', 'terms', 'support', 'how-it-works']);
+const BOT_UA = /bot|crawler|spider|crawl|slurp|headless|lighthouse|prerender|preview|facebookexternalhit|curl|wget|python-requests/i;
+
+// Maps a URL path to a product area, ignoring the language prefix,
+// so /cn/balatro-seeds.html and /balatro-seeds group together as "seeds".
+export function featureFromPath(rawPath) {
+  const parts = String(rawPath || '/').toLowerCase().split('?')[0].split('/').filter(Boolean);
+  if (parts.length && LANG_PREFIXES.has(parts[0])) parts.shift();
+  if (!parts.length) return 'calculator';
+  const first = parts[0].replace(/\.html$/, '');
+  if (first === 'index') return 'calculator';
+  if (first === 'blog' || first === 'guide') return first;
+  if (first === 'how-to-install-balatro-mods') return 'mod-install-guide';
+  if (INFO_PAGES.has(first)) return 'info';
+  const slug = first.replace(/^balatro-/, '');
+  return slug.slice(0, 60) || 'other';
+}
 
 const SUBSCRIPTION_STATUSES = new Set(['free', 'paid', 'unknown']);
 
@@ -64,6 +105,12 @@ function serializeProperties(value) {
   });
 }
 
+function withServerProperties(properties, request) {
+  const country = request.cf?.country || request.headers.get('cf-ipcountry') || null;
+  const base = properties && typeof properties === 'object' && !Array.isArray(properties) ? properties : {};
+  return country ? { ...base, country: String(country).slice(0, 8) } : base;
+}
+
 function normalizeEvent(raw, request, createdAt) {
   const eventName = trimField(raw?.eventName || raw?.event_name || raw?.name, 80);
   if (!eventName || !ALLOWED_EVENTS.has(eventName)) {
@@ -83,10 +130,10 @@ function normalizeEvent(raw, request, createdAt) {
     anonymousId,
     sessionId,
     email: email || null,
-    featureKey: trimField(raw?.featureKey || raw?.feature_key || 'seed', 80) || 'seed',
+    featureKey: trimField(raw?.featureKey || raw?.feature_key, 80) || featureFromPath(raw?.path),
     subscriptionStatus: normalizeStatus(raw?.subscriptionStatus || raw?.subscription_status),
     eventName,
-    propertiesJson: serializeProperties(raw?.properties),
+    propertiesJson: serializeProperties(withServerProperties(raw?.properties, request)),
     path: trimField(raw?.path, 500),
     referrer: trimField(raw?.referrer, 500),
     userAgent,
@@ -97,6 +144,10 @@ function normalizeEvent(raw, request, createdAt) {
 export async function onRequestPost({ request, env }) {
   if (!env.DB) {
     return errorResponse('Missing database binding', 500);
+  }
+
+  if (BOT_UA.test(request.headers.get('user-agent') || '')) {
+    return jsonResponse({ ok: true, inserted: 0, ignored: 'bot' });
   }
 
   const body = await request.json().catch(() => null);

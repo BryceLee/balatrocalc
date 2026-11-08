@@ -32,6 +32,20 @@ function getAllowedAdminEmails(env) {
   );
 }
 
+const TRACKER_TAG = '<script defer src="/bc-analytics.js"></script>';
+
+// Adds the first-party behavior tracker to every public HTML page.
+async function withBehaviorTracker(request, env, next) {
+  const response = await next();
+  if (env.BEHAVIOR_TRACKING === 'off' || typeof HTMLRewriter === 'undefined') return response;
+  if (request.method !== 'GET' || response.status !== 200) return response;
+  const type = response.headers.get('content-type') || '';
+  if (!type.includes('text/html')) return response;
+  return new HTMLRewriter()
+    .on('head', { element(element) { element.append(TRACKER_TAG, { html: true }); } })
+    .transform(response);
+}
+
 export async function onRequest({ request, next, env, data }) {
   const url = new URL(request.url);
   if (url.hostname === 'www.balatrocalc.com' && (request.method === 'GET' || request.method === 'HEAD')) {
@@ -53,7 +67,7 @@ export async function onRequest({ request, next, env, data }) {
     return new Response('Invalid path', { status: 400, headers: { 'Cache-Control': 'private, no-store' } });
   }
   if (!path.startsWith('/admin') && !path.startsWith('/api/admin')) {
-    return next();
+    return path.startsWith('/api/') ? next() : withBehaviorTracker(request, env, next);
   }
 
   const expectedPass = env.ADMIN_PASS || '';
