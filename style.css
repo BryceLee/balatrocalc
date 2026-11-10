@@ -3453,6 +3453,22 @@ body.save-editor-page #mainContainer {
   line-height: 1.55;
 }
 
+.save-editor-premium {
+  margin-top: 12px;
+}
+
+.save-editor-premium-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.save-editor-premium-choices .save-editor-btn {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
 .save-editor-panel {
   border: 1px solid rgba(255, 215, 0, 0.28);
   border-radius: 14px;

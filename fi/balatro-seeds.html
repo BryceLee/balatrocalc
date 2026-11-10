@@ -729,7 +729,6 @@
       paidEmail: 'bc_paid_email',
       paidFeatures: 'bc_paid_features'
     };
-    const bcAnalyticsSessionStartedAt = Date.now();
     const bcAnalyticsVolatileStorage = new Map();
 
     function getSeedAnalyticsStorageValue(type, key) {
@@ -813,7 +812,8 @@
           referrer: document.referrer || '',
           properties: {
             ...properties,
-            plan: paid.plan || properties.plan || null
+            plan: properties.plan || paid.plan || null,
+            current_plan: paid.plan || null
           }
         };
         const body = JSON.stringify(payload);
@@ -5761,22 +5761,6 @@
         });
       }
 
-      function setupSessionHeartbeat() {
-        track("session_heartbeat", {
-          elapsedMs: 0,
-          visibility: document.visibilityState || "visible",
-          surface: "seed-library"
-        });
-        setInterval(() => {
-          track("session_heartbeat", {
-            elapsedMs: Date.now() - bcAnalyticsSessionStartedAt,
-            visibility: document.visibilityState || "visible",
-            surface: "seed-library"
-          });
-          trackPaidSessionStarted();
-        }, 30000);
-      }
-
       function openPaywall(trigger = "unknown") {
         paywall.classList.add("active");
         paywall.setAttribute("aria-hidden", "false");
@@ -6379,7 +6363,6 @@
         }
 
         bindEvents();
-        setupSessionHeartbeat();
         renderLibrary();
         handlePaypalReturn();
         refreshSubscriptionState();

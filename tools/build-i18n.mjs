@@ -7,6 +7,8 @@ const SITE_ORIGIN = 'https://balatrocalc.com';
 const execFileAsync = promisify(execFile);
 const IGNORE_HTML_PATHS = ['i18n/seo/'];
 const SITEMAP_EXCLUDE_PATHS = new Set([
+  '404.html',
+  'seed-2F4TYFD8.html',
   'apk.html',
   'balatro-code-dbd.html',
   'balatro-deck.html',

@@ -2,7 +2,6 @@ import { jsonResponse, errorResponse, normalizeEmail, nowIso } from './_utils.js
 
 const ALLOWED_EVENTS = new Set([
   'paid_session_started',
-  'session_heartbeat',
   'seed_analyze_started',
   'seed_analyze_allowed_free',
   'seed_analyze_allowed_paid',
@@ -34,6 +33,8 @@ const ALLOWED_EVENTS = new Set([
   'save_file_failed',
   'save_edited',
   'save_downloaded',
+  'save_premium_prompt_shown',
+  'save_premium_interest',
   'ai_conversation_opened',
   'ai_conversation_started',
   'ai_conversation_deleted',

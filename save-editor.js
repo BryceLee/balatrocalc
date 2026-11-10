@@ -601,12 +601,49 @@
       URL.revokeObjectURL(url);
       trackEvent('save_downloaded', { file_type: state.fileType, mode: state.editorMode, edits: state.editCount });
       setStatus('');
+      showPremiumPrompt();
     } catch (err) {
       const message = err && err.message ? err.message : 'Failed to build the download.';
       setStatus(message, 'error');
       // eslint-disable-next-line no-console
       console.error(err);
     }
+  }
+
+  // Demand test for paid save-editor features: shown once per device after a download.
+  const PREMIUM_PROMPT_KEY = 'bc_se_premium_prompt';
+  const PREMIUM_CHOICES = [
+    ['unlock_all', 'One-click unlock everything'],
+    ['presets', 'Ready-made presets (money, stakes, decks)'],
+    ['backups', 'Automatic save backups &amp; restore'],
+    ['none', 'No thanks']
+  ];
+
+  function showPremiumPrompt() {
+    try {
+      if (localStorage.getItem(PREMIUM_PROMPT_KEY)) return;
+      localStorage.setItem(PREMIUM_PROMPT_KEY, 'shown');
+    } catch (e) {
+      return;
+    }
+    const box = document.createElement('div');
+    box.className = 'save-editor-note save-editor-premium';
+    box.setAttribute('role', 'group');
+    box.innerHTML = '<strong>Save downloaded.</strong> Copy it back into your Balatro save folder. '
+      + 'Which upgrade would you pay a few dollars for?'
+      + '<div class="save-editor-premium-choices">'
+      + PREMIUM_CHOICES.map(([id, label]) => `<button type="button" class="save-editor-btn${id === 'none' ? '' : ' secondary'}" data-choice="${id}">${label}</button>`).join('')
+      + '</div>';
+    box.addEventListener('click', (event) => {
+      const btn = event.target.closest('button[data-choice]');
+      if (!btn) return;
+      const choice = btn.getAttribute('data-choice');
+      trackEvent('save_premium_interest', { choice, file_type: state.fileType });
+      try { localStorage.setItem(PREMIUM_PROMPT_KEY, choice); } catch (e) { /* ignore */ }
+      box.textContent = choice === 'none' ? 'Thanks, enjoy your run!' : 'Thanks! That helps decide what to build next.';
+    });
+    downloadBtnBottom.insertAdjacentElement('afterend', box);
+    trackEvent('save_premium_prompt_shown', { file_type: state.fileType, edits: state.editCount });
   }
 
   // One event per loaded file when the visitor first edits a value; later edits only bump the counter.

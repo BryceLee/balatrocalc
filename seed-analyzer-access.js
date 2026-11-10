@@ -66,7 +66,6 @@
   let decorateBlueprintQueued = false;
   let seedChromeResizeObserver;
   let paidSessionStartedTracked = false;
-  const analyticsSessionStartedAt = Date.now();
 
   function getStorageArea(type) {
     try {
@@ -152,7 +151,6 @@
     updateQuotaUI();
     refreshSubscriptionState();
     trackPaidSessionStarted();
-    setupSessionHeartbeat();
     consumeSeedPageRedirect();
     setupPaywallActions();
     setupAnalyzeIntercept();
@@ -206,7 +204,8 @@
         referrer: document.referrer || '',
         properties: {
           ...properties,
-          plan: context.paid.plan || properties.plan || null
+          plan: properties.plan || context.paid.plan || null,
+          current_plan: context.paid.plan || null
         }
       };
       const body = JSON.stringify(payload);
@@ -235,20 +234,6 @@
       plan: paid.plan || null,
       expiresAt: paid.expiresAt || null
     });
-  }
-
-  function setupSessionHeartbeat() {
-    track('session_heartbeat', {
-      elapsedMs: 0,
-      visibility: document.visibilityState || 'visible'
-    });
-    setInterval(() => {
-      track('session_heartbeat', {
-        elapsedMs: Date.now() - analyticsSessionStartedAt,
-        visibility: document.visibilityState || 'visible'
-      });
-      trackPaidSessionStarted();
-    }, 30000);
   }
 
   function hydrateEmail() {
@@ -550,7 +535,8 @@
 
   function getSelectedPlan() {
     const selected = document.querySelector('input[name="seedPlan"]:checked');
-    return selected ? selected.value : `${FEATURE_KEY}-monthly`;
+    const value = selected ? selected.value : '';
+    return /^seed-(monthly|yearly|lifetime)$/.test(value) ? value : `${FEATURE_KEY}-monthly`;
   }
 
   function normalizeEmail(value) {

@@ -4,21 +4,21 @@
 <head>
   <link rel="preload" href="/assets/m6x11plus.ttf" as="font" type="font/ttf" crossorigin>
   <meta charset="utf-8">
-  <title>Balatro Seed Analyzer | Seed Routing & Analysis</title>
+  <title>Free Balatro Seed Analyzer &amp; Seed Checker - See Every Shop by Ante</title>
   <link rel="stylesheet" href="style.css?v=20261108-gsc-1">
   <link rel="stylesheet" href="/blueprint-dist/assets/index.css" crossorigin>
-  <meta name="description" content="Balatro Seed Analyzer for seed routing and analysis. Review shop queues, compare antes, and plan Balatro seed routes.">
+  <meta name="description" content="Free Balatro seed analyzer and seed checker. Enter any seed to see shop jokers, vouchers, packs, and boss blinds ante by ante. Runs instantly in your browser.">
   <meta name="keywords" content="balatro seed analyzer, balatro seeds, balatro seed routing, balatro seed analysis, balatro seed calculator">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://balatrocalc.com/balatro-seed-analyzer">
-  <meta property="og:title" content="Balatro Seed Analyzer">
-  <meta property="og:description" content="Balatro Seed Analyzer for seed routing and analysis. Review shop queues, compare antes, and plan Balatro seed routes.">
+  <meta property="og:title" content="Free Balatro Seed Analyzer &amp; Seed Checker">
+  <meta property="og:description" content="Free Balatro seed analyzer and seed checker. Enter any seed to see shop jokers, vouchers, packs, and boss blinds ante by ante. Runs instantly in your browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://balatrocalc.com/balatro-seed-analyzer">
   <meta property="og:image" content="https://balatrocalc.com/assets/favicon.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Balatro Seed Analyzer">
-  <meta name="twitter:description" content="Balatro Seed Analyzer for seed routing and analysis. Review shop queues, compare antes, and plan Balatro seed routes.">
+  <meta name="twitter:title" content="Free Balatro Seed Analyzer &amp; Seed Checker">
+  <meta name="twitter:description" content="Free Balatro seed analyzer and seed checker. Enter any seed to see shop jokers, vouchers, packs, and boss blinds ante by ante. Runs instantly in your browser.">
   <meta name="theme-color" content="#2b3b34">
   <meta name="google-adsense-account" content="ca-pub-1275876891096923">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1275876891096923"
@@ -434,7 +434,9 @@
       const isSeedInput = (input) => {
         if (!input || input.disabled) return false;
         const type = (input.getAttribute('type') || 'text').toLowerCase();
-        if (type === 'hidden') return false;
+        // Only text boxes: the paywall's seedPlan radios also contain "seed".
+        if (type !== 'text' && type !== 'search') return false;
+        if (input.closest('#seedPaywall')) return false;
         const placeholder = (input.getAttribute('placeholder') || '').toLowerCase();
         const ariaLabel = (input.getAttribute('aria-label') || '').toLowerCase();
         const name = (input.getAttribute('name') || '').toLowerCase();

@@ -40,6 +40,8 @@
     save_file_failed: '存档：载入失败',
     save_edited: '存档：编辑',
     save_downloaded: '存档：下载修改后存档',
+    save_premium_prompt_shown: '存档：看到付费意向问卷',
+    save_premium_interest: '存档：回答付费意向（choice）',
     seed_analyze_started: '种子：开始分析',
     free_limit_reached: '种子：免费次数用完',
     paywall_viewed: '付费墙曝光',
