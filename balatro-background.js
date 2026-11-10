@@ -160,8 +160,14 @@ class BalatroBG {
     }
     
     resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        // The shader quantizes the image into blocks (PIXEL_SIZE_FAC = 700 along the
+        // diagonal), so render one fragment per block and let CSS scale it up.
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const scale = Math.max(1, Math.hypot(width, height) / 700);
+        this.canvas.width = Math.max(1, Math.round(width / scale));
+        this.canvas.height = Math.max(1, Math.round(height / scale));
+        this.canvas.style.imageRendering = 'pixelated';
         this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
 
         if (this.shouldRenderStatic()) {
@@ -207,8 +213,13 @@ class BalatroBG {
             return;
         }
 
+        // The swirl moves slowly; 30 fps looks the same and halves GPU work.
+        let lastFrame = -Infinity;
         const renderLoop = (time) => {
-            this.render(time);
+            if (time - lastFrame >= 32) {
+                lastFrame = time;
+                this.render(time);
+            }
             this.animationFrameId = requestAnimationFrame(renderLoop);
         };
         this.animationFrameId = requestAnimationFrame(renderLoop);
