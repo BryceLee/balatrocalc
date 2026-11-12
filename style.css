@@ -61,6 +61,26 @@ DYN_UI = {
   --ui-font: 'm6x11Plus', "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
   --readable-font: var(--ui-font);
   --pixel-font: var(--ui-font);
+
+  /* Balatro-native palette. Panels are flat slate with a hard drop shadow
+     (no blur), the way the game draws its UI boxes. */
+  --bc-panel: rgba(30, 43, 45, 0.9);
+  --bc-panel-raised: #33474b;
+  --bc-panel-inset: rgba(10, 16, 18, 0.55);
+  --bc-line: rgba(255, 255, 255, 0.1);
+  --bc-line-strong: rgba(255, 255, 255, 0.2);
+  --bc-text-dim: rgba(255, 255, 255, 0.62);
+  --bc-red: #fe5f55;
+  --bc-red-deep: #b8352d;
+  --bc-blue: #009dff;
+  --bc-blue-deep: #0068b0;
+  --bc-orange: #ff9800;
+  --bc-orange-deep: #b86a00;
+  --bc-gold: #f5c542;
+  --bc-gold-deep: #a97c10;
+  --bc-radius: 10px;
+  --bc-drop: 0 4px 0 rgba(0, 0, 0, 0.35);
+  --bc-drop-sm: 0 2px 0 rgba(0, 0, 0, 0.35);
 }
 
 /* 字体加载失败时的后备样式 */
@@ -1170,11 +1190,11 @@ html {
 .handLevel {
   margin: auto;
   font-size: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--bc-panel);
   padding: 12px 16px;
   margin-top: 0.8em;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  box-shadow: var(--bc-drop);
+  border-radius: var(--bc-radius);
   text-align: center;
   height: auto;
   min-width: 22em;
@@ -1182,13 +1202,13 @@ html {
   white-space: nowrap;
   color: white;
   font-weight: 600;
-  border: none;
-  transition: all 0.2s ease;
+  border: 1px solid var(--bc-line);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .handLevel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.15);
+  border-color: var(--bc-line-strong);
+  background: rgba(38, 54, 57, 0.94);
 }
 
 @media (min-width: 850px)  {
@@ -1260,11 +1280,12 @@ html {
 
 #jokerArea {
   width: calc(100% - 1.5em);
-  background-color: #0003;
+  background-color: var(--bc-panel-inset);
   margin: 0.5em;
   height: 94px;
   padding: 4px;
-  border-radius: 0.5em;
+  border-radius: var(--bc-radius);
+  box-shadow: inset 0 0 0 1px var(--bc-line);
   margin-bottom: 2em;
 }
 
@@ -1277,14 +1298,54 @@ html {
 }
 
 #cardsInHand {
-  background-color: #0003;
+  background-color: var(--bc-panel-inset);
   width: calc(100% - 1.5em);
   margin: 0.5em;
   height: 94px;
   padding: 4px;
-  border-radius: 0.5em;
+  border-radius: var(--bc-radius);
+  box-shadow: inset 0 0 0 1px var(--bc-line);
   margin-bottom: 1em;
 }
+
+/* Empty slots say what goes in them instead of showing a blank box. */
+#jokerArea:empty,
+#cardsInHand:empty {
+  align-items: center;
+  box-shadow: none;
+  outline: 2px dashed rgba(255, 255, 255, 0.16);
+  outline-offset: -2px;
+}
+
+#jokerArea:empty::before,
+#cardsInHand:empty::before {
+  color: var(--bc-text-dim);
+  font-size: 18px;
+  line-height: 1.3;
+  padding: 0 1em;
+  white-space: normal;
+}
+
+#jokerArea:empty::before { content: "Click jokers in the Jokers tab to add them here"; }
+#cardsInHand:empty::before { content: "Click cards in the Cards tab to build your hand"; }
+:lang(zh-CN) #jokerArea:empty::before { content: "点击右侧的小丑牌，添加到这里"; }
+:lang(zh-CN) #cardsInHand:empty::before { content: "点击扑克牌，组成你的手牌"; }
+:lang(zh-TW) #jokerArea:empty::before { content: "點擊右側的小丑牌，加入這裡"; }
+:lang(zh-TW) #cardsInHand:empty::before { content: "點擊撲克牌，組成你的手牌"; }
+:lang(ja) #jokerArea:empty::before { content: "ジョーカーをクリックしてここに追加"; }
+:lang(ja) #cardsInHand:empty::before { content: "カードをクリックして手札を作成"; }
+:lang(ko) #jokerArea:empty::before { content: "조커를 클릭해 여기에 추가하세요"; }
+:lang(ko) #cardsInHand:empty::before { content: "카드를 클릭해 패를 만드세요"; }
+:lang(es) #jokerArea:empty::before { content: "Haz clic en comodines para añadirlos aquí"; }
+:lang(es) #cardsInHand:empty::before { content: "Haz clic en cartas para formar tu mano"; }
+:lang(fr) #jokerArea:empty::before { content: "Cliquez sur des jokers pour les ajouter ici"; }
+:lang(fr) #cardsInHand:empty::before { content: "Cliquez sur des cartes pour former votre main"; }
+:lang(de) #jokerArea:empty::before { content: "Klicke Joker an, um sie hier hinzuzufügen"; }
+:lang(de) #cardsInHand:empty::before { content: "Klicke Karten an, um deine Hand zu bilden"; }
+:lang(pt) #jokerArea:empty::before { content: "Clique nos curingas para adicioná-los aqui"; }
+:lang(pt) #cardsInHand:empty::before { content: "Clique nas cartas para montar sua mão"; }
+:lang(ru) #jokerArea:empty::before { content: "Нажмите на джокеров, чтобы добавить их сюда"; }
+:lang(ru) #cardsInHand:empty::before { content: "Нажмите на карты, чтобы собрать руку"; }
 
 .menuBtns {
   display: flex;
@@ -1381,77 +1442,82 @@ html {
   text-align: center;
   width: 2em;
   height: 2em;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  background: var(--bc-red);
   border-radius: 8px;
   color: #fff;
   border: none;
-  transition: all 0.2s ease;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.15s ease;
   margin: 0.25em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 0 var(--bc-red-deep);
   font-weight: bold;
   font-size: 0.9em;
   line-height: 2em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .lvlBtn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  filter: brightness(1.1);
   cursor: pointer;
-  background: linear-gradient(135deg, #ff7979 0%, #fd7942 100%);
 }
 
 .lvlBtn:active {
-  transform: translateY(0px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--bc-red-deep);
 }
 
-/* 特殊功能按钮颜色 */
-#toggleJokerBtn, #toggleCardBtn {
-  background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%);
+/* On/off toggles render as checkboxes. main.js mirrors the 'X' text into
+   .is-on so the box can fill when it is checked. */
+#toggleJokerBtn, #toggleCardBtn,
+#toggleMinimizeBtn, #toggleTheFintBtn, #toggleTheEyeBtn, #togglePlasmaBtn, #toggleObservatoryBtn,
+#highContrastBtn, .lvlBtn[onclick^="togglePlayed"] {
+  background: var(--bc-panel-inset);
+  color: transparent;
+  box-shadow: inset 0 0 0 2px var(--bc-line-strong);
+  text-shadow: none;
 }
 
-#toggleJokerBtn:hover, #toggleCardBtn:hover {
-  background: linear-gradient(135deg, #5294f5 0%, #2086e2 100%);
+#toggleJokerBtn.is-on, #toggleCardBtn.is-on,
+#toggleMinimizeBtn.is-on, #toggleTheFintBtn.is-on, #toggleTheEyeBtn.is-on, #togglePlasmaBtn.is-on, #toggleObservatoryBtn.is-on,
+#highContrastBtn.is-on, .lvlBtn[onclick^="togglePlayed"].is-on {
+  background: var(--bc-gold);
+  color: #2a1c00;
+  box-shadow: 0 2px 0 var(--bc-gold-deep);
 }
 
-#toggleMinimizeBtn, #toggleTheFintBtn, #toggleTheEyeBtn, #togglePlasmaBtn, #toggleObservatoryBtn {
-  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+.handLevel:has(> #toggleJokerBtn),
+.handLevel:has(> #toggleCardBtn),
+.handLevel:has(> #toggleMinimizeBtn),
+.handLevel:has(> #toggleTheFintBtn),
+.handLevel:has(> #toggleTheEyeBtn),
+.handLevel:has(> #togglePlasmaBtn),
+.handLevel:has(> #toggleObservatoryBtn),
+.handLevel:has(> #highContrastBtn) {
+  cursor: pointer;
 }
 
-#toggleMinimizeBtn:hover, #toggleTheFintBtn:hover, #toggleTheEyeBtn:hover, #togglePlasmaBtn:hover, #toggleObservatoryBtn:hover {
-  background: linear-gradient(135deg, #ab47bc 0%, #8e24aa 100%);
+.handLevel:has(> .lvlBtn.is-on) {
+  border-color: rgba(245, 197, 66, 0.45);
 }
 
-/* Count和Value按钮 */
-#jokerCount .lvlBtn, #jokerValue .lvlBtn, #cardCount .lvlBtn, #modifyJokerValue .lvlBtn, #modifyJokerSellValue .lvlBtn {
-  background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-}
-
-#jokerCount .lvlBtn:hover, #jokerValue .lvlBtn:hover, #cardCount .lvlBtn:hover, #modifyJokerValue .lvlBtn:hover, #modifyJokerSellValue .lvlBtn:hover {
-  background: linear-gradient(135deg, #26c6da 0%, #00acc1 100%);
-}
-
-/* 位置按钮保持框内但使用新颜色 */
+/* 位置按钮 */
 .positionButtons .lvlBtn {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%) !important;
-  border-radius: 6px !important;
+  background: var(--bc-red) !important;
+  border-radius: 5px !important;
   border: none !important;
   width: 1.2em !important;
   height: 1.2em !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 2px 0 var(--bc-red-deep) !important;
   transform: none !important;
   margin: 1px !important;
   font-size: 14px !important;
   line-height: 1.2em !important;
   font-weight: bold !important;
   color: white !important;
-  transition: all 0.15s ease !important;
+  transition: filter 0.15s ease !important;
 }
 
 .positionButtons .lvlBtn:hover {
-  background: linear-gradient(135deg, #ff7979 0%, #fd7942 100%) !important;
-  transform: none !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  filter: brightness(1.12);
 }
 
 /* 调整handLevel内的按钮样式 */
@@ -1672,9 +1738,19 @@ html {
 }
 
 .limitText {
-  color: white;
   float: left;
   margin-left: 1em;
+  margin-top: -0.35em;
+  padding: 0 0.55em;
+  border-radius: 999px;
+  background: var(--bc-panel-inset);
+  color: var(--bc-text-dim);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.limitText span {
+  color: #fff;
 }
 
 .tooltip {
@@ -1981,6 +2057,8 @@ input {
 }
 
 .resetBtn {
+  --btn-bg: var(--bc-blue);
+  --btn-deep: var(--bc-blue-deep);
   color: white;
   font-family: inherit;
   font-size: 18px;
@@ -1988,55 +2066,38 @@ input {
   padding: 12px 24px;
   cursor: pointer;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--bc-radius);
   margin: 6px;
   vertical-align: middle;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  background: var(--btn-bg);
+  box-shadow: 0 4px 0 var(--btn-deep);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.15s ease;
   text-transform: uppercase;
   letter-spacing: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
 }
 
 .resetBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.1);
 }
 
 .resetBtn:active {
-  transform: translateY(0px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--btn-deep);
 }
 
-/* 不同按钮的颜色 - 使用更具体的选择器 */
-button.resetBtn[onclick*="playHand"], 
-button.resetBtn[onClick*="playHand"] {
-  background: linear-gradient(135deg, #4285f4 0%, #1976d2 100%) !important;
-}
-
-button.resetBtn[onclick*="playHand"]:hover, 
-button.resetBtn[onClick*="playHand"]:hover {
-  background: linear-gradient(135deg, #5294f5 0%, #2086e2 100%) !important;
-}
-
-button.resetBtn[onclick*="clearHand"], 
-button.resetBtn[onClick*="clearHand"] {
-  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%) !important;
-}
-
-button.resetBtn[onclick*="clearHand"]:hover, 
-button.resetBtn[onClick*="clearHand"]:hover {
-  background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%) !important;
-}
-
-button.resetBtn[onclick*="resetHand"], 
+/* Same colours the game uses: blue to play, red to throw cards away. */
+button.resetBtn[onclick*="clearHand"],
+button.resetBtn[onClick*="clearHand"],
+button.resetBtn[onclick*="resetHand"],
 button.resetBtn[onClick*="resetHand"] {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
+  --btn-bg: var(--bc-red);
+  --btn-deep: var(--bc-red-deep);
 }
 
-button.resetBtn[onclick*="resetHand"]:hover, 
-button.resetBtn[onClick*="resetHand"]:hover {
-  background: linear-gradient(135deg, #f66159 0%, #e53935 100%) !important;
+button.resetBtn[onclick*="invertPlayedHands"] {
+  --btn-bg: var(--bc-orange);
+  --btn-deep: var(--bc-orange-deep);
 }
 
 .handActions {
@@ -3710,5 +3771,158 @@ body.save-editor-page #mainContainer {
     background-size: 18px auto;
     background-position: 10px center;
     font-size: 13px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Calculator page polish
+   ------------------------------------------------------------------ */
+
+/* The header used to be position: fixed with no backdrop, so the score
+   and cards slid underneath the nav while scrolling the joker list. On the
+   calculator it now scrolls away with the page. */
+body.home-page #titleBar,
+body.home-page #topNav {
+  position: absolute;
+}
+
+body.home-page #titleBar {
+  pointer-events: auto;
+}
+
+/* overflow-x: hidden on both html and body turns body into a scroll
+   container, which silently disables position: sticky below it. */
+body.home-page {
+  overflow-x: clip;
+}
+
+html[lang="en"] .nav-link {
+  text-transform: capitalize;
+}
+
+.nav-link:focus-visible,
+.menuBtn:focus-visible,
+.resetBtn:focus-visible,
+.lvlBtn:focus-visible,
+.version2PromptBtn:focus-visible {
+  outline: 2px solid var(--bc-gold);
+  outline-offset: 2px;
+}
+
+/* Score readout, styled like the round score box in the game. */
+#scoreOfPlay {
+  box-sizing: border-box;
+  width: min(calc(100% - 1.5em), 24rem);
+  margin: 0.25em auto 0.6em;
+  padding: 0.3em 0.5em 0.45em;
+  background: var(--bc-panel);
+  border: 1px solid var(--bc-line);
+  border-radius: var(--bc-radius);
+  box-shadow: var(--bc-drop);
+  line-height: 1.2;
+}
+
+#bestPlayName {
+  font-size: 0.8em;
+}
+
+#bestPlayScore {
+  font-size: 1.15em;
+  color: #fff;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+#bestPlayScoreX {
+  display: flex;
+  align-items: center;
+  gap: 0.15em;
+  padding: 0.18em;
+  border-radius: 8px;
+  background: var(--bc-panel-inset);
+  color: var(--bc-red);
+}
+
+#bestPlayScoreX .levelStatB,
+#bestPlayScoreX .levelStatR {
+  min-width: 3em;
+  border-radius: 6px;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.22);
+}
+
+/* Option toggles are compact chips; the scenario switches share a grid so
+   the result column stays short enough to remain on screen. */
+#containerLeft .toggleArea {
+  margin-bottom: 0.6em !important;
+}
+
+#containerLeft .toggleArea > .handLevel {
+  box-sizing: border-box;
+  width: calc(100% - 1.5em);
+  min-width: 0;
+  max-width: none;
+  margin-top: 0.4em;
+  padding: 6px 12px;
+  font-size: 17px;
+}
+
+#containerLeft .toggleArea:has(> #toggleMinimize) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4em;
+  width: calc(100% - 1.5em);
+  margin: 0 auto 0.6em;
+}
+
+#containerLeft .toggleArea:has(> #toggleMinimize) > .handLevel {
+  width: auto;
+  margin: 0;
+}
+
+#containerLeft .toggleArea:has(> #toggleMinimize) > .handLevel {
+  white-space: normal;
+  line-height: 1.2;
+}
+
+#containerLeft .toggleArea > #consumables {
+  grid-column: 1 / -1;
+}
+
+#containerLeft #bestPlay {
+  margin-bottom: 2.2em;
+}
+
+@media (min-width: 850px) and (min-height: 350px) {
+  body.home-page #mainContainer {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  body.home-page #containerLeft,
+  body.home-page #containerRight {
+    box-sizing: border-box;
+    padding: 12px 0;
+    border-radius: 14px;
+    background-color: rgba(10, 18, 20, 0.32);
+  }
+
+  /* Keep the result in view while scrolling the long joker/card lists.
+     main.js sets --calc-sticky-top so a column taller than the viewport
+     scrolls to its bottom before it sticks. */
+  body.home-page #containerLeft {
+    position: sticky;
+    top: var(--calc-sticky-top, 12px);
+    z-index: 2;
+    align-self: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .handLevel,
+  .lvlBtn,
+  .resetBtn,
+  .menuBtn,
+  .nav-link {
+    transition: none;
   }
 }

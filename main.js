@@ -1288,3 +1288,69 @@ if (window.applyJokerLocalization) {
       });
   });
 }
+
+// UI state helpers: checkbox fill, whole-row toggles, sticky result column.
+(function initCalculatorUi() {
+  const toggleIds = [
+    'toggleJokerBtn', 'toggleCardBtn', 'toggleMinimizeBtn', 'toggleTheFintBtn',
+    'toggleTheEyeBtn', 'togglePlasmaBtn', 'toggleObservatoryBtn', 'highContrastBtn',
+  ];
+  const toggles = toggleIds.map((id) => document.getElementById(id)).filter(Boolean);
+  if (!toggles.length) return;
+
+  // Toggle handlers across the codebase write 'X' / '&nbsp;' into the box.
+  // Mirror that into a class and aria-checked instead of touching every writer.
+  const sync = (el) => {
+    const on = el.textContent.trim() === 'X';
+    el.classList.toggle('is-on', on);
+    el.setAttribute('aria-checked', on ? 'true' : 'false');
+  };
+  // Hand-type rows carry a "played this round" box with the same convention.
+  const playedSelector = '.lvlBtn[onclick^="togglePlayed"]';
+  const isCheckbox = (el) => toggles.includes(el) || el.matches(playedSelector);
+  const observer = new MutationObserver((records) => {
+    for (const record of records) {
+      const el = record.target.nodeType === 1 ? record.target : record.target.parentElement;
+      if (el && isCheckbox(el)) sync(el);
+    }
+  });
+  for (const el of toggles) {
+    el.setAttribute('role', 'checkbox');
+    el.tabIndex = 0;
+    sync(el);
+    observer.observe(el, { childList: true, characterData: true, subtree: true });
+  }
+  const handsList = document.getElementById('hands');
+  if (handsList) {
+    handsList.querySelectorAll(playedSelector).forEach(sync);
+    observer.observe(handsList, { childList: true, characterData: true, subtree: true });
+  }
+
+  // The whole row is the hit target, not just the 24px box.
+  document.addEventListener('click', (event) => {
+    const row = event.target.closest('.handLevel');
+    if (!row) return;
+    const box = toggles.find((el) => el.parentElement === row);
+    if (!box || box.contains(event.target)) return;
+    box.click();
+  });
+  document.addEventListener('keydown', (event) => {
+    if ((event.key === ' ' || event.key === 'Enter') && toggles.includes(event.target)) {
+      event.preventDefault();
+      event.target.click();
+    }
+  });
+
+  // Sticky left column: stick at the top when it fits, otherwise scroll
+  // until its bottom edge is visible and stick there.
+  const left = document.getElementById('containerLeft');
+  if (!left || !document.body.classList.contains('home-page') || !('ResizeObserver' in window)) return;
+  const gutter = 12;
+  const updateStickyTop = () => {
+    const top = Math.min(gutter, window.innerHeight - left.offsetHeight - gutter);
+    left.style.setProperty('--calc-sticky-top', `${top}px`);
+  };
+  new ResizeObserver(updateStickyTop).observe(left);
+  window.addEventListener('resize', updateStickyTop, { passive: true });
+  updateStickyTop();
+})();
