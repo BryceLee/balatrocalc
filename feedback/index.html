@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Send Feedback | BalatroCalc</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/m6x11plus.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/style.css?v=20261108-gsc-1">
+  <link rel="stylesheet" href="/feedback/feedback.css">
+  <script src="/feedback/feedback.js" defer></script>
+</head>
+<body class="feedback-page">
+  <main class="feedback-wrap">
+    <a class="feedback-back" href="/" data-copy="back">← Back to Calculator</a>
+    <section class="feedback-card" aria-labelledby="feedback-title">
+      <h1 id="feedback-title" data-copy="title">Send feedback</h1>
+      <p class="feedback-intro" data-copy="intro">Tell us what went wrong or what you’d like to see in BalatroCalc.</p>
+      <form id="feedback-form" method="post" action="/api/feedback">
+        <label for="feedback-message" data-copy="message">Your feedback</label>
+        <textarea id="feedback-message" name="message" rows="5" maxlength="2000" required></textarea>
+        <label for="feedback-email" data-copy="email">Your email</label>
+        <input id="feedback-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="feedback-privacy" required>
+        <p class="feedback-note" id="feedback-privacy" data-copy="privacy">We’ll use your email to follow up on your feedback.</p>
+        <div id="feedback-verification"></div>
+        <button type="submit" disabled data-copy="submit">Send feedback</button>
+        <p id="feedback-status" role="status"></p>
+      </form>
+      <noscript><p>Enable JavaScript to send feedback or email support below.</p></noscript>
+    </section>
+    <footer class="feedback-footer">
+      <a href="/privacy-policy/" data-copy="policy">Privacy policy</a>
+      <a href="mailto:support@balatrocalc.com" data-copy="support">Email support</a>
+    </footer>
+  </main>
+</body>
+</html>

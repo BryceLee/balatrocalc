@@ -24,6 +24,16 @@ Regenerate localized pages + `sitemap.xml`:
 node tools/build-i18n.mjs --write
 ```
 
+## Website feedback
+
+The `/feedback/` page sends the visitor's reply email and feedback to a private Feishu or Lark group through the Pages Function at `/api/feedback`.
+
+1. Add a custom bot to the receiving group and store its webhook in the Pages project as the encrypted `FEEDBACK_FEISHU_WEBHOOK_URL` secret. If you enable signature verification on the bot, also set the encrypted `FEEDBACK_FEISHU_SIGNING_SECRET` secret.
+2. Create a free Managed Turnstile widget for `balatrocalc.com`. In the same Pages environment, set `FEEDBACK_TURNSTILE_SITE_KEY` to its public site key and store its secret as the encrypted `FEEDBACK_TURNSTILE_SECRET`.
+3. Deploy and submit a test from `/feedback/`. Confirm the success notice and check that the message and reply email both appear in the receiving group. For a preview deployment, use a widget configured for the preview hostname and a test group's webhook.
+
+[Pages secrets](https://developers.cloudflare.com/pages/functions/bindings/#secrets) · [Turnstile dashboard setup](https://developers.cloudflare.com/turnstile/get-started/widget-management/dashboard/) · [Feishu custom bot setup](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot)
+
 
 balatro-seed-finder？
 googd or fun balatro seeds飙升
