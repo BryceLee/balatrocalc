@@ -35,11 +35,15 @@ async function readSubmission(request) {
 async function verify(token, secret, hostname) {
   const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
     method: 'POST',
-    body: new URLSearchParams({ secret, response: token }),
-    redirect: 'error',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ secret, response: token }),
+    redirect: 'manual',
     signal: AbortSignal.timeout(6000)
   });
-  if (!response.ok) throw new Error('Siteverify request failed');
+  if (!response.ok) {
+    console.warn('Feedback Siteverify rejected the request', { status: response.status });
+    throw new Error('Siteverify request failed');
+  }
   const result = await response.json();
   return result?.success === true && result.action === ACTION && result.hostname === hostname;
 }
@@ -75,7 +79,7 @@ async function sendToFeishu(webhook, signingSecret, email, message) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
-    redirect: 'error',
+    redirect: 'manual',
     signal: AbortSignal.timeout(6000)
   });
   const result = response.ok ? await response.json() : null;
@@ -119,7 +123,8 @@ export async function onRequest({ request, env }) {
 
   try {
     if (!await verify(token, secret, url.hostname)) return reply({ error: 'verification' }, 403);
-  } catch {
+  } catch (error) {
+    console.warn('Feedback Siteverify failed', { type: error?.name });
     return reply({ error: 'unavailable' }, 503);
   }
 
