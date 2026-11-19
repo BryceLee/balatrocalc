@@ -1,0 +1,128 @@
+.feedback-page {
+  --feedback-gold: #f5c542;
+  --feedback-gold-deep: #a97c10;
+  background-color: #132526;
+  background-image:
+    radial-gradient(ellipse at top, #2a4c45, transparent 70%),
+    repeating-linear-gradient(135deg, transparent 0 7px, rgb(255 255 255 / 3%) 7px 8px);
+  padding: 0;
+  font-size: 19px;
+}
+
+.feedback-wrap {
+  width: min(100% - 28px, 560px);
+  margin: 0 auto;
+  padding: clamp(24px, 7vh, 72px) 0 24px;
+}
+
+.feedback-wrap a {
+  color: var(--feedback-gold);
+  text-underline-offset: 4px;
+}
+
+.feedback-card {
+  margin: 12px 0 16px;
+  padding: clamp(16px, 5vw, 32px);
+  border: 1px solid #536965;
+  border-top: 4px solid var(--feedback-gold);
+  border-radius: 10px;
+  background: #263638;
+  box-shadow: 0 4px 0 rgb(0 0 0 / 35%);
+}
+
+.feedback-card h1 {
+  color: var(--feedback-gold);
+  font-size: clamp(34px, 8vw, 50px);
+  font-weight: normal;
+  line-height: 1;
+  margin: 0 0 10px;
+  text-shadow: 0 3px #151f20;
+}
+
+.feedback-intro {
+  margin: 0 0 20px;
+  color: #d2dfdb;
+}
+
+#feedback-form label {
+  display: block;
+  margin: 14px 0 4px;
+  color: #fff;
+}
+
+#feedback-form :is(textarea, input) {
+  display: block;
+  width: 100%;
+  border: 1px solid #708681;
+  border-radius: 7px;
+  background: #142123;
+  padding: 9px 12px;
+  color: #fff;
+  font: inherit;
+}
+
+#feedback-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.feedback-note {
+  margin: 5px 0 0;
+  color: #c1d0cc;
+  font-size: 17px;
+}
+
+#feedback-verification {
+  margin-top: 14px;
+}
+
+#feedback-form button {
+  min-height: 44px;
+  min-width: 164px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--feedback-gold);
+  box-shadow: 0 4px 0 var(--feedback-gold-deep);
+  padding: 6px 18px;
+  color: #231a06;
+  font: inherit;
+  cursor: pointer;
+}
+
+#feedback-form button:hover:enabled {
+  background: #ffda72;
+}
+
+#feedback-form button:disabled {
+  opacity: .65;
+  cursor: default;
+}
+
+.feedback-wrap :focus-visible {
+  outline: 2px solid #ffe28a;
+  outline-offset: 3px;
+}
+
+#feedback-status {
+  margin: 0;
+  color: #ffbcac;
+}
+
+#feedback-status:not(:empty) {
+  margin-top: 12px;
+}
+
+#feedback-status:is([data-state="preparing"], [data-state="sending"]) {
+  color: #c1d0cc;
+}
+
+#feedback-status[data-state="success"] {
+  color: #8ce8be;
+}
+
+.feedback-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 17px;
+}
