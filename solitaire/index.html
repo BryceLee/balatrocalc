@@ -164,7 +164,7 @@
   }
   .panel h2 { margin: 0 0 6px; color: var(--gold); font-size: 30px; text-shadow: 3px 3px 0 var(--ink); }
   .panel p { margin: 6px 0 18px; font-size: 16px; line-height: 1.5; }
-  .backs { display: flex; gap: 12px; justify-content: center; margin: 14px 0 18px; }
+  .backs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; justify-items: center; margin: 14px 0 6px; }
   .backs button {
     padding: 4px;
     background: transparent;
@@ -173,7 +173,7 @@
     border-radius: 6px;
   }
   .backs button.on { border-color: var(--gold); }
-  .backs img { display: block; width: 72px; height: auto; }
+  .backs img { display: block; width: 100%; max-width: 76px; height: auto; }
 </style>
 </head>
 <body>
@@ -188,7 +188,7 @@
       <button id="newBtn" class="primary">New</button>
       <button id="undoBtn">Undo</button>
       <button id="drawBtn">Draw 1</button>
-      <button id="backBtn">Card back</button>
+      <button id="backBtn">Style</button>
       <button id="autoBtn" class="gold" hidden>Auto finish</button>
     </div>
   </header>
@@ -205,9 +205,10 @@
 
   <div id="backBox" class="overlay" hidden>
     <div class="panel">
-      <h2>CARD BACK</h2>
+      <h2>STYLE</h2>
       <div class="backs" id="backList"></div>
-      <button id="backClose">Done</button>
+      <p><button id="fourBtn">Four-color suits: Off</button></p>
+      <button id="backClose" class="primary">Done</button>
     </div>
   </div>
 
@@ -216,29 +217,42 @@
 'use strict';
 
 /* =====================================================================
-   Pixel sprites — every card is drawn here on a 41×57 grid, then
+   Pixel sprites — every card is drawn here on a 63×87 grid, then
    scaled up. All artwork is original.
    ===================================================================== */
-const W = 41, H = 57, S = 6;
+const W = 63, H = 87, S = 4;
+const CX = 31, CY = 43;
 const C = {
-  K: '#1b1530', // outline
+  K: '#1b1530', // ink outline
   Y: '#f2b84b', // gold
+  D: '#b9802a', // dark gold
   S: '#f3cfa0', // skin
   P: '#ef8a8a', // cheeks
   W: '#fbf6ea', // collar white
   M: '#c2303c', // mouth / lips
-  F: '#f7efdc', // card cream
+  F: '#fbf6ec', // card paper
+  G: '#3f8a3a', // stem green
+  N: '#8a5530', // wood
+  I: '#ef7aa0', // flower pink
 };
-const RED = '#d13a46', BLK = '#262b4a', BLUE = '#3c5bb0', PURPLE = '#7a4fb5';
+const OUT = '#3d3555';
+const SUIT2 = ['#262b4a', '#d23a4a', '#d23a4a', '#262b4a'];
+const SUIT4 = ['#262b4a', '#d23a4a', '#2f6fd1', '#2f9a52'];
+const COURT = [
+  { acc: '#3c5bb0', sec: '#7a4fb5' },
+  { acc: '#d23a4a', sec: '#f2b84b' },
+  { acc: '#e0743a', sec: '#2fa39a' },
+  { acc: '#2f9a52', sec: '#d23a4a' },
+];
 const isRed = s => s === 1 || s === 2;             // 0 ♠, 1 ♥, 2 ♦, 3 ♣
 const suitOf = id => (id / 13) | 0;
 const rankOf = id => (id % 13) + 1;
 
 const BIG = [
-  ['...X...', '..XXX..', '.XXXXX.', 'XXXXXXX', 'XXXXXXX', '.X.X.X.', '..XXX..'],
-  ['.XX.XX.', 'XXXXXXX', 'XXXXXXX', 'XXXXXXX', '.XXXXX.', '..XXX..', '...X...'],
-  ['...X...', '..XXX..', '.XXXXX.', 'XXXXXXX', '.XXXXX.', '..XXX..', '...X...'],
-  ['..XXX..', '..XXX..', 'XX.X.XX', 'XXXXXXX', 'XX.X.XX', '...X...', '..XXX..'],
+  ['....X....', '...XXX...', '..XXXXX..', '.XXXXXXX.', 'XXXXXXXXX', 'XXXXXXXXX', '.XX.X.XX.', '....X....', '...XXX...'],
+  ['.XX...XX.', 'XXXX.XXXX', 'XXXXXXXXX', 'XXXXXXXXX', 'XXXXXXXXX', '.XXXXXXX.', '..XXXXX..', '...XXX...', '....X....'],
+  ['....X....', '...XXX...', '..XXXXX..', '.XXXXXXX.', 'XXXXXXXXX', '.XXXXXXX.', '..XXXXX..', '...XXX...', '....X....'],
+  ['...XXX...', '..XXXXX..', '..XXXXX..', 'XX.XXX.XX', 'XXXXXXXXX', 'XXXXXXXXX', 'XX..X..XX', '....X....', '...XXX...'],
 ];
 const SMALL = [
   ['..X..', '.XXX.', 'XXXXX', 'XXXXX', '..X..', '.XXX.'],
@@ -247,20 +261,20 @@ const SMALL = [
   ['.XXX.', '.XXX.', 'XXXXX', 'XXXXX', '..X..', '.XXX.'],
 ];
 const FONT = {
-  A: ['.X.', 'X.X', 'XXX', 'X.X', 'X.X'],
-  2: ['XX.', '..X', '.X.', 'X..', 'XXX'],
-  3: ['XX.', '..X', '.X.', '..X', 'XX.'],
-  4: ['X.X', 'X.X', 'XXX', '..X', '..X'],
-  5: ['XXX', 'X..', 'XX.', '..X', 'XX.'],
-  6: ['.XX', 'X..', 'XXX', 'X.X', 'XXX'],
-  7: ['XXX', '..X', '.X.', '.X.', '.X.'],
-  8: ['XXX', 'X.X', 'XXX', 'X.X', 'XXX'],
-  9: ['XXX', 'X.X', 'XXX', '..X', 'XX.'],
-  1: ['.X', 'XX', '.X', '.X', '.X'],
-  0: ['XXX', 'X.X', 'X.X', 'X.X', 'XXX'],
-  J: ['..X', '..X', '..X', 'X.X', '.X.'],
-  Q: ['.X.', 'X.X', 'X.X', 'XX.', '.XX'],
-  K: ['X.X', 'X.X', 'XX.', 'X.X', 'X.X'],
+  A: ['.XX.', 'X..X', 'X..X', 'XXXX', 'X..X', 'X..X', 'X..X'],
+  2: ['.XX.', 'X..X', '...X', '..X.', '.X..', 'X...', 'XXXX'],
+  3: ['XXX.', '...X', '...X', '.XX.', '...X', '...X', 'XXX.'],
+  4: ['X..X', 'X..X', 'X..X', 'XXXX', '...X', '...X', '...X'],
+  5: ['XXXX', 'X...', 'XXX.', '...X', '...X', 'X..X', '.XX.'],
+  6: ['.XX.', 'X...', 'X...', 'XXX.', 'X..X', 'X..X', '.XX.'],
+  7: ['XXXX', '...X', '..X.', '..X.', '.X..', '.X..', '.X..'],
+  8: ['.XX.', 'X..X', 'X..X', '.XX.', 'X..X', 'X..X', '.XX.'],
+  9: ['.XX.', 'X..X', 'X..X', '.XXX', '...X', '...X', '.XX.'],
+  1: ['.X', 'XX', '.X', '.X', '.X', '.X', '.X'],
+  0: ['.XX.', 'X..X', 'X..X', 'X..X', 'X..X', 'X..X', '.XX.'],
+  J: ['..XX', '...X', '...X', '...X', '...X', 'X..X', '.XX.'],
+  Q: ['.XX.', 'X..X', 'X..X', 'X..X', 'X..X', 'X.X.', '.X.X'],
+  K: ['X..X', 'X..X', 'X.X.', 'XX..', 'X.X.', 'X..X', 'X..X'],
 };
 
 // Portraits, 21×20. R = suit accent, U = second accent, H = hair/beard.
@@ -330,6 +344,22 @@ const KING = [
   '..KRRRRKRRRRRKRRRRK..',
   '..KKKKKKKKKKKKKKKKK..',
 ];
+const HAT = JESTER.slice(0, 7);
+const BELL = [
+  '...KKK...',
+  '..KYYYK..',
+  '.KYYWYYK.',
+  '.KYWYYYK.',
+  '.KYYYYYK.',
+  'KYYYYYYYK',
+  'KKKKKKKKK',
+  '...KYK...',
+  '....K....',
+];
+const BAUBLE = ['...K...', '..KYK..', '.KYYYK.', 'KYYWYYK', '.KYYYK.', '..KYK..', '...K...'];
+const FLOWER = ['.I.I.', 'IIYII', '.III.', '..G..'];
+const SCEPTER = ['..Y..', '.YYY.', '..Y..', '.KYK.', 'KYYYK', 'KYRYK', '.KKK.'];
+const DIAMOND3 = ['.X.', 'XXX', '.X.'];
 
 const PIPS = {
   2: [[1, 0], [1, 1]],
@@ -342,113 +372,286 @@ const PIPS = {
   9: [[0, 0], [2, 0], [0, 1/3], [2, 1/3], [1, .5], [0, 2/3], [2, 2/3], [0, 1], [2, 1]],
   10: [[0, 0], [2, 0], [1, 1/6], [0, 1/3], [2, 1/3], [0, 2/3], [2, 2/3], [1, 5/6], [0, 1], [2, 1]],
 };
-const PIP_X = [10, 17, 24];
+const PIP_X = [14, 27, 40];
+
+// ---- helpers ----
+const rgbCache = new Map();
+function rgbOf(h) {
+  let v = rgbCache.get(h);
+  if (!v) { v = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); rgbCache.set(h, v); }
+  return v;
+}
+const mix = (a, b, t) => {
+  const A = rgbOf(a), B = rgbOf(b);
+  return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join('');
+};
+const mod = (n, m) => ((n % m) + m) % m;
+const hash = (x, y, s) => {
+  let h = (Math.imul(x, 374761393) + Math.imul(y, 668265263) + Math.imul(s, 1442695041)) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+};
+const noise = (x, y, s) => {
+  const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+  const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+  const a = hash(xi, yi, s), b = hash(xi + 1, yi, s), c = hash(xi, yi + 1, s), d = hash(xi + 1, yi + 1, s);
+  return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+};
 
 class Pix {
   constructor() { this.b = new Array(W * H).fill(null); }
   set(x, y, c) { if (x >= 0 && y >= 0 && x < W && y < H) this.b[y * W + x] = c; }
   url() {
-    const cv = document.createElement('canvas');
-    cv.width = W * S; cv.height = H * S;
-    const g = cv.getContext('2d');
-    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-      const c = this.b[y * W + x];
-      if (c) { g.fillStyle = c; g.fillRect(x * S, y * S, S, S); }
-    }
-    return cv.toDataURL();
+    const small = document.createElement('canvas');
+    small.width = W; small.height = H;
+    const g = small.getContext('2d');
+    const img = g.createImageData(W, H);
+    this.b.forEach((c, i) => { if (c) { const [r, gg, b] = rgbOf(c); img.data.set([r, gg, b, 255], i * 4); } });
+    g.putImageData(img, 0, 0);
+    const big = document.createElement('canvas');
+    big.width = W * S; big.height = H * S;
+    const G = big.getContext('2d');
+    G.imageSmoothingEnabled = false;
+    G.drawImage(small, 0, 0, W * S, H * S);
+    return big.toDataURL();
   }
 }
-const cut = (x, y) => Math.min(x, W - 1 - x) + Math.min(y, H - 1 - y) < 2;
+const putter = p => (x, y, c) => p.set(x, y, c);
+const cut = (x, y) => {
+  const dx = Math.min(x, W - 1 - x), dy = Math.min(y, H - 1 - y);
+  return dx + dy < 2 || (dx === 0 && dy === 2) || (dx === 2 && dy === 0);
+};
 const inside = (x, y) => x >= 0 && y >= 0 && x < W && y < H && !cut(x, y);
 const isEdge = (x, y) => !inside(x - 1, y) || !inside(x + 1, y) || !inside(x, y - 1) || !inside(x, y + 1);
 
-function glyph(put, rows, x0, y0, col, flip = false, sc = 1) {
+function glyph(put, rows, x0, y0, col, flip = false, sc = 1, bold = false) {
   const h = rows.length, w = rows[0].length;
   for (let r = 0; r < h; r++) for (let c = 0; c < w; c++) {
     if (rows[r][c] !== 'X') continue;
     const rr = flip ? h - 1 - r : r, cc = flip ? w - 1 - c : c;
-    for (let a = 0; a < sc; a++) for (let b = 0; b < sc; b++) put(x0 + cc * sc + a, y0 + rr * sc + b, col);
+    for (let a = 0; a < sc + (bold ? 1 : 0); a++) for (let b = 0; b < sc; b++) put(x0 + cc * sc + a, y0 + rr * sc + b, col);
   }
 }
 function drawMap(put, map, x0, y0, pal) {
   map.forEach((row, r) => [...row].forEach((ch, c) => { if (ch !== '.') put(x0 + c, y0 + r, pal[ch]); }));
 }
-const rankStr = r => r === 1 ? 'A' : r === 11 ? 'J' : r === 12 ? 'Q' : r === 13 ? 'K' : String(r);
-function drawText(put, txt, x, y, col) {
-  for (const ch of txt) { const g = FONT[ch]; glyph(put, g, x, y, col); x += g[0].length + 1; }
+function drawMono(put, map, x0, y0, col) {
+  map.forEach((row, r) => [...row].forEach((ch, c) => { if (ch !== '.') put(x0 + c, y0 + r, col); }));
 }
-const textW = txt => [...txt].reduce((a, ch) => a + FONT[ch][0].length + 1, -1);
+const rankStr = r => r === 1 ? 'A' : r === 11 ? 'J' : r === 12 ? 'Q' : r === 13 ? 'K' : String(r);
+// Index ranks are drawn bold (each stroke 2px wide) so they stay legible on phones.
+function drawText(put, txt, x, y, col) {
+  for (const ch of txt) { const g = FONT[ch]; glyph(put, g, x, y, col, false, 1, true); x += g[0].length + 2; }
+}
+const textW = txt => [...txt].reduce((a, ch) => a + FONT[ch][0].length + 2, -1);
 
-function drawFace(id) {
-  const s = suitOf(id), r = rankOf(id), col = isRed(s) ? RED : BLK;
+// ---- card faces ----
+function drawCourt(p, s, r, col) {
+  const { acc, sec } = COURT[s];
+  const t1 = mix(acc, '#ffffff', .84), t2 = mix(acc, '#ffffff', .74);
+  for (let y = 7; y <= 79; y++) for (let x = 11; x <= 51; x++) {
+    if (x === 11 || x === 51 || y === 7 || y === 79) { p.set(x, y, col); continue; }
+    const u = x - CX, v = y - CY;
+    p.set(x, y, (Math.floor((u + v) / 6) + Math.floor((u - v) / 6)) & 1 ? t1 : t2);
+  }
+  const face = r === 11 ? JESTER : r === 12 ? QUEEN : KING;
+  const pal = { ...C, R: acc, U: sec, H: r === 12 ? '#7a3e2b' : '#e3dccf' };
+  const half = put => {
+    const L = (x, y, c) => put(12 + x, 8 + y, c);   // local 39×35 box above the divider
+    for (let ly = 22; ly <= 34; ly++) {
+      const w = Math.min(31, 23 + (ly - 22) * 4), x1 = (39 - w) / 2;
+      for (let lx = x1; lx < x1 + w; lx++) {
+        let c;
+        if (lx === x1 || lx === x1 + w - 1 || ly === 22) c = C.K;
+        else if (Math.abs(lx - 10 - (ly - 22) * 1.4) < 1.2) c = (ly & 1) ? C.Y : C.D;   // sash
+        else if (lx === 19) c = C.Y;
+        else {
+          const base = lx < 19 ? acc : sec;          // two-tone motley
+          c = mod(lx + ly, 4) === 0 && mod(lx - ly, 4) === 0 ? mix(base, '#000000', .25) : base;
+          if (lx === x1 + 1 || lx === x1 + w - 2) c = mix(base, '#000000', .3);   // shading
+          else if (lx === x1 + 2) c = mix(base, '#ffffff', .2);
+        }
+        L(lx, ly, c);
+      }
+    }
+    drawMap(L, face, 9, 2, pal);
+    if (r === 11) { for (let ly = 12; ly <= 34; ly++) L(4, ly, C.N); drawMap(L, BAUBLE, 1, 5, pal); }
+    if (r === 12) { for (let ly = 13; ly <= 34; ly++) L(34, ly, C.G); drawMap(L, FLOWER, 32, 9, pal); }
+    if (r === 13) { for (let ly = 12; ly <= 34; ly++) L(33, ly, C.D); drawMap(L, SCEPTER, 31, 5, pal); }
+  };
+  half((x, y, c) => p.set(x, y, c));
+  half((x, y, c) => p.set(W - 1 - x, H - 1 - y, c));
+  for (let x = 12; x <= 50; x++) p.set(x, CY, C.Y);
+  drawMap(putter(p), ['..K..', '.KYK.', 'KYYYK', '.KYK.', '..K..'], 29, 41, C);
+}
+
+function drawFace(id, four) {
+  const s = suitOf(id), r = rankOf(id), col = (four ? SUIT4 : SUIT2)[s];
   const p = new Pix();
-  const put = (x, y, c) => p.set(x, y, c);
+  const put = putter(p);
   const rot = (x, y, c) => p.set(W - 1 - x, H - 1 - y, c);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++)
-    if (inside(x, y)) p.set(x, y, isEdge(x, y) ? C.K : C.F);
+    if (inside(x, y)) p.set(x, y, isEdge(x, y) ? OUT : C.F);
 
-  if (r >= 11) {
-    const tint = isRed(s) ? '#fbe1d8' : '#e3e6f4';
-    const accent = isRed(s) ? RED : BLUE;
-    for (let y = 5; y <= 51; y++) for (let x = 8; x <= 32; x++)
-      p.set(x, y, (x === 8 || x === 32 || y === 5 || y === 51) ? col : tint);
-    for (let x = 9; x <= 31; x++) p.set(x, 28, col);
-    const map = r === 11 ? JESTER : r === 12 ? QUEEN : KING;
-    const pal = { ...C, R: accent, U: PURPLE, H: r === 12 ? '#7a3e2b' : '#d8d0c2' };
-    drawMap(put, map, 10, 7, pal);
-    drawMap(rot, map, 10, 7, pal);
-  } else if (r === 1) {
-    glyph(put, BIG[s], 10, 18, col, false, 3);
+  if (r >= 11) drawCourt(p, s, r, col);
+  else if (r === 1) {
+    const ringCol = mix(col, '#ffffff', .6);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++)
+      if (Math.abs(Math.hypot(x - CX, y - CY) - 18) < .5 && mod(x + y, 2) === 0) p.set(x, y, ringCol);
+    glyph(put, BIG[s], 18, 30, col, false, 3);
   } else {
-    for (const [cx, ry] of PIPS[r]) glyph(put, BIG[s], PIP_X[cx], Math.round(5 + ry * 40), col, ry > .5);
+    for (const [cx, ry] of PIPS[r]) glyph(put, BIG[s], PIP_X[cx], Math.round(8 + ry * 62), col, ry > .5);
   }
 
   for (const f of [put, rot]) {
     const txt = rankStr(r);
-    drawText(f, txt, textW(txt) >= 5 ? 2 : 3, 3, col);
-    glyph(f, SMALL[s], 2, 9, col);
+    drawText(f, txt, textW(txt) >= 7 ? 1 : 3, 4, col);
+    glyph(f, SMALL[s], 3, 12, col);
   }
-  return p.url();
+  return p;
 }
+const buildFaces = four => Array.from({ length: 52 }, (_, id) => drawFace(id, four).url());
 
-const BACK_THEMES = [
-  { name: 'Crimson',  a: '#b02a41', b: '#8a1f33', line: '#cf4a5e', R: '#d13a46', U: PURPLE },
-  { name: 'Violet',   a: '#5a3a9e', b: '#442c7e', line: '#7656bd', R: '#d13a46', U: '#2fa39a' },
-  { name: 'Midnight', a: '#2b3f7a', b: '#213163', line: '#3d55a0', R: '#d13a46', U: PURPLE },
-];
-
-function drawBack(t) {
+// ---- card backs ----
+function backBase(content) {
   const p = new Pix();
-  const put = (x, y, c) => p.set(x, y, c);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     if (!inside(x, y)) continue;
-    if (isEdge(x, y)) { p.set(x, y, C.K); continue; }
+    if (isEdge(x, y)) { p.set(x, y, OUT); continue; }
     const ring = Math.min(x, y, W - 1 - x, H - 1 - y);
-    if (ring <= 2) { p.set(x, y, C.F); continue; }
-    if (ring === 3) { p.set(x, y, C.Y); continue; }
-    const u = x - 20, v = y - 28;
-    if (((u + v) % 6 + 6) % 6 === 0 || ((u - v) % 6 + 6) % 6 === 0) { p.set(x, y, t.line); continue; }
-    const a = Math.floor((u + v) / 6), b = Math.floor((u - v) / 6);
-    p.set(x, y, (a + b) & 1 ? t.a : t.b);
+    p.set(x, y, ring <= 2 ? C.F : content(x, y, ring));
   }
-  // medallion
-  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    const e = ((x - 20) / 14) ** 2 + ((y - 28) / 16.5) ** 2;
-    if (e <= 1) p.set(x, y, C.F);
-    else if (e <= 1.15) p.set(x, y, C.Y);
-    else if (e <= 1.3) p.set(x, y, C.K);
-  }
-  drawMap(put, JESTER, 10, 19, { ...C, R: t.R, U: t.U });
-  for (const x of [15, 19, 23]) glyph(put, ['.X.', 'XXX', '.X.'], x, 40, C.Y);
-  glyph(put, SMALL[0], 6, 6, C.Y);
-  glyph(put, SMALL[1], 30, 6, C.Y);
-  glyph(put, SMALL[2], 6, 45, C.Y);
-  glyph(put, SMALL[3], 30, 45, C.Y);
-  return p.url();
+  return p;
 }
 
-const FACES = Array.from({ length: 52 }, (_, id) => drawFace(id));
-const BACKS = BACK_THEMES.map(drawBack);
+function backJester() {
+  const p = backBase((x, y, ring) => {
+    if (ring === 3) return C.Y;
+    const u = x - CX, v = y - CY;
+    if (mod(u + v, 8) === 0 || mod(u - v, 8) === 0) return '#cf4a5e';
+    return (Math.floor((u + v) / 8) + Math.floor((u - v) / 8)) & 1 ? '#b02a41' : '#8a1f33';
+  });
+  for (let y = 4; y < H - 4; y++) for (let x = 4; x < W - 4; x++) {
+    const e = ((x - CX) / 19) ** 2 + ((y - CY) / 23) ** 2;
+    if (e <= 1) {
+      const a = Math.atan2(y - CY, x - CX);
+      p.set(x, y, Math.floor((a + Math.PI) / (Math.PI / 10)) & 1 ? '#f7efdc' : '#f1e0bd');
+    } else if (e <= 1.11) p.set(x, y, C.Y);
+    else if (e <= 1.23) p.set(x, y, C.K);
+  }
+  const put = putter(p);
+  drawMap(put, JESTER, 21, 32, { ...C, R: '#d23a4a', U: '#7a4fb5' });
+  [26, 30, 34].forEach(x => glyph(put, DIAMOND3, x, 55, C.Y));
+  glyph(put, SMALL[0], 6, 6, C.Y);
+  glyph(put, SMALL[1], 52, 6, C.Y);
+  glyph(put, SMALL[2], 6, 76, C.Y);
+  glyph(put, SMALL[3], 52, 76, C.Y);
+  return p;
+}
+
+function backLines(bg, line, gold, motif) {
+  const soft = mix(bg, line, .28);
+  const p = backBase((x, y, ring) => {
+    if (ring === 5 || ring === 7) return line;
+    if (ring < 8) return bg;
+    const u = Math.abs(x - CX), v = Math.abs(y - CY);
+    const xc = Math.min(x, W - 1 - x), yc = Math.min(y, H - 1 - y);
+    if (Math.abs(xc - 12) + Math.abs(yc - 12) === 3) return line;   // corner fleurons
+    if (xc === 12 && yc === 12) return gold;
+    const axis = (u === 0 && y % 2 === 0) || (v === 0 && x % 2 === 0);
+    if (motif === 'rhombus') {
+      const d = u + v * .72;
+      if (Math.abs(d - 22) < .5 || Math.abs(d - 19.5) < .5) return line;
+      if (d < 19.5) return d > 13 && u % 3 === 0 && v % 3 === 0 ? soft : bg;
+      if (axis) return line;
+      return mod(x + y, 6) === 0 || mod(x - y, 6) === 0 ? soft : bg;
+    }
+    const rr = Math.hypot(u, v * .75);
+    if (Math.abs(rr - 23) < .55 || Math.abs(rr - 20) < .55 || Math.abs(rr - 11) < .55) return line;
+    if (rr < 20 && rr > 11) {
+      const a = Math.atan2(y - CY, x - CX);
+      return Math.floor((a + Math.PI) / (Math.PI / 12)) & 1 ? soft : bg;
+    }
+    if (rr < 11) return bg;
+    if (axis) return line;
+    const h = hash(x, y, 7);
+    return h > .975 ? (h > .993 ? gold : line) : bg;
+  });
+  const put = putter(p);
+  if (motif === 'rhombus') {
+    drawMono(put, HAT, 21, 37, line);
+    glyph(put, DIAMOND3, 30, 46, gold);
+  } else {
+    drawMap(put, BELL, 27, 39, { ...C, Y: gold });
+  }
+  return p;
+}
+
+function backVelvet() {
+  const p = backBase((x, y, ring) => {
+    const n = noise(x / 5, y / 7, 3) * .6 + noise(x / 2, y / 2, 4) * .4;
+    if (ring === 5) return mod(x + y, 2) ? C.Y : C.D;              // gold stitching
+    const u = Math.abs(x - CX), v = Math.abs(y - CY), d = Math.round(u + v * .8);
+    if (d === 22 || d === 24) return C.Y;
+    if (d === 23) return C.D;
+    if (d < 22) return mix('#24102f', '#341645', n);
+    const sheen = Math.max(0, Math.sin((x * .5 + y) * .11)) ** 3;
+    return mix(mix('#3a1650', '#5e2a7a', n), '#9a64b8', sheen * .45);
+  });
+  const put = putter(p);
+  drawMap(put, JESTER, 21, 33, { ...C, R: '#d23a4a', U: '#2fa39a' });
+  glyph(put, DIAMOND3, 30, 9, C.Y);
+  glyph(put, DIAMOND3, 30, 75, C.Y);
+  return p;
+}
+
+function backWalnut() {
+  const p = backBase((x, y, ring) => {
+    if (ring === 5) return C.Y;
+    if (ring === 6) return C.D;
+    const e = ((x - CX) / 17) ** 2 + ((y - CY) / 22) ** 2;
+    if (e <= 1) return '#f1e2c2';
+    if (e <= 1.12) return C.Y;
+    if (e <= 1.25) return C.D;
+    const w = noise(x / 9, y / 30, 11) * 10 + noise(x / 3, y / 6, 12) * 1.5;
+    const g = Math.sin((x + w) * .85);
+    if (g > .93) return '#47260f';
+    return mix('#5a3119', '#8a5530', (g + 1) / 2 * .8 + noise(x / 2, y / 3, 13) * .2);
+  });
+  const put = putter(p);
+  [[27, 28, 0], [36, 39, 1], [27, 50, 2], [18, 39, 3]].forEach(([x, y, s]) => glyph(put, BIG[s], x, y, SUIT4[s]));
+  glyph(put, ['..X..', '.XXX.', 'XXXXX', '.XXX.', '..X..'], 29, 41, C.D);
+  return p;
+}
+
+function backChevron() {
+  const cols = ['#1f8a84', '#f3e6c8', '#16605c', '#f2b84b'];
+  const p = backBase((x, y, ring) => {
+    if (ring === 3) return '#16605c';
+    const tri = Math.abs(mod(x - CX, 12) - 6);
+    return cols[mod(Math.floor((y + tri) / 4), 4)];
+  });
+  for (let y = 29; y <= 57; y++) for (let x = 15; x <= 47; x++) {
+    if ((x === 15 || x === 47) && (y === 29 || y === 57)) continue;
+    const edge = x === 15 || x === 47 || y === 29 || y === 57;
+    const trim = x === 16 || x === 46 || y === 30 || y === 56;
+    p.set(x, y, edge ? C.K : trim ? C.Y : '#16605c');
+  }
+  const put = putter(p);
+  drawMono(put, HAT, 21, 35, C.Y);
+  [25, 29, 33].forEach(x => glyph(put, DIAMOND3, x, 46, C.F));
+  return p;
+}
+
+const BACK_DEFS = [
+  { name: 'Jester', make: backJester },
+  { name: 'Royal', make: () => backLines('#b3263d', '#fbefe2', C.Y, 'rhombus') },
+  { name: 'Midnight', make: () => backLines('#1f2f5e', '#e9eefc', C.Y, 'rings') },
+  { name: 'Velvet', make: backVelvet },
+  { name: 'Walnut', make: backWalnut },
+  { name: 'Chevron', make: backChevron },
+];
+const BACKS = BACK_DEFS.map(d => d.make().url());
 
 /* =====================================================================
    Klondike
@@ -459,7 +662,8 @@ const store = {
   get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
 };
-const prefs = Object.assign({ draw: 1, back: 0 }, store.get('jsol:prefs'));
+const prefs = Object.assign({ draw: 1, back: 0, four: false }, store.get('jsol:prefs'));
+if (!(prefs.back < BACKS.length)) prefs.back = 0;
 const savePrefs = () => store.set('jsol:prefs', prefs);
 
 let st, undoStack = [], autoRunning = false, timerId = null, zTimer = null;
@@ -491,15 +695,21 @@ makeSlot('waste', 'waste', '');
 for (let i = 0; i < 4; i++) makeSlot('f' + i, 'found', 'A');
 for (let i = 0; i < 7; i++) makeSlot('t' + i, 'tab', 'K');
 
-const cards = FACES.map((url, id) => {
+const cards = Array.from({ length: 52 }, (_, id) => {
   const el = document.createElement('div');
   el.className = 'card down';
   el.dataset.id = id;
   el.innerHTML = '<div class="inner"><div class="face front"></div><div class="face back"></div></div>';
-  el.querySelector('.front').style.backgroundImage = `url(${url})`;
   board.appendChild(el);
   return el;
 });
+const faceCache = {};
+function applyFaces() {
+  const key = prefs.four ? 4 : 2;
+  const urls = faceCache[key] || (faceCache[key] = buildFaces(prefs.four));
+  cards.forEach((el, id) => { el.querySelector('.front').style.backgroundImage = `url(${urls[id]})`; });
+  $('#fourBtn').textContent = 'Four-color suits: ' + (prefs.four ? 'On' : 'Off');
+}
 
 function applyBack() {
   document.documentElement.style.setProperty('--back', `url(${BACKS[prefs.back] || BACKS[0]})`);
@@ -852,14 +1062,15 @@ document.addEventListener('keydown', e => {
 const backList = $('#backList');
 BACKS.forEach((url, i) => {
   const b = document.createElement('button');
-  b.title = BACK_THEMES[i].name;
-  b.innerHTML = `<img src="${url}" alt="${BACK_THEMES[i].name} card back">`;
+  b.title = BACK_DEFS[i].name;
+  b.innerHTML = `<img src="${url}" alt="${BACK_DEFS[i].name} card back">`;
   b.onclick = () => {
     prefs.back = i; savePrefs(); applyBack();
     backList.querySelectorAll('button').forEach((x, j) => x.classList.toggle('on', j === i));
   };
   backList.appendChild(b);
 });
+$('#fourBtn').onclick = () => { prefs.four = !prefs.four; savePrefs(); applyFaces(); };
 $('#backBtn').onclick = () => {
   backList.querySelectorAll('button').forEach((x, j) => x.classList.toggle('on', j === prefs.back));
   $('#backBox').hidden = false;
@@ -875,6 +1086,7 @@ window.addEventListener('resize', () => {
 
 // ---- boot ----
 applyBack();
+applyFaces();
 layout();
 const saved = store.get('jsol:game');
 const valid = g => g && g.st && !g.st.won && Array.isArray(g.st.up) &&
