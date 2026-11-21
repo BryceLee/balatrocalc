@@ -30,8 +30,10 @@ export async function onRequestPost({ request, env }) {
     membershipsOnly: true
   });
   if (activeLifetime) {
+    const product = config.feature === 'noads' ? 'ad-free access' : 'lifetime Seed Pro access';
+    const action = config.feature === 'noads' ? 'Restore' : 'Check subscription';
     return errorResponse(
-      'This email already has lifetime Seed Pro access. Use Check subscription instead of starting another PayPal order.',
+      `This email already has ${product}. Use ${action} instead of starting another PayPal order.`,
       409,
       activeLifetime
     );
@@ -58,7 +60,7 @@ export async function onRequestPost({ request, env }) {
         }
       ],
       application_context: {
-        brand_name: 'Balatro Seed Analyzer',
+        brand_name: config.feature === 'noads' ? 'BalatroCalc' : 'Balatro Seed Analyzer',
         return_url: returnUrl,
         cancel_url: cancelUrl,
         user_action: 'PAY_NOW'

@@ -20,6 +20,7 @@
   const analyticsStatus = document.getElementById('analyticsStatus');
   const analyticsOverview = document.getElementById('analyticsOverview');
   const analyticsFunnel = document.getElementById('analyticsFunnel');
+  const analyticsSeedUsage = document.getElementById('analyticsSeedUsage');
   const analyticsDropoffs = document.getElementById('analyticsDropoffs');
   const analyticsPaidUsage = document.getElementById('analyticsPaidUsage');
   const analyticsTimeline = document.getElementById('analyticsTimeline');
@@ -122,6 +123,16 @@
         <div class="metric-card"><span>活跃付费邮箱</span><strong>${escapeHtml(overview.activePaidEmails || 0)}</strong></div>
         <div class="metric-card"><span>平均付费会话</span><strong>${escapeHtml(formatDuration(overview.averagePaidSessionSeconds))}</strong></div>
       `;
+      const seed = data.seedUsage || {};
+      if (analyticsSeedUsage) {
+        analyticsSeedUsage.innerHTML = `
+          <div class="metric-card"><span>用过种子分析的用户</span><strong>${escapeHtml(seed.usersAnalyzed || 0)}</strong></div>
+          <div class="metric-card"><span>分析总次数</span><strong>${escapeHtml(seed.totalRuns || 0)}</strong></div>
+          <div class="metric-card"><span>免费用了 1 / 2 / 3+ 次</span><strong>${escapeHtml(seed.freeRuns1 || 0)} / ${escapeHtml(seed.freeRuns2 || 0)} / ${escapeHtml(seed.freeRuns3Plus || 0)}</strong></div>
+          <div class="metric-card"><span>用完免费次数</span><strong>${escapeHtml(seed.hitLimitUsers || 0)}</strong></div>
+          <div class="metric-card"><span>付费用户分析</span><strong>${escapeHtml(seed.paidUsers || 0)}</strong></div>
+        `;
+      }
       renderCountRows(analyticsFunnel, data.funnel || []);
       renderCountRows(analyticsDropoffs, data.dropoffs || []);
       renderPaidUsage(data.paidUsage || []);

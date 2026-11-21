@@ -264,7 +264,12 @@
       <h3>总览</h3>
       <div id="analyticsOverview" class="admin-grid"></div>
 
+      <h3>种子分析使用情况</h3>
+      <p class="muted">免费额度：上线前是每天 3 次；本次上线起改为“先送 3 次，用完后每天 1 次”（事件 quota_model=first3-then-1daily）。</p>
+      <div id="analyticsSeedUsage" class="admin-grid"></div>
+
       <h3>订阅转化漏斗</h3>
+      <p class="muted">从上到下：免费分析 → 用完免费次数 → 看到付费墙 → 选择套餐 → 点击付款 → 跳转 PayPal → 付款成功。pay_clicked 从 2026-11-19 才开始记录。</p>
       <div class="scroll-table">
         <table>
           <thead>

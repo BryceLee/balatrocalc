@@ -1,7 +1,10 @@
 (function () {
 
   const FEATURE_KEY = 'seed';
-  const FREE_DAILY_LIMIT = 3;
+  // Free quota (per browser): 3 analyses to start, then 1 per UTC day once those are used.
+  const FREE_INITIAL_RUNS = 3;
+  const FREE_DAILY_RUNS = 1;
+  const QUOTA_MODEL = 'first3-then-1daily';
   const STORAGE_KEYS = {
     deviceId: 'bc_device_id',
     sessionId: 'bc_session_id',
@@ -205,7 +208,10 @@
         properties: {
           ...properties,
           plan: properties.plan || context.paid.plan || null,
-          current_plan: context.paid.plan || null
+          current_plan: context.paid.plan || null,
+          quota_model: QUOTA_MODEL,
+          quota_phase: context.paid.active ? null : quotaPhase(),
+          free_runs_used: context.paid.active ? null : usedRuns()
         }
       };
       const body = JSON.stringify(payload);
@@ -259,26 +265,65 @@
     writeStored('local', STORAGE_KEYS.usage, JSON.stringify(data));
   }
 
+  // Entry: { used: free runs ever, dayDate, dayUsed: free runs on dayDate once the
+  // starting 3 are gone }. The old daily format ({ date, used }) carries its count over
+  // as starting runs; its `date` field is ignored.
   function getUsageEntry(data) {
-    const today = getTodayKey();
-    if (!data[FEATURE_KEY] || data[FEATURE_KEY].date !== today) {
-      data[FEATURE_KEY] = { date: today, used: 0 };
+    const entry = data[FEATURE_KEY];
+    if (!entry || typeof entry !== 'object' || !Number.isFinite(Number(entry.used))) {
+      data[FEATURE_KEY] = { used: 0 };
       saveUsage(data);
     }
     return data[FEATURE_KEY];
   }
 
+  function quotaPhase() {
+    try {
+      return (Number(getUsageEntry(loadUsage()).used) || 0) < FREE_INITIAL_RUNS ? 'initial' : 'daily';
+    } catch {
+      return null;
+    }
+  }
+
+  function usedRuns() {
+    try {
+      return Math.max(0, Number(getUsageEntry(loadUsage()).used) || 0);
+    } catch {
+      return null;
+    }
+  }
+
   function remainingUses() {
-    const data = loadUsage();
-    const entry = getUsageEntry(data);
-    return Math.max(0, FREE_DAILY_LIMIT - entry.used);
+    const entry = getUsageEntry(loadUsage());
+    const used = Number(entry.used) || 0;
+    if (used < FREE_INITIAL_RUNS) return FREE_INITIAL_RUNS - used;
+    const usedToday = entry.dayDate === getTodayKey() ? Number(entry.dayUsed) || 0 : 0;
+    return Math.max(0, FREE_DAILY_RUNS - usedToday);
   }
 
   function recordUse() {
     const data = loadUsage();
     const entry = getUsageEntry(data);
-    entry.used += 1;
+    const today = getTodayKey();
+    const used = Number(entry.used) || 0;
+    entry.used = used + 1;
+    if (used + 1 >= FREE_INITIAL_RUNS) {
+      // The 3rd starting run also counts as today's daily run, so the next free one is tomorrow.
+      if (entry.dayDate !== today) {
+        entry.dayDate = today;
+        entry.dayUsed = 0;
+      }
+      if (used + 1 === FREE_INITIAL_RUNS) {
+        entry.dayUsed = FREE_DAILY_RUNS;
+      } else {
+        entry.dayUsed = (Number(entry.dayUsed) || 0) + 1;
+      }
+    }
     saveUsage(data);
+  }
+
+  function limitMessage() {
+    return 'Today\'s free analysis is used. Come back after 00:00 UTC for 1 more, or upgrade to Seed Pro for unlimited access.';
   }
 
   function loadPaidFeatures() {
@@ -381,10 +426,13 @@
     }
 
     const remaining = remainingUses();
+    const phase = quotaPhase();
     quotaRemainingEl.textContent = `${remaining} free`;
     quotaTotalEl.textContent = remaining === 1 ? 'run' : 'runs';
-    quotaPlanEl.textContent = 'today';
-    quotaResetEl.textContent = 'Reset 00:00 UTC';
+    quotaPlanEl.textContent = phase === 'initial' ? 'left' : 'today';
+    quotaResetEl.textContent = phase === 'initial'
+      ? `${FREE_INITIAL_RUNS} free to start, then ${FREE_DAILY_RUNS} per day`
+      : (remaining > 0 ? 'Free daily run available' : 'Next free run at 00:00 UTC');
     manageBtn.textContent = 'Unlock';
     setUserEmail(email);
     updatePaywallMembership(paid);
@@ -402,6 +450,8 @@
 
   function updatePaywallMembership(paid) {
     if (!paywallMember) return;
+    const isLifetime = Boolean(paid && paid.active && parsePlan(paid.plan)?.period === 'lifetime');
+    paywall.classList.toggle('is-lifetime-member', isLifetime);
     if (!paid || !paid.active) {
       paywallMember.classList.remove('active');
       paywallMemberPlan.textContent = '';
@@ -516,11 +566,14 @@
     }
 
     const paid = getPaidInfo();
-    if (!paid.active) {
+    track('seed_analyze_started', { source: `${source}-redirect` });
+    if (paid.active) {
+      track('seed_analyze_allowed_paid', { source: `${source}-redirect` });
+    } else {
       if (remainingUses() <= 0) {
         params.delete('seed');
         track('free_limit_reached', { source: `${source}-redirect` });
-        setStatus('Daily free limit reached. Subscribe for unlimited access.', true);
+        setStatus(limitMessage(), true);
         showPaywall('free_limit_reached');
       } else {
         recordUse();
@@ -626,6 +679,7 @@
   async function startPayment() {
     clearStatus();
     const email = normalizeEmail(paywallEmail.value);
+    track('pay_clicked', { plan: getSelectedPlan(), email_valid: validateEmail(email) });
     if (!validateEmail(email)) {
       setStatus('Enter a valid email before paying.', true);
       return;
@@ -738,8 +792,9 @@
     paywallPay.addEventListener('click', startPayment);
     paywallCheck.addEventListener('click', checkSubscription);
     document.querySelectorAll('input[name="seedPlan"]').forEach((input) => {
-      input.addEventListener('change', () => {
-        if (input.checked) {
+      input.addEventListener('change', (event) => {
+        // Only count real clicks; scripted changes once leaked seed codes in here.
+        if (input.checked && event.isTrusted && /^seed-(monthly|yearly|lifetime)$/.test(input.value)) {
           track('plan_selected', { plan: input.value });
         }
       });
@@ -1102,7 +1157,7 @@
         event.stopPropagation();
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
         track('free_limit_reached', { source: 'analyzer_button' });
-        setStatus('Daily free limit reached. Subscribe for unlimited access.', true);
+        setStatus(limitMessage(), true);
         showPaywall('free_limit_reached');
         return;
       }

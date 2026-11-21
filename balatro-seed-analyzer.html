@@ -5,7 +5,7 @@
   <link rel="preload" href="/assets/m6x11plus.ttf" as="font" type="font/ttf" crossorigin>
   <meta charset="utf-8">
   <title>Free Balatro Seed Analyzer &amp; Seed Checker - See Every Shop by Ante</title>
-  <link rel="stylesheet" href="style.css?v=20261108-gsc-1">
+  <link rel="stylesheet" href="style.css?v=20261119-sale">
   <link rel="stylesheet" href="/blueprint-dist/assets/index.css" crossorigin>
   <meta name="description" content="Free Balatro seed analyzer and seed checker. Enter any seed to see shop jokers, vouchers, packs, and boss blinds ante by ante. Runs instantly in your browser.">
   <meta name="keywords" content="balatro seed analyzer, balatro seeds, balatro seed routing, balatro seed analysis, balatro seed calculator">
@@ -59,7 +59,7 @@
             "name": "Is Seed Analyzer free?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, but it includes a daily limit on free usage. Seed Pro unlocks unlimited analysis and also unlocks the VIP Seed Pro Library."
+              "text": "Yes. You get 3 free analyses to start, then 1 free analysis per day. Seed Pro unlocks unlimited analysis and also unlocks the VIP Seed Pro Library."
             }
           },
           {
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div class="seedQuotaSummary">
-              <div id="seedQuotaReset" class="seedQuotaReset">Resets daily at 00:00 UTC</div>
+              <div id="seedQuotaReset" class="seedQuotaReset">3 free to start, then 1 per day</div>
               <a id="seedQuotaLibraryLink" class="seedQuotaLibraryLink" href="/balatro-seeds#community-seed-library">
                 Seed Pro also unlocks VIP Seed Pro Library.
               </a>
@@ -299,21 +299,21 @@
           <div id="seedPaywallMemberExpires" class="seedPaywallMemberExpires"></div>
         </div>
         <div class="seedPaywallMemberActions">
-          <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button">Upgrade / Extend</button>
-          <button id="seedPaywallManage" class="seedPaywallSecondary" type="button">Manage in PayPal</button>
+          <button id="seedPaywallUpgrade" class="seedPaywallSecondary" type="button" data-member-renew>Upgrade / Extend</button>
+          <button id="seedPaywallManage" class="seedPaywallSecondary" type="button" data-member-renew>Manage in PayPal</button>
           <button id="seedPaywallLogout" class="seedPaywallSecondary" type="button">Log out</button>
         </div>
       </div>
-      <p>Subscribe for unlimited access to Seed Analyzer.</p>
-      <p class="seedPaywallNote">Seed Pro membership is shared with the <a class="seedPaywallInlineLink" href="/balatro-seeds#community-seed-library">VIP Seed Pro Library</a>, so one upgrade unlocks unlimited use in both tools at the same time.</p>
-      <p class="seedPaywallNote">Monthly and yearly plans auto-renew. Cancel anytime. To cancel your subscription, <a class="seedPaywallInlineLink" href="https://www.paypal.com/myaccount/autopay/" target="_blank" rel="noopener" data-paypal-manage-link>cancel it in PayPal</a>.</p>
+      <p data-paywall-purchase>Subscribe for unlimited access to Seed Analyzer.</p>
+      <p class="seedPaywallNote" data-paywall-purchase>Seed Pro membership is shared with the <a class="seedPaywallInlineLink" href="/balatro-seeds#community-seed-library">VIP Seed Pro Library</a>, so one upgrade unlocks unlimited use in both tools at the same time.</p>
+      <p class="seedPaywallNote" data-paywall-purchase>Monthly and yearly plans auto-renew. Cancel anytime. To cancel your subscription, <a class="seedPaywallInlineLink" href="https://www.paypal.com/myaccount/autopay/" target="_blank" rel="noopener" data-paypal-manage-link>cancel it in PayPal</a>.</p>
       <p class="seedPaywallSupport">
         If you cannot pay or encounter issues, contact
         <button id="seedPaywallSupportEmail" class="seedPaywallSupportLink" type="button" data-email="support@balatrocalc.com">
           support@balatrocalc.com
         </button>.
       </p>
-      <div class="seedPaywallPlans">
+      <div class="seedPaywallPlans" data-paywall-purchase>
         <label class="seedPaywallPlan">
           <span><input type="radio" name="seedPlan" value="seed-monthly" checked>Monthly</span>
           <span class="seedPaywallPlanPrice">$5 / 30 days</span>
@@ -327,13 +327,13 @@
           <span class="seedPaywallPlanPrice">$100 one-time</span>
         </label>
       </div>
-      <div class="seedPaywallField">
+      <div class="seedPaywallField" data-paywall-purchase>
         <label for="seedPaywallEmail">Email (used for subscription lookup)</label>
         <input id="seedPaywallEmail" type="email" placeholder="you@example.com" autocomplete="email">
       </div>
-      <button id="seedPaywallPay" class="seedPaywallPrimary" type="button">Pay with PayPal</button>
-      <div class="seedPaywallDivider">Already paid? Enter your email to check subscription.</div>
-      <button id="seedPaywallCheck" class="seedPaywallPrimary" type="button">Check subscription</button>
+      <button id="seedPaywallPay" class="seedPaywallPrimary" type="button" data-paywall-purchase>Pay with PayPal</button>
+      <div class="seedPaywallDivider" data-paywall-purchase>Already paid? Enter your email to check subscription.</div>
+      <button id="seedPaywallCheck" class="seedPaywallPrimary" type="button" data-paywall-purchase>Check subscription</button>
       <div id="seedPaywallStatus" class="seedPaywallStatus"></div>
     </div>
   </div>
@@ -405,7 +405,7 @@
 
   <script type="module" crossorigin src="/blueprint-dist/assets/index.js"></script>
   <script type="text/javascript" src="balatro-background.js"></script>
-  <script type="text/javascript" src="seed-analyzer-access.js"></script>
+  <script type="text/javascript" src="seed-analyzer-access.js?v=20261121-quota"></script>
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search);

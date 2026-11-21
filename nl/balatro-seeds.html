@@ -102,6 +102,7 @@
     <a href="/nl/" class="nav-link">calculator</a>
     <a href="/balatro-hand-levels" class="nav-link">hand levels</a>
     <a href="/nl/balatro-seeds" class="nav-link">seeds</a>
+    <a href="/balatro-ai-assistant" class="nav-link nav-link--proper-case">AI Advisor</a>
     <a href="/blog/" class="nav-link">blog</a>
     <a href="/balatro-mod-manager" class="nav-link nav-link--proper-case">Balatro Mod Manager</a>
     <a href="/balatro-save-editor" class="nav-link nav-link--proper-case">Balatro Save Editor</a>
@@ -676,23 +677,23 @@
           <div id="seedLibraryPaywallMemberExpires" class="seed-library-paywall-member-expires"></div>
         </div>
         <div class="seed-library-paywall-member-actions">
-          <button id="seedLibraryPaywallUpgrade" class="seed-library-paywall-secondary" type="button">Upgrade / Extend</button>
-          <button id="seedLibraryPaywallManage" class="seed-library-paywall-secondary" type="button">Manage in PayPal</button>
+          <button id="seedLibraryPaywallUpgrade" class="seed-library-paywall-secondary" type="button" data-member-renew>Upgrade / Extend</button>
+          <button id="seedLibraryPaywallManage" class="seed-library-paywall-secondary" type="button" data-member-renew>Manage in PayPal</button>
           <button id="seedLibraryPaywallLogout" class="seed-library-paywall-secondary" type="button">Log out</button>
         </div>
       </div>
-      <p>
+      <p data-paywall-purchase>
         Unlock the full VIP seed library. Seed Pro is shared with
         <a href="/balatro-seed-analyzer">Balatro Seed Analyzer</a>.
       </p>
-      <p class="seed-library-paywall-note">Monthly and yearly plans auto-renew. Cancel anytime. To cancel your subscription, <a href="https://www.paypal.com/myaccount/autopay/" target="_blank" rel="noopener">cancel it in PayPal</a>.</p>
+      <p class="seed-library-paywall-note" data-paywall-purchase>Monthly and yearly plans auto-renew. Cancel anytime. To cancel your subscription, <a href="https://www.paypal.com/myaccount/autopay/" target="_blank" rel="noopener" data-paypal-manage-link>cancel it in PayPal</a>.</p>
       <p class="seed-library-paywall-support">
         If you cannot pay or run into issues, contact
         <button id="seedLibrarySupportEmail" class="seed-library-paywall-support-link" type="button" data-email="support@balatrocalc.com">
           support@balatrocalc.com
         </button>.
       </p>
-      <div class="seed-library-paywall-plans">
+      <div class="seed-library-paywall-plans" data-paywall-purchase>
         <label class="seed-library-paywall-plan">
           <span><input type="radio" name="seedLibraryPlan" value="seed-monthly" checked>Monthly</span>
           <span class="seed-library-paywall-plan-price">$5 / 30 days</span>
@@ -706,13 +707,13 @@
           <span class="seed-library-paywall-plan-price">$100 one-time</span>
         </label>
       </div>
-      <div class="seed-library-paywall-field">
+      <div class="seed-library-paywall-field" data-paywall-purchase>
         <label for="seedLibraryPaywallEmail">Email (used for subscription lookup)</label>
         <input id="seedLibraryPaywallEmail" type="email" placeholder="you@example.com" autocomplete="email">
       </div>
-      <button id="seedLibraryPaywallPay" class="seed-library-paywall-primary" type="button">Pay with PayPal</button>
-      <div class="seed-library-paywall-divider">Already paid? Enter your email to refresh access.</div>
-      <button id="seedLibraryPaywallCheck" class="seed-library-paywall-primary" type="button">Check subscription</button>
+      <button id="seedLibraryPaywallPay" class="seed-library-paywall-primary" type="button" data-paywall-purchase>Pay with PayPal</button>
+      <div class="seed-library-paywall-divider" data-paywall-purchase>Already paid? Enter your email to refresh access.</div>
+      <button id="seedLibraryPaywallCheck" class="seed-library-paywall-primary" type="button" data-paywall-purchase>Check subscription</button>
       <div id="seedLibraryPaywallStatus" class="seed-library-paywall-status"></div>
     </div>
   </div>
@@ -5799,6 +5800,7 @@
       }
 
       function updatePaywallMemberBox(paid) {
+        paywall?.classList.toggle("is-lifetime-member", Boolean(paid.active && parsePlan(paid.plan)?.period === "lifetime"));
         if (!paid.active) {
           paywallMember.classList.remove("active");
           paywallMemberPlan.textContent = "";
@@ -6229,11 +6231,15 @@
         }
       }
 
-      function openPayPalManage() {
+      function getPayPalManageUrl() {
         const host = window.location.hostname;
         const isSandbox = host.includes("pages.dev") || host.includes("localhost") || host.includes("127.0.0.1");
         const base = isSandbox ? "https://www.sandbox.paypal.com" : "https://www.paypal.com";
-        window.open(`${base}/myaccount/autopay/`, "_blank", "noopener");
+        return `${base}/myaccount/autopay/`;
+      }
+
+      function openPayPalManage() {
+        window.open(getPayPalManageUrl(), "_blank", "noopener");
       }
 
       function copySupportEmail() {
@@ -6304,6 +6310,9 @@
           clearPaywallStatus();
           document.querySelector(".seed-library-paywall-plans")?.scrollIntoView({ behavior: "smooth", block: "start" });
           setPaywallStatus("Choose a plan to upgrade or extend Seed Pro.", "");
+        });
+        document.querySelectorAll("[data-paypal-manage-link]").forEach((link) => {
+          link.setAttribute("href", getPayPalManageUrl());
         });
         paywallManage.addEventListener("click", openPayPalManage);
         paywallLogout.addEventListener("click", () => {
@@ -7670,6 +7679,12 @@
       font-weight: 700;
     }
 
+    /* Lifetime members have nothing left to buy: hide plans, pay and renew entries. */
+    .seed-library-paywall.is-lifetime-member [data-paywall-purchase],
+    .seed-library-paywall.is-lifetime-member [data-member-renew] {
+      display: none;
+    }
+
     .seed-library-paywall-field {
       display: flex;
       flex-direction: column;
@@ -7957,7 +7972,7 @@
 
   </style>
 <footer class="siteTrustFooter" lang="en" aria-label="Site information">
-  <nav aria-label="Site information links"><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy Policy</a><a href="/terms/">Terms</a></nav>
+  <nav aria-label="Site information links"><a href="/nl/about/">About</a><a href="/contact/">Contact</a><a href="/nl/privacy-policy/">Privacy Policy</a><a href="/nl/terms/">Terms</a></nav>
   <p>BalatroCalc is an unofficial fan tool, not affiliated with or endorsed by LocalThunk or Playstack. Balatro and related game assets belong to their respective rights holders.</p>
 </footer>
 </body>

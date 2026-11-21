@@ -1,8 +1,12 @@
 import { jsonResponse, normalizeEmail } from '../_utils.js';
 
+// Ordered: used the analyzer -> ran out -> saw paywall -> chose -> clicked pay -> PayPal -> paid.
 const FUNNEL_EVENTS = [
+  'seed_analyze_allowed_free',
+  'free_limit_reached',
   'paywall_viewed',
   'plan_selected',
+  'pay_clicked',
   'checkout_started',
   'payment_success',
   'payment_cancelled'
@@ -40,6 +44,9 @@ async function groupedCounts(env, events, since) {
             COUNT(DISTINCT anonymous_id) AS unique_users
      FROM analytics_events
      WHERE created_at >= ? AND event_name IN (${placeholders})
+       -- Before 2026-11-10 the seed autofill fired plan_selected with seed codes; skip those rows.
+       AND NOT (event_name = 'plan_selected'
+                AND COALESCE(json_extract(properties_json, '$.plan'), '') NOT LIKE 'seed-%')
      GROUP BY event_name`
   ).bind(since, ...events).all();
 
@@ -60,14 +67,20 @@ async function groupedCounts(env, events, since) {
 }
 
 async function averagePaidSessionSeconds(env, since) {
+  // session_heartbeat was removed on 2026-11-10; paid session time now comes from
+  // page_engagement (engaged ms per page view, re-sent as it grows, so take the max per view).
   const { results } = await env.DB.prepare(
-    `SELECT session_id,
-            MAX(CAST(json_extract(properties_json, '$.elapsedMs') AS INTEGER)) AS elapsed_ms
-     FROM analytics_events
-     WHERE created_at >= ?
-       AND subscription_status = 'paid'
-       AND event_name = 'session_heartbeat'
-       AND properties_json IS NOT NULL
+    `SELECT session_id, SUM(view_ms) AS elapsed_ms
+     FROM (
+       SELECT session_id,
+              MAX(CAST(json_extract(properties_json, '$.engaged_ms') AS INTEGER)) AS view_ms
+       FROM analytics_events
+       WHERE created_at >= ?
+         AND subscription_status = 'paid'
+         AND event_name = 'page_engagement'
+         AND properties_json IS NOT NULL
+       GROUP BY session_id, json_extract(properties_json, '$.pv')
+     )
      GROUP BY session_id`
   ).bind(since).all();
 
@@ -78,6 +91,40 @@ async function averagePaidSessionSeconds(env, since) {
   if (!values.length) return 0;
   const averageMs = values.reduce((sum, value) => sum + value, 0) / values.length;
   return Math.round(averageMs / 1000);
+}
+
+// How many people actually use Seed Analyzer, and how many free runs each one used.
+async function seedAnalyzerUsage(env, since) {
+  const row = await env.DB.prepare(
+    `WITH per_user AS (
+       SELECT anonymous_id,
+              SUM(CASE WHEN event_name = 'seed_analyze_allowed_free' THEN 1 ELSE 0 END) AS free_runs,
+              SUM(CASE WHEN event_name = 'seed_analyze_allowed_paid' THEN 1 ELSE 0 END) AS paid_runs,
+              MAX(CASE WHEN event_name = 'free_limit_reached' THEN 1 ELSE 0 END) AS hit_limit
+       FROM analytics_events
+       WHERE created_at >= ?
+         AND event_name IN ('seed_analyze_allowed_free', 'seed_analyze_allowed_paid', 'free_limit_reached')
+       GROUP BY anonymous_id
+     )
+     SELECT COUNT(CASE WHEN free_runs + paid_runs > 0 THEN 1 END) AS users_analyzed,
+            COALESCE(SUM(free_runs + paid_runs), 0) AS total_runs,
+            COUNT(CASE WHEN paid_runs > 0 THEN 1 END) AS paid_users,
+            COUNT(CASE WHEN free_runs = 1 THEN 1 END) AS free_1,
+            COUNT(CASE WHEN free_runs = 2 THEN 1 END) AS free_2,
+            COUNT(CASE WHEN free_runs >= 3 THEN 1 END) AS free_3_plus,
+            COUNT(CASE WHEN hit_limit = 1 THEN 1 END) AS hit_limit_users
+     FROM per_user`
+  ).bind(since).first();
+
+  return {
+    usersAnalyzed: row?.users_analyzed || 0,
+    totalRuns: row?.total_runs || 0,
+    paidUsers: row?.paid_users || 0,
+    freeRuns1: row?.free_1 || 0,
+    freeRuns2: row?.free_2 || 0,
+    freeRuns3Plus: row?.free_3_plus || 0,
+    hitLimitUsers: row?.hit_limit_users || 0
+  };
 }
 
 async function userTimeline(env, email, since) {
@@ -142,6 +189,7 @@ export async function onRequestGet({ request, env }) {
       activePaidEmails: overview?.active_paid_emails || 0,
       averagePaidSessionSeconds: await averagePaidSessionSeconds(env, since)
     },
+    seedUsage: await seedAnalyzerUsage(env, since),
     funnel: await groupedCounts(env, FUNNEL_EVENTS, since),
     dropoffs: await groupedCounts(env, DROPOFF_EVENTS, since),
     paidUsage: (paidUsage.results || []).map((row) => ({

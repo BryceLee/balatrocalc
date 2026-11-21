@@ -34,16 +34,29 @@ function getAllowedAdminEmails(env) {
 
 const TRACKER_TAG = '<script defer src="/bc-analytics.js"></script>';
 
-// Adds the first-party behavior tracker to every public HTML page.
+// Visitor country from Cloudflare (two letters, or '' when unknown). ad-slot.js uses it
+// to keep ads off for US visitors.
+export function countryTag(request) {
+  const raw = String(request.cf?.country || request.headers.get('cf-ipcountry') || '').toUpperCase();
+  const country = /^[A-Z]{2}$/.test(raw) ? raw : '';
+  return `<script>window.bcCountry=${JSON.stringify(country)};</script>`;
+}
+
+// Adds the first-party behavior tracker (and the visitor country) to every public HTML page.
 async function withBehaviorTracker(request, env, next) {
   const response = await next();
-  if (env.BEHAVIOR_TRACKING === 'off' || typeof HTMLRewriter === 'undefined') return response;
+  if (typeof HTMLRewriter === 'undefined') return response;
   if (request.method !== 'GET' || response.status !== 200) return response;
   const type = response.headers.get('content-type') || '';
   if (!type.includes('text/html')) return response;
-  return new HTMLRewriter()
-    .on('head', { element(element) { element.append(TRACKER_TAG, { html: true }); } })
+  const tags = countryTag(request) + (env.BEHAVIOR_TRACKING === 'off' ? '' : TRACKER_TAG);
+  const rewritten = new HTMLRewriter()
+    .on('head', { element(element) { element.append(tags, { html: true }); } })
     .transform(response);
+  // The page now differs per visitor country, so shared caches must not reuse it.
+  const headers = new Headers(rewritten.headers);
+  headers.set('Cache-Control', 'private, no-cache');
+  return new Response(rewritten.body, { status: rewritten.status, statusText: rewritten.statusText, headers });
 }
 
 export async function onRequest({ request, next, env, data }) {

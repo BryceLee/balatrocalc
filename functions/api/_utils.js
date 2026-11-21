@@ -72,6 +72,10 @@ export function planConfig(plan) {
       monthly: { amount: 5, days: 30 },
       yearly: { amount: 49, days: 365 },
       lifetime: { amount: 100, days: null }
+    },
+    // One-time "Remove ads" purchase on the homepage ad slot (ad-slot.js).
+    noads: {
+      lifetime: { amount: 3, days: null }
     }
   };
   const featurePricing = pricing[feature];
