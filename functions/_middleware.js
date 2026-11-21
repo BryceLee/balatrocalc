@@ -80,7 +80,9 @@ export async function onRequest({ request, next, env, data }) {
     return new Response('Invalid path', { status: 400, headers: { 'Cache-Control': 'private, no-store' } });
   }
   if (!path.startsWith('/admin') && !path.startsWith('/api/admin')) {
-    return path.startsWith('/api/') ? next() : withBehaviorTracker(request, env, next);
+    // The ad frame page runs inside a sandboxed iframe; tracking it would only add fake visitors.
+    if (path.startsWith('/api/') || path.startsWith('/adsterra-')) return next();
+    return withBehaviorTracker(request, env, next);
   }
 
   const expectedPass = env.ADMIN_PASS || '';
