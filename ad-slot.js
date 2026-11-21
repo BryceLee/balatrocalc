@@ -6,7 +6,7 @@
   'use strict';
 
   const SLOT_ID = 'sideAdSlot';
-  const AD_FRAME_SRC = '/adsterra-300x250.html';
+  const AD_FRAME_SRC = '/adsterra-300x250';
   const NOADS_PLAN = 'noads-lifetime';
   const NOADS_PRICE = '$3';
   const KEYS = { email: 'bc_paid_email', features: 'bc_paid_features' };
